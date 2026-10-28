@@ -10,7 +10,8 @@ Las rutas recuerdan dónde quedó la lectura, así que ya no hay que desplazarse
 
 ### Agregado
 - Tarjeta "Seguir donde quedaste" al abrir una ruta: muestra el módulo y hace cuánto se leyó, y con "Continuar" vuelve al punto exacto. No salta sola, para no desorientar.
-- Botones flotantes "Índice" y "Siguiente": el índice lista los módulos, marca con ✓ los leídos e indica dónde estás; "Siguiente" baja al próximo módulo.
+- Botones flotantes "Índice" y "Siguiente": el índice lista los módulos con una casilla para marcar o desmarcar cada uno e indica dónde estás; "Siguiente" baja al próximo módulo.
+- Un módulo se marca solo cuando su final pasa por la pantalla mientras la persona se desplaza. Los saltos con Siguiente, el índice, J, K o Continuar no marcan nada, y lo que se marque o desmarque a mano se respeta.
 - Barra de progreso de lectura y ✓ en el menú superior para los módulos leídos.
 - Atajos de teclado en computador: J siguiente módulo, K anterior, I índice, Esc cierra.
 - IA y Data Science: reabre la última lección del módulo 0 que estabas leyendo.
