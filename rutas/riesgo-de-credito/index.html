@@ -187,6 +187,10 @@ pre.code{margin:0;background:var(--sunk);border-radius:10px;padding:14px;overflo
 .day b{display:block;font-size:.95rem}
 .day span{font-size:.88rem;color:var(--muted)}
 .day.done{opacity:.6} .day.done b{text-decoration:line-through}
+.day em.ref{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--accent);margin-top:2px}
+footer details{border-top:1px solid var(--line);padding-top:10px}
+footer summary{cursor:pointer;font-weight:600;color:var(--fg)}
+footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
 .week{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
 .progress{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
 .progress i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
@@ -225,13 +229,13 @@ body.can-ask .ask-more{display:block}
 </style>
 
 <nav class="top" aria-label="Secciones"><div class="wrap">
-  <a href="#mapa">Mapa</a><a href="#perdida">Pérdida esperada</a><a href="#scorecards">Scorecards</a><a href="#validacion">Validación</a><a href="#cosechas">Cosechas</a><a href="#estrategia">Estrategia</a><a href="#pricing">Pricing</a><a href="#provisiones">NIIF 9</a><a href="#capital">Capital</a><a href="#monitoreo">Monitoreo</a><a href="#avanzado">Avanzado</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 12 semanas</a>
+  <a href="#programas">Programas</a><a href="#mapa">Mapa</a><a href="#perdida">Pérdida esperada</a><a href="#scorecards">Scorecards</a><a href="#validacion">Validación</a><a href="#cosechas">Cosechas</a><a href="#estrategia">Estrategia</a><a href="#pricing">Pricing</a><a href="#provisiones">NIIF 9</a><a href="#capital">Capital</a><a href="#monitoreo">Monitoreo</a><a href="#frm">Estándar FRM</a><a href="#avanzado">Avanzado</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 12 semanas</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
   <span class="eyebrow">Ruta de aprendizaje · Riesgo de crédito</span>
   <h1>De la pérdida esperada al capital económico</h1>
-  <p class="hero-sub">Una ruta completa para data scientists y analistas de riesgo: originación, scorecards, validación, cosechas, estrategia, pricing, provisiones NIIF 9, capital de Basilea, estrés y modelos avanzados. Cada módulo trae una calculadora. Todos los números de esta página son inventados para practicar.</p>
+  <p class="hero-sub">Una ruta completa para data scientists y analistas de riesgo, organizada con el temario de la certificación FRM y los cursos de riesgo de Imperial College, Stanford y la Universidad de Edimburgo: originación, scorecards, validación, cosechas, estrategia, pricing, provisiones NIIF 9, capital de Basilea, mercados de crédito, estrés y modelos avanzados. Cada módulo trae una calculadora. Todos los números de esta página son inventados para practicar.</p>
   <div class="levels">
     <div class="lvcard l1"><span class="k">Fundamentos</span><b>Semanas 1–3</b><span>Pérdida esperada, scorecards y métricas de validación.</span></div>
     <div class="lvcard l2"><span class="k">Intermedio</span><b>Semanas 4–6</b><span>Cosechas, roll rates, cortes de política y pricing.</span></div>
@@ -239,14 +243,36 @@ body.can-ask .ask-more{display:block}
     <div class="lvcard l4"><span class="k">Experto</span><b>Semanas 11–12</b><span>Supervivencia, ML gobernado, causalidad y portafolio.</span></div>
   </div>
   <div class="stats">
-    <div class="stat"><b id="sQuiz">0 / 20</b><span>Respuestas correctas</span></div>
+    <div class="stat"><b id="sQuiz">0 / 22</b><span>Respuestas correctas</span></div>
     <div class="stat"><b id="sPlan">0 / 12</b><span>Semanas completadas</span></div>
   </div>
 </div></header>
 
+<!-- PROGRAMAS -->
+<section class="mod" id="programas"><div class="wrap">
+  <div class="head"><span class="eyebrow">01 · De dónde sale esta ruta</span><h2>Lo que enseñan los mejores programas de riesgo</h2>
+  <p class="muted">Resumen de las fuentes oficiales de cada programa. Los planes cambian cada año: revisa la versión vigente antes de citarlos.</p></div>
+  <div class="tbl panel"><table>
+    <thead><tr><th>Programa</th><th>Qué cubre según la fuente oficial</th><th>En esta ruta</th></tr></thead>
+    <tbody>
+      <tr><td><b>GARP · FRM</b><span class="muted" style="display:block;font-size:.78rem">Financial Risk Manager, estándar profesional</span></td><td>Parte I: fundamentos de gestión de riesgos, análisis cuantitativo, mercados y productos financieros, y modelos de valoración y riesgo. Parte II: medición y gestión del riesgo de crédito, riesgo de mercado, riesgo operacional y resiliencia, y liquidez y tesorería, entre otros.</td><td>El crédito de la Parte II es el eje de los módulos 03 a 11; el módulo 12 cubre derivados de crédito, contraparte y los demás riesgos</td></tr>
+      <tr><td><b>Imperial College London</b><span class="muted" style="display:block;font-size:.78rem">MSc Risk Management &amp; Financial Engineering</span></td><td>Núcleo de estadística financiera, finanzas empíricas, ingeniería financiera, inversiones y portafolios, gestión de riesgos y valoración, y cálculo estocástico.</td><td>Validación, capital y técnicas avanzadas; la ruta de Finanzas cubre portafolios y derivados</td></tr>
+      <tr><td><b>Stanford</b><span class="muted" style="display:block;font-size:.78rem">MS&amp;E 246 Financial Risk Analytics</span></td><td>Modelado con datos reales del riesgo de crédito y de mercado: hipotecas, titularizaciones, crédito comercial, morosidad de consumo y crédito en línea.</td><td>Cosechas, roll rates, supervivencia y el proyecto con datos de Freddie Mac</td></tr>
+      <tr><td><b>University of Edinburgh</b><span class="muted" style="display:block;font-size:.78rem">Credit Research Centre</span></td><td>Centro donde nació buena parte del credit scoring académico (Thomas, Edelman y Crook). Su módulo de Credit Risk Management usa <i>Credit Scoring and Its Applications</i> como texto base.</td><td>Scorecards, validación, inferencia de rechazados y estrategia de corte</td></tr>
+      <tr><td><b>Reguladores</b><span class="muted" style="display:block;font-size:.78rem">BCBS, NIIF 9, Reserva Federal, SFC</span></td><td>Basilea define el capital, la NIIF 9 las provisiones y la guía SR 11-7 el gobierno de modelos. En Colombia, la Superintendencia Financiera aplica sus propias reglas de provisión.</td><td>Módulos 09 a 11</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cards">
+    <div class="card"><span class="n">Medir</span><p>Estimar PD, LGD y EAD con modelos que se puedan explicar y validar.</p></div>
+    <div class="card"><span class="n">Decidir</span><p>Convertir el score en política: a quién aprobar, cuánto prestar y a qué tasa.</p></div>
+    <div class="card"><span class="n">Reservar</span><p>Provisiones NIIF 9 y capital de Basilea para la pérdida esperada y la no esperada.</p></div>
+    <div class="card"><span class="n">Gobernar</span><p>Monitorear, validar y documentar los modelos como pide la regulación.</p></div>
+  </div>
+</div></section>
+
 <!-- 01 MAPA -->
 <section class="mod" id="mapa"><div class="wrap">
-  <div class="head"><span class="eyebrow">01 · Contexto</span><h2>Los riesgos de una entidad que presta</h2>
+  <div class="head"><span class="eyebrow">02 · Contexto</span><h2>Los riesgos de una entidad que presta</h2>
   <p class="muted">Esta ruta se centra en riesgo de crédito, pero un buen analista sabe dónde termina su riesgo y empieza el de al lado.</p></div>
   <div class="cards">
     <div class="card"><span class="n">Crédito</span><h3>Que el cliente no pague</h3><p>PD, LGD y EAD; originación, comportamiento, cobranza, provisiones y capital. Es el foco de esta ruta.</p></div>
@@ -274,7 +300,7 @@ body.can-ask .ask-more{display:block}
 
 <!-- 02 PERDIDA ESPERADA -->
 <section class="mod" id="perdida"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">02 · La ecuación base</span><span class="lv lv1">Fundamentos</span></div><h2>Pérdida esperada: PD × LGD × EAD</h2>
+  <div class="head"><div class="row"><span class="eyebrow">03 · La ecuación base</span><span class="lv lv1">Fundamentos</span></div><h2>Pérdida esperada: PD × LGD × EAD</h2>
   <p>Todo el riesgo de crédito se arma sobre tres piezas. <b>PD</b>: probabilidad de que el cliente entre en default en un horizonte (12 meses o toda la vida). <b>LGD</b>: fracción de la exposición que se pierde si entra en default, igual a 1 menos la recuperación neta de costos. <b>EAD</b>: cuánto debe el cliente en el momento del default; en tarjetas incluye parte del cupo que todavía no ha usado.</p></div>
   <div class="f">EL = PD × LGD × EAD        EAD (rotativos) = saldo + CCF × cupo no usado</div>
   <div class="panel example">
@@ -301,7 +327,7 @@ body.can-ask .ask-more{display:block}
 
 <!-- 03 SCORECARDS -->
 <section class="mod" id="scorecards"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">03 · Originación</span><span class="lv lv1">Fundamentos</span></div><h2>Scorecards: WoE, IV y puntos</h2>
+  <div class="head"><div class="row"><span class="eyebrow">04 · Originación</span><span class="lv lv1">Fundamentos</span></div><h2>Scorecards: WoE, IV y puntos</h2>
   <p>El scorecard clásico agrupa cada variable en tramos, reemplaza cada tramo por su <b>Weight of Evidence</b>, ajusta una regresión logística y convierte el resultado en puntos. Sigue vigente porque es estable, monotónico y explicable a un regulador o a un comité de crédito.</p></div>
   <div class="f">WoE = ln(%buenos / %malos)        IV = Σ (%buenos − %malos) × WoE</div>
   <div class="panel example">
@@ -361,7 +387,7 @@ score_te = sc.score(X_te)</pre>
 
 <!-- 04 VALIDACION -->
 <section class="mod" id="validacion"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">04 · ¿El modelo sirve?</span><span class="lv lv1">Fundamentos</span></div><h2>Discriminación y calibración</h2>
+  <div class="head"><div class="row"><span class="eyebrow">05 · ¿El modelo sirve?</span><span class="lv lv1">Fundamentos</span></div><h2>Discriminación y calibración</h2>
   <p>Son dos preguntas distintas. <b>Discriminación</b>: ¿ordena bien, con los malos arriba? Se mide con KS, Gini y AUC. <b>Calibración</b>: ¿la PD que dice es la que pasa? Se mide comparando PD predicha contra tasa observada por tramo, con pruebas binomiales o Hosmer-Lemeshow. Un modelo puede ordenar perfecto y estar mal calibrado; para aprobar basta ordenar, pero para provisionar y fijar precio hace falta calibrar.</p></div>
   <div class="panel example">
     <span class="tag">Ejemplo dummy · 10.000 créditos en deciles de score (1 = más riesgoso)</span>
@@ -389,7 +415,7 @@ score_te = sc.score(X_te)</pre>
 
 <!-- 05 COSECHAS -->
 <section class="mod" id="cosechas"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">05 · Comportamiento de la cartera</span><span class="lv lv2">Intermedio</span></div><h2>Cosechas y roll rates</h2>
+  <div class="head"><div class="row"><span class="eyebrow">06 · Comportamiento de la cartera</span><span class="lv lv2">Intermedio</span></div><h2>Cosechas y roll rates</h2>
   <p>Una <b>cosecha</b> (vintage) agrupa los créditos desembolsados el mismo mes y sigue su mora por meses en libros (MOB). Así se comparan cohortes a la misma edad: una cartera joven siempre parece sana. Las <b>roll rates</b> miden qué fracción pasa de un tramo de mora al siguiente cada mes; encadenadas en una matriz de transición, proyectan la cartera.</p></div>
   <div class="panel example">
     <span class="tag">Ejemplo dummy · % de créditos con 30+ días de mora por MOB</span>
@@ -416,7 +442,7 @@ score_te = sc.score(X_te)</pre>
 
 <!-- 06 ESTRATEGIA -->
 <section class="mod" id="estrategia"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">06 · Del score a la decisión</span><span class="lv lv2">Intermedio</span></div><h2>Punto de corte, swap set e inferencia de rechazados</h2>
+  <div class="head"><div class="row"><span class="eyebrow">07 · Del score a la decisión</span><span class="lv lv2">Intermedio</span></div><h2>Punto de corte, swap set e inferencia de rechazados</h2>
   <p>El score ordena; la política decide. Bajar el corte aprueba más y sube la mora; el corte óptimo depende del margen de un buen cliente y de la pérdida de uno malo. El punto de equilibrio de un tramo está en una tasa de malos de <span class="mono">margen / (margen + pérdida)</span>.</p></div>
   <div class="panel example">
     <span class="tag">Ejemplo dummy · 10.000 solicitudes por tramo de score</span>
@@ -443,7 +469,7 @@ score_te = sc.score(X_te)</pre>
 
 <!-- 07 PRICING -->
 <section class="mod" id="pricing"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">07 · Cobrar por el riesgo</span><span class="lv lv2">Intermedio</span></div><h2>Pricing basado en riesgo y RAROC</h2>
+  <div class="head"><div class="row"><span class="eyebrow">08 · Cobrar por el riesgo</span><span class="lv lv2">Intermedio</span></div><h2>Pricing basado en riesgo y RAROC</h2>
   <p>La tasa mínima de un crédito debe cubrir el costo de fondeo, el costo operativo, la pérdida esperada y una remuneración al capital que respalda la pérdida no esperada. El <b>RAROC</b> (<i>Risk-Adjusted Return On Capital</i>) compara lo que deja el crédito con el capital que consume.</p></div>
   <div class="f">Tasa mínima ≈ fondeo × (1 − k) + opex + PD × LGD + k × costo del capital        RAROC = (tasa − fondeo × (1 − k) − opex − EL) / k</div>
   <div class="panel example">
@@ -468,7 +494,7 @@ score_te = sc.score(X_te)</pre>
 
 <!-- 08 NIIF 9 -->
 <section class="mod" id="provisiones"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">08 · Provisiones</span><span class="lv lv3">Avanzado</span></div><h2>Pérdida crediticia esperada NIIF 9</h2>
+  <div class="head"><div class="row"><span class="eyebrow">09 · Provisiones</span><span class="lv lv3">Avanzado</span></div><h2>Pérdida crediticia esperada NIIF 9</h2>
   <p>NIIF 9 (IFRS 9) obliga a provisionar la pérdida esperada con información prospectiva, no solo la ya incurrida. Cada crédito cae en una de tres etapas según cuánto ha subido su riesgo desde que se originó.</p></div>
   <div class="stages">
     <div class="stg s1"><b>Etapa 1</b><span>Sin aumento significativo del riesgo (SICR). Se provisiona la pérdida esperada a <b>12 meses</b>.</span></div>
@@ -507,7 +533,7 @@ score_te = sc.score(X_te)</pre>
 
 <!-- 09 CAPITAL -->
 <section class="mod" id="capital"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">09 · Pérdida no esperada</span><span class="lv lv3">Avanzado</span></div><h2>Capital de Basilea IRB y el modelo de Vasicek</h2>
+  <div class="head"><div class="row"><span class="eyebrow">10 · Pérdida no esperada</span><span class="lv lv3">Avanzado</span></div><h2>Capital de Basilea IRB y el modelo de Vasicek</h2>
   <p>La fórmula de capital IRB de Basilea viene del modelo de un factor de Vasicek: todos los deudores dependen de un factor común (la economía) con correlación ρ. Condicionado a un año malo, el que ocurre 1 de cada 1.000, la tasa de default sube. El capital cubre la diferencia entre esa pérdida extrema y la esperada.</p></div>
   <div class="f">PD(z) = N[ (G(PD) − √ρ · z) / √(1 − ρ) ]        K = LGD × N[ (G(PD) + √ρ · G(0,999)) / √(1 − ρ) ] − PD × LGD</div>
   <div class="panel example">
@@ -531,7 +557,7 @@ score_te = sc.score(X_te)</pre>
 
 <!-- 10 MONITOREO -->
 <section class="mod" id="monitoreo"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">10 · Después de producción</span><span class="lv lv3">Avanzado</span></div><h2>Monitoreo, estrés y riesgo de modelo</h2>
+  <div class="head"><div class="row"><span class="eyebrow">11 · Después de producción</span><span class="lv lv3">Avanzado</span></div><h2>Monitoreo, estrés y riesgo de modelo</h2>
   <p>Un modelo empieza a degradarse el día que sale. Se vigila la población (PSI, CSI por variable), el desempeño (KS y Gini en cosechas maduras), la calibración y los overrides. El riesgo de modelo se gobierna con validación independiente que haga <i>effective challenge</i>, como pide la guía SR 11-7 de la Reserva Federal.</p></div>
   <div class="f">PSI = Σ (%actual − %esperado) × ln(%actual / %esperado)</div>
   <div class="panel example">
@@ -557,9 +583,43 @@ score_te = sc.score(X_te)</pre>
   <div class="bridge" data-topic="monitoreo"></div>
 </div></section>
 
+<!-- FRM -->
+<section class="mod" id="frm"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">12 · Para completar el estándar FRM</span><span class="lv lv3">Avanzado</span></div><h2>Mercados de crédito, contraparte y los demás riesgos</h2>
+  <p>La parte de crédito del FRM va más allá del scorecard: incluye cómo el mercado pone precio al riesgo de un emisor, cómo se reparte el riesgo en una titularización y cuánto vale el riesgo de que la contraparte de un derivado no pague.</p></div>
+  <div class="f">λ ≈ spread / (1 − R)        PD a T años = 1 − e^(−λ·T)</div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Triángulo de crédito: de un spread de CDS a una PD</span>
+    <p style="font-size:.93rem">Si un CDS cuesta un spread anual <i>s</i> y en default se recupera <i>R</i>, la intensidad de default λ que implica el mercado es aproximadamente s / (1 − R). Es una PD <b>neutral al riesgo</b>: incluye la prima que cobra el mercado por cargar el riesgo, así que suele ser mayor que la PD real de tu modelo.</p>
+    <div class="calc">
+      <div class="inputs">
+        <label for="xS">Spread del CDS (pb)<input id="xS" type="number" min="0" step="5" value="250"></label>
+        <label for="xR">Recuperación R (%)<input id="xR" type="number" min="0" max="95" step="5" value="40"></label>
+        <label for="xT">Horizonte (años)<input id="xT" type="number" min="0.5" step="0.5" value="5"></label>
+        <label for="xPd">PD anual de tu modelo (%)<input id="xPd" type="number" min="0" step="0.1" value="2"></label>
+      </div>
+      <div class="metrics" id="xOut"></div>
+    </div>
+  </div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Titularización en tres tramos</span>
+    <p style="font-size:.93rem">Las pérdidas del paquete de créditos golpean primero al tramo junior (equity), luego al intermedio (mezzanine) y por último al senior. Por eso el senior puede tener calificación alta aunque los créditos de abajo sean riesgosos.</p>
+    <div class="range"><div class="row"><label for="tL">Pérdida del paquete de créditos</label><span class="mono" id="tLV"></span></div><input type="range" id="tL" min="0" max="40" step="0.5" value="8"></div>
+    <div class="tbl"><table><thead><tr><th>Tramo</th><th class="num">Absorbe pérdidas entre</th><th class="num">Pérdida del tramo</th></tr></thead><tbody id="tTbl"></tbody></table></div>
+  </div>
+  <div class="cards">
+    <div class="card"><span class="n">Contraparte y CVA</span><p>En un derivado, la contraparte puede no pagar cuando te debe. El CVA descuenta ese riesgo del valor del contrato; se calcula con la exposición esperada futura, la PD y la LGD de la contraparte.</p></div>
+    <div class="card"><span class="n">Estructurales y de forma reducida</span><p>Los estructurales (Merton) explican el default por el valor de los activos frente a la deuda; los de forma reducida modelan directamente la intensidad de default, como el triángulo de crédito.</p></div>
+    <div class="card"><span class="n">Riesgo de mercado</span><p>VaR, Expected Shortfall y backtesting. Calculadoras en la ruta de Finanzas, módulo de riesgo financiero.</p></div>
+    <div class="card"><span class="n">Liquidez y tesorería</span><p>LCR, NSFR y gestión de activos y pasivos (ALM): que la entidad pueda pagar sus obligaciones aun en estrés.</p></div>
+    <div class="card"><span class="n">Operacional y resiliencia</span><p>Pérdidas por fallas de procesos, personas, sistemas o eventos externos, y la capacidad de seguir operando.</p></div>
+  </div>
+  <div class="bridge" data-topic="frm"></div>
+</div></section>
+
 <!-- 11 AVANZADO -->
 <section class="mod" id="avanzado"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">11 · Hasta dónde llega el campo</span><span class="lv lv4">Experto</span></div><h2>Técnicas avanzadas</h2>
+  <div class="head"><div class="row"><span class="eyebrow">13 · Hasta dónde llega el campo</span><span class="lv lv4">Experto</span></div><h2>Técnicas avanzadas</h2>
   <p class="muted">Lo que separa a un analista senior: modelos que respetan el tiempo, ML que el regulador acepta, causalidad para decidir políticas y una vista de portafolio.</p></div>
   <div class="techs">
     <div class="tech"><div class="tech-h"><h3>Supervivencia y riesgos competitivos</h3><span class="lv lv4">Experto</span></div>
@@ -625,7 +685,7 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
 
 <!-- 12 CATALOGO -->
 <section class="mod" id="catalogo"><div class="wrap">
-  <div class="head"><span class="eyebrow">12 · Todo lo que se modela en riesgo</span><h2>Catálogo de técnicas</h2>
+  <div class="head"><span class="eyebrow">14 · Todo lo que se modela en riesgo</span><h2>Catálogo de técnicas</h2>
   <p class="muted">De la tabla de contingencia al capital económico. Cada técnica dice para qué sirve, trae un ejemplo con números inventados y las librerías.</p></div>
   <div class="filters">
     <div class="frow2" id="catLv" role="group" aria-label="Nivel">
@@ -646,9 +706,9 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
 
 <!-- 13 QUIZ -->
 <section class="mod" id="quiz"><div class="wrap">
-  <div class="head"><span class="eyebrow">13 · Practica</span><h2>Quiz</h2>
-  <p class="muted">Veinte preguntas de fundamentos a experto. Elige una opción y verás al instante si acertaste y por qué. Se guarda en este navegador.</p></div>
-  <div class="qbar"><span class="mono" id="qScore">0 / 20 correctas · 0 respondidas</span><button class="btn" id="qReset" type="button">Reiniciar quiz</button></div>
+  <div class="head"><span class="eyebrow">15 · Practica</span><h2>Quiz</h2>
+  <p class="muted">Veintidós preguntas de fundamentos a experto. Elige una opción y verás al instante si acertaste y por qué. Se guarda en este navegador.</p></div>
+  <div class="qbar"><span class="mono" id="qScore">0 / 22 correctas · 0 respondidas</span><button class="btn" id="qReset" type="button">Reiniciar quiz</button></div>
   <div class="qfil" id="qFil" role="group" aria-label="Filtrar por nivel">
     <button type="button" class="fchip" data-q="0" aria-pressed="true">Todas</button>
     <button type="button" class="fchip" data-q="1" aria-pressed="false">Fundamentos</button>
@@ -661,7 +721,7 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
 
 <!-- 14 PLAN -->
 <section class="mod" id="plan"><div class="wrap">
-  <div class="head"><span class="eyebrow">14 · 4 a 6 horas por semana</span><h2>Plan de 12 semanas</h2>
+  <div class="head"><span class="eyebrow">16 · 4 a 6 horas por semana</span><h2>Plan de 12 semanas</h2>
   <p class="muted">Cada semana tiene teoría y un entregable en código. El proyecto que se va armando usa datos públicos y termina publicado en GitHub. Marca cada semana al terminarla; se guarda en este navegador.</p></div>
   <div class="progress"><i id="planBar"></i></div>
   <div class="plan" id="planBox"></div>
@@ -671,7 +731,12 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
   <p><b>Libros:</b> Siddiqi, <i>Intelligent Credit Scoring</i> · Thomas, Crook y Edelman, <i>Credit Scoring and Its Applications</i> · Baesens, Rösch y Scheule, <i>Credit Risk Analytics</i> · Bellini, <i>IFRS 9 and CECL Credit Risk Modelling and Validation</i>.</p>
   <p><b>Normas y guías:</b> marco de Basilea del BCBS (enfoque IRB) · NIIF 9 · SR 11-7 de la Reserva Federal sobre riesgo de modelo · guías de la EBA sobre estimación de PD y LGD · Circular Básica Contable y Financiera de la Superintendencia Financiera de Colombia.</p>
   <p><b>Datos públicos para practicar:</b> Home Credit Default Risk y Give Me Some Credit (Kaggle) · Freddie Mac Single-Family Loan-Level Dataset · Lending Club (copias históricas).</p>
+  <p><b>Programas consultados:</b> <a href="https://www.garp.org/frm/study-materials">GARP FRM</a> · <a href="https://www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/">Imperial MSc Risk Management &amp; Financial Engineering</a> · <a href="https://bulletin.stanford.edu/courses/2158531">Stanford MS&amp;E 246</a> · <a href="https://cer.business-school.ed.ac.uk/">University of Edinburgh, Credit Research Centre</a>.</p>
   <p>Todos los números de esta página son inventados. Las fórmulas están simplificadas para aprender; confirma los detalles en la norma y en la política de tu entidad antes de usarlas.</p>
+  <details><summary>Versión 2.0.0 · 28 oct 2026</summary><ul>
+    <li><b>2.0.0</b> · Estructura alineada con FRM, Imperial, Stanford y Edimburgo; módulo de mercados de crédito con triángulo de crédito y titularización; plan con referencia académica por semana; glosario emergente.</li>
+    <li><b>1.0.0</b> · Primera versión: 11 módulos, catálogo, quiz y plan de 12 semanas.</li>
+  </ul></details>
 </div></footer>
 
 <button class="fab" id="chatOpen" type="button" hidden>Pregúntale a Claude</button>
@@ -877,6 +942,20 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
     PSI.forEach((r,i)=>$('psiA'+i).addEventListener('input', psi)); psi();
   })();
 
+  /* 12 Triángulo de crédito y tramos */
+  function cds(){
+    const sp=val('xS')/10000, R=Math.min(val('xR')/100,.95), T=Math.max(val('xT'),.5), pdm=val('xPd')/100;
+    const lam=sp/(1-R), pdT=1-Math.exp(-lam*T), pd1=1-Math.exp(-lam);
+    $('xOut').innerHTML = metric('Intensidad λ', fmt(lam*100,2)+' % anual') + metric('PD a 1 año (mercado)', fmt(pd1*100,2)+' %', 'key') + metric('PD a '+fmt(T,1)+' años (mercado)', fmt(pdT*100,1)+' %', 'key') + metric('PD de tu modelo', fmt(pdm*100,2)+' %') + metric('Mercado / modelo', pdm>0?fmt(pd1/pdm,1)+'×':'—');
+  }
+  ['xS','xR','xT','xPd'].forEach(i => $(i).addEventListener('input', cds)); cds();
+  const TR = [['Senior',15,100],['Mezzanine',5,15],['Equity (junior)',0,5]];
+  function tranche(){
+    const L=val('tL'); $('tLV').textContent = fmt(L,1)+' %';
+    $('tTbl').innerHTML = TR.map(([n,a,b])=>{ const loss=Math.min(Math.max(L-a,0),b-a)/(b-a); return `<tr class="${loss>=1?'hi':''}"><td>${n}</td><td class="num">${a} % – ${b} %</td><td class="num ${loss>0?'neg':''}">${fmt(loss*100,1)} %</td></tr>`; }).join('');
+  }
+  $('tL').addEventListener('input', tranche); tranche();
+
   /* Catálogo */
   const CAT = [
     {n:'Tablas de contingencia y tasas de malos', lv:1, a:'Originación', u:'Primer análisis de cualquier variable: tasa de malos por tramo y su volumen.', e:'Clientes con 3 o más consultas al buró en 30 días: 14 % de malos contra 5 % del resto.', l:'pandas'},
@@ -916,6 +995,9 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
     {n:'Simulación de portafolio Monte Carlo', lv:4, a:'Estrés y portafolio', u:'Distribución de pérdidas con factores sectoriales correlacionados y contribuciones al capital.', e:'Un segmento con 15 % del saldo consume 32 % del capital económico.', l:'numpy, scipy'},
     {n:'Grafos para fraude', lv:4, a:'Fraude', u:'Encontrar anillos que comparten dispositivos, teléfonos o direcciones.', e:'Una comunidad de 14 solicitudes con 3 dispositivos tiene 60 % de primera cuota impaga.', l:'networkx, PyTorch Geometric'},
     {n:'Modelos de secuencia transaccional', lv:4, a:'Cobranza y cartera', u:'Usar la secuencia de transacciones y pagos para predecir deterioro temprano.', e:'El modelo de secuencia anticipa la mora 45 días antes que el score mensual.', l:'PyTorch'},
+    {n:'Triángulo de crédito y CDS', lv:3, a:'Mercados de crédito', u:'Pasar de un spread de mercado a una PD implícita y compararla con la del modelo.', e:'Spread de 250 pb con 40 % de recuperación: λ de 4,2 % anual y PD de mercado a 5 años de 18,8 %.', l:'numpy'},
+    {n:'Titularización por tramos', lv:4, a:'Mercados de crédito', u:'Repartir las pérdidas de un paquete de créditos entre tramos senior, mezzanine y equity.', e:'Con 8 % de pérdida del paquete, el equity pierde todo, el mezzanine 30 % y el senior nada.', l:'numpy'},
+    {n:'Riesgo de contraparte y CVA', lv:4, a:'Mercados de crédito', u:'Valorar el riesgo de que la contraparte de un derivado no pague.', e:'Exposición esperada de 2 millones, PD de 3 % y LGD de 60 %: CVA cercano a 36.000.', l:'QuantLib, numpy'},
     {n:'Aprendizaje por refuerzo en cobranza', lv:4, a:'Cobranza y cartera', u:'Elegir la secuencia de acciones (SMS, llamada, oferta) que maximiza la recuperación neta.', e:'La política aprendida recupera 6 % más con 20 % menos llamadas, en simulación.', l:'Stable-Baselines3'}
   ];
   const LVN = ['', 'Fundamentos', 'Intermedio', 'Avanzado', 'Experto'];
@@ -928,6 +1010,7 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
     pricing:{q:'¿A qué tasa prestar?', i:[['Pricing basado en riesgo y RAROC','La tasa mínima y el retorno sobre capital.'],['Double ML para elasticidad de tasa','Cómo responde la aceptación al precio.'],['Optimización de ofertas con restricciones','Precio por cliente con límites de riesgo.']]},
     provisiones:{q:'¿Cuánto provisionar?', i:[['Pérdida esperada NIIF 9','Etapas, vida completa y escenarios.'],['PD de vida completa','Curvas de PD por horizonte.'],['Modelos satélite macro','La parte forward-looking.'],['Supervivencia y riesgos competitivos','PD de vida con prepago.']]},
     capital:{q:'¿Cuánto capital necesita la cartera?', i:[['Capital IRB y Vasicek','El modelo de un factor de Basilea.'],['Pruebas de estrés','Escenarios adversos a varios años.'],['Simulación de portafolio Monte Carlo','Varios factores y contribuciones.']]},
+    frm:{q:'¿Cómo pone precio el mercado al riesgo de crédito?', i:[['Triángulo de crédito y CDS','Del spread a la PD.'],['Titularización por tramos','Quién absorbe primero las pérdidas.'],['Riesgo de contraparte y CVA','Crédito dentro de los derivados.'],['Capital IRB y Vasicek','El mismo factor común detrás de los tramos.']]},
     monitoreo:{q:'¿El modelo se está degradando?', i:[['PSI y CSI','Estabilidad de población y variables.'],['Backtesting y benchmarking','Desempeño en cosechas maduras.'],['Equidad y sesgo','Que no discrimine sin justificación.'],['Modelos satélite macro','Base de las pruebas de estrés.']]}
   };
   const byName = Object.fromEntries(CAT.map(c => [c.n, c]));
@@ -978,6 +1061,8 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
     {lv:3, s:'Monitoreo', q:'El PSI del score es 0,30. ¿Qué haces?', o:['Nada, es normal','Investigo el cambio de población con el CSI por variable y evalúo recalibrar o redesarrollar','Subo el punto de corte'], a:1, w:'Por encima de 0,25 la población ya es distinta de la de desarrollo.'},
     {lv:4, s:'Avanzado', q:'¿Qué ventaja tiene un modelo de supervivencia para la PD?', o:['Siempre tiene mejor Gini','Maneja la censura y da la PD a cualquier horizonte, como pide la vida completa de NIIF 9','No necesita datos históricos'], a:1, w:'Los créditos que aún no terminan cuentan como censurados en vez de descartarse.'},
     {lv:4, s:'Avanzado', q:'¿Para qué sirven las restricciones monotónicas en XGBoost?', o:['Para entrenar más rápido','Para que el riesgo se mueva en la dirección esperada con cada variable y el modelo sea defendible','Para subir el Gini'], a:1, w:'Por ejemplo, más mora pasada nunca debe bajar la PD. Suele costar poco Gini y gana aprobación en validación.'},
+    {lv:3, s:'Mercados de crédito', q:'Un CDS cotiza a 300 pb y la recuperación esperada es 40 %. ¿Cuál es la intensidad de default aproximada?', o:['3 %','5 %','7,5 %'], a:1, w:'λ ≈ 0,03 / (1 − 0,40) = 5 % anual. Es una PD neutral al riesgo, mayor que la real porque incluye la prima por riesgo.'},
+    {lv:4, s:'Mercados de crédito', q:'Un paquete de créditos pierde 8 %. El equity absorbe de 0 a 5 % y el mezzanine de 5 a 15 %. ¿Cuánto pierde el mezzanine?', o:['8 %','30 %','100 %'], a:1, w:'El equity se come el primer 5 %; el mezzanine absorbe los 3 puntos siguientes de un tramo de 10 puntos: 3 / 10 = 30 %. Pruébalo con el control de tramos.'},
     {lv:4, s:'Avanzado', q:'Quitas género y edad de un modelo. ¿Ya es justo?', o:['Sí','No necesariamente: otras variables pueden actuar como proxy; hay que medir resultados por grupo','Solo si el Gini baja'], a:1, w:'La equidad se mide en los resultados (aprobación y error por grupo), no solo en las variables de entrada.'}
   ];
   let ans = store.get('rc_quiz', {}), qLv = 0;
@@ -1007,25 +1092,25 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
 
   /* Plan */
   const P = [
-    [1,'Fundamentos','Pérdida esperada y definición de default','Lee los capítulos iniciales de Siddiqi. Descarga Home Credit Default Risk, define "malo" y arma la tabla base con ventana de observación y de desempeño.'],
-    [2,'Fundamentos','Binning, WoE e IV','Con optbinning, binea 20 variables, revisa monotonía y selecciona por IV. Documenta cada decisión.'],
-    [3,'Fundamentos','Scorecard y validación','Logística sobre WoE, escalado con PDO, KS, Gini, lift y gráfica de calibración en un set fuera de tiempo.'],
-    [4,'Intermedio','Cosechas y roll rates','Con el dataset de Freddie Mac, arma curvas de cosecha por año de originación y una matriz de transición mensual.'],
-    [5,'Intermedio','Estrategia y rechazados','Simula el corte óptimo con margen y pérdida, compara swap sets entre dos modelos e intenta una inferencia de rechazados por aumentación.'],
-    [6,'Intermedio','Pricing, LGD y EAD','Calcula tasa mínima y RAROC por tramo; ajusta un modelo de LGD en dos etapas con datos de recuperación.'],
-    [7,'Avanzado','NIIF 9','PD de vida completa por tramo, criterio de SICR, tres escenarios y ECL por etapa. Mide el efecto acantilado.'],
-    [8,'Avanzado','Basilea IRB y Vasicek','Implementa la fórmula de capital minorista, compárala con una simulación Monte Carlo de un factor y estresa z.'],
-    [9,'Avanzado','Monitoreo y riesgo de modelo','PSI y CSI mensuales, backtesting por cosecha y un reporte de validación al estilo SR 11-7 para tu scorecard.'],
-    [10,'Avanzado','Pruebas de estrés','Modelo satélite de tasa de default contra desempleo; proyecta pérdidas a 2 años en un escenario adverso.'],
-    [11,'Experto','ML gobernado y supervivencia','XGBoost con monotonía, SHAP y códigos de razón; modelo de tiempo discreto con prepago como riesgo competitivo.'],
-    [12,'Experto','Proyecto final y publicación','Une todo en un repositorio: README con pregunta, datos, modelo, validación, ECL y capital. Prepara una presentación de 10 minutos.']
+    [1,'Fundamentos','Pérdida esperada y definición de default','Lee los capítulos iniciales de Siddiqi. Descarga Home Credit Default Risk, define "malo" y arma la tabla base con ventana de observación y de desempeño.','FRM I · Fundamentos'],
+    [2,'Fundamentos','Binning, WoE e IV','Con optbinning, binea 20 variables, revisa monotonía y selecciona por IV. Documenta cada decisión.','Edimburgo · Credit scoring'],
+    [3,'Fundamentos','Scorecard y validación','Logística sobre WoE, escalado con PDO, KS, Gini, lift y gráfica de calibración en un set fuera de tiempo.','Edimburgo · Validación'],
+    [4,'Intermedio','Cosechas y roll rates','Con el dataset de Freddie Mac, arma curvas de cosecha por año de originación y una matriz de transición mensual.','Stanford MS&E 246'],
+    [5,'Intermedio','Estrategia y rechazados','Simula el corte óptimo con margen y pérdida, compara swap sets entre dos modelos e intenta una inferencia de rechazados por aumentación.','Edimburgo · Estrategia'],
+    [6,'Intermedio','Pricing, LGD y EAD','Calcula tasa mínima y RAROC por tramo; ajusta un modelo de LGD en dos etapas con datos de recuperación.','FRM II · Crédito'],
+    [7,'Avanzado','NIIF 9','PD de vida completa por tramo, criterio de SICR, tres escenarios y ECL por etapa. Mide el efecto acantilado.','NIIF 9 · Imperial'],
+    [8,'Avanzado','Basilea IRB y Vasicek','Implementa la fórmula de capital minorista, compárala con una simulación Monte Carlo de un factor y estresa z. Agrega el triángulo de crédito con spreads de CDS y una titularización de tres tramos.','FRM II · Crédito · BCBS'],
+    [9,'Avanzado','Monitoreo y riesgo de modelo','PSI y CSI mensuales, backtesting por cosecha y un reporte de validación al estilo SR 11-7 para tu scorecard.','SR 11-7 · FRM II'],
+    [10,'Avanzado','Pruebas de estrés','Modelo satélite de tasa de default contra desempleo; proyecta pérdidas a 2 años en un escenario adverso.','Stanford MS&E 246 · Estrés'],
+    [11,'Experto','ML gobernado y supervivencia','XGBoost con monotonía, SHAP y códigos de razón; modelo de tiempo discreto con prepago como riesgo competitivo.','Imperial · Estadística financiera'],
+    [12,'Experto','Proyecto final y publicación','Une todo en un repositorio: README con pregunta, datos, modelo, validación, ECL y capital. Prepara una presentación de 10 minutos.','Proyecto final']
   ];
   let done = store.get('rc_plan', {});
   const planBox = $('planBox');
   function renderPlan(){
     let last = '';
     planBox.innerHTML = P.map((p, i) => { const wk = p[1] !== last ? `<div class="week">${p[1]}</div>` : ''; last = p[1];
-      return `${wk}<label class="day ${done[i] ? 'done' : ''}" for="w${i}"><input type="checkbox" id="w${i}" data-i="${i}" ${done[i] ? 'checked' : ''}><span class="d">Sem ${p[0]}</span><span><b>${p[2]}</b><span>${p[3]}</span></span></label>`; }).join('');
+      return `${wk}<label class="day ${done[i] ? 'done' : ''}" for="w${i}"><input type="checkbox" id="w${i}" data-i="${i}" ${done[i] ? 'checked' : ''}><span class="d">Sem ${p[0]}</span><span><b>${p[2]}</b><span>${p[3]}</span><em class="ref">${p[4]}</em></span></label>`; }).join('');
     const n = P.filter((p, i) => done[i]).length;
     $('sPlan').textContent = `${n} / ${P.length}`; $('planBar').style.width = (n / P.length * 100) + '%';
   }
@@ -1096,7 +1181,7 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
 </style>
 <script id="glosario-js">
 (function(){
-  const G = {"PD": ["Probabilidad de default","La probabilidad de que un cliente deje de pagar en un periodo, por lo general un año."],"VaR": ["Value at Risk","La pérdida que no deberías superar en un periodo con cierta confianza; por ejemplo, en 99 de cada 100 días."],"SHAP": ["SHapley Additive exPlanations","Método que reparte una predicción entre las variables para explicar por qué el modelo decidió así."],"PSI": ["Population Stability Index","Mide cuánto cambió la población que llega hoy frente a la que se usó para construir el modelo. Más de 0,25 es un cambio fuerte."],"ML": ["Machine learning","Modelos que aprenden patrones de los datos para predecir o clasificar."],"pp": ["Puntos porcentuales","Diferencia directa entre dos porcentajes: de 5 % a 7 % hay 2 pp."],"pb": ["Puntos básicos","Centésimas de un punto porcentual: 100 pb equivalen a 1 %."],"KS": ["Kolmogorov-Smirnov","La mayor separación entre buenos y malos que logra un score. Más alto significa que ordena mejor."],"AUC": ["Área bajo la curva ROC","Probabilidad de que el modelo ponga más arriba a un caso positivo que a uno negativo escogidos al azar. 0,5 es azar; 1 es perfecto."],"Gini": ["Coeficiente de Gini","Qué tan bien ordena el modelo a los clientes del más al menos riesgoso. 0 es azar y 100 % es perfecto; equivale a 2 × AUC − 1."],"NLP": ["Procesamiento de lenguaje natural","Técnicas para que un modelo entienda o genere texto."],"LGD": ["Pérdida dado default","Qué porcentaje de lo prestado se pierde si el cliente no paga, después de lo que se logra recuperar."],"EAD": ["Exposición al default","Cuánto te debe el cliente en el momento en que deja de pagar."],"EL": ["Pérdida esperada","Lo que en promedio esperas perder: PD × LGD × EAD."],"CCF": ["Factor de conversión de crédito","Qué parte del cupo que el cliente no ha usado termina usando antes de dejar de pagar."],"WoE": ["Weight of Evidence","Indica si un tramo de una variable tiene proporcionalmente más buenos o más malos pagadores. Negativo significa más riesgo."],"IV": ["Information Value","Mide qué tanto separa una variable a los buenos de los malos pagadores."],"PDO": ["Points to Double the Odds","Cuántos puntos de score hay que sumar para que la relación buenos:malos se duplique."],"Brier": ["Brier score","Error promedio entre la probabilidad que predijo el modelo y lo que pasó. Más bajo es mejor."],"MOB": ["Months on book","Meses que lleva un crédito desde que se desembolsó."],"SICR": ["Aumento significativo del riesgo de crédito","Cuando un crédito empeoró bastante desde que se otorgó; obliga a provisionar la pérdida de toda su vida."],"ECL": ["Expected Credit Loss","La pérdida esperada que la NIIF 9 obliga a provisionar."],"NIIF 9": ["Norma Internacional de Información Financiera 9","La norma contable que define cómo provisionar la pérdida esperada de los créditos."],"IFRS 9": ["International Financial Reporting Standard 9","Nombre en inglés de la NIIF 9: cómo provisionar la pérdida esperada de los créditos."],"CECL": ["Current Expected Credit Loss","La versión de Estados Unidos de la NIIF 9: provisiona la pérdida de toda la vida del crédito desde el primer día."],"IRB": ["Internal Ratings-Based","Enfoque de Basilea en el que el banco usa sus propios modelos de PD y LGD para calcular su capital."],"RWA": ["Risk-weighted assets","Los préstamos ajustados por su riesgo; el capital mínimo es un porcentaje de ellos."],"APR": ["Activos ponderados por riesgo","Los préstamos ajustados por su riesgo; el capital mínimo es un porcentaje de ellos."],"RAROC": ["Retorno ajustado por riesgo sobre el capital","Cuánto rinde un crédito por cada peso de capital que consume."],"CSI": ["Characteristic Stability Index","El PSI calculado variable por variable, para ver cuál cambió."],"SR 11-7": ["","Guía de la Reserva Federal de Estados Unidos sobre cómo gestionar el riesgo de los modelos."],"LCR": ["Liquidity Coverage Ratio","Exige tener activos líquidos para aguantar 30 días de salidas de plata en estrés."],"NSFR": ["Net Stable Funding Ratio","Exige que lo que se presta a largo plazo esté financiado con fuentes estables."],"XGBoost": ["","Algoritmo de muchos árboles de decisión en secuencia; suele ser el más preciso con datos en tablas."],"BCBS": ["Comité de Supervisión Bancaria de Basilea","El comité internacional que define las reglas de capital de los bancos."],"EBA": ["Autoridad Bancaria Europea","El supervisor bancario de la Unión Europea."],"Basilea": ["","Reglas internacionales que fijan cuánto capital deben tener los bancos según su riesgo."],"swap-in": ["","Clientes que el modelo nuevo aprueba y el viejo rechazaba."],"swap-out": ["","Clientes que el modelo viejo aprobaba y el nuevo rechaza."],"Swap set": ["","Comparación de quién entra y quién sale al cambiar de modelo, a igual tasa de aprobación."],"cosecha": ["Vintage","Grupo de créditos desembolsados el mismo mes, que se sigue en el tiempo para ver cómo pagan."],"cosechas": ["Vintages","Grupos de créditos desembolsados el mismo mes, que se siguen en el tiempo para ver cómo pagan."],"Cosechas": ["Vintages","Grupos de créditos desembolsados el mismo mes, que se siguen en el tiempo para ver cómo pagan."],"roll rates": ["","Porcentaje de cuentas que pasan de un tramo de mora al siguiente en un mes."],"Roll rates": ["","Porcentaje de cuentas que pasan de un tramo de mora al siguiente en un mes."],"Vasicek": ["Modelo de Vasicek","Supone que todos los deudores dependen de la economía; es la base de la fórmula de capital de Basilea."],"opex": ["Costo operativo","Lo que cuesta operar el negocio: personal, tecnología, cobranza."],"TTC": ["Through the cycle","PD promedio de largo plazo, que no se mueve con el ciclo económico."],"PIT": ["Point in time","PD que refleja la situación económica del momento."],"buró": ["Central de riesgo","Base de datos con el historial de pagos de las personas, como Datacrédito o TransUnion."],"castigo": ["","Sacar del balance un crédito que ya no se va a cobrar, reconociéndolo como pérdida."],"Hosmer-Lemeshow": ["","Prueba estadística que compara, por grupos, las probabilidades predichas con lo que pasó."],"CDS": ["Credit default swap","Un seguro contra el incumplimiento de un emisor: pagas una prima anual y te pagan si no paga."],"CVA": ["Credit Valuation Adjustment","Descuento al valor de un derivado por el riesgo de que la contraparte no pague."],"FRM": ["Financial Risk Manager","Certificación de GARP en gestión de riesgos, con dos exámenes."],"GARP": ["Global Association of Risk Professionals","La asociación que otorga la certificación FRM."],"ALM": ["Asset-Liability Management","Gestionar que los plazos y tasas de lo que se presta calcen con los de lo que se debe."],"titularización": ["","Empaquetar créditos y venderlos a inversionistas como bonos divididos en tramos de riesgo."],"Titularización": ["","Empaquetar créditos y venderlos a inversionistas como bonos divididos en tramos de riesgo."],"default": ["Incumplimiento","El cliente dejó de pagar; por lo general se define como 90 días de mora."],"scorecard": ["","Modelo que asigna puntos a cada característica del cliente; la suma es su score."],"Scorecards": ["","Modelos que asignan puntos a cada característica del cliente; la suma es su score."],"scorecards": ["","Modelos que asignan puntos a cada característica del cliente; la suma es su score."],"lift": ["","Cuántas veces más malos concentra un grupo frente al promedio."],"Lift": ["","Cuántas veces más malos concentra un grupo frente al promedio."],"odds": ["Momios","La relación entre buenos y malos: odds de 50 significa 50 buenos por cada malo."],"Merton": ["Modelo de Merton","Ve las acciones de una empresa como una opción sobre sus activos; de ahí saca la probabilidad de default."],"Expected Shortfall": ["Pérdida esperada en la cola","Cuánto pierdes en promedio en los escenarios malos que superan el VaR."],"pricing": ["","Fijar la tasa o el precio de un crédito según su riesgo y sus costos."],"Pricing": ["","Fijar la tasa o el precio de un crédito según su riesgo y sus costos."],"fondeo": ["","La plata que la entidad consigue para prestar, y lo que le cuesta."]};
+  const G = {"PD": ["Probabilidad de default", "La probabilidad de que un cliente deje de pagar en un periodo, por lo general un año."], "VaR": ["Value at Risk", "La pérdida que no deberías superar en un periodo con cierta confianza; por ejemplo, en 99 de cada 100 días."], "SHAP": ["SHapley Additive exPlanations", "Método que reparte una predicción entre las variables para explicar por qué el modelo decidió así."], "PSI": ["Population Stability Index", "Mide cuánto cambió la población que llega hoy frente a la que se usó para construir el modelo. Más de 0,25 es un cambio fuerte."], "ML": ["Machine learning", "Modelos que aprenden patrones de los datos para predecir o clasificar."], "pp": ["Puntos porcentuales", "Diferencia directa entre dos porcentajes: de 5 % a 7 % hay 2 pp."], "pb": ["Puntos básicos", "Centésimas de un punto porcentual: 100 pb equivalen a 1 %."], "KS": ["Kolmogorov-Smirnov", "La mayor separación entre buenos y malos que logra un score. Más alto significa que ordena mejor."], "AUC": ["Área bajo la curva ROC", "Probabilidad de que el modelo ponga más arriba a un caso positivo que a uno negativo escogidos al azar. 0,5 es azar; 1 es perfecto."], "Gini": ["Coeficiente de Gini", "Qué tan bien ordena el modelo a los clientes del más al menos riesgoso. 0 es azar y 100 % es perfecto; equivale a 2 × AUC − 1."], "NLP": ["Procesamiento de lenguaje natural", "Técnicas para que un modelo entienda o genere texto."], "LGD": ["Pérdida dado default", "Qué porcentaje de lo prestado se pierde si el cliente no paga, después de lo que se logra recuperar."], "EAD": ["Exposición al default", "Cuánto te debe el cliente en el momento en que deja de pagar."], "EL": ["Pérdida esperada", "Lo que en promedio esperas perder: PD × LGD × EAD."], "CCF": ["Factor de conversión de crédito", "Qué parte del cupo que el cliente no ha usado termina usando antes de dejar de pagar."], "WoE": ["Weight of Evidence", "Indica si un tramo de una variable tiene proporcionalmente más buenos o más malos pagadores. Negativo significa más riesgo."], "IV": ["Information Value", "Mide qué tanto separa una variable a los buenos de los malos pagadores."], "PDO": ["Points to Double the Odds", "Cuántos puntos de score hay que sumar para que la relación buenos:malos se duplique."], "Brier": ["Brier score", "Error promedio entre la probabilidad que predijo el modelo y lo que pasó. Más bajo es mejor."], "MOB": ["Months on book", "Meses que lleva un crédito desde que se desembolsó."], "SICR": ["Aumento significativo del riesgo de crédito", "Cuando un crédito empeoró bastante desde que se otorgó; obliga a provisionar la pérdida de toda su vida."], "ECL": ["Expected Credit Loss", "La pérdida esperada que la NIIF 9 obliga a provisionar."], "NIIF 9": ["Norma Internacional de Información Financiera 9", "La norma contable que define cómo provisionar la pérdida esperada de los créditos."], "IFRS 9": ["International Financial Reporting Standard 9", "Nombre en inglés de la NIIF 9: cómo provisionar la pérdida esperada de los créditos."], "CECL": ["Current Expected Credit Loss", "La versión de Estados Unidos de la NIIF 9: provisiona la pérdida de toda la vida del crédito desde el primer día."], "IRB": ["Internal Ratings-Based", "Enfoque de Basilea en el que el banco usa sus propios modelos de PD y LGD para calcular su capital."], "RWA": ["Risk-weighted assets", "Los préstamos ajustados por su riesgo; el capital mínimo es un porcentaje de ellos."], "APR": ["Activos ponderados por riesgo", "Los préstamos ajustados por su riesgo; el capital mínimo es un porcentaje de ellos."], "RAROC": ["Retorno ajustado por riesgo sobre el capital", "Cuánto rinde un crédito por cada peso de capital que consume."], "CSI": ["Characteristic Stability Index", "El PSI calculado variable por variable, para ver cuál cambió."], "SR 11-7": ["", "Guía de la Reserva Federal de Estados Unidos sobre cómo gestionar el riesgo de los modelos."], "LCR": ["Liquidity Coverage Ratio", "Exige tener activos líquidos para aguantar 30 días de salidas de plata en estrés."], "NSFR": ["Net Stable Funding Ratio", "Exige que lo que se presta a largo plazo esté financiado con fuentes estables."], "XGBoost": ["", "Algoritmo de muchos árboles de decisión en secuencia; suele ser el más preciso con datos en tablas."], "BCBS": ["Comité de Supervisión Bancaria de Basilea", "El comité internacional que define las reglas de capital de los bancos."], "EBA": ["Autoridad Bancaria Europea", "El supervisor bancario de la Unión Europea."], "Basilea": ["", "Reglas internacionales que fijan cuánto capital deben tener los bancos según su riesgo."], "swap-in": ["", "Clientes que el modelo nuevo aprueba y el viejo rechazaba."], "swap-out": ["", "Clientes que el modelo viejo aprobaba y el nuevo rechaza."], "Swap set": ["", "Comparación de quién entra y quién sale al cambiar de modelo, a igual tasa de aprobación."], "cosecha": ["Vintage", "Grupo de créditos desembolsados el mismo mes, que se sigue en el tiempo para ver cómo pagan."], "cosechas": ["Vintages", "Grupos de créditos desembolsados el mismo mes, que se siguen en el tiempo para ver cómo pagan."], "Cosechas": ["Vintages", "Grupos de créditos desembolsados el mismo mes, que se siguen en el tiempo para ver cómo pagan."], "roll rates": ["", "Porcentaje de cuentas que pasan de un tramo de mora al siguiente en un mes."], "Roll rates": ["", "Porcentaje de cuentas que pasan de un tramo de mora al siguiente en un mes."], "Vasicek": ["Modelo de Vasicek", "Supone que todos los deudores dependen de la economía; es la base de la fórmula de capital de Basilea."], "opex": ["Costo operativo", "Lo que cuesta operar el negocio: personal, tecnología, cobranza."], "TTC": ["Through the cycle", "PD promedio de largo plazo, que no se mueve con el ciclo económico."], "PIT": ["Point in time", "PD que refleja la situación económica del momento."], "buró": ["Central de riesgo", "Base de datos con el historial de pagos de las personas, como Datacrédito o TransUnion."], "castigo": ["", "Sacar del balance un crédito que ya no se va a cobrar, reconociéndolo como pérdida."], "Hosmer-Lemeshow": ["", "Prueba estadística que compara, por grupos, las probabilidades predichas con lo que pasó."], "CDS": ["Credit default swap", "Un seguro contra el incumplimiento de un emisor: pagas una prima anual y te pagan si no paga."], "CVA": ["Credit Valuation Adjustment", "Descuento al valor de un derivado por el riesgo de que la contraparte no pague."], "FRM": ["Financial Risk Manager", "Certificación de GARP en gestión de riesgos, con dos exámenes."], "GARP": ["Global Association of Risk Professionals", "La asociación que otorga la certificación FRM."], "ALM": ["Asset-Liability Management", "Gestionar que los plazos y tasas de lo que se presta calcen con los de lo que se debe."], "titularización": ["", "Empaquetar créditos y venderlos a inversionistas como bonos divididos en tramos de riesgo."], "Titularización": ["", "Empaquetar créditos y venderlos a inversionistas como bonos divididos en tramos de riesgo."], "default": ["Incumplimiento", "El cliente dejó de pagar; por lo general se define como 90 días de mora."], "scorecard": ["", "Modelo que asigna puntos a cada característica del cliente; la suma es su score."], "Scorecards": ["", "Modelos que asignan puntos a cada característica del cliente; la suma es su score."], "scorecards": ["", "Modelos que asignan puntos a cada característica del cliente; la suma es su score."], "lift": ["", "Cuántas veces más malos concentra un grupo frente al promedio."], "Lift": ["", "Cuántas veces más malos concentra un grupo frente al promedio."], "odds": ["Momios", "La relación entre buenos y malos: odds de 50 significa 50 buenos por cada malo."], "Merton": ["Modelo de Merton", "Ve las acciones de una empresa como una opción sobre sus activos; de ahí saca la probabilidad de default."], "Expected Shortfall": ["Pérdida esperada en la cola", "Cuánto pierdes en promedio en los escenarios malos que superan el VaR."], "pricing": ["", "Fijar la tasa o el precio de un crédito según su riesgo y sus costos."], "Pricing": ["", "Fijar la tasa o el precio de un crédito según su riesgo y sus costos."], "fondeo": ["", "La plata que la entidad consigue para prestar, y lo que le cuesta."], "Mezzanine": ["Tramo intermedio", "Parte de una titularización que absorbe pérdidas después del tramo junior y antes del senior."], "Senior": ["Tramo senior", "La parte más protegida de una titularización: solo pierde cuando ya se agotaron los tramos de abajo."], "Equity (junior)": ["Tramo junior", "La primera parte de una titularización en absorber pérdidas; es la más riesgosa y la que más rinde."], "neutral al riesgo": ["", "Probabilidad que sale de los precios de mercado; incluye la prima que cobra el mercado por asumir el riesgo."]};
   const keys = Object.keys(G).sort((a, b) => b.length - a.length);
   if (!keys.length) return;
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
