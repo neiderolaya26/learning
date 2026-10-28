@@ -1040,4 +1040,132 @@ document.getElementById('reset').addEventListener('click',()=>{
 render();
 </script>
 
+<!-- Glosario emergente: subraya siglas y términos técnicos y muestra su definición en palabras sencillas al pasar el cursor, tocar o enfocar con el teclado. -->
+<style id="glosario-css">
+.gl{border-bottom:1.5px dotted currentColor;cursor:help;border-radius:2px}
+.gl:hover,.gl[aria-expanded="true"]{background:rgba(127,127,127,.18)}
+.gl:focus-visible{outline:2px solid var(--accent,var(--s1,currentColor));outline-offset:1px}
+.gl-pop{position:fixed;z-index:60;max-width:min(300px,calc(100vw - 32px));padding:10px 12px;border-radius:10px;background:var(--fg,var(--ink,#111));color:var(--bg,#fff);font:400 .86rem/1.45 var(--body,system-ui,sans-serif);text-align:left;letter-spacing:normal;text-transform:none;box-shadow:0 8px 24px rgba(0,0,0,.25);pointer-events:none}
+.gl-pop b{display:block;font-weight:700}
+.gl-pop .gl-l{display:block;font-size:.76rem;opacity:.8;margin-bottom:4px}
+@media (prefers-reduced-motion:no-preference){.gl-pop:not([hidden]){animation:gl-in .12s ease-out}@keyframes gl-in{from{opacity:0;transform:translateY(3px)}}}
+</style>
+<script id="glosario-js">
+(function(){
+  const G = {"PD": ["Probabilidad de default","La probabilidad de que un cliente deje de pagar en un periodo, por lo general un año."],"VaR": ["Value at Risk","La pérdida que no deberías superar en un periodo con cierta confianza; por ejemplo, en 99 de cada 100 días."],"SHAP": ["SHapley Additive exPlanations","Método que reparte una predicción entre las variables para explicar por qué el modelo decidió así."],"PSI": ["Population Stability Index","Mide cuánto cambió la población que llega hoy frente a la que se usó para construir el modelo. Más de 0,25 es un cambio fuerte."],"ML": ["Machine learning","Modelos que aprenden patrones de los datos para predecir o clasificar."],"pp": ["Puntos porcentuales","Diferencia directa entre dos porcentajes: de 5 % a 7 % hay 2 pp."],"pb": ["Puntos básicos","Centésimas de un punto porcentual: 100 pb equivalen a 1 %."],"KS": ["Kolmogorov-Smirnov","La mayor separación entre buenos y malos que logra un score. Más alto significa que ordena mejor."],"AUC": ["Área bajo la curva ROC","Probabilidad de que el modelo ponga más arriba a un caso positivo que a uno negativo escogidos al azar. 0,5 es azar; 1 es perfecto."],"Gini": ["Coeficiente de Gini","Qué tan bien ordena el modelo a los clientes del más al menos riesgoso. 0 es azar y 100 % es perfecto; equivale a 2 × AUC − 1."],"NLP": ["Procesamiento de lenguaje natural","Técnicas para que un modelo entienda o genere texto."],"PCA": ["Análisis de componentes principales","Resume muchas variables en unas pocas nuevas que conservan la mayor parte de la información."],"SVD": ["Descomposición en valores singulares","Forma de partir una matriz en piezas simples; es la base de cómo se calcula PCA."],"OLS": ["Mínimos cuadrados ordinarios","Ajusta la recta que deja el menor error al cuadrado entre lo predicho y lo real."],"VIF": ["Factor de inflación de la varianza","Mide si una variable se parece demasiado a las demás. Más de 5 a 10 es preocupante."],"ROC-AUC": ["Área bajo la curva ROC","Probabilidad de que el modelo ponga más arriba a un positivo que a un negativo escogidos al azar."],"PR-AUC": ["Área bajo la curva precisión-recall","Mide el modelo cuando los positivos son muy pocos, como en fraude."],"KNN": ["K vecinos más cercanos","Predice mirando a los k casos más parecidos."],"SVM": ["Máquina de soporte vectorial","Busca la frontera que separa las clases dejando el mayor margen posible."],"CNN": ["Red neuronal convolucional","Red que recorre imágenes con filtros pequeños para detectar bordes, formas y objetos."],"RNN": ["Red neuronal recurrente","Red que lee secuencias paso a paso, guardando memoria de lo anterior."],"LSTM": ["Long short-term memory","Red recurrente con compuertas que le permiten recordar información por más tiempo."],"GRU": ["Gated recurrent unit","Versión más simple de LSTM, con menos compuertas."],"TF-IDF": ["","Peso de una palabra que sube si aparece mucho en un documento y baja si aparece en todos."],"BERT": ["","Modelo de lenguaje que lee el texto en ambas direcciones; es bueno para clasificar y extraer."],"GPT": ["","Modelo de lenguaje que genera texto prediciendo la siguiente palabra."],"LLM": ["Modelo de lenguaje grande","Modelo entrenado con enormes cantidades de texto que puede responder, resumir y razonar."],"LLMs": ["Modelos de lenguaje grandes","Modelos entrenados con enormes cantidades de texto que pueden responder, resumir y razonar."],"RAG": ["Retrieval-Augmented Generation","Primero busca los documentos relevantes y luego le pide al modelo que responda con ellos, citando la fuente."],"MCP": ["Model Context Protocol","Estándar para conectar un modelo de IA con herramientas y datos externos."],"BPE": ["Byte Pair Encoding","Forma de partir palabras en pedazos frecuentes para que el modelo maneje palabras nuevas."],"MAE": ["Error absoluto medio","El error promedio, en las mismas unidades que lo que predices."],"RMSE": ["Raíz del error cuadrático medio","Como el error promedio, pero castiga más los errores grandes."],"MAPE": ["Error porcentual absoluto medio","El error promedio en porcentaje. Falla si los valores reales son cercanos a cero."],"MASE": ["Error escalado absoluto medio","Compara tu error con el de un pronóstico ingenuo. Menos de 1 significa que lo superas."],"ARIMA": ["","Modelo de series de tiempo que usa los valores y errores pasados para pronosticar."],"SARIMA": ["ARIMA estacional","ARIMA que además captura patrones que se repiten, como cada semana o cada año."],"ACF": ["Función de autocorrelación","Cuánto se parece una serie a sí misma con distintos rezagos."],"PACF": ["Autocorrelación parcial","La relación con un rezago quitando el efecto de los rezagos intermedios."],"ADF": ["Prueba de Dickey-Fuller aumentada","Prueba si una serie es estable en el tiempo. Un p-valor alto indica que no lo es."],"KPSS": ["","Prueba de estabilidad de una serie, al revés que ADF: un p-valor bajo indica que no es estable."],"AIC": ["Criterio de información de Akaike","Compara modelos premiando el ajuste y castigando la complejidad. Menor es mejor."],"BIC": ["Criterio de información bayesiano","Como el AIC, pero castiga más la complejidad."],"MCMC": ["Markov chain Monte Carlo","Simulación que permite estimar modelos bayesianos complejos."],"HMM": ["Modelo oculto de Markov","Modelo de estados que no se ven directamente y se infieren de lo que sí se observa."],"GMM": ["Mezcla de gaussianas","Supone que los datos vienen de varias campanas de Gauss y da la probabilidad de pertenecer a cada grupo."],"DBSCAN": ["","Agrupa puntos por densidad, encuentra grupos de cualquier forma y marca el ruido."],"LOF": ["Local Outlier Factor","Detecta datos raros comparando su densidad con la de sus vecinos."],"t-SNE": ["","Técnica para dibujar datos de muchas dimensiones en 2D conservando qué puntos están cerca."],"UMAP": ["","Como t-SNE, pero más rápida y conserva algo más la estructura global."],"SMOTE": ["","Crea ejemplos sintéticos de la clase minoritaria para balancear los datos."],"MDE": ["Efecto mínimo detectable","El cambio más pequeño que vale la pena detectar en un experimento."],"SRM": ["Sample Ratio Mismatch","Cuando los grupos de un experimento no quedaron del tamaño esperado; señala un fallo en la asignación."],"DiD": ["Diferencias en diferencias","Compara el cambio antes y después entre un grupo afectado y uno que no."],"RDD": ["Regresión discontinua","Compara a quienes quedan justo a cada lado de un umbral, como un puntaje mínimo."],"MLOps": ["","Prácticas para llevar modelos a producción y mantenerlos: versiones, pruebas, despliegue y monitoreo."],"API": ["Interfaz de programación","Puerta para que un programa le pida datos o predicciones a otro."],"LIME": ["","Explica una predicción ajustando un modelo simple alrededor de ese caso."],"GNN": ["Red neuronal de grafos","Red que aprende de datos conectados, como redes sociales o transacciones."],"GCN": ["Red convolucional de grafos","Tipo de red de grafos que combina la información de cada nodo con la de sus vecinos."],"GAT": ["Graph Attention Network","Red de grafos que aprende a qué vecinos prestar más atención."],"ETS": ["Suavizado exponencial","Pronóstico que pesa más los datos recientes y maneja tendencia y estacionalidad."],"IQR": ["Rango intercuartílico","La distancia entre el percentil 25 y el 75; se usa para detectar valores atípicos."],"MCAR": ["Faltantes completamente al azar","Datos que faltan sin ningún patrón; borrarlos no sesga."],"MAR": ["Faltantes al azar condicionado","Datos que faltan según otra variable que sí se observa."],"MNAR": ["Faltantes no al azar","Datos que faltan por su propio valor, como ingresos altos que no se reportan."],"MICE": ["Imputación múltiple por ecuaciones encadenadas","Rellena faltantes prediciendo cada variable con las demás, varias veces."],"CTE": ["Common Table Expression","Consulta con nombre dentro de otra consulta SQL, para escribirla por pasos."],"SQL": ["","Lenguaje para consultar y transformar datos en bases de datos."],"ReLU": ["","Función de activación que deja pasar los valores positivos y convierte los negativos en cero."],"SGD": ["Descenso de gradiente estocástico","Ajusta el modelo paso a paso usando un ejemplo o un lote pequeño cada vez."],"MLP": ["Perceptrón multicapa","La red neuronal básica: capas de neuronas conectadas todas con todas."],"MLflow": ["","Herramienta para registrar experimentos, métricas y versiones de modelos."],"FastAPI": ["","Librería de Python para crear APIs rápido; se usa para servir modelos."],"ReAct": ["Reason + Act","Patrón de agentes en el que el modelo razona, usa una herramienta, observa el resultado y repite."],"FAISS": ["","Librería de Meta para buscar rápido los vectores más parecidos; se usa en RAG."],"BM25": ["","Búsqueda clásica por palabras clave; combinada con embeddings mejora la recuperación."],"JSON": ["","Formato de texto para datos estructurados que leen tanto personas como programas."],"TCL": ["Teorema central del límite","El promedio de muchas observaciones se comporta como una normal, sin importar la distribución original."],"IC": ["Intervalo de confianza","Rango donde probablemente está el valor real, con cierta confianza, por ejemplo 95 %."],"LangGraph": ["","Librería para construir agentes como grafos de pasos con estado y control explícito."],"LangChain": ["","Librería para construir aplicaciones con modelos de lenguaje: prompts, herramientas, RAG."],"embeddings": ["","Vectores de números que representan textos, palabras o imágenes; cosas parecidas quedan cerca."],"Embeddings": ["","Vectores de números que representan textos, palabras o imágenes; cosas parecidas quedan cerca."],"p-valor": ["","Qué tan raro sería ver un resultado así si en realidad no hubiera efecto. Bajo (menos de 0,05) sugiere que sí lo hay."],"Lasso": ["","Regresión que castiga los coeficientes y puede llevar algunos a cero, eligiendo variables."],"Ridge": ["","Regresión que encoge los coeficientes para evitar el sobreajuste."],"Spark": ["Apache Spark","Motor para procesar datos enormes repartiéndolos entre muchas máquinas."],"Parquet": ["","Formato de archivo por columnas: lee solo lo necesario y comprime bien."],"Docker": ["","Empaqueta una aplicación con todo lo que necesita para que corra igual en cualquier máquina."]};
+  const keys = Object.keys(G).sort((a, b) => b.length - a.length);
+  if (!keys.length) return;
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const RE = new RegExp('(?<![\\p{L}\\p{N}_])(' + keys.map(esc).join('|') + ')(?![\\p{L}\\p{N}_])', 'gu');
+  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab';
+  const BLOCK = '.metric,.stat,.ci,.q,.card,.tech,.stg,.lvcard,.ov,.why,.fb,tr,li,.panel,.lesson,section,details,header,footer';
+  const seen = new WeakMap();
+
+  function scan(root){
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode(n){
+      const p = n.parentElement;
+      if (!p || !n.nodeValue.trim() || p.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+      RE.lastIndex = 0;
+      return RE.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }});
+    const nodes = [];
+    while (w.nextNode()) nodes.push(w.currentNode);
+    nodes.forEach(n => {
+      const box = n.parentElement.closest(BLOCK) || document.body;
+      let s = seen.get(box);
+      if (!s) { s = new Set(); seen.set(box, s); }
+      const txt = n.nodeValue;
+      let last = 0, m, frag = null;
+      RE.lastIndex = 0;
+      while ((m = RE.exec(txt))) {
+        const k = m[1];
+        if (s.has(k)) continue;
+        s.add(k);
+        frag = frag || document.createDocumentFragment();
+        frag.append(txt.slice(last, m.index));
+        const sp = document.createElement('span');
+        sp.className = 'gl'; sp.tabIndex = 0; sp.dataset.gl = k; sp.textContent = k;
+        sp.setAttribute('role', 'button'); sp.setAttribute('aria-expanded', 'false');
+        frag.append(sp);
+        last = m.index + k.length;
+      }
+      if (frag) { frag.append(txt.slice(last)); n.replaceWith(frag); }
+    });
+  }
+
+  const pop = document.createElement('div');
+  pop.className = 'gl-pop'; pop.id = 'gl-pop'; pop.setAttribute('role', 'tooltip'); pop.hidden = true;
+  document.body.appendChild(pop);
+  let cur = null, pinned = false, timer = null;
+
+  function place(){
+    if (!cur) return;
+    const r = cur.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+    const x = Math.min(Math.max(16, r.left + r.width / 2 - pw / 2), innerWidth - 16 - pw);
+    let y = r.bottom + 8;
+    if (y + ph > innerHeight - 8) y = Math.max(8, r.top - 8 - ph);
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+  }
+  function show(el, pin){
+    const d = G[el.dataset.gl];
+    if (!d) return;
+    clearTimeout(timer);
+    if (cur && cur !== el) { cur.setAttribute('aria-expanded', 'false'); cur.removeAttribute('aria-describedby'); }
+    cur = el; pinned = !!pin;
+    pop.textContent = '';
+    const b = document.createElement('b'); b.textContent = el.dataset.gl; pop.append(b);
+    if (d[0]) { const l = document.createElement('span'); l.className = 'gl-l'; l.textContent = d[0]; pop.append(l); }
+    pop.append(d[1]);
+    pop.hidden = false;
+    el.setAttribute('aria-expanded', 'true'); el.setAttribute('aria-describedby', 'gl-pop');
+    place();
+  }
+  function hide(){
+    clearTimeout(timer);
+    if (cur) { cur.setAttribute('aria-expanded', 'false'); cur.removeAttribute('aria-describedby'); }
+    cur = null; pinned = false; pop.hidden = true;
+  }
+  const glOf = e => e.target && e.target.closest ? e.target.closest('.gl') : null;
+  document.addEventListener('pointerover', e => { if (e.pointerType !== 'mouse' || pinned) return; const g = glOf(e); if (g) show(g, false); });
+  document.addEventListener('pointerout', e => {
+    if (e.pointerType !== 'mouse' || pinned) return;
+    const g = glOf(e);
+    if (g && !(e.relatedTarget && g.contains(e.relatedTarget))) timer = setTimeout(hide, 120);
+  });
+  document.addEventListener('click', e => {
+    const g = glOf(e);
+    if (g) { e.preventDefault(); e.stopPropagation(); if (cur === g && pinned) hide(); else show(g, true); return; }
+    if (pinned) hide();
+  }, true);
+  document.addEventListener('focusin', e => { const g = glOf(e); if (g && !pinned) show(g, false); });
+  document.addEventListener('focusout', e => { if (glOf(e) && !pinned) hide(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && cur) hide();
+    else if ((e.key === 'Enter' || e.key === ' ') && glOf(e)) { e.preventDefault(); show(glOf(e), true); }
+  });
+  addEventListener('scroll', () => { if (cur) { if (pinned) place(); else hide(); } }, {passive:true});
+  addEventListener('resize', () => cur && place());
+
+  // Las calculadoras, el quiz y el catálogo se vuelven a dibujar: se revisa solo lo nuevo.
+  const queue = new Set();
+  let raf = 0;
+  const mo = new MutationObserver(ms => {
+    ms.forEach(m => m.addedNodes.forEach(n => {
+      if (n.nodeType === 1 && !n.classList.contains('gl') && n !== pop) queue.add(n);
+      else if (n.nodeType === 3 && n.parentElement) queue.add(n.parentElement);
+    }));
+    if (cur && !cur.isConnected) hide();
+    if (!raf) raf = requestAnimationFrame(flush);
+  });
+  function flush(){
+    raf = 0; mo.disconnect();
+    queue.forEach(n => { if (n.isConnected) scan(n); });
+    queue.clear();
+    mo.observe(document.body, {childList:true, subtree:true});
+  }
+  scan(document.body);
+  mo.observe(document.body, {childList:true, subtree:true});
+})();
+</script>
+
 </body></html>
