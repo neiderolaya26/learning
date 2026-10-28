@@ -4,6 +4,9 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 
 ## [Sin publicar]
 
+### Agregado
+- Glosario emergente en las cuatro rutas: cada sigla o término técnico (EA, PD, ROAS, WACC, PSI…) queda subrayado y muestra su definición en palabras sencillas al pasar el cursor, tocarlo o enfocarlo con el teclado. 294 definiciones en total.
+
 ## [1.1.0] - 2026-10-28
 
 ### Agregado
