@@ -15,6 +15,7 @@ Rutas de aprendizaje interactivas en español, cada una en una sola página HTML
 
 | Versión | Fecha | Qué cambió |
 | --- | --- | --- |
+| 2.1.0 | 2026-10-28 | Bibliografía en formato APA en las cuatro rutas y fuentes numeradas al pie de cada módulo |
 | 2.0.0 | 2026-10-28 | Glosario emergente en las cuatro rutas y rutas alineadas con programas de referencia: GARP FRM, Imperial, Stanford y Edimburgo (riesgo); Columbia, Wharton y Harvard (paid media); Harvard y Stanford (IA); MIT, Princeton, Oxford, LSE, Imperial y Harvard (finanzas) |
 | 1.1.0 | 2026-10-28 | Ruta de Finanzas y gobernanza del repositorio |
 | 1.0.0 | 2026-10-28 | Rutas de Riesgo de crédito, Paid Media e IA |
