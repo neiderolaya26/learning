@@ -258,12 +258,20 @@ footer .wrap{display:grid;gap:10px}
 footer details{border-top:1px solid var(--line);padding-top:10px}
 footer summary{cursor:pointer;font-weight:600;color:var(--fg)}
 footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
+.srcs{font-size:.82rem;color:var(--muted);margin:0}
+.srcs a{font-family:var(--mono);font-weight:600;text-decoration:none;color:var(--accent);margin-left:4px}
+.srcs a:hover{text-decoration:underline}
+.biblio .grp{display:grid;gap:8px}
+.biblio ol{margin:0;padding-left:2.6em;display:grid;gap:6px;font-size:.9rem;line-height:1.5}
+.biblio li{scroll-margin-top:80px;padding:4px 8px;border-radius:6px;overflow-wrap:anywhere}
+.biblio li:target{background:var(--accent-soft)}
+.biblio .lk{font-family:var(--mono);font-size:.76rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media (max-width:480px){.inputs{grid-template-columns:1fr}.brow{grid-template-columns:84px minmax(0,1fr) 52px}.frow{grid-template-columns:80px minmax(0,1fr)}}
 </style>
 
 <nav class="top" aria-label="Secciones"><div class="wrap">
-  <a href="#programas">Programas</a><a href="#rol">El rol</a><a href="#embudo">Embudo</a><a href="#subasta">Subasta</a><a href="#plataformas">Plataformas</a><a href="#aprendizaje">Aprendizaje</a><a href="#ventaja">Tu ventaja</a><a href="#experimentos">Experimentos</a><a href="#modelos">Modelos</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan</a>
+  <a href="#programas">Programas</a><a href="#rol">El rol</a><a href="#embudo">Embudo</a><a href="#subasta">Subasta</a><a href="#plataformas">Plataformas</a><a href="#aprendizaje">Aprendizaje</a><a href="#ventaja">Tu ventaja</a><a href="#experimentos">Experimentos</a><a href="#modelos">Modelos</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan</a><a href="#bibliografia">Bibliografía</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -299,6 +307,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
     <div class="card"><span class="n">Medir</span><h3>Experimentos y causalidad</h3><p>Separar lo que causó la campaña de lo que habría pasado igual.</p></div>
     <div class="card"><span class="n">Decidir</span><h3>Presupuesto y valor</h3><p>Repartir la inversión donde el retorno marginal es mayor, contando el riesgo.</p></div>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-18">[18]</a><a href="#ref-19">[19]</a><a href="#ref-20">[20]</a><a href="#ref-21">[21]</a><a href="#ref-22">[22]</a></p>
 </div></section>
 
 <section class="mod" id="rol"><div class="wrap">
@@ -311,6 +320,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
     <div class="card"><span class="n">Separar</span><h3>Mercado vs. decisión</h3><p>Si un indicador empeora: ¿competencia en la subasta o una decisión de riesgo?</p></div>
     <div class="card"><span class="n">Esperar</span><h3>Al algoritmo</h3><p>Días 1–7 optimizan conversión; días 8–14 optimizan costo (regla del líder).</p></div>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-1">[1]</a></p>
 </div></section>
 
 <section class="mod" id="embudo"><div class="wrap">
@@ -356,6 +366,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
   </div>
   <p class="muted" style="font-size:.9rem">El líder mencionó "CPB"; no es una sigla estándar. Pregúntale si se refiere a costo por venta o por desembolso.</p>
   <div class="bridge" data-topic="embudo"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-1">[1]</a></p>
 </div></section>
 
 <section class="mod" id="subasta"><div class="wrap">
@@ -372,6 +383,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
     </ul>
   </div>
   <div class="bridge" data-topic="subasta"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-4">[4]</a><a href="#ref-5">[5]</a><a href="#ref-24">[24]</a></p>
 </div></section>
 
 <section class="mod" id="plataformas"><div class="wrap">
@@ -393,6 +405,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
     <div class="card"><span class="n">TikTok</span><p><b>Fuerte:</b> volumen alto en público joven. <b>Débil:</b> costos altos y creatividades que se desgastan rápido.</p></div>
   </div>
   <div class="bridge" data-topic="plataformas"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-1">[1]</a><a href="#ref-24">[24]</a><a href="#ref-23">[23]</a></p>
 </div></section>
 
 <section class="mod" id="aprendizaje"><div class="wrap">
@@ -433,6 +446,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
   </div>
   <p class="muted" style="font-size:.9rem">Para separarlo con rigor: compara segmentos afectados contra no afectados, antes y después (diferencias en diferencias).</p>
   <div class="bridge" data-topic="mercado"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-23">[23]</a><a href="#ref-24">[24]</a><a href="#ref-3">[3]</a><a href="#ref-2">[2]</a></p>
 </div></section>
 
 <section class="mod" id="ventaja"><div class="wrap">
@@ -464,6 +478,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
   </table></div>
   <p class="muted" style="font-size:.9rem">Lo que te falta, para no exagerarlo: no has operado campañas en Meta, Google ni TikTok, ni hecho A/B testing de anuncios o modelos de atribución.</p>
   <div class="bridge" data-topic="ventaja"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-14">[14]</a><a href="#ref-13">[13]</a></p>
 </div></section>
 
 <section class="mod" id="experimentos"><div class="wrap">
@@ -488,6 +503,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
     <div class="card"><span class="n">Pricing</span><p>Elasticidad de la conversión a la tasa o al monto ofrecido. En crédito se combina con la PD: bajar la tasa puede subir la aprobación aceptada y cambiar el perfil de riesgo.</p></div>
     <div class="card"><span class="n">Analítica digital</span><p>Atribución multitoque, incrementalidad con holdouts y geo-lift. La plataforma reporta lo que se atribuye; el experimento dice lo que causó.</p></div>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-2">[2]</a><a href="#ref-6">[6]</a><a href="#ref-15">[15]</a></p>
 </div></section>
 
 <section class="mod" id="modelos"><div class="wrap">
@@ -652,6 +668,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     </div>
   </div>
   <p class="muted" style="font-size:.9rem">Proyecto extra para el plan: entrena el uplift con Hillstrom o con el dataset de Criteo (<span class="mono">fetch_criteo</span> en sklift), simula un presupuesto y publícalo en GitHub. Es un tema que pocos candidatos de marketing dominan.</p>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-8">[8]</a><a href="#ref-7">[7]</a><a href="#ref-28">[28]</a><a href="#ref-9">[9]</a><a href="#ref-25">[25]</a><a href="#ref-26">[26]</a><a href="#ref-27">[27]</a><a href="#ref-10">[10]</a><a href="#ref-11">[11]</a><a href="#ref-12">[12]</a><a href="#ref-16">[16]</a><a href="#ref-17">[17]</a></p>
 </div></section>
 
 <section class="mod" id="catalogo"><div class="wrap">
@@ -719,12 +736,23 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
       </tbody>
     </table></div>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-1">[1]</a><a href="#ref-2">[2]</a><a href="#ref-21">[21]</a><a href="#ref-22">[22]</a></p>
+</div></section>
+
+<section class="mod biblio" id="bibliografia"><div class="wrap">
+  <div class="head"><span class="eyebrow">Referencias</span><h2>Bibliografía</h2>
+  <p class="muted">Las referencias siguen el formato APA 7. Los rangos marcados como "referencia práctica" (por ejemplo, umbrales de KS, IV o PSI) son convenciones de la industria recogidas en estos textos, no normas. Los planes de estudio y las normas cambian: confirma la versión vigente antes de citarlos.</p></div>
+    <div class="grp"><h3>Libros</h3><ol start="1"><li id="ref-1">Farris, P. W., Bendle, N. T., Pfeifer, P. E., &amp; Reibstein, D. J. (2010). <i>Marketing metrics: The definitive guide to measuring marketing performance</i> (2.ª ed.). Pearson.</li><li id="ref-2">Kohavi, R., Tang, D., &amp; Xu, Y. (2020). <i>Trustworthy online controlled experiments: A practical guide to A/B testing</i>. Cambridge University Press.</li><li id="ref-3">Angrist, J. D., &amp; Pischke, J.-S. (2009). <i>Mostly harmless econometrics: An empiricist's companion</i>. Princeton University Press.</li></ol></div>
+    <div class="grp"><h3>Artículos</h3><ol start="4"><li id="ref-4">Edelman, B., Ostrovsky, M., &amp; Schwarz, M. (2007). Internet advertising and the generalized second-price auction. <i>American Economic Review, 97</i>(1), 242–259. <a class="lk" href="https://doi.org/10.1257/aer.97.1.242" target="_blank" rel="noopener">doi.org/10.1257/aer.97.1.242</a></li><li id="ref-5">Varian, H. R. (2007). Position auctions. <i>International Journal of Industrial Organization, 25</i>(6), 1163–1178.</li><li id="ref-6">Deng, A., Xu, Y., Kohavi, R., &amp; Walker, T. (2013). Improving the sensitivity of online controlled experiments by utilizing pre-experiment data. En <i>Proceedings of the Sixth ACM International Conference on Web Search and Data Mining</i> (pp. 123–132). <a class="lk" href="https://doi.org/10.1145/2433396.2433413" target="_blank" rel="noopener">doi.org/10.1145/2433396.2433413</a></li><li id="ref-7">Künzel, S. R., Sekhon, J. S., Bickel, P. J., &amp; Yu, B. (2019). Metalearners for estimating heterogeneous treatment effects using machine learning. <i>Proceedings of the National Academy of Sciences, 116</i>(10), 4156–4165. <a class="lk" href="https://doi.org/10.1073/pnas.1804597116" target="_blank" rel="noopener">doi.org/10.1073/pnas.1804597116</a></li><li id="ref-8">Radcliffe, N. J. (2007). Using control groups to target on predicted lift: Building and assessing uplift models. <i>Direct Marketing Analytics Journal, 1</i>, 14–21.</li><li id="ref-9">Jin, Y., Wang, Y., Sun, Y., Chan, D., &amp; Koehler, J. (2017). <i>Bayesian methods for media mix modeling with carryover and shape effects</i>. Google Inc.</li><li id="ref-10">Brodersen, K. H., Gallusser, F., Koehler, J., Remy, N., &amp; Scott, S. L. (2015). Inferring causal impact using Bayesian structural time-series models. <i>The Annals of Applied Statistics, 9</i>(1), 247–274. <a class="lk" href="https://doi.org/10.1214/14-AOAS788" target="_blank" rel="noopener">doi.org/10.1214/14-AOAS788</a></li><li id="ref-11">Abadie, A., Diamond, A., &amp; Hainmueller, J. (2010). Synthetic control methods for comparative case studies. <i>Journal of the American Statistical Association, 105</i>(490), 493–505. <a class="lk" href="https://doi.org/10.1198/jasa.2009.ap08746" target="_blank" rel="noopener">doi.org/10.1198/jasa.2009.ap08746</a></li><li id="ref-12">Anderl, E., Becker, I., von Wangenheim, F., &amp; Schumann, J. H. (2016). Mapping the customer journey: Lessons learned from graph-based online attribution modeling. <i>International Journal of Research in Marketing, 33</i>(3), 457–474.</li><li id="ref-13">Fader, P. S., Hardie, B. G. S., &amp; Lee, K. L. (2005). "Counting your customers" the easy way: An alternative to the Pareto/NBD model. <i>Marketing Science, 24</i>(2), 275–284. <a class="lk" href="https://doi.org/10.1287/mksc.1040.0098" target="_blank" rel="noopener">doi.org/10.1287/mksc.1040.0098</a></li><li id="ref-14">Gupta, S., Hanssens, D., Hardie, B., Kahn, W., Kumar, V., Lin, N., Ravishanker, N., &amp; Sriram, S. (2006). Modeling customer lifetime value. <i>Journal of Service Research, 9</i>(2), 139–155.</li><li id="ref-15">Green, P. E., &amp; Srinivasan, V. (1990). Conjoint analysis in marketing: New developments with implications for research and practice. <i>Journal of Marketing, 54</i>(4), 3–19.</li><li id="ref-16">Chapelle, O., &amp; Li, L. (2011). An empirical evaluation of Thompson sampling. En <i>Advances in Neural Information Processing Systems 24</i>.</li><li id="ref-17">Liu, F. T., Ting, K. M., &amp; Zhou, Z.-H. (2008). Isolation forest. En <i>2008 Eighth IEEE International Conference on Data Mining</i> (pp. 413–422). <a class="lk" href="https://doi.org/10.1109/ICDM.2008.17" target="_blank" rel="noopener">doi.org/10.1109/ICDM.2008.17</a></li></ol></div>
+    <div class="grp"><h3>Programas académicos y certificaciones</h3><ol start="18"><li id="ref-18">Columbia Business School. <i>MS in Marketing Science</i>. <a class="lk" href="https://learn.cbs.columbia.edu/msm/" target="_blank" rel="noopener">learn.cbs.columbia.edu/msm/</a></li><li id="ref-19">Wharton Executive Education. <i>Marketing Analytics</i>. <a class="lk" href="https://executiveeducation.wharton.upenn.edu/online-learning/self-paced-online-programs/marketing-analytics/" target="_blank" rel="noopener">executiveeducation.wharton.upenn.edu/online-learning/self-paced-online-programs/marketing-analytics/</a></li><li id="ref-20">Harvard Business School. <i>General Management unit: MBA curriculum</i>. <a class="lk" href="https://www.hbs.edu/faculty/units/gm/Pages/curriculum.aspx" target="_blank" rel="noopener">www.hbs.edu/faculty/units/gm/Pages/curriculum.aspx</a></li><li id="ref-21">Google. <i>Skillshop: Google Ads certifications</i>. <a class="lk" href="https://skillshop.withgoogle.com" target="_blank" rel="noopener">skillshop.withgoogle.com</a></li><li id="ref-22">Meta. <i>Meta Blueprint</i>. <a class="lk" href="https://www.facebook.com/business/learn" target="_blank" rel="noopener">www.facebook.com/business/learn</a></li></ol></div>
+    <div class="grp"><h3>Documentación técnica y datos</h3><ol start="23"><li id="ref-23">Meta. <i>About the learning phase</i>. Meta Business Help Center. <a class="lk" href="https://www.facebook.com/business/help" target="_blank" rel="noopener">www.facebook.com/business/help</a></li><li id="ref-24">Google. <i>Google Ads Help: Smart Bidding and Quality Score</i>. <a class="lk" href="https://support.google.com/google-ads" target="_blank" rel="noopener">support.google.com/google-ads</a></li><li id="ref-25">Google. <i>Meridian: Marketing mix modeling</i> [Documentación]. <a class="lk" href="https://developers.google.com/meridian" target="_blank" rel="noopener">developers.google.com/meridian</a></li><li id="ref-26">PyMC Labs. <i>PyMC-Marketing</i> [Documentación]. <a class="lk" href="https://www.pymc-marketing.io" target="_blank" rel="noopener">www.pymc-marketing.io</a></li><li id="ref-27">Meta Open Source. <i>Robyn: Marketing mix modeling</i> [Documentación]. <a class="lk" href="https://facebookexperimental.github.io/Robyn/" target="_blank" rel="noopener">facebookexperimental.github.io/Robyn/</a></li><li id="ref-28">Hillstrom, K. (2008). <i>The MineThatData e-mail analytics and data mining challenge</i> [Conjunto de datos].</li></ol></div>
 </div></section>
 
 <footer><div class="wrap">
   Dónde estudiar: <a href="https://skillshop.withgoogle.com" target="_blank" rel="noopener">Google Skillshop</a> · <a href="https://www.facebook.com/business/learn" target="_blank" rel="noopener">Meta Blueprint</a> · TikTok Academy. Para la fase de aprendizaje, busca "fase de aprendizaje" en la ayuda de Meta para empresas y "estado de aprendizaje de la estrategia de ofertas" en la ayuda de Google Ads. Todos los números de esta página son inventados.
   <p><b>Programas consultados:</b> <a href="https://learn.cbs.columbia.edu/msm/" target="_blank" rel="noopener">Columbia MS in Marketing Science</a> · <a href="https://executiveeducation.wharton.upenn.edu/online-learning/self-paced-online-programs/marketing-analytics/" target="_blank" rel="noopener">Wharton Marketing Analytics</a> · <a href="https://www.hbs.edu/faculty/units/gm/Pages/curriculum.aspx" target="_blank" rel="noopener">Harvard Business School, currículo del MBA</a>.</p>
-  <details><summary>Versión 2.0.0 · 28 oct 2026</summary><ul>
+  <details><summary>Versión 2.1.0 · 28 oct 2026</summary><ul>
+    <li><b>2.1.0</b> · Bibliografía en formato APA con libros, artículos sobre subastas, experimentos, uplift y MMM, documentación oficial de las plataformas y las fuentes de cada módulo al pie.</li>
     <li><b>2.0.0</b> · Estructura alineada con Columbia, Wharton y Harvard: sección de programas, niveles, módulo de experimentos con calculadora de tamaño de muestra, plan de profundización de 10 semanas y glosario emergente.</li>
     <li><b>1.0.0</b> · Primera versión: ruta rápida de 14 días, modelos, catálogo y quiz de 15 preguntas.</li>
   </ul></details>
@@ -1221,7 +1249,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
   if (!keys.length) return;
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const RE = new RegExp('(?<![\\p{L}\\p{N}_])(' + keys.map(esc).join('|') + ')(?![\\p{L}\\p{N}_])', 'gu');
-  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab';
+  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab,.biblio,.srcs';
   const BLOCK = '.metric,.stat,.ci,.q,.card,.tech,.stg,.lvcard,.ov,.why,.fb,tr,li,.panel,.lesson,section,details,header,footer';
   const seen = new WeakMap();
 
