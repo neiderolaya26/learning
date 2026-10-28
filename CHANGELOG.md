@@ -15,6 +15,9 @@ Las rutas se pueden recorrer por palabra clave: basta escribir un término para 
 - Solo rastrea palabras: no oculta ni filtra contenido. Los saltos de la búsqueda no marcan módulos como leídos.
 - Atajo de teclado en computador: / abre el buscador y Esc lo cierra.
 
+### Corregido
+- Paid Media: en los bloques "Cómo se modela esto", tocar una técnica ya no salta al catálogo al final de la página; la ficha se despliega en el mismo lugar y se cierra con otro toque. Incluye un enlace "Ver en el catálogo" para quien sí quiera ir.
+
 ## [3.1.0] - 2026-10-28
 
 Las rutas recuerdan dónde quedó la lectura, así que ya no hay que desplazarse desde el principio cada vez.
