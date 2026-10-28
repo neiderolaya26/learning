@@ -1332,6 +1332,8 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
   const settle = () => { clearTimeout(jumpTimer); jumpTimer = setTimeout(() => { jumping = false; }, 250); };
   const go = (el, off = 0) => { jumping = true; settle(); scrollTo({top: Math.max(0, topOf(el) - navH() - 8 + off), behavior: reduce ? 'auto' : 'smooth'}); };
   window.cnJump = () => { jumping = true; settle(); }; // lo usa el buscador para que sus saltos no marquen lectura
+  // Los enlaces internos (menú superior, "Ver en el catálogo", "En la ruta") también son saltos, no lectura.
+  document.addEventListener('click', e => { if (e.target.closest('a[href^="#"], [data-go]')) window.cnJump(); }, true);
   const icon = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 
   // Barra de progreso de lectura

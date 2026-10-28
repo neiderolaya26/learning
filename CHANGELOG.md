@@ -17,6 +17,7 @@ Las rutas se pueden recorrer por palabra clave: basta escribir un término para 
 
 ### Corregido
 - Paid Media, Finanzas y Riesgo de crédito: en los bloques "Cómo se modela esto" y "Técnicas del catálogo", tocar una técnica ya no salta al catálogo al final de la página; la ficha se despliega en el mismo lugar y se cierra con otro toque. Incluye un enlace "Ver en el catálogo" para quien sí quiera ir.
+- Las cuatro rutas: saltar con un enlace interno ("Ver en el catálogo", el menú superior, "En la ruta") ya no marca como leídos todos los módulos que quedan en el camino.
 
 ## [3.1.0] - 2026-10-28
 
