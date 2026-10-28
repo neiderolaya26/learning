@@ -26,6 +26,8 @@ git remote get-url origin >/dev/null 2>&1 || git remote add origin "https://gith
 
 git push -u origin main
 git push origin v1.0.0 v1.1.0
+# Rama de datos de los radares de investigación (no se fusiona a main).
+git push -u origin radares
 
 # Solo squash merge, asunto desde el título del PR (garantiza el sufijo "(#número)") y borrado de ramas fusionadas.
 gh api -X PATCH "repos/$OWNER/$REPO" \
