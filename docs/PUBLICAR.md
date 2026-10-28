@@ -23,7 +23,8 @@ Todo el historial viene en el archivo `learning.bundle` que quedó en el chat (u
 ```bash
 git clone learning.bundle learning
 cd learning
-for b in glossary-popovers risk-curricula paid-media-curricula ia-curricula finance-curricula release-v2; do
+for b in glossary-popovers risk-curricula paid-media-curricula ia-curricula finance-curricula release-v2 radares; do
+  if [ "$b" = radares ]; then git show-ref --quiet refs/heads/radares || git branch --track radares origin/radares; continue; fi
   git show-ref --quiet "refs/heads/feature/$b" || git branch --track "feature/$b" "origin/feature/$b"
 done
 git branch --track main origin/main
@@ -39,7 +40,7 @@ git checkout feature/release-v2
 bash scripts/publish_stack.sh
 ```
 
-El script crea `neiderolaya26/learning` (privado), sube `main` y las etiquetas, configura squash merge con el título del PR, sube las seis ramas, abre los seis PR apilados con la plantilla completa y comenta `@claude` en cada uno.
+El script crea `neiderolaya26/learning` (privado), sube `main`, las etiquetas y la rama de datos `radares`, configura squash merge con el título del PR, sube las seis ramas, abre los seis PR apilados con la plantilla completa y comenta `@claude` en cada uno.
 
 Antes de que corran los workflows de Claude, instala la app con `/install-github-app` en Claude Code, para crear el secreto `CLAUDE_CODE_OAUTH_TOKEN`.
 
@@ -71,7 +72,11 @@ git push origin v2.0.0
 gh release create v2.0.0 --title "v2.0.0" --notes "$(awk '/^## \[2.0.0\]/{f=1;next} /^## \[/{f=0} f' CHANGELOG.md)"
 ```
 
-## 5. Mostrarlo en tu perfil
+## 5. Reactivar los radares de investigación
+
+Los cuatro radares semanales (Paid Media, Riesgo de Crédito, Finanzas y AI Engineering) quedaron en pausa y ya apuntan a la rama `radares` de este repositorio. Cuando el repo exista en GitHub, reactívalos desde claude.ai, en la lista de tareas programadas, o pídeselo a Claude. Cada uno sigue `radares/RUTINA.md` (o `radares/ai-engineering/RUTINA.md`) y publica su informe en esa rama.
+
+## 6. Mostrarlo en tu perfil
 
 - Settings → Pages → Deploy from a branch → `main` / raíz. Las rutas quedan en `https://neiderolaya26.github.io/learning/`.
 - Haz público el repo cuando revises el contenido de Paid Media, que menciona empleadores y al líder.
