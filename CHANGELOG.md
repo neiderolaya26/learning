@@ -4,6 +4,17 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 
 ## [Sin publicar]
 
+## [3.2.0] - 2026-10-28
+
+Las rutas se pueden recorrer por palabra clave: basta escribir un término para encontrar cada lugar donde aparece.
+
+### Agregado
+- Botón flotante "Buscar" en las cuatro rutas, junto a "Índice" y "Siguiente". Abre una barra arriba de la página donde se escribe una palabra o frase.
+- Todas las coincidencias quedan resaltadas y la actual en otro color; el contador indica "3 de 12" y las flechas, Enter y Mayús+Enter pasan a la siguiente o a la anterior.
+- La búsqueda no distingue tildes ni mayúsculas ("perdida" encuentra "Pérdida") y abre las secciones plegadas donde haya una coincidencia.
+- Solo rastrea palabras: no oculta ni filtra contenido. Los saltos de la búsqueda no marcan módulos como leídos.
+- Atajo de teclado en computador: / abre el buscador y Esc lo cierra.
+
 ## [3.1.0] - 2026-10-28
 
 Las rutas recuerdan dónde quedó la lectura, así que ya no hay que desplazarse desde el principio cada vez.
