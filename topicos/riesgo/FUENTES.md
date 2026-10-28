@@ -1,4 +1,4 @@
-# Radar de riesgo de crédito
+# Tópicos de riesgo de crédito
 
 **Ruta de aprendizaje relacionada:** https://claude.ai/artifact/HPiqaab1BMyFVLDJ8UcKu2 (paleta vino tinto).
 
@@ -29,4 +29,4 @@ Sin cuotas por tema; prioriza utilidad práctica y solidez.
 
 ## Programación
 
-Martes, semanal. Rama `radares`, carpeta `radares/riesgo/`.
+Martes, semanal. Rama `topicos`, carpeta `topicos/riesgo/`.

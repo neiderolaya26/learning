@@ -1,4 +1,4 @@
-# Radar de paid media y analítica de marketing
+# Tópicos de paid media y analítica de marketing
 
 **Ruta de aprendizaje relacionada:** https://claude.ai/artifact/7rj6FvQuqepDe81n9pgBCT (paleta azul).
 
@@ -27,4 +27,4 @@ Sin cuotas por tema; prioriza utilidad práctica y solidez.
 
 ## Programación
 
-Lunes, semanal. Rama `radares`, carpeta `radares/paid-media/`.
+Lunes, semanal. Rama `topicos`, carpeta `topicos/paid-media/`.

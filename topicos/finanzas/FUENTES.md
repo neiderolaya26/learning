@@ -1,4 +1,4 @@
-# Radar de finanzas
+# Tópicos de finanzas
 
 **Ruta de aprendizaje relacionada:** https://claude.ai/artifact/4djBhELtDbCmDn1He9ydZk (paleta verde bosque).
 
@@ -29,4 +29,4 @@ Sin cuotas por tema; prioriza utilidad práctica y solidez.
 
 ## Programación
 
-Miércoles, semanal. Rama `radares`, carpeta `radares/finanzas/`.
+Miércoles, semanal. Rama `topicos`, carpeta `topicos/finanzas/`.
