@@ -146,6 +146,11 @@ pre.code{margin:0;background:var(--sunk);border-radius:10px;padding:14px;overflo
 .bi button{font:inherit;font-weight:700;font-size:.9rem;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 .bi span.t{display:block;font-size:.88rem}
 @media (max-width:480px){.bi{grid-template-columns:1fr;gap:4px}}
+.tmap td{font-size:.84rem}
+.tmap .mini{font:inherit;font-size:.78rem;background:none;border:0;padding:1px 0;color:var(--accent);cursor:pointer;text-align:left;display:block;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+.tmap th:first-child,.tmap td:first-child{min-width:130px}
+.tmap td{min-width:140px}
+ul.clean{margin:0;padding-left:1.2em;display:grid;gap:6px}
 .bi button[aria-expanded]::after{content:" ▾";display:inline-block;text-decoration:none;transition:transform .15s}
 .bi button[aria-expanded="true"]::after{transform:rotate(180deg)}
 .bi-x{grid-column:1/-1;display:grid;gap:8px;border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
@@ -578,8 +583,13 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
 
 <!-- 11 CATALOGO -->
 <section class="mod" id="catalogo"><div class="wrap">
-  <div class="head"><span class="eyebrow">11 · Mapa del campo</span><h2>Catálogo de modelos y técnicas</h2>
+  <div class="head"><span class="eyebrow">11 · Mapa del campo</span><h2>Catálogo de modelos aplicados a finanzas</h2>
   <p class="muted">De la tasa efectiva anual al cálculo estocástico. Filtra por nivel o área, o busca un término.</p></div>
+  <div class="panel">
+    <h3>Mapa: cada tema de la ruta y los modelos que lo resuelven</h3>
+    <p class="muted" style="font-size:.88rem">Lee cada fila de izquierda a derecha: de lo que puedes hacer la primera semana a lo más avanzado. Toca una técnica para ver su tarjeta.</p>
+    <div class="tbl"><table class="tmap"><thead><tr><th>Tema de la ruta</th><th>Pregunta de negocio</th><th>Fundamentos</th><th>Intermedio</th><th>Avanzado</th><th>Experto</th></tr></thead><tbody id="tmapBody"></tbody></table></div>
+  </div>
   <div class="filters">
     <div class="frow2" id="catLv" role="group" aria-label="Nivel">
       <button type="button" class="fchip" data-lv="0" aria-pressed="true">Todos</button>
@@ -595,6 +605,15 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
     <span class="mono muted" style="font-size:.8rem" id="catCount"></span>
   </div>
   <div class="cat" id="catBox"></div>
+  <div class="panel">
+    <h3>Por dónde empezar</h3>
+    <ul class="clean">
+      <li><b>Primer mes:</b> tasas equivalentes, anualidades, VPN y TIR, análisis de estados financieros, flujo de caja libre, DCF, múltiplos y CAPM. Con esto ya puedes valorar un proyecto o una empresa.</li>
+      <li><b>Segundo paso:</b> WACC, precio de bonos, duración y convexidad, curva de rendimientos, media-varianza y modelos de factores. Es el lenguaje de tesorería e inversiones.</li>
+      <li><b>Con experiencia:</b> VaR y Expected Shortfall con backtesting, GARCH, árbol binomial, Black-Scholes y estudios de evento. Aquí se mide y se cubre el riesgo.</li>
+      <li><b>Para diferenciarte:</b> Black-Litterman, Hierarchical Risk Parity, el modelo de Merton (el puente con riesgo de crédito) y ML con validación cruzada purgada y deflated Sharpe.</li>
+    </ul>
+  </div>
 </div></section>
 
 <!-- 12 QUIZ -->
@@ -888,6 +907,9 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
   document.querySelectorAll('.bridge').forEach(el => { const tp = TOP[el.dataset.topic]; if (!tp) return;
     const items = [...tp.i].sort((a, b) => byName[a[0]].lv - byName[b[0]].lv);
     el.innerHTML = `<div class="bridge-h"><span class="eyebrow">Técnicas del catálogo</span><p>${tp.q}</p></div><div class="blist">${items.map(([n, t]) => `<div class="bi"><span class="lv lv${byName[n].lv}">${LVN[byName[n].lv]}</span><div><button type="button" data-open="${n}" aria-expanded="false">${n}</button><span class="t">${t}</span></div></div>`).join('')}</div>`; });
+  /* Mapa transversal: una fila por cada bloque de técnicas de la ruta */
+  $('tmapBody').innerHTML = [...document.querySelectorAll('.bridge[data-topic]')].filter(el => TOP[el.dataset.topic]).map(el => { const tp = TOP[el.dataset.topic], sec = el.closest('section[id]'), h = sec.querySelector('h2');
+    return `<tr><td><a href="#${sec.id}"><b>${h ? h.textContent : sec.id}</b></a></td><td>${tp.q}</td>${[1,2,3,4].map(l => `<td>${tp.i.filter(x => byName[x[0]] && byName[x[0]].lv === l).map(x => `<button type="button" class="mini" data-go="${x[0]}">${x[0]}</button>`).join('') || '<span class="muted">—</span>'}</td>`).join('')}</tr>`; }).join('');
   /* En los puentes la ficha se despliega en el sitio, sin saltar al catálogo */
   function toggleBi(btn){
     const bi = btn.closest('.bi'), open = bi.querySelector('.bi-x');

@@ -255,6 +255,147 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
 
   <div id="stages"></div>
 
+  <style id="aplicaciones-css">
+  .apl{margin:0 0 48px}
+  .apl .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:10px;margin-bottom:16px;min-width:0}
+  .apl .box h3{font-size:20px}
+  .apl .box p{margin:0;color:var(--muted);font-size:14px}
+  .apl .amap td{font-size:13px;min-width:140px}
+  .apl .amap td:first-child{min-width:120px;font-family:var(--display);font-weight:600}
+  .apl .mini{all:unset;cursor:pointer;display:block;font-size:13px;color:var(--s1);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;padding:1px 0}
+  .apl .mini:focus-visible{outline:2px solid var(--s1);outline-offset:2px;border-radius:3px}
+  .apl .muted{color:var(--muted)}
+  .apl .filters{display:grid;gap:10px;margin-bottom:12px}
+  .apl .frow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .apl .chip{all:unset;cursor:pointer;font-family:var(--mono);font-size:12px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+  .apl .chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+  .apl .chip:focus-visible,.apl select:focus-visible,.apl input:focus-visible{outline:2px solid var(--s1);outline-offset:2px}
+  .apl select,.apl input[type=search]{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);min-width:0;flex:1 1 200px}
+  .apl .count{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .apl .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+  .apl .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+  .apl .card.flash{outline:2px solid var(--s1);outline-offset:2px}
+  .apl .card h4{font-size:16px}
+  .apl .card p{margin:0;font-size:14px}
+  .apl .fam{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .apl .lvl{justify-self:start;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:5px}
+  .apl .lvl.l1{background:var(--s2-soft);color:var(--s2)} .apl .lvl.l2{background:var(--s1-soft);color:var(--s1)} .apl .lvl.l3{background:var(--s3-soft);color:var(--s3)}
+  .apl .uses{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:13px}
+  .apl .uses li.hit{background:var(--ms-soft);border-radius:4px;padding:0 4px;margin-left:-4px}
+  .apl .libs{display:flex;flex-wrap:wrap;gap:4px}
+  .apl .lib{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:5px;background:var(--bg);border:1px solid var(--line)}
+  .apl .where{font-size:12px;color:var(--muted)}
+  .apl .where a{color:var(--s1)}
+  .apl .empty{color:var(--muted);font-size:14px;padding:12px 0}
+  .apl ul.clean{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:14px}
+  </style>
+  <section class="apl" id="aplicaciones">
+    <div class="route-head">
+      <span class="eyebrow">Catálogo · Dónde se usa cada método</span>
+      <h2>Catálogo de modelos y métodos por industria</h2>
+      <p>Lo que aprendes en el módulo 0 y en los tres cursos, visto desde la industria: qué método resuelve qué problema, en qué sectores se usa y con qué librerías. Los ejemplos son ilustrativos y generales, no casos de una empresa concreta.</p>
+    </div>
+    <div class="box">
+      <h3>Mapa: cada industria y los métodos que más usa</h3>
+      <p>Lee cada fila de izquierda a derecha: de lo que puedes aplicar con el módulo 0 a lo que piden las etapas 2 y 3. Toca un método para ver su tarjeta.</p>
+      <div class="tbl"><table class="amap"><thead><tr><th>Industria</th><th>Pregunta típica</th><th>Básico</th><th>Intermedio</th><th>Avanzado</th></tr></thead><tbody id="aplMap"></tbody></table></div>
+    </div>
+    <div class="filters">
+      <div class="frow" id="aplLv" role="group" aria-label="Nivel">
+        <button type="button" class="chip" data-lv="0" aria-pressed="true">Todos</button>
+        <button type="button" class="chip" data-lv="1" aria-pressed="false">Básico</button>
+        <button type="button" class="chip" data-lv="2" aria-pressed="false">Intermedio</button>
+        <button type="button" class="chip" data-lv="3" aria-pressed="false">Avanzado</button>
+      </div>
+      <div class="frow">
+        <select id="aplInd" aria-label="Industria"><option value="">Todas las industrias</option></select>
+        <input type="search" id="aplQ" placeholder="Buscar: fraude, demanda, imágenes, churn…" aria-label="Buscar método">
+      </div>
+      <span class="count" id="aplCount"></span>
+    </div>
+    <div class="grid" id="aplBox"></div>
+    <div class="box" style="margin-top:16px">
+      <h3>Cómo leer este catálogo</h3>
+      <ul class="clean">
+        <li><b>El método se repite entre industrias:</b> un gradient boosting que predice default en un banco es el mismo que predice siniestros en una aseguradora. Lo que cambia es la definición del objetivo y los datos.</li>
+        <li><b>Empieza por lo básico:</b> en casi todas las industrias, una regresión bien hecha y una prueba A/B resuelven más problemas que un modelo complejo mal validado.</li>
+        <li><b>Los avanzados piden datos y gobierno:</b> visión, LLMs, agentes y refuerzo necesitan volumen de datos, infraestructura y monitoreo (tema 10 del módulo 0).</li>
+      </ul>
+    </div>
+  </section>
+  <script id="aplicaciones-js">
+  (function(){
+    const IND = {
+      'Banca y crédito': '¿A quién prestar, cuánto y cómo evitar el fraude?',
+      'Seguros': '¿Cuánto cobrar por la póliza y qué reclamos revisar?',
+      'Salud': '¿Qué paciente necesita atención primero y qué tratamiento funciona?',
+      'Retail y e-commerce': '¿Cuánto inventario pedir y qué ofrecer a cada cliente?',
+      'Marketing y medios': '¿Qué campaña o contenido genera resultado incremental?',
+      'Manufactura': '¿Cuándo va a fallar la máquina y qué pieza sale defectuosa?',
+      'Energía': '¿Cuánta demanda habrá y cómo operar la red?',
+      'Telecomunicaciones': '¿Qué cliente se va a ir y dónde se satura la red?',
+      'Logística y transporte': '¿Qué ruta, flota e inventario minimizan el costo?',
+      'Sector público': '¿Qué política funcionó y cómo atender mejor al ciudadano?',
+      'Agro': '¿Cuánto va a rendir el cultivo y qué lote tiene una plaga?'
+    };
+    const R = {m: ['master', 'Módulo 0'], s1: ['s1', 'Etapa 1'], s2: ['s2', 'Etapa 2'], s3: ['s3', 'Etapa 3']};
+    // n nombre · f familia · lv nivel · d qué hace · u industria → ejemplo · l librerías · r dónde está en la ruta
+    const M = [
+      {n:'Regresión lineal y regularizada', f:'Supervisado', lv:1, d:'Predice un valor numérico y mide cuánto pesa cada variable. Ridge y Lasso evitan el sobreajuste cuando hay muchas variables.', u:{'Retail y e-commerce':'Ventas por tienda según precio, promociones y temporada.', 'Energía':'Demanda eléctrica según temperatura y día de la semana.', 'Marketing y medios':'Primera aproximación del efecto de la inversión por canal.', 'Agro':'Rendimiento por hectárea según lluvia y fertilización.'}, l:'scikit-learn, statsmodels', r:['m', '04 Supervisado']},
+      {n:'Regresión logística', f:'Supervisado', lv:1, d:'Estima la probabilidad de un evento sí/no y es fácil de explicar a negocio y al regulador.', u:{'Banca y crédito':'Probabilidad de default en originación (scorecards).', 'Salud':'Riesgo de reingreso hospitalario a 30 días.', 'Telecomunicaciones':'Probabilidad de que un cliente cancele el plan.', 'Seguros':'Probabilidad de que una póliza tenga un siniestro en el año.'}, l:'scikit-learn, statsmodels', r:['m', '04 Supervisado']},
+      {n:'Árboles de decisión', f:'Supervisado', lv:1, d:'Reglas si/entonces aprendidas de los datos. Se pueden leer y llevar a una política.', u:{'Seguros':'Reglas de suscripción explicables para aprobar pólizas.', 'Salud':'Protocolos de triage en urgencias.', 'Banca y crédito':'Segmentar clientes para políticas de cobranza.', 'Sector público':'Priorizar inspecciones con reglas auditables.'}, l:'scikit-learn', r:['m', '04 Supervisado']},
+      {n:'Clustering (k-means y jerárquico)', f:'No supervisado', lv:1, d:'Agrupa registros parecidos sin una etiqueta previa.', u:{'Retail y e-commerce':'Segmentos de clientes por frecuencia, monto y categorías.', 'Telecomunicaciones':'Perfiles de consumo de datos y voz.', 'Energía':'Patrones de consumo horario de los usuarios.', 'Logística y transporte':'Zonas de reparto que agrupan direcciones cercanas.'}, l:'scikit-learn, scipy', r:['m', '06 No supervisado']},
+      {n:'PCA y reducción de dimensión', f:'No supervisado', lv:1, d:'Resume muchas variables correlacionadas en pocos componentes.', u:{'Banca y crédito':'Factores de nivel, pendiente y curvatura de la curva de tasas.', 'Manufactura':'Monitorear cientos de sensores con pocos indicadores.', 'Salud':'Explorar datos genómicos o de laboratorio de alta dimensión.'}, l:'scikit-learn, numpy', r:['m', '02 Álgebra lineal y optimización']},
+      {n:'Pruebas A/B e inferencia estadística', f:'Experimentación', lv:1, d:'Compara dos versiones con aleatorización y decide si la diferencia es real o ruido.', u:{'Marketing y medios':'Qué anuncio o asunto de correo convierte más.', 'Retail y e-commerce':'Cambio de diseño en el checkout.', 'Banca y crédito':'Nueva oferta de tasa en un grupo de control.', 'Sector público':'Piloto de un programa en municipios elegidos al azar.'}, l:'scipy, statsmodels', r:['m', '08 Experimentación y causalidad']},
+      {n:'Series de tiempo (ARIMA, ETS)', f:'Pronóstico', lv:1, d:'Pronostica una variable a partir de su propia historia, tendencia y estacionalidad.', u:{'Retail y e-commerce':'Demanda semanal por producto para el inventario.', 'Energía':'Carga del sistema para el día siguiente.', 'Logística y transporte':'Volumen de envíos por temporada.', 'Sector público':'Recaudo tributario mensual.', 'Agro':'Precio de la cosecha en la central de abastos.'}, l:'statsmodels, pmdarima', r:['m', '07 Series de tiempo']},
+      {n:'Random forest y gradient boosting', f:'Supervisado', lv:2, d:'Combina muchos árboles. Suele ser el modelo más preciso con datos tabulares.', u:{'Banca y crédito':'Scores de originación y comportamiento con XGBoost o LightGBM.', 'Seguros':'Severidad y frecuencia de siniestros.', 'Retail y e-commerce':'Pronóstico de demanda con muchas variables externas.', 'Manufactura':'Predecir piezas defectuosas según parámetros del proceso.'}, l:'xgboost, lightgbm, catboost', r:['m', '04 Supervisado']},
+      {n:'Evaluación y explicabilidad (SHAP)', f:'Evaluación', lv:2, d:'Mide si el modelo sirve (AUC, precisión, calibración) y explica cada predicción.', u:{'Banca y crédito':'Códigos de razón del rechazo de un crédito.', 'Salud':'Mostrar al médico qué variables pesaron en una alerta.', 'Seguros':'Justificar la tarifa ante el cliente y el supervisor.'}, l:'scikit-learn, shap', r:['m', '05 Evaluación']},
+      {n:'Detección de anomalías', f:'No supervisado', lv:2, d:'Encuentra registros raros sin ejemplos previos de fraude o falla (Isolation Forest, autoencoders).', u:{'Banca y crédito':'Transacciones inusuales con tarjeta.', 'Manufactura':'Vibraciones anómalas antes de una falla.', 'Telecomunicaciones':'Tráfico de red que sugiere un ataque.', 'Energía':'Pérdidas no técnicas (conexiones ilegales).'}, l:'scikit-learn, pyod', r:['m', '06 No supervisado']},
+      {n:'Sistemas de recomendación', f:'No supervisado', lv:2, d:'Sugiere productos o contenidos a partir de lo que hicieron usuarios parecidos.', u:{'Retail y e-commerce':'"Quienes compraron esto también compraron".', 'Marketing y medios':'Qué serie o noticia mostrar a cada usuario.', 'Banca y crédito':'Siguiente mejor oferta de producto financiero.'}, l:'implicit, surprise, lightfm', r:['s2', 'Etapa 2']},
+      {n:'Análisis de supervivencia', f:'Supervisado', lv:2, d:'Modela cuánto tiempo pasa hasta un evento, aunque muchos aún no lo hayan tenido.', u:{'Telecomunicaciones':'Tiempo hasta que el cliente cancela.', 'Salud':'Tiempo hasta recaída según el tratamiento.', 'Manufactura':'Vida útil restante de un equipo.', 'Banca y crédito':'Tiempo hasta el default para la PD de vida completa.'}, l:'lifelines, scikit-survival', r:['m', '04 Supervisado']},
+      {n:'Inferencia causal con datos observacionales', f:'Causalidad', lv:2, d:'Estima el efecto de una acción cuando no hubo experimento: diferencias en diferencias, matching, variables instrumentales.', u:{'Sector público':'Impacto de un subsidio o un programa social.', 'Marketing y medios':'Ventas incrementales de una campaña sin grupo de control.', 'Salud':'Efecto de un tratamiento con historias clínicas.', 'Retail y e-commerce':'Efecto de abrir una tienda sobre las ventas en línea.'}, l:'dowhy, econml, linearmodels', r:['m', '08 Experimentación y causalidad']},
+      {n:'Modelos bayesianos y MCMC', f:'Estocástico', lv:2, d:'Combina conocimiento previo con datos y entrega la incertidumbre completa de cada estimación.', u:{'Seguros':'Tarifas por zona con pocos siniestros (credibilidad).', 'Marketing y medios':'Marketing mix modeling con incertidumbre.', 'Salud':'Ensayos clínicos adaptativos.', 'Agro':'Rendimiento por finca compartiendo información entre regiones.'}, l:'pymc, numpyro, arviz', r:['s1', 'Etapa 1']},
+      {n:'Simulación Monte Carlo', f:'Estocástico', lv:2, d:'Simula miles de escenarios aleatorios para ver la distribución completa de un resultado.', u:{'Banca y crédito':'Pérdidas de un portafolio de créditos.', 'Seguros':'Reservas y probabilidad de ruina.', 'Energía':'Generación renovable bajo incertidumbre del clima.', 'Logística y transporte':'Plazos de entrega con demoras aleatorias.'}, l:'numpy, scipy', r:['s1', 'Etapa 1']},
+      {n:'Optimización matemática', f:'Optimización', lv:2, d:'Elige la mejor decisión bajo restricciones: programación lineal, entera y heurísticas.', u:{'Logística y transporte':'Ruteo de vehículos y asignación de bodegas.', 'Manufactura':'Plan de producción con capacidad limitada.', 'Energía':'Despacho de plantas al menor costo.', 'Retail y e-commerce':'Surtido y espacio en góndola.', 'Agro':'Plan de siembra y riego con agua limitada.'}, l:'pulp, ortools, pyomo', r:['m', '02 Álgebra lineal y optimización']},
+      {n:'NLP clásico y embeddings', f:'Lenguaje', lv:2, d:'Convierte texto en números para clasificarlo, agruparlo o buscar similares.', u:{'Banca y crédito':'Clasificar quejas y PQRS por tema y urgencia.', 'Sector público':'Enrutar peticiones ciudadanas a la entidad correcta.', 'Salud':'Extraer diagnósticos de notas clínicas.', 'Marketing y medios':'Análisis de sentimiento en redes sociales.'}, l:'scikit-learn, spacy, sentence-transformers', r:['s2', 'Etapa 2']},
+      {n:'Monitoreo de modelos y drift', f:'MLOps', lv:2, d:'Vigila que los datos y el desempeño no cambien después de salir a producción (PSI, alertas, reentrenos).', u:{'Banca y crédito':'Monitoreo regulatorio de scores en producción.', 'Retail y e-commerce':'Detectar que cambió el comportamiento de compra.', 'Salud':'Validar que un modelo siga funcionando en otro hospital.'}, l:'evidently, mlflow', r:['m', '10 MLOps, big data y ética']},
+      {n:'Visión por computador (CNN)', f:'Deep learning', lv:3, d:'Redes que reconocen patrones en imágenes y video.', u:{'Salud':'Apoyo al diagnóstico en radiografías.', 'Manufactura':'Inspección visual de defectos en la línea.', 'Agro':'Detectar plagas en fotos de drones.', 'Retail y e-commerce':'Conteo de productos en góndola.'}, l:'pytorch, torchvision, ultralytics', r:['s2', 'Etapa 2']},
+      {n:'Pronóstico con deep learning', f:'Pronóstico', lv:3, d:'Redes (LSTM, Temporal Fusion Transformer) que pronostican miles de series a la vez con variables externas.', u:{'Energía':'Generación solar y eólica por hora.', 'Retail y e-commerce':'Demanda de miles de productos por tienda.', 'Telecomunicaciones':'Tráfico de red por celda.', 'Logística y transporte':'Ocupación de flota y bodegas.'}, l:'pytorch-forecasting, darts, neuralforecast', r:['s2', 'Etapa 2']},
+      {n:'Redes neuronales de grafos', f:'Deep learning', lv:3, d:'Aprende de las relaciones entre entidades: quién transfiere a quién, quién se conecta con quién.', u:{'Banca y crédito':'Anillos de fraude y mulas de dinero.', 'Telecomunicaciones':'Influencia de contactos en la cancelación.', 'Salud':'Descubrimiento de fármacos con grafos moleculares.', 'Marketing y medios':'Recomendaciones en redes sociales.'}, l:'pytorch-geometric, networkx, dgl', r:['s2', 'Etapa 2']},
+      {n:'Transformers y LLMs con ajuste fino', f:'IA generativa', lv:3, d:'Modelos de lenguaje grandes adaptados a una tarea o un dominio con pocos ejemplos.', u:{'Banca y crédito':'Extraer datos de extractos y documentos de crédito.', 'Seguros':'Leer reclamaciones y resumir el siniestro.', 'Sector público':'Resumir normativa y expedientes.', 'Salud':'Redactar resúmenes de egreso para revisión médica.'}, l:'transformers, peft, anthropic', r:['s3', 'Etapa 3']},
+      {n:'RAG: búsqueda aumentada con LLMs', f:'IA generativa', lv:3, d:'El modelo responde citando documentos propios que recupera de una base vectorial.', u:{'Banca y crédito':'Asistente interno de políticas y manuales de crédito.', 'Telecomunicaciones':'Soporte técnico con la base de conocimiento.', 'Salud':'Consulta de guías clínicas con referencias.', 'Sector público':'Atención al ciudadano sobre trámites.'}, l:'langchain, llamaindex, faiss', r:['s3', 'Etapa 3']},
+      {n:'Agentes de IA con herramientas', f:'IA generativa', lv:3, d:'Un LLM que planea pasos, consulta sistemas y ejecuta tareas con supervisión humana.', u:{'Retail y e-commerce':'Atender devoluciones consultando pedidos y políticas.', 'Banca y crédito':'Preparar el expediente de un crédito para el analista.', 'Logística y transporte':'Seguimiento de envíos y gestión de novedades.', 'Marketing y medios':'Preparar reportes de campañas a partir de varias fuentes.'}, l:'anthropic, langgraph, mcp', r:['s3', 'Etapa 3']},
+      {n:'Aprendizaje por refuerzo', f:'Estocástico', lv:3, d:'Un agente aprende una política de decisiones probando y recibiendo recompensas.', u:{'Energía':'Carga y descarga de baterías según el precio.', 'Logística y transporte':'Reposición de inventario en varias bodegas.', 'Marketing y medios':'Pujas en subastas de publicidad.', 'Manufactura':'Control de robots y procesos.'}, l:'gymnasium, stable-baselines3', r:['s1', 'Etapa 1']},
+      {n:'Modelos generativos de imagen', f:'IA generativa', lv:3, d:'Modelos de difusión que crean o editan imágenes a partir de texto.', u:{'Marketing y medios':'Variantes de creatividades para pruebas.', 'Retail y e-commerce':'Fotos de producto en distintos fondos.', 'Manufactura':'Exploración de diseños de producto.', 'Salud':'Imágenes sintéticas para entrenar con privacidad.'}, l:'diffusers, pytorch', r:['s3', 'Etapa 3']}
+    ];
+    const LV = {1: 'Básico', 2: 'Intermedio', 3: 'Avanzado'};
+    const $ = id => document.getElementById(id);
+    const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    const indSel = $('aplInd');
+    indSel.insertAdjacentHTML('beforeend', Object.keys(IND).map(i => `<option>${i}</option>`).join(''));
+    let lv = 0;
+    function render(){
+      const q = norm($('aplQ').value.trim()), ind = indSel.value;
+      const list = M.filter(m => (!lv || m.lv === lv) && (!ind || m.u[ind]) && (!q || norm([m.n, m.f, m.d, m.l, ...Object.entries(m.u).flat()].join(' ')).includes(q)));
+      $('aplCount').textContent = `${list.length} de ${M.length} métodos`;
+      $('aplBox').innerHTML = list.length ? list.map(m => { const [sec, lab] = R[m.r[0]];
+        const uses = Object.entries(m.u).sort(([a], [b]) => (b === ind) - (a === ind));
+        return `<div class="card" data-m="${m.n}"><span class="lvl l${m.lv}">${LV[m.lv]}</span><span class="fam">${m.f}</span><h4>${m.n}</h4><p>${m.d}</p><ul class="uses">${uses.map(([i, e]) => `<li${i === ind ? ' class="hit"' : ''}><b>${i}:</b> ${e}</li>`).join('')}</ul><div class="libs">${m.l.split(', ').map(x => `<span class="lib">${x}</span>`).join('')}</div><span class="where">En la ruta: <a href="#${sec}">${m.r[0] === 'm' ? lab + ' · ' + m.r[1] : lab}</a></span></div>`; }).join('') : '<div class="empty">Ningún método coincide. Prueba otra palabra o quita filtros.</div>';
+    }
+    $('aplLv').addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return; lv = +b.dataset.lv; $('aplLv').querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); });
+    indSel.addEventListener('change', render); $('aplQ').addEventListener('input', render);
+    render();
+    $('aplMap').innerHTML = Object.entries(IND).map(([i, q]) => `<tr><td>${i}</td><td>${q}</td>${[1, 2, 3].map(l => `<td>${M.filter(m => m.lv === l && m.u[i]).map(m => `<button type="button" class="mini" data-go="${m.n}">${m.n}</button>`).join('') || '<span class="muted">—</span>'}</td>`).join('')}</tr>`).join('');
+    // Del mapa a la tarjeta: filtra por el método y lo muestra (el salto no marca módulos como leídos)
+    $('aplMap').addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (!b) return;
+      lv = 0; indSel.value = ''; $('aplLv').querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x.dataset.lv === '0'));
+      $('aplQ').value = b.dataset.go; render();
+      const c = [...$('aplBox').querySelectorAll('.card')].find(x => x.dataset.m === b.dataset.go); if (!c) return;
+      c.classList.add('flash'); c.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center'}); setTimeout(() => c.classList.remove('flash'), 2500);
+    });
+  })();
+  </script>
+
   <section class="refs biblio" id="bibliografia">
     <div class="route-head">
       <span class="eyebrow">Referencias</span>
@@ -1310,7 +1451,7 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
 </style>
 <script id="continuar-js">
 (function(){
-  const CFG = {"key": "cn-ia", "sections": ["#programas", "#master", "#s1", "#s2", "#s3", "#bibliografia"]};
+  const CFG = {"key": "cn-ia", "sections": ["#programas", "#master", "#s1", "#s2", "#s3", "#aplicaciones", "#bibliografia"]};
   const read = () => { try { return JSON.parse(localStorage.getItem(CFG.key) || 'null') || {}; } catch (e) { return {}; } };
   const write = v => { try { localStorage.setItem(CFG.key, JSON.stringify(v)); } catch (e) {} };
   const secs = (CFG.sections ? CFG.sections.map(q => document.querySelector(q)) : [...document.querySelectorAll('section.mod[id]')]).filter(Boolean);
