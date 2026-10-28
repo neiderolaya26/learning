@@ -1,0 +1,21 @@
+name: PR title
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+permissions:
+  contents: read
+jobs:
+  conventional-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce Conventional Commit title with Gitmoji
+        shell: bash
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "Title: $TITLE"
+          # <tipo>(<alcance opcional>)!?: <gitmoji> <descripción>
+          if ! printf '%s' "$TITLE" | grep -Pq '^(feat|fix|refactor|perf|docs|test|build|ci|chore|revert)(\([a-z0-9._/-]+\))?!?: (:[a-z0-9_+-]+:|[^\x00-\x7F]+) \S'; then
+            echo "::error::Use '<type>(<scope>): <gitmoji> <description>', e.g. 'feat(rutas): ✨ add finance path'"
+            exit 1
+          fi
