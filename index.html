@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rutas de aprendizaje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{--bg:#f4f3f6;--surface:#fff;--fg:#1d1724;--muted:#5f5769;--line:#d9d4e0;--r:#8e2a4f;--p:#2b4bff;--i:#0f7c6c;
+  --display:"Sora","Segoe UI",system-ui,sans-serif;--body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#141019;--surface:#1c1723;--fg:#ece7f2;--muted:#a69db3;--line:#342c40;--r:#e98aae;--p:#7d93ff;--i:#4fd1b8;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.6}
+main{max-width:880px;margin:0 auto;padding:56px max(16px,env(safe-area-inset-left)) 64px max(16px,env(safe-area-inset-right));display:grid;gap:28px}
+h1{font-family:var(--display);font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:0;letter-spacing:-.02em}
+.lede{color:var(--muted);max-width:60ch;margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+a.route{display:grid;gap:8px;align-content:start;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:14px;padding:18px}
+a.route:hover,a.route:focus-visible{border-color:var(--c);outline:none}
+.k{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c);font-weight:600}
+h2{font-family:var(--display);font-size:1.25rem;margin:0}
+p{margin:0}
+.route p{color:var(--muted);font-size:.93rem}
+footer{color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Rutas de aprendizaje</h1>
+  <p class="lede">Páginas interactivas para estudiar a tu ritmo: conceptos, calculadoras con datos inventados, quices y planes de estudio. El progreso queda guardado en tu navegador.</p>
+  <div class="grid">
+    <a class="route" href="rutas/riesgo-de-credito/" style="--c:var(--r)"><span class="k">12 semanas · fundamentos a experto</span><h2>Riesgo de crédito</h2><p>Pérdida esperada, scorecards, validación, cosechas, estrategia, pricing, NIIF 9, capital IRB, monitoreo y técnicas avanzadas.</p></a>
+    <a class="route" href="rutas/paid-media/" style="--c:var(--p)"><span class="k">14 días · de riesgo a marketing</span><h2>Paid Media</h2><p>Métricas del embudo, subasta, plataformas, fase de aprendizaje, uplift, MMM y catálogo de modelos de marketing.</p></a>
+    <a class="route" href="rutas/ia-data-science/" style="--c:var(--i)"><span class="k">8 semanas + cursos</span><h2>IA y Data Science</h2><p>Repaso de máster con quices y examen final, y una ruta por cursos de estocásticos, deep learning, NLP, grafos, LLMs y agentes.</p></a>
+  </div>
+  <footer>Los números de los ejemplos son inventados. Las fórmulas están simplificadas para aprender.</footer>
+</main>
+</body>
+</html>

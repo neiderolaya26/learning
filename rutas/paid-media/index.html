@@ -1,0 +1,1097 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ruta Paid Media</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: una columna de lectura con barra de secciones fija; cada módulo = explicación + ejemplo vivo + quiz */
+:root{
+  --bg:#f3f5fb; --surface:#ffffff; --sunk:#e8ecf6; --fg:#141a2e; --muted:#5a6380; --line:#d5dbea;
+  --accent:#2b4bff; --accent-soft:#e3e8ff; --accent-fg:#ffffff;
+  --good:#12805c; --good-soft:#dcf3ea; --bad:#c2372f; --bad-soft:#fbe3e1; --warn:#a86400; --warn-soft:#fdf0d9;
+  --display:"Unbounded", "Arial Black", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1120; --surface:#151b2f; --sunk:#1c2440; --fg:#e7eaf6; --muted:#9aa3c2; --line:#2a3354;
+  --accent:#7d93ff; --accent-soft:#232e5c; --accent-fg:#0d1120;
+  --good:#4fd3a2; --good-soft:#123a2e; --bad:#ff8a80; --bad-soft:#47201f; --warn:#f2b45a; --warn-soft:#3d2c10; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1120; --surface:#151b2f; --sunk:#1c2440; --fg:#e7eaf6; --muted:#9aa3c2; --line:#2a3354;
+  --accent:#7d93ff; --accent-soft:#232e5c; --accent-fg:#0d1120;
+  --good:#4fd3a2; --good-soft:#123a2e; --bad:#ff8a80; --bad-soft:#47201f; --warn:#f2b45a; --warn-soft:#3d2c10; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:960px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:clamp(1.3rem,3vw,1.75rem);font-weight:700}
+h3{font-size:1rem;font-weight:500}
+p{margin:0;max-width:68ch}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+nav.top a{flex:none;text-decoration:none;color:var(--muted);font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px}
+nav.top a:hover{background:var(--sunk);color:var(--fg)}
+nav.top a.on{background:var(--accent);color:var(--accent-fg)}
+
+/* hero */
+header.hero{padding-block:48px 32px}
+header.hero .wrap{display:grid;gap:20px}
+.hero-sub{font-size:1.1rem;color:var(--muted)}
+.stats{display:flex;flex-wrap:wrap;gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:150px}
+.stat b{display:block;font-family:var(--mono);font-size:1.4rem}
+.stat span{font-size:.8rem;color:var(--muted)}
+
+section.mod{padding-block:40px;border-top:1px solid var(--line)}
+section.mod>.wrap{display:grid;gap:20px}
+.head{display:grid;gap:8px}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:14px;min-width:0}
+.panel.example{border-style:dashed}
+.tag{display:inline-block;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--warn-soft);color:var(--warn);justify-self:start}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;align-content:start}
+.card .n{font-family:var(--mono);color:var(--accent);font-weight:600;font-size:.85rem}
+.card p{font-size:.92rem;color:var(--muted)}
+
+ul.clean{margin:0;padding-left:1.2em;display:grid;gap:6px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:20px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inputs label{display:grid;gap:4px;font-size:.78rem;color:var(--muted);font-weight:600}
+.inputs input{font-family:var(--mono);font-size:.95rem;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:100%;min-width:0}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.metric{background:var(--sunk);border-radius:10px;padding:10px 12px}
+.metric small{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.metric b{font-family:var(--mono);font-size:1.15rem;font-variant-numeric:tabular-nums}
+.metric.key{background:var(--accent-soft)}
+.metric.neg b{color:var(--bad)} .metric.pos b{color:var(--good)}
+.funnel{display:grid;gap:6px}
+.frow{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:center;gap:10px;font-size:.82rem}
+.fbar{height:24px;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:8px;color:var(--accent-fg);font-family:var(--mono);font-size:.75rem;min-width:56px;transition:width .3s}
+.note{font-size:.9rem;padding:12px 14px;border-radius:10px;background:var(--accent-soft)}
+
+/* bars */
+.bars{display:grid;gap:10px}
+.brow{display:grid;grid-template-columns:120px minmax(0,1fr) 64px;gap:10px;align-items:center;font-size:.88rem}
+.track{height:18px;background:var(--sunk);border-radius:4px;overflow:hidden;display:flex}
+.seg{height:100%}
+.seg.a{background:var(--accent)} .seg.b{background:var(--bad)}
+.brow .v{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.lit{display:block;font-size:.76rem;font-weight:400;color:var(--muted);line-height:1.35;margin-top:2px}
+.metric .lit{font-size:.66rem;margin:0 0 2px}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.best td{background:var(--good-soft)}
+
+/* phases */
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:end;height:200px;padding-top:10px}
+.ph{display:grid;gap:6px;align-content:end;height:100%;text-align:center}
+.ph .col{background:var(--accent);border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;color:var(--accent-fg);font-family:var(--mono);font-size:.85rem;padding-top:6px}
+.ph.learn .col{background:var(--warn)}
+.ph small{font-size:.75rem;color:var(--muted);line-height:1.3}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.twocol{grid-template-columns:1fr}}
+.verdict{border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.verdict.m{background:var(--warn-soft)} .verdict.d{background:var(--accent-soft)}
+.verdict b{font-family:var(--display);font-size:.9rem;font-weight:500}
+
+/* quiz */
+.quiz{display:grid;gap:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
+.q .qn{font-family:var(--mono);font-size:.75rem;color:var(--accent);font-weight:600}
+.q .qt{font-weight:600}
+.opts{display:grid;gap:8px}
+.opt{font:inherit;font-size:.95rem;text-align:left;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .k{font-family:var(--mono);font-weight:600;color:var(--muted)}
+.opt[disabled]{cursor:default}
+.opt.right{background:var(--good-soft);border-color:var(--good)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.why{font-size:.9rem;padding:10px 14px;border-radius:10px;background:var(--sunk)}
+.why b.ok{color:var(--good)} .why b.no{color:var(--bad)}
+.qbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;font-size:.88rem;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* plan */
+.plan{display:grid;gap:8px}
+.day{display:grid;grid-template-columns:auto 56px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.day input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent)}
+.day .d{font-family:var(--mono);font-weight:600;color:var(--accent);font-size:.85rem;padding-top:2px}
+.day b{display:block;font-size:.95rem}
+.day span{font-size:.88rem;color:var(--muted)}
+.day.done{opacity:.6} .day.done b{text-decoration:line-through}
+.week{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.progress{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
+
+footer{padding-block:32px 48px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+/* modelos */
+.techs{display:grid;gap:12px}
+.tech{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;min-width:0}
+.tech-h{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between}
+.tech-h h3{font-size:1.02rem}
+.libs{display:flex;flex-wrap:wrap;gap:6px}
+.lib{font-family:var(--mono);font-size:.72rem;padding:3px 8px;border-radius:6px;background:var(--sunk);color:var(--fg)}
+.kv{display:grid;grid-template-columns:120px minmax(0,1fr);gap:6px 12px;font-size:.9rem}
+.kv dt{color:var(--muted);font-weight:600;font-size:.8rem;padding-top:2px}
+.kv dd{margin:0}
+@media (max-width:520px){.kv{grid-template-columns:1fr}.kv dt{padding-top:6px}}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.quad div{border-radius:10px;padding:10px 12px;font-size:.85rem;display:grid;gap:2px}
+.quad b{font-size:.88rem}
+.quad .p{background:var(--good-soft)} .quad .s{background:var(--accent-soft)} .quad .l{background:var(--sunk)} .quad .d{background:var(--bad-soft)}
+.budget{display:grid;gap:8px}
+.budget input[type=range]{width:100%;accent-color:var(--accent)}
+.budget .row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.9rem}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.vs{grid-template-columns:1fr}}
+.vs .box{border-radius:12px;padding:14px;display:grid;gap:4px;background:var(--sunk)}
+.vs .box.win{background:var(--good-soft)}
+.vs .big{font-family:var(--mono);font-size:1.6rem;font-weight:600}
+.vs small{color:var(--muted);font-size:.8rem}
+pre.code{margin:0;background:var(--sunk);border-radius:10px;padding:14px;overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.55;color:var(--fg)}
+.code-wrap{display:grid;gap:8px;min-width:0}
+
+/* catalogo */
+.filters{display:grid;gap:10px}
+.frow2{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fchip{font:inherit;font-size:.82rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.fchip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters input[type=search],.filters select{font:inherit;font-size:.9rem;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-width:0}
+.filters input[type=search]{flex:1 1 220px}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.ci{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:8px;align-content:start;min-width:0}
+.ci-top{display:flex;gap:6px;flex-wrap:wrap}
+.lv{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px}
+.lv1{background:var(--good-soft);color:var(--good)} .lv2{background:var(--accent-soft);color:var(--accent)} .lv3{background:var(--warn-soft);color:var(--warn)}
+.area{font-size:.72rem;color:var(--muted);padding:2px 0}
+.ci h3{font-size:.95rem;line-height:1.3}
+.ci p{font-size:.88rem}
+.ci .ex{font-size:.84rem;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.ci .star{font-size:.72rem;font-weight:700;color:var(--good)}
+.empty{padding:20px;text-align:center;color:var(--muted)}
+
+/* puentes ruta-modelos */
+.bridge{background:var(--sunk);border-radius:16px;padding:18px;display:grid;gap:12px}
+.bridge-h{display:grid;gap:4px}
+.bridge-h .eyebrow{color:var(--fg)}
+.bridge-h p{font-weight:600}
+.blist{display:grid;gap:8px}
+.bi{display:grid;grid-template-columns:86px minmax(0,1fr);gap:10px;align-items:start;background:var(--surface);border-radius:10px;padding:10px 12px}
+.bi .lv{justify-self:start;margin-top:3px}
+.bi button{font:inherit;font-weight:700;font-size:.9rem;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.bi span.t{display:block;font-size:.88rem;color:var(--fg)}
+@media (max-width:480px){.bi{grid-template-columns:1fr;gap:4px}}
+.tmap td{font-size:.84rem}
+.tmap .mini{font:inherit;font-size:.78rem;background:none;border:0;padding:1px 0;color:var(--accent);cursor:pointer;text-align:left;display:block;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+.tmap th:first-child,.tmap td:first-child{min-width:130px}
+.tmap td{min-width:140px}
+.ci .back{font-size:.78rem;color:var(--muted)}
+.ci .back a{font-weight:600}
+.ci.flash{outline:2px solid var(--accent);outline-offset:2px}
+
+/* chat */
+[hidden]{display:none!important}
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;font:inherit;font-weight:700;font-size:.92rem;padding:12px 18px;border-radius:999px;border:0;background:var(--accent);color:var(--accent-fg);cursor:pointer;box-shadow:0 6px 20px rgba(20,26,46,.25)}
+.chat{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:21;width:min(400px,calc(100vw - 32px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));height:min(560px,calc(100vh - 100px));background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px rgba(20,26,46,.3);display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.chat-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.chat-h b{font-family:var(--display);font-weight:500;font-size:.95rem}
+.chat-h button{font:inherit;font-size:1.5rem;line-height:1;background:none;border:0;color:var(--muted);cursor:pointer;min-width:44px;min-height:44px;border-radius:8px}
+.chat-log{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:14px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:10px 12px;border-radius:12px;font-size:.9rem;line-height:1.5;overflow-wrap:anywhere}
+.msg.u{align-self:flex-end;background:var(--accent);color:var(--accent-fg);border-bottom-right-radius:4px}
+.msg.a{align-self:flex-start;background:var(--sunk);border-bottom-left-radius:4px}
+.msg.err{background:var(--bad-soft);color:var(--bad)}
+.msg ul{margin:4px 0;padding-left:1.1em}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:.8rem;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chat-f{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+.chat-f textarea{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);resize:none;height:42px;max-height:120px}
+.chat-f button{font:inherit;font-weight:700;font-size:.85rem;padding:0 14px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-fg);cursor:pointer}
+.chat-f button[disabled]{opacity:.5;cursor:default}
+.chat-f button.stop{background:var(--bad);color:var(--surface)}
+.chat-f button{min-height:44px}
+@media (max-width:600px){
+  .chat{top:0;left:0;right:0;bottom:auto;width:100%;height:100%;border-radius:0;border:0;box-shadow:none;padding-top:env(safe-area-inset-top,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+  .chat-f{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  body.chat-open{overflow:hidden}
+}
+.ask-more{font:inherit;font-size:.82rem;font-weight:600;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;margin-top:6px;display:none}
+body.can-ask .ask-more{display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:480px){.inputs{grid-template-columns:1fr}.brow{grid-template-columns:84px minmax(0,1fr) 52px}.frow{grid-template-columns:80px minmax(0,1fr)}}
+</style>
+
+<nav class="top" aria-label="Secciones"><div class="wrap">
+  <a href="#rol">El rol</a><a href="#embudo">Embudo</a><a href="#subasta">Subasta</a><a href="#plataformas">Plataformas</a><a href="#aprendizaje">Aprendizaje</a><a href="#ventaja">Tu ventaja</a><a href="#modelos">Modelos</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 14 días</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Ruta rápida · Data Science → Marketing fintech</span>
+  <h1>Paid Media para quien ya sabe de riesgo</h1>
+  <p class="hero-sub">En 2 semanas puedes hablar con soltura de métricas, subastas y fase de aprendizaje, y mostrar por qué venir de riesgo es tu ventaja. Todos los números de esta página son inventados para practicar.</p>
+  <div class="stats">
+    <div class="stat"><b id="sQuiz">0 / 15</b><span>Respuestas correctas</span></div>
+    <div class="stat"><b id="sPlan">0 / 14</b><span>Días del plan completados</span></div>
+  </div>
+</div></header>
+
+<section class="mod" id="rol"><div class="wrap">
+  <div class="head"><span class="eyebrow">01 · Lo que pidió el líder</span><h2>Qué espera marketing de ti</h2>
+  <p class="muted">No buscan un experto en pauta. Buscan a alguien que lea los datos de pauta y diga dónde mover el presupuesto.</p></div>
+  <div class="cards">
+    <div class="card"><span class="n">Segmentar</span><h3>Audiencias y campañas</h3><p>Por edad, canal y plataforma: quién convierte mejor y a qué costo.</p></div>
+    <div class="card"><span class="n">Comparar</span><h3>Plataformas</h3><p>TikTok, Google Search, Display y Meta tienen costos, alcance y conversión distintos.</p></div>
+    <div class="card"><span class="n">Encontrar</span><h3>Oportunidades de growth</h3><p>Con conversión, CPA, ROAS y ROI, llevadas a un dashboard.</p></div>
+    <div class="card"><span class="n">Separar</span><h3>Mercado vs. decisión</h3><p>Si un indicador empeora: ¿competencia en la subasta o una decisión de riesgo?</p></div>
+    <div class="card"><span class="n">Esperar</span><h3>Al algoritmo</h3><p>Días 1–7 optimizan conversión; días 8–14 optimizan costo (regla del líder).</p></div>
+  </div>
+</div></section>
+
+<section class="mod" id="embudo"><div class="wrap">
+  <div class="head"><span class="eyebrow">02 · Métricas</span><h2>El embudo y sus métricas</h2>
+  <p class="muted">Impresión → clic → lead → desembolso. Cada métrica mide un paso o el costo de llegar a él. Cambia los números y mira cómo se mueven.</p></div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · Google Search, 1 mes</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="iGasto">Gasto (USD)<input id="iGasto" type="number" min="0" value="2000"></label>
+        <label for="iImp">Impresiones<input id="iImp" type="number" min="0" value="100000"></label>
+        <label for="iClics">Clics<input id="iClics" type="number" min="0" value="4000"></label>
+        <label for="iLeads">Leads<input id="iLeads" type="number" min="0" value="400"></label>
+        <label for="iDes">Desembolsos<input id="iDes" type="number" min="0" value="100"></label>
+        <label for="iIng">Ingreso por crédito (USD)<input id="iIng" type="number" min="0" value="60"></label>
+        <label for="iMora">Créditos en mora<input id="iMora" type="number" min="0" value="15"></label>
+        <label for="iPerd">Pérdida por crédito en mora (USD)<input id="iPerd" type="number" min="0" value="150"></label>
+      </div>
+      <div style="display:grid;gap:14px;min-width:0">
+        <div class="funnel" id="funnel" aria-label="Embudo, escala logarítmica"></div>
+        <div class="metrics" id="metrics"></div>
+      </div>
+    </div>
+    <p class="note" id="calcNote"></p>
+  </div>
+  <div class="tbl panel">
+    <table>
+      <thead><tr><th>Métrica</th><th>Fórmula</th><th>Qué te dice</th></tr></thead>
+      <tbody>
+        <tr><td><b>CPM</b><span class="lit">Cost Per Mille: costo por mil impresiones</span></td><td class="mono">gasto / impresiones × 1.000</td><td>Cuánto cuesta que te vean; sube con la competencia</td></tr>
+        <tr><td><b>CTR</b><span class="lit">Click-Through Rate: tasa de clics</span></td><td class="mono">clics / impresiones</td><td>Si el anuncio atrae; cae con la fatiga creativa</td></tr>
+        <tr><td><b>CPC</b><span class="lit">Cost Per Click: costo por clic</span></td><td class="mono">gasto / clics</td><td>Costo de traer a alguien al sitio</td></tr>
+        <tr><td><b>CVR</b><span class="lit">Conversion Rate: tasa de conversión</span></td><td class="mono">conversiones / clics</td><td>Si el sitio y la oferta convencen</td></tr>
+        <tr><td><b>CPL</b><span class="lit">Cost Per Lead: costo por lead (contacto interesado)</span></td><td class="mono">gasto / leads</td><td>Costo por registro o solicitud</td></tr>
+        <tr><td><b>CPA</b><span class="lit">Cost Per Acquisition / Action: costo por adquisición o acción</span></td><td class="mono">gasto / conversiones</td><td>Costo por la acción objetivo</td></tr>
+        <tr><td><b>Costo por desembolso</b></td><td class="mono">gasto / créditos desembolsados</td><td>El CPA que importa en una fintech de crédito</td></tr>
+        <tr><td><b>ROAS</b><span class="lit">Return On Ad Spend: retorno sobre la inversión en publicidad</span></td><td class="mono">ingresos / gasto en pauta</td><td>Cuánto vuelve por cada peso de pauta</td></tr>
+        <tr><td><b>ROI</b><span class="lit">Return On Investment: retorno sobre la inversión</span></td><td class="mono">(ganancia − inversión) / inversión</td><td>Incluye pérdidas: aquí entra la mora</td></tr>
+        <tr><td><b>CAC</b><span class="lit">Customer Acquisition Cost: costo de adquisición de cliente</span></td><td class="mono">costo total de adquisición / clientes nuevos</td><td>Pauta + equipo + herramientas</td></tr>
+        <tr><td><b>LTV</b><span class="lit">Lifetime Value: valor de vida del cliente</span></td><td class="mono">valor del cliente en toda su vida</td><td>Con LTV/CAC se decide cuánto pagar por cliente</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted" style="font-size:.9rem">El líder mencionó "CPB"; no es una sigla estándar. Pregúntale si se refiere a costo por venta o por desembolso.</p>
+  <div class="bridge" data-topic="embudo"></div>
+</div></section>
+
+<section class="mod" id="subasta"><div class="wrap">
+  <div class="head"><span class="eyebrow">03 · Cómo se compra la pauta</span><h2>La subasta</h2>
+  <p>Cada vez que alguien puede ver un anuncio, la plataforma hace una subasta entre los anunciantes que apuntan a esa persona. No gana solo la puja más alta: pesan también la calidad del anuncio y la probabilidad de que la persona actúe. Si tu público es el mismo que el de la competencia, la puja sube y con ella el CPM y el CPA.</p></div>
+  <div class="panel">
+    <h3>Qué hacer cuando la subasta se encarece</h3>
+    <ul class="clean">
+      <li>Mover presupuesto a segmentos (edad, ciudad, horario, dispositivo) con mejor CPA y menos competencia.</li>
+      <li>Renovar creatividades: un anuncio mejor calificado paga menos por la misma posición.</li>
+      <li>Subir la conversión del sitio o la solicitud: baja el CPA sin tocar la puja.</li>
+      <li>Cambiar la estrategia de puja (CPA objetivo o tCPA, <i>target Cost Per Acquisition</i>; ROAS objetivo o tROAS, <i>target Return On Ad Spend</i>; tope de costo) según lo que se quiera proteger.</li>
+      <li>Aceptar un CPA más alto en segmentos que pagan mejor y caen menos en mora. Aquí pesa tu análisis de riesgo.</li>
+    </ul>
+  </div>
+  <div class="bridge" data-topic="subasta"></div>
+</div></section>
+
+<section class="mod" id="plataformas"><div class="wrap">
+  <div class="head"><span class="eyebrow">04 · Dónde se pauta</span><h2>Cada plataforma hace un trabajo distinto</h2>
+  <p class="muted">No se comparan solo por CPA: se comparan por lo que aportan al embudo.</p></div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · 4 plataformas, mismo mes</span>
+    <h3>Costo por desembolso (USD)</h3>
+    <div class="bars" id="platBars"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Plataforma</th><th class="num">Gasto</th><th class="num">Impresiones</th><th class="num">CPM</th><th class="num">CTR</th><th class="num">Leads</th><th class="num">CPL</th><th class="num">Lead → desembolso</th></tr></thead>
+      <tbody id="platTbl"></tbody>
+    </table></div>
+  </div>
+  <div class="cards">
+    <div class="card"><span class="n">Google Search</span><p><b>Fuerte:</b> intención alta, la gente ya busca crédito. <b>Débil:</b> CPC alto en palabras disputadas y volumen limitado.</p></div>
+    <div class="card"><span class="n">Google Display</span><p><b>Fuerte:</b> alcance barato. <b>Débil:</b> conversión baja. Sirve para recordación y remarketing.</p></div>
+    <div class="card"><span class="n">Meta</span><p><b>Fuerte:</b> alcance masivo y públicos similares. <b>Débil:</b> mucho volumen que no llega a crédito.</p></div>
+    <div class="card"><span class="n">TikTok</span><p><b>Fuerte:</b> volumen alto en público joven. <b>Débil:</b> costos altos y creatividades que se desgastan rápido.</p></div>
+  </div>
+  <div class="bridge" data-topic="plataformas"></div>
+</div></section>
+
+<section class="mod" id="aprendizaje"><div class="wrap">
+  <div class="head"><span class="eyebrow">05 · Tiempos del algoritmo</span><h2>Fase de aprendizaje</h2>
+  <p>Cuando una campaña arranca o cambia mucho (presupuesto, puja, público, creatividad), el algoritmo prueba a quién mostrarla. Mientras aprende, los resultados son inestables y más caros.</p></div>
+  <div class="twocol">
+    <div class="panel example">
+      <span class="tag">Ejemplo dummy · campaña de Meta</span>
+      <h3>CPA promedio por fase (USD)</h3>
+      <div class="phases">
+        <div class="ph learn"><div class="col" style="height:100%">7,50</div><small>Días 1–7<br>optimiza conversión</small></div>
+        <div class="ph"><div class="col" style="height:69%">5,20</div><small>Días 8–14<br>optimiza costo</small></div>
+        <div class="ph"><div class="col" style="height:67%">5,00</div><small>Días 15–30<br>estable</small></div>
+      </div>
+      <p style="font-size:.9rem">Apagarla el día 3 por "cara" habría matado una campaña que terminó un 33 % más barata.</p>
+    </div>
+    <div class="panel">
+      <h3>Referencias aproximadas</h3>
+      <ul class="clean">
+        <li><b>Meta:</b> cerca de 50 eventos de optimización en unos 7 días desde el último cambio importante.</li>
+        <li><b>Google (pujas automáticas):</b> varios días, a veces 1–2 semanas, según volumen y tiempo de conversión.</li>
+        <li><b>Regla del líder:</b> días 1–7 conversión; días 8–14 costo.</li>
+      </ul>
+      <h3>Qué cambia en tu análisis</h3>
+      <ul class="clean">
+        <li>Etiqueta cada día con su fase y compara segmentos dentro de la misma fase.</li>
+        <li>Nada de decisiones con menos de 7 días de datos; revisión estratégica semanal o quincenal.</li>
+        <li>El desembolso llega días después del clic: analiza por cohorte de fecha del lead, como una cosecha de cartera.</li>
+      </ul>
+      <p class="muted" style="font-size:.82rem">Confirma las cifras en la ayuda oficial de Meta y Google Ads antes de citarlas.</p>
+    </div>
+  </div>
+  <div class="bridge" data-topic="aprendizaje"></div>
+  <div class="head"><h3>¿Mercado o decisión propia?</h3><p class="muted">Abre el embudo paso a paso y marca las fechas de cambios de política, precio o campaña.</p></div>
+  <div class="twocol">
+    <div class="verdict m"><b>Es mercado</b><span>El CPM sube en todas las plataformas y segmentos a la vez: competencia o temporada.</span></div>
+    <div class="verdict d"><b>Es decisión de negocio</b><span>Clics y leads iguales, pero la aprobación cae justo después de un cambio de política.</span></div>
+  </div>
+  <p class="muted" style="font-size:.9rem">Para separarlo con rigor: compara segmentos afectados contra no afectados, antes y después (diferencias en diferencias).</p>
+  <div class="bridge" data-topic="mercado"></div>
+</div></section>
+
+<section class="mod" id="ventaja"><div class="wrap">
+  <div class="head"><span class="eyebrow">06 · Puente con tu experiencia</span><h2>Tú sabes qué pasa después del lead</h2>
+  <p class="muted">Un analista de marketing típico ve el CPA. Tú puedes ver el costo por crédito desembolsado y la mora por canal.</p></div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · 2 edades en Meta, pérdida de 300 USD por crédito en mora</span>
+    <h3>Costo real por crédito (USD)</h3>
+    <div class="bars">
+      <div class="brow"><span>18–24 · mora 20 %</span><div class="track"><div class="seg a" style="width:42.9%"></div><div class="seg b" style="width:57.1%"></div></div><span class="v">105</span></div>
+      <div class="brow"><span>25–34 · mora 7 %</span><div class="track"><div class="seg a" style="width:57.1%"></div><div class="seg b" style="width:20%"></div></div><span class="v">81</span></div>
+    </div>
+    <div class="legend"><span><i style="background:var(--accent)"></i>Costo por desembolso (45 y 60)</span><span><i style="background:var(--bad)"></i>Pérdida esperada por mora (60 y 21)</span></div>
+    <p class="note">Mirando solo el CPA, marketing movería presupuesto a 18–24. Sumando la mora, 25–34 sale 24 USD más barato por crédito. Es la misma lógica que usaste en Solventa con el mix de desembolsos.</p>
+  </div>
+  <div class="tbl panel"><table>
+    <thead><tr><th>Lo que ya haces</th><th>Equivalente en marketing</th><th>Cómo decirlo</th></tr></thead>
+    <tbody>
+      <tr><td>Mix de desembolsos por segmento (Solventa)</td><td>Redistribuir presupuesto a los segmentos más rentables</td><td>"Muevo volumen hacia los segmentos que convierten y pagan mejor"</td></tr>
+      <tr><td>Análisis de colocación y rentabilidad</td><td>ROI real por canal, descontando mora</td><td>"Un canal con CPA bajo puede salir caro si trae clientes que no pagan"</td></tr>
+      <tr><td>Modelos de originación y renovaciones</td><td>Probabilidad de convertir y ser aprobado por segmento</td><td>"Puedo estimar qué leads terminarán en desembolso"</td></tr>
+      <tr><td>Monitoreo con PSI<span class="lit">Population Stability Index: índice de estabilidad de la población</span></td><td>Detectar cambios en el perfil de tráfico de un canal</td><td>"Si cambia el perfil de los leads de TikTok, lo veo antes que la mora"</td></tr>
+      <tr><td>Forecasting y escenarios</td><td>Proyección de presupuesto y CPA esperado</td><td>"Simulo qué pasa con el volumen si movemos inversión"</td></tr>
+      <tr><td>Churn y retención (Frubana)</td><td>Retención y reactivación de clientes</td><td>"Ya segmenté perfiles con propensión a churn"</td></tr>
+      <tr><td>Sensibilidad de pricing (Mibanco)</td><td>Efecto de la oferta en la conversión</td><td>"Analicé cómo el precio mueve el desempeño de productos de crédito"</td></tr>
+      <tr><td>Detección de fraude y patrones atípicos</td><td>Leads falsos y tráfico inválido</td><td>"Identifico patrones atípicos en los leads"</td></tr>
+      <tr><td>Python, SQL, Power BI</td><td>Dashboard de performance por plataforma, segmento y fase</td><td>"Automatizo el pipeline y lo llevo a un tablero"</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="font-size:.9rem">Lo que te falta, para no exagerarlo: no has operado campañas en Meta, Google ni TikTok, ni hecho A/B testing de anuncios o modelos de atribución.</p>
+  <div class="bridge" data-topic="ventaja"></div>
+</div></section>
+
+<section class="mod" id="modelos"><div class="wrap">
+  <div class="head"><span class="eyebrow">07 · Para ir más allá del dashboard</span><h2>Técnicas de modelamiento para cada problema</h2>
+  <p class="muted">Propuestas para llevar tu perfil de data scientist a los temas de marketing. Empieza por uplift (la idea de Sergio) y MMM: son las dos que más directamente responden "¿dónde pongo el presupuesto?".</p></div>
+
+  <div class="panel">
+    <span class="tag" style="background:var(--accent-soft);color:var(--accent)">Prioridad 1 · Segmentación causal</span>
+    <h3>Uplift modeling: a quién pautarle para cambiar su decisión</h3>
+    <p>Un modelo de propensión predice quién va a convertir. Un modelo uplift predice <b>cuánto cambia</b> la probabilidad de convertir si le muestras la campaña: uplift = P(convierte | tratado) − P(convierte | no tratado). Gastar en quien iba a convertir igual es plata perdida.</p>
+    <div class="quad">
+      <div class="p"><b>Persuadibles</b><span>Convierten solo si los impactas. Aquí va el presupuesto.</span></div>
+      <div class="s"><b>Seguros</b><span>Convierten igual. Pautarles infla el ROAS sin sumar clientes.</span></div>
+      <div class="l"><b>Causas perdidas</b><span>No convierten con o sin pauta.</span></div>
+      <div class="d"><b>No molestar</b><span>La pauta los aleja (uplift negativo). Excluirlos ahorra y suma.</span></div>
+    </div>
+    <p class="muted" style="font-size:.88rem">Ojo: scikit-learn no trae uplift. Las librerías son <b>scikit-uplift</b> (sklift, con API tipo scikit-learn), <b>CausalML</b> (Uber) y <b>EconML</b> (Microsoft). Para entrenarlo necesitas un grupo tratado y uno de control, idealmente aleatorio (un holdout que no ve la campaña).</p>
+  </div>
+
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · Optimizar un presupuesto con uplift</span>
+    <h3>Mismo presupuesto, dos formas de elegir a quién pautarle</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Segmento</th><th class="num">Clientes</th><th class="num">Conv. sin pauta</th><th class="num">Conv. con pauta</th><th class="num">Uplift</th></tr></thead>
+      <tbody id="upTbl"></tbody>
+    </table></div>
+    <div class="budget">
+      <div class="row"><label for="upBudget"><b>Presupuesto</b></label><span class="mono" id="upBudgetV"></span></div>
+      <input type="range" id="upBudget" min="0" max="34000" step="500" value="10000">
+      <div class="row"><label for="upCost">Costo por cliente impactado (USD)</label><input id="upCost" type="number" min="0.5" step="0.5" value="2" style="width:90px;font-family:var(--mono);padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg)"></div>
+    </div>
+    <div class="vs">
+      <div class="box" id="upProp"></div>
+      <div class="box win" id="upUp"></div>
+    </div>
+    <p class="note" id="upNote"></p>
+  </div>
+
+  <div class="panel">
+    <h3>Así se vería en Python</h3>
+    <p class="muted" style="font-size:.9rem">Con el dataset público Hillstrom (un experimento real de email con grupo control), que trae scikit-uplift. Revisa la documentación de sklift antes de correrlo: los nombres pueden cambiar entre versiones.</p>
+    <div class="code-wrap"><pre class="code">import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingClassifier
+from sklift.datasets import fetch_hillstrom
+from sklift.models import TwoModels
+from sklift.metrics import qini_auc_score, uplift_at_k
+
+X, y, t = fetch_hillstrom(target_col="visit", return_X_y_t=True)
+t = (t != "No E-Mail").astype(int)           # 1 = recibió campaña
+X = pd.get_dummies(X, drop_first=True)
+X_tr, X_te, y_tr, y_te, t_tr, t_te = train_test_split(
+    X, y, t, test_size=0.3, stratify=t, random_state=42)
+
+# T-learner: un modelo para tratados y otro para control
+modelo = TwoModels(estimator_trmnt=GradientBoostingClassifier(),
+                   estimator_ctrl=GradientBoostingClassifier(),
+                   method="vanilla")
+modelo.fit(X_tr, y_tr, t_tr)
+uplift = modelo.predict(X_te)
+
+print("Qini AUC:", qini_auc_score(y_te, uplift, t_te))
+print("Uplift en el top 30 %:", uplift_at_k(y_te, uplift, t_te, strategy="overall", k=0.3))
+
+# Atar a un presupuesto: ordenar por uplift por dólar y cortar
+presupuesto, costo = 10_000, 2.0
+df = pd.DataFrame({"uplift": uplift}, index=X_te.index)
+df = df[df.uplift &gt; 0].sort_values("uplift", ascending=False)
+df["gasto_acum"] = costo * range(1, len(df) + 1)
+seleccion = df[df.gasto_acum &lt;= presupuesto]
+print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones incrementales esperadas")</pre></div>
+    <p style="font-size:.9rem"><b>En una fintech de crédito</b> no optimices solo conversión: ordena por <span class="mono">uplift × (margen − PD × pérdida)</span>, donde PD es la probabilidad de incumplimiento que ya sabes modelar. Así el presupuesto va a los persuadibles que además pagan.</p>
+  </div>
+
+  <div class="techs">
+    <div class="tech">
+      <div class="tech-h"><h3>Marketing Mix Modeling (MMM)</h3><span class="tag" style="background:var(--accent-soft);color:var(--accent)">Prioridad 2</span></div>
+      <dl class="kv">
+        <dt>Problema</dt><dd>¿Cuánto invertir en TikTok, Meta y Google el próximo trimestre?</dd>
+        <dt>Técnica</dt><dd>Regresión (bayesiana) de las ventas semanales contra la inversión por canal, con <i>adstock</i> (el efecto de la pauta dura varias semanas) y <i>saturación</i> (cada dólar extra rinde menos). Luego un optimizador reparte el presupuesto donde el retorno marginal es mayor.</dd>
+        <dt>Ejemplo dummy</dt><dd>Con 20.000 USD: el modelo dice que el dólar 10.001 en TikTok trae 0,8 créditos por cada 100 USD y en Search 1,5. Mueves presupuesto a Search hasta que los dos retornos marginales se igualen.</dd>
+        <dt>Atado a presupuesto</dt><dd>Es su uso natural: el optimizador recibe el presupuesto total y límites por canal.</dd>
+      </dl>
+      <div class="libs"><span class="lib">PyMC-Marketing</span><span class="lib">Google Meridian</span><span class="lib">Robyn (Meta, en R)</span></div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-h"><h3>Inferencia causal en series de tiempo</h3></div>
+      <dl class="kv">
+        <dt>Problema</dt><dd>¿La caída de desembolsos fue por el mercado o por el cambio de política de riesgo?</dd>
+        <dt>Técnica</dt><dd>Diferencias en diferencias (segmentos afectados vs. no afectados, antes y después), control sintético, o CausalImpact (series bayesianas que estiman qué habría pasado sin el cambio).</dd>
+        <dt>Ejemplo dummy</dt><dd>Los segmentos que tocaba la nueva política bajaron 30 % en desembolsos; los que no tocaba bajaron 5 %. El efecto atribuible a la política es cerca de 25 puntos; los 5 restantes son mercado.</dd>
+        <dt>Atado a presupuesto</dt><dd>Evita recortar pauta por una caída que en realidad causó riesgo.</dd>
+      </dl>
+      <div class="libs"><span class="lib">statsmodels</span><span class="lib">tfcausalimpact</span><span class="lib">DoWhy</span><span class="lib">pysyncon</span></div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-h"><h3>Valor del cliente (LTV) con riesgo</h3><span class="tag" style="background:var(--good-soft);color:var(--good)">Tu ventaja</span></div>
+      <dl class="kv">
+        <dt>Problema</dt><dd>No todos los leads valen lo mismo; las plataformas pujan mejor si les dices cuánto vale cada conversión.</dd>
+        <dt>Técnica</dt><dd>LTV esperado = ingresos esperados (incluye probabilidad de renovar) − pérdida esperada (PD × LGD × monto). Se envía como valor de conversión a Google (tROAS) o Meta (optimización por valor).</dd>
+        <dt>Ejemplo dummy</dt><dd>Lead A: ingreso esperado 90 USD, PD 5 %, pérdida 300 → 75 USD. Lead B: 120 USD, PD 25 % → 45 USD. La plataforma aprende a buscar más leads tipo A.</dd>
+        <dt>Atado a presupuesto</dt><dd>Fija el CAC máximo por segmento: si el LTV es 75, puedes pagar hasta cierto porcentaje de eso.</dd>
+      </dl>
+      <div class="libs"><span class="lib">XGBoost / LightGBM</span><span class="lib">PyMC-Marketing (CLV)</span><span class="lib">lifetimes</span></div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-h"><h3>Experimentos: A/B testing y geo-lift</h3></div>
+      <dl class="kv">
+        <dt>Problema</dt><dd>¿La campaña causó las conversiones o las plataformas se las atribuyen de más?</dd>
+        <dt>Técnica</dt><dd>Prueba A/B con cálculo de tamaño de muestra y CUPED (reduce varianza con datos previos). Geo-lift: apagas la pauta en unas ciudades y comparas con las demás.</dd>
+        <dt>Ejemplo dummy</dt><dd>Para detectar que la conversión pasa de 10 % a 11 % con 80 % de potencia necesitas cerca de 15.000 personas por grupo.</dd>
+        <dt>Atado a presupuesto</dt><dd>Da los datos limpios que necesitan uplift y MMM, y mide el ROAS incremental real.</dd>
+      </dl>
+      <div class="libs"><span class="lib">statsmodels (power)</span><span class="lib">GeoLift (Meta, en R)</span><span class="lib">scipy</span></div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-h"><h3>Atribución multitoque</h3></div>
+      <dl class="kv">
+        <dt>Problema</dt><dd>Display casi nunca es el último clic, pero quizá inicia muchos caminos que terminan en Search.</dd>
+        <dt>Técnica</dt><dd>Cadenas de Markov con <i>removal effect</i> (cuánto caen las conversiones si quitas un canal del camino) o valores de Shapley.</dd>
+        <dt>Ejemplo dummy</dt><dd>Por último clic Display tiene 3 desembolsos; con Markov le tocan 18, porque aparece al inicio de muchos caminos.</dd>
+        <dt>Atado a presupuesto</dt><dd>Evita apagar canales de arriba del embudo que alimentan a los de abajo.</dd>
+      </dl>
+      <div class="libs"><span class="lib">ChannelAttribution</span><span class="lib">pandas + numpy</span></div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-h"><h3>Bandits para creatividades y presupuesto diario</h3></div>
+      <dl class="kv">
+        <dt>Problema</dt><dd>Tienes 6 creatividades y no quieres esperar a que termine un A/B para dejar de gastar en las malas.</dd>
+        <dt>Técnica</dt><dd>Multi-armed bandit con muestreo de Thompson: reparte más tráfico a las que van ganando sin dejar de explorar.</dd>
+        <dt>Ejemplo dummy</dt><dd>Tras 3 días, la creatividad C recibe 55 % del presupuesto porque su CVR estimado es 2,1 % contra 1,2 % del promedio.</dd>
+        <dt>Atado a presupuesto</dt><dd>Reasigna el presupuesto diario automáticamente. Respeta la fase de aprendizaje: no lo muevas cada hora.</dd>
+      </dl>
+      <div class="libs"><span class="lib">numpy (beta)</span><span class="lib">MABWiser</span></div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-h"><h3>Pronóstico de CPA y volumen</h3></div>
+      <dl class="kv">
+        <dt>Problema</dt><dd>¿Cuántos leads y a qué CPA llegaremos este mes si seguimos así?</dd>
+        <dt>Técnica</dt><dd>Modelos de series de tiempo con estacionalidad semanal y fechas especiales (quincenas, primas).</dd>
+        <dt>Ejemplo dummy</dt><dd>El pronóstico dice 2.400 leads a CPA de 6,1 USD; la meta es 3.000. Faltan 600 leads: o subes presupuesto o mejoras conversión.</dd>
+        <dt>Atado a presupuesto</dt><dd>Pacing: avisa a mitad de mes si vas a pasarte o quedarte corto.</dd>
+      </dl>
+      <div class="libs"><span class="lib">statsforecast</span><span class="lib">Prophet</span></div>
+    </div>
+
+    <div class="tech">
+      <div class="tech-h"><h3>Detección de leads inválidos</h3><span class="tag" style="background:var(--good-soft);color:var(--good)">Tu ventaja</span></div>
+      <dl class="kv">
+        <dt>Problema</dt><dd>Un canal trae muchos leads baratos que nunca terminan solicitud: bots o fraude.</dd>
+        <dt>Técnica</dt><dd>Isolation Forest o reglas de comportamiento (tiempo de llenado, dispositivos repetidos), como en tu trabajo de alertas tempranas y fraude.</dd>
+        <dt>Ejemplo dummy</dt><dd>12 % de los leads de una campaña llenan el formulario en menos de 4 segundos desde el mismo dispositivo. Al excluirlos, el CPL real sube de 4 a 4,5 USD.</dd>
+        <dt>Atado a presupuesto</dt><dd>Deja de pagar por tráfico que no existe y limpia los datos con que aprenden los algoritmos.</dd>
+      </dl>
+      <div class="libs"><span class="lib">scikit-learn (IsolationForest)</span></div>
+    </div>
+  </div>
+  <p class="muted" style="font-size:.9rem">Proyecto extra para el plan: entrena el uplift con Hillstrom o con el dataset de Criteo (<span class="mono">fetch_criteo</span> en sklift), simula un presupuesto y publícalo en GitHub. Es un tema que pocos candidatos de marketing dominan.</p>
+</div></section>
+
+<section class="mod" id="catalogo"><div class="wrap">
+  <div class="head"><span class="eyebrow">08 · Todo lo que se modela en marketing</span><h2>Catálogo de modelos aplicados a marketing</h2>
+  <p class="muted">De estadística básica a inferencia causal y optimización. Cada técnica trae para qué sirve, un ejemplo con números inventados y las librerías. Las marcadas "Tu ventaja" ya las haces en riesgo con otro nombre.</p></div>
+  <div class="panel">
+    <h3>Mapa: cada tema de la ruta y los modelos que lo resuelven</h3>
+    <p class="muted" style="font-size:.88rem">Lee cada fila de izquierda a derecha: de lo que puedes hacer la primera semana a lo más avanzado. Toca una técnica para ver su tarjeta.</p>
+    <div class="tbl"><table class="tmap"><thead><tr><th>Tema de la ruta</th><th>Pregunta de negocio</th><th>Básico</th><th>Intermedio</th><th>Avanzado</th></tr></thead><tbody id="tmapBody"></tbody></table></div>
+  </div>
+  <div class="filters">
+    <div class="frow2" id="catLv" role="group" aria-label="Nivel">
+      <button type="button" class="fchip" data-lv="0" aria-pressed="true">Todos</button>
+      <button type="button" class="fchip" data-lv="1" aria-pressed="false">Básico</button>
+      <button type="button" class="fchip" data-lv="2" aria-pressed="false">Intermedio</button>
+      <button type="button" class="fchip" data-lv="3" aria-pressed="false">Avanzado</button>
+      <button type="button" class="fchip" id="catStar" aria-pressed="false">Solo tu ventaja</button>
+    </div>
+    <div class="frow2">
+      <select id="catArea" aria-label="Área"><option value="">Todas las áreas</option></select>
+      <input type="search" id="catQ" placeholder="Buscar: churn, presupuesto, precio…" aria-label="Buscar técnica">
+    </div>
+    <span class="mono muted" style="font-size:.8rem" id="catCount"></span>
+  </div>
+  <div class="cat" id="catBox"></div>
+  <div class="panel">
+    <h3>Por dónde empezar</h3>
+    <ul class="clean">
+      <li><b>Primer mes en el cargo:</b> embudo y cohortes, lift por deciles, pruebas A/B bien dimensionadas y pronóstico de CPA. Son rápidas y generan confianza.</li>
+      <li><b>Segundo paso:</b> lead scoring con calidad crediticia, segmentación por clustering y audiencias lookalike de buenos pagadores. Aquí tu experiencia en riesgo te diferencia.</li>
+      <li><b>Cuando haya datos y confianza:</b> uplift, MMM e incrementalidad con experimentos. Responden dónde poner el presupuesto.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="mod" id="quiz"><div class="wrap">
+  <div class="head"><span class="eyebrow">09 · Practica</span><h2>Quiz</h2>
+  <p class="muted">Elige una opción: verás al instante si acertaste y por qué.</p></div>
+  <div class="qbar"><span class="mono" id="qScore">0 / 15 correctas · 0 respondidas</span><button class="btn" id="qReset" type="button">Reiniciar quiz</button></div>
+  <div class="quiz" id="quizBox"></div>
+</div></section>
+
+<section class="mod" id="plan"><div class="wrap">
+  <div class="head"><span class="eyebrow">10 · 1 a 2 horas al día</span><h2>Plan de 14 días</h2>
+  <p class="muted">Semana 1 para entender; semana 2 para construir un proyecto que puedas mostrar y poner en el CV. Marca cada día al terminarlo; se guarda en este navegador.</p></div>
+  <div class="progress"><i id="planBar"></i></div>
+  <div class="plan" id="planBox"></div>
+  <p class="muted" style="font-size:.9rem">Cuando termines, agrega al CV el proyecto y las certificaciones gratuitas que completes. Antes no, porque aún no existen.</p>
+</div></section>
+
+<footer><div class="wrap">
+  Dónde estudiar: <a href="https://skillshop.withgoogle.com" target="_blank" rel="noopener">Google Skillshop</a> · <a href="https://www.facebook.com/business/learn" target="_blank" rel="noopener">Meta Blueprint</a> · TikTok Academy. Para la fase de aprendizaje, busca "fase de aprendizaje" en la ayuda de Meta para empresas y "estado de aprendizaje de la estrategia de ofertas" en la ayuda de Google Ads. Todos los números de esta página son inventados.
+</div></footer>
+
+<button class="fab" id="chatOpen" type="button" hidden>Pregúntale a Claude</button>
+<div class="chat" id="chat" role="dialog" aria-label="Preguntas a Claude" hidden>
+  <div class="chat-h"><b>Pregúntale a Claude</b><button type="button" id="chatClose" aria-label="Cerrar">×</button></div>
+  <div class="chat-log" id="chatLog">
+    <div class="msg a">Pregúntame lo que quieras sobre paid media, las métricas, los quices o cómo contarlo en una entrevista.</div>
+    <div class="chips" id="chatChips">
+      <button class="chip" type="button">¿Qué diferencia hay entre ROAS y ROI?</button>
+      <button class="chip" type="button">Dame un ejercicio nuevo de CPA con números inventados</button>
+      <button class="chip" type="button">¿Cómo explico en una entrevista que vengo de riesgo?</button>
+      <button class="chip" type="button">¿Qué diferencia hay entre un S-learner, un T-learner y un X-learner?</button>
+    </div>
+  </div>
+  <form class="chat-f" id="chatForm">
+    <textarea id="chatInput" rows="1" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta"></textarea>
+    <button type="submit" id="chatSend">Enviar</button>
+  </form>
+</div>
+
+<script>
+(function(){
+  const store = {
+    get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+    set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  };
+  const fmt = (n, d=0) => isFinite(n) ? n.toLocaleString('es-CO', {minimumFractionDigits:d, maximumFractionDigits:d}) : '—';
+
+  /* Calculadora del embudo */
+  const ids = ['iGasto','iImp','iClics','iLeads','iDes','iIng','iMora','iPerd'];
+  function calc(){
+    const [g, im, cl, le, de, ing, mo, pe] = ids.map(i => parseFloat(document.getElementById(i).value) || 0);
+    const ingresos = de * ing, perdida = mo * pe;
+    const roas = ingresos / g, roi = (ingresos - perdida - g) / g;
+    const m = [
+      ['CPM', '$' + fmt(im ? g / im * 1000 : NaN, 2), '', 'Costo por mil impresiones'],
+      ['CTR', fmt(im ? cl / im * 100 : NaN, 1) + ' %', '', 'Tasa de clics'],
+      ['CPC', '$' + fmt(cl ? g / cl : NaN, 2), '', 'Costo por clic'],
+      ['CVR clic→lead', fmt(cl ? le / cl * 100 : NaN, 1) + ' %', '', 'Tasa de conversión'],
+      ['CPL', '$' + fmt(le ? g / le : NaN, 2), '', 'Costo por lead'],
+      ['Costo por desembolso', '$' + fmt(de ? g / de : NaN, 2), 'key', 'Gasto / créditos'],
+      ['ROAS', fmt(g ? roas : NaN, 2), 'key', 'Retorno sobre gasto en pauta'],
+      ['ROI', fmt(g ? roi * 100 : NaN, 1) + ' %', 'key ' + (roi < 0 ? 'neg' : 'pos'), 'Retorno sobre la inversión']
+    ];
+    document.getElementById('metrics').innerHTML = m.map(([k, v, c, l]) => `<div class="metric ${c||''}"><small>${k}</small><span class="lit">${l}</span><b>${v}</b></div>`).join('');
+    const steps = [['Impresiones', im], ['Clics', cl], ['Leads', le], ['Desembolsos', de]];
+    const mx = Math.log10(Math.max(im, 10));
+    document.getElementById('funnel').innerHTML = steps.map(([k, v]) => {
+      const w = v > 0 ? Math.max(8, Math.log10(Math.max(v, 1)) / mx * 100) : 0;
+      return `<div class="frow"><span>${k}</span><div class="fbar" style="width:${w}%">${fmt(v)}</div></div>`;
+    }).join('');
+    let note;
+    if (!g) note = 'Pon un gasto mayor que cero para ver las métricas.';
+    else if (roas >= 1 && roi < 0) note = `El ROAS de ${fmt(roas,2)} parece bueno, pero la mora (${'$'+fmt(perdida)}) deja el ROI en negativo. Así se ve un canal "rentable" que pierde plata.`;
+    else if (perdida > 0) note = `ROAS de ${fmt(roas,2)}: cada dólar trajo ${fmt(roas,2)} en ingresos. La mora (${'$'+fmt(perdida)}) baja el ROI a ${fmt(roi*100,1)} %. Esa diferencia es lo que tú puedes medir.`;
+    else note = `Sin mora, el ROI es ${fmt(roi*100,1)} %. Sube los créditos en mora para ver cuánto se come.`;
+    document.getElementById('calcNote').textContent = note;
+  }
+  ids.forEach(i => document.getElementById(i).addEventListener('input', calc));
+  calc();
+
+  /* Plataformas */
+  const plats = [
+    ['Google Search', 4000, 80000, 4800, 720, 100],
+    ['Meta', 4000, 1600000, 24000, 960, 64],
+    ['TikTok', 6000, 1500000, 22500, 1350, 54],
+    ['Google Display', 1000, 1000000, 3000, 60, 3]
+  ];
+  const maxCpd = Math.max(...plats.map(p => p[1] / p[5]));
+  document.getElementById('platBars').innerHTML = plats.map(p => {
+    const cpd = p[1] / p[5];
+    return `<div class="brow"><span>${p[0]}</span><div class="track"><div class="seg a" style="width:${cpd / maxCpd * 100}%"></div></div><span class="v">${fmt(cpd, cpd % 1 ? 1 : 0)}</span></div>`;
+  }).join('');
+  document.getElementById('platTbl').innerHTML = plats.map((p, i) =>
+    `<tr class="${i === 0 ? 'best' : ''}"><td><b>${p[0]}</b></td><td class="num">$${fmt(p[1])}</td><td class="num">${fmt(p[2])}</td><td class="num">$${fmt(p[1]/p[2]*1000,2)}</td><td class="num">${fmt(p[3]/p[2]*100,1)} %</td><td class="num">${fmt(p[4])}</td><td class="num">$${fmt(p[1]/p[4],2)}</td><td class="num">${fmt(p[5]/p[4]*100,1)} %</td></tr>`
+  ).join('');
+
+  /* Quiz */
+  const Q = [
+    {s:'Métricas', q:'Gastas 1.500 USD, obtienes 3.000 clics y 150 leads. ¿Cuál es el CPL?', o:['0,50 USD','10 USD','20 USD'], a:1, w:'CPL = gasto / leads = 1.500 / 150 = 10. La opción a) es el CPC (1.500 / 3.000).'},
+    {s:'Métricas', q:'Este mes el CPM sube 30 % en todas las plataformas. Tu CTR y tu CVR no cambian. ¿Qué pasa con el CPA?', o:['Se queda igual','Sube cerca de 30 %','Baja, porque hay más competencia'], a:1, w:'CPA = CPM / (1.000 × CTR × CVR). Si CTR y CVR no cambian, el CPA se mueve igual que el CPM.'},
+    {s:'Métricas', q:'Una campaña tiene ROAS de 4. ¿Puede tener ROI negativo?', o:['No, un ROAS mayor que 1 siempre da ganancia','Sí, si la mora y los demás costos superan el margen','Solo si la campaña está en aprendizaje'], a:1, w:'El ROAS mira ingresos, no ganancia. Gasto 1.000, ingresos 4.000 y pérdida por mora 3.500 dan ROAS 4 y ROI de −50 %. Pruébalo en la calculadora.'},
+    {s:'Subasta', q:'La competencia empieza a pautar al mismo público de 25–34 años y la subasta se encarece. ¿Cuál acción NO baja tu CPA?', o:['Mejorar la conversión de la solicitud','Renovar las creatividades','Subir la puja máxima sin cambiar nada más'], a:2, w:'Pujar más gana más subastas, pero cada una cuesta más: el CPA sube o se queda igual. Las otras dos bajan el costo sin pagar más por impresión.'},
+    {s:'Plataformas', q:'Con el ejemplo de las cuatro plataformas, ¿cuál tiene el menor costo por desembolso?', o:['Meta, porque tiene el CPL más bajo','Google Search','TikTok, porque trae más leads'], a:1, w:'Search: 40 USD por desembolso. Meta tiene el CPL más bajo, pero pocos de sus leads llegan a crédito.'},
+    {s:'Plataformas', q:'Display tiene un costo por desembolso de 333 USD. ¿Lo apagas?', o:['Sí, es el peor de todos','No sin medir antes su aporte a recordación y remarketing','Sí, y paso ese presupuesto a TikTok'], a:1, w:'Display trabaja arriba del embudo. Hay que ver si quienes lo vieron convierten después por otro canal.'},
+    {s:'Aprendizaje', q:'Una campaña nueva de Meta lleva 4 días con un CPA 40 % por encima de la meta. ¿Qué haces?', o:['Cambio el público hoy mismo','Espero a que salga de aprendizaje (unos 7 días o cerca de 50 conversiones)','Duplico el presupuesto para que aprenda más rápido'], a:1, w:'Cambiar el público o duplicar el presupuesto son cambios grandes y reinician el aprendizaje.'},
+    {s:'Mercado vs. decisión', q:'El 1 de marzo riesgo endurece la política. En marzo el CPM, los clics y los leads siguen iguales, pero la aprobación baja de 30 % a 20 %. ¿Qué pasó y cuánto sube el costo por desembolso?', o:['Mercado; sube 10 %','Decisión de negocio; sube 50 %','Decisión de negocio; sube 10 %'], a:1, w:'El CPM no cambió, así que no es el mercado. Con el mismo gasto y los mismos leads, aprobar 20 % en vez de 30 % deja dos tercios de los desembolsos: 30 / 20 = 1,5 veces el costo.'},
+    {s:'Tu ventaja', q:'Con el ejemplo de las dos edades, ¿hacia dónde mueves presupuesto?', o:['18–24, porque tiene el CPA más bajo','25–34, porque tiene el menor costo real por crédito','Lo reparto en partes iguales'], a:1, w:'25–34 cuesta 81 USD por crédito contando la mora, contra 105 USD en 18–24.'},
+    {s:'Tu ventaja', q:'Un canal nuevo tiene un costo por desembolso de 50 USD y una mora de 25 %. Con una pérdida de 300 USD por crédito en mora, ¿cuál es su costo real por crédito?', o:['75 USD','125 USD','350 USD'], a:1, w:'50 + 25 % × 300 = 50 + 75 = 125 USD.'},
+    {s:'Tu ventaja', q:'¿Qué indicador de tu trabajo en riesgo sirve para detectar que cambió el perfil de los leads de un canal?', o:['PSI','ROAS','CTR'], a:0, w:'El PSI mide cuánto cambió la distribución de una población frente a una base; sirve igual para leads que para solicitantes de crédito.'},
+    {s:'Tu ventaja', q:'El líder pregunta por qué los leads de una campaña de marzo todavía no muestran todos sus desembolsos. ¿Qué respondes?', o:['La campaña falló','La conversión a desembolso tarda días; hay que leerla por cohorte de fecha del lead','Hay que mirar solo los clics'], a:1, w:'El desembolso llega días después del lead. Mezclar cohortes incompletas hace ver peores las campañas recientes, igual que una cosecha de cartera joven.'},
+    {s:'Modelos', q:'El segmento A convierte 32 % con pauta y 30 % sin ella. El B convierte 12 % con pauta y 4 % sin ella. Cuesta lo mismo impactarlos. ¿A cuál le das presupuesto primero?', o:['A, porque convierte más','B, porque la pauta le cambia más la decisión','A los dos por igual'], a:1, w:'El uplift de A es 2 puntos y el de B es 8. A iba a convertir casi igual sin pauta: es un "seguro".'},
+    {s:'Modelos', q:'¿Qué datos necesitas para entrenar un modelo uplift?', o:['Solo los clientes que vieron la campaña','Un grupo tratado y uno de control, idealmente asignados al azar','Solo los clientes que convirtieron'], a:1, w:'El uplift compara qué pasa con y sin campaña. Sin grupo de control no hay contra qué comparar.'},
+    {s:'Modelos', q:'Quieres decidir cuánto invertir en cada canal el próximo trimestre, sabiendo que cada dólar extra rinde menos. ¿Qué técnica usas?', o:['Marketing Mix Modeling (MMM)','Isolation Forest','Atribución de último clic'], a:0, w:'El MMM modela la saturación y el efecto que dura semanas (adstock) por canal, y con eso optimiza cómo repartir un presupuesto total.'}
+  ];
+  let ans = store.get('pm_quiz', {});
+  const box = document.getElementById('quizBox');
+  function renderQuiz(){
+    box.innerHTML = Q.map((x, i) => {
+      const picked = ans[i];
+      const done = picked !== undefined;
+      const opts = x.o.map((t, j) => {
+        let cls = '';
+        if (done && j === x.a) cls = 'right'; else if (done && j === picked) cls = 'wrong';
+        return `<button type="button" class="opt ${cls}" data-q="${i}" data-o="${j}" ${done ? 'disabled' : ''}><span class="k">${'abc'[j]})</span><span>${t}</span></button>`;
+      }).join('');
+      const why = done ? `<div class="why">${picked === x.a ? '<b class="ok">Correcto.</b>' : '<b class="no">No es esa.</b>'} ${x.w}<button type="button" class="ask-more" data-ask="${i}">Pregúntale más a Claude sobre esto</button></div>` : '';
+      return `<div class="q"><span class="qn">${String(i+1).padStart(2,'0')} · ${x.s}</span><div class="qt">${x.q}</div><div class="opts">${opts}</div>${why}</div>`;
+    }).join('');
+    const answered = Object.keys(ans).length;
+    const right = Q.filter((x, i) => ans[i] === x.a).length;
+    document.getElementById('qScore').textContent = `${right} / ${Q.length} correctas · ${answered} respondidas`;
+    document.getElementById('sQuiz').textContent = `${right} / ${Q.length}`;
+  }
+  box.addEventListener('click', e => {
+    const m = e.target.closest('.ask-more');
+    if (m) { const x = Q[+m.dataset.ask]; askFromPage(`Explícame mejor esta pregunta del quiz: "${x.q}". La respuesta correcta es "${x.o[x.a]}". Yo respondí "${x.o[ans[m.dataset.ask]]}".`); return; }
+    const b = e.target.closest('.opt'); if (!b || b.disabled) return;
+    ans[b.dataset.q] = +b.dataset.o; store.set('pm_quiz', ans); renderQuiz();
+  });
+  document.getElementById('qReset').addEventListener('click', () => { ans = {}; store.set('pm_quiz', ans); renderQuiz(); });
+  renderQuiz();
+
+  /* Plan */
+  const P = [
+    ['1','Embudo y métricas','Juega con la calculadora y calcula cada métrica a mano con números inventados.'],
+    ['2','Subasta de Google','Google Skillshop, curso de Google Ads Search: Ad Rank, nivel de calidad y estrategias de puja.'],
+    ['3','Meta','Meta Blueprint: subasta, fase de aprendizaje y objetivos de campaña.'],
+    ['4','TikTok y Display','TikTok Academy y el módulo de Display de Skillshop: cuándo conviene cada uno.'],
+    ['5','Atribución y A/B testing','Último clic vs. basada en datos; cómo diseñar una prueba A/B con tamaño de muestra.'],
+    ['6–7','Repaso','Haz el quiz completo y explica sin notas por qué Search convierte más que Display.'],
+    ['8','Proyecto: datos','En Kaggle busca "Sales Conversion Optimization": anuncios de Facebook con edad, género, gasto y conversiones.'],
+    ['9','Proyecto: métricas','En Python calcula CTR, CVR, CPC y CPA por edad, género y campaña.'],
+    ['10','Proyecto: segmentación','Encuentra los segmentos con mejor CPA y volumen; arma una matriz volumen vs. costo.'],
+    ['11','Proyecto: escenarios','Simula mover 20 % del presupuesto del peor al mejor segmento y estima el cambio en conversiones.'],
+    ['12','Proyecto: dashboard','Power BI con filtros por campaña, edad y género, y una página de recomendaciones.'],
+    ['13','Publicar','Sube notebook y dashboard a GitHub con un README: pregunta, datos, hallazgo, recomendación, herramientas.'],
+    ['14','Preparar entrevista','Practica las frases de "Tu ventaja" y una respuesta de 2 minutos sobre tu proyecto.']
+  ];
+  let done = store.get('pm_plan', {});
+  const planBox = document.getElementById('planBox');
+  function renderPlan(){
+    planBox.innerHTML = P.map((p, i) => {
+      const wk = i === 0 ? '<div class="week">Semana 1 · Entender</div>' : i === 6 ? '<div class="week">Semana 2 · Construir</div>' : '';
+      return `${wk}<label class="day ${done[i] ? 'done' : ''}" for="d${i}"><input type="checkbox" id="d${i}" data-i="${i}" ${done[i] ? 'checked' : ''}><span class="d">Día ${p[0]}</span><span><b>${p[1]}</b><span>${p[2]}</span></span></label>`;
+    }).join('');
+    const days = P.reduce((s, p, i) => s + (done[i] ? (p[0].includes('–') ? 2 : 1) : 0), 0);
+    document.getElementById('sPlan').textContent = `${days} / 14`;
+    document.getElementById('planBar').style.width = (days / 14 * 100) + '%';
+  }
+  planBox.addEventListener('change', e => {
+    const i = e.target.dataset.i; if (i === undefined) return;
+    done[i] = e.target.checked; store.set('pm_plan', done); renderPlan();
+  });
+  renderPlan();
+
+  /* Uplift con presupuesto */
+  const SEG = [
+    ['Persuadibles 25–34', 3000, .04, .12],
+    ['Persuadibles 35–44', 2500, .03, .08],
+    ['Seguros (renovaciones)', 4000, .30, .32],
+    ['Causas perdidas', 5000, .01, .015],
+    ['No molestar', 1500, .10, .07]
+  ];
+  document.getElementById('upTbl').innerHTML = SEG.map(s => {
+    const u = (s[3] - s[2]) * 100;
+    return `<tr><td>${s[0]}</td><td class="num">${fmt(s[1])}</td><td class="num">${fmt(s[2]*100,1)} %</td><td class="num">${fmt(s[3]*100,1)} %</td><td class="num" style="color:${u < 0 ? 'var(--bad)' : u >= 5 ? 'var(--good)' : 'inherit'}">${u > 0 ? '+' : ''}${fmt(u,1)} pp</td></tr>`;
+  }).join('');
+  function allocate(order, budget, cost){
+    let left = Math.floor(budget / cost), inc = 0, conv = 0, used = 0; const picks = [];
+    for (const s of order) {
+      if (left <= 0) break;
+      const n = Math.min(left, s[1]); left -= n; used += n;
+      inc += n * (s[3] - s[2]); conv += n * s[3]; picks.push(s[0]);
+    }
+    return {inc, conv, used, picks};
+  }
+  function upCalc(){
+    const budget = +document.getElementById('upBudget').value;
+    const cost = Math.max(.5, parseFloat(document.getElementById('upCost').value) || 2);
+    document.getElementById('upBudgetV').textContent = '$' + fmt(budget) + ' USD';
+    const byProp = [...SEG].sort((a, b) => b[3] - a[3]);
+    const byUp = [...SEG].filter(s => s[3] > s[2]).sort((a, b) => (b[3] - b[2]) - (a[3] - a[2]));
+    const p = allocate(byProp, budget, cost), u = allocate(byUp, budget, cost);
+    const box = (r, title, how) => `<small>${title}</small><span class="big">${fmt(r.inc)}</span><span>conversiones incrementales</span><small>${how}. ${fmt(r.used)} clientes; ${fmt(r.conv)} conversiones totales${r.inc > 0 ? '; CPA incremental $' + fmt(r.used * cost / r.inc, 1) : ''}.</small>`;
+    document.getElementById('upProp').innerHTML = box(p, 'Por propensión (lo usual)', 'Pauta primero a quien más convierte');
+    document.getElementById('upUp').innerHTML = box(u, 'Por uplift', 'Pauta primero a quien la pauta más le cambia; excluye "no molestar"');
+    let note;
+    if (!budget) note = 'Mueve el presupuesto para comparar.';
+    else if (u.inc > p.inc * 1.05) note = `Con el mismo presupuesto, uplift genera ${fmt(u.inc - p.inc)} conversiones incrementales más. La estrategia por propensión gasta en "seguros", que convierten igual sin pauta; en el reporte de la plataforma se ve bien (${fmt(p.conv)} conversiones), pero casi todas iban a ocurrir de todos modos.`;
+    else note = 'Con un presupuesto que alcanza para casi todos, las dos estrategias se parecen; la diferencia está cuando el presupuesto es escaso. Y uplift sigue excluyendo a "no molestar".';
+    document.getElementById('upNote').textContent = note;
+  }
+  document.getElementById('upBudget').addEventListener('input', upCalc);
+  document.getElementById('upCost').addEventListener('input', upCalc);
+  upCalc();
+
+  /* Catálogo */
+  const CAT = [
+    // Básico
+    {n:'Análisis de embudo y cohortes', lv:1, a:'Medición', v:1, u:'Medir la conversión paso a paso (clic, lead, solicitud, aprobación, desembolso) por cohorte de fecha del lead.', e:'La cohorte de la semana 10 lleva 6 % de lead a desembolso a los 14 días; la de la semana 8 llevaba 9 % a la misma edad: algo se rompió.', l:'SQL, pandas'},
+    {n:'Lift por deciles y curvas de ganancia', lv:1, a:'Conversión y leads', v:1, u:'Ordenar leads por score y ver cuánto concentra cada decil. Es tu KS y tus deciles de riesgo con otro nombre.', e:'El decil 1 del score trae 28 % de los desembolsos con 10 % de los leads: lift de 2,8.', l:'pandas, scikit-plot'},
+    {n:'Segmentación RFM', lv:1, a:'Audiencias y segmentación', u:'Clasificar clientes por Recencia, Frecuencia y Monto para campañas de renovación o reactivación.', e:'Clientes con último crédito hace menos de 60 días, 3 o más créditos y buen pago: 1.200 personas para ofrecer renovación.', l:'pandas'},
+    {n:'Pruebas A/B con tamaño de muestra', lv:1, a:'Medición', u:'Saber si una landing, un copy o una oferta convierte más, y cuánta gente se necesita antes de empezar.', e:'Pasar de 10 % a 11 % de conversión con 80 % de potencia pide unas 15.000 personas por grupo.', l:'statsmodels, scipy'},
+    {n:'Regresión lineal y elasticidad de inversión', lv:1, a:'Presupuesto y pujas', u:'Estimar cuántos leads trae cada dólar adicional por canal con un modelo log-log.', e:'Elasticidad de 0,6 en Meta: subir 10 % el gasto sube cerca de 6 % los leads.', l:'statsmodels'},
+    {n:'Regresión logística de propensión', lv:1, a:'Conversión y leads', v:1, u:'Score simple y explicable de probabilidad de convertir por lead, canal y edad.', e:'Un lead de Search de 30 años tiene 18 % de probabilidad de desembolso; uno de Display de 22 años, 3 %.', l:'scikit-learn, statsmodels'},
+    {n:'Elasticidad de precio u oferta', lv:1, a:'Precio y oferta', v:1, u:'Medir cuánto cambia la conversión si cambias la tasa, el monto o el plazo ofrecido. Es tu análisis de pricing de Mibanco.', e:'Bajar la tasa 2 puntos sube la aprobación aceptada de 40 % a 46 %.', l:'statsmodels'},
+    {n:'Descomposición de series y estacionalidad', lv:1, a:'Pronóstico y pacing', u:'Separar tendencia, estacionalidad semanal y días especiales (quincenas, primas) en leads y CPA.', e:'Los leads suben 35 % en las quincenas; sin ajustar por eso, cualquier campaña lanzada el 15 parece buena.', l:'statsmodels (STL)'},
+    {n:'Árboles de decisión para reglas', lv:1, a:'Audiencias y segmentación', v:1, u:'Encontrar reglas legibles de segmentación para que marketing las configure en la plataforma.', e:'Regla encontrada: edad 25–40 y Android y ciudad principal → CVR 2,3 veces el promedio.', l:'scikit-learn'},
+    {n:'Control estadístico de métricas', lv:1, a:'Monitoreo y fraude', u:'Alertas cuando CPA, CTR o conversión salen de su rango normal (z-score, gráficos de control).', e:'El CPA de TikTok pasa de 6 a 9 USD en un día: 3,2 desviaciones estándar, se dispara la alerta.', l:'pandas, scipy'},
+    // Intermedio
+    {n:'Lead scoring con gradient boosting', lv:2, a:'Conversión y leads', v:1, u:'Predecir qué leads llegarán a desembolso para priorizarlos en call center o en remarketing.', e:'Llamar primero al 30 % con mejor score recupera 65 % de los desembolsos con la mitad del esfuerzo.', l:'XGBoost, LightGBM'},
+    {n:'Calidad del lead (propensión × riesgo)', lv:2, a:'Conversión y leads', v:1, u:'Combinar la probabilidad de convertir con la probabilidad de impago para valorar cada lead.', e:'Lead A: 20 % de convertir y PD 5 %. Lead B: 30 % y PD 30 %. A vale más aunque convierta menos.', l:'XGBoost, scikit-learn'},
+    {n:'Clustering de clientes (K-means, GMM, K-prototypes)', lv:2, a:'Audiencias y segmentación', u:'Descubrir segmentos o "personas" con comportamiento parecido para mensajes distintos.', e:'Aparecen 4 grupos; uno de 18 % de clientes, jóvenes con uso nocturno de la app, responde 2 veces mejor a TikTok.', l:'scikit-learn, kmodes'},
+    {n:'Audiencias lookalike de buenos clientes', lv:2, a:'Audiencias y segmentación', v:1, u:'Armar la lista semilla con clientes rentables y buenos pagadores, no con cualquier convertido, para que Meta o Google busquen parecidos.', e:'Semilla de 5.000 buenos pagadores en vez de 20.000 convertidos: la mora de los nuevos clientes baja de 14 % a 9 %.', l:'SQL, scikit-learn'},
+    {n:'Predicción de churn', lv:2, a:'Retención y valor', v:1, u:'Detectar clientes que no van a renovar para darles una oferta a tiempo. Ya lo hiciste en Frubana.', e:'El modelo marca 800 clientes con más de 70 % de riesgo de no renovar; la campaña de retención recupera 120.', l:'XGBoost, scikit-learn'},
+    {n:'Análisis de supervivencia', lv:2, a:'Retención y valor', u:'Modelar el tiempo hasta convertir, renovar o abandonar, incluyendo a quienes aún no lo han hecho.', e:'La mitad de los leads de Search que convierten lo hacen en 3 días; en Meta, en 9. Ajusta cuándo evaluar cada canal.', l:'lifelines, scikit-survival'},
+    {n:'Valor de vida del cliente (CLV/LTV)', lv:2, a:'Retención y valor', v:1, u:'Estimar cuánto dejará un cliente en toda su relación para fijar cuánto se puede pagar por adquirirlo.', e:'LTV esperado de 75 USD en el segmento 25–34 contra 40 USD en 18–24: el CAC máximo cambia por segmento.', l:'lifetimes, PyMC-Marketing'},
+    {n:'Next best offer y venta cruzada', lv:2, a:'Retención y valor', u:'Recomendar el siguiente producto (tarjeta, seguro, ampliación de cupo) con reglas de asociación o filtrado colaborativo.', e:'Clientes con 2 créditos pagados al día aceptan ampliación de cupo 3 veces más que el promedio.', l:'mlxtend, implicit'},
+    {n:'Pronóstico de leads, CPA y volumen', lv:2, a:'Pronóstico y pacing', v:1, u:'Proyectar a dónde llegará el mes para corregir presupuesto a tiempo.', e:'Pronóstico: 2.400 leads a 6,1 USD contra una meta de 3.000. Faltan 600 a mitad de mes.', l:'statsforecast, Prophet'},
+    {n:'Detección de anomalías y leads inválidos', lv:2, a:'Monitoreo y fraude', v:1, u:'Encontrar bots, fraude o tráfico inválido por canal, como en tus alertas tempranas.', e:'12 % de los leads de una campaña llenan el formulario en menos de 4 segundos desde el mismo dispositivo.', l:'scikit-learn (IsolationForest)'},
+    {n:'Explicabilidad con SHAP', lv:2, a:'Conversión y leads', v:1, u:'Explicar a marketing qué variables mueven la conversión en lenguaje de negocio.', e:'Las 3 variables que más suben la probabilidad: venir de Search, monto pedido menor a 500 USD y llenar la solicitud de día.', l:'shap'},
+    {n:'Monitoreo de estabilidad (PSI)', lv:2, a:'Monitoreo y fraude', v:1, u:'Detectar que cambió el perfil de los leads que trae un canal antes de que se note en la mora.', e:'PSI de 0,28 en la edad de los leads de TikTok tras una nueva creatividad: el público cambió.', l:'numpy, pandas'},
+    {n:'Atribución multitoque (Markov, Shapley)', lv:2, a:'Medición', u:'Repartir el crédito de cada conversión entre todos los canales del camino, no solo el último clic.', e:'Por último clic Display tiene 3 desembolsos; con Markov le tocan 18.', l:'ChannelAttribution'},
+    {n:'Optimización lineal de presupuesto', lv:2, a:'Presupuesto y pujas', u:'Repartir un presupuesto entre canales y segmentos con restricciones (mínimos, máximos, CPA tope).', e:'Con 20.000 USD, mínimo 2.000 por canal y CPA máximo de 60, el modelo sugiere 9.000 Search, 6.000 Meta, 3.000 TikTok, 2.000 Display.', l:'scipy.optimize, PuLP'},
+    {n:'NLP: sentimiento y temas en comentarios', lv:2, a:'Creatividad y contenido', u:'Leer comentarios de anuncios, reseñas de la app y chats de soporte para encontrar objeciones.', e:'31 % de los comentarios negativos en TikTok hablan de "tasa alta": la creatividad debería mostrar la tasa desde el inicio.', l:'transformers, BERTopic'},
+    {n:'Agrupación de palabras clave con embeddings', lv:2, a:'Creatividad y contenido', u:'Agrupar miles de búsquedas en temas para armar grupos de anuncios de Search y encontrar palabras negativas.', e:'De 4.000 búsquedas salen 25 temas; "préstamo sin buró" trae leads con 3 veces más mora: se vuelve palabra negativa.', l:'sentence-transformers, scikit-learn'},
+    {n:'Modelos de CTR de creatividades', lv:2, a:'Creatividad y contenido', u:'Predecir el CTR de un anuncio a partir de sus rasgos (formato, duración, rostro, texto en pantalla) antes de pautarlo.', e:'Videos con rostro en el primer segundo tienen CTR 1,8 % contra 1,1 % sin rostro.', l:'LightGBM, modelos de visión'},
+    // Avanzado
+    {n:'Uplift modeling (S, T, X-learner, causal forests)', lv:3, a:'Presupuesto y pujas', u:'Elegir a quién pautarle según cuánto le cambia la campaña la decisión. Ver la sección Modelos.', e:'Con 10.000 USD: 340 conversiones incrementales por uplift contra 160 por propensión.', l:'scikit-uplift, CausalML, EconML'},
+    {n:'Marketing Mix Modeling bayesiano', lv:3, a:'Presupuesto y pujas', u:'Estimar el aporte de cada canal con adstock y saturación, y optimizar el reparto del presupuesto total.', e:'El retorno marginal de TikTok cae a 0,8 créditos por cada 100 USD después de 10.000 USD; Search sigue en 1,5.', l:'PyMC-Marketing, Meridian, Robyn'},
+    {n:'Experimentos de incrementalidad (geo-lift)', lv:3, a:'Medición', u:'Apagar o subir la pauta en unas ciudades y comparar con otras para medir el efecto real de un canal.', e:'Apagar Meta en 4 ciudades baja desembolsos 8 %; la plataforma se atribuía 20 %. El ROAS incremental es menos de la mitad del reportado.', l:'GeoLift, CausalPy'},
+    {n:'CausalImpact y control sintético', lv:3, a:'Medición', u:'Estimar qué habría pasado sin un cambio (campaña, política de riesgo, competidor) usando series de control.', e:'Tras lanzar TV, los leads orgánicos suben 15 % sobre lo que predecía el control sintético.', l:'tfcausalimpact, pysyncon, CausalPy'},
+    {n:'Diferencias en diferencias', lv:3, a:'Medición', v:1, u:'Separar el efecto de una decisión de negocio del efecto del mercado comparando grupos afectados y no afectados.', e:'Los segmentos tocados por la política bajan 30 %; los no tocados, 5 %. Efecto de la política: cerca de 25 puntos.', l:'statsmodels, linearmodels'},
+    {n:'Propensity score matching e IPW', lv:3, a:'Medición', u:'Estimar el efecto de una campaña cuando no hubo experimento, comparando expuestos con no expuestos parecidos.', e:'Sin ajustar, quienes vieron el anuncio convierten 3 veces más; ajustando por perfil, el efecto real es 1,3 veces.', l:'DoWhy, CausalML'},
+    {n:'Double Machine Learning', lv:3, a:'Precio y oferta', v:1, u:'Medir el efecto causal de la tasa o el monto ofrecido sobre la conversión controlando por muchas variables a la vez.', e:'Cada punto menos de tasa sube la aceptación 2,4 puntos, una vez descontado que a los mejores perfiles ya se les ofrece menos tasa.', l:'EconML, DoubleML'},
+    {n:'Optimización de oferta con restricción de riesgo', lv:3, a:'Precio y oferta', v:1, u:'Elegir tasa y monto por cliente para maximizar margen esperado sin pasar un límite de pérdida.', e:'Ofrecer 300 USD en vez de 500 a perfiles con PD mayor a 20 % mantiene 90 % de la conversión y baja la pérdida esperada 35 %.', l:'scipy.optimize, OR-Tools'},
+    {n:'A/B testing avanzado (CUPED, secuencial, bayesiano)', lv:3, a:'Medición', u:'Llegar antes a conclusiones con menos tráfico y poder mirar resultados sin inflar falsos positivos.', e:'Con CUPED usando la conversión del mes anterior, la prueba que necesitaba 4 semanas se resuelve en 2,5.', l:'scipy, PyMC'},
+    {n:'Modelos jerárquicos bayesianos', lv:3, a:'Audiencias y segmentación', u:'Estimar conversión en segmentos pequeños sin sobrerreaccionar, compartiendo información entre segmentos.', e:'Una ciudad con 40 leads y 5 desembolsos (12,5 %) queda estimada en 8 %, más cerca del promedio, hasta que haya más datos.', l:'PyMC, Bambi'},
+    {n:'Bandits y bandits contextuales', lv:3, a:'Creatividad y contenido', u:'Repartir tráfico entre creatividades u ofertas mientras se aprende cuál funciona, incluso por perfil.', e:'Tras 3 días, la creatividad C recibe 55 % del tráfico porque su CVR estimado es 2,1 % contra 1,2 %.', l:'MABWiser, Vowpal Wabbit'},
+    {n:'Value-based bidding con conversiones offline', lv:3, a:'Presupuesto y pujas', v:1, u:'Enviar a Google o Meta el valor predicho de cada lead (LTV menos riesgo) para que pujen por los clientes buenos, no por cualquier lead.', e:'Tras 4 semanas pujando por valor, el costo por desembolso sube 10 %, pero la mora de la cohorte baja 30 % y el ROI mejora.', l:'XGBoost + API de conversiones'},
+    {n:'Modelos de secuencia del recorrido del cliente', lv:3, a:'Conversión y leads', u:'Usar el orden de interacciones (anuncio, visita, app, llamada) para predecir conversión y el mejor siguiente contacto.', e:'El patrón "anuncio de video, búsqueda de marca, visita a la app" convierte 4 veces más que la visita directa.', l:'PyTorch, transformers'},
+    {n:'Aprendizaje por refuerzo para pujas', lv:3, a:'Presupuesto y pujas', u:'Decidir pujas o presupuesto paso a paso aprendiendo de los resultados. Más de investigación que de uso diario.', e:'Un agente simulado aprende a gastar más en las quincenas y menos a mitad de mes, manteniendo el CPA.', l:'Stable-Baselines3'},
+    {n:'IA generativa para copys y creatividades', lv:3, a:'Creatividad y contenido', u:'Generar variantes de texto e imagen y evaluarlas con un modelo de CTR o con pruebas, cumpliendo normas de publicidad financiera.', e:'De 40 copys generados, el modelo de CTR filtra 6 para probar; uno supera al control en 15 %.', l:'API de Claude, transformers'}
+  ];
+  const LVN = ['', 'Básico', 'Intermedio', 'Avanzado'];
+  /* Temas de la ruta ↔ técnicas, con la aplicación concreta en cada tema */
+  const TOP = {
+    embudo: {t:'Embudo y métricas', sec:'embudo', q:'¿Dónde se pierde la gente y cuánto cuesta cada paso?', i:[
+      ['Análisis de embudo y cohortes', 'Calcula CTR, CVR y costo por desembolso por cohorte de fecha del lead, para no comparar campañas nuevas contra viejas.'],
+      ['Lift por deciles y curvas de ganancia', 'Muestra a marketing que el 10 % de leads con mejor score trae casi un tercio de los desembolsos.'],
+      ['Regresión logística de propensión', 'Explica qué variables (canal, edad, monto, hora) separan a quien pasa de lead a desembolso.'],
+      ['Lead scoring con gradient boosting', 'Prioriza los leads del embudo: a quién llamar o recordar primero.'],
+      ['Análisis de supervivencia', 'Dice cuántos días tarda cada canal en convertir, para fijar cuándo es justo medir el CPA final.'],
+      ['Explicabilidad con SHAP', 'Traduce el score a frases que marketing usa: "Search y montos pequeños suben la conversión".'],
+      ['Modelos de secuencia del recorrido del cliente', 'Encuentra los caminos de varios pasos que más terminan en desembolso.']]},
+    subasta: {t:'La subasta', sec:'subasta', q:'¿Cómo pagar menos por el mismo cliente?', i:[
+      ['Regresión lineal y elasticidad de inversión', 'Mide cuántos leads trae el siguiente dólar en cada canal y dónde ya se encareció la puja.'],
+      ['Modelos de CTR de creatividades', 'Un anuncio con mejor CTR esperado gana la subasta pagando menos: predice cuáles pautar.'],
+      ['Agrupación de palabras clave con embeddings', 'Encuentra búsquedas menos disputadas y palabras negativas que traen leads riesgosos.'],
+      ['NLP: sentimiento y temas en comentarios', 'Detecta objeciones en los comentarios para mejorar el anuncio y su calificación.'],
+      ['IA generativa para copys y creatividades', 'Produce variantes para renovar creatividades cuando la competencia sube la puja.'],
+      ['Value-based bidding con conversiones offline', 'Le dice a la subasta cuánto vale cada lead, para que puje más por los buenos pagadores.'],
+      ['Aprendizaje por refuerzo para pujas', 'Ajusta pujas paso a paso según la competencia del momento. Más de investigación.']]},
+    plataformas: {t:'Plataformas', sec:'plataformas', q:'¿Cuánto poner en TikTok, Meta y Google?', i:[
+      ['Optimización lineal de presupuesto', 'Reparte el presupuesto entre plataformas con mínimos, máximos y un CPA tope.'],
+      ['Atribución multitoque (Markov, Shapley)', 'Le da crédito a Display y TikTok cuando inician caminos que terminan en Search.'],
+      ['Marketing Mix Modeling bayesiano', 'Estima el retorno marginal de cada plataforma con saturación y efecto en el tiempo.'],
+      ['Experimentos de incrementalidad (geo-lift)', 'Comprueba si lo que cada plataforma se atribuye es real apagando la pauta en algunas ciudades.'],
+      ['Uplift modeling (S, T, X-learner, causal forests)', 'Dentro de cada plataforma, dirige el presupuesto a los persuadibles y no a los que iban a convertir igual.']]},
+    aprendizaje: {t:'Fase de aprendizaje', sec:'aprendizaje', q:'¿Cuándo decidir y cuándo esperar?', i:[
+      ['Pruebas A/B con tamaño de muestra', 'Calcula cuántos días debe correr una campaña antes de juzgarla, además de los 7 de aprendizaje.'],
+      ['Descomposición de series y estacionalidad', 'Separa el efecto de la fase de aprendizaje del de las quincenas y los fines de semana.'],
+      ['Control estadístico de métricas', 'Alerta solo cuando una campaña ya estable se sale de rango, no durante el aprendizaje.'],
+      ['Pronóstico de leads, CPA y volumen', 'Proyecta el CPA estable esperado desde los primeros días para no apagar campañas a tiempo de mejorar.'],
+      ['Modelos jerárquicos bayesianos', 'Estima el CPA de segmentos con pocos datos en aprendizaje sin sobrerreaccionar.'],
+      ['Bandits y bandits contextuales', 'Mueve tráfico a las creatividades ganadoras sin reiniciar el aprendizaje con cambios bruscos.']]},
+    mercado: {t:'Mercado o decisión', sec:'aprendizaje', q:'¿Fue el mercado o fuimos nosotros?', i:[
+      ['Monitoreo de estabilidad (PSI)', 'Detecta si cambió el perfil de los leads (mercado) o solo la aprobación (decisión de riesgo).'],
+      ['Diferencias en diferencias', 'Compara segmentos afectados y no afectados por la política, antes y después.'],
+      ['CausalImpact y control sintético', 'Estima qué habría pasado sin el cambio usando series que no fueron afectadas.'],
+      ['Propensity score matching e IPW', 'Mide el efecto de una campaña cuando no hubo experimento.'],
+      ['A/B testing avanzado (CUPED, secuencial, bayesiano)', 'Prueba cambios de política o de oferta con menos tráfico y sin falsos positivos.']]},
+    ventaja: {t:'Tu ventaja', sec:'ventaja', q:'¿A quién le hablo y cuánto vale ese cliente?', i:[
+      ['Segmentación RFM', 'Arma audiencias de renovación con clientes recientes, frecuentes y buenos pagadores.'],
+      ['Árboles de decisión para reglas', 'Convierte tu segmentación de riesgo en reglas que marketing configura en la plataforma.'],
+      ['Elasticidad de precio u oferta', 'Tu análisis de pricing aplicado a qué tasa o monto mostrar en el anuncio.'],
+      ['Calidad del lead (propensión × riesgo)', 'Junta tu modelo de riesgo con uno de conversión: el costo real por crédito del ejemplo de edades.'],
+      ['Clustering de clientes (K-means, GMM, K-prototypes)', 'Descubre perfiles para mensajes y plataformas distintas.'],
+      ['Audiencias lookalike de buenos clientes', 'Usa tus buenos pagadores como semilla para que Meta y Google busquen parecidos.'],
+      ['Valor de vida del cliente (CLV/LTV)', 'Fija cuánto se puede pagar por un cliente según su segmento y su riesgo.'],
+      ['Predicción de churn', 'Tu experiencia de Frubana aplicada a renovaciones: a quién retener antes de que se vaya.'],
+      ['Next best offer y venta cruzada', 'Qué producto ofrecer a cada cliente que paga bien.'],
+      ['Detección de anomalías y leads inválidos', 'Tus alertas tempranas y de fraude aplicadas a leads por canal.'],
+      ['Optimización de oferta con restricción de riesgo', 'Maximiza conversión sin pasar un límite de pérdida esperada.'],
+      ['Double Machine Learning', 'Mide el efecto real de la tasa en la conversión, separado del perfil del cliente.']]}
+  };
+  const byName = Object.fromEntries(CAT.map(c => [c.n, c]));
+  const topicsOf = n => Object.entries(TOP).filter(([, v]) => v.i.some(x => x[0] === n)).map(([k, v]) => v);
+  const areas = [...new Set(CAT.map(c => c.a))].sort();
+  const areaSel = document.getElementById('catArea');
+  areaSel.insertAdjacentHTML('beforeend', areas.map(a => `<option>${a}</option>`).join(''));
+  let catLv = 0, catStar = false;
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  function renderCat(){
+    const q = norm(document.getElementById('catQ').value.trim()), ar = areaSel.value;
+    const list = CAT.filter(c => (!catLv || c.lv === catLv) && (!catStar || c.v) && (!ar || c.a === ar) && (!q || norm(c.n + ' ' + c.u + ' ' + c.e + ' ' + c.l + ' ' + c.a).includes(q)));
+    document.getElementById('catCount').textContent = `${list.length} de ${CAT.length} técnicas`;
+    document.getElementById('catBox').innerHTML = list.length ? list.map(c => `<div class="ci"><div class="ci-top"><span class="lv lv${c.lv}">${LVN[c.lv]}</span>${c.v ? '<span class="star">★ Tu ventaja</span>' : ''}</div><span class="area">${c.a}</span><h3>${c.n}</h3><p>${c.u}</p><p class="ex"><b>Ejemplo dummy:</b> ${c.e}</p><div class="libs">${c.l.split(', ').map(x => `<span class="lib">${x}</span>`).join('')}</div>${topicsOf(c.n).length ? `<span class="back">En la ruta: ${[...new Map(topicsOf(c.n).map(v => [v.t, v])).values()].map(v => `<a href="#${v.sec}">${v.t}</a>`).join(' · ')}</span>` : ''}<button type="button" class="ask-more" data-cat="${CAT.indexOf(c)}">Pregúntale a Claude cómo aplicarlo</button></div>`).join('') : '<div class="empty">Ninguna técnica coincide. Prueba otra palabra o quita filtros.</div>';
+  }
+  document.getElementById('catLv').addEventListener('click', e => {
+    const b = e.target.closest('.fchip'); if (!b) return;
+    if (b.id === 'catStar') { catStar = !catStar; b.setAttribute('aria-pressed', catStar); }
+    else { catLv = +b.dataset.lv; document.querySelectorAll('#catLv [data-lv]').forEach(x => x.setAttribute('aria-pressed', x === b)); }
+    renderCat();
+  });
+  areaSel.addEventListener('change', renderCat);
+  document.getElementById('catQ').addEventListener('input', renderCat);
+  document.getElementById('catBox').addEventListener('click', e => {
+    const b = e.target.closest('.ask-more'); if (!b) return;
+    const c = CAT[+b.dataset.cat];
+    askFromPage(`¿Cómo aplicaría "${c.n}" en marketing de una fintech de crédito? Dame los pasos, qué datos necesito, un ejemplo de código corto en Python y cómo lo presentaría a marketing.`);
+  });
+  renderCat();
+
+  /* Puentes en cada sección y mapa transversal */
+  function goCat(name){
+    catLv = 0; catStar = false; areaSel.value = '';
+    document.querySelectorAll('#catLv .fchip').forEach(x => x.setAttribute('aria-pressed', x.dataset.lv === '0'));
+    document.getElementById('catQ').value = name; renderCat();
+    const card = document.querySelector('#catBox .ci');
+    if (card) { card.classList.add('flash'); card.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'}); setTimeout(() => card.classList.remove('flash'), 2500); }
+  }
+  document.querySelectorAll('.bridge').forEach(el => {
+    const tp = TOP[el.dataset.topic]; if (!tp) return;
+    const items = [...tp.i].sort((a, b) => byName[a[0]].lv - byName[b[0]].lv);
+    el.innerHTML = `<div class="bridge-h"><span class="eyebrow">Cómo se modela esto</span><p>${tp.q}</p></div><div class="blist">${items.map(([n, t]) => `<div class="bi"><span class="lv lv${byName[n].lv}">${LVN[byName[n].lv]}</span><div><button type="button" data-go="${n}">${n}</button><span class="t">${t}</span></div></div>`).join('')}</div>`;
+  });
+  document.getElementById('tmapBody').innerHTML = Object.values(TOP).map(tp => `<tr><td><a href="#${tp.sec}"><b>${tp.t}</b></a></td><td>${tp.q}</td>${[1,2,3].map(l => `<td>${tp.i.filter(x => byName[x[0]].lv === l).map(x => `<button type="button" class="mini" data-go="${x[0]}">${x[0]}</button>`).join('') || '<span class="muted">—</span>'}</td>`).join('')}</tr>`).join('');
+  document.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) goCat(b.dataset.go); });
+
+  /* Nav activa */
+  const links = [...document.querySelectorAll('nav.top a')];
+  const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  function spy(){
+    let cur = 0; secs.forEach((s, i) => { if (s.getBoundingClientRect().top < 140) cur = i; });
+    links.forEach((a, i) => a.classList.toggle('on', i === cur));
+  }
+  addEventListener('scroll', spy, {passive:true}); spy();
+
+  /* Chat con Claude */
+  const chat = document.getElementById('chat'), fab = document.getElementById('chatOpen');
+  const log = document.getElementById('chatLog'), input = document.getElementById('chatInput');
+  const send = document.getElementById('chatSend'), chips = document.getElementById('chatChips');
+  let sample = null, busy = false, history = [];
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  function md(t){
+    const lines = esc(t).split('\n'); let html = '', inList = false;
+    for (const l of lines) {
+      const b = l.match(/^\s*[-*•]\s+(.*)/);
+      if (b) { if (!inList) { html += '<ul>'; inList = true; } html += '<li>' + b[1] + '</li>'; continue; }
+      if (inList) { html += '</ul>'; inList = false; }
+      html += l.trim() ? l + '<br>' : '<br>';
+    }
+    if (inList) html += '</ul>';
+    return html.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(<br>)+$/, '');
+  }
+  function bubble(cls, text){
+    const d = document.createElement('div'); d.className = 'msg ' + cls;
+    if (cls === 'u') d.textContent = text; else d.innerHTML = md(text);
+    log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
+  }
+  function context(){
+    const parts = [...document.querySelectorAll('header.hero, section.mod')].map(s => s.innerText.replace(/\n{2,}/g, '\n')).join('\n\n');
+    return 'Eres un tutor de paid media y analítica de marketing. Ayudas a un data scientist que viene de riesgo de crédito en fintech (Colombia y Perú) a prepararse para un rol de analítica de marketing en una fintech. Responde en español de Colombia, claro y breve (máximo unos 150 palabras salvo que pida más), con ejemplos numéricos inventados cuando ayuden y marcándolos como inventados. Si algo depende de la plataforma y no estás seguro, dilo y sugiere confirmarlo en la ayuda oficial. Usa solo viñetas con "- " y negrita con ** si hace falta formato. Este es el contenido de la página de estudio que está viendo:\n\n' + parts.slice(0, 40000);
+  }
+  const errCopy = c => ({rate_limited:'Hay muchas preguntas seguidas. Espera un momento y vuelve a intentar.', not_granted:'No se dio permiso para usar Claude en esta página. Puedes activarlo en el menú de permisos del artefacto.', cancelled:'Pregunta cancelada.', prompt_too_large:'La conversación es muy larga. Recarga la página para empezar una nueva.'}[c] || 'No pude responder ahora. Intenta de nuevo en un momento.');
+  const touch = matchMedia('(pointer: coarse)').matches;
+  const mobile = () => matchMedia('(max-width: 600px)').matches;
+  let ctl = null, timer = null;
+  function setBusy(on){
+    busy = on;
+    send.textContent = on ? 'Detener' : 'Enviar';
+    send.classList.toggle('stop', on);
+  }
+  async function ask(q){
+    if (busy || !sample || !q.trim()) return;
+    setBusy(true); chips.hidden = true;
+    bubble('u', q); history.push({role:'user', content:q});
+    const out = bubble('a', 'Pensando…');
+    ctl = new AbortController();
+    timer = setTimeout(() => ctl && ctl.abort(), 90000);
+    try {
+      const r = await sample([{role:'user', content:context()}, ...history], {cache:false, signal:ctl.signal, onText: ({text}) => { out.innerHTML = md(text); log.scrollTop = log.scrollHeight; }});
+      out.innerHTML = md(r.text) + (r.truncated ? '<br><i>(La respuesta se cortó; pide que continúe.)</i>' : '');
+      history.push({role:'assistant', content:r.text});
+    } catch (e) {
+      history.pop();
+      if (e && e.text) out.innerHTML = md(e.text); else out.remove();
+      bubble('a err', errCopy(e && e.code));
+      if (e && e.code === 'not_granted') { sample = null; document.body.classList.remove('can-ask'); }
+    } finally {
+      clearTimeout(timer); ctl = null; setBusy(false);
+      log.scrollTop = log.scrollHeight;
+      if (!touch) input.focus();
+    }
+  }
+  /* En celular el panel ocupa la pantalla visible y se ajusta al teclado */
+  function fitChat(){
+    const vv = window.visualViewport;
+    if (chat.hidden || !mobile() || !vv) { chat.style.height = ''; chat.style.top = ''; return; }
+    chat.style.height = vv.height + 'px';
+    chat.style.top = vv.offsetTop + 'px';
+    log.scrollTop = log.scrollHeight;
+  }
+  if (window.visualViewport) { visualViewport.addEventListener('resize', fitChat); visualViewport.addEventListener('scroll', fitChat); }
+  addEventListener('resize', fitChat);
+  function openChat(){
+    chat.hidden = false; fab.hidden = true;
+    document.body.classList.add('chat-open');
+    fitChat();
+    if (!touch) input.focus();
+  }
+  function closeChat(){
+    if (ctl) ctl.abort();
+    input.blur();
+    chat.hidden = true; fab.hidden = !sample;
+    document.body.classList.remove('chat-open');
+    fitChat();
+  }
+  function askFromPage(q){ if (!sample) return; openChat(); ask(q); }
+  fab.addEventListener('click', openChat);
+  document.getElementById('chatClose').addEventListener('click', closeChat);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !chat.hidden) closeChat(); });
+  document.getElementById('chatForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (busy) { if (ctl) ctl.abort(); return; }
+    const q = input.value; input.value = ''; input.style.height = '';
+    if (touch) input.blur();
+    ask(q);
+  });
+  input.addEventListener('input', () => { input.style.height = ''; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey && !touch) { e.preventDefault(); document.getElementById('chatForm').dispatchEvent(new Event('submit', {cancelable:true})); }
+  });
+  chips.addEventListener('click', e => { const c = e.target.closest('.chip'); if (c) ask(c.textContent); });
+  if (window.claude && window.claude.use) {
+    window.claude.use('sample').then(s => {
+      sample = s;
+      if (s) { fab.hidden = false; document.body.classList.add('can-ask'); }
+    }).catch(() => {});
+  }
+})();
+</script>
+
+</body></html>

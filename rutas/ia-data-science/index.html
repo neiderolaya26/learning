@@ -1,0 +1,1043 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ruta IA de Sergio Mora</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: una "línea de metro" vertical con tres estaciones (cursos) y un anexo de repaso de máster */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --ink:#17201d; --muted:#5b6762; --line:#d6ddd9;
+  --s1:#3b4cca; --s2:#0f7c6c; --s3:#c2570c; --ms:#7a3e9d;
+  --s1-soft:#e7e9fb; --s2-soft:#dff2ee; --s3-soft:#fbeadd; --ms-soft:#f1e6f7;
+  --good:#1d7a3a; --warn:#9a5800; --bad:#b42318; --good-soft:#e3f4e8; --bad-soft:#fde8e6;
+  --display:"Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body:"Literata", Georgia, "Times New Roman", serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111614; --surface:#18201d; --ink:#e7ece9; --muted:#9aa7a1; --line:#2b3632;
+  --s1:#8d9bff; --s2:#4fd1b8; --s3:#f39a5a; --ms:#c99be6;
+  --s1-soft:#1f2440; --s2-soft:#13302a; --s3-soft:#3a2416; --ms-soft:#2c1f36;
+  --good:#5fd38a; --warn:#f0b35a; --bad:#ff8a7a; --good-soft:#123222; --bad-soft:#3b1a17; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111614; --surface:#18201d; --ink:#e7ece9; --muted:#9aa7a1; --line:#2b3632;
+  --s1:#8d9bff; --s2:#4fd1b8; --s3:#f39a5a; --ms:#c99be6;
+  --s1-soft:#1f2440; --s2-soft:#13302a; --s3-soft:#3a2416; --ms-soft:#2c1f36;
+  --good:#5fd38a; --warn:#f0b35a; --bad:#ff8a7a; --good-soft:#123222; --bad-soft:#3b1a17; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px}
+.wrap{max-width:960px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible+label,summary:focus-visible{outline:2px solid var(--s1);outline-offset:2px;border-radius:4px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header.hero{display:grid;gap:14px;margin-bottom:28px}
+header.hero h1{font-size:clamp(32px,5.5vw,52px);font-weight:700;letter-spacing:-.01em}
+header.hero p{max-width:64ch;margin:0;color:var(--muted)}
+/* resumen de ruta */
+.overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:8px 0 40px}
+.ov{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:6px;text-decoration:none}
+.ov .tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.ov strong{font-family:var(--display);font-size:17px;line-height:1.2}
+.ov .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.ov .bar i{display:block;height:100%;width:0;transition:width .3s}
+.ov .count{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:720px){.overview{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* estaciones */
+.stage{position:relative;padding-left:44px;margin-bottom:48px}
+.stage::before{content:"";position:absolute;left:13px;top:8px;bottom:-48px;width:4px;background:var(--c);opacity:.35;border-radius:2px}
+.stage.last::before{bottom:0}
+.stop{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--surface);border:4px solid var(--c);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--c)}
+.stage-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-bottom:18px}
+.eyebrow{overflow-wrap:anywhere}
+.stage-head h2{font-size:clamp(24px,3.6vw,32px)}
+.stage-head .meta{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:999px;background:var(--soft);color:var(--c);white-space:nowrap}
+.stage-head p{margin:0;max-width:68ch}
+.why{border-left:3px solid var(--c);background:var(--soft);padding:10px 14px;border-radius:0 8px 8px 0;font-size:15px;max-width:72ch}
+.modules{display:grid;gap:10px}
+details.mod{background:var(--surface);border:1px solid var(--line);border-radius:10px}
+details.mod>summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center}
+details.mod>summary::-webkit-details-marker{display:none}
+.wk{font-family:var(--mono);font-size:12px;color:var(--c);min-width:62px}
+.mod-title{font-family:var(--display);font-weight:600;font-size:17px;line-height:1.25}
+.mod-prog{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+details.mod[open]>summary{border-bottom:1px solid var(--line)}
+.mod-body{padding:12px 16px 16px;display:grid;gap:12px}
+.mod-body .goal{margin:0;font-size:15px;color:var(--muted)}
+ul.items{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+ul.items li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start}
+ul.items input{margin:5px 0 0;accent-color:var(--c);width:16px;height:16px}
+ul.items label{font-size:15px;cursor:pointer}
+ul.items .code{font-family:var(--mono);font-size:12px;color:var(--c);margin-right:6px}
+ul.items a{color:var(--c);text-decoration-thickness:1px;text-underline-offset:2px}
+ul.items li.done label{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.kind{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:6px}
+.project{background:var(--soft);border-radius:8px;padding:10px 12px;font-size:15px}
+.project b{font-family:var(--display)}
+/* módulo 0: master */
+.m0{--c:var(--ms);--soft:var(--ms-soft);margin:8px 0 64px}
+.m0-head{display:grid;gap:10px;margin-bottom:20px}
+.m0-head h2{font-size:clamp(28px,4.4vw,40px)}
+.m0-head p{margin:0;max-width:68ch;color:var(--muted)}
+.m0-stats{display:flex;flex-wrap:wrap;gap:8px}
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.topic{all:unset;box-sizing:border-box;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:6px;align-content:start}
+.topic:hover{border-color:var(--ms)}
+.topic[aria-pressed="true"]{border-color:var(--ms);box-shadow:inset 0 0 0 1px var(--ms)}
+.topic:focus-visible,.tabs button:focus-visible,.steps button:focus-visible,.opt:focus-visible,.btn:focus-visible,.lnk:focus-visible{outline:2px solid var(--ms);outline-offset:2px}
+.topic .n{font-family:var(--mono);font-size:11px;color:var(--ms)}
+.topic .nm{font-family:var(--display);font-weight:600;font-size:16px;line-height:1.2}
+.topic .st{font-family:var(--mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.st.ok{color:var(--good)!important}.st.mid{color:var(--warn)!important}
+.topic.exam{background:var(--ms-soft);border-color:transparent}
+.panel{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;scroll-margin-top:16px}
+.panel-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+.panel-head h3{font-size:22px}
+.tabs{display:flex;gap:4px;background:var(--bg);padding:3px;border-radius:8px}
+.tabs button{all:unset;cursor:pointer;font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:6px;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.panel-body{padding:18px}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.steps button{all:unset;cursor:pointer;font-family:var(--mono);font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.steps button.read{color:var(--ms);background:var(--ms-soft);border-color:transparent}
+.steps button[aria-current="true"]{border-color:var(--ms);color:var(--ink)}
+.lesson{max-width:72ch;display:grid;gap:12px}
+.lesson h4{font-size:21px}
+.lesson p{margin:0}
+.lesson ul,.lesson ol{margin:0;padding-left:20px;display:grid;gap:4px}
+.f{font-family:var(--mono);font-size:14px;background:var(--ms-soft);padding:10px 12px;border-radius:6px;overflow-x:auto;white-space:nowrap}
+.ex{border:1px dashed var(--ms);border-radius:8px;padding:12px 14px;font-size:15px}
+.key{background:var(--bg);border-left:3px solid var(--ms);padding:10px 14px;border-radius:0 8px 8px 0;font-size:15px}
+.key::before{content:"Para la prueba · ";font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ms)}
+pre.code{margin:0;font-family:var(--mono);font-size:13px;line-height:1.5;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;font-size:14px;width:100%}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:500}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;font-family:var(--display);font-weight:600;font-size:15px;padding:9px 16px;border-radius:8px;background:var(--ms);color:var(--surface)}
+.btn.sec{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn[disabled]{opacity:.4;cursor:default}
+.lnk{all:unset;cursor:pointer;color:var(--ms);text-decoration:underline;text-underline-offset:2px}
+.qmeta{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.qbar{height:4px;background:var(--line);border-radius:2px;margin-bottom:18px;overflow:hidden}.qbar i{display:block;height:100%;background:var(--ms)}
+.q{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.35;margin:0 0 14px;max-width:70ch}
+.opts{display:grid;gap:8px;max-width:70ch}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:15px;display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px}
+.opt .l{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:2px}
+.opt:hover:not([disabled]){border-color:var(--ms)}
+.opt.sel{border-color:var(--ms);background:var(--ms-soft)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:15px;max-width:70ch}
+.fb.ok{background:var(--good-soft)}.fb.no{background:var(--bad-soft)}
+.fb b{font-family:var(--display)}
+.result{display:grid;gap:14px;max-width:72ch}
+.score{font-family:var(--display);font-size:52px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.review{display:grid;gap:10px}
+.review .it{border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:14px;display:grid;gap:4px}
+.review .it .ans{color:var(--muted)}
+.bytopic{display:grid;gap:6px}
+.bytopic .row{display:grid;grid-template-columns:minmax(0,1fr) 120px 48px;gap:10px;align-items:center;font-size:14px}
+.bytopic .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}.bytopic .bar i{display:block;height:100%}
+.bytopic .pct{font-family:var(--mono);font-size:12px;text-align:right;font-variant-numeric:tabular-nums}
+details.plan-wrap{margin-top:18px}
+details.plan-wrap>summary{cursor:pointer;font-family:var(--display);font-weight:600;font-size:17px;color:var(--ms)}
+.route-head{display:grid;gap:8px;margin-bottom:16px;border-top:1px solid var(--line);padding-top:36px}
+.route-head h2{font-size:clamp(26px,4vw,34px)}
+.route-head p{margin:0;color:var(--muted);max-width:68ch}
+.plan{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
+.plan table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+.plan th,.plan td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.plan th{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.plan tr:last-child td{border-bottom:0}
+.plan td:first-child{font-family:var(--mono);font-size:13px;color:var(--ms);white-space:nowrap;font-variant-numeric:tabular-nums}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
+button.ghost{font-family:var(--mono);font-size:12px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:6px 12px;border-radius:6px;cursor:pointer}
+button.ghost:hover{color:var(--ink);border-color:var(--muted)}
+.confirm{font-family:var(--mono);font-size:12px;color:var(--muted)}
+footer{margin-top:48px;font-size:14px;color:var(--muted);max-width:70ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow">Ruta de aprendizaje · github.com/sergiomorapardo</span>
+    <h1>De la estadística a los agentes de IA</h1>
+    <p>Empieza con el módulo 0: un curso de repaso de máster en Data Science con lecciones, ejemplos resueltos, quices por tema y un examen final simulado para preparar una prueba de conocimientos. Después siguen los tres cursos del profesor Sergio A. Mora Pardo (Pontificia Universidad Javeriana): fundamentos estocásticos, deep learning con NLP y grafos, y aplicaciones con LLMs y agentes. Tu progreso y tus notas se guardan en este navegador.</p>
+  </header>
+
+  <section class="m0" id="master">
+    <div class="m0-head">
+      <span class="eyebrow">Módulo 0 · Repaso de máster en Data Science</span>
+      <h2>Prepárate para la prueba de conocimientos</h2>
+      <p>10 temas con 4 lecciones cada uno. Lee la lección, haz el quiz del tema (apruebas con 70%) y repasa las secciones que te indique según tus errores. Cuando apruebes todos, haz el examen final: 30 preguntas mezcladas, sin pistas hasta el final, como en una prueba real.</p>
+      <div class="m0-stats" id="m0-stats"></div>
+    </div>
+    <div class="topics" id="m0-topics" role="group" aria-label="Temas del módulo 0"></div>
+    <div class="panel" id="m0-panel" hidden></div>
+
+    <details class="plan-wrap">
+      <summary>Plan de estudio de 8 semanas</summary>
+      <div class="plan">
+        <table>
+          <thead><tr><th>Semana</th><th>Temas del módulo 0</th><th>Práctica sugerida</th></tr></thead>
+          <tbody>
+            <tr><td>S1</td><td>01 Probabilidad y estadística</td><td>Simula el teorema central del límite con NumPy; calcula intervalos de confianza por bootstrap.</td></tr>
+            <tr><td>S2</td><td>02 Álgebra lineal y optimización</td><td>Implementa PCA con SVD a mano y compáralo con <code>sklearn.decomposition.PCA</code>.</td></tr>
+            <tr><td>S3</td><td>03 SQL, limpieza y preparación</td><td>Resuelve 15 ejercicios de window functions y CTEs; replica las consultas en pandas.</td></tr>
+            <tr><td>S4</td><td>04 Supervisado · 05 Evaluación</td><td>Pipeline con <code>ColumnTransformer</code>, validación cruzada estratificada y curva precision-recall.</td></tr>
+            <tr><td>S5</td><td>06 No supervisado · 07 Series de tiempo</td><td>K-means con silueta en datos de clientes; pronóstico SARIMA con backtesting.</td></tr>
+            <tr><td>S6</td><td>08 Experimentación y causalidad</td><td>Diseña un A/B test: tamaño de muestra, potencia y análisis con prueba t y bootstrap.</td></tr>
+            <tr><td>S7</td><td>09 Deep learning, NLP y LLMs</td><td>Fine-tuning ligero de un modelo de Hugging Face y un RAG mínimo con citas.</td></tr>
+            <tr><td>S8</td><td>10 MLOps, big data y ética · Examen final</td><td>Sirve un modelo con FastAPI en Docker, mide drift con PSI y haz el examen final dos veces.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <div class="route-head">
+    <span class="eyebrow">Ruta de cursos · github.com/sergiomorapardo</span>
+    <h2>Tres cursos, en orden</h2>
+    <p>Marca cada notebook al terminarlo. Las barras muestran tu avance por etapa.</p>
+  </div>
+  <nav class="overview" id="overview" aria-label="Resumen de progreso"></nav>
+  <div class="toolbar"><button class="ghost" id="reset" type="button">Reiniciar progreso</button><span class="confirm" id="confirm" hidden></span></div>
+
+  <div id="stages"></div>
+
+  <footer>Contenido tomado de los repositorios públicos <a href="https://github.com/sergiomorapardo/StochasticAITechniquesClass">StochasticAITechniquesClass</a>, <a href="https://github.com/sergiomorapardo/AdvancedTopicsAnalytics">AdvancedTopicsAnalytics</a> y <a href="https://github.com/sergiomorapardo/AdvancedGenAI">AdvancedGenAI</a>. AdvancedGenAI figura como propuesta de curso en desarrollo; sus notebooks ya están publicados y ejecutados. El módulo 0 es una síntesis de los temas comunes de un máster en Data Science, no el plan de un programa concreto.</footer>
+</div>
+
+<script>
+// Módulo 0: lecciones + quices + examen final. Cada pregunta: q, o (opciones), a (índice correcto), e (explicación), l (lección a repasar).
+const M0 = [
+{t:'Probabilidad y estadística', lessons:[
+ {h:'Probabilidad condicional y Bayes', html:`
+<p>La probabilidad condicional P(A|B) es la probabilidad de A sabiendo que ocurrió B: <b>P(A|B) = P(A∩B) / P(B)</b>. Dos eventos son independientes si saber uno no cambia el otro: P(A|B) = P(A), o lo que es igual, P(A∩B) = P(A)·P(B).</p>
+<div class="f">P(A|B) = P(B|A) · P(A) / P(B)</div>
+<p>El teorema de Bayes invierte la condición: pasa de "probabilidad del síntoma dada la enfermedad" a "probabilidad de la enfermedad dado el síntoma". P(A) es el <em>prior</em> (lo que creías antes), P(B|A) la <em>verosimilitud</em> y P(A|B) el <em>posterior</em> (lo que crees después de ver el dato). P(B) se obtiene con la ley de probabilidad total: P(B) = P(B|A)P(A) + P(B|¬A)P(¬A).</p>
+<div class="ex"><b>Ejemplo resuelto.</b> Una enfermedad afecta al 1% de la población. La prueba detecta al 99% de los enfermos (sensibilidad) y da negativo al 95% de los sanos (especificidad, así que 5% de falsos positivos). Alguien sale positivo: ¿qué probabilidad tiene de estar enfermo?<br><br>
+P(+) = 0.99·0.01 + 0.05·0.99 = 0.0099 + 0.0495 = 0.0594<br>
+P(E|+) = 0.0099 / 0.0594 ≈ <b>16.7%</b><br><br>
+Con prevalencia baja, la mayoría de los positivos son falsos positivos. Es la "falacia de la tasa base".</div>
+<div class="key">Si te dan prevalencia, sensibilidad y especificidad, imagina 10.000 personas: 100 enfermas (99 positivas) y 9.900 sanas (495 positivas). 99 / (99+495) = 16.7%. Es más rápido y evita errores.</div>`},
+ {h:'Distribuciones que debes reconocer', html:`
+<p>En una prueba casi siempre te piden identificar qué distribución modela un fenómeno y recordar su media y varianza.</p>
+<div class="tbl"><table><thead><tr><th>Distribución</th><th>Modela</th><th>Media</th><th>Varianza</th></tr></thead><tbody>
+<tr><td>Bernoulli(p)</td><td>Un ensayo sí/no</td><td>p</td><td>p(1−p)</td></tr>
+<tr><td>Binomial(n, p)</td><td>Nº de éxitos en n ensayos independientes</td><td>np</td><td>np(1−p)</td></tr>
+<tr><td>Poisson(λ)</td><td>Conteos por intervalo (llamadas por hora)</td><td>λ</td><td>λ</td></tr>
+<tr><td>Exponencial(λ)</td><td>Tiempo entre eventos de Poisson; sin memoria</td><td>1/λ</td><td>1/λ²</td></tr>
+<tr><td>Uniforme(a, b)</td><td>Todo valor del intervalo igual de probable</td><td>(a+b)/2</td><td>(b−a)²/12</td></tr>
+<tr><td>Normal(μ, σ²)</td><td>Sumas y promedios de muchas causas</td><td>μ</td><td>σ²</td></tr>
+</tbody></table></div>
+<p><b>Regla 68-95-99.7:</b> en una normal, el 68% de los datos cae a ±1σ de la media, el 95% a ±2σ y el 99.7% a ±3σ. El <b>z-score</b> estandariza: z = (x − μ) / σ.</p>
+<div class="ex"><b>Ejemplo.</b> Estaturas con μ = 170 cm y σ = 10 cm. ¿Qué fracción mide más de 190 cm? z = (190 − 170)/10 = 2. Fuera de ±2σ queda el 5%, la mitad por arriba: <b>≈ 2.5%</b>.</div>
+<div class="key">Poisson tiene media igual a varianza. Si en tus datos de conteo la varianza es mucho mayor que la media (sobredispersión), usa binomial negativa.</div>`},
+ {h:'Muestreo, teorema central del límite e intervalos', html:`
+<p><b>Teorema central del límite (TCL):</b> con una muestra suficientemente grande (regla práctica n ≥ 30), la media muestral x̄ se distribuye aproximadamente normal con media μ y desviación σ/√n, <em>sin importar la forma de la población</em>. A σ/√n se le llama <b>error estándar</b>.</p>
+<div class="f">IC 95% ≈ x̄ ± 1.96 · s / √n</div>
+<p>Si n es pequeña y σ desconocida, usa la t de Student con n−1 grados de libertad en lugar de 1.96.</p>
+<p><b>Interpretación correcta:</b> si repitieras el muestreo muchas veces, el 95% de los intervalos construidos así contendría el verdadero μ. No es correcto decir "hay 95% de probabilidad de que μ esté en este intervalo concreto" (en estadística frecuentista μ es fijo).</p>
+<div class="ex"><b>Ejemplo.</b> n = 100, x̄ = 50, s = 10. Error estándar = 10/√100 = 1. IC 95% = 50 ± 1.96 = <b>[48.04, 51.96]</b>.</div>
+<p><b>Bootstrap:</b> cuando no hay fórmula fácil (mediana, ratio, AUC), remuestrea tus datos con reemplazo B veces (p. ej., 2.000), calcula el estadístico en cada remuestra y toma los percentiles 2.5 y 97.5.</p>
+<div class="key">El error estándar baja con √n: para reducirlo a la mitad necesitas cuatro veces más datos.</div>`},
+ {h:'Pruebas de hipótesis', html:`
+<ol><li>Planteas H₀ (no hay efecto) y H₁ (sí lo hay).</li><li>Fijas α (normalmente 0.05).</li><li>Calculas el estadístico y el p-valor.</li><li>Si p &lt; α rechazas H₀; si no, <em>no rechazas</em> (que no es lo mismo que probar H₀).</li></ol>
+<p><b>p-valor:</b> probabilidad de observar un resultado igual o más extremo que el obtenido <em>si H₀ fuera cierta</em>. No es la probabilidad de que H₀ sea cierta.</p>
+<div class="tbl"><table><thead><tr><th></th><th>H₀ es cierta</th><th>H₀ es falsa</th></tr></thead><tbody>
+<tr><td>Rechazas H₀</td><td>Error tipo I (falso positivo), prob. α</td><td>Correcto. Potencia = 1 − β</td></tr>
+<tr><td>No rechazas H₀</td><td>Correcto</td><td>Error tipo II (falso negativo), prob. β</td></tr></tbody></table></div>
+<p><b>Qué prueba usar:</b></p>
+<div class="tbl"><table><thead><tr><th>Situación</th><th>Prueba</th></tr></thead><tbody>
+<tr><td>Comparar 2 medias independientes</td><td>t de Student (Welch si varianzas distintas)</td></tr>
+<tr><td>Antes/después en los mismos sujetos</td><td>t pareada</td></tr>
+<tr><td>Más de 2 medias</td><td>ANOVA (y post-hoc como Tukey)</td></tr>
+<tr><td>Dos variables categóricas</td><td>Chi-cuadrado de independencia</td></tr>
+<tr><td>Datos no normales u ordinales</td><td>Mann-Whitney, Wilcoxon, Kruskal-Wallis</td></tr>
+<tr><td>Correlación</td><td>Pearson (lineal) o Spearman (monótona, por rangos)</td></tr></tbody></table></div>
+<div class="key">Comparaciones múltiples: con 20 pruebas a α = 0.05 esperas 1 falso positivo aunque no haya nada. Corrige con Bonferroni (α/m) o controla la tasa de falsos descubrimientos (Benjamini-Hochberg).</div>`}
+],
+quiz:[
+ {q:'Prevalencia 1%, sensibilidad 90% y especificidad 90%. Si alguien da positivo, ¿cuál es la probabilidad aproximada de que esté enfermo?', o:['90%','8.3%','50%','1%'], a:1, e:'P(+) = 0.9·0.01 + 0.1·0.99 = 0.009 + 0.099 = 0.108. P(E|+) = 0.009/0.108 ≈ 8.3%. La baja prevalencia hace que dominen los falsos positivos.', l:0},
+ {q:'Obtienes un p-valor de 0.03. ¿Qué significa?', o:['Hay 3% de probabilidad de que H₀ sea cierta','Si H₀ fuera cierta, habría 3% de probabilidad de ver un resultado igual o más extremo','El efecto es pequeño','Hay 97% de probabilidad de que H₁ sea cierta'], a:1, e:'El p-valor se calcula suponiendo H₀ cierta. No da la probabilidad de las hipótesis ni el tamaño del efecto.', l:3},
+ {q:'Un error tipo II es:', o:['Rechazar H₀ cuando es cierta','No rechazar H₀ cuando es falsa','Usar la prueba equivocada','Tener un p-valor mayor que 1'], a:1, e:'Tipo II = falso negativo: había efecto y no lo detectaste. Su probabilidad es β y la potencia es 1 − β.', l:3},
+ {q:'Las llamadas a un call center siguen una Poisson con media 4 por hora. ¿Cuál es la varianza?', o:['2','4','16','0.25'], a:1, e:'En Poisson la media y la varianza son iguales a λ.', l:1},
+ {q:'¿Cuál es la interpretación correcta de un IC 95% = [48, 52] para la media?', o:['μ está en [48, 52] con 95% de probabilidad','El 95% de los datos está entre 48 y 52','Si repitiéramos el muestreo, el 95% de los intervalos así construidos contendría μ','La media muestral está entre 48 y 52 el 95% de las veces'], a:2, e:'El 95% se refiere al procedimiento, no a este intervalo concreto. Tampoco describe dónde caen los datos individuales.', l:2},
+ {q:'Quieres reducir a la mitad el error estándar de tu estimación. ¿Cuánto debe crecer la muestra?', o:['El doble','Cuatro veces','La mitad','No depende de n'], a:1, e:'SE = σ/√n. Para dividirlo por 2, √n debe duplicarse, así que n se multiplica por 4.', l:2},
+ {q:'Quieres saber si el canal de adquisición (web, app, tienda) está asociado con el plan contratado (básico, premium). ¿Qué prueba usas?', o:['t de Student','ANOVA','Chi-cuadrado de independencia','Correlación de Pearson'], a:2, e:'Ambas variables son categóricas: la prueba de independencia chi-cuadrado sobre la tabla de contingencia.', l:3},
+ {q:'Estaturas con μ = 170 y σ = 10. ¿Qué porcentaje aproximado mide menos de 160 cm?', o:['2.5%','16%','32%','50%'], a:1, e:'z = −1. Entre ±1σ está el 68%; fuera queda el 32%, la mitad por debajo: 16%.', l:1}
+]},
+{t:'Álgebra lineal y optimización', lessons:[
+ {h:'Vectores, matrices y similitud', html:`
+<p>El <b>producto punto</b> a·b = Σ aᵢbᵢ mide cuánto apuntan dos vectores en la misma dirección. La <b>norma</b> ‖a‖ = √(a·a) es su longitud. La <b>similitud coseno</b> normaliza por la longitud y se usa mucho con embeddings y texto:</p>
+<div class="f">cos(a, b) = a·b / (‖a‖ · ‖b‖)   ∈ [−1, 1]</div>
+<div class="ex"><b>Ejemplo.</b> a = (1, 2, 3), b = (4, 5, 6). a·b = 4 + 10 + 18 = 32. ‖a‖ = √14 ≈ 3.74, ‖b‖ = √77 ≈ 8.77. cos ≈ 32/32.8 ≈ <b>0.975</b>: casi la misma dirección. Vectores ortogonales tienen coseno 0.</div>
+<p><b>Multiplicación de matrices:</b> (m×n)·(n×p) = m×p. Las dimensiones interiores deben coincidir. No es conmutativa: AB ≠ BA en general.</p>
+<p><b>Rango e inversa:</b> si una columna es combinación lineal de otras (multicolinealidad perfecta), XᵀX no es invertible y la regresión por mínimos cuadrados no tiene solución única.</p>
+<div class="key">La solución cerrada de la regresión lineal es β = (XᵀX)⁻¹Xᵀy. Si te preguntan por qué falla con variables duplicadas, la respuesta es que XᵀX es singular.</div>`},
+ {h:'Valores propios, SVD y PCA', html:`
+<p>Un vector propio v de A cumple <b>Av = λv</b>: la matriz solo lo estira por λ (su valor propio), sin cambiarle la dirección.</p>
+<p><b>PCA paso a paso:</b></p>
+<ol><li>Estandariza las variables (media 0, desviación 1). Si no, la de mayor escala domina.</li><li>Calcula la matriz de covarianza.</li><li>Obtén sus vectores y valores propios.</li><li>Ordena por λ de mayor a menor: cada vector es una componente principal.</li><li>Proyecta los datos sobre las k primeras componentes.</li></ol>
+<div class="f">varianza explicada por PCᵢ = λᵢ / Σ λⱼ</div>
+<div class="ex"><b>Ejemplo.</b> Valores propios (4.2, 2.1, 0.5, 0.2), suma 7. PC1 explica 60%, PC2 30%. Con 2 componentes conservas el <b>90%</b> de la varianza y pasas de 4 a 2 dimensiones.</div>
+<p><b>SVD:</b> X = UΣVᵀ. Las columnas de V son las componentes principales y λᵢ = σᵢ²/(n−1). En la práctica PCA se calcula con SVD porque es más estable.</p>
+<div class="key">PCA es no supervisado (no mira y), lineal, y sus componentes son combinaciones de variables difíciles de interpretar. Ajústalo solo con los datos de entrenamiento.</div>`},
+ {h:'Descenso de gradiente', html:`
+<p>Para minimizar una función de pérdida L(θ), das pasos en dirección contraria al gradiente:</p>
+<div class="f">θ ← θ − η · ∇L(θ)</div>
+<p>η es la <b>tasa de aprendizaje</b>. Muy pequeña: converge lento. Muy grande: oscila o diverge.</p>
+<div class="ex"><b>Ejemplo.</b> L(θ) = θ², gradiente 2θ, θ₀ = 10.<br>Con η = 0.1: θ₁ = 10 − 0.1·20 = 8, θ₂ = 8 − 0.1·16 = 6.4 … converge a 0.<br>Con η = 1.1: θ₁ = 10 − 1.1·20 = −12, θ₂ = 14.4 … <b>diverge</b>.</div>
+<ul><li><b>Batch:</b> usa todos los datos por paso. Estable pero lento.</li><li><b>Estocástico (SGD):</b> un ejemplo por paso. Ruidoso pero rápido; el ruido ayuda a salir de mínimos locales.</li><li><b>Mini-batch:</b> el punto medio (32–512 ejemplos). Es el estándar en deep learning.</li></ul>
+<p>Si la función es <b>convexa</b> (regresión lineal y logística), cualquier mínimo local es global. Las redes neuronales no son convexas. Optimizadores como Adam adaptan η por parámetro usando momentos del gradiente.</p>
+<div class="key">Si la pérdida de entrenamiento sube o salta mucho entre épocas, lo primero es bajar la tasa de aprendizaje.</div>`},
+ {h:'Regularización L1 y L2', html:`
+<p>La regularización añade una penalización al tamaño de los coeficientes para reducir el sobreajuste:</p>
+<div class="f">Ridge (L2): RSS + λ Σβ²     Lasso (L1): RSS + λ Σ|β|</div>
+<ul><li><b>Ridge</b> encoge todos los coeficientes hacia 0 pero rara vez los anula. Funciona bien con multicolinealidad.</li><li><b>Lasso</b> puede llevar coeficientes exactamente a 0, así que hace <b>selección de variables</b>.</li><li><b>Elastic Net</b> combina ambas; útil con muchas variables correlacionadas.</li></ul>
+<p>Al aumentar λ: más sesgo, menos varianza. Con λ = 0 vuelves a mínimos cuadrados. λ se elige con validación cruzada.</p>
+<div class="ex"><b>Ejemplo.</b> Tienes 500 variables y 200 filas. Lasso con λ elegido por CV deja 18 variables con coeficiente distinto de cero: un modelo más simple e interpretable.</div>
+<div class="key">Estandariza antes de regularizar. Si no, la penalización castiga más a las variables con valores pequeños, que necesitan coeficientes grandes.</div>`}
+],
+quiz:[
+ {q:'Multiplicas una matriz 3×4 por una 4×2. ¿Qué dimensión tiene el resultado?', o:['4×4','3×2','2×3','No se puede multiplicar'], a:1, e:'(m×n)(n×p) = m×p. Las dimensiones interiores (4) coinciden y el resultado es 3×2.', l:0},
+ {q:'¿Cuál es la similitud coseno entre dos vectores ortogonales?', o:['1','−1','0','Depende de sus normas'], a:2, e:'Ortogonales significa producto punto 0, así que el coseno es 0.', l:0},
+ {q:'¿Por qué se estandarizan las variables antes de PCA?', o:['Para que los datos sean normales','Porque PCA busca máxima varianza y las variables con mayor escala dominarían','Para eliminar outliers','Porque PCA solo acepta valores entre 0 y 1'], a:1, e:'Una variable en pesos (varianza enorme) acapararía la primera componente aunque no sea la más informativa.', l:1},
+ {q:'Los valores propios de la covarianza son 6, 3 y 1. ¿Qué proporción de varianza explica la primera componente?', o:['33%','60%','90%','6%'], a:1, e:'6 / (6+3+1) = 0.6.', l:1},
+ {q:'L(θ) = θ², θ = 5, η = 0.1. ¿Cuál es θ tras un paso de descenso de gradiente?', o:['4','4.5','0','5.1'], a:0, e:'Gradiente = 2·5 = 10. θ = 5 − 0.1·10 = 4.', l:2},
+ {q:'La pérdida de entrenamiento oscila y crece época tras época. ¿Qué haces primero?', o:['Subir la tasa de aprendizaje','Bajar la tasa de aprendizaje','Añadir más capas','Quitar la regularización'], a:1, e:'Una η demasiado alta hace que los pasos se pasen del mínimo y diverjan.', l:2},
+ {q:'Necesitas un modelo lineal que además seleccione variables automáticamente. ¿Qué eliges?', o:['Ridge','Lasso','Regresión sin regularizar','PCA'], a:1, e:'La penalización L1 lleva coeficientes exactamente a cero.', l:3},
+ {q:'En Ridge, si aumentas λ:', o:['Sube la varianza y baja el sesgo','Sube el sesgo y baja la varianza','No cambia nada','Los coeficientes crecen'], a:1, e:'Más penalización encoge los coeficientes: modelo más simple, más sesgado y menos variable.', l:3}
+]},
+{t:'SQL, limpieza y preparación', lessons:[
+ {h:'SQL esencial y joins', html:`
+<p>SQL se escribe en un orden y se ejecuta en otro. El <b>orden lógico</b> explica muchas preguntas de examen:</p>
+<div class="f">FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT</div>
+<p>Por eso WHERE no puede usar agregaciones (todavía no se ha agrupado) y en muchos motores tampoco puede usar alias definidos en SELECT. Para filtrar grupos usa HAVING.</p>
+<pre class="code">SELECT c.segmento,
+       COUNT(*)      AS pedidos,
+       AVG(p.monto)  AS ticket_medio
+FROM pedidos p
+JOIN clientes c ON c.id = p.cliente_id
+WHERE p.fecha >= '2025-01-01'
+GROUP BY c.segmento
+HAVING COUNT(*) > 100
+ORDER BY ticket_medio DESC;</pre>
+<ul><li><b>INNER JOIN:</b> solo filas con coincidencia en ambas tablas.</li><li><b>LEFT JOIN:</b> todas las de la izquierda; NULL donde no hay coincidencia.</li><li><b>FULL OUTER JOIN:</b> todas las de ambas.</li><li><b>Anti-join:</b> LEFT JOIN … WHERE derecha.id IS NULL (clientes sin pedidos).</li></ul>
+<div class="key">Dos trampas típicas. (1) Un LEFT JOIN multiplica filas si la tabla derecha tiene varias coincidencias por clave (fan-out). (2) Filtrar la tabla derecha en WHERE convierte el LEFT JOIN en INNER: pon esa condición en el ON.</div>`},
+ {h:'Window functions y CTEs', html:`
+<p>Las funciones de ventana calculan sobre un grupo de filas <em>sin colapsarlas</em>, a diferencia de GROUP BY.</p>
+<pre class="code">WITH ranked AS (
+  SELECT cliente_id, fecha, monto,
+         ROW_NUMBER() OVER (PARTITION BY cliente_id ORDER BY monto DESC) AS rn,
+         LAG(monto)   OVER (PARTITION BY cliente_id ORDER BY fecha)      AS monto_prev,
+         SUM(monto)   OVER (PARTITION BY cliente_id ORDER BY fecha)      AS acumulado
+  FROM pedidos
+)
+SELECT * FROM ranked WHERE rn = 1;   -- compra más alta de cada cliente</pre>
+<p><b>Empates:</b> con montos 100, 100, 90:</p>
+<div class="tbl"><table><thead><tr><th>Función</th><th>Resultado</th></tr></thead><tbody>
+<tr><td>ROW_NUMBER</td><td>1, 2, 3 (rompe empates arbitrariamente)</td></tr>
+<tr><td>RANK</td><td>1, 1, 3 (salta posiciones)</td></tr>
+<tr><td>DENSE_RANK</td><td>1, 1, 2 (no salta)</td></tr></tbody></table></div>
+<p><b>LAG/LEAD</b> traen el valor de la fila anterior/siguiente: ideales para crecimiento mes a mes. <b>SUM() OVER (ORDER BY …)</b> da totales acumulados. Las <b>CTE</b> (WITH) hacen legibles las consultas por pasos.</p>
+<div class="key">No puedes filtrar por una window function en el WHERE de la misma consulta: calcúlala en una CTE o subconsulta y filtra afuera.</div>`},
+ {h:'Valores faltantes y outliers', html:`
+<p><b>Mecanismos de faltantes:</b></p>
+<ul><li><b>MCAR</b> (completamente al azar): un sensor falla aleatoriamente. Eliminar filas no sesga, solo pierde datos.</li><li><b>MAR</b> (al azar condicionado a lo observado): los jóvenes responden menos la encuesta, pero la edad está registrada. Se puede imputar usando otras variables.</li><li><b>MNAR</b> (no al azar): las personas de ingresos altos no reportan su ingreso. Imputar ingenuamente sesga; el propio faltante es información.</li></ul>
+<p><b>Estrategias:</b> media o mediana (la mediana es robusta a outliers), moda para categóricas, KNN o modelos iterativos (MICE), y añadir una variable indicadora "era faltante".</p>
+<p><b>Outliers con IQR:</b></p>
+<div class="f">IQR = Q3 − Q1    límites: [Q1 − 1.5·IQR, Q3 + 1.5·IQR]</div>
+<div class="ex"><b>Ejemplo.</b> Q1 = 20, Q3 = 40 → IQR = 20 → límites [−10, 70]. Un valor de 85 es outlier. Con z-score suele usarse |z| > 3, pero la media y σ se ven afectadas por los propios outliers.</div>
+<div class="key">Antes de borrar un outlier pregunta si es un error de captura o un caso real (fraude, cliente VIP). En detección de fraude los outliers son justamente lo que buscas.</div>`},
+ {h:'Transformaciones y data leakage', html:`
+<ul><li><b>Escalado:</b> StandardScaler (media 0, σ 1) para modelos basados en distancia o gradiente (KNN, SVM, redes, regresión regularizada). MinMax a [0, 1]. Los árboles no lo necesitan.</li><li><b>One-hot:</b> categóricas nominales con pocas categorías.</li><li><b>Ordinal:</b> categorías con orden (bajo &lt; medio &lt; alto).</li><li><b>Target encoding:</b> reemplaza la categoría por la media del objetivo. Útil con alta cardinalidad, pero hay que calcularlo con validación cruzada para no filtrar y.</li><li><b>Transformación log:</b> para variables muy sesgadas (ingresos, precios).</li></ul>
+<p><b>Data leakage</b> es usar en el entrenamiento información que no tendrás al predecir. Infla las métricas y el modelo falla en producción. Ejemplos: escalar o imputar con todo el dataset antes de separar, incluir variables posteriores al evento ("fecha de cancelación" para predecir cancelación), o duplicados entre train y test.</p>
+<pre class="code">from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.linear_model import LogisticRegression
+
+prep = ColumnTransformer([
+    ("num", Pipeline([("imp", SimpleImputer(strategy="median")),
+                      ("sc", StandardScaler())]), num_cols),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), cat_cols),
+])
+modelo = Pipeline([("prep", prep), ("clf", LogisticRegression())])
+modelo.fit(X_train, y_train)   # todo se ajusta solo con train</pre>
+<div class="key">Regla de oro: fit en train, transform en test. Un Pipeline dentro de cross_val_score lo garantiza en cada fold.</div>`}
+],
+quiz:[
+ {q:'Quieres mostrar solo los segmentos con más de 100 pedidos. ¿Dónde va la condición COUNT(*) > 100?', o:['WHERE','HAVING','ON','ORDER BY'], a:1, e:'WHERE se ejecuta antes de agrupar y no puede usar agregaciones. HAVING filtra grupos.', l:0},
+ {q:'Montos 100, 100, 90 ordenados de mayor a menor. ¿Qué devuelve RANK()?', o:['1, 2, 3','1, 1, 2','1, 1, 3','2, 2, 3'], a:2, e:'RANK da el mismo puesto a los empates y salta: 1, 1, 3. DENSE_RANK daría 1, 1, 2.', l:1},
+ {q:'clientes tiene 100 filas. Haces clientes LEFT JOIN pedidos y algunos clientes tienen varios pedidos. ¿Cuántas filas obtienes?', o:['Exactamente 100','Menos de 100','Más de 100','Igual al número de pedidos'], a:2, e:'LEFT JOIN conserva todos los clientes y repite cada uno por cada pedido (fan-out), así que hay más de 100 filas.', l:0},
+ {q:'¿Cuál es un ejemplo de faltante MNAR?', o:['Un sensor que falla al azar','Personas con ingresos muy altos que no reportan su ingreso','Jóvenes que responden menos, con la edad registrada','Un error de carga que borra filas aleatorias'], a:1, e:'La probabilidad de faltar depende del propio valor no observado: es MNAR.', l:2},
+ {q:'Q1 = 10 y Q3 = 30. ¿Cuál es el límite superior para outliers según la regla de 1.5·IQR?', o:['45','50','60','75'], a:2, e:'IQR = 20. 30 + 1.5·20 = 60.', l:2},
+ {q:'¿Cuál de estas prácticas provoca data leakage?', o:['Ajustar el StandardScaler solo con train','Imputar faltantes con la media de todo el dataset antes de separar train y test','Usar un Pipeline dentro de la validación cruzada','Separar test antes de explorar los datos'], a:1, e:'La media incluye información del test. El imputador debe ajustarse solo con train.', l:3},
+ {q:'Una variable "ciudad" tiene 5.000 valores distintos. ¿Qué codificación es más razonable?', o:['One-hot','Codificación ordinal arbitraria','Target encoding calculado con validación cruzada','Eliminar siempre la variable'], a:2, e:'One-hot generaría 5.000 columnas dispersas. El target encoding con CV resume la información sin filtrar y.', l:3},
+ {q:'Necesitas calcular el crecimiento de ventas de cada mes respecto al mes anterior. ¿Qué función usas?', o:['RANK()','LAG()','COUNT(DISTINCT)','COALESCE()'], a:1, e:'LAG trae el valor de la fila anterior dentro de la ventana ordenada por fecha.', l:1}
+]},
+{t:'Aprendizaje supervisado', lessons:[
+ {h:'Regresión lineal', html:`
+<div class="f">y = β₀ + β₁x₁ + … + βₚxₚ + ε</div>
+<p>Mínimos cuadrados (OLS) elige los β que minimizan la suma de residuos al cuadrado. <b>Interpretación:</b> βⱼ es el cambio esperado en y por cada unidad de xⱼ, <em>manteniendo las demás variables constantes</em>.</p>
+<div class="ex"><b>Ejemplo.</b> precio (millones) = 50 + 2.5·m² + 15·garaje. Un apartamento con 1 m² más vale en promedio 2.5 millones más; tener garaje suma 15 millones, a igual área.</div>
+<p><b>Supuestos (LINE):</b> <b>L</b>inealidad, <b>I</b>ndependencia de errores, <b>N</b>ormalidad de residuos (importa para inferencia, no para predecir) e igual varianza (homocedasticidad, <b>E</b>qual variance). Además, ausencia de multicolinealidad fuerte.</p>
+<ul><li><b>Multicolinealidad:</b> variables muy correlacionadas inflan los errores estándar y vuelven inestables los coeficientes. Se detecta con el <b>VIF</b> (&gt; 5–10 es preocupante).</li><li><b>Heterocedasticidad:</b> los residuos se abren en abanico. Usa errores robustos o transforma y (log).</li><li><b>R²</b> siempre sube al añadir variables; el <b>R² ajustado</b> penaliza las que no aportan.</li></ul>
+<div class="key">El gráfico de residuos vs. predichos es tu herramienta de diagnóstico: si ves patrón (curva, abanico), algún supuesto falla.</div>`},
+ {h:'Regresión logística', html:`
+<p>Para clasificación binaria. Modela el logaritmo de los odds como función lineal y lo convierte en probabilidad con la sigmoide:</p>
+<div class="f">log(p / (1−p)) = β₀ + β·x      p = 1 / (1 + e^−(β₀ + β·x))</div>
+<p><b>Interpretación:</b> e^β es el <b>odds ratio</b>. Por cada unidad de x, los odds se multiplican por e^β.</p>
+<div class="ex"><b>Ejemplo.</b> En un modelo de abandono, β(quejas) = 0.7. e^0.7 ≈ 2.01: cada queja adicional <b>duplica los odds</b> de abandonar. Si β fuera −0.5, e^−0.5 ≈ 0.61: los odds bajan 39%.</div>
+<ul><li>Se entrena minimizando la <b>log-loss</b> (entropía cruzada), no el error cuadrático.</li><li>El umbral 0.5 es una convención: ajústalo según el costo de cada error.</li><li>Para multiclase: regresión softmax (multinomial) o uno-contra-resto.</li><li>Es un modelo lineal en los log-odds: la frontera de decisión es lineal salvo que añadas interacciones o transformaciones.</li></ul>
+<div class="key">Odds ≠ probabilidad. Duplicar los odds de 1:9 (p = 10%) da 2:9 (p ≈ 18%), no 20%.</div>`},
+ {h:'Árboles y ensambles', html:`
+<p>Un árbol divide los datos con preguntas del tipo "¿x &gt; c?" eligiendo la división que más reduce la impureza.</p>
+<div class="f">Gini = 1 − Σ pₖ²      Entropía = − Σ pₖ log₂ pₖ</div>
+<div class="ex"><b>Ejemplo.</b> Nodo con 50% / 50%: Gini = 1 − (0.25 + 0.25) = 0.5 (máxima impureza binaria). Nodo 80% / 20%: 1 − (0.64 + 0.04) = 0.32. Nodo puro: 0.</div>
+<p>Un árbol profundo memoriza el entrenamiento (alta varianza). Se controla con max_depth, min_samples_leaf o poda.</p>
+<div class="tbl"><table><thead><tr><th></th><th>Bagging / Random Forest</th><th>Boosting (XGBoost, LightGBM, CatBoost)</th></tr></thead><tbody>
+<tr><td>Cómo</td><td>Muchos árboles profundos en paralelo, con bootstrap y subconjunto aleatorio de variables en cada split</td><td>Árboles poco profundos en secuencia; cada uno corrige los errores (residuos/gradientes) del anterior</td></tr>
+<tr><td>Reduce sobre todo</td><td>Varianza</td><td>Sesgo</td></tr>
+<tr><td>Hiperparámetros clave</td><td>n_estimators, max_features</td><td>learning_rate, n_estimators, max_depth</td></tr>
+<tr><td>Riesgo</td><td>Pocas veces sobreajusta al añadir árboles</td><td>Sobreajusta si no usas early stopping</td></tr></tbody></table></div>
+<div class="key">En datos tabulares, gradient boosting suele ser el modelo de referencia. La importancia por impureza favorece a variables con muchas categorías; para interpretar, usa importancia por permutación o SHAP.</div>`},
+ {h:'KNN, Naive Bayes, SVM y sesgo-varianza', html:`
+<ul><li><b>KNN:</b> predice con los k vecinos más cercanos. Sin entrenamiento, pero lento al predecir. <b>Requiere escalar.</b> k pequeño → alta varianza; k grande → alto sesgo. Sufre la maldición de la dimensionalidad.</li><li><b>Naive Bayes:</b> aplica Bayes suponiendo <b>independencia condicional</b> de las variables dada la clase. Muy rápido; funciona bien en texto (spam) aunque el supuesto rara vez se cumpla.</li><li><b>SVM:</b> busca el hiperplano de <b>máximo margen</b>. Con kernels (RBF, polinomial) traza fronteras no lineales. C controla cuánto se penalizan los errores de margen.</li></ul>
+<div class="f">Error esperado = Sesgo² + Varianza + Ruido irreducible</div>
+<div class="tbl"><table><thead><tr><th>Síntoma</th><th>Diagnóstico</th><th>Remedios</th></tr></thead><tbody>
+<tr><td>Train malo, test malo</td><td>Subajuste (alto sesgo)</td><td>Modelo más complejo, mejores variables, menos regularización</td></tr>
+<tr><td>Train muy bueno, test mucho peor</td><td>Sobreajuste (alta varianza)</td><td>Más datos, regularización, poda, menos variables, ensambles, early stopping</td></tr></tbody></table></div>
+<div class="key">Curvas de aprendizaje: si train y validación convergen en un valor malo, más datos no ayudan (sesgo). Si hay una brecha grande, más datos sí ayudan (varianza).</div>`}
+],
+quiz:[
+ {q:'En una regresión logística, β = 0.7 para la variable "nº de quejas". ¿Qué significa?', o:['La probabilidad sube 0.7 por queja','Los odds se multiplican por ≈2 por cada queja','La probabilidad se duplica por cada queja','La variable no es significativa'], a:1, e:'e^0.7 ≈ 2.01 es el odds ratio: cada queja duplica los odds, no la probabilidad.', l:1},
+ {q:'¿Qué métrica usas para detectar multicolinealidad?', o:['R²','VIF','AUC','RMSE'], a:1, e:'El factor de inflación de la varianza mide cuánto se infla la varianza de un coeficiente por su correlación con las demás variables.', l:0},
+ {q:'¿Cuál es la diferencia principal entre Random Forest y gradient boosting?', o:['RF entrena árboles en secuencia; boosting en paralelo','RF promedia árboles independientes y reduce varianza; boosting encadena árboles que corrigen errores y reduce sesgo','RF solo sirve para regresión','Boosting no usa árboles'], a:1, e:'Bagging/RF paraleliza y promedia; boosting es secuencial y aditivo.', l:2},
+ {q:'¿Por qué hay que escalar las variables antes de usar KNN?', o:['Porque KNN asume normalidad','Porque usa distancias y las variables de mayor escala dominarían','Para acelerar el entrenamiento','No hace falta escalar'], a:1, e:'Ingreso en pesos frente a edad en años: la distancia la decidiría solo el ingreso.', l:3},
+ {q:'Un árbol tiene 99% de accuracy en train y 70% en test. ¿Qué haces?', o:['Aumentar la profundidad','Limitar la profundidad o usar un ensamble','Quitar el conjunto de test','Usar más variables'], a:1, e:'Es sobreajuste (alta varianza). Poda, max_depth, min_samples_leaf o Random Forest lo reducen.', l:3},
+ {q:'¿Cuál es el índice de Gini de un nodo con 80% de una clase y 20% de la otra?', o:['0.2','0.32','0.5','0.8'], a:1, e:'1 − (0.8² + 0.2²) = 1 − 0.68 = 0.32.', l:2},
+ {q:'¿Por qué se reporta el R² ajustado en lugar del R²?', o:['Porque el R² puede ser negativo','Porque el R² siempre sube al añadir variables, aunque no aporten','Porque el ajustado mide la normalidad','Porque es más fácil de calcular'], a:1, e:'El R² ajustado penaliza el número de predictores.', l:0},
+ {q:'¿Qué supone Naive Bayes?', o:['Que las variables siguen una normal','Que las variables son independientes entre sí dada la clase','Que las clases están balanceadas','Que la relación es lineal'], a:1, e:'Independencia condicional: P(x₁,…,xₙ|y) = Π P(xᵢ|y).', l:3}
+]},
+{t:'Evaluación y validación', lessons:[
+ {h:'Esquemas de validación', html:`
+<ul><li><b>Holdout:</b> train / validación / test (p. ej., 70/15/15). Simple, pero la métrica depende de la partición.</li><li><b>K-fold:</b> k particiones; entrenas con k−1 y validas con la restante, k veces. Promedias la métrica.</li><li><b>Estratificado:</b> mantiene la proporción de clases en cada fold. Imprescindible con desbalance.</li><li><b>GroupKFold:</b> cuando hay varias filas por entidad (paciente, cliente). Todas las filas de un grupo van al mismo fold; si no, el modelo "reconoce" al paciente.</li><li><b>TimeSeriesSplit:</b> en series temporales se entrena con el pasado y se valida con el futuro, nunca al revés.</li><li><b>Nested CV:</b> un CV interno para ajustar hiperparámetros y uno externo para estimar el rendimiento sin sesgo.</li></ul>
+<div class="ex"><b>Ejemplo.</b> Tienes 5 radiografías por paciente. Con k-fold aleatorio obtienes AUC 0.95; con GroupKFold por paciente, 0.81. El 0.95 era optimista porque el mismo paciente estaba en train y en validación.</div>
+<div class="key">El conjunto de test se toca una sola vez, al final. Si eliges el modelo mirando el test, ese test deja de ser una estimación honesta.</div>`},
+ {h:'Métricas de clasificación', html:`
+<div class="tbl"><table><thead><tr><th></th><th>Predicho +</th><th>Predicho −</th></tr></thead><tbody>
+<tr><td>Real +</td><td>TP (verdadero positivo)</td><td>FN (falso negativo)</td></tr>
+<tr><td>Real −</td><td>FP (falso positivo)</td><td>TN (verdadero negativo)</td></tr></tbody></table></div>
+<div class="f">Precision = TP/(TP+FP)   Recall = TP/(TP+FN)   F1 = 2PR/(P+R)</div>
+<ul><li><b>Precision:</b> de lo que marqué como positivo, cuánto lo era. Prioriza si los falsos positivos son caros (bloquear a un buen cliente).</li><li><b>Recall (sensibilidad):</b> de los positivos reales, cuántos encontré. Prioriza si los falsos negativos son caros (no detectar un cáncer o un fraude).</li><li><b>Especificidad:</b> TN/(TN+FP).</li></ul>
+<div class="ex"><b>Ejemplo.</b> TP = 40, FP = 10, FN = 20, TN = 930.<br>Accuracy = 970/1000 = 97% (engañoso). Precision = 40/50 = <b>0.80</b>. Recall = 40/60 = <b>0.67</b>. F1 = 2·0.8·0.67/1.47 ≈ <b>0.73</b>.</div>
+<p><b>ROC-AUC:</b> probabilidad de que el modelo puntúe más alto a un positivo aleatorio que a un negativo aleatorio. 0.5 = azar, 1 = perfecto. Es independiente del umbral. <b>PR-AUC</b> es más informativa con clases muy desbalanceadas, porque ROC se ve inflada por la gran cantidad de verdaderos negativos.</p>
+<div class="key">Con 1% de fraude, un modelo que dice "nunca es fraude" tiene 99% de accuracy y recall 0. Nunca reportes solo accuracy con desbalance.</div>`},
+ {h:'Métricas de regresión', html:`
+<div class="tbl"><table><thead><tr><th>Métrica</th><th>Fórmula</th><th>Cuándo</th></tr></thead><tbody>
+<tr><td>MAE</td><td>media |y − ŷ|</td><td>Robusta a outliers; en las unidades de y</td></tr>
+<tr><td>RMSE</td><td>√ media (y − ŷ)²</td><td>Penaliza más los errores grandes</td></tr>
+<tr><td>MAPE</td><td>media |y − ŷ| / |y|</td><td>Error porcentual; falla si y ≈ 0</td></tr>
+<tr><td>R²</td><td>1 − SSres/SStot</td><td>Proporción de varianza explicada</td></tr></tbody></table></div>
+<div class="ex"><b>Ejemplo.</b> Errores absolutos 1, 1, 1, 9.<br>MAE = 12/4 = <b>3</b>. RMSE = √((1+1+1+81)/4) = √21 ≈ <b>4.58</b>. Siempre RMSE ≥ MAE; la brecha crece cuando hay errores grandes.</div>
+<p><b>R² negativo</b> significa que el modelo es peor que predecir siempre la media. Pasa en test cuando el modelo sobreajusta mucho.</p>
+<div class="key">Elige la métrica según el costo del negocio: si un error de 10 es 10 veces peor que uno de 1, usa MAE; si es mucho más que 10 veces peor, RMSE.</div>`},
+ {h:'Umbral, calibración y desbalance', html:`
+<p>Un clasificador da puntajes; tú eliges el <b>umbral</b>. Bajarlo sube el recall y baja la precision. Elige el umbral que minimiza el costo esperado o que cumple un requisito ("recall ≥ 90%").</p>
+<p><b>Calibración:</b> un modelo está calibrado si, entre los casos con probabilidad 0.8, el 80% son positivos. Se revisa con la curva de calibración y el Brier score; se corrige con Platt scaling o regresión isotónica. Importa cuando usas la probabilidad para decidir montos o precios.</p>
+<p><b>Desbalance de clases:</b></p>
+<ul><li>Métricas adecuadas: PR-AUC, F1, recall a una precision dada.</li><li>class_weight="balanced" o pesos por costo.</li><li>Sobremuestreo (SMOTE) o submuestreo, <b>solo dentro del train de cada fold</b>.</li><li>Ajustar el umbral suele ser lo más simple y efectivo.</li></ul>
+<div class="ex"><b>Ejemplo.</b> Un falso negativo de fraude cuesta 500 y un falso positivo 5 (revisar la transacción). Conviene un umbral bajo: aceptas muchos falsos positivos baratos para no dejar pasar fraudes caros.</div>
+<div class="key">Aplicar SMOTE antes de separar train y test es leakage: crea ejemplos sintéticos derivados de puntos que luego aparecen en test.</div>`}
+],
+quiz:[
+ {q:'TP = 30, FP = 20, FN = 10. ¿Cuál es la precision?', o:['0.75','0.60','0.40','0.33'], a:1, e:'Precision = 30/(30+20) = 0.6. El recall sería 30/(30+10) = 0.75.', l:1},
+ {q:'Un modelo de fraude (1% de positivos) tiene 99% de accuracy. ¿Qué concluyes?', o:['Es excelente','No se puede concluir nada útil: predecir siempre "no fraude" da 99%','Está sobreajustado','Hay leakage seguro'], a:1, e:'Con desbalance la accuracy es engañosa. Hay que mirar recall, precision o PR-AUC.', l:1},
+ {q:'En tamizaje de cáncer, ¿qué métrica priorizas?', o:['Precision','Recall','Accuracy','Especificidad'], a:1, e:'Un falso negativo (no detectar un cáncer) es mucho más grave que un falso positivo que se confirma con otra prueba.', l:1},
+ {q:'Tu dataset tiene varias filas por paciente. ¿Qué validación usas?', o:['K-fold aleatorio','GroupKFold por paciente','Solo holdout','Leave-one-out por fila'], a:1, e:'Evita que el mismo paciente quede en train y en validación, lo que inflaría las métricas.', l:0},
+ {q:'Errores absolutos: 2, 2, 2, 10. ¿Cuánto valen MAE y RMSE?', o:['MAE 4, RMSE ≈ 5.29','MAE 4, RMSE 4','MAE 5.29, RMSE 4','MAE 16, RMSE 28'], a:0, e:'MAE = 16/4 = 4. RMSE = √((4+4+4+100)/4) = √28 ≈ 5.29.', l:2},
+ {q:'¿Por qué es un error aplicar SMOTE a todo el dataset antes de separar train y test?', o:['Porque SMOTE no funciona con datos numéricos','Porque genera leakage: los sintéticos derivan de puntos que terminan en test','Porque reduce el recall','No es un error'], a:1, e:'El remuestreo debe hacerse solo con los datos de entrenamiento de cada fold.', l:3},
+ {q:'Un modelo obtiene R² = −0.2 en test. ¿Qué significa?', o:['Explica el 20% de la varianza','Es peor que predecir siempre la media','Hay un error de cálculo, R² no puede ser negativo','La relación es inversa'], a:1, e:'R² = 1 − SSres/SStot es negativo cuando el error del modelo supera al de la media.', l:2},
+ {q:'Un ROC-AUC de 0.5 indica:', o:['Un modelo perfecto','Un modelo que clasifica al azar','Un 50% de accuracy','Un modelo calibrado'], a:1, e:'AUC 0.5 = no distingue positivos de negativos mejor que el azar.', l:1}
+]},
+{t:'Aprendizaje no supervisado', lessons:[
+ {h:'K-means', html:`
+<ol><li>Elige k centroides iniciales (k-means++ los separa bien).</li><li>Asigna cada punto al centroide más cercano.</li><li>Recalcula cada centroide como la media de sus puntos.</li><li>Repite hasta que no cambie.</li></ol>
+<p>Minimiza la <b>inercia</b> (suma de distancias al cuadrado a su centroide). Supone clusters más o menos esféricos y de tamaño parecido, es sensible a la escala y a outliers, y puede caer en óptimos locales (por eso se corre varias veces con n_init).</p>
+<p><b>Elegir k:</b></p>
+<ul><li><b>Método del codo:</b> grafica la inercia contra k y busca donde deja de bajar mucho.</li><li><b>Silueta:</b> para cada punto, a = distancia media a su cluster y b = distancia media al cluster vecino más cercano.</li></ul>
+<div class="f">s = (b − a) / max(a, b)   ∈ [−1, 1]</div>
+<div class="ex"><b>Ejemplo.</b> Un punto con a = 2 y b = 8: s = 6/8 = 0.75, bien asignado. Si a = 5 y b = 4: s = −0.2, probablemente está en el cluster equivocado.</div>
+<div class="key">La inercia siempre baja al aumentar k (con k = n vale 0), así que no sirve sola para elegir k.</div>`},
+ {h:'Jerárquico, DBSCAN y mezclas gaussianas', html:`
+<ul><li><b>Jerárquico aglomerativo:</b> empieza con cada punto como cluster y fusiona los más cercanos. El <b>dendrograma</b> muestra la jerarquía y lo cortas a la altura que quieras. El linkage define la distancia entre clusters: Ward (minimiza varianza), completo, promedio, simple. No escala bien a datasets grandes.</li><li><b>DBSCAN:</b> agrupa por densidad con dos parámetros, eps (radio) y min_samples. Encuentra clusters de <b>forma arbitraria</b>, no necesita k y marca <b>ruido</b> (outliers). Le cuesta cuando los clusters tienen densidades muy distintas.</li><li><b>Mezclas gaussianas (GMM):</b> supone que los datos vienen de k normales. Da <b>asignación suave</b> (probabilidad de pertenecer a cada cluster) y admite clusters elípticos. Se ajusta con el algoritmo EM.</li></ul>
+<div class="tbl"><table><thead><tr><th>Situación</th><th>Algoritmo</th></tr></thead><tbody>
+<tr><td>Clusters esféricos, muchos datos</td><td>K-means</td></tr>
+<tr><td>Formas raras (lunas, anillos) y ruido</td><td>DBSCAN</td></tr>
+<tr><td>Necesitas probabilidades de pertenencia</td><td>GMM</td></tr>
+<tr><td>Quieres ver la jerarquía (taxonomías)</td><td>Jerárquico</td></tr></tbody></table></div>
+<div class="key">Validar clustering es difícil porque no hay etiquetas. Combina silueta con interpretación de negocio: ¿los segmentos se pueden describir y accionar?</div>`},
+ {h:'Reducción de dimensionalidad', html:`
+<div class="tbl"><table><thead><tr><th></th><th>PCA</th><th>t-SNE</th><th>UMAP</th></tr></thead><tbody>
+<tr><td>Tipo</td><td>Lineal</td><td>No lineal</td><td>No lineal</td></tr>
+<tr><td>Preserva</td><td>Varianza global</td><td>Vecindarios locales</td><td>Local y algo de la estructura global</td></tr>
+<tr><td>Transforma datos nuevos</td><td>Sí</td><td>No (en la versión estándar)</td><td>Sí</td></tr>
+<tr><td>Uso típico</td><td>Preprocesar, comprimir, quitar colinealidad</td><td>Visualizar en 2D</td><td>Visualizar y preprocesar</td></tr></tbody></table></div>
+<p>En t-SNE las distancias entre clusters y sus tamaños en el gráfico no tienen significado fiable, y el resultado depende de la perplexity y de la semilla.</p>
+<div class="ex"><b>Ejemplo.</b> Tienes embeddings de 768 dimensiones de reseñas. Para ver si se separan por sentimiento: UMAP o t-SNE a 2D. Para alimentar un clasificador más ligero: PCA a 50 dimensiones.</div>
+<div class="key">No uses t-SNE como paso de preprocesamiento de un modelo: no es determinista y no proyecta datos nuevos.</div>`},
+ {h:'Detección de anomalías', html:`
+<ul><li><b>Estadísticos:</b> z-score, IQR. Simples, univariados.</li><li><b>Isolation Forest:</b> construye árboles con cortes aleatorios. Las anomalías son raras y distintas, así que quedan <b>aisladas con pocos cortes</b> (caminos cortos). Escala bien y funciona en muchas dimensiones.</li><li><b>LOF (Local Outlier Factor):</b> compara la densidad de un punto con la de sus vecinos. Detecta anomalías locales.</li><li><b>One-Class SVM</b> y <b>autoencoders:</b> aprenden lo "normal"; un error de reconstrucción alto indica anomalía.</li></ul>
+<p>El parámetro <b>contamination</b> fija qué fracción de puntos se marcará como anómala. Si tienes algunas etiquetas, úsalas para elegirlo y evaluar con precision@k.</p>
+<div class="ex"><b>Ejemplo.</b> Transacciones con monto, hora, país y comercio. Isolation Forest con contamination = 0.005 marca las 50 más raras de 10.000 para que un analista las revise.</div>
+<div class="key">Si tienes suficientes casos etiquetados de fraude, un modelo supervisado suele superar a la detección de anomalías. Úsala cuando casi no hay etiquetas o los patrones cambian rápido.</div>`}
+],
+quiz:[
+ {q:'Un punto tiene silueta −0.4. ¿Qué indica?', o:['Está muy bien asignado','Está en la frontera entre dos clusters','Probablemente está asignado al cluster equivocado','Es el centroide'], a:2, e:'Silueta negativa: está más cerca, en promedio, de otro cluster que del suyo.', l:0},
+ {q:'Tus datos forman dos medias lunas entrelazadas con algo de ruido. ¿Qué algoritmo funciona mejor?', o:['K-means','DBSCAN','PCA','Regresión logística'], a:1, e:'DBSCAN agrupa por densidad, detecta formas arbitrarias y marca el ruido.', l:1},
+ {q:'Haces k-means sobre "ingreso" (millones) y "edad" (años) sin escalar. ¿Qué pasa?', o:['Nada, k-means es invariante a la escala','El ingreso domina las distancias y la edad casi no influye','La edad domina','El algoritmo no converge'], a:1, e:'K-means usa distancia euclídea; la variable de mayor escala decide los clusters.', l:0},
+ {q:'¿En qué principio se basa Isolation Forest?', o:['Las anomalías tienen alta densidad','Las anomalías se aíslan con pocos cortes aleatorios','Las anomalías tienen error de reconstrucción bajo','Las anomalías están cerca del centroide'], a:1, e:'Al ser raras y distintas, quedan separadas en pocos pasos: caminos cortos en el árbol.', l:3},
+ {q:'¿Para qué es apropiado t-SNE?', o:['Preprocesar variables para un modelo en producción','Visualizar datos de alta dimensión en 2D','Medir distancias globales entre clusters','Seleccionar variables'], a:1, e:'t-SNE preserva vecindarios locales para visualizar; no sirve para preprocesar ni interpretar distancias globales.', l:2},
+ {q:'Necesitas la probabilidad de que cada cliente pertenezca a cada segmento. ¿Qué usas?', o:['K-means','Mezclas gaussianas (GMM)','DBSCAN','Jerárquico con linkage simple'], a:1, e:'GMM da asignación suave: una probabilidad por componente.', l:1},
+ {q:'¿Por qué la inercia sola no sirve para elegir k en k-means?', o:['Porque siempre disminuye al aumentar k','Porque es negativa','Porque depende de la semilla','Porque solo funciona con k = 2'], a:0, e:'Con más clusters, cada punto queda más cerca de un centroide. Con k = n la inercia es 0.', l:0}
+]},
+{t:'Series de tiempo y procesos estocásticos', lessons:[
+ {h:'Componentes y estacionariedad', html:`
+<p>Una serie se descompone en <b>tendencia</b> (dirección de largo plazo), <b>estacionalidad</b> (patrón que se repite con período fijo: semanal, anual), <b>ciclos</b> (oscilaciones sin período fijo) y <b>ruido</b>. La descomposición puede ser aditiva (y = T + S + R) o multiplicativa (y = T·S·R, cuando la amplitud estacional crece con el nivel).</p>
+<p>Una serie es <b>estacionaria</b> si su media, varianza y autocovarianza no cambian en el tiempo. Muchos modelos (ARMA) la requieren.</p>
+<ul><li><b>Prueba ADF (Dickey-Fuller aumentada):</b> H₀ = la serie tiene raíz unitaria (no es estacionaria). p &lt; 0.05 → la consideras estacionaria.</li><li><b>KPSS:</b> al revés, H₀ = es estacionaria. Usar las dos da más seguridad.</li><li><b>Cómo estacionarizar:</b> diferenciar (yₜ − yₜ₋₁), diferencia estacional (yₜ − yₜ₋₁₂), log para estabilizar la varianza.</li></ul>
+<div class="ex"><b>Ejemplo.</b> Ventas mensuales con tendencia creciente: ADF p = 0.62 (no estacionaria). Tras una diferencia: p = 0.01. Eso sugiere d = 1 en ARIMA.</div>
+<div class="key">Cuidado con la dirección de la H₀: en ADF un p-valor alto significa "no estacionaria".</div>`},
+ {h:'ACF, PACF y la familia ARIMA', html:`
+<p>La <b>ACF</b> mide la correlación de la serie con sus rezagos. La <b>PACF</b> mide la correlación con el rezago k quitando el efecto de los intermedios.</p>
+<div class="tbl"><table><thead><tr><th>Patrón</th><th>Modelo sugerido</th></tr></thead><tbody>
+<tr><td>PACF se corta tras el rezago p, ACF decae gradualmente</td><td>AR(p)</td></tr>
+<tr><td>ACF se corta tras el rezago q, PACF decae gradualmente</td><td>MA(q)</td></tr>
+<tr><td>Ambas decaen gradualmente</td><td>ARMA(p, q)</td></tr>
+<tr><td>ACF decae muy lentamente</td><td>No estacionaria: diferencia</td></tr></tbody></table></div>
+<div class="f">ARIMA(p, d, q):  p = orden AR,  d = diferenciaciones,  q = orden MA</div>
+<ul><li><b>SARIMA(p,d,q)(P,D,Q)ₛ:</b> añade componentes estacionales con período s.</li><li><b>Suavizado exponencial (ETS, Holt-Winters):</b> pondera más las observaciones recientes; maneja tendencia y estacionalidad.</li><li><b>Prophet:</b> modelo aditivo con tendencia, estacionalidades y festivos; cómodo para series de negocio.</li><li><b>ML con rezagos:</b> gradient boosting o LSTM con variables de lag, medias móviles y calendario.</li></ul>
+<div class="key">Elige entre modelos candidatos con AIC/BIC (menor es mejor) y, sobre todo, con error de backtesting.</div>`},
+ {h:'Validación y pronóstico', html:`
+<p>En series de tiempo no se puede mezclar el orden. Se usa <b>backtesting de origen móvil</b>:</p>
+<pre class="code">Fold 1: train [ene–jun]  → test [jul]
+Fold 2: train [ene–jul]  → test [ago]
+Fold 3: train [ene–ago]  → test [sep]   (ventana expandible)</pre>
+<ul><li><b>Pronóstico multi-horizonte:</b> recursivo (predices t+1 y lo usas para t+2; los errores se acumulan), directo (un modelo por horizonte) o multi-salida.</li><li><b>Métricas:</b> MAE, RMSE, MAPE (falla con ceros) y <b>MASE</b>, que compara con un pronóstico ingenuo: MASE &lt; 1 significa que mejoras al ingenuo.</li><li><b>Línea base obligatoria:</b> el pronóstico ingenuo (mañana = hoy) o el ingenuo estacional (este lunes = el lunes pasado).</li></ul>
+<div class="ex"><b>Ejemplo de leakage temporal.</b> Calcular una media móvil centrada (que usa días futuros) como variable, o normalizar con la media de toda la serie. En producción no tendrás esos datos.</div>
+<div class="key">Las variables de rezago deben construirse solo con información disponible en el momento de predecir, respetando el horizonte (para pronosticar a 7 días, el rezago mínimo es 7).</div>`},
+ {h:'Cadenas de Markov y simulación Montecarlo', html:`
+<p><b>Propiedad de Markov:</b> el futuro depende solo del estado presente, no de la historia. Una cadena se describe con una <b>matriz de transición</b> P, donde Pᵢⱼ = probabilidad de pasar de i a j. <b>Cada fila suma 1.</b></p>
+<ul><li>Probabilidad a n pasos: Pⁿ.</li><li><b>Distribución estacionaria</b> π: cumple π = πP. Es la proporción de tiempo a largo plazo en cada estado.</li></ul>
+<div class="ex"><b>Ejemplo.</b> Clientes activos (A) e inactivos (I). P = [[0.9, 0.1], [0.5, 0.5]].<br>π_A = 0.9π_A + 0.5π_I → 0.1π_A = 0.5π_I → π_A = 5π_I. Como π_A + π_I = 1: π_A = 5/6 ≈ <b>83%</b> activos a largo plazo.<br>Probabilidad de A→A en 2 pasos: 0.9·0.9 + 0.1·0.5 = <b>0.86</b>.</div>
+<p><b>Montecarlo:</b> estima cantidades difíciles simulando muchas veces con números aleatorios. Usos: riesgo financiero (VaR), valorar proyectos inciertos, integrar numéricamente, MCMC en estadística bayesiana. El error decrece como <b>1/√n</b>.</p>
+<pre class="code">import numpy as np
+n = 1_000_000
+x, y = np.random.rand(n), np.random.rand(n)
+pi_est = 4 * np.mean(x**2 + y**2 &lt;= 1)   # ≈ 3.1416</pre>
+<div class="key">Las cadenas de Markov aparecen en modelos de atribución de marketing, PageRank, modelos ocultos de Markov (HMM) y en el muestreo MCMC.</div>`}
+],
+quiz:[
+ {q:'La prueba ADF da p = 0.40. ¿Qué concluyes?', o:['La serie es estacionaria','No se rechaza la raíz unitaria: la serie probablemente no es estacionaria','La serie es ruido blanco','Hay estacionalidad'], a:1, e:'En ADF, H₀ es "raíz unitaria". Con p alto no se rechaza: hay que diferenciar.', l:0},
+ {q:'La PACF se corta abruptamente después del rezago 2 y la ACF decae gradualmente. ¿Qué modelo sugiere?', o:['MA(2)','AR(2)','ARIMA(0,2,0)','Ruido blanco'], a:1, e:'Un corte en la PACF tras el rezago p indica AR(p).', l:1},
+ {q:'En ARIMA(1, 1, 2), ¿qué representa el 1 del medio?', o:['El orden AR','El número de diferenciaciones','El orden MA','El período estacional'], a:1, e:'ARIMA(p, d, q): d es cuántas veces se diferencia la serie.', l:1},
+ {q:'¿Qué propiedad cumple siempre una matriz de transición de Markov?', o:['Es simétrica','Cada fila suma 1','Cada columna suma 1','Su diagonal es cero'], a:1, e:'Cada fila es una distribución de probabilidad sobre los estados siguientes.', l:3},
+ {q:'P = [[0.9, 0.1], [0.5, 0.5]] (estado A, estado I). ¿Cuál es la proporción de largo plazo en A?', o:['50%','83%','90%','10%'], a:1, e:'Resolviendo π = πP: π_A = 5π_I, así que π_A = 5/6 ≈ 0.83.', l:3},
+ {q:'¿Cómo validas correctamente un modelo de pronóstico?', o:['K-fold aleatorio','Backtesting con origen móvil: entrenar con el pasado y validar con el futuro','Validar con los primeros meses y entrenar con los últimos','Usar solo el R² de entrenamiento'], a:1, e:'Hay que respetar el orden temporal para no usar información del futuro.', l:2},
+ {q:'En una simulación Montecarlo, ¿cuántas simulaciones más necesitas para reducir el error a la mitad?', o:['El doble','Cuatro veces más','Diez veces más','No depende del número de simulaciones'], a:1, e:'El error decrece como 1/√n.', l:3},
+ {q:'Un modelo tiene MASE = 1.3. ¿Qué significa?', o:['Es 30% mejor que el pronóstico ingenuo','Es peor que el pronóstico ingenuo','Tiene 1.3% de error','Está perfectamente calibrado'], a:1, e:'MASE > 1 indica más error que la línea base ingenua.', l:2}
+]},
+{t:'Experimentación y causalidad', lessons:[
+ {h:'Diseño de un A/B test', html:`
+<ol><li><b>Hipótesis</b> y una <b>métrica primaria</b> definida antes de empezar (conversión, ingreso por usuario).</li><li><b>Unidad de aleatorización</b> (usuario, sesión, tienda) y asignación aleatoria.</li><li><b>Efecto mínimo detectable (MDE):</b> el cambio más pequeño que vale la pena detectar.</li><li><b>Tamaño de muestra</b> según α, potencia y varianza.</li><li><b>Duración fija</b>, idealmente semanas completas para cubrir la estacionalidad semanal.</li><li><b>Métricas de resguardo (guardrails):</b> que no empeoren (latencia, cancelaciones).</li></ol>
+<div class="f">n por grupo ≈ 16 · σ² / δ²   (α = 0.05 bilateral, potencia 80%)</div>
+<p>Para una proporción p, σ² = p(1 − p). El 16 viene de 2·(1.96 + 0.84)² ≈ 15.7.</p>
+<div class="ex"><b>Ejemplo.</b> Conversión base 10%, quieres detectar +1 punto (δ = 0.01). σ² = 0.1·0.9 = 0.09. n ≈ 16·0.09/0.0001 = <b>14.400 usuarios por grupo</b>. Si quisieras detectar +0.5 puntos, necesitarías 4 veces más.</div>
+<div class="key">Para aumentar la potencia: más muestra, un MDE mayor, menos varianza (CUPED, métricas menos ruidosas) o un α más alto.</div>`},
+ {h:'Errores comunes en experimentos', html:`
+<ul><li><b>Peeking:</b> mirar el p-valor todos los días y parar al ver p &lt; 0.05 infla mucho los falsos positivos. Fija la muestra antes o usa pruebas secuenciales.</li><li><b>Múltiples métricas o segmentos:</b> si pruebas 20, alguna saldrá significativa por azar. Corrige o define una métrica primaria.</li><li><b>Sample Ratio Mismatch (SRM):</b> esperabas 50/50 y obtienes 52/48 con 100.000 usuarios. Una prueba chi-cuadrado lo detecta. Indica un fallo en la asignación o el registro: los resultados no son confiables hasta encontrar la causa.</li><li><b>Efecto novedad o aprendizaje:</b> los usuarios reaccionan al cambio en sí y el efecto se desvanece.</li><li><b>Interferencia (spillover):</b> en marketplaces o redes sociales los grupos se afectan entre sí. Aleatoriza por región o por cluster.</li><li><b>Unidad de análisis distinta a la de aleatorización:</b> aleatorizas usuarios pero analizas sesiones; los errores estándar salen demasiado pequeños.</li></ul>
+<div class="ex"><b>Ejemplo.</b> Un test arroja +8% en conversión los primeros 3 días y el equipo quiere lanzarlo. Lo correcto es completar la duración planeada: los primeros días suelen sobreestimar el efecto por novedad y por el ruido de muestras pequeñas.</div>
+<div class="key">Significancia estadística no es lo mismo que relevancia práctica. Reporta siempre el tamaño del efecto con su intervalo de confianza.</div>`},
+ {h:'Causalidad con datos observacionales', html:`
+<p>Cuando no puedes aleatorizar, el riesgo es la <b>confusión</b>: una variable que afecta tanto al tratamiento como al resultado.</p>
+<div class="ex"><b>Ejemplo.</b> Los clientes que usan la app gastan más. ¿La app causa más gasto? Tal vez los clientes más comprometidos (confusor) usan la app <em>y</em> gastan más.</div>
+<p><b>Paradoja de Simpson:</b> una tendencia que aparece en cada subgrupo se invierte al juntar los datos, porque los grupos tienen tamaños y composiciones distintas.</p>
+<div class="tbl"><table><thead><tr><th>Método</th><th>Idea</th><th>Supuesto clave</th></tr></thead><tbody>
+<tr><td>Diferencias en diferencias (DiD)</td><td>Compara el cambio antes/después entre tratados y control</td><td>Tendencias paralelas sin tratamiento</td></tr>
+<tr><td>Regresión discontinua (RDD)</td><td>Compara justo a cada lado de un umbral (puntaje ≥ 600 recibe crédito)</td><td>Nadie manipula su posición en el umbral</td></tr>
+<tr><td>Propensity score matching</td><td>Empareja tratados y no tratados con igual probabilidad de tratamiento</td><td>No hay confusores no observados</td></tr>
+<tr><td>Variables instrumentales</td><td>Una variable que afecta al tratamiento pero no al resultado directamente</td><td>Validez del instrumento (exclusión)</td></tr>
+<tr><td>Control sintético</td><td>Construye un "gemelo" del tratado con una mezcla de controles</td><td>Buen ajuste antes del tratamiento</td></tr></tbody></table></div>
+<div class="key">DiD: efecto = (Tratado_después − Tratado_antes) − (Control_después − Control_antes). Siempre revisa que las tendencias fueran paralelas antes de la intervención.</div>`},
+ {h:'Analizar e interpretar resultados', html:`
+<ul><li><b>Métricas de proporción:</b> prueba z de dos proporciones o chi-cuadrado.</li><li><b>Métricas continuas:</b> prueba t de Welch. Con colas pesadas (ingresos), bootstrap o winsorizar.</li><li><b>Métricas de ratio</b> (ingreso por sesión cuando aleatorizas usuarios): método delta o bootstrap por usuario.</li><li><b>Efecto relativo:</b> (B − A)/A, con su intervalo de confianza.</li></ul>
+<div class="ex"><b>Ejemplo.</b> A: 1.000 conversiones de 10.000 (10.0%). B: 1.100 de 10.000 (11.0%). Diferencia = 1 punto (+10% relativo). Error estándar ≈ √(0.1·0.9/10000 + 0.11·0.89/10000) ≈ 0.0043. z ≈ 0.01/0.0043 ≈ 2.3 → p ≈ 0.02. IC 95% de la diferencia ≈ [0.16, 1.84] puntos.</div>
+<p><b>Decisión:</b> combina significancia, tamaño del efecto, guardrails y costo de implementación. Un resultado no significativo con un intervalo que incluye efectos relevantes significa "no sabemos", no "no funciona".</p>
+<div class="key">Antes de analizar, revisa el SRM y que la asignación fuera estable. Un test mal ejecutado no se arregla con estadística.</div>`}
+],
+quiz:[
+ {q:'Conversión base 10%. Quieres detectar +1 punto con α = 0.05 y potencia 80%. ¿Cuántos usuarios necesitas por grupo, aproximadamente?', o:['1.440','14.400','144.000','900'], a:1, e:'n ≈ 16·σ²/δ² = 16·0.09/0.0001 = 14.400.', l:0},
+ {q:'Esperabas un reparto 50/50 y con 200.000 usuarios obtienes 52/48. ¿Qué haces?', o:['Nada, es variación normal','Investigar un posible fallo de asignación (SRM) antes de confiar en los resultados','Repetir el análisis solo con el grupo mayor','Bajar α'], a:1, e:'Con esa muestra, una desviación de 2 puntos es casi imposible por azar. Es un Sample Ratio Mismatch.', l:1},
+ {q:'¿Cuál es el supuesto clave de diferencias en diferencias?', o:['Asignación aleatoria','Tendencias paralelas entre tratados y control sin la intervención','Normalidad de los residuos','Que haya un umbral'], a:1, e:'Si las tendencias ya divergían antes, el DiD atribuye esa diferencia al tratamiento por error.', l:2},
+ {q:'¿Qué es un confusor?', o:['Una variable que solo afecta al resultado','Una variable que afecta tanto al tratamiento como al resultado','Un error de medición','Una variable con muchos faltantes'], a:1, e:'Crea una asociación entre tratamiento y resultado que no es causal.', l:2},
+ {q:'Revisas el A/B test cada día y lo detienes en cuanto p < 0.05. ¿Cuál es el problema?', o:['Ninguno','Aumenta la tasa real de falsos positivos muy por encima del 5%','Reduce el tamaño del efecto','Hace imposible calcular el IC'], a:1, e:'Es peeking: al hacer muchas pruebas, la probabilidad de cruzar el umbral por azar crece.', l:1},
+ {q:'¿Cuál de estas acciones aumenta la potencia de un experimento?', o:['Reducir la muestra','Aumentar la muestra','Bajar α de 0.05 a 0.01','Buscar un MDE más pequeño'], a:1, e:'Más muestra reduce el error estándar. Bajar α o el MDE requiere más muestra para igual potencia.', l:0},
+ {q:'Un tratamiento es mejor en hombres y en mujeres por separado, pero peor en el total. ¿Qué fenómeno es?', o:['Regresión a la media','Paradoja de Simpson','Efecto novedad','Sesgo de supervivencia'], a:1, e:'La composición desigual de los grupos invierte la tendencia agregada.', l:2}
+]},
+{t:'Deep learning, NLP y LLMs', lessons:[
+ {h:'Redes neuronales: lo esencial', html:`
+<p>Una neurona calcula z = w·x + b y aplica una <b>activación</b> no lineal. Apilando capas, la red aproxima funciones complejas.</p>
+<div class="tbl"><table><thead><tr><th>Activación</th><th>Uso</th></tr></thead><tbody>
+<tr><td>ReLU: max(0, z)</td><td>Capas ocultas (estándar)</td></tr>
+<tr><td>Sigmoide</td><td>Salida binaria (probabilidad)</td></tr>
+<tr><td>Softmax</td><td>Salida multiclase (probabilidades que suman 1)</td></tr>
+<tr><td>Lineal</td><td>Salida de regresión</td></tr></tbody></table></div>
+<ul><li><b>Pérdida:</b> MSE para regresión; entropía cruzada (binaria o categórica) para clasificación.</li><li><b>Backpropagation:</b> regla de la cadena para calcular el gradiente de la pérdida respecto a cada peso; luego un optimizador (SGD, Adam) actualiza.</li><li><b>Época:</b> una pasada completa por los datos. <b>Batch:</b> los ejemplos por actualización.</li><li><b>Regularización:</b> dropout, weight decay (L2), early stopping, data augmentation. <b>Batch normalization</b> estabiliza y acelera.</li><li><b>Desvanecimiento del gradiente:</b> en redes profundas con sigmoide los gradientes se vuelven ~0. ReLU, buena inicialización, conexiones residuales y normalización lo mitigan.</li></ul>
+<div class="key">Si la pérdida de entrenamiento baja pero la de validación empieza a subir, estás sobreajustando: early stopping en el mínimo de validación.</div>`},
+ {h:'CNN, RNN y transfer learning', html:`
+<ul><li><b>CNN (redes convolucionales):</b> filtros pequeños que recorren la imagen y <b>comparten pesos</b>, lo que reduce parámetros y da invariancia a la traslación. Pooling reduce la resolución. Capas iniciales detectan bordes; las profundas, formas y objetos.</li><li><b>RNN:</b> procesan secuencias manteniendo un estado oculto. Sufren desvanecimiento del gradiente en secuencias largas.</li><li><b>LSTM y GRU:</b> añaden <b>compuertas</b> (olvido, entrada, salida) que controlan qué información se guarda, lo que permite memoria de largo plazo.</li><li><b>Transfer learning:</b> partes de un modelo preentrenado en muchos datos (ImageNet, BERT) y ajustas solo las últimas capas o todo con una tasa de aprendizaje baja. Es lo normal cuando tienes pocos datos.</li></ul>
+<div class="ex"><b>Ejemplo.</b> Clasificar 2.000 fotos de frailejones vs. otra vegetación. Entrenar una CNN desde cero sobreajustaría. Con ResNet preentrenada: congelas la base, reemplazas la capa final por una de 2 clases, entrenas, y luego descongelas las últimas capas con η pequeña.</div>
+<div class="key">Parámetros de una capa convolucional = (alto·ancho·canales_entrada + 1)·nº_filtros. Un filtro 3×3 sobre RGB con 32 filtros: (3·3·3 + 1)·32 = 896.</div>`},
+ {h:'Representación de texto y transformers', html:`
+<p><b>De palabras a números:</b></p>
+<ul><li><b>Bag of Words:</b> conteo de cada palabra; ignora el orden.</li><li><b>TF-IDF:</b> frecuencia en el documento × log(N / documentos que la contienen). Las palabras comunes en todos los documentos ("el", "de") pesan poco.</li><li><b>Word embeddings</b> (Word2Vec, GloVe): vectores densos donde palabras similares quedan cerca (rey − hombre + mujer ≈ reina). Un vector fijo por palabra, sin contexto.</li><li><b>Embeddings contextuales</b> (BERT): el vector depende de la oración ("banco" de peces vs. banco financiero).</li><li><b>Tokenización por subpalabras</b> (BPE, WordPiece): maneja palabras nuevas partiéndolas en piezas.</li></ul>
+<p><b>Transformer:</b> reemplaza la recurrencia por <b>autoatención</b>: cada token mira a todos los demás y decide cuánto atender a cada uno. Se procesa en paralelo y captura dependencias largas. Como no tiene orden inherente, usa <b>codificación posicional</b>.</p>
+<div class="f">Attention(Q, K, V) = softmax(Q·Kᵀ / √dₖ) · V</div>
+<p>Se divide por √dₖ para que los productos punto no crezcan con la dimensión y saturen el softmax. <b>Multi-head</b> aprende varios tipos de relación en paralelo.</p>
+<div class="tbl"><table><thead><tr><th></th><th>BERT</th><th>GPT</th></tr></thead><tbody>
+<tr><td>Arquitectura</td><td>Encoder</td><td>Decoder</td></tr>
+<tr><td>Entrenamiento</td><td>Enmascarar palabras y predecirlas (bidireccional)</td><td>Predecir el siguiente token (autoregresivo)</td></tr>
+<tr><td>Fuerte en</td><td>Clasificar, extraer entidades, embeddings</td><td>Generar texto, chat, razonamiento</td></tr></tbody></table></div>
+<div class="key">La complejidad de la autoatención es cuadrática en la longitud de la secuencia: por eso el contexto de los modelos tiene un límite.</div>`},
+ {h:'LLMs, RAG y agentes', html:`
+<ul><li><b>Prompting:</b> instrucciones claras, ejemplos (few-shot), formato de salida estructurado (JSON con esquema), pedir que razone paso a paso en tareas complejas.</li><li><b>Temperatura:</b> 0 = respuestas casi deterministas; más alta = más diversidad. Para extracción y clasificación, baja.</li><li><b>Alucinaciones:</b> el modelo genera texto plausible pero falso. Se mitigan con RAG, citas, validación y evaluación.</li></ul>
+<p><b>RAG (Retrieval-Augmented Generation):</b></p>
+<ol><li>Divide los documentos en fragmentos (chunks) y calcula sus embeddings.</li><li>Guárdalos en una base vectorial (FAISS, Chroma).</li><li>Ante una pregunta, recupera los k fragmentos más similares (similitud coseno; mejor aún, búsqueda híbrida con BM25 y re-ranking).</li><li>Pásalos al LLM como contexto y pide que responda citando las fuentes.</li></ol>
+<div class="tbl"><table><thead><tr><th>Necesidad</th><th>Mejor opción</th></tr></thead><tbody>
+<tr><td>Conocimiento que cambia o debe citarse</td><td>RAG</td></tr>
+<tr><td>Estilo, formato o tarea muy específica y estable</td><td>Fine-tuning</td></tr>
+<tr><td>Acciones en sistemas externos</td><td>Agente con herramientas (function calling, MCP)</td></tr></tbody></table></div>
+<p><b>Agentes:</b> un LLM que decide en bucle qué herramienta usar (ReAct: razonar → actuar → observar). <b>Evaluación:</b> datasets de referencia, métricas de recuperación (recall@k), fidelidad al contexto y LLM-as-judge calibrado con etiquetas humanas.</p>
+<div class="key">Si un RAG responde mal, primero revisa la recuperación: si el fragmento correcto no llega al contexto, ningún prompt lo arregla.</div>`}
+],
+quiz:[
+ {q:'¿Qué activación usas en la capa de salida de un clasificador de 5 clases excluyentes?', o:['ReLU','Sigmoide','Softmax','Lineal'], a:2, e:'Softmax convierte los puntajes en probabilidades que suman 1 entre las clases.', l:0},
+ {q:'¿Qué problema de las RNN simples resuelven LSTM y GRU?', o:['El sobreajuste','El desvanecimiento del gradiente en secuencias largas','La falta de datos','La tokenización'], a:1, e:'Sus compuertas permiten que el gradiente y la información fluyan a través de muchos pasos.', l:1},
+ {q:'¿Por qué se divide por √dₖ en la atención escalada?', o:['Para normalizar la longitud de la secuencia','Para que los productos punto no crezcan con la dimensión y saturen el softmax','Para reducir parámetros','Para añadir la posición'], a:1, e:'Con dₖ grande los productos punto tienen varianza alta; el softmax se vuelve casi one-hot y los gradientes se desvanecen.', l:2},
+ {q:'¿Cuál es la diferencia principal entre BERT y GPT?', o:['BERT es decoder autoregresivo; GPT es encoder','BERT es encoder bidireccional entrenado enmascarando; GPT es decoder que predice el siguiente token','Ambos son iguales','GPT no usa atención'], a:1, e:'Por eso BERT destaca en comprensión y clasificación y GPT en generación.', l:2},
+ {q:'En TF-IDF, una palabra que aparece en todos los documentos del corpus recibe un peso:', o:['Muy alto','Cercano a cero','Igual a su frecuencia','Negativo'], a:1, e:'IDF = log(N/N) = log(1) = 0.', l:2},
+ {q:'Un chatbot debe responder sobre políticas internas que cambian cada mes y citar la fuente. ¿Qué enfoque eliges?', o:['Fine-tuning mensual','RAG','Aumentar la temperatura','Un modelo más grande sin contexto'], a:1, e:'RAG recupera la versión vigente del documento y permite citar, sin reentrenar.', l:3},
+ {q:'La pérdida de entrenamiento sigue bajando, pero la de validación sube desde la época 8. ¿Qué haces?', o:['Entrenar más épocas','Early stopping alrededor de la época 8 o más regularización','Subir la tasa de aprendizaje','Quitar el dropout'], a:1, e:'Es sobreajuste: te quedas con los pesos del mínimo de validación.', l:0},
+ {q:'¿Qué parámetros tiene una capa convolucional con 16 filtros 3×3 sobre una imagen en escala de grises (1 canal)?', o:['144','160','48','9'], a:1, e:'(3·3·1 + 1)·16 = 10·16 = 160 (incluye un sesgo por filtro).', l:1}
+]},
+{t:'MLOps, big data y ética', lessons:[
+ {h:'Ciclo de vida y despliegue', html:`
+<ul><li><b>Reproducibilidad:</b> versiona código (git), datos (DVC, snapshots) y modelos; fija semillas y versiones de librerías; registra experimentos (MLflow: parámetros, métricas y artefactos).</li><li><b>Pipelines:</b> ingestión → validación de datos → features → entrenamiento → evaluación → registro → despliegue. Orquestadores: Airflow, Prefect, Kubeflow.</li><li><b>Feature store:</b> asegura que las variables se calculen igual en entrenamiento y en producción (evita el <em>training-serving skew</em>).</li><li><b>CI/CD:</b> pruebas automáticas del código, de los datos y del rendimiento del modelo antes de desplegar.</li></ul>
+<div class="tbl"><table><thead><tr><th>Modo</th><th>Cuándo</th></tr></thead><tbody>
+<tr><td>Batch</td><td>Predicciones periódicas (scoring nocturno de churn)</td></tr>
+<tr><td>Online (API)</td><td>Respuesta en milisegundos (fraude en el pago)</td></tr>
+<tr><td>Streaming</td><td>Eventos continuos (Kafka + modelo)</td></tr></tbody></table></div>
+<p><b>Estrategias de lanzamiento:</b> <b>shadow</b> (el modelo nuevo predice en paralelo sin afectar decisiones), <b>canary</b> (un pequeño % del tráfico) y <b>A/B</b> entre modelos.</p>
+<div class="key">Lo típico para servir un modelo: FastAPI que carga el pipeline serializado, empaquetado en Docker, con logging de entradas y salidas para monitorear.</div>`},
+ {h:'Monitoreo: drift y degradación', html:`
+<ul><li><b>Data drift (covariate shift):</b> cambia la distribución de las entradas P(X). Ej.: llegan clientes más jóvenes.</li><li><b>Concept drift:</b> cambia la relación P(y|X). Ej.: los defraudadores cambian de táctica; los mismos patrones ya no significan lo mismo.</li><li><b>Prior drift:</b> cambia la proporción de clases P(y).</li></ul>
+<div class="f">PSI = Σ (realᵢ − esperadoᵢ) · ln(realᵢ / esperadoᵢ)</div>
+<div class="tbl"><table><thead><tr><th>PSI</th><th>Lectura habitual</th></tr></thead><tbody>
+<tr><td>&lt; 0.1</td><td>Estable</td></tr><tr><td>0.1 – 0.25</td><td>Cambio moderado: vigilar</td></tr><tr><td>&gt; 0.25</td><td>Cambio significativo: investigar o reentrenar</td></tr></tbody></table></div>
+<p>Otras pruebas: Kolmogorov-Smirnov (numéricas), chi-cuadrado (categóricas), divergencia de Jensen-Shannon. Herramientas: Evidently, NannyML.</p>
+<div class="ex"><b>Ejemplo.</b> Un bin de ingresos tenía 20% en entrenamiento y hoy tiene 30%: aporte = (0.30 − 0.20)·ln(0.30/0.20) = 0.1·0.405 ≈ 0.04. Sumas el aporte de todos los bins.</div>
+<div class="key">Las etiquetas reales suelen llegar tarde (sabes si hubo default meses después). Mientras tanto, el drift de las entradas y de las predicciones es tu alerta temprana.</div>`},
+ {h:'Big data con Spark', html:`
+<ul><li><b>Spark</b> distribuye datos en <b>particiones</b> entre los nodos del clúster y procesa en memoria.</li><li><b>Evaluación perezosa (lazy):</b> las <b>transformaciones</b> (select, filter, join, groupBy) solo construyen un plan. Nada se ejecuta hasta una <b>acción</b> (count, collect, show, write).</li><li><b>Shuffle:</b> mover datos entre nodos (groupBy, join, repartition). Es lo más costoso; minimízalo.</li><li><b>Broadcast join:</b> si una tabla es pequeña, se copia a todos los nodos y se evita el shuffle.</li><li><b>Data skew:</b> una clave con muchísimas filas sobrecarga una partición. Se mitiga con salting.</li></ul>
+<pre class="code">df = spark.read.parquet("s3://ventas/")          # transformación (lazy)
+res = (df.filter(df.pais == "CO")
+         .groupBy("mes").sum("monto"))            # sigue sin ejecutarse
+res.show()                                         # acción: ahora sí corre</pre>
+<p><b>Formatos:</b> Parquet y ORC son <b>columnares</b>: leen solo las columnas necesarias, comprimen bien y permiten saltar bloques con filtros (predicate pushdown). CSV es lento y no guarda tipos. Delta Lake o Iceberg añaden transacciones y versiones.</p>
+<div class="key">collect() trae todos los datos al driver: con tablas grandes provoca errores de memoria. Úsalo solo con resultados pequeños.</div>`},
+ {h:'Ética, equidad y explicabilidad', html:`
+<ul><li><b>Fuentes de sesgo:</b> datos históricos discriminatorios, muestras no representativas, variables proxy (el código postal puede actuar como proxy de etnia o ingreso).</li><li>Quitar la variable sensible no basta: los proxies conservan la información.</li></ul>
+<div class="tbl"><table><thead><tr><th>Métrica de equidad</th><th>Exige</th></tr></thead><tbody>
+<tr><td>Paridad demográfica</td><td>Igual tasa de predicciones positivas entre grupos</td></tr>
+<tr><td>Igualdad de oportunidades</td><td>Igual tasa de verdaderos positivos (recall) entre grupos</td></tr>
+<tr><td>Igualdad de probabilidades (equalized odds)</td><td>Igual TPR y FPR entre grupos</td></tr>
+<tr><td>Paridad predictiva</td><td>Igual precision entre grupos</td></tr></tbody></table></div>
+<p>En general no se pueden cumplir todas a la vez si las tasas base difieren: hay que elegir según el contexto.</p>
+<p><b>Explicabilidad:</b> <b>SHAP</b> reparte la predicción entre las variables según valores de Shapley (local y global). <b>LIME</b> ajusta un modelo simple alrededor de una predicción. <b>Importancia por permutación</b> y <b>dependencia parcial</b> para efectos globales.</p>
+<p><b>Privacidad y gobierno:</b> minimización de datos, anonimización (y su riesgo de reidentificación), privacidad diferencial, cumplimiento normativo (en Colombia, Ley 1581 de protección de datos). Documenta con <b>model cards</b> y <b>datasheets</b>.</p>
+<div class="key">Si te preguntan cómo explicar a un cliente por qué le negaron un crédito, la respuesta típica es SHAP a nivel individual, junto con razones accionables.</div>`}
+],
+quiz:[
+ {q:'Una variable tiene PSI = 0.30 entre entrenamiento y producción. ¿Qué indica?', o:['Distribución estable','Cambio moderado','Cambio significativo: investigar o reentrenar','El modelo está mejorando'], a:2, e:'Por convención, PSI > 0.25 es un cambio significativo.', l:1},
+ {q:'Los defraudadores cambian de táctica y los patrones que antes indicaban fraude ya no lo hacen. ¿Qué tipo de drift es?', o:['Data drift','Concept drift','Prior drift','Ninguno'], a:1, e:'Cambió la relación entre las entradas y el objetivo, P(y|X).', l:1},
+ {q:'En Spark ejecutas df.filter(...).groupBy(...).sum(...). ¿Cuándo se procesa realmente?', o:['Inmediatamente en cada línea','Solo cuando llamas una acción como show(), count() o write','Al importar pyspark','Nunca, es solo un plan'], a:1, e:'Las transformaciones son perezosas; la acción dispara la ejecución del plan optimizado.', l:2},
+ {q:'¿Por qué Parquet suele ser más eficiente que CSV para analítica?', o:['Porque es texto plano','Porque es columnar: lee solo las columnas necesarias y comprime mejor','Porque no tiene tipos','Porque ocupa más espacio'], a:1, e:'El almacenamiento columnar permite leer columnas y saltar bloques con filtros.', l:2},
+ {q:'Quieres explicar por qué el modelo le asignó un riesgo alto a un cliente concreto. ¿Qué usas?', o:['Accuracy','Valores SHAP de esa predicción','La matriz de confusión','El PSI'], a:1, e:'SHAP descompone una predicción individual en aportes de cada variable.', l:3},
+ {q:'"Igualdad de oportunidades" como métrica de equidad exige igualdad entre grupos de:', o:['La tasa de predicciones positivas','La tasa de verdaderos positivos (recall)','La precision','El tamaño de los grupos'], a:1, e:'Entre quienes realmente merecen el resultado positivo, todos los grupos deben ser detectados por igual.', l:3},
+ {q:'Quieres probar un modelo nuevo con tráfico real sin que sus predicciones afecten decisiones. ¿Qué estrategia usas?', o:['Canary','Shadow deployment','Rollback','Big bang'], a:1, e:'En shadow el modelo nuevo recibe las mismas peticiones y registra sus predicciones, pero las decisiones siguen siendo del modelo actual.', l:0},
+ {q:'Las variables se calculan de una forma en el notebook de entrenamiento y de otra en la API. ¿Cómo se llama el problema?', o:['Data drift','Training-serving skew','Concept drift','Overfitting'], a:1, e:'Un feature store o un pipeline compartido evita que el cálculo de variables difiera.', l:0}
+]}
+];
+
+(function(){
+const KEY='ruta-m0-v1', PASS=70, EXAM_PER_TOPIC=3;
+let st={best:{},read:{},exam:null};
+try{const v=JSON.parse(localStorage.getItem(KEY)||'null');if(v)st=Object.assign(st,v)}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const prep=(q,t)=>{const ord=shuffle(q.o.map((_,i)=>i));return {q:q.q,o:ord.map(k=>q.o[k]),a:ord.indexOf(q.a),e:q.e,l:q.l,t}};
+const L='ABCD';
+const pad=n=>String(n).padStart(2,'0');
+const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+let cur={t:null,tab:'lesson',step:0,quiz:null,exam:null};
+
+window.m0Stats=()=>{const passed=M0.filter((_,i)=>(st.best[i]||0)>=PASS).length;return {passed,total:M0.length,pct:Math.round(passed/M0.length*100)}};
+const refreshRoute=()=>{if(typeof update==='function')update()};
+
+function stats(){
+  const s=window.m0Stats();
+  const read=Object.keys(st.read).length, totalL=M0.reduce((n,t)=>n+t.lessons.length,0);
+  document.getElementById('m0-stats').innerHTML=
+    `<span class="pill">${read}/${totalL} lecciones leídas</span><span class="pill">${s.passed}/${s.total} quices aprobados</span><span class="pill">${M0.reduce((n,t)=>n+t.quiz.length,0)} preguntas</span>`+
+    `<span class="pill">Examen final: ${st.exam==null?'pendiente':st.exam+'%'}</span>`;
+}
+
+function topics(){
+  const el=document.getElementById('m0-topics');
+  el.innerHTML=M0.map((t,i)=>{
+    const r=t.lessons.filter((_,k)=>st.read[i+'-'+k]).length, b=st.best[i];
+    const cls=b==null?'':b>=PASS?'ok':'mid';
+    return `<button class="topic" type="button" data-topic="${i}" aria-pressed="${cur.t===i}"><span class="n">${pad(i+1)}</span><span class="nm">${t.t}</span><span class="st">Lecciones ${r}/${t.lessons.length}</span><span class="st ${cls}">${b==null?'Quiz sin hacer':'Mejor quiz: '+b+'%'+(b>=PASS?' · aprobado':'')}</span></button>`;
+  }).join('')+`<button class="topic exam" type="button" data-topic="exam" aria-pressed="${cur.t==='exam'}"><span class="n">Final</span><span class="nm">Examen final simulado</span><span class="st">30 preguntas · 10 temas</span><span class="st ${st.exam==null?'':st.exam>=PASS?'ok':'mid'}">${st.exam==null?'Sin hacer':'Mejor nota: '+st.exam+'%'}</span></button>`;
+  stats();
+}
+
+function open(t,tab,step){
+  cur.t=t;cur.tab=tab||'lesson';cur.step=step||0;
+  if(t==='exam'){cur.exam=null}else if(cur.tab==='quiz'){newQuiz()}
+  topics();panel(true);
+}
+function newQuiz(){cur.quiz={t:cur.t,qs:shuffle(M0[cur.t].quiz).map(q=>prep(q,cur.t)),i:0,ans:[]}}
+
+function panel(scroll){
+  const p=document.getElementById('m0-panel');p.hidden=false;
+  if(cur.t==='exam'){p.innerHTML=examView()}else{
+    const t=M0[cur.t];
+    p.innerHTML=`<div class="panel-head"><h3>${pad(cur.t+1)} · ${t.t}</h3><div class="tabs" role="tablist"><button role="tab" type="button" data-tab="lesson" aria-selected="${cur.tab==='lesson'}">Lección</button><button role="tab" type="button" data-tab="quiz" aria-selected="${cur.tab==='quiz'}">Quiz (${t.quiz.length})</button></div></div><div class="panel-body">${cur.tab==='lesson'?lessonView():quizView()}</div>`;
+  }
+  if(scroll)p.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+}
+
+function lessonView(){
+  const t=M0[cur.t],k=cur.step,ls=t.lessons[k];
+  st.read[cur.t+'-'+k]=true;save();setTimeout(()=>{topics();refreshRoute()},0);
+  const steps=t.lessons.map((x,j)=>`<button type="button" data-step="${j}" class="${st.read[cur.t+'-'+j]?'read':''}" aria-current="${j===k}">${j+1}. ${x.h}</button>`).join('');
+  const last=k===t.lessons.length-1;
+  return `<div class="steps">${steps}</div><div class="lesson"><span class="eyebrow">Sección ${k+1} de ${t.lessons.length}</span><h4>${ls.h}</h4>${ls.html}</div>
+  <div class="nav"><button class="btn sec" type="button" data-step="${k-1}" ${k===0?'disabled':''}>Anterior</button>${last?`<button class="btn" type="button" data-tab="quiz">Hacer el quiz del tema</button>`:`<button class="btn" type="button" data-step="${k+1}">Siguiente sección</button>`}</div>`;
+}
+
+function quizView(){
+  const Q=cur.quiz;if(!Q)return '';
+  if(Q.i>=Q.qs.length)return quizResult();
+  const q=Q.qs[Q.i],ans=Q.ans[Q.i];
+  const opts=q.o.map((o,j)=>{let c='';if(ans!=null){if(j===q.a)c='right';else if(j===ans)c='wrong'}
+    return `<button class="opt ${c}" type="button" data-ans="${j}" ${ans!=null?'disabled':''}><span class="l">${L[j]}</span><span>${o}</span></button>`}).join('');
+  const ok=ans===q.a;
+  const fb=ans==null?'':`<div class="fb ${ok?'ok':'no'}" role="status"><b>${ok?'Correcto.':'Incorrecto.'}</b> ${q.e}${ok?'':` <button class="lnk" type="button" data-goto="${q.t}:${q.l}">Repasar: ${M0[q.t].lessons[q.l].h}</button>`}</div>
+    <div class="nav"><span></span><button class="btn" type="button" data-next="1">${Q.i===Q.qs.length-1?'Ver resultado':'Siguiente pregunta'}</button></div>`;
+  return `<div class="qmeta"><span>Pregunta ${Q.i+1} de ${Q.qs.length}</span><span>Aciertos: ${Q.ans.filter((a,j)=>a===Q.qs[j].a).length}</span></div><div class="qbar"><i style="width:${Q.i/Q.qs.length*100}%"></i></div><p class="q">${q.q}</p><div class="opts">${opts}</div>${fb}`;
+}
+
+function quizResult(){
+  const Q=cur.quiz,n=Q.qs.length,c=Q.ans.filter((a,j)=>a===Q.qs[j].a).length,pct=Math.round(c/n*100);
+  if(!Q.saved){Q.saved=true;st.best[cur.t]=Math.max(st.best[cur.t]||0,pct);save();setTimeout(()=>{topics();refreshRoute()},0)}
+  const miss=Q.qs.map((q,j)=>({q,a:Q.ans[j]})).filter(x=>x.a!==x.q.a);
+  const sections=[...new Set(miss.map(x=>x.q.l))];
+  const nextT=cur.t<M0.length-1?cur.t+1:'exam';
+  return `<div class="result"><span class="eyebrow">Resultado del quiz</span><div class="score" style="color:var(${pct>=PASS?'--good':'--bad'})">${pct}%</div>
+  <p style="margin:0">${c} de ${n} correctas. ${pct>=PASS?'Aprobado. ':'Necesitas 70% para aprobar. '}${sections.length?'Repasa estas secciones:':'Sin errores: dominas este tema.'}</p>
+  ${sections.length?`<div class="steps">${sections.map(l=>`<button type="button" data-goto="${cur.t}:${l}">${l+1}. ${M0[cur.t].lessons[l].h}</button>`).join('')}</div>`:''}
+  ${miss.length?`<div class="review">${miss.map(x=>`<div class="it"><b>${x.q.q}</b><span class="ans">Respondiste: ${x.q.o[x.a]}</span><span>Correcta: ${x.q.o[x.q.a]}. ${x.q.e}</span></div>`).join('')}</div>`:''}
+  <div class="nav"><button class="btn sec" type="button" data-retry="1">Repetir quiz</button><button class="btn" type="button" data-topic="${nextT}">${nextT==='exam'?'Ir al examen final':'Siguiente tema'}</button></div></div>`;
+}
+
+function examView(){
+  const E=cur.exam;
+  const head=`<div class="panel-head"><h3>Examen final simulado</h3><span class="pill">Aprueba con ${PASS}%</span></div>`;
+  if(!E){
+    const ready=window.m0Stats().passed;
+    return head+`<div class="panel-body"><div class="lesson"><p>30 preguntas: 3 de cada tema, elegidas al azar del banco de preguntas y en orden mezclado. Puedes cambiar tu respuesta antes de pasar a la siguiente, pero no verás si acertaste hasta el final. Al terminar tendrás tu nota por tema y la explicación de cada error.</p><p style="color:var(--muted)">${ready<M0.length?`Llevas ${ready} de ${M0.length} quices aprobados. Puedes hacer el examen ya, pero rendirás mejor después de aprobarlos todos.`:'Aprobaste todos los quices. Buen momento para el examen.'} Sugerencia: unos 40 minutos, sin consultar las lecciones.</p></div><div class="nav"><span></span><button class="btn" type="button" data-exam="start">Empezar examen</button></div></div>`;
+  }
+  if(E.i<E.qs.length){
+    const q=E.qs[E.i],sel=E.ans[E.i];
+    return head+`<div class="panel-body"><div class="qmeta"><span>Pregunta ${E.i+1} de ${E.qs.length}</span><span>${M0[q.t].t}</span></div><div class="qbar"><i style="width:${E.i/E.qs.length*100}%"></i></div><p class="q">${q.q}</p><div class="opts">${q.o.map((o,j)=>`<button class="opt ${sel===j?'sel':''}" type="button" data-pick="${j}" aria-pressed="${sel===j}"><span class="l">${L[j]}</span><span>${o}</span></button>`).join('')}</div>
+    <div class="nav"><button class="btn sec" type="button" data-exam="prev" ${E.i===0?'disabled':''}>Anterior</button><button class="btn" type="button" data-exam="next" ${sel==null?'disabled':''}>${E.i===E.qs.length-1?'Terminar y calificar':'Siguiente'}</button></div></div>`;
+  }
+  const n=E.qs.length,c=E.qs.filter((q,j)=>E.ans[j]===q.a).length,pct=Math.round(c/n*100);
+  if(!E.saved){E.saved=true;st.exam=Math.max(st.exam||0,pct);save();setTimeout(topics,0)}
+  const by=M0.map((t,i)=>{const qs=E.qs.map((q,j)=>({q,j})).filter(x=>x.q.t===i);const ok=qs.filter(x=>E.ans[x.j]===x.q.a).length;return {i,t:t.t,ok,n:qs.length}});
+  const weak=by.filter(b=>b.n&&b.ok/b.n<PASS/100);
+  const miss=E.qs.map((q,j)=>({q,a:E.ans[j]})).filter(x=>x.a!==x.q.a);
+  return head+`<div class="panel-body"><div class="result"><span class="eyebrow">Resultado del examen</span><div class="score" style="color:var(${pct>=PASS?'--good':'--bad'})">${pct}%</div>
+  <p style="margin:0">${c} de ${n} correctas. ${pct>=PASS?'Aprobarías la prueba.':'Todavía no alcanza el 70%.'} ${weak.length?'Refuerza los temas marcados en rojo.':'Sin temas débiles.'}</p>
+  <div class="bytopic">${by.map(b=>{const p=b.n?Math.round(b.ok/b.n*100):0;const col=p>=PASS?'--good':'--bad';return `<div class="row"><button class="lnk" type="button" data-topic="${b.i}" style="color:var(--ink)">${pad(b.i+1)} ${b.t}</button><span class="bar"><i style="width:${p}%;background:var(${col})"></i></span><span class="pct" style="color:var(${col})">${b.ok}/${b.n}</span></div>`}).join('')}</div>
+  ${miss.length?`<h4 style="font-size:18px;margin-top:6px">Tus errores</h4><div class="review">${miss.map(x=>`<div class="it"><b>${x.q.q}</b><span class="ans">Respondiste: ${x.q.o[x.a]}</span><span>Correcta: ${x.q.o[x.q.a]}. ${x.q.e}</span><button class="lnk" type="button" data-goto="${x.q.t}:${x.q.l}" style="justify-self:start">Repasar: ${M0[x.q.t].lessons[x.q.l].h}</button></div>`).join('')}</div>`:''}
+  <div class="nav"><span></span><button class="btn" type="button" data-exam="start">Hacer otro examen</button></div></div></div>`;
+}
+
+function startExam(){
+  const qs=shuffle(M0.flatMap((t,i)=>shuffle(t.quiz).slice(0,EXAM_PER_TOPIC).map(q=>prep(q,i))));
+  cur.exam={qs,i:0,ans:[]};
+}
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b||!b.closest('#master'))return;
+  const d=b.dataset;
+  if(d.topic!=null){open(d.topic==='exam'?'exam':+d.topic);return}
+  if(d.tab){cur.tab=d.tab;if(d.tab==='quiz'&&(!cur.quiz||cur.quiz.t!==cur.t||cur.quiz.i>=cur.quiz.qs.length)){newQuiz();cur.quiz.t=cur.t}panel(false);return}
+  if(d.step!=null){cur.step=+d.step;panel(false);document.getElementById('m0-panel').scrollIntoView({behavior:reduce?'auto':'smooth'});return}
+  if(d.goto){const [t,l]=d.goto.split(':').map(Number);open(t,'lesson',l);return}
+  if(d.ans!=null){const Q=cur.quiz;if(Q.ans[Q.i]!=null)return;Q.ans[Q.i]=+d.ans;panel(false);return}
+  if(d.next){cur.quiz.i++;panel(false);return}
+  if(d.retry){newQuiz();cur.quiz.t=cur.t;panel(false);return}
+  if(d.exam==='start'){startExam();panel(true);return}
+  if(d.pick!=null){cur.exam.ans[cur.exam.i]=+d.pick;panel(false);return}
+  if(d.exam==='next'){cur.exam.i++;panel(true);return}
+  if(d.exam==='prev'){cur.exam.i--;panel(false);return}
+});
+
+cur.t=0;topics();panel(false);
+})();
+
+</script>
+<script>
+const GH = r => p => `https://github.com/sergiomorapardo/${r}/blob/main/${p.split('/').map(encodeURIComponent).join('/')}`;
+const S = GH('StochasticAITechniquesClass'), A = GH('AdvancedTopicsAnalytics'), G = GH('AdvancedGenAI');
+
+const STAGES = [
+ {id:'s1', c:'--s1', soft:'--s1-soft', tag:'Etapa 1', name:'Técnicas Estocásticas de IA', repo:'https://github.com/sergiomorapardo/StochasticAITechniquesClass',
+  pills:['6 semanas','12 notebooks','Python · scikit-learn'],
+  desc:'Modelos estadísticos y procesos estocásticos aplicados a predicción, clasificación y optimización. Enfocado en problemas reales, con sus ventajas, limitaciones y errores frecuentes.',
+  why:'Empieza aquí porque todo lo demás se apoya en esto: reducción de dimensiones, regresión, validación cruzada y pensamiento probabilístico.',
+  mods:[
+   {wk:'Semana 1', t:'PCA y reducción de dimensiones', goal:'Usar PCA para mejorar la calidad de los modelos predictivos.', items:[
+     ['L1','Intro PCA',S('Notebooks/L1_IntroPCA-3.ipynb')],
+     ['L2','Pipeline con PCA',S('Notebooks/L2_pipelinePCA-2.ipynb')],
+     ['L3','Validación ortogonal',S('Notebooks/L3_ValidationOrthogonal-2.ipynb')]]},
+   {wk:'Semana 2', t:'Regresión lineal, logística y selección de variables', goal:'Resolver problemas de predicción con regresión y ajustar modelos con validación cruzada.', items:[
+     ['L4','Regresión lineal',S('Notebooks/L4_LinearRegression.ipynb')],
+     ['L5','Regresión logística',S('Notebooks/L5_LogisticRegression.ipynb')],
+     ['L6','Cross validation y grid search',S('Notebooks/L6_CrossValidation.ipynb')],
+     ['Q1','Quiz 1 (antes de la sesión)',null,'evaluación']]},
+   {wk:'Semana 3', t:'Modelos de clasificación', goal:'Clasificar con medidas de distancia, KNN, Naive Bayes y árboles CART.', items:[
+     ['L7','Medidas de distancia',S('Notebooks/L7_DistanceMeasures.ipynb')],
+     ['L8','K vecinos más cercanos (KNN)',S('Notebooks/L8_KNN.ipynb')],
+     ['L9','Naive Bayes y CART',S('Notebooks/L9_NaiveBayes_CART.ipynb')],
+     ['Q2','Quiz 2 (antes de la sesión)',null,'evaluación']]},
+   {wk:'Semana 4', t:'Procesos estocásticos y series de tiempo', goal:'Reconocer aplicaciones de cadenas de Markov y simular con Montecarlo; pronosticar a varios horizontes.', items:[
+     ['L10','Cadenas de Markov y simulación Montecarlo',S('Notebooks/L10_MarkovChains_MonteCarloSimulations.ipynb')],
+     ['L11','Series de tiempo',S('Notebooks/L11_TimeSeries.ipynb')],
+     ['L12','Pronóstico multi-horizonte',S('Notebooks/L12_TimeSeries_MultiHorizont.ipynb')],
+     ['L13','Isolation Forest y heurísticas (anomalías)',S('Notebooks/L13_iforest_heristics.ipynb'),'extra'],
+     ['Q3','Quiz 3 (antes de la sesión)',null,'evaluación']]},
+   {wk:'Semana 5–6', t:'Hackatón y cierre', goal:'Aplicar todo el curso en un problema real bajo presión de tiempo.', items:[
+     ['H','Hackatón (40% de la nota)',null,'proyecto'],
+     ['I','Infografía de cierre',null,'entregable']],
+     project:'Talleres evaluados: técnicas predictivas y reducción de dimensiones (24%) y técnicas de clasificación (24%).'}
+  ]},
+ {id:'s2', c:'--s2', soft:'--s2-soft', tag:'Etapa 2', name:'Advanced Topics in Analytics', repo:'https://github.com/sergiomorapardo/AdvancedTopicsAnalytics',
+  pills:['~13 semanas','MLOps · DL · NLP · Grafos','Keras · PyTorch · PyG'],
+  desc:'Situaciones que exigen un manejo avanzado de la información: MLOps, deep learning, visión por computador, procesamiento de lenguaje natural y aprendizaje sobre grafos. Orientado a proyectos.',
+  why:'Puente entre el ML clásico y la IA generativa: aquí aprendes cómo funcionan por dentro embeddings, RNN, atención y transformers.',
+  mods:[
+   {wk:'Bloque 1', t:'MLOps: monitoreo, drift y despliegue', goal:'Monitorear modelos en producción y exponerlos como API.', items:[
+     ['P','Intro MLOps',A('notebooks/MLOps.pdf'),'pdf'],
+     ['L','Intro Data Drift',A('notebooks/IntroDataDrift.ipynb')],
+     ['L','Data Drift y Model Drift',A('notebooks/DataDrift.ipynb')],
+     ['L','Intro a APIs',A('notebooks/IntroductionToAPIs.ipynb')],
+     ['L','Despliegue de modelos',A('notebooks/Model_Deployment.ipynb')],
+     ['E1','Drift en predicción de precio de vehículos',A('exercises/E2-UsedVehiclePricePredictionDrift.ipynb'),'ejercicio'],
+     ['E2','Despliegue del modelo de precio de vehículos',A('exercises/E1-UsedVehiclePricePredictionDeployment.ipynb'),'ejercicio']]},
+   {wk:'Bloque 2', t:'Introducción al deep learning', goal:'Construir redes neuronales desde cero y con Keras/PyTorch.', items:[
+     ['L3','MLP: intro a deep learning',A('notebooks/L11-IntroductionDeepLearningMLP.ipynb')],
+     ['L4','Red neuronal simple a mano',A('notebooks/SimpleNeuralNetwork.ipynb')],
+     ['L5','Red neuronal simple con imágenes',A('notebooks/SimpleNeuralNetworkImage.ipynb')],
+     ['L6','Deep learning con Keras',A('notebooks/DeepLearningTensorflow.ipynb')],
+     ['L7','Deep learning con PyTorch',A('notebooks/DeepLearningPyTorch.ipynb')],
+     ['E3','Redes neuronales en Keras y PyTorch',A('exercises/E5-NeuralNetworksKeras.ipynb'),'ejercicio']]},
+   {wk:'Bloque 3', t:'Visión por computador', goal:'Entrenar CNNs y aplicar transfer learning.', items:[
+     ['P','Deep Computer Vision',A('notebooks/Deep Computer Vision.pdf'),'pdf'],
+     ['L','CNN con TensorFlow',A('notebooks/CNN-TensorFlow.ipynb')],
+     ['L','CNN con PyTorch',A('notebooks/CNN-PyTorch.ipynb')],
+     ['L','Transfer learning con TensorFlow',A('notebooks/PretrainedModelsTensorFlow.ipynb')],
+     ['E4','Transfer learning con PyTorch',A('exercises/E4-PretrainedModelsPytorch.ipynb'),'ejercicio']],
+     project:'<b>Proyecto 1 · Detección de frailejones</b> — <a href="'+A('exercises/P0_BigMonksDetection.ipynb')+'">P0_BigMonksDetection</a>'},
+   {wk:'Bloque 4', t:'NLP: representación de texto', goal:'Tokenizar y vectorizar texto: one-hot, BoW, n-gramas, TF-IDF y embeddings.', items:[
+     ['P','Introducción a NLP',A('notebooks/Introduction to NLP.pdf'),'pdf'],
+     ['L1','Tokenización',A('notebooks/L1-Tokenization.ipynb')],
+     ['L2','One-hot encoding',A('notebooks/L1-OneHotEncoding.ipynb')],
+     ['L3','Bag of Words',A('notebooks/L2-BagOfWords.ipynb')],
+     ['L4','N-gramas',A('notebooks/L3-ngrams.ipynb')],
+     ['L5','TF-IDF',A('notebooks/L4-TFIDF.ipynb')],
+     ['L7','Similitud de texto',A('notebooks/L7-TextSimilarity.ipynb')],
+     ['L8','Explorando word embeddings',A('notebooks/L8-ExploringWordEmbeddings.ipynb')],
+     ['L9','Song embeddings',A('notebooks/L9-SongEmbeddings.ipynb')],
+     ['L10','Visualizar embeddings con t-SNE',A('notebooks/L10-VisualizingEmbeddingsUsingTSNE.ipynb')],
+     ['E','Análisis de sentimiento',A('exercises/E1-SentimentPrediction.ipynb'),'ejercicio'],
+     ['E','Clasificación de spam',A('exercises/E4-SpamClassification.ipynb'),'ejercicio']]},
+   {wk:'Bloque 5', t:'NLP con deep learning: RNN, LSTM, GRU', goal:'Modelar secuencias de texto y generar titulares.', items:[
+     ['P','RNN, LSTM y GRU',A('notebooks/RNN, LSTM and GRU.pdf'),'pdf'],
+     ['L11','NLP con Keras',A('notebooks/L12-DeepLearning_keras_NLP.ipynb')],
+     ['L13','RNN y LSTM',A('notebooks/L13-RecurrentNeuralNetworks_LSTM.ipynb')],
+     ['L14','Generador de titulares',A('notebooks/L14-Headline_Generator.ipynb')],
+     ['E7','RNN, LSTM, GRU',A('exercises/E6-RNN_LSTM_GRU.ipynb'),'ejercicio']],
+     project:'<b>Proyecto 2 · Predicción de género de películas</b> — <a href="'+A('exercises/P1-MovieGenrePrediction.ipynb')+'">P1-MovieGenrePrediction</a>'},
+   {wk:'Bloque 6', t:'Atención, transformers y BERT', goal:'Entender encoder-decoder, atención y la familia BERT; puerta de entrada a los LLMs.', items:[
+     ['P','Encoder-Decoder',A('notebooks/Encoder-Decoder.pdf'),'pdf'],
+     ['P','Mecanismos de atención y transformers',A('notebooks/Attention Mechanism.pdf'),'pdf'],
+     ['P','BERT y familia',A('notebooks/BERT.pdf'),'pdf'],
+     ['L16','Positional encoding',A('notebooks/L15-transformer_positional_encoding_graph.ipynb')],
+     ['L17','BERT para clasificación de sentimiento',A('notebooks/L16-BERT_for_sentiment_classification.ipynb')],
+     ['L18','Introducción a Transformers',A('notebooks/L17-TransformersIntroduction.ipynb')],
+     ['E8','Resumen de texto',A('exercises/E7-TextSummary.ipynb'),'ejercicio'],
+     ['E9','Question answering',A('exercises/E8-QuestionAnswer.ipynb'),'ejercicio'],
+     ['E10','OpenAI API',A('exercises/E9-OpenAI.ipynb'),'ejercicio']]},
+   {wk:'Bloque 7', t:'Grafos y representación', goal:'Métricas de redes, embeddings de grafos, DeepWalk y Node2Vec.', items:[
+     ['P','Intro a grafos',A('notebooks/introGRaphs.pdf'),'pdf'],
+     ['L19','Introducción a grafos',A('notebooks/L18-IntroductionGraphs.ipynb')],
+     ['L20','Métricas de grafos',A('notebooks/L19-GraphMetrics.ipynb')],
+     ['L22','Análisis de red de Facebook',A('notebooks/L21-FacebookNetworkAnalysis.ipynb')],
+     ['L23','Graph embedding',A('notebooks/L22-GraphEmbedding.ipynb')],
+     ['L24','DeepWalk',A('notebooks/L23-DeepWalk.ipynb')],
+     ['L25','Node2Vec',A('notebooks/L24-Node2Vec.ipynb')],
+     ['L26','Recomendador con Node2Vec',A('notebooks/L25-Node2Vec-RecSys.ipynb')],
+     ['E10','Análisis de red de Twitter',A('exercises/E10-TwitterNetworkAnalysis.ipynb'),'ejercicio'],
+     ['E11','Red de citas de patentes',A('exercises/E11-PatentCitationNetwork.ipynb'),'ejercicio']]},
+   {wk:'Bloque 8', t:'Geometric deep learning (GNN)', goal:'GCN, GAT, autoencoders de grafos y clasificación de grafos.', items:[
+     ['L27','GNN: atributos de nodos',A('notebooks/L27-GraphNeuralNetworks-NodeFeatures.ipynb')],
+     ['L29','GNN: matriz de adyacencia',A('notebooks/L27-GraphNeuralNetworks-AdjacencyMatrix.ipynb')],
+     ['L31','GCN: clasificación de nodos',A('notebooks/L29-GraphConvolutionalNetworks-NodeClassification.ipynb')],
+     ['L33','Graph Attention Networks (GAT)',A('notebooks/L32-GraphAttentionNetworks.ipynb')],
+     ['L34','GCN: regresión de nodos',A('notebooks/L31-GraphConvolutionalNetworks-NodeRegression.ipynb')],
+     ['L35','Graph autoencoder: predicción de enlaces',A('notebooks/L35-LinkPredictionGraphAutoencoder.ipynb'),'opcional'],
+     ['L38','GIN: clasificación de grafos',A('notebooks/L34-GraphClassificationGraphIsomorphismNetwork.ipynb'),'opcional']],
+     project:'<b>Proyecto 3 · Graph Machine Learning</b> — <a href="'+A('exercises/P2-GraphMachineLearning.pdf')+'">enunciado (PDF)</a>'}
+  ]},
+ {id:'s3', c:'--s3', soft:'--s3-soft', tag:'Etapa 3', name:'Advanced Topics II: Generative AI', repo:'https://github.com/sergiomorapardo/AdvancedGenAI',
+  pills:['12 semanas','22 notebooks','LangChain · LangGraph · MCP'],
+  desc:'Construir aplicaciones reales con LLMs: prompting, RAG, agentes, LangGraph, Model Context Protocol, evaluación y LLMOps. Caso transversal: el asistente de soporte de una fintech ficticia (ACME) con datos sintéticos.',
+  why:'Pasas de entender los modelos de lenguaje a construir sistemas que los usan. Incluye una lección valiosa: saber cuándo basta con una llamada directa a la API.',
+  mods:[
+   {wk:'Semana 1', t:'Intro a LLMs y LangChain', goal:'Llamar modelos de Anthropic y OpenAI; plantillas de mensajes, salida estructurada, invoke, batch y stream.', items:[
+     ['L1','LangChain paso a paso',G('notebooks/L01-IntroToLLMs.ipynb')],
+     ['L2','Salida estructurada',G('notebooks/L02-StructuredOutput.ipynb')]]},
+   {wk:'Semana 2', t:'Prompt engineering y prompts dinámicos', goal:'Prompts estructurados renderizados con Jinja, validando entradas y salidas.', items:[
+     ['L3','Prompting dinámico con Jinja',G('notebooks/L03-DynamicPrompting.ipynb')]]},
+   {wk:'Semana 3', t:'Fundamentos de agentes', goal:'ReAct, tool use y function calling, verificando respuestas contra resultados de herramientas.', items:[
+     ['L4','Herramientas y un primer agente',G('notebooks/L04-Tools.ipynb')],
+     ['L5','Tool calling con API externa',G('notebooks/L05-ToolsAPI.ipynb')]]},
+   {wk:'Semana 4', t:'Embeddings, bases vectoriales y RAG', goal:'Almacenar y consultar en FAISS y Chroma; responder con citas a documentos.', items:[
+     ['L6','Embeddings',G('notebooks/L06-Embeddings.ipynb')],
+     ['L7','FAISS y Chroma',G('notebooks/L07-VectorStores.ipynb')],
+     ['L8','RAG con citas',G('notebooks/L08-RAG.ipynb')]]},
+   {wk:'Semana 5', t:'RAG conversacional y memoria', goal:'Reescritura de preguntas, multi-query, búsqueda híbrida, métricas de recuperación y memoria por hilo.', items:[
+     ['L9','RAG conversacional',G('notebooks/L09-ConversationalRAG.ipynb')],
+     ['L10','Memoria con un agente',G('notebooks/L10-Memory.ipynb')]]},
+   {wk:'Semana 6', t:'Evaluación de apps LLM', goal:'Datasets, evaluadores de código y LLM-as-judge calibrado con LangSmith y OpenEvals.', items:[
+     ['L11','Evaluación de RAG',G('notebooks/L11-RAGEvaluation.ipynb')]]},
+   {wk:'Semana 7', t:'MCP · Model Context Protocol', goal:'Conectar agentes a herramientas y datos externos.', items:[
+     ['L12','Construir un servidor MCP',G('notebooks/L12-MCPServer.ipynb')],
+     ['L13','Agente con herramientas MCP',G('notebooks/L13-MCPAgent.ipynb')]]},
+   {wk:'Semana 8', t:'LangGraph: estado, routing y paralelización', goal:'Flujos con estado y control explícito.', items:[
+     ['L14','LangGraph Studio',G('notebooks/L14-LangGraphStudio.ipynb')],
+     ['L15','Grafo simple',G('notebooks/L15-LangGraphSimple.ipynb')],
+     ['L16','Mensajes',G('notebooks/L16-LangGraphMessages.ipynb')],
+     ['L17','Chaining',G('notebooks/L17-Chaining.ipynb')],
+     ['L18','Routing',G('notebooks/L18-Routing.ipynb')],
+     ['L19','Paralelización',G('notebooks/L19-Parallelization.ipynb')]]},
+   {wk:'Semana 9', t:'Human-in-the-loop', goal:'Pausar un flujo para aprobación humana y reanudarlo con persistencia.', items:[
+     ['L20','Human-in-the-loop',G('notebooks/L20-HumanInTheLoop.ipynb')]]},
+   {wk:'Semana 10', t:'Sistemas multi-agente', goal:'Orquestador-trabajadores y subgrafos.', items:[
+     ['L21','Orquestador',G('notebooks/L21-Orchestrator.ipynb')]]},
+   {wk:'Semana 11', t:'Evaluator-optimizer', goal:'Iterar una respuesta contra un evaluador hasta cumplir criterios explícitos.', items:[
+     ['L22','Evaluator-optimizer',G('notebooks/L22-EvaluatorOptimizer.ipynb')]]},
+   {wk:'Semana 12', t:'LLMOps y despliegue', goal:'Desplegar, monitorear y controlar costo y latencia en producción.', items:[
+     ['API','Agente ACME con FastAPI + PostgreSQL',G('src/agents/acme.py'),'código'],
+     ['API','API de chat local',G('src/api/main.py'),'código']],
+     project:'<b>Proyecto final</b> — el agente de soporte ACME integra RAG con citas, el servidor MCP de créditos y memoria por conversación.'}
+  ]}
+];
+
+const KEY='ruta-sergio-v1';
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){state={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function render(){
+  const root=document.getElementById('stages');
+  root.innerHTML=STAGES.map((s,si)=>`
+  <section class="stage ${si===STAGES.length-1?'last':''}" id="${s.id}" style="--c:var(${s.c});--soft:var(${s.soft})">
+    <div class="stop">${si+1}</div>
+    <div class="stage-head">
+      <span class="eyebrow">${s.tag} · <a href="${s.repo}">${s.repo.replace('https://','')}</a></span>
+      <h2>${s.name}</h2>
+      <div class="meta">${s.pills.map(p=>`<span class="pill">${p}</span>`).join('')}</div>
+      <p>${s.desc}</p>
+      <div class="why">${s.why}</div>
+    </div>
+    <div class="modules">
+      ${s.mods.map((m,mi)=>`
+      <details class="mod" ${si===0&&mi===0?'open':''}>
+        <summary><span class="wk">${m.wk}</span><span class="mod-title">${m.t}</span><span class="mod-prog" data-mod="${s.id}-${mi}"></span></summary>
+        <div class="mod-body">
+          <p class="goal">${m.goal}</p>
+          <ul class="items">
+            ${m.items.map((it,ii)=>{const id=`${s.id}-${mi}-${ii}`;const [code,title,url,kind]=it;
+              return `<li class="${state[id]?'done':''}"><input type="checkbox" id="${id}" ${state[id]?'checked':''}><label for="${id}"><span class="code">${esc(code)}</span>${url?`<a href="${url}" target="_blank" rel="noopener">${esc(title)}</a>`:esc(title)}${kind?`<span class="kind">${kind}</span>`:''}</label></li>`}).join('')}
+          </ul>
+          ${m.project?`<div class="project">${m.project}</div>`:''}
+        </div>
+      </details>`).join('')}
+    </div>
+  </section>`).join('');
+
+  update();
+}
+
+function update(){
+  const ov=document.getElementById('overview');
+  ov.innerHTML=STAGES.map(s=>{
+    let tot=0,done=0;
+    s.mods.forEach((m,mi)=>{let d=0;m.items.forEach((_,ii)=>{tot++;if(state[`${s.id}-${mi}-${ii}`]){done++;d++}});
+      const el=document.querySelector(`[data-mod="${s.id}-${mi}"]`);if(el)el.textContent=`${d}/${m.items.length}`});
+    const pct=tot?Math.round(done/tot*100):0;
+    return `<a class="ov" href="#${s.id}" style="color:var(--ink)"><span class="tag" style="color:var(${s.c})">${s.tag}</span><strong>${s.name}</strong><span class="bar"><i style="width:${pct}%;background:var(${s.c})"></i></span><span class="count">${done}/${tot} · ${pct}%</span></a>`;
+  }).join('')+(()=>{const m=window.m0Stats?window.m0Stats():{passed:0,total:10,pct:0};return `<a class="ov" href="#master" style="color:var(--ink)"><span class="tag" style="color:var(--ms)">Módulo 0</span><strong>Repaso de máster</strong><span class="bar"><i style="width:${m.pct}%;background:var(--ms)"></i></span><span class="count">${m.passed}/${m.total} quices aprobados</span></a>`})();
+}
+
+document.addEventListener('change',e=>{
+  if(e.target.matches('ul.items input')){state[e.target.id]=e.target.checked;if(!e.target.checked)delete state[e.target.id];
+    e.target.closest('li').classList.toggle('done',e.target.checked);save();update();}
+});
+let armed=false;
+document.getElementById('reset').addEventListener('click',()=>{
+  const b=document.getElementById('reset'),c=document.getElementById('confirm');
+  if(!armed){armed=true;b.textContent='Confirmar reinicio';c.hidden=false;c.textContent='Se desmarcarán todos los notebooks.';setTimeout(()=>{armed=false;b.textContent='Reiniciar progreso';c.hidden=true},4000);return;}
+  state={};save();armed=false;b.textContent='Reiniciar progreso';c.textContent='Progreso reiniciado.';render();setTimeout(()=>c.hidden=true,2000);
+});
+render();
+</script>
+
+</body></html>

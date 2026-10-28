@@ -1,0 +1,1087 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ruta Riesgo de Crédito</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: expediente de crédito — barra de secciones fija, columna de lectura; cada módulo = concepto + calculadora con datos dummy + puente al catálogo. Nivel codificado por color de la ficha (F/I/A/E). */
+:root{
+  --bg:#f4f3f6; --surface:#ffffff; --sunk:#ebe8ef; --fg:#1d1724; --muted:#5f5769; --line:#d9d4e0;
+  --accent:#8e2a4f; --accent-soft:#f6e3ea; --accent-fg:#ffffff;
+  --good:#12805c; --good-soft:#dcf3ea; --bad:#c2372f; --bad-soft:#fbe3e1; --warn:#a86400; --warn-soft:#fdf0d9;
+  --l1:#12805c; --l1s:#dcf3ea; --l2:#2b5fc2; --l2s:#e2eafb; --l3:#a86400; --l3s:#fdf0d9; --l4:#8e2a4f; --l4s:#f6e3ea;
+  --c1:#2b5fc2; --c2:#12805c; --c3:#c2372f; --c4:#a86400;
+  --display:"Sora","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141019; --surface:#1c1723; --sunk:#262030; --fg:#ece7f2; --muted:#a69db3; --line:#342c40;
+  --accent:#e98aae; --accent-soft:#3a1d2a; --accent-fg:#141019;
+  --good:#4fd3a2; --good-soft:#123a2e; --bad:#ff8a80; --bad-soft:#47201f; --warn:#f2b45a; --warn-soft:#3d2c10;
+  --l1:#4fd3a2; --l1s:#123a2e; --l2:#8fb0ff; --l2s:#1d2a48; --l3:#f2b45a; --l3s:#3d2c10; --l4:#e98aae; --l4s:#3a1d2a;
+  --c1:#8fb0ff; --c2:#4fd3a2; --c3:#ff8a80; --c4:#f2b45a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141019; --surface:#1c1723; --sunk:#262030; --fg:#ece7f2; --muted:#a69db3; --line:#342c40;
+  --accent:#e98aae; --accent-soft:#3a1d2a; --accent-fg:#141019;
+  --good:#4fd3a2; --good-soft:#123a2e; --bad:#ff8a80; --bad-soft:#47201f; --warn:#f2b45a; --warn-soft:#3d2c10;
+  --l1:#4fd3a2; --l1s:#123a2e; --l2:#8fb0ff; --l2s:#1d2a48; --l3:#f2b45a; --l3s:#3d2c10; --l4:#e98aae; --l4s:#3a1d2a;
+  --c1:#8fb0ff; --c2:#4fd3a2; --c3:#ff8a80; --c4:#f2b45a; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.3rem,3vw,1.75rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1rem;font-weight:500}
+p{margin:0;max-width:70ch}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code{font-family:var(--mono);font-size:.88em;background:var(--sunk);padding:1px 5px;border-radius:4px}
+
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+nav.top a{flex:none;text-decoration:none;color:var(--muted);font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px}
+nav.top a:hover{background:var(--sunk);color:var(--fg)}
+nav.top a.on{background:var(--accent);color:var(--accent-fg)}
+
+header.hero{padding-block:48px 32px}
+header.hero .wrap{display:grid;gap:20px}
+.hero-sub{font-size:1.1rem;color:var(--muted)}
+.stats{display:flex;flex-wrap:wrap;gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:150px}
+.stat b{display:block;font-family:var(--mono);font-size:1.4rem;font-variant-numeric:tabular-nums}
+.stat span{font-size:.8rem;color:var(--muted)}
+.levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:720px){.levels{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.lvcard{border-radius:12px;padding:12px 14px;display:grid;gap:4px;font-size:.88rem}
+.lvcard b{font-family:var(--display);font-weight:500;font-size:.95rem}
+.lvcard.l1{background:var(--l1s)} .lvcard.l2{background:var(--l2s)} .lvcard.l3{background:var(--l3s)} .lvcard.l4{background:var(--l4s)}
+.lvcard .k{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.lvcard.l1 .k{color:var(--l1)} .lvcard.l2 .k{color:var(--l2)} .lvcard.l3 .k{color:var(--l3)} .lvcard.l4 .k{color:var(--l4)}
+
+section.mod{padding-block:40px;border-top:1px solid var(--line)}
+section.mod>.wrap{display:grid;gap:20px}
+.head{display:grid;gap:8px}
+.head .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:14px;min-width:0}
+.panel.example{border-style:dashed}
+.tag{display:inline-block;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--warn-soft);color:var(--warn);justify-self:start}
+.lv{display:inline-block;font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px;justify-self:start}
+.lv1{background:var(--l1s);color:var(--l1)} .lv2{background:var(--l2s);color:var(--l2)} .lv3{background:var(--l3s);color:var(--l3)} .lv4{background:var(--l4s);color:var(--l4)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;align-content:start;min-width:0}
+.card .n{font-family:var(--mono);color:var(--accent);font-weight:600;font-size:.82rem}
+.card p{font-size:.92rem;color:var(--muted)}
+ul.clean,ol.clean{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.f{font-family:var(--mono);font-size:.9rem;background:var(--sunk);padding:10px 14px;border-radius:8px;overflow-x:auto;white-space:nowrap}
+
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:20px}
+@media (max-width:760px){.calc{grid-template-columns:1fr}}
+.inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.inputs label{display:grid;gap:4px;font-size:.78rem;color:var(--muted);font-weight:600}
+.inputs input,.inputs select,input.num{font-family:var(--mono);font-size:.95rem;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:100%;min-width:0}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;align-content:start}
+.metric{background:var(--sunk);border-radius:10px;padding:10px 12px;min-width:0}
+.metric small{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.metric b{font-family:var(--mono);font-size:1.15rem;font-variant-numeric:tabular-nums}
+.metric.key{background:var(--accent-soft)}
+.metric.neg b{color:var(--bad)} .metric.pos b{color:var(--good)}
+.note{font-size:.9rem;padding:12px 14px;border-radius:10px;background:var(--accent-soft)}
+.range{display:grid;gap:6px}
+.range .row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.9rem}
+.range input[type=range]{width:100%;accent-color:var(--accent)}
+
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hi td{background:var(--accent-soft)}
+tr.off td{color:var(--muted)}
+tr.tot td{font-weight:600;border-top:2px solid var(--line)}
+.neg{color:var(--bad)} .pos{color:var(--good)}
+
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.chart .ax{stroke:var(--line);stroke-width:1}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:680px){.twocol{grid-template-columns:1fr}}
+.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.stages{grid-template-columns:1fr}}
+.stg{border-radius:12px;padding:14px;display:grid;gap:4px;font-size:.9rem}
+.stg b{font-family:var(--display);font-weight:500}
+.stg.s1{background:var(--good-soft)} .stg.s2{background:var(--warn-soft)} .stg.s3{background:var(--bad-soft)}
+
+.techs{display:grid;gap:12px}
+.tech{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;min-width:0}
+.tech-h{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between}
+.tech-h h3{font-size:1.02rem}
+.libs{display:flex;flex-wrap:wrap;gap:6px}
+.lib{font-family:var(--mono);font-size:.72rem;padding:3px 8px;border-radius:6px;background:var(--sunk);color:var(--fg)}
+.kv{display:grid;grid-template-columns:120px minmax(0,1fr);gap:6px 12px;font-size:.9rem;margin:0}
+.kv dt{color:var(--muted);font-weight:600;font-size:.8rem;padding-top:2px}
+.kv dd{margin:0;min-width:0}
+@media (max-width:520px){.kv{grid-template-columns:1fr}.kv dt{padding-top:6px}}
+pre.code{margin:0;background:var(--sunk);border-radius:10px;padding:14px;overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.55;color:var(--fg)}
+
+.bridge{background:var(--sunk);border-radius:16px;padding:18px;display:grid;gap:12px}
+.bridge-h{display:grid;gap:4px}
+.bridge-h .eyebrow{color:var(--fg)}
+.bridge-h p{font-weight:600}
+.blist{display:grid;gap:8px}
+.bi{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;align-items:start;background:var(--surface);border-radius:10px;padding:10px 12px}
+.bi .lv{margin-top:3px}
+.bi button{font:inherit;font-weight:700;font-size:.9rem;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.bi span.t{display:block;font-size:.88rem}
+@media (max-width:480px){.bi{grid-template-columns:1fr;gap:4px}}
+
+.filters{display:grid;gap:10px}
+.frow2{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fchip{font:inherit;font-size:.82rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.fchip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters input[type=search],.filters select{font:inherit;font-size:.9rem;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-width:0}
+.filters input[type=search]{flex:1 1 220px}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.ci{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:8px;align-content:start;min-width:0}
+.ci .area{font-size:.72rem;color:var(--muted)}
+.ci h3{font-size:.95rem;line-height:1.3}
+.ci p{font-size:.88rem}
+.ci .ex{font-size:.84rem;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.ci.flash{outline:2px solid var(--accent);outline-offset:2px}
+.empty{padding:20px;text-align:center;color:var(--muted)}
+
+.quiz{display:grid;gap:14px}
+.qfil{display:flex;flex-wrap:wrap;gap:6px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
+.q .qn{font-family:var(--mono);font-size:.75rem;color:var(--accent);font-weight:600}
+.q .qt{font-weight:600}
+.opts{display:grid;gap:8px}
+.opt{font:inherit;font-size:.95rem;text-align:left;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .k{font-family:var(--mono);font-weight:600;color:var(--muted)}
+.opt[disabled]{cursor:default}
+.opt.right{background:var(--good-soft);border-color:var(--good)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.why{font-size:.9rem;padding:10px 14px;border-radius:10px;background:var(--sunk)}
+.why b.ok{color:var(--good)} .why b.no{color:var(--bad)}
+.qbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;font-size:.88rem;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+
+.plan{display:grid;gap:8px}
+.day{display:grid;grid-template-columns:auto 56px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+.day input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent)}
+.day .d{font-family:var(--mono);font-weight:600;color:var(--accent);font-size:.85rem;padding-top:2px}
+.day b{display:block;font-size:.95rem}
+.day span{font-size:.88rem;color:var(--muted)}
+.day.done{opacity:.6} .day.done b{text-decoration:line-through}
+.week{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.progress{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
+
+footer{padding-block:32px 48px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+footer .wrap{display:grid;gap:12px}
+
+/* chat */
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;font:inherit;font-weight:700;font-size:.92rem;padding:12px 18px;border-radius:999px;border:0;background:var(--accent);color:var(--accent-fg);cursor:pointer;box-shadow:0 6px 20px rgba(29,23,36,.25)}
+.chat{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:21;width:min(400px,calc(100vw - 32px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));height:min(560px,calc(100vh - 100px));background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px rgba(29,23,36,.3);display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.chat-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.chat-h b{font-family:var(--display);font-weight:500;font-size:.95rem}
+.chat-h button{font:inherit;font-size:1.5rem;line-height:1;background:none;border:0;color:var(--muted);cursor:pointer;min-width:44px;min-height:44px;border-radius:8px}
+.chat-log{overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:10px 12px;border-radius:12px;font-size:.9rem;line-height:1.5;overflow-wrap:anywhere}
+.msg.u{align-self:flex-end;background:var(--accent);color:var(--accent-fg);border-bottom-right-radius:4px}
+.msg.a{align-self:flex-start;background:var(--sunk);border-bottom-left-radius:4px}
+.msg.err{background:var(--bad-soft);color:var(--bad)}
+.msg ul{margin:4px 0;padding-left:1.1em}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:.8rem;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chat-f{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+.chat-f textarea{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);resize:none;height:42px;max-height:120px}
+.chat-f button{font:inherit;font-weight:700;font-size:.85rem;padding:0 14px;min-height:44px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-fg);cursor:pointer}
+.chat-f button.stop{background:var(--bad);color:var(--surface)}
+@media (max-width:600px){
+  .chat{top:0;left:0;right:0;bottom:auto;width:100%;height:100%;border-radius:0;border:0;box-shadow:none;padding-top:env(safe-area-inset-top,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+  .chat-f{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  body.chat-open{overflow:hidden}
+}
+.ask-more{font:inherit;font-size:.82rem;font-weight:600;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;margin-top:6px;display:none;text-align:left}
+body.can-ask .ask-more{display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:480px){.inputs{grid-template-columns:1fr}}
+</style>
+
+<nav class="top" aria-label="Secciones"><div class="wrap">
+  <a href="#mapa">Mapa</a><a href="#perdida">Pérdida esperada</a><a href="#scorecards">Scorecards</a><a href="#validacion">Validación</a><a href="#cosechas">Cosechas</a><a href="#estrategia">Estrategia</a><a href="#pricing">Pricing</a><a href="#provisiones">NIIF 9</a><a href="#capital">Capital</a><a href="#monitoreo">Monitoreo</a><a href="#avanzado">Avanzado</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 12 semanas</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Ruta de aprendizaje · Riesgo de crédito</span>
+  <h1>De la pérdida esperada al capital económico</h1>
+  <p class="hero-sub">Una ruta completa para data scientists y analistas de riesgo: originación, scorecards, validación, cosechas, estrategia, pricing, provisiones NIIF 9, capital de Basilea, estrés y modelos avanzados. Cada módulo trae una calculadora. Todos los números de esta página son inventados para practicar.</p>
+  <div class="levels">
+    <div class="lvcard l1"><span class="k">Fundamentos</span><b>Semanas 1–3</b><span>Pérdida esperada, scorecards y métricas de validación.</span></div>
+    <div class="lvcard l2"><span class="k">Intermedio</span><b>Semanas 4–6</b><span>Cosechas, roll rates, cortes de política y pricing.</span></div>
+    <div class="lvcard l3"><span class="k">Avanzado</span><b>Semanas 7–10</b><span>NIIF 9, Basilea IRB, monitoreo y estrés.</span></div>
+    <div class="lvcard l4"><span class="k">Experto</span><b>Semanas 11–12</b><span>Supervivencia, ML gobernado, causalidad y portafolio.</span></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="sQuiz">0 / 20</b><span>Respuestas correctas</span></div>
+    <div class="stat"><b id="sPlan">0 / 12</b><span>Semanas completadas</span></div>
+  </div>
+</div></header>
+
+<!-- 01 MAPA -->
+<section class="mod" id="mapa"><div class="wrap">
+  <div class="head"><span class="eyebrow">01 · Contexto</span><h2>Los riesgos de una entidad que presta</h2>
+  <p class="muted">Esta ruta se centra en riesgo de crédito, pero un buen analista sabe dónde termina su riesgo y empieza el de al lado.</p></div>
+  <div class="cards">
+    <div class="card"><span class="n">Crédito</span><h3>Que el cliente no pague</h3><p>PD, LGD y EAD; originación, comportamiento, cobranza, provisiones y capital. Es el foco de esta ruta.</p></div>
+    <div class="card"><span class="n">Fraude</span><h3>Que el cliente no sea quien dice</h3><p>Suplantación, primera cuota impaga intencional, mulas. Se modela distinto: eventos raros y adversarios que se adaptan.</p></div>
+    <div class="card"><span class="n">Mercado</span><h3>Que se muevan tasas y precios</h3><p>Tasa de interés, tipo de cambio. Se mide con VaR, Expected Shortfall y sensibilidades.</p></div>
+    <div class="card"><span class="n">Liquidez</span><h3>Que no haya caja para fondear</h3><p>Descalce entre lo que se presta y lo que se debe. Indicadores como LCR y NSFR.</p></div>
+    <div class="card"><span class="n">Operacional</span><h3>Que fallen procesos o sistemas</h3><p>Errores, caídas, fraude interno, eventos legales.</p></div>
+    <div class="card"><span class="n">Modelo</span><h3>Que el modelo esté mal o mal usado</h3><p>Un riesgo en sí mismo. Se gobierna con validación independiente, inventario y monitoreo.</p></div>
+  </div>
+  <div class="panel">
+    <h3>El ciclo de vida del crédito, y el modelo que vive en cada paso</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Etapa</th><th>Pregunta</th><th>Modelos típicos</th></tr></thead>
+      <tbody>
+        <tr><td><b>Adquisición</b></td><td>¿A quién le ofrecemos?</td><td>Preaprobados, propensión × riesgo, lookalikes de buenos pagadores</td></tr>
+        <tr><td><b>Originación</b></td><td>¿Aprobamos, cuánto y a qué tasa?</td><td>Scorecard de aplicación, modelo de fraude, capacidad de pago, pricing</td></tr>
+        <tr><td><b>Gestión de cartera</b></td><td>¿Subimos cupo, renovamos, vendemos cruzado?</td><td>Score de comportamiento, gestión de límites, retención</td></tr>
+        <tr><td><b>Cobranza</b></td><td>¿A quién llamamos primero y con qué oferta?</td><td>Score de cobranza, roll rates, propensión a pago, optimización de acciones</td></tr>
+        <tr><td><b>Recuperación y castigo</b></td><td>¿Cuánto vamos a recuperar?</td><td>LGD, curvas de recuperación, venta de cartera</td></tr>
+        <tr><td><b>Finanzas y regulación</b></td><td>¿Cuánto provisionamos y cuánto capital?</td><td>ECL NIIF 9, capital IRB, estrés, apetito de riesgo</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div></section>
+
+<!-- 02 PERDIDA ESPERADA -->
+<section class="mod" id="perdida"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">02 · La ecuación base</span><span class="lv lv1">Fundamentos</span></div><h2>Pérdida esperada: PD × LGD × EAD</h2>
+  <p>Todo el riesgo de crédito se arma sobre tres piezas. <b>PD</b>: probabilidad de que el cliente entre en default en un horizonte (12 meses o toda la vida). <b>LGD</b>: fracción de la exposición que se pierde si entra en default, igual a 1 menos la recuperación neta de costos. <b>EAD</b>: cuánto debe el cliente en el momento del default; en tarjetas incluye parte del cupo que todavía no ha usado.</p></div>
+  <div class="f">EL = PD × LGD × EAD        EAD (rotativos) = saldo + CCF × cupo no usado</div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · Cartera de tarjetas</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="eSaldo">Saldo usado por cliente (USD)<input id="eSaldo" type="number" min="0" value="1200"></label>
+        <label for="eCupo">Cupo total (USD)<input id="eCupo" type="number" min="0" value="2000"></label>
+        <label for="eCcf">CCF: % del cupo libre que se usa antes del default<input id="eCcf" type="number" min="0" max="100" value="60"></label>
+        <label for="ePd">PD a 12 meses (%)<input id="ePd" type="number" min="0" max="100" step="0.1" value="6"></label>
+        <label for="eRec">Recuperación neta (%)<input id="eRec" type="number" min="0" max="100" value="35"></label>
+        <label for="eN">Clientes<input id="eN" type="number" min="0" value="20000"></label>
+      </div>
+      <div class="metrics" id="eOut"></div>
+    </div>
+    <p class="note" id="eNote"></p>
+  </div>
+  <div class="twocol">
+    <div class="panel"><h3>Definición de default</h3><p style="font-size:.93rem">La regla más común es 90 días de mora o señales de improbabilidad de pago (reestructuración forzosa, quiebra, castigo). Antes de modelar, fija la definición, el horizonte y la ventana de observación; cambiarlas después cambia todo.</p></div>
+    <div class="panel"><h3>Esperada y no esperada</h3><p style="font-size:.93rem">La pérdida esperada es un costo del negocio: se cubre con tasa y provisiones. La no esperada es la desviación en un mal año: se cubre con capital. El módulo de capital muestra cómo se calcula.</p></div>
+  </div>
+  <div class="bridge" data-topic="perdida"></div>
+</div></section>
+
+<!-- 03 SCORECARDS -->
+<section class="mod" id="scorecards"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">03 · Originación</span><span class="lv lv1">Fundamentos</span></div><h2>Scorecards: WoE, IV y puntos</h2>
+  <p>El scorecard clásico agrupa cada variable en tramos, reemplaza cada tramo por su <b>Weight of Evidence</b>, ajusta una regresión logística y convierte el resultado en puntos. Sigue vigente porque es estable, monotónico y explicable a un regulador o a un comité de crédito.</p></div>
+  <div class="f">WoE = ln(%buenos / %malos)        IV = Σ (%buenos − %malos) × WoE</div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · Variable "antigüedad laboral"</span>
+    <div class="tbl"><table>
+      <thead><tr><th>Tramo</th><th class="num">Buenos</th><th class="num">Malos</th><th class="num">Tasa de malos</th><th class="num">% buenos</th><th class="num">% malos</th><th class="num">WoE</th><th class="num">Aporte IV</th></tr></thead>
+      <tbody id="woeTbl"></tbody>
+    </table></div>
+    <p class="note" id="woeNote"></p>
+  </div>
+  <div class="panel">
+    <h3>Cómo leer el IV</h3>
+    <div class="tbl"><table><thead><tr><th>IV</th><th>Poder predictivo</th></tr></thead><tbody>
+      <tr><td class="mono">&lt; 0,02</td><td>Ninguno</td></tr><tr><td class="mono">0,02 – 0,10</td><td>Débil</td></tr><tr><td class="mono">0,10 – 0,30</td><td>Medio</td></tr><tr><td class="mono">0,30 – 0,50</td><td>Fuerte</td></tr><tr><td class="mono">&gt; 0,50</td><td>Sospechoso: revisa fuga de información (una variable posterior a la decisión)</td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Escalado de puntos con PDO</span>
+    <p style="font-size:.93rem">El puntaje es lineal en el logaritmo de los odds (buenos:malos). Se fija un puntaje base para unos odds base y cuántos puntos duplican los odds (PDO, <i>points to double the odds</i>).</p>
+    <div class="f">Factor = PDO / ln 2        Offset = Base − Factor × ln(odds base)        Score = Offset + Factor × ln(odds)</div>
+    <div class="calc">
+      <div class="inputs">
+        <label for="pBase">Puntaje base<input id="pBase" type="number" value="600"></label>
+        <label for="pOdds">Odds base (buenos por malo)<input id="pOdds" type="number" min="1" value="50"></label>
+        <label for="pPdo">PDO<input id="pPdo" type="number" min="1" value="20"></label>
+        <label for="pPd">PD de un cliente (%)<input id="pPd" type="number" min="0.01" max="99.9" step="0.1" value="4"></label>
+      </div>
+      <div class="metrics" id="pOut"></div>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Así se vería en Python</h3>
+    <p class="muted" style="font-size:.9rem">Con <b>optbinning</b>, que encuentra tramos óptimos con restricción de monotonía. Revisa la documentación antes de correrlo: los parámetros cambian entre versiones.</p>
+<pre class="code">import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from optbinning import BinningProcess, Scorecard
+
+df = pd.read_csv("solicitudes.csv")             # una fila por solicitud aprobada
+y = df.pop("malo_12m")                           # 1 = 90+ días de mora en 12 meses
+X_tr, X_te, y_tr, y_te = train_test_split(df, y, test_size=.3, stratify=y, random_state=7)
+
+bp = BinningProcess(variable_names=list(X_tr.columns),
+                    min_iv=0.02,                 # descarta variables sin poder
+                    binning_fit_params={v: {"monotonic_trend": "auto_asc_desc"} for v in X_tr.columns})
+sc = Scorecard(binning_process=bp,
+               estimator=LogisticRegression(max_iter=1000),
+               scaling_method="pdo_odds",
+               scaling_method_params={"pdo": 20, "odds": 50, "scorecard_points": 600})
+sc.fit(X_tr, y_tr)
+
+print(sc.table(style="detailed").head(20))       # puntos por tramo
+score_te = sc.score(X_te)</pre>
+  </div>
+  <div class="bridge" data-topic="scorecards"></div>
+</div></section>
+
+<!-- 04 VALIDACION -->
+<section class="mod" id="validacion"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">04 · ¿El modelo sirve?</span><span class="lv lv1">Fundamentos</span></div><h2>Discriminación y calibración</h2>
+  <p>Son dos preguntas distintas. <b>Discriminación</b>: ¿ordena bien, con los malos arriba? Se mide con KS, Gini y AUC. <b>Calibración</b>: ¿la PD que dice es la que pasa? Se mide comparando PD predicha contra tasa observada por tramo, con pruebas binomiales o Hosmer-Lemeshow. Un modelo puede ordenar perfecto y estar mal calibrado; para aprobar basta ordenar, pero para provisionar y fijar precio hace falta calibrar.</p></div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · 10.000 créditos en deciles de score (1 = más riesgoso)</span>
+    <div class="metrics" id="vOut"></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Decil</th><th class="num">Créditos</th><th class="num">Malos</th><th class="num">PD predicha</th><th class="num">Tasa observada</th><th class="num">% malos acum.</th><th class="num">% buenos acum.</th><th class="num">Diferencia</th></tr></thead>
+      <tbody id="vTbl"></tbody>
+    </table></div>
+    <svg class="chart" id="vChart" viewBox="0 0 640 230" role="img" aria-label="PD predicha frente a tasa observada por decil"></svg>
+    <div class="legend"><span><i style="background:var(--c1)"></i>PD predicha</span><span><i style="background:var(--c3)"></i>Tasa observada</span></div>
+    <p class="note" id="vNote"></p>
+  </div>
+  <div class="tbl panel"><table>
+    <thead><tr><th>Métrica</th><th>Qué mide</th><th>Referencia práctica</th></tr></thead>
+    <tbody>
+      <tr><td><b>KS</b><span class="muted" style="display:block;font-size:.76rem">Kolmogorov-Smirnov</span></td><td>Máxima separación entre las distribuciones acumuladas de buenos y malos</td><td>En originación de consumo, 30–45 % suele ser bueno</td></tr>
+      <tr><td><b>Gini</b> / <b>AUC</b></td><td>Capacidad de ordenar. Gini = 2 × AUC − 1</td><td>Gini 40–60 % en aplicación; más alto en comportamiento</td></tr>
+      <tr><td><b>Brier</b></td><td>Error cuadrático de la probabilidad; mezcla orden y calibración</td><td>Compáralo contra un modelo que predice la tasa promedio</td></tr>
+      <tr><td><b>Prueba binomial</b></td><td>Si los malos observados en un tramo son compatibles con su PD</td><td>Por tramo de rating; cuidado con defaults correlacionados</td></tr>
+      <tr><td><b>Hosmer-Lemeshow</b></td><td>Calibración global por grupos</td><td>Con muestras grandes rechaza casi todo: úsalo junto a la gráfica</td></tr>
+    </tbody>
+  </table></div>
+  <div class="bridge" data-topic="validacion"></div>
+</div></section>
+
+<!-- 05 COSECHAS -->
+<section class="mod" id="cosechas"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">05 · Comportamiento de la cartera</span><span class="lv lv2">Intermedio</span></div><h2>Cosechas y roll rates</h2>
+  <p>Una <b>cosecha</b> (vintage) agrupa los créditos desembolsados el mismo mes y sigue su mora por meses en libros (MOB). Así se comparan cohortes a la misma edad: una cartera joven siempre parece sana. Las <b>roll rates</b> miden qué fracción pasa de un tramo de mora al siguiente cada mes; encadenadas en una matriz de transición, proyectan la cartera.</p></div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · % de créditos con 30+ días de mora por MOB</span>
+    <svg class="chart" id="vintChart" viewBox="0 0 640 260" role="img" aria-label="Curvas de cosecha por mes de desembolso"></svg>
+    <div class="legend" id="vintLegend"></div>
+    <p class="note">La cosecha de marzo va por encima de las demás desde el MOB 3, a la misma edad. Coincide con la flexibilización de política de ese mes: ese es el tipo de hallazgo que solo se ve por cosecha.</p>
+  </div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · Matriz de transición mensual</span>
+    <div class="calc">
+      <div style="display:grid;gap:14px;align-content:start">
+        <div class="range"><div class="row"><label for="rRoll">Corriente → 1–30 días</label><span class="mono" id="rRollV"></span></div><input type="range" id="rRoll" min="1" max="12" step="0.5" value="5"></div>
+        <div class="range"><div class="row"><label for="rCure">Cura de 1–30 a corriente (gestión de cobranza)</label><span class="mono" id="rCureV"></span></div><input type="range" id="rCure" min="30" max="80" step="1" value="55"></div>
+        <div class="tbl"><table id="rMat"></table></div>
+      </div>
+      <div style="display:grid;gap:10px;min-width:0">
+        <div class="tbl"><table><thead><tr><th>Mes</th><th class="num">Corriente</th><th class="num">1–30</th><th class="num">31–60</th><th class="num">61–90</th><th class="num">90+ acum.</th></tr></thead><tbody id="rProj"></tbody></table></div>
+      </div>
+    </div>
+    <p class="note" id="rNote"></p>
+  </div>
+  <div class="bridge" data-topic="cosechas"></div>
+</div></section>
+
+<!-- 06 ESTRATEGIA -->
+<section class="mod" id="estrategia"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">06 · Del score a la decisión</span><span class="lv lv2">Intermedio</span></div><h2>Punto de corte, swap set e inferencia de rechazados</h2>
+  <p>El score ordena; la política decide. Bajar el corte aprueba más y sube la mora; el corte óptimo depende del margen de un buen cliente y de la pérdida de uno malo. El punto de equilibrio de un tramo está en una tasa de malos de <span class="mono">margen / (margen + pérdida)</span>.</p></div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · 10.000 solicitudes por tramo de score</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="cMarg">Margen por cliente bueno (USD)<input id="cMarg" type="number" min="0" value="120"></label>
+        <label for="cLoss">Pérdida por cliente malo (USD)<input id="cLoss" type="number" min="0" value="400"></label>
+        <label for="cCut" style="grid-column:1/-1">Aprobar desde el tramo<select id="cCut"></select></label>
+      </div>
+      <div class="metrics" id="cOut"></div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Tramo</th><th class="num">Solicitudes</th><th class="num">Tasa de malos</th><th class="num">Utilidad del tramo</th><th class="num">Utilidad por solicitud</th></tr></thead>
+      <tbody id="cTbl"></tbody>
+    </table></div>
+    <p class="note" id="cNote"></p>
+  </div>
+  <div class="twocol">
+    <div class="panel"><h3>Swap set</h3><p style="font-size:.93rem">Al cambiar de modelo, compara quiénes entran (<i>swap-in</i>: rechazados por el viejo, aprobados por el nuevo) y quiénes salen (<i>swap-out</i>). El nuevo modelo vale si a igual tasa de aprobación los que entran son mejores que los que salen.</p></div>
+    <div class="panel"><h3>Inferencia de rechazados</h3><p style="font-size:.93rem">El modelo se entrena solo con aprobados: nunca vio cómo pagan los rechazados. Para corregir ese sesgo de selección se usan aumentación, parcelamiento, modelos de Heckman, datos de buró de los rechazados o, lo más limpio, una pequeña población aprobada al azar por debajo del corte.</p></div>
+  </div>
+  <div class="bridge" data-topic="estrategia"></div>
+</div></section>
+
+<!-- 07 PRICING -->
+<section class="mod" id="pricing"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">07 · Cobrar por el riesgo</span><span class="lv lv2">Intermedio</span></div><h2>Pricing basado en riesgo y RAROC</h2>
+  <p>La tasa mínima de un crédito debe cubrir el costo de fondeo, el costo operativo, la pérdida esperada y una remuneración al capital que respalda la pérdida no esperada. El <b>RAROC</b> (<i>Risk-Adjusted Return On Capital</i>) compara lo que deja el crédito con el capital que consume.</p></div>
+  <div class="f">Tasa mínima ≈ fondeo × (1 − k) + opex + PD × LGD + k × costo del capital        RAROC = (tasa − fondeo × (1 − k) − opex − EL) / k</div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · Tasas anuales sobre el saldo; simplificado, sin impuestos</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="prFund">Costo de fondeo (%)<input id="prFund" type="number" step="0.1" value="10"></label>
+        <label for="prOpex">Costo operativo (%)<input id="prOpex" type="number" step="0.1" value="5"></label>
+        <label for="prPd">PD anual (%)<input id="prPd" type="number" step="0.1" min="0" value="8"></label>
+        <label for="prLgd">LGD (%)<input id="prLgd" type="number" step="1" min="0" max="100" value="50"></label>
+        <label for="prK">Capital asignado k (% del saldo)<input id="prK" type="number" step="0.5" min="0.5" value="12"></label>
+        <label for="prCoe">Costo del capital (%)<input id="prCoe" type="number" step="0.5" value="18"></label>
+        <label for="prRate" style="grid-column:1/-1">Tasa que vas a ofrecer (%)<input id="prRate" type="number" step="0.5" value="24"></label>
+      </div>
+      <div class="metrics" id="prOut"></div>
+    </div>
+    <p class="note" id="prNote"></p>
+  </div>
+  <p class="muted" style="font-size:.9rem">Cuidado con la selección adversa: si subes la tasa a un segmento, los clientes que aceptan suelen ser los más riesgosos. Por eso la elasticidad y la PD se estiman juntas, idealmente con experimentos de precio.</p>
+  <div class="bridge" data-topic="pricing"></div>
+</div></section>
+
+<!-- 08 NIIF 9 -->
+<section class="mod" id="provisiones"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">08 · Provisiones</span><span class="lv lv3">Avanzado</span></div><h2>Pérdida crediticia esperada NIIF 9</h2>
+  <p>NIIF 9 (IFRS 9) obliga a provisionar la pérdida esperada con información prospectiva, no solo la ya incurrida. Cada crédito cae en una de tres etapas según cuánto ha subido su riesgo desde que se originó.</p></div>
+  <div class="stages">
+    <div class="stg s1"><b>Etapa 1</b><span>Sin aumento significativo del riesgo (SICR). Se provisiona la pérdida esperada a <b>12 meses</b>.</span></div>
+    <div class="stg s2"><b>Etapa 2</b><span>Aumento significativo desde el origen; presunción refutable a 30 días de mora. Pérdida esperada de <b>toda la vida</b>.</span></div>
+    <div class="stg s3"><b>Etapa 3</b><span>Deterioro crediticio; presunción refutable a 90 días. Vida completa con PD = 100 %.</span></div>
+  </div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · Un crédito, tres escenarios macro (sin descuento, simplificado)</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="iEad">EAD (USD)<input id="iEad" type="number" min="0" value="5000"></label>
+        <label for="iStage">Etapa<select id="iStage"><option value="1">Etapa 1 · 12 meses</option><option value="2">Etapa 2 · vida completa</option><option value="3">Etapa 3 · deteriorado</option></select></label>
+        <label for="iPd12">PD 12 meses, base (%)<input id="iPd12" type="number" step="0.1" min="0" value="4"></label>
+        <label for="iPdL">PD vida completa, base (%)<input id="iPdL" type="number" step="0.1" min="0" value="11"></label>
+        <label for="iLgd">LGD (%)<input id="iLgd" type="number" min="0" max="100" value="55"></label>
+        <label for="iWb">Peso escenario base (%)<input id="iWb" type="number" min="0" max="100" value="50"></label>
+        <label for="iWu">Peso favorable, PD × 0,8 (%)<input id="iWu" type="number" min="0" max="100" value="20"></label>
+        <label for="iWd">Peso adverso, PD × 1,7 (%)<input id="iWd" type="number" min="0" max="100" value="30"></label>
+      </div>
+      <div class="metrics" id="iOut"></div>
+    </div>
+    <p class="note" id="iNote"></p>
+  </div>
+  <div class="panel">
+    <h3>Lo que hay detrás en un banco real</h3>
+    <ul class="clean">
+      <li><b>PD de vida completa</b>: curvas de PD marginal por mes, con modelos de supervivencia, matrices de transición o cosechas extrapoladas.</li>
+      <li><b>Forward-looking</b>: modelos satélite que ligan la PD con desempleo, PIB, inflación y tasas; se usan 3 o más escenarios ponderados porque las pérdidas no son lineales en la economía.</li>
+      <li><b>SICR</b>: umbrales de cambio relativo y absoluto en la PD de vida desde el origen, más listas de vigilancia y el respaldo de 30 días.</li>
+      <li><b>Descuento</b>: las pérdidas futuras se traen a valor presente con la tasa efectiva original.</li>
+    </ul>
+    <p class="muted" style="font-size:.88rem">En Colombia, los estados financieros separados de las entidades vigiladas aplican las reglas de provisión de la Superintendencia Financiera (modelos de referencia por cartera), y NIIF 9 aplica en los consolidados. En Estados Unidos el equivalente es CECL, que usa vida completa para todo. Confirma el detalle en la normativa vigente antes de citarlo.</p>
+  </div>
+  <div class="bridge" data-topic="provisiones"></div>
+</div></section>
+
+<!-- 09 CAPITAL -->
+<section class="mod" id="capital"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">09 · Pérdida no esperada</span><span class="lv lv3">Avanzado</span></div><h2>Capital de Basilea IRB y el modelo de Vasicek</h2>
+  <p>La fórmula de capital IRB de Basilea viene del modelo de un factor de Vasicek: todos los deudores dependen de un factor común (la economía) con correlación ρ. Condicionado a un año malo, el que ocurre 1 de cada 1.000, la tasa de default sube. El capital cubre la diferencia entre esa pérdida extrema y la esperada.</p></div>
+  <div class="f">PD(z) = N[ (G(PD) − √ρ · z) / √(1 − ρ) ]        K = LGD × N[ (G(PD) + √ρ · G(0,999)) / √(1 − ρ) ] − PD × LGD</div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Minorista "otros" (consumo); sin ajuste por vencimiento</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="kPd">PD (%)<input id="kPd" type="number" min="0.03" max="99" step="0.1" value="3"></label>
+        <label for="kLgd">LGD (%)<input id="kLgd" type="number" min="0" max="100" value="45"></label>
+        <label for="kEad">EAD de la cartera (USD)<input id="kEad" type="number" min="0" value="10000000"></label>
+        <label for="kRho">Correlación ρ<select id="kRho"><option value="auto">Fórmula de Basilea (minorista)</option><option value="0.04">0,04 (tarjetas, aprox. QRRE)</option><option value="0.15">0,15 (hipotecas)</option><option value="0.24">0,24 (empresas, alto)</option></select></label>
+      </div>
+      <div class="metrics" id="kOut"></div>
+    </div>
+    <svg class="chart" id="kChart" viewBox="0 0 640 240" role="img" aria-label="Distribución de pérdidas de la cartera"></svg>
+    <div class="legend"><span><i style="background:var(--c1)"></i>Distribución de la pérdida anual</span><span><i style="background:var(--c2)"></i>Pérdida esperada</span><span><i style="background:var(--c3)"></i>Pérdida al 99,9 %</span></div>
+    <div class="range"><div class="row"><label for="kZ">Escenario de estrés: factor económico z</label><span class="mono" id="kZV"></span></div><input type="range" id="kZ" min="-3" max="3" step="0.1" value="0"></div>
+    <p class="note" id="kNote"></p>
+  </div>
+  <div class="bridge" data-topic="capital"></div>
+</div></section>
+
+<!-- 10 MONITOREO -->
+<section class="mod" id="monitoreo"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">10 · Después de producción</span><span class="lv lv3">Avanzado</span></div><h2>Monitoreo, estrés y riesgo de modelo</h2>
+  <p>Un modelo empieza a degradarse el día que sale. Se vigila la población (PSI, CSI por variable), el desempeño (KS y Gini en cosechas maduras), la calibración y los overrides. El riesgo de modelo se gobierna con validación independiente que haga <i>effective challenge</i>, como pide la guía SR 11-7 de la Reserva Federal.</p></div>
+  <div class="f">PSI = Σ (%actual − %esperado) × ln(%actual / %esperado)</div>
+  <div class="panel example">
+    <span class="tag">Calculadora · PSI de la distribución de score (edita la columna actual)</span>
+    <div class="tbl"><table>
+      <thead><tr><th>Tramo de score</th><th class="num">% desarrollo</th><th class="num">% actual</th><th class="num">Aporte</th></tr></thead>
+      <tbody id="psiTbl"></tbody>
+    </table></div>
+    <p class="note" id="psiNote"></p>
+  </div>
+  <div class="twocol">
+    <div class="panel"><h3>Umbrales usuales de PSI</h3><ul class="clean"><li><b>&lt; 0,10</b>: estable.</li><li><b>0,10 – 0,25</b>: cambio moderado; investiga qué variable lo causa con el CSI.</li><li><b>&gt; 0,25</b>: cambio fuerte; evalúa recalibrar o redesarrollar.</li></ul></div>
+    <div class="panel"><h3>Pruebas de estrés</h3><p style="font-size:.93rem">Un modelo satélite liga la tasa de default con variables macro (por ejemplo, logit de la tasa de default contra desempleo rezagado). Con un escenario adverso del supervisor se proyectan PD, pérdidas y capital a 2–3 años. El control de z del módulo de capital es la versión de un factor de la misma idea.</p></div>
+  </div>
+  <div class="panel">
+    <h3>Los tres pilares de la gestión de riesgo de modelo</h3>
+    <div class="cards">
+      <div class="card"><span class="n">Desarrollo</span><p>Propósito claro, datos documentados, supuestos y limitaciones explícitos, pruebas de sensibilidad.</p></div>
+      <div class="card"><span class="n">Validación</span><p>Independiente: revisa la teoría, replica, hace benchmarking con un modelo retador y backtesting.</p></div>
+      <div class="card"><span class="n">Gobierno</span><p>Inventario de modelos, niveles de riesgo, aprobación, monitoreo y criterios de retiro.</p></div>
+    </div>
+  </div>
+  <div class="bridge" data-topic="monitoreo"></div>
+</div></section>
+
+<!-- 11 AVANZADO -->
+<section class="mod" id="avanzado"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">11 · Hasta dónde llega el campo</span><span class="lv lv4">Experto</span></div><h2>Técnicas avanzadas</h2>
+  <p class="muted">Lo que separa a un analista senior: modelos que respetan el tiempo, ML que el regulador acepta, causalidad para decidir políticas y una vista de portafolio.</p></div>
+  <div class="techs">
+    <div class="tech"><div class="tech-h"><h3>Supervivencia y riesgos competitivos</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Necesitas la PD a cualquier horizonte (12 meses, vida completa) y muchos créditos se prepagan antes de terminar.</dd>
+      <dt>Técnica</dt><dd>Cox o modelos de tiempo discreto (logit por mes en libros) con censura; riesgos competitivos (Fine-Gray o subdistribución) para separar default de prepago.</dd>
+      <dt>Ejemplo dummy</dt><dd>Ignorar el prepago infla la PD de vida de 11 % a 14 %: los prepagados se trataban como si siguieran expuestos.</dd></dl>
+      <div class="libs"><span class="lib">lifelines</span><span class="lib">scikit-survival</span><span class="lib">statsmodels</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Gradient boosting gobernado</h3><span class="lv lv3">Avanzado</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>XGBoost gana 5 puntos de Gini, pero el comité no acepta un modelo que diga que más mora pasada baja el riesgo.</dd>
+      <dt>Técnica</dt><dd>Restricciones monotónicas por variable, límites de interacción, variables previamente binneadas y reportes SHAP; o un scorecard con un submodelo de boosting como variable.</dd>
+      <dt>Ejemplo dummy</dt><dd>Con monotonía el Gini baja de 58 % a 57 %, pero las curvas de dependencia quedan defendibles y el modelo pasa validación.</dd></dl>
+      <div class="libs"><span class="lib">xgboost</span><span class="lib">lightgbm</span><span class="lib">shap</span><span class="lib">interpret (EBM)</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Códigos de razón y explicabilidad</h3><span class="lv lv3">Avanzado</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>A un cliente rechazado hay que decirle por qué, con razones estables y entendibles.</dd>
+      <dt>Técnica</dt><dd>En scorecards, los puntos perdidos frente al máximo de cada variable; en ML, SHAP agregado por grupos de variables; contrafactuales accionables ("con 6 meses más de antigüedad aprobarías").</dd>
+      <dt>Ejemplo dummy</dt><dd>Las 3 razones principales: utilización de cupos de 92 %, 2 consultas al buró en 30 días y antigüedad laboral menor a 6 meses.</dd></dl>
+      <div class="libs"><span class="lib">shap</span><span class="lib">dice-ml</span><span class="lib">alibi</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Causalidad para políticas</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>¿Subirle el cupo a un cliente aumenta su riesgo o solo se lo damos a quien ya era bueno?</dd>
+      <dt>Técnica</dt><dd>Experimentos de aumento de cupo, uplift (T/X-learner, causal forests) y Double ML para estimar el efecto del cupo o la tasa sobre consumo y mora, separado del perfil.</dd>
+      <dt>Ejemplo dummy</dt><dd>Un aumento de 30 % de cupo sube el gasto 18 % y la PD 0,4 puntos en el tramo bajo; en el tramo alto sube la PD 3 puntos sin más gasto. Solo vale para el primero.</dd></dl>
+      <div class="libs"><span class="lib">EconML</span><span class="lib">DoubleML</span><span class="lib">CausalML</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Optimización de estrategias y límites</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Elegir monto, plazo y tasa por cliente para maximizar utilidad sin pasar un apetito de pérdida ni un volumen mínimo.</dd>
+      <dt>Técnica</dt><dd>Programación entera mixta sobre una matriz cliente × oferta con PD, aceptación y margen esperados; bandits con restricciones para aprender en producción.</dd>
+      <dt>Ejemplo dummy</dt><dd>Ofrecer 300 USD en vez de 500 a perfiles con PD &gt; 20 % mantiene 90 % de la conversión y baja la pérdida esperada 35 %.</dd></dl>
+      <div class="libs"><span class="lib">OR-Tools</span><span class="lib">PuLP</span><span class="lib">scipy.optimize</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Modelos de portafolio</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>¿Cuánto capital económico consume la cartera y qué segmentos concentran el riesgo?</dd>
+      <dt>Técnica</dt><dd>Simulación Monte Carlo con factores sectoriales correlacionados (estilo CreditMetrics o CreditRisk+), contribuciones al VaR y Expected Shortfall por segmento.</dd>
+      <dt>Ejemplo dummy</dt><dd>Microcrédito rural es 15 % del saldo pero 32 % del capital económico por su correlación con el ciclo agrícola.</dd></dl>
+      <div class="libs"><span class="lib">numpy</span><span class="lib">scipy.stats</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Equidad y sesgo</h3><span class="lv lv3">Avanzado</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Quitar el género o la edad del modelo no garantiza que no discrimine: otras variables actúan como proxy.</dd>
+      <dt>Técnica</dt><dd>Medir tasa de aprobación y error por grupo (impacto dispar, igualdad de oportunidades), buscar proxies y mitigar con restricciones o ajustes de umbral, según la ley aplicable.</dd>
+      <dt>Ejemplo dummy</dt><dd>El código postal explica 40 % de la diferencia de aprobación entre dos grupos con igual tasa de malos.</dd></dl>
+      <div class="libs"><span class="lib">fairlearn</span><span class="lib">aif360</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Grafos y datos alternativos</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Clientes sin historial en buró y anillos de fraude que comparten teléfonos y dispositivos.</dd>
+      <dt>Técnica</dt><dd>Variables de transacciones (open finance), redes de dispositivos y contactos, embeddings de grafos; siempre con consentimiento, privacidad y explicabilidad.</dd>
+      <dt>Ejemplo dummy</dt><dd>14 solicitudes en una semana comparten 3 dispositivos; la comunidad del grafo tiene 60 % de primera cuota impaga.</dd></dl>
+      <div class="libs"><span class="lib">networkx</span><span class="lib">PyTorch Geometric</span></div></div>
+  </div>
+  <div class="panel">
+    <h3>Boosting con monotonía en Python</h3>
+<pre class="code">from xgboost import XGBClassifier
+from sklearn.metrics import roc_auc_score
+
+# +1: a mayor valor, mayor riesgo; -1: a mayor valor, menor riesgo
+mono = {"dias_mora_max_12m": 1, "utilizacion_cupos": 1,
+        "consultas_buro_3m": 1, "antiguedad_laboral_meses": -1}
+
+clf = XGBClassifier(n_estimators=600, learning_rate=0.03, max_depth=4,
+                    subsample=0.8, colsample_bytree=0.8,
+                    monotone_constraints=mono,
+                    interaction_constraints=[["utilizacion_cupos", "consultas_buro_3m"]],
+                    eval_metric="auc", early_stopping_rounds=50)
+clf.fit(X_tr, y_tr, eval_set=[(X_va, y_va)], verbose=False)
+print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
+    <p class="muted" style="font-size:.88rem">Recalibra al final (Platt o isotónica) si vas a usar la probabilidad para provisiones o precio, y documenta todo para validación.</p>
+  </div>
+</div></section>
+
+<!-- 12 CATALOGO -->
+<section class="mod" id="catalogo"><div class="wrap">
+  <div class="head"><span class="eyebrow">12 · Todo lo que se modela en riesgo</span><h2>Catálogo de técnicas</h2>
+  <p class="muted">De la tabla de contingencia al capital económico. Cada técnica dice para qué sirve, trae un ejemplo con números inventados y las librerías.</p></div>
+  <div class="filters">
+    <div class="frow2" id="catLv" role="group" aria-label="Nivel">
+      <button type="button" class="fchip" data-lv="0" aria-pressed="true">Todos</button>
+      <button type="button" class="fchip" data-lv="1" aria-pressed="false">Fundamentos</button>
+      <button type="button" class="fchip" data-lv="2" aria-pressed="false">Intermedio</button>
+      <button type="button" class="fchip" data-lv="3" aria-pressed="false">Avanzado</button>
+      <button type="button" class="fchip" data-lv="4" aria-pressed="false">Experto</button>
+    </div>
+    <div class="frow2">
+      <select id="catArea" aria-label="Área"><option value="">Todas las áreas</option></select>
+      <input type="search" id="catQ" placeholder="Buscar: LGD, cosecha, cupo, fraude…" aria-label="Buscar técnica">
+    </div>
+    <span class="mono muted" style="font-size:.8rem" id="catCount"></span>
+  </div>
+  <div class="cat" id="catBox"></div>
+</div></section>
+
+<!-- 13 QUIZ -->
+<section class="mod" id="quiz"><div class="wrap">
+  <div class="head"><span class="eyebrow">13 · Practica</span><h2>Quiz</h2>
+  <p class="muted">Veinte preguntas de fundamentos a experto. Elige una opción y verás al instante si acertaste y por qué. Se guarda en este navegador.</p></div>
+  <div class="qbar"><span class="mono" id="qScore">0 / 20 correctas · 0 respondidas</span><button class="btn" id="qReset" type="button">Reiniciar quiz</button></div>
+  <div class="qfil" id="qFil" role="group" aria-label="Filtrar por nivel">
+    <button type="button" class="fchip" data-q="0" aria-pressed="true">Todas</button>
+    <button type="button" class="fchip" data-q="1" aria-pressed="false">Fundamentos</button>
+    <button type="button" class="fchip" data-q="2" aria-pressed="false">Intermedio</button>
+    <button type="button" class="fchip" data-q="3" aria-pressed="false">Avanzado</button>
+    <button type="button" class="fchip" data-q="4" aria-pressed="false">Experto</button>
+  </div>
+  <div class="quiz" id="quizBox"></div>
+</div></section>
+
+<!-- 14 PLAN -->
+<section class="mod" id="plan"><div class="wrap">
+  <div class="head"><span class="eyebrow">14 · 4 a 6 horas por semana</span><h2>Plan de 12 semanas</h2>
+  <p class="muted">Cada semana tiene teoría y un entregable en código. El proyecto que se va armando usa datos públicos y termina publicado en GitHub. Marca cada semana al terminarla; se guarda en este navegador.</p></div>
+  <div class="progress"><i id="planBar"></i></div>
+  <div class="plan" id="planBox"></div>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>Libros:</b> Siddiqi, <i>Intelligent Credit Scoring</i> · Thomas, Crook y Edelman, <i>Credit Scoring and Its Applications</i> · Baesens, Rösch y Scheule, <i>Credit Risk Analytics</i> · Bellini, <i>IFRS 9 and CECL Credit Risk Modelling and Validation</i>.</p>
+  <p><b>Normas y guías:</b> marco de Basilea del BCBS (enfoque IRB) · NIIF 9 · SR 11-7 de la Reserva Federal sobre riesgo de modelo · guías de la EBA sobre estimación de PD y LGD · Circular Básica Contable y Financiera de la Superintendencia Financiera de Colombia.</p>
+  <p><b>Datos públicos para practicar:</b> Home Credit Default Risk y Give Me Some Credit (Kaggle) · Freddie Mac Single-Family Loan-Level Dataset · Lending Club (copias históricas).</p>
+  <p>Todos los números de esta página son inventados. Las fórmulas están simplificadas para aprender; confirma los detalles en la norma y en la política de tu entidad antes de usarlas.</p>
+</div></footer>
+
+<button class="fab" id="chatOpen" type="button" hidden>Pregúntale a Claude</button>
+<div class="chat" id="chat" role="dialog" aria-label="Preguntas a Claude" hidden>
+  <div class="chat-h"><b>Pregúntale a Claude</b><button type="button" id="chatClose" aria-label="Cerrar">×</button></div>
+  <div class="chat-log" id="chatLog">
+    <div class="msg a">Pregúntame lo que quieras sobre riesgo de crédito, las calculadoras o el quiz.</div>
+    <div class="chips" id="chatChips">
+      <button class="chip" type="button">Explícame la diferencia entre KS y Gini con un ejemplo</button>
+      <button class="chip" type="button">Dame un ejercicio nuevo de pérdida esperada NIIF 9</button>
+      <button class="chip" type="button">¿Cómo defiendo un XGBoost ante un comité de validación?</button>
+      <button class="chip" type="button">¿Por qué la fórmula IRB usa el percentil 99,9?</button>
+    </div>
+  </div>
+  <form class="chat-f" id="chatForm">
+    <textarea id="chatInput" rows="1" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta"></textarea>
+    <button type="submit" id="chatSend">Enviar</button>
+  </form>
+</div>
+
+<script>
+(function(){
+  const store = {
+    get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+    set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  };
+  const fmt = (n, d=0) => isFinite(n) ? n.toLocaleString('es-CO', {minimumFractionDigits:d, maximumFractionDigits:d}) : '—';
+  const $ = id => document.getElementById(id);
+  const val = id => parseFloat($(id).value) || 0;
+  const metric = (k, v, c) => `<div class="metric ${c||''}"><small>${k}</small><b>${v}</b></div>`;
+
+  /* Normal estándar: CDF (Zelen-Severo) e inversa (Acklam) */
+  function N(x){ const t = 1/(1+0.2316419*Math.abs(x)); const d = 0.3989422804*Math.exp(-x*x/2);
+    const p = d*t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429)))); return x > 0 ? 1-p : p; }
+  function G(p){
+    const a=[-39.69683028665376,220.9460984245205,-275.9285104469687,138.3577518672690,-30.66479806614716,2.506628277459239];
+    const b=[-54.47609879822406,161.5858368580409,-155.6989798598866,66.80131188771972,-13.28068155288572];
+    const c=[-0.007784894002430293,-0.3223964580411365,-2.400758277161838,-2.549732539343734,4.374664141464968,2.938163982698783];
+    const d=[0.007784695709041462,0.3224671290700398,2.445134137142996,3.754408661907416];
+    const pl=0.02425; let q, r;
+    if (p < pl){ q=Math.sqrt(-2*Math.log(p)); return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    if (p > 1-pl){ q=Math.sqrt(-2*Math.log(1-p)); return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    q=p-0.5; r=q*q; return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+  }
+
+  /* 02 Pérdida esperada */
+  function el(){
+    const saldo=val('eSaldo'), cupo=Math.max(val('eCupo'), saldo), ccf=val('eCcf')/100, pd=val('ePd')/100, lgd=1-val('eRec')/100, n=val('eN');
+    const ead = saldo + ccf*(cupo-saldo), e1 = pd*lgd*ead, tot = e1*n;
+    $('eOut').innerHTML = metric('EAD por cliente', '$'+fmt(ead)) + metric('LGD', fmt(lgd*100,0)+' %') + metric('EL por cliente', '$'+fmt(e1,1), 'key') + metric('EL de la cartera', '$'+fmt(tot), 'key') + metric('EL / saldo', fmt(saldo ? e1/saldo*100 : NaN,1)+' %') + metric('EL sin CCF', '$'+fmt(pd*lgd*saldo*n));
+    $('eNote').textContent = ccf > 0 && cupo > saldo
+      ? `Calcular sobre el saldo actual subestima la pérdida en $${fmt(tot - pd*lgd*saldo*n)}: los clientes que caen en default suelen usar el cupo libre antes. Ese es el papel del CCF.`
+      : 'Con CCF de 0 o sin cupo libre, la EAD es el saldo actual.';
+  }
+  ['eSaldo','eCupo','eCcf','ePd','eRec','eN'].forEach(i => $(i).addEventListener('input', el)); el();
+
+  /* 03 WoE / IV */
+  const WOE = [['Menos de 6 meses',800,200],['6 a 24 meses',2000,250],['2 a 5 años',3000,200],['Más de 5 años',3200,100]];
+  (function(){
+    const tg = WOE.reduce((s,r)=>s+r[1],0), tb = WOE.reduce((s,r)=>s+r[2],0); let iv = 0;
+    $('woeTbl').innerHTML = WOE.map(r => { const pg=r[1]/tg, pb=r[2]/tb, w=Math.log(pg/pb), c=(pg-pb)*w; iv+=c;
+      return `<tr><td>${r[0]}</td><td class="num">${fmt(r[1])}</td><td class="num">${fmt(r[2])}</td><td class="num">${fmt(r[2]/(r[1]+r[2])*100,1)} %</td><td class="num">${fmt(pg*100,1)} %</td><td class="num">${fmt(pb*100,1)} %</td><td class="num ${w<0?'neg':'pos'}">${fmt(w,3)}</td><td class="num">${fmt(c,3)}</td></tr>`; }).join('')
+      + `<tr class="tot"><td>Total</td><td class="num">${fmt(tg)}</td><td class="num">${fmt(tb)}</td><td class="num">${fmt(tb/(tg+tb)*100,1)} %</td><td></td><td></td><td></td><td class="num">${fmt(iv,3)}</td></tr>`;
+    $('woeNote').textContent = `IV = ${fmt(iv,2)}: poder ${iv<.02?'nulo':iv<.1?'débil':iv<.3?'medio':iv<.5?'fuerte':'sospechoso'}. El WoE crece de forma monotónica con la antigüedad: a más años, menos riesgo. Un WoE negativo significa que el tramo tiene proporcionalmente más malos que buenos.`;
+  })();
+
+  /* 03 PDO */
+  function pdo(){
+    const base=val('pBase'), odds=Math.max(val('pOdds'),1e-6), p=val('pPdo')||20, pd=Math.min(Math.max(val('pPd')/100,1e-4),.999);
+    const factor=p/Math.LN2, offset=base-factor*Math.log(odds), o=(1-pd)/pd, s=offset+factor*Math.log(o);
+    $('pOut').innerHTML = metric('Factor', fmt(factor,2)) + metric('Offset', fmt(offset,1)) + metric('Odds del cliente', fmt(o,1)+' : 1') + metric('Score', fmt(s,0), 'key') + metric('Score con el doble de odds', fmt(s+p,0)) + metric('Score con la mitad de odds', fmt(s-p,0));
+  }
+  ['pBase','pOdds','pPdo','pPd'].forEach(i => $(i).addEventListener('input', pdo)); pdo();
+
+  /* 04 Validación */
+  const DEC = {bad:[180,120,90,70,55,40,30,22,15,8], pd:[12,9,6.5,5,3.8,2.9,2.2,1.6,1.1,0.6]};
+  (function(){
+    const n=1000, TB=DEC.bad.reduce((a,b)=>a+b,0), TG=10*n-TB; let cb=0, cg=0, ks=0, ksd=0, auc=0, pb=0, pg=0;
+    const rows = DEC.bad.map((b,i) => { cb+=b; cg+=n-b; const fb=cb/TB, fg=cg/TG, dif=fb-fg; if (dif>ks){ks=dif;ksd=i+1;}
+      auc += (fg-pg)*(fb+pb)/2; pb=fb; pg=fg;
+      return `<tr class="${i+1===ksd?'hi':''}"><td>${i+1}</td><td class="num">${fmt(n)}</td><td class="num">${b}</td><td class="num">${fmt(DEC.pd[i],1)} %</td><td class="num">${fmt(b/n*100,1)} %</td><td class="num">${fmt(fb*100,1)} %</td><td class="num">${fmt(fg*100,1)} %</td><td class="num">${fmt(dif*100,1)}</td></tr>`; });
+    $('vTbl').innerHTML = rows.join('');
+    // corregir resaltado del KS (se decide al final)
+    [...$('vTbl').rows].forEach((r,i) => r.classList.toggle('hi', i+1===ksd));
+    const gini = 2*auc-1, predM = DEC.pd.reduce((a,b)=>a+b,0)/10, obsM = TB/(10*n)*100;
+    $('vOut').innerHTML = metric('KS', fmt(ks*100,1)+' %', 'key') + metric('AUC', fmt(auc,3)) + metric('Gini', fmt(gini*100,1)+' %', 'key') + metric('PD media predicha', fmt(predM,2)+' %') + metric('Tasa observada', fmt(obsM,2)+' %') + metric('Lift decil 1', fmt(DEC.bad[0]/n/(TB/(10*n)),2)+'×');
+    // gráfico de barras pareadas
+    const W=640,H=230,L=40,B=200,T=14, mx=20, bw=(W-L-10)/10;
+    let s=`<line class="ax" x1="${L}" y1="${B}" x2="${W-6}" y2="${B}"/>`;
+    [0,5,10,15,20].forEach(v=>{const y=B-(B-T)*v/mx; s+=`<line class="ax" x1="${L}" y1="${y}" x2="${W-6}" y2="${y}" stroke-dasharray="2 4"/><text x="${L-6}" y="${y+4}" text-anchor="end">${v}%</text>`;});
+    DEC.bad.forEach((b,i)=>{const x=L+i*bw+bw*.15, w=bw*.33, hp=(B-T)*DEC.pd[i]/mx, ho=(B-T)*(b/n*100)/mx;
+      s+=`<rect x="${x}" y="${B-hp}" width="${w}" height="${hp}" rx="2" fill="var(--c1)"/><rect x="${x+w+2}" y="${B-ho}" width="${w}" height="${ho}" rx="2" fill="var(--c3)"/><text x="${L+i*bw+bw/2}" y="${B+16}" text-anchor="middle">D${i+1}</text>`;});
+    $('vChart').innerHTML = s;
+    $('vNote').textContent = `KS de ${fmt(ks*100,1)} % en el decil ${ksd} y Gini de ${fmt(gini*100,1)} %: ordena bien. Pero la PD media predicha (${fmt(predM,2)} %) queda por debajo de la observada (${fmt(obsM,2)} %), sobre todo en los deciles riesgosos: el modelo subestima el riesgo. Para aprobar sirve igual; para provisionar o fijar precio hay que recalibrarlo.`;
+  })();
+
+  /* 05 Cosechas */
+  const VINT = [['Ene 2026',8.5,3.2,12,'var(--c1)'],['Feb 2026',8.8,3.3,11,'var(--c2)'],['Mar 2026',12.5,2.8,10,'var(--c3)'],['Abr 2026',9.0,3.1,9,'var(--c4)']];
+  (function(){
+    const W=640,H=260,L=40,R=20,T=14,B=224, mx=14, xs=m=>L+(W-L-R)*(m-1)/11, ys=v=>B-(B-T)*v/mx;
+    let s=`<line class="ax" x1="${L}" y1="${B}" x2="${W-R}" y2="${B}"/>`;
+    [0,2,4,6,8,10,12,14].forEach(v=>{s+=`<line class="ax" x1="${L}" y1="${ys(v)}" x2="${W-R}" y2="${ys(v)}" stroke-dasharray="2 4"/><text x="${L-6}" y="${ys(v)+4}" text-anchor="end">${v}%</text>`;});
+    for(let m=1;m<=12;m++) s+=`<text x="${xs(m)}" y="${B+16}" text-anchor="middle">${m}</text>`;
+    s+=`<text x="${W-R}" y="${H-4}" text-anchor="end">meses en libros (MOB)</text>`;
+    VINT.forEach(([n,a,t,m,c])=>{ const pts=[]; for(let k=1;k<=m;k++) pts.push([xs(k), ys(a*(1-Math.exp(-k/t)))]);
+      s+=`<polyline points="${pts.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="${c}" stroke-width="2.2" stroke-linejoin="round"/>`;
+      const e=pts[pts.length-1]; s+=`<circle cx="${e[0]}" cy="${e[1]}" r="3.5" fill="${c}"/>`; });
+    $('vintChart').innerHTML = s;
+    $('vintLegend').innerHTML = VINT.map(v=>`<span><i style="background:${v[4]}"></i>${v[0]}</span>`).join('');
+  })();
+
+  /* 05 Roll rates */
+  const ST = ['Corriente','1–30','31–60','61–90','90+'];
+  function roll(){
+    const r=val('rRoll')/100, c=val('rCure')/100;
+    $('rRollV').textContent = fmt(r*100,1)+' %'; $('rCureV').textContent = fmt(c*100,0)+' %';
+    const M = [[1-r,r,0,0,0],[c,.15,.85-c,0,0],[.20,.10,.15,.55,0],[.05,.02,.05,.18,.70],[0,0,0,0,1]];
+    $('rMat').innerHTML = `<thead><tr><th>De \\ a</th>${ST.map(s=>`<th class="num">${s}</th>`).join('')}</tr></thead><tbody>${M.map((row,i)=>`<tr><td>${ST[i]}</td>${row.map(v=>`<td class="num">${fmt(v*100,0)}%</td>`).join('')}</tr>`).join('')}</tbody>`;
+    let v=[9000,600,250,150,0]; const rows=[[0,...v]];
+    for(let m=1;m<=6;m++){ const nv=[0,0,0,0,0]; v.forEach((x,i)=>M[i].forEach((p,j)=>nv[j]+=x*p)); v=nv; rows.push([m,...v]); }
+    $('rProj').innerHTML = rows.map(r=>`<tr><td>${r[0]}</td>${r.slice(1).map(x=>`<td class="num">${fmt(x)}</td>`).join('')}</tr>`).join('');
+    $('rNote').textContent = `De 10.000 créditos, ${fmt(v[4])} llegan a 90+ en 6 meses (${fmt(v[4]/100,1)} %). Mueve la cura: cada punto de cura temprana en cobranza vale más que varios puntos en tramos tardíos, porque corta el flujo antes de que se acumule.`;
+  }
+  ['rRoll','rCure'].forEach(i => $(i).addEventListener('input', roll)); roll();
+
+  /* 06 Punto de corte */
+  const BANDS = [['Menos de 450',800,.32],['450–499',1000,.22],['500–549',1300,.15],['550–599',1500,.10],['600–649',1600,.065],['650–699',1400,.04],['700–749',1200,.025],['750 o más',1200,.012]];
+  $('cCut').innerHTML = BANDS.map((b,i)=>`<option value="${i}" ${i===2?'selected':''}>${b[0]}</option>`).join('');
+  function cut(){
+    const m=val('cMarg'), L=val('cLoss'), k=+$('cCut').value, tot=BANDS.reduce((s,b)=>s+b[1],0);
+    let ap=0, bad=0, prof=0, best=-Infinity, bi=0;
+    const pr = BANDS.map(b=>b[1]*((1-b[2])*m - b[2]*L));
+    for(let j=0;j<BANDS.length;j++){ const p=pr.slice(j).reduce((a,b)=>a+b,0); if(p>best){best=p;bi=j;} }
+    $('cTbl').innerHTML = BANDS.map((b,i)=>{ const on=i>=k; if(on){ap+=b[1];bad+=b[1]*b[2];prof+=pr[i];}
+      return `<tr class="${on?'':'off'}"><td>${b[0]}${on?'':' · rechazado'}</td><td class="num">${fmt(b[1])}</td><td class="num">${fmt(b[2]*100,1)} %</td><td class="num ${pr[i]<0?'neg':''}">$${fmt(pr[i])}</td><td class="num ${pr[i]<0?'neg':''}">$${fmt(pr[i]/b[1],1)}</td></tr>`; }).join('');
+    $('cOut').innerHTML = metric('Aprobación', fmt(ap/tot*100,1)+' %') + metric('Tasa de malos aprobados', fmt(ap?bad/ap*100:NaN,1)+' %') + metric('Utilidad', '$'+fmt(prof), 'key '+(prof<0?'neg':'pos')) + metric('Equilibrio por tramo', fmt(m+L?m/(m+L)*100:NaN,1)+' % de malos');
+    $('cNote').textContent = k===bi ? `Este es el corte que maximiza la utilidad con estos supuestos: $${fmt(best)}. Aprobar el tramo siguiente hacia abajo resta, porque su tasa de malos supera el equilibrio de ${fmt(m/(m+L)*100,1)} %.`
+      : `El corte óptimo con estos supuestos es "${BANDS[bi][0]}", con utilidad de $${fmt(best)}; el actual deja $${fmt(best-prof)} sobre la mesa. Cambia margen o pérdida y mira cómo se mueve.`;
+  }
+  ['cMarg','cLoss'].forEach(i => $(i).addEventListener('input', cut)); $('cCut').addEventListener('change', cut); cut();
+
+  /* 07 Pricing */
+  function price(){
+    const f=val('prFund')/100, o=val('prOpex')/100, el=val('prPd')/100*val('prLgd')/100, k=Math.max(val('prK')/100,.001), coe=val('prCoe')/100, r=val('prRate')/100;
+    const min=f*(1-k)+o+el+k*coe, raroc=(r-f*(1-k)-o-el)/k;
+    $('prOut').innerHTML = metric('Pérdida esperada', fmt(el*100,1)+' %') + metric('Fondeo neto de capital', fmt(f*(1-k)*100,2)+' %') + metric('Cargo por capital', fmt(k*coe*100,2)+' %') + metric('Tasa mínima', fmt(min*100,2)+' %', 'key') + metric('RAROC a tu tasa', fmt(raroc*100,1)+' %', 'key '+(raroc<coe?'neg':'pos'));
+    $('prNote').textContent = raroc>=coe ? `A ${fmt(r*100,1)} % el crédito rinde ${fmt(raroc*100,1)} % sobre su capital, por encima del costo de ${fmt(coe*100,1)} %: crea valor.`
+      : `A ${fmt(r*100,1)} % el RAROC (${fmt(raroc*100,1)} %) no cubre el costo del capital (${fmt(coe*100,1)} %): el crédito destruye valor aunque tenga margen positivo. Sube la tasa al menos a ${fmt(min*100,2)} % o reduce la PD con política.`;
+  }
+  ['prFund','prOpex','prPd','prLgd','prK','prCoe','prRate'].forEach(i => $(i).addEventListener('input', price)); price();
+
+  /* 08 NIIF 9 */
+  function ecl(){
+    const ead=val('iEad'), st=+$('iStage').value, lgd=val('iLgd')/100, p12=val('iPd12')/100, pl=Math.max(val('iPdL')/100, p12);
+    const w=[val('iWu'),val('iWb'),val('iWd')], ws=w.reduce((a,b)=>a+b,0)||1, mult=[.8,1,1.7], names=['Favorable','Base','Adverso'];
+    const base = st===1?p12:st===2?pl:1;
+    const e = mult.map(m=>Math.min(1, st===3?1:base*m)*lgd*ead), we = e.reduce((s,x,i)=>s+x*w[i]/ws,0);
+    const e1 = p12*lgd*ead, eL = pl*lgd*ead;
+    $('iOut').innerHTML = e.map((x,i)=>metric(names[i], '$'+fmt(x))).join('') + metric('ECL ponderada', '$'+fmt(we), 'key') + metric('Cobertura', fmt(ead?we/ead*100:NaN,2)+' %', 'key');
+    $('iNote').textContent = (Math.abs(ws-100)>0.5 ? `Los pesos suman ${fmt(ws)} %; se normalizan a 100. ` : '')
+      + (st===1 ? `Si este crédito pasa a etapa 2, la provisión base salta de $${fmt(e1)} a $${fmt(eL)} (${fmt(e1?eL/e1:NaN,1)} veces): el "efecto acantilado" de NIIF 9. Por eso la definición de SICR mueve tanto el estado de resultados.`
+         : st===2 ? `En etapa 2 se provisiona la vida completa. La ponderación queda en $${fmt(we)}, por encima del escenario base ($${fmt(e[1])}), porque el adverso pesa más de lo que resta el favorable.`
+         : `En etapa 3 la PD es 100 % y la provisión depende solo de la LGD: $${fmt(lgd*ead)}. Aquí lo que importa es estimar bien la recuperación.`);
+  }
+  ['iEad','iPd12','iPdL','iLgd','iWb','iWu','iWd'].forEach(i => $(i).addEventListener('input', ecl)); $('iStage').addEventListener('change', ecl); ecl();
+
+  /* 09 Capital IRB + Vasicek */
+  function cap(){
+    const pd=Math.min(Math.max(val('kPd')/100,.0003),.99), lgd=val('kLgd')/100, ead=val('kEad'), z=val('kZ');
+    const w=(1-Math.exp(-35*pd))/(1-Math.exp(-35)), rho = $('kRho').value==='auto' ? .03*w+.16*(1-w) : +$('kRho').value;
+    const q=N((G(pd)+Math.sqrt(rho)*G(.999))/Math.sqrt(1-rho)), K=lgd*(q-pd), rwa=12.5*K*ead, pdz=N((G(pd)-Math.sqrt(rho)*z)/Math.sqrt(1-rho));
+    $('kZV').textContent = (z>0?'+':'')+fmt(z,1)+(z<0?' · economía mala':z>0?' · economía buena':' · neutral');
+    $('kOut').innerHTML = metric('Correlación ρ', fmt(rho,3)) + metric('Pérdida esperada', fmt(pd*lgd*100,2)+' %') + metric('Pérdida al 99,9 %', fmt(q*lgd*100,2)+' %') + metric('Capital K', fmt(K*100,2)+' %', 'key') + metric('APR (RWA)', '$'+fmt(rwa), 'key') + metric('APR / EAD', fmt(ead?rwa/ead*100:NaN,0)+' %') + metric('PD en el escenario z', fmt(pdz*100,2)+' %');
+    // densidad de la pérdida: x = tasa de default × LGD
+    const W=640,H=240,L=40,R=16,T=12,B=206, xmax=Math.min(1, N((G(pd)+Math.sqrt(rho)*G(.9999))/Math.sqrt(1-rho))*1.08);
+    const F = x => x<=0?0:x>=1?1:N((Math.sqrt(1-rho)*G(x)-G(pd))/Math.sqrt(rho));
+    const n=160, pts=[]; let dmax=0;
+    for(let i=0;i<n;i++){ const a=xmax*i/n, b=xmax*(i+1)/n, d=(F(b)-F(a))/(b-a); pts.push([(a+b)/2, d]); if(d>dmax) dmax=d; }
+    const xs=x=>L+(W-L-R)*x/xmax, ys=d=>B-(B-T)*d/dmax;
+    let s=`<line class="ax" x1="${L}" y1="${B}" x2="${W-R}" y2="${B}"/>`;
+    for(let i=0;i<=5;i++){ const x=xmax*i/5; s+=`<text x="${xs(x)}" y="${B+16}" text-anchor="middle">${fmt(x*lgd*100,1)}%</text>`; }
+    s+=`<text x="${W-R}" y="${H-2}" text-anchor="end">pérdida anual de la cartera (% de la EAD)</text>`;
+    s+=`<path d="M${xs(0)},${B} ${pts.map(p=>`L${xs(p[0]).toFixed(1)},${ys(p[1]).toFixed(1)}`).join(' ')} L${xs(xmax)},${B} Z" fill="var(--c1)" fill-opacity=".22" stroke="var(--c1)" stroke-width="1.6"/>`;
+    const line=(x,c,t,anchor)=>`<line x1="${xs(x)}" y1="${T}" x2="${xs(x)}" y2="${B}" stroke="${c}" stroke-width="2" stroke-dasharray="5 3"/><text x="${xs(x)+(anchor==='end'?-4:4)}" y="${T+12}" text-anchor="${anchor}" style="fill:${c}">${t}</text>`;
+    s+=line(pd,'var(--c2)','EL','start'); if(q<xmax) s+=line(q,'var(--c3)','99,9 %','end');
+    if(Math.abs(z)>0.05 && pdz<xmax) s+=`<circle cx="${xs(pdz)}" cy="${B}" r="5" fill="var(--fg)"/><text x="${xs(pdz)}" y="${B-10}" text-anchor="middle" style="fill:var(--fg)">z</text>`;
+    $('kChart').innerHTML = s;
+    $('kNote').textContent = `La cola derecha es lo que cubre el capital: en 1 de cada 1.000 años la pérdida pasaría de ${fmt(pd*lgd*100,2)} % a ${fmt(q*lgd*100,2)} %. ` + (z<0 ? `Con z = ${fmt(z,1)} la PD condicional sube de ${fmt(pd*100,2)} % a ${fmt(pdz*100,2)} %: así se arma una prueba de estrés de un factor.` : 'Mueve z hacia la izquierda para estresar la economía; prueba también otra correlación y mira cómo engorda la cola.');
+  }
+  ['kPd','kLgd','kEad','kZ'].forEach(i => $(i).addEventListener('input', cap)); $('kRho').addEventListener('change', cap); cap();
+
+  /* 10 PSI */
+  const PSI = [['Menos de 500',10,5],['500–579',20,12],['580–649',30,27],['650–719',25,32],['720 o más',15,24]];
+  (function(){
+    $('psiTbl').innerHTML = PSI.map((r,i)=>`<tr><td>${r[0]}</td><td class="num">${r[1]} %</td><td class="num"><input class="num" id="psiA${i}" type="number" min="0.1" step="0.5" value="${r[2]}" aria-label="% actual ${r[0]}" style="width:88px;text-align:right"></td><td class="num" id="psiC${i}"></td></tr>`).join('') + `<tr class="tot"><td>Total</td><td class="num">100 %</td><td class="num" id="psiSum"></td><td class="num" id="psiT"></td></tr>`;
+    function psi(){
+      const a = PSI.map((r,i)=>Math.max(parseFloat($('psiA'+i).value)||0, .01)), sa=a.reduce((x,y)=>x+y,0); let t=0;
+      PSI.forEach((r,i)=>{ const e=r[1]/100, x=a[i]/sa, c=(x-e)*Math.log(x/e); t+=c; $('psiC'+i).textContent=fmt(c,4); });
+      $('psiSum').textContent = fmt(sa,1)+' %'; $('psiT').textContent = fmt(t,3);
+      $('psiNote').textContent = `PSI = ${fmt(t,3)}: ${t<.1?'población estable.':t<.25?'cambio moderado; revisa el CSI de cada variable para ver qué lo mueve.':'cambio fuerte; la población ya no se parece a la de desarrollo.'}`
+        + (Math.abs(sa-100)>.5 ? ` La columna actual suma ${fmt(sa,1)} %; se normaliza a 100.` : '') + ' La población se corrió hacia scores altos: puede ser una mejor campaña de captación o un cambio en el buró.';
+    }
+    PSI.forEach((r,i)=>$('psiA'+i).addEventListener('input', psi)); psi();
+  })();
+
+  /* Catálogo */
+  const CAT = [
+    {n:'Tablas de contingencia y tasas de malos', lv:1, a:'Originación', u:'Primer análisis de cualquier variable: tasa de malos por tramo y su volumen.', e:'Clientes con 3 o más consultas al buró en 30 días: 14 % de malos contra 5 % del resto.', l:'pandas'},
+    {n:'Binning óptimo, WoE e IV', lv:1, a:'Originación', u:'Agrupar variables en tramos monotónicos y medir su poder predictivo.', e:'La utilización de cupos queda en 5 tramos con IV de 0,41.', l:'optbinning, scorecardpy, toad'},
+    {n:'Regresión logística y scorecard', lv:1, a:'Originación', u:'Modelo de aplicación explicable, convertido a puntos con PDO.', e:'600 puntos a odds 50:1 y PDO de 20: un cliente con odds 100:1 tiene 620.', l:'statsmodels, optbinning'},
+    {n:'KS, Gini, AUC y lift', lv:1, a:'Validación y monitoreo', u:'Medir si el modelo ordena a los malos arriba.', e:'KS de 38 % en el decil 3; el decil 1 concentra 2,9 veces la tasa promedio.', l:'scikit-learn, scipy'},
+    {n:'Calibración y prueba binomial', lv:1, a:'Validación y monitoreo', u:'Comparar PD predicha con tasa observada por tramo de rating.', e:'Rating C predice 6 % y observa 9 % con 800 créditos: la prueba binomial rechaza.', l:'scipy.stats'},
+    {n:'Pérdida esperada PD × LGD × EAD', lv:1, a:'Provisiones y capital', u:'Costo de riesgo por crédito, segmento o cartera.', e:'PD 5 %, LGD 60 %, EAD 2.000: EL de 60 USD.', l:'pandas'},
+    {n:'Definición de default y ventanas', lv:1, a:'Originación', u:'Fijar qué es "malo", el horizonte de desempeño y la ventana de observación antes de modelar.', e:'Con 60 días en vez de 90 la tasa de malos sube de 6 % a 8,5 % y cambia el ranking de variables.', l:'SQL'},
+    {n:'Cosechas (vintage)', lv:2, a:'Cobranza y cartera', u:'Comparar cohortes de desembolso a la misma edad.', e:'La cosecha de marzo tiene 9 % de 30+ en el MOB 6 contra 6 % de las demás.', l:'pandas, matplotlib'},
+    {n:'Roll rates y matrices de transición', lv:2, a:'Cobranza y cartera', u:'Proyectar el flujo de cartera entre tramos de mora.', e:'Una roll rate de 30 a 60 días de 40 % y de 60 a 90 de 50 % llevan 20 % de los 30 a 90 en dos meses.', l:'numpy'},
+    {n:'Score de comportamiento', lv:2, a:'Cobranza y cartera', u:'PD mensual de clientes activos con su historia de pagos y uso.', e:'Gini de 72 %: mucho más alto que el de aplicación porque ya se ve cómo paga.', l:'LightGBM, scikit-learn'},
+    {n:'Score de cobranza y propensión a pago', lv:2, a:'Cobranza y cartera', u:'Priorizar a quién contactar y con qué canal en mora temprana.', e:'Llamar al 40 % con mayor propensión recupera 70 % de lo que recupera llamar a todos.', l:'XGBoost'},
+    {n:'Estrategia de corte y swap set', lv:2, a:'Estrategia y pricing', u:'Elegir el punto de corte y comparar quién entra y quién sale al cambiar de modelo.', e:'A igual aprobación, el swap-in tiene 4 % de malos y el swap-out 9 %.', l:'pandas'},
+    {n:'Inferencia de rechazados', lv:2, a:'Originación', u:'Corregir el sesgo de entrenar solo con aprobados.', e:'Con datos de buró de los rechazados, su tasa de malos inferida es 21 %, no el 15 % que suponía la extrapolación.', l:'scikit-learn, statsmodels (Heckman)'},
+    {n:'Pricing basado en riesgo y RAROC', lv:2, a:'Estrategia y pricing', u:'Fijar la tasa mínima que cubre fondeo, costo, pérdida y capital.', e:'Fondeo 10 %, opex 5 %, EL 4 %, capital 12 % al 18 %: tasa mínima cercana a 20 %.', l:'numpy'},
+    {n:'Modelos de LGD', lv:2, a:'Provisiones y capital', u:'Estimar la pérdida dado default; suele ser bimodal (se recupera casi todo o casi nada).', e:'Modelo en dos etapas: probabilidad de cura 35 % y, si no cura, pérdida de 80 %: LGD esperada 52 %.', l:'statsmodels (beta, fractional logit)'},
+    {n:'Modelos de EAD y CCF', lv:2, a:'Provisiones y capital', u:'Estimar cuánto del cupo libre se usa antes del default.', e:'CCF de 60 % en tarjetas con utilización baja; 20 % en las que ya están al tope.', l:'statsmodels'},
+    {n:'Capacidad de pago', lv:2, a:'Originación', u:'Estimar ingreso y carga financiera para limitar el monto, además de la PD.', e:'Con una cuota máxima de 30 % del ingreso estimado, el monto aprobado baja 15 % y la mora 2 puntos.', l:'LightGBM, reglas'},
+    {n:'Detección de fraude de primera cuota', lv:2, a:'Fraude', u:'Separar fraude de riesgo: el cliente que nunca pensó pagar.', e:'Isolation Forest marca 1,5 % de solicitudes; 30 % de ellas no paga la primera cuota.', l:'scikit-learn, LightGBM'},
+    {n:'Pérdida esperada NIIF 9', lv:3, a:'Provisiones y capital', u:'Provisión con etapas, PD de vida completa y escenarios.', e:'Pasar a etapa 2 multiplica la provisión de un crédito por 2,8.', l:'pandas, numpy'},
+    {n:'PD de vida completa', lv:3, a:'Provisiones y capital', u:'Curvas de PD marginal mensual para el horizonte del crédito.', e:'PD acumulada: 4 % a 12 meses, 9 % a 24, 11 % a 36.', l:'lifelines, numpy'},
+    {n:'Modelos satélite macro', lv:3, a:'Estrés y portafolio', u:'Ligar la tasa de default con desempleo, PIB y tasas para escenarios.', e:'Cada punto de desempleo sube la PD de consumo 0,6 puntos con 2 trimestres de rezago.', l:'statsmodels (ARIMAX)'},
+    {n:'Capital IRB y Vasicek', lv:3, a:'Provisiones y capital', u:'Capital regulatorio o económico con un factor común.', e:'PD 3 %, LGD 45 %: capital cercano a 5 % de la exposición.', l:'scipy.stats'},
+    {n:'Calibración a tendencia central', lv:3, a:'Validación y monitoreo', u:'Ajustar las PD a la tasa de default de largo plazo (TTC) o a la del momento (PIT).', e:'Tasa de largo plazo 6 %, del año 4,5 %: el ajuste sube las PD TTC 1,33 veces.', l:'scipy.optimize'},
+    {n:'PSI y CSI', lv:3, a:'Validación y monitoreo', u:'Detectar cambios en la población y en cada variable.', e:'PSI de 0,07 en el score, pero CSI de 0,31 en ingresos: cambió el canal de captación.', l:'numpy'},
+    {n:'Backtesting y benchmarking', lv:3, a:'Validación y monitoreo', u:'Comparar el modelo contra lo observado y contra un retador.', e:'El retador de boosting gana 4 puntos de Gini en la cosecha fuera de tiempo.', l:'scikit-learn'},
+    {n:'Gradient boosting con monotonía', lv:3, a:'Originación', u:'Más poder que el scorecard con curvas defendibles.', e:'Gini sube de 52 % a 57 % con monotonía en las 12 variables principales.', l:'xgboost, lightgbm'},
+    {n:'SHAP y códigos de razón', lv:3, a:'Validación y monitoreo', u:'Explicar cada decisión y el modelo completo.', e:'Razón principal de rechazo en 38 % de los casos: utilización de cupos mayor a 85 %.', l:'shap'},
+    {n:'Equidad y sesgo', lv:3, a:'Validación y monitoreo', u:'Medir y mitigar diferencias injustificadas entre grupos.', e:'Impacto dispar de 0,74 entre dos grupos; tras revisar un proxy sube a 0,86.', l:'fairlearn, aif360'},
+    {n:'Pruebas de estrés', lv:3, a:'Estrés y portafolio', u:'Proyectar pérdidas y capital bajo escenarios adversos.', e:'Escenario adverso: pérdidas de 2 años suben de 4,1 % a 7,3 % del saldo.', l:'statsmodels, numpy'},
+    {n:'Supervivencia y riesgos competitivos', lv:4, a:'Provisiones y capital', u:'PD por horizonte con censura y prepago como evento competidor.', e:'Ignorar el prepago infla la PD de vida de 11 % a 14 %.', l:'lifelines, scikit-survival'},
+    {n:'Modelos de tiempo discreto con macro', lv:4, a:'Estrés y portafolio', u:'Logit por mes en libros con variables del cliente, de la cosecha y de la economía.', e:'Separa efecto edad (MOB), cosecha y calendario: la cosecha de marzo es mala por política, no por la economía.', l:'statsmodels'},
+    {n:'Uplift en aumentos de cupo', lv:4, a:'Estrategia y pricing', u:'Estimar a quién cambiarle el cupo cambia su gasto sin subir mucho su riesgo.', e:'El 30 % con mayor uplift aporta 70 % del gasto incremental con la mitad del riesgo adicional.', l:'EconML, CausalML'},
+    {n:'Double ML para elasticidad de tasa', lv:4, a:'Estrategia y pricing', u:'Efecto causal de la tasa sobre aceptación y mora, controlando el perfil.', e:'Cada punto menos de tasa sube la aceptación 2,4 puntos y no cambia la PD.', l:'DoubleML, EconML'},
+    {n:'Optimización de ofertas con restricciones', lv:4, a:'Estrategia y pricing', u:'Elegir monto, plazo y tasa por cliente con límites de pérdida y volumen.', e:'Misma pérdida esperada, 12 % más de margen al reasignar montos.', l:'OR-Tools, PuLP'},
+    {n:'Simulación de portafolio Monte Carlo', lv:4, a:'Estrés y portafolio', u:'Distribución de pérdidas con factores sectoriales correlacionados y contribuciones al capital.', e:'Un segmento con 15 % del saldo consume 32 % del capital económico.', l:'numpy, scipy'},
+    {n:'Grafos para fraude', lv:4, a:'Fraude', u:'Encontrar anillos que comparten dispositivos, teléfonos o direcciones.', e:'Una comunidad de 14 solicitudes con 3 dispositivos tiene 60 % de primera cuota impaga.', l:'networkx, PyTorch Geometric'},
+    {n:'Modelos de secuencia transaccional', lv:4, a:'Cobranza y cartera', u:'Usar la secuencia de transacciones y pagos para predecir deterioro temprano.', e:'El modelo de secuencia anticipa la mora 45 días antes que el score mensual.', l:'PyTorch'},
+    {n:'Aprendizaje por refuerzo en cobranza', lv:4, a:'Cobranza y cartera', u:'Elegir la secuencia de acciones (SMS, llamada, oferta) que maximiza la recuperación neta.', e:'La política aprendida recupera 6 % más con 20 % menos llamadas, en simulación.', l:'Stable-Baselines3'}
+  ];
+  const LVN = ['', 'Fundamentos', 'Intermedio', 'Avanzado', 'Experto'];
+  const TOP = {
+    perdida:{q:'¿Cómo se estima cada pieza de la pérdida esperada?', i:[['Pérdida esperada PD × LGD × EAD','La ecuación base para cualquier cartera.'],['Modelos de LGD','La pieza más difícil: curas, recuperaciones y costos.'],['Modelos de EAD y CCF','Cuánto del cupo se usa antes del default.'],['PD de vida completa','La PD que pide NIIF 9 en etapa 2.']]},
+    scorecards:{q:'¿Cómo construyo un modelo de originación?', i:[['Definición de default y ventanas','Lo primero, antes de tocar una variable.'],['Tablas de contingencia y tasas de malos','El análisis univariado de cada variable.'],['Binning óptimo, WoE e IV','Tramos monotónicos y selección de variables.'],['Regresión logística y scorecard','El modelo y su conversión a puntos.'],['Inferencia de rechazados','Corregir el sesgo de los aprobados.'],['Gradient boosting con monotonía','El paso siguiente cuando el scorecard se queda corto.']]},
+    validacion:{q:'¿Cómo sé si el modelo sirve y sigue sirviendo?', i:[['KS, Gini, AUC y lift','Discriminación.'],['Calibración y prueba binomial','Calibración por tramo.'],['Calibración a tendencia central','Ajuste a la tasa de largo plazo.'],['Backtesting y benchmarking','Fuera de tiempo y contra un retador.'],['SHAP y códigos de razón','Explicar lo que hace el modelo.']]},
+    cosechas:{q:'¿Cómo se está comportando la cartera?', i:[['Cosechas (vintage)','Cohortes comparadas a la misma edad.'],['Roll rates y matrices de transición','Flujo entre tramos de mora.'],['Score de comportamiento','PD mensual de los clientes activos.'],['Score de cobranza y propensión a pago','A quién gestionar primero.'],['Modelos de tiempo discreto con macro','Separar edad, cosecha y economía.'],['Aprendizaje por refuerzo en cobranza','Secuencias de acciones óptimas.']]},
+    estrategia:{q:'¿A quién aprobar y con qué oferta?', i:[['Estrategia de corte y swap set','El corte que maximiza utilidad.'],['Capacidad de pago','Limitar el monto además de la PD.'],['Detección de fraude de primera cuota','Filtrar antes de que llegue al score.'],['Uplift en aumentos de cupo','Decidir cambios de cupo por efecto, no por correlación.'],['Optimización de ofertas con restricciones','Monto, plazo y tasa por cliente.']]},
+    pricing:{q:'¿A qué tasa prestar?', i:[['Pricing basado en riesgo y RAROC','La tasa mínima y el retorno sobre capital.'],['Double ML para elasticidad de tasa','Cómo responde la aceptación al precio.'],['Optimización de ofertas con restricciones','Precio por cliente con límites de riesgo.']]},
+    provisiones:{q:'¿Cuánto provisionar?', i:[['Pérdida esperada NIIF 9','Etapas, vida completa y escenarios.'],['PD de vida completa','Curvas de PD por horizonte.'],['Modelos satélite macro','La parte forward-looking.'],['Supervivencia y riesgos competitivos','PD de vida con prepago.']]},
+    capital:{q:'¿Cuánto capital necesita la cartera?', i:[['Capital IRB y Vasicek','El modelo de un factor de Basilea.'],['Pruebas de estrés','Escenarios adversos a varios años.'],['Simulación de portafolio Monte Carlo','Varios factores y contribuciones.']]},
+    monitoreo:{q:'¿El modelo se está degradando?', i:[['PSI y CSI','Estabilidad de población y variables.'],['Backtesting y benchmarking','Desempeño en cosechas maduras.'],['Equidad y sesgo','Que no discrimine sin justificación.'],['Modelos satélite macro','Base de las pruebas de estrés.']]}
+  };
+  const byName = Object.fromEntries(CAT.map(c => [c.n, c]));
+  const areaSel = $('catArea');
+  areaSel.insertAdjacentHTML('beforeend', [...new Set(CAT.map(c => c.a))].sort().map(a => `<option>${a}</option>`).join(''));
+  let catLv = 0;
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  function renderCat(){
+    const q = norm($('catQ').value.trim()), ar = areaSel.value;
+    const list = CAT.filter(c => (!catLv || c.lv === catLv) && (!ar || c.a === ar) && (!q || norm(c.n+' '+c.u+' '+c.e+' '+c.l+' '+c.a).includes(q)));
+    $('catCount').textContent = `${list.length} de ${CAT.length} técnicas`;
+    $('catBox').innerHTML = list.length ? list.map(c => `<div class="ci"><span class="lv lv${c.lv}">${LVN[c.lv]}</span><span class="area">${c.a}</span><h3>${c.n}</h3><p>${c.u}</p><p class="ex"><b>Ejemplo dummy:</b> ${c.e}</p><div class="libs">${c.l.split(', ').map(x => `<span class="lib">${x}</span>`).join('')}</div><button type="button" class="ask-more" data-cat="${CAT.indexOf(c)}">Pregúntale a Claude cómo aplicarlo</button></div>`).join('') : '<div class="empty">Ninguna técnica coincide. Prueba otra palabra o quita filtros.</div>';
+  }
+  $('catLv').addEventListener('click', e => { const b = e.target.closest('.fchip'); if (!b) return; catLv = +b.dataset.lv; document.querySelectorAll('#catLv .fchip').forEach(x => x.setAttribute('aria-pressed', x === b)); renderCat(); });
+  areaSel.addEventListener('change', renderCat); $('catQ').addEventListener('input', renderCat);
+  $('catBox').addEventListener('click', e => { const b = e.target.closest('.ask-more'); if (!b) return; const c = CAT[+b.dataset.cat];
+    askFromPage(`¿Cómo aplicaría "${c.n}" en riesgo de crédito? Dame los pasos, qué datos necesito, un ejemplo corto en Python y los errores comunes.`); });
+  renderCat();
+  function goCat(name){
+    catLv = 0; areaSel.value = ''; document.querySelectorAll('#catLv .fchip').forEach(x => x.setAttribute('aria-pressed', x.dataset.lv === '0'));
+    $('catQ').value = name; renderCat();
+    const card = document.querySelector('#catBox .ci');
+    if (card) { card.classList.add('flash'); card.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'}); setTimeout(() => card.classList.remove('flash'), 2500); }
+  }
+  document.querySelectorAll('.bridge').forEach(el => { const tp = TOP[el.dataset.topic]; if (!tp) return;
+    const items = [...tp.i].sort((a, b) => byName[a[0]].lv - byName[b[0]].lv);
+    el.innerHTML = `<div class="bridge-h"><span class="eyebrow">Técnicas del catálogo</span><p>${tp.q}</p></div><div class="blist">${items.map(([n, t]) => `<div class="bi"><span class="lv lv${byName[n].lv}">${LVN[byName[n].lv]}</span><div><button type="button" data-go="${n}">${n}</button><span class="t">${t}</span></div></div>`).join('')}</div>`; });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) goCat(b.dataset.go); });
+
+  /* Quiz */
+  const Q = [
+    {lv:1, s:'Pérdida esperada', q:'Un crédito tiene EAD de 2.000 USD, PD de 5 % y LGD de 60 %. ¿Cuál es la pérdida esperada?', o:['60 USD','100 USD','1.200 USD'], a:0, w:'EL = 0,05 × 0,60 × 2.000 = 60. La opción b) olvida la LGD y la c) olvida la PD.'},
+    {lv:1, s:'Pérdida esperada', q:'Una tarjeta tiene saldo de 1.000 USD y cupo de 3.000. Con un CCF de 50 %, ¿cuál es la EAD?', o:['1.000 USD','2.000 USD','3.000 USD'], a:1, w:'EAD = 1.000 + 0,5 × (3.000 − 1.000) = 2.000.'},
+    {lv:1, s:'Scorecards', q:'Un tramo tiene 20 % de los buenos y 40 % de los malos. ¿Qué dice su WoE?', o:['Es positivo: tramo de bajo riesgo','Es negativo (ln 0,5 ≈ −0,69): tramo de alto riesgo','Es cero: no aporta'], a:1, w:'WoE = ln(0,20 / 0,40) = −0,69. Con la convención ln(%buenos/%malos), negativo significa más riesgo.'},
+    {lv:1, s:'Scorecards', q:'Una variable tiene IV de 0,65. ¿Qué haces?', o:['La uso de primera: es la más fuerte','Reviso si hay fuga de información antes de usarla','La descarto por débil'], a:1, w:'Un IV por encima de 0,5 suele indicar que la variable conoce el resultado, por ejemplo algo registrado después de la decisión.'},
+    {lv:1, s:'Scorecards', q:'Base de 600 puntos a odds 50:1 y PDO de 20. ¿Qué puntaje tiene un cliente con odds 25:1?', o:['580','590','620'], a:0, w:'Odds a la mitad restan un PDO: 600 − 20 = 580.'},
+    {lv:1, s:'Validación', q:'Un modelo tiene AUC de 0,75. ¿Cuál es su Gini?', o:['25 %','50 %','75 %'], a:1, w:'Gini = 2 × AUC − 1 = 0,50.'},
+    {lv:1, s:'Validación', q:'Un modelo tiene Gini de 60 %, pero predice PD de 3 % donde se observa 6 %. ¿Qué pasa?', o:['Está bien para todo, porque ordena','Ordena bien pero está descalibrado: sirve para aprobar, no para provisionar ni fijar precio sin recalibrar','No ordena'], a:1, w:'Gini y AUC no cambian con una transformación monotónica de la PD. La calibración se revisa aparte.'},
+    {lv:2, s:'Cosechas', q:'¿Por qué se compara la mora por meses en libros y no por mes calendario?', o:['Porque es más fácil de calcular','Porque una cartera joven aún no ha tenido tiempo de caer en mora y parece mejor','Porque el regulador lo exige'], a:1, w:'Comparar a la misma edad aísla la calidad de la cosecha del efecto de maduración.'},
+    {lv:2, s:'Cosechas', q:'Hay 1.000 cuentas en 1–30 días. La roll a 31–60 es 40 % y de 31–60 a 61–90 es 50 %. ¿Cuántas llegan a 61–90 en dos meses, sin contar otras entradas?', o:['200','400','900'], a:0, w:'1.000 × 0,40 × 0,50 = 200.'},
+    {lv:2, s:'Estrategia', q:'El margen de un buen cliente es 120 USD y la pérdida de uno malo es 400 USD. ¿Desde qué tasa de malos un tramo pierde plata?', o:['Cerca de 23 %','30 %','12 %'], a:0, w:'Equilibrio = 120 / (120 + 400) ≈ 23 %. Por encima, el tramo resta.'},
+    {lv:2, s:'Estrategia', q:'¿Por qué hace falta la inferencia de rechazados?', o:['Para aprobar a más gente','Porque el modelo solo vio el desempeño de los aprobados y se usa para decidir sobre todos los solicitantes','Para cumplir NIIF 9'], a:1, w:'Es un sesgo de selección: los rechazados no tienen desempeño observado.'},
+    {lv:2, s:'Pricing', q:'Fondeo 10 %, opex 5 %, PD 8 %, LGD 50 %, capital 12 % del saldo con costo de 18 %. ¿Cuál es la tasa mínima aproximada?', o:['Cerca de 18 %','Cerca de 20 %','Cerca de 24 %'], a:1, w:'10 × 0,88 + 5 + 4 + 0,12 × 18 = 8,8 + 5 + 4 + 2,16 ≈ 20 %. La opción a) olvida el cargo por capital. Compruébalo en la calculadora de pricing.'},
+    {lv:3, s:'NIIF 9', q:'¿Qué cambia cuando un crédito pasa de etapa 1 a etapa 2?', o:['Se castiga','La provisión pasa de pérdida a 12 meses a pérdida de toda la vida','No cambia la provisión, solo el reporte'], a:1, w:'Es el aumento significativo del riesgo (SICR). Los 30 días de mora son una presunción refutable de ese aumento.'},
+    {lv:3, s:'NIIF 9', q:'ECL base 100 (peso 60 %), adversa 180 (30 %) y favorable 70 (10 %). ¿Cuál es la ECL ponderada?', o:['100','121','117'], a:1, w:'0,6 × 100 + 0,3 × 180 + 0,1 × 70 = 60 + 54 + 7 = 121. Supera al escenario base porque las pérdidas no son lineales.'},
+    {lv:3, s:'Capital', q:'En el enfoque IRB, ¿qué cubre el capital?', o:['La pérdida esperada','La pérdida no esperada hasta el percentil 99,9','Toda la cartera'], a:1, w:'La esperada se cubre con provisiones y precio. K = pérdida al 99,9 % menos la esperada.'},
+    {lv:3, s:'Capital', q:'Si sube la correlación ρ entre deudores, con la misma PD:', o:['Baja el capital','Sube el capital porque la cola de pérdidas engorda','No cambia nada'], a:1, w:'Más correlación significa más defaults al mismo tiempo en un mal año. Pruébalo con el selector de ρ.'},
+    {lv:3, s:'Monitoreo', q:'El PSI del score es 0,30. ¿Qué haces?', o:['Nada, es normal','Investigo el cambio de población con el CSI por variable y evalúo recalibrar o redesarrollar','Subo el punto de corte'], a:1, w:'Por encima de 0,25 la población ya es distinta de la de desarrollo.'},
+    {lv:4, s:'Avanzado', q:'¿Qué ventaja tiene un modelo de supervivencia para la PD?', o:['Siempre tiene mejor Gini','Maneja la censura y da la PD a cualquier horizonte, como pide la vida completa de NIIF 9','No necesita datos históricos'], a:1, w:'Los créditos que aún no terminan cuentan como censurados en vez de descartarse.'},
+    {lv:4, s:'Avanzado', q:'¿Para qué sirven las restricciones monotónicas en XGBoost?', o:['Para entrenar más rápido','Para que el riesgo se mueva en la dirección esperada con cada variable y el modelo sea defendible','Para subir el Gini'], a:1, w:'Por ejemplo, más mora pasada nunca debe bajar la PD. Suele costar poco Gini y gana aprobación en validación.'},
+    {lv:4, s:'Avanzado', q:'Quitas género y edad de un modelo. ¿Ya es justo?', o:['Sí','No necesariamente: otras variables pueden actuar como proxy; hay que medir resultados por grupo','Solo si el Gini baja'], a:1, w:'La equidad se mide en los resultados (aprobación y error por grupo), no solo en las variables de entrada.'}
+  ];
+  let ans = store.get('rc_quiz', {}), qLv = 0;
+  const box = $('quizBox');
+  function renderQuiz(){
+    box.innerHTML = Q.map((x, i) => {
+      if (qLv && x.lv !== qLv) return '';
+      const picked = ans[i], done = picked !== undefined;
+      const opts = x.o.map((t, j) => { let cls = ''; if (done && j === x.a) cls = 'right'; else if (done && j === picked) cls = 'wrong';
+        return `<button type="button" class="opt ${cls}" data-q="${i}" data-o="${j}" ${done ? 'disabled' : ''}><span class="k">${'abc'[j]})</span><span>${t}</span></button>`; }).join('');
+      const why = done ? `<div class="why">${picked === x.a ? '<b class="ok">Correcto.</b>' : '<b class="no">No es esa.</b>'} ${x.w}<button type="button" class="ask-more" data-ask="${i}">Pregúntale más a Claude sobre esto</button></div>` : '';
+      return `<div class="q"><span class="qn">${String(i+1).padStart(2,'0')} · ${LVN[x.lv]} · ${x.s}</span><div class="qt">${x.q}</div><div class="opts">${opts}</div>${why}</div>`;
+    }).join('');
+    const answered = Object.keys(ans).length, right = Q.filter((x, i) => ans[i] === x.a).length;
+    $('qScore').textContent = `${right} / ${Q.length} correctas · ${answered} respondidas`;
+    $('sQuiz').textContent = `${right} / ${Q.length}`;
+  }
+  box.addEventListener('click', e => {
+    const m = e.target.closest('.ask-more');
+    if (m) { const x = Q[+m.dataset.ask]; askFromPage(`Explícame mejor esta pregunta del quiz: "${x.q}". La respuesta correcta es "${x.o[x.a]}". Yo respondí "${x.o[ans[m.dataset.ask]]}".`); return; }
+    const b = e.target.closest('.opt'); if (!b || b.disabled) return;
+    ans[b.dataset.q] = +b.dataset.o; store.set('rc_quiz', ans); renderQuiz();
+  });
+  $('qFil').addEventListener('click', e => { const b = e.target.closest('.fchip'); if (!b) return; qLv = +b.dataset.q; document.querySelectorAll('#qFil .fchip').forEach(x => x.setAttribute('aria-pressed', x === b)); renderQuiz(); });
+  $('qReset').addEventListener('click', () => { ans = {}; store.set('rc_quiz', ans); renderQuiz(); });
+  renderQuiz();
+
+  /* Plan */
+  const P = [
+    [1,'Fundamentos','Pérdida esperada y definición de default','Lee los capítulos iniciales de Siddiqi. Descarga Home Credit Default Risk, define "malo" y arma la tabla base con ventana de observación y de desempeño.'],
+    [2,'Fundamentos','Binning, WoE e IV','Con optbinning, binea 20 variables, revisa monotonía y selecciona por IV. Documenta cada decisión.'],
+    [3,'Fundamentos','Scorecard y validación','Logística sobre WoE, escalado con PDO, KS, Gini, lift y gráfica de calibración en un set fuera de tiempo.'],
+    [4,'Intermedio','Cosechas y roll rates','Con el dataset de Freddie Mac, arma curvas de cosecha por año de originación y una matriz de transición mensual.'],
+    [5,'Intermedio','Estrategia y rechazados','Simula el corte óptimo con margen y pérdida, compara swap sets entre dos modelos e intenta una inferencia de rechazados por aumentación.'],
+    [6,'Intermedio','Pricing, LGD y EAD','Calcula tasa mínima y RAROC por tramo; ajusta un modelo de LGD en dos etapas con datos de recuperación.'],
+    [7,'Avanzado','NIIF 9','PD de vida completa por tramo, criterio de SICR, tres escenarios y ECL por etapa. Mide el efecto acantilado.'],
+    [8,'Avanzado','Basilea IRB y Vasicek','Implementa la fórmula de capital minorista, compárala con una simulación Monte Carlo de un factor y estresa z.'],
+    [9,'Avanzado','Monitoreo y riesgo de modelo','PSI y CSI mensuales, backtesting por cosecha y un reporte de validación al estilo SR 11-7 para tu scorecard.'],
+    [10,'Avanzado','Pruebas de estrés','Modelo satélite de tasa de default contra desempleo; proyecta pérdidas a 2 años en un escenario adverso.'],
+    [11,'Experto','ML gobernado y supervivencia','XGBoost con monotonía, SHAP y códigos de razón; modelo de tiempo discreto con prepago como riesgo competitivo.'],
+    [12,'Experto','Proyecto final y publicación','Une todo en un repositorio: README con pregunta, datos, modelo, validación, ECL y capital. Prepara una presentación de 10 minutos.']
+  ];
+  let done = store.get('rc_plan', {});
+  const planBox = $('planBox');
+  function renderPlan(){
+    let last = '';
+    planBox.innerHTML = P.map((p, i) => { const wk = p[1] !== last ? `<div class="week">${p[1]}</div>` : ''; last = p[1];
+      return `${wk}<label class="day ${done[i] ? 'done' : ''}" for="w${i}"><input type="checkbox" id="w${i}" data-i="${i}" ${done[i] ? 'checked' : ''}><span class="d">Sem ${p[0]}</span><span><b>${p[2]}</b><span>${p[3]}</span></span></label>`; }).join('');
+    const n = P.filter((p, i) => done[i]).length;
+    $('sPlan').textContent = `${n} / ${P.length}`; $('planBar').style.width = (n / P.length * 100) + '%';
+  }
+  planBox.addEventListener('change', e => { const i = e.target.dataset.i; if (i === undefined) return; done[i] = e.target.checked; store.set('rc_plan', done); renderPlan(); });
+  renderPlan();
+
+  /* Nav activa */
+  const links = [...document.querySelectorAll('nav.top a')], secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  function spy(){ let cur = 0; secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < 140) cur = i; }); links.forEach((a, i) => a.classList.toggle('on', i === cur)); }
+  addEventListener('scroll', spy, {passive:true}); spy();
+
+  /* Chat con Claude (solo dentro de claude.ai; fuera de ahí queda oculto) */
+  const chat = $('chat'), fab = $('chatOpen'), log = $('chatLog'), input = $('chatInput'), send = $('chatSend'), chips = $('chatChips');
+  let sample = null, busy = false, history = [], ctl = null, timer = null;
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  function md(t){ const lines = esc(t).split('\n'); let html = '', inList = false;
+    for (const l of lines) { const b = l.match(/^\s*[-*•]\s+(.*)/);
+      if (b) { if (!inList) { html += '<ul>'; inList = true; } html += '<li>' + b[1] + '</li>'; continue; }
+      if (inList) { html += '</ul>'; inList = false; } html += l.trim() ? l + '<br>' : '<br>'; }
+    if (inList) html += '</ul>'; return html.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(<br>)+$/, ''); }
+  function bubble(cls, text){ const d = document.createElement('div'); d.className = 'msg ' + cls; if (cls === 'u') d.textContent = text; else d.innerHTML = md(text); log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
+  function context(){
+    const parts = [...document.querySelectorAll('header.hero, section.mod')].map(s => s.innerText.replace(/\n{2,}/g, '\n')).join('\n\n');
+    return 'Eres un tutor de riesgo de crédito para data scientists y analistas de riesgo en Latinoamérica. Responde en español, claro y breve (unas 150 palabras salvo que pidan más), con ejemplos numéricos inventados marcados como inventados. Si algo depende de una norma específica (Basilea, NIIF 9, la Superintendencia Financiera de Colombia) y no estás seguro del detalle vigente, dilo y sugiere confirmarlo en la fuente oficial. Usa solo viñetas con "- " y negrita con ** si hace falta formato. Este es el contenido de la página de estudio que está viendo:\n\n' + parts.slice(0, 40000);
+  }
+  const errCopy = c => ({rate_limited:'Hay muchas preguntas seguidas. Espera un momento y vuelve a intentar.', not_granted:'No se dio permiso para usar Claude en esta página. Puedes activarlo en el menú de permisos del artefacto.', cancelled:'Pregunta cancelada.', prompt_too_large:'La conversación es muy larga. Recarga la página para empezar una nueva.'}[c] || 'No pude responder ahora. Intenta de nuevo en un momento.');
+  const touch = matchMedia('(pointer: coarse)').matches, mobile = () => matchMedia('(max-width: 600px)').matches;
+  function setBusy(on){ busy = on; send.textContent = on ? 'Detener' : 'Enviar'; send.classList.toggle('stop', on); }
+  async function ask(q){
+    if (busy || !sample || !q.trim()) return;
+    setBusy(true); chips.hidden = true; bubble('u', q); history.push({role:'user', content:q});
+    const out = bubble('a', 'Pensando…'); ctl = new AbortController(); timer = setTimeout(() => ctl && ctl.abort(), 90000);
+    try {
+      const r = await sample([{role:'user', content:context()}, {role:'assistant', content:'Entendido. ¿Qué quieres saber?'}, ...history], {cache:false, signal:ctl.signal, onText: ({text}) => { out.innerHTML = md(text); log.scrollTop = log.scrollHeight; }});
+      out.innerHTML = md(r.text) + (r.truncated ? '<br><i>(La respuesta se cortó; pide que continúe.)</i>' : ''); history.push({role:'assistant', content:r.text});
+    } catch (e) {
+      history.pop(); if (e && e.text) out.innerHTML = md(e.text); else out.remove(); bubble('a err', errCopy(e && e.code));
+      if (e && e.code === 'not_granted') { sample = null; document.body.classList.remove('can-ask'); }
+    } finally { clearTimeout(timer); ctl = null; setBusy(false); log.scrollTop = log.scrollHeight; if (!touch) input.focus(); }
+  }
+  function fitChat(){ const vv = window.visualViewport; if (chat.hidden || !mobile() || !vv) { chat.style.height = ''; chat.style.top = ''; return; } chat.style.height = vv.height + 'px'; chat.style.top = vv.offsetTop + 'px'; log.scrollTop = log.scrollHeight; }
+  if (window.visualViewport) { visualViewport.addEventListener('resize', fitChat); visualViewport.addEventListener('scroll', fitChat); }
+  addEventListener('resize', fitChat);
+  function openChat(){ chat.hidden = false; fab.hidden = true; document.body.classList.add('chat-open'); fitChat(); if (!touch) input.focus(); }
+  function closeChat(){ if (ctl) ctl.abort(); input.blur(); chat.hidden = true; fab.hidden = !sample; document.body.classList.remove('chat-open'); fitChat(); }
+  window.askFromPage = function(q){ if (!sample) return; openChat(); ask(q); };
+  fab.addEventListener('click', openChat); $('chatClose').addEventListener('click', closeChat);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !chat.hidden) closeChat(); });
+  $('chatForm').addEventListener('submit', e => { e.preventDefault(); if (busy) { if (ctl) ctl.abort(); return; } const q = input.value; input.value = ''; input.style.height = ''; if (touch) input.blur(); ask(q); });
+  input.addEventListener('input', () => { input.style.height = ''; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; });
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !touch) { e.preventDefault(); $('chatForm').dispatchEvent(new Event('submit', {cancelable:true})); } });
+  chips.addEventListener('click', e => { const c = e.target.closest('.chip'); if (c) ask(c.textContent); });
+  if (window.claude && window.claude.use) {
+    window.claude.use('sample').then(s => { sample = s; if (s) { fab.hidden = false; document.body.classList.add('can-ask'); } }).catch(() => {});
+  }
+})();
+</script>
+
+</body></html>
