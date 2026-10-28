@@ -1,0 +1,973 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ruta Finanzas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: libro de texto de máster — barra de secciones fija, columna de lectura; cada módulo = concepto + fórmula + calculadora con datos dummy + puente al catálogo. Nivel por color de ficha (F/I/A/E). */
+:root{
+  --bg:#f3f5f2; --surface:#ffffff; --sunk:#e7ece6; --fg:#15201a; --muted:#56645b; --line:#d3ddd5;
+  --accent:#1d6b47; --accent-soft:#dff0e6; --accent-fg:#ffffff;
+  --good:#12805c; --good-soft:#dcf3ea; --bad:#c2372f; --bad-soft:#fbe3e1; --warn:#a86400; --warn-soft:#fdf0d9;
+  --l1:#12805c; --l1s:#dcf3ea; --l2:#2b5fc2; --l2s:#e2eafb; --l3:#a86400; --l3s:#fdf0d9; --l4:#8e2a4f; --l4s:#f6e3ea;
+  --c1:#2b5fc2; --c2:#12805c; --c3:#c2372f; --c4:#a86400;
+  --display:"Archivo","Segoe UI",system-ui,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1512; --surface:#16201b; --sunk:#1e2a24; --fg:#e5eee8; --muted:#9aaca1; --line:#2a3a31;
+  --accent:#6fd3a0; --accent-soft:#163327; --accent-fg:#0f1512;
+  --good:#4fd3a2; --good-soft:#123a2e; --bad:#ff8a80; --bad-soft:#47201f; --warn:#f2b45a; --warn-soft:#3d2c10;
+  --l1:#4fd3a2; --l1s:#123a2e; --l2:#8fb0ff; --l2s:#1d2a48; --l3:#f2b45a; --l3s:#3d2c10; --l4:#e98aae; --l4s:#3a1d2a;
+  --c1:#8fb0ff; --c2:#4fd3a2; --c3:#ff8a80; --c4:#f2b45a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1512; --surface:#16201b; --sunk:#1e2a24; --fg:#e5eee8; --muted:#9aaca1; --line:#2a3a31;
+  --accent:#6fd3a0; --accent-soft:#163327; --accent-fg:#0f1512;
+  --good:#4fd3a2; --good-soft:#123a2e; --bad:#ff8a80; --bad-soft:#47201f; --warn:#f2b45a; --warn-soft:#3d2c10;
+  --l1:#4fd3a2; --l1s:#123a2e; --l2:#8fb0ff; --l2s:#1d2a48; --l3:#f2b45a; --l3s:#3d2c10; --l4:#e98aae; --l4s:#3a1d2a;
+  --c1:#8fb0ff; --c2:#4fd3a2; --c3:#ff8a80; --c4:#f2b45a; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.3rem,3vw,1.75rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1rem;font-weight:500}
+p{margin:0;max-width:70ch}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code{font-family:var(--mono);font-size:.88em;background:var(--sunk);padding:1px 5px;border-radius:4px}
+
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+nav.top a{flex:none;text-decoration:none;color:var(--muted);font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px}
+nav.top a:hover{background:var(--sunk);color:var(--fg)}
+nav.top a.on{background:var(--accent);color:var(--accent-fg)}
+
+header.hero{padding-block:48px 32px}
+header.hero .wrap{display:grid;gap:20px}
+.hero-sub{font-size:1.1rem;color:var(--muted)}
+.stats{display:flex;flex-wrap:wrap;gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:150px}
+.stat b{display:block;font-family:var(--mono);font-size:1.4rem;font-variant-numeric:tabular-nums}
+.stat span{font-size:.8rem;color:var(--muted)}
+.levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:720px){.levels{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.lvcard{border-radius:12px;padding:12px 14px;display:grid;gap:4px;font-size:.88rem}
+.lvcard b{font-family:var(--display);font-weight:500;font-size:.95rem}
+.lvcard.l1{background:var(--l1s)} .lvcard.l2{background:var(--l2s)} .lvcard.l3{background:var(--l3s)} .lvcard.l4{background:var(--l4s)}
+.lvcard .k{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.lvcard.l1 .k{color:var(--l1)} .lvcard.l2 .k{color:var(--l2)} .lvcard.l3 .k{color:var(--l3)} .lvcard.l4 .k{color:var(--l4)}
+
+section.mod{padding-block:40px;border-top:1px solid var(--line)}
+section.mod>.wrap{display:grid;gap:20px}
+.head{display:grid;gap:8px}
+.head .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:14px;min-width:0}
+.panel.example{border-style:dashed}
+.tag{display:inline-block;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--warn-soft);color:var(--warn);justify-self:start}
+.lv{display:inline-block;font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px;justify-self:start}
+.lv1{background:var(--l1s);color:var(--l1)} .lv2{background:var(--l2s);color:var(--l2)} .lv3{background:var(--l3s);color:var(--l3)} .lv4{background:var(--l4s);color:var(--l4)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;align-content:start;min-width:0}
+.card .n{font-family:var(--mono);color:var(--accent);font-weight:600;font-size:.82rem}
+.card p{font-size:.92rem;color:var(--muted)}
+ul.clean,ol.clean{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.f{font-family:var(--mono);font-size:.9rem;background:var(--sunk);padding:10px 14px;border-radius:8px;overflow-x:auto;white-space:nowrap}
+
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:20px}
+@media (max-width:760px){.calc{grid-template-columns:1fr}}
+.inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.inputs label{display:grid;gap:4px;font-size:.78rem;color:var(--muted);font-weight:600}
+.inputs input,.inputs select,input.num{font-family:var(--mono);font-size:.95rem;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:100%;min-width:0}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;align-content:start}
+.metric{background:var(--sunk);border-radius:10px;padding:10px 12px;min-width:0}
+.metric small{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.metric b{font-family:var(--mono);font-size:1.15rem;font-variant-numeric:tabular-nums}
+.metric.key{background:var(--accent-soft)}
+.metric.neg b{color:var(--bad)} .metric.pos b{color:var(--good)}
+.note{font-size:.9rem;padding:12px 14px;border-radius:10px;background:var(--accent-soft)}
+.range{display:grid;gap:6px}
+.range .row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.9rem}
+.range input[type=range]{width:100%;accent-color:var(--accent)}
+
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hi td{background:var(--accent-soft)}
+tr.off td{color:var(--muted)}
+tr.tot td{font-weight:600;border-top:2px solid var(--line)}
+.neg{color:var(--bad)} .pos{color:var(--good)}
+
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.chart .ax{stroke:var(--line);stroke-width:1}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:680px){.twocol{grid-template-columns:1fr}}
+.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.stages{grid-template-columns:1fr}}
+.stg{border-radius:12px;padding:14px;display:grid;gap:4px;font-size:.9rem}
+.stg b{font-family:var(--display);font-weight:500}
+.stg.s1{background:var(--good-soft)} .stg.s2{background:var(--warn-soft)} .stg.s3{background:var(--bad-soft)}
+
+.techs{display:grid;gap:12px}
+.tech{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;min-width:0}
+.tech-h{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between}
+.tech-h h3{font-size:1.02rem}
+.libs{display:flex;flex-wrap:wrap;gap:6px}
+.lib{font-family:var(--mono);font-size:.72rem;padding:3px 8px;border-radius:6px;background:var(--sunk);color:var(--fg)}
+.kv{display:grid;grid-template-columns:120px minmax(0,1fr);gap:6px 12px;font-size:.9rem;margin:0}
+.kv dt{color:var(--muted);font-weight:600;font-size:.8rem;padding-top:2px}
+.kv dd{margin:0;min-width:0}
+@media (max-width:520px){.kv{grid-template-columns:1fr}.kv dt{padding-top:6px}}
+pre.code{margin:0;background:var(--sunk);border-radius:10px;padding:14px;overflow-x:auto;font-family:var(--mono);font-size:.78rem;line-height:1.55;color:var(--fg)}
+
+.bridge{background:var(--sunk);border-radius:16px;padding:18px;display:grid;gap:12px}
+.bridge-h{display:grid;gap:4px}
+.bridge-h .eyebrow{color:var(--fg)}
+.bridge-h p{font-weight:600}
+.blist{display:grid;gap:8px}
+.bi{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;align-items:start;background:var(--surface);border-radius:10px;padding:10px 12px}
+.bi .lv{margin-top:3px}
+.bi button{font:inherit;font-weight:700;font-size:.9rem;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.bi span.t{display:block;font-size:.88rem}
+@media (max-width:480px){.bi{grid-template-columns:1fr;gap:4px}}
+
+.filters{display:grid;gap:10px}
+.frow2{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fchip{font:inherit;font-size:.82rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.fchip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters input[type=search],.filters select{font:inherit;font-size:.9rem;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-width:0}
+.filters input[type=search]{flex:1 1 220px}
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.ci{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:8px;align-content:start;min-width:0}
+.ci .area{font-size:.72rem;color:var(--muted)}
+.ci h3{font-size:.95rem;line-height:1.3}
+.ci p{font-size:.88rem}
+.ci .ex{font-size:.84rem;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.ci.flash{outline:2px solid var(--accent);outline-offset:2px}
+.empty{padding:20px;text-align:center;color:var(--muted)}
+
+.quiz{display:grid;gap:14px}
+.qfil{display:flex;flex-wrap:wrap;gap:6px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
+.q .qn{font-family:var(--mono);font-size:.75rem;color:var(--accent);font-weight:600}
+.q .qt{font-weight:600}
+.opts{display:grid;gap:8px}
+.opt{font:inherit;font-size:.95rem;text-align:left;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .k{font-family:var(--mono);font-weight:600;color:var(--muted)}
+.opt[disabled]{cursor:default}
+.opt.right{background:var(--good-soft);border-color:var(--good)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.why{font-size:.9rem;padding:10px 14px;border-radius:10px;background:var(--sunk)}
+.why b.ok{color:var(--good)} .why b.no{color:var(--bad)}
+.qbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;font-size:.88rem;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+
+.plan{display:grid;gap:8px}
+.day{display:grid;grid-template-columns:auto 56px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+.day input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent)}
+.day .d{font-family:var(--mono);font-weight:600;color:var(--accent);font-size:.85rem;padding-top:2px}
+.day b{display:block;font-size:.95rem}
+.day span{font-size:.88rem;color:var(--muted)}
+.day.done{opacity:.6} .day.done b{text-decoration:line-through}
+.week{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.progress{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
+
+footer{padding-block:32px 48px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+footer .wrap{display:grid;gap:12px}
+
+/* chat */
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;font:inherit;font-weight:700;font-size:.92rem;padding:12px 18px;border-radius:999px;border:0;background:var(--accent);color:var(--accent-fg);cursor:pointer;box-shadow:0 6px 20px rgba(21,32,26,.25)}
+.chat{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:21;width:min(400px,calc(100vw - 32px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));height:min(560px,calc(100vh - 100px));background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px rgba(21,32,26,.3);display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.chat-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.chat-h b{font-family:var(--display);font-weight:500;font-size:.95rem}
+.chat-h button{font:inherit;font-size:1.5rem;line-height:1;background:none;border:0;color:var(--muted);cursor:pointer;min-width:44px;min-height:44px;border-radius:8px}
+.chat-log{overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:10px 12px;border-radius:12px;font-size:.9rem;line-height:1.5;overflow-wrap:anywhere}
+.msg.u{align-self:flex-end;background:var(--accent);color:var(--accent-fg);border-bottom-right-radius:4px}
+.msg.a{align-self:flex-start;background:var(--sunk);border-bottom-left-radius:4px}
+.msg.err{background:var(--bad-soft);color:var(--bad)}
+.msg ul{margin:4px 0;padding-left:1.1em}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:.8rem;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chat-f{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+.chat-f textarea{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);resize:none;height:42px;max-height:120px}
+.chat-f button{font:inherit;font-weight:700;font-size:.85rem;padding:0 14px;min-height:44px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-fg);cursor:pointer}
+.chat-f button.stop{background:var(--bad);color:var(--surface)}
+@media (max-width:600px){
+  .chat{top:0;left:0;right:0;bottom:auto;width:100%;height:100%;border-radius:0;border:0;box-shadow:none;padding-top:env(safe-area-inset-top,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+  .chat-f{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  body.chat-open{overflow:hidden}
+}
+.ask-more{font:inherit;font-size:.82rem;font-weight:600;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;margin-top:6px;display:none;text-align:left}
+body.can-ask .ask-more{display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:480px){.inputs{grid-template-columns:1fr}}
+</style>
+
+<nav class="top" aria-label="Secciones"><div class="wrap">
+  <a href="#programas">Programas</a><a href="#dinero">Valor del dinero</a><a href="#contable">Estados financieros</a><a href="#valoracion">Valoración</a><a href="#costo">Costo de capital</a><a href="#portafolio">Portafolio</a><a href="#bonos">Renta fija</a><a href="#derivados">Derivados</a><a href="#riesgo">Riesgo financiero</a><a href="#avanzado">Avanzado</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 16 semanas</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Ruta de aprendizaje · Finanzas</span>
+  <h1>Finanzas con el núcleo de un máster de primer nivel</h1>
+  <p class="hero-sub">La ruta sigue los bloques que comparten los programas de MIT, Princeton, Oxford y LSE: finanzas corporativas, mercados y valoración de activos, renta fija, derivados, econometría financiera y riesgo. Agrega lo que exige el mercado hoy: ML en finanzas, finanzas sostenibles y fintech. Cada módulo trae una calculadora; todos los números son inventados para practicar.</p>
+  <div class="levels">
+    <div class="lvcard l1"><span class="k">Fundamentos</span><b>Semanas 1–4</b><span>Valor del dinero, estados financieros, valoración y costo de capital.</span></div>
+    <div class="lvcard l2"><span class="k">Intermedio</span><b>Semanas 5–8</b><span>Portafolio, CAPM y factores, renta fija.</span></div>
+    <div class="lvcard l3"><span class="k">Avanzado</span><b>Semanas 9–13</b><span>Derivados, riesgo de mercado, econometría financiera.</span></div>
+    <div class="lvcard l4"><span class="k">Experto</span><b>Semanas 14–16</b><span>Modelo de Merton, cálculo estocástico, ML en finanzas, proyecto final.</span></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="sQuiz">0 / 20</b><span>Respuestas correctas</span></div>
+    <div class="stat"><b id="sPlan">0 / 16</b><span>Semanas completadas</span></div>
+  </div>
+</div></header>
+
+<!-- 01 PROGRAMAS -->
+<section class="mod" id="programas"><div class="wrap">
+  <div class="head"><span class="eyebrow">01 · De dónde sale esta ruta</span><h2>Lo que enseñan los mejores másteres en finanzas</h2>
+  <p class="muted">Resumen de las páginas oficiales de cada programa. Los planes cambian cada año: revisa la versión vigente antes de citarlos.</p></div>
+  <div class="tbl panel"><table>
+    <thead><tr><th>Programa</th><th>Núcleo según la fuente oficial</th><th>En esta ruta</th></tr></thead>
+    <tbody>
+      <tr><td><b>MIT Sloan</b><span class="muted" style="display:block;font-size:.78rem">Master of Finance</span></td><td>Cursos núcleo, electivas restringidas y un curso de <i>action learning</i>. El verano inicial cubre teoría financiera, contabilidad, matemáticas financieras y programación.</td><td>Módulos 02–04 y el código en Python de cada módulo</td></tr>
+      <tr><td><b>Princeton</b><span class="muted" style="display:block;font-size:.78rem">Master in Finance, Bendheim Center</span></td><td>Cinco cursos núcleo de economía, matemáticas, finanzas, probabilidad y estadística, más 11 electivas.</td><td>Base cuantitativa de los módulos 06–09 y 11</td></tr>
+      <tr><td><b>Oxford</b><span class="muted" style="display:block;font-size:.78rem">MSc in Financial Economics</span></td><td>Valoración de activos (asset pricing), economía, finanzas corporativas, econometría financiera y ética financiera.</td><td>Módulos 04–09 y la sección de ética y sostenibilidad</td></tr>
+      <tr><td><b>LSE</b><span class="muted" style="display:block;font-size:.78rem">MSc Finance</span></td><td>Dos cursos obligatorios: Corporate Finance y Asset Markets; electivas en riesgo, ingeniería financiera, finanzas sostenibles y big data.</td><td>Módulos 04–07 y 10–11</td></tr>
+      <tr><td><b>CFA Institute</b><span class="muted" style="display:block;font-size:.78rem">Programa CFA</span></td><td>Estándar profesional: ética, métodos cuantitativos, economía, análisis financiero, corporativas, renta variable, renta fija, derivados, alternativos y gestión de portafolios.</td><td>Toda la ruta; útil como certificación paralela</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cards">
+    <div class="card"><span class="n">Finanzas corporativas</span><p>Cómo una empresa decide en qué invertir, cómo financiarse y cuánto vale.</p></div>
+    <div class="card"><span class="n">Mercados y activos</span><p>Cómo se forma el precio del riesgo: portafolio, CAPM, factores, eficiencia.</p></div>
+    <div class="card"><span class="n">Renta fija y derivados</span><p>Bonos, curvas, opciones y la valoración sin arbitraje.</p></div>
+    <div class="card"><span class="n">Métodos cuantitativos</span><p>Econometría financiera, series de tiempo, simulación y ML.</p></div>
+  </div>
+</div></section>
+
+<!-- 02 VALOR DEL DINERO -->
+<section class="mod" id="dinero"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">02 · La base de todo</span><span class="lv lv1">Fundamentos</span></div><h2>Valor del dinero en el tiempo</h2>
+  <p>Un peso hoy vale más que un peso mañana. Todo en finanzas es traer flujos futuros a valor presente con la tasa correcta. En Colombia las tasas se reportan como efectivas anuales (E.A.), y confundirlas con nominales es el error más común.</p></div>
+  <div class="f">EA = (1 + j/m)^m − 1        i mensual = (1 + EA)^(1/12) − 1        Cuota = P · i / (1 − (1 + i)^−n)</div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Tasas y cuota de un crédito</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="tNom">Tasa nominal anual (%)<input id="tNom" type="number" step="0.1" value="24"></label>
+        <label for="tM">Capitalizaciones por año<select id="tM"><option value="12" selected>12 (mes vencido)</option><option value="4">4 (trimestre vencido)</option><option value="2">2 (semestre vencido)</option><option value="1">1 (año vencido)</option></select></label>
+        <label for="tP">Monto del crédito<input id="tP" type="number" min="0" value="10000000"></label>
+        <label for="tN">Plazo (meses)<input id="tN" type="number" min="1" value="36"></label>
+      </div>
+      <div class="metrics" id="tOut"></div>
+    </div>
+  </div>
+  <div class="panel example">
+    <span class="tag">Calculadora · VPN y TIR de un proyecto</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="fFlows" style="grid-column:1/-1">Flujos por año, separados por coma (año 0 primero)<input id="fFlows" type="text" value="-1000, 300, 400, 500, 200"></label>
+        <label for="fRate">Tasa de descuento (%)<input id="fRate" type="number" step="0.5" value="12"></label>
+      </div>
+      <div class="metrics" id="fOut"></div>
+    </div>
+    <p class="note" id="fNote"></p>
+  </div>
+  <div class="bridge" data-topic="dinero"></div>
+</div></section>
+
+<!-- 03 ESTADOS FINANCIEROS -->
+<section class="mod" id="contable"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">03 · Leer una empresa</span><span class="lv lv1">Fundamentos</span></div><h2>Estados financieros y análisis DuPont</h2>
+  <p>El estado de resultados dice cuánto ganó la empresa; el balance, qué tiene y cómo lo financia; el flujo de caja, cuánta plata entró y salió de verdad. La utilidad es una opinión contable; la caja es un hecho. El análisis DuPont descompone el ROE para ver de dónde sale la rentabilidad.</p></div>
+  <div class="f">ROE = margen neto × rotación de activos × apalancamiento = (UN / ventas) × (ventas / activos) × (activos / patrimonio)</div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · Dos empresas con el mismo ROE</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="dVen">Ventas<input id="dVen" type="number" min="0" value="5000"></label>
+        <label for="dUn">Utilidad neta<input id="dUn" type="number" value="400"></label>
+        <label for="dAct">Activos totales<input id="dAct" type="number" min="1" value="4000"></label>
+        <label for="dPat">Patrimonio<input id="dPat" type="number" min="1" value="1600"></label>
+      </div>
+      <div class="metrics" id="dOut"></div>
+    </div>
+    <p class="note" id="dNote"></p>
+  </div>
+  <div class="panel">
+    <h3>Del estado de resultados al flujo de caja libre</h3>
+    <div class="f">FCF = EBIT × (1 − t) + depreciación − CAPEX − Δ capital de trabajo</div>
+    <p style="font-size:.93rem">El flujo de caja libre de la firma (FCFF) es lo que queda para todos los financiadores, deuda y patrimonio, después de mantener y hacer crecer el negocio. Es la base de la valoración del siguiente módulo.</p>
+  </div>
+  <div class="bridge" data-topic="contable"></div>
+</div></section>
+
+<!-- 04 VALORACION -->
+<section class="mod" id="valoracion"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">04 · ¿Cuánto vale?</span><span class="lv lv1">Fundamentos</span></div><h2>Valoración por flujos de caja descontados</h2>
+  <p>El valor de una empresa es el valor presente de sus flujos de caja libres futuros, descontados al costo de capital (WACC). Se proyectan unos años explícitos y luego un valor terminal con crecimiento perpetuo. El valor terminal suele pesar más de la mitad: por eso la sensibilidad importa más que la cifra puntual.</p></div>
+  <div class="f">EV = Σ FCFₜ / (1 + WACC)ᵗ + [FCF₅ × (1 + g) / (WACC − g)] / (1 + WACC)⁵        Patrimonio = EV − deuda neta</div>
+  <div class="panel example">
+    <span class="tag">Calculadora · DCF de 5 años (cifras en millones)</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="vF">FCF del año 1<input id="vF" type="number" value="100"></label>
+        <label for="vG1">Crecimiento años 2–5 (%)<input id="vG1" type="number" step="0.5" value="8"></label>
+        <label for="vW">WACC (%)<input id="vW" type="number" step="0.25" value="11"></label>
+        <label for="vG">Crecimiento perpetuo g (%)<input id="vG" type="number" step="0.25" value="3"></label>
+        <label for="vD">Deuda neta<input id="vD" type="number" value="400"></label>
+        <label for="vS">Acciones (millones)<input id="vS" type="number" min="0.001" step="0.1" value="50"></label>
+      </div>
+      <div class="metrics" id="vOut"></div>
+    </div>
+    <h3>Sensibilidad del precio por acción</h3>
+    <div class="tbl"><table id="vSens"></table></div>
+    <p class="note" id="vNote"></p>
+  </div>
+  <div class="twocol">
+    <div class="panel"><h3>Múltiplos</h3><p style="font-size:.93rem">EV/EBITDA, P/E y P/VL comparan contra empresas parecidas. Son rápidos y reflejan el mercado, pero heredan sus errores. Úsalos para contrastar el DCF, no para reemplazarlo.</p></div>
+    <div class="panel"><h3>Estructura de capital</h3><p style="font-size:.93rem">Modigliani-Miller: sin impuestos ni costos de quiebra, la mezcla deuda-patrimonio no cambia el valor. Con impuestos, la deuda genera escudo fiscal; con costos de quiebra, demasiada deuda destruye valor. El óptimo está en el balance entre ambos.</p></div>
+  </div>
+  <div class="bridge" data-topic="valoracion"></div>
+</div></section>
+
+<!-- 05 COSTO DE CAPITAL -->
+<section class="mod" id="costo"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">05 · La tasa de descuento</span><span class="lv lv1">Fundamentos</span></div><h2>Costo de capital: CAPM y WACC</h2>
+  <p>El costo del patrimonio sale del CAPM: tasa libre de riesgo más beta por la prima de mercado. En mercados emergentes se agrega una prima por riesgo país. El WACC pondera el costo del patrimonio y el de la deuda después de impuestos.</p></div>
+  <div class="f">Ke = rf + β × (prima de mercado) + prima país        WACC = E/(D+E) × Ke + D/(D+E) × Kd × (1 − t)</div>
+  <div class="panel example">
+    <span class="tag">Calculadora · WACC de una empresa en un mercado emergente</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="wRf">Tasa libre de riesgo (%)<input id="wRf" type="number" step="0.1" value="4.3"></label>
+        <label for="wB">Beta apalancada<input id="wB" type="number" step="0.05" value="1.1"></label>
+        <label for="wErp">Prima de mercado (%)<input id="wErp" type="number" step="0.1" value="5"></label>
+        <label for="wCrp">Prima por riesgo país (%)<input id="wCrp" type="number" step="0.1" value="2.8"></label>
+        <label for="wKd">Costo de la deuda (%)<input id="wKd" type="number" step="0.1" value="9"></label>
+        <label for="wT">Tasa de impuestos (%)<input id="wT" type="number" step="1" value="35"></label>
+        <label for="wDv" style="grid-column:1/-1">Deuda / (deuda + patrimonio) (%)<input id="wDv" type="number" min="0" max="95" step="1" value="40"></label>
+      </div>
+      <div class="metrics" id="wOut"></div>
+    </div>
+    <p class="note" id="wNote"></p>
+  </div>
+  <div class="bridge" data-topic="costo"></div>
+</div></section>
+
+<!-- 06 PORTAFOLIO -->
+<section class="mod" id="portafolio"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">06 · Riesgo y retorno</span><span class="lv lv2">Intermedio</span></div><h2>Teoría de portafolio, CAPM y factores</h2>
+  <p>Markowitz mostró que combinar activos imperfectamente correlacionados baja el riesgo sin bajar en la misma proporción el retorno. La frontera eficiente reúne los portafolios con mayor retorno para cada nivel de riesgo; al agregar un activo libre de riesgo, el mejor portafolio riesgoso es el de mayor razón de Sharpe (tangencia).</p></div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Dos activos (retornos y volatilidades anuales)</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="mMu1">Retorno esperado acciones (%)<input id="mMu1" type="number" step="0.5" value="11"></label>
+        <label for="mS1">Volatilidad acciones (%)<input id="mS1" type="number" min="0.1" step="0.5" value="20"></label>
+        <label for="mMu2">Retorno esperado bonos (%)<input id="mMu2" type="number" step="0.5" value="5"></label>
+        <label for="mS2">Volatilidad bonos (%)<input id="mS2" type="number" min="0.1" step="0.5" value="7"></label>
+        <label for="mRf">Tasa libre de riesgo (%)<input id="mRf" type="number" step="0.25" value="3"></label>
+        <div class="range" style="grid-column:1/-1"><div class="row"><label for="mRho">Correlación ρ</label><span class="mono" id="mRhoV"></span></div><input type="range" id="mRho" min="-1" max="1" step="0.05" value="0.1"></div>
+      </div>
+      <div class="metrics" id="mOut"></div>
+    </div>
+    <svg class="chart" id="mChart" viewBox="0 0 640 260" role="img" aria-label="Frontera de dos activos"></svg>
+    <div class="legend"><span><i style="background:var(--c1)"></i>Combinaciones de los dos activos</span><span><i style="background:var(--c2)"></i>Mínima varianza</span><span><i style="background:var(--c3)"></i>Tangencia (máximo Sharpe)</span><span><i style="background:var(--c4)"></i>Línea del mercado de capitales</span></div>
+    <p class="note" id="mNote"></p>
+  </div>
+  <div class="twocol">
+    <div class="panel"><h3>CAPM y beta</h3><p style="font-size:.93rem">En equilibrio solo se paga el riesgo que no se puede diversificar, medido por beta. El riesgo idiosincrático no tiene premio porque desaparece en un portafolio amplio.</p></div>
+    <div class="panel"><h3>Modelos de factores</h3><p style="font-size:.93rem">Fama-French y sus extensiones agregan tamaño, valor, rentabilidad, inversión y momentum. El alfa es el retorno que no explican los factores; en la evidencia, casi todo el alfa de los fondos desaparece al controlar por factores y costos.</p></div>
+  </div>
+  <div class="bridge" data-topic="portafolio"></div>
+</div></section>
+
+<!-- 07 RENTA FIJA -->
+<section class="mod" id="bonos"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">07 · Bonos y tasas</span><span class="lv lv2">Intermedio</span></div><h2>Renta fija: precio, duración y convexidad</h2>
+  <p>El precio de un bono es el valor presente de sus cupones y su principal. Cuando suben las tasas, el precio baja. La <b>duración modificada</b> mide cuánto cae el precio por cada punto de tasa; la <b>convexidad</b> corrige el error de esa aproximación lineal en cambios grandes.</p></div>
+  <div class="f">ΔP / P ≈ − Dmod × Δy + ½ × Convexidad × (Δy)²</div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Bono con cupón anual, nominal 100</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="bC">Cupón anual (%)<input id="bC" type="number" min="0" step="0.25" value="7"></label>
+        <label for="bN">Años al vencimiento<input id="bN" type="number" min="1" max="50" step="1" value="10"></label>
+        <label for="bY">Rendimiento al vencimiento, YTM (%)<input id="bY" type="number" step="0.1" value="9"></label>
+        <div class="range" style="grid-column:1/-1"><div class="row"><label for="bDy">Cambio en la tasa</label><span class="mono" id="bDyV"></span></div><input type="range" id="bDy" min="-400" max="400" step="25" value="200"></div>
+      </div>
+      <div class="metrics" id="bOut"></div>
+    </div>
+    <p class="note" id="bNote"></p>
+  </div>
+  <div class="panel">
+    <h3>Curva de rendimientos</h3>
+    <p style="font-size:.93rem">Relaciona tasa y plazo para bonos del mismo emisor. Se construye con bootstrapping de bonos cero cupón y se modela con Nelson-Siegel-Svensson. Una curva invertida (corto plazo más alto que largo) ha precedido a varias recesiones. En Colombia la referencia son los TES y, para el corto plazo, el IBR.</p>
+  </div>
+  <div class="bridge" data-topic="bonos"></div>
+</div></section>
+
+<!-- 08 DERIVADOS -->
+<section class="mod" id="derivados"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">08 · Valoración sin arbitraje</span><span class="lv lv3">Avanzado</span></div><h2>Opciones y Black-Scholes</h2>
+  <p>Una opción de compra (call) da el derecho, no la obligación, de comprar a un precio fijo. Su valor no depende del retorno esperado del activo sino de su volatilidad: se valora replicándola con el activo y deuda, en un mundo neutral al riesgo. Las griegas miden la sensibilidad a cada variable y son la base de la cobertura.</p></div>
+  <div class="f">C = S·N(d₁) − K·e^(−rT)·N(d₂)        d₁ = [ln(S/K) + (r + σ²/2)T] / (σ√T)        d₂ = d₁ − σ√T</div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Opción europea sin dividendos</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="oS">Precio del activo S<input id="oS" type="number" min="0.01" step="1" value="100"></label>
+        <label for="oK">Precio de ejercicio K<input id="oK" type="number" min="0.01" step="1" value="100"></label>
+        <label for="oT">Años al vencimiento T<input id="oT" type="number" min="0.01" step="0.25" value="1"></label>
+        <label for="oV">Volatilidad σ (%)<input id="oV" type="number" min="1" step="1" value="25"></label>
+        <label for="oR">Tasa libre de riesgo r (%)<input id="oR" type="number" step="0.25" value="4"></label>
+      </div>
+      <div class="metrics" id="oOut"></div>
+    </div>
+    <svg class="chart" id="oChart" viewBox="0 0 640 240" role="img" aria-label="Valor de la call frente al precio del activo"></svg>
+    <div class="legend"><span><i style="background:var(--c1)"></i>Valor hoy (Black-Scholes)</span><span><i style="background:var(--c4)"></i>Pago al vencimiento</span></div>
+    <p class="note" id="oNote"></p>
+  </div>
+  <div class="bridge" data-topic="derivados"></div>
+</div></section>
+
+<!-- 09 RIESGO FINANCIERO -->
+<section class="mod" id="riesgo"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">09 · Medir lo que se puede perder</span><span class="lv lv3">Avanzado</span></div><h2>Riesgo de mercado y el puente con riesgo de crédito</h2>
+  <p>El <b>VaR</b> responde cuánto se puede perder en un horizonte con cierta confianza; el <b>Expected Shortfall</b> (ES) responde cuánto se pierde en promedio cuando se pasa ese umbral. Basilea migró del VaR al ES en su revisión del libro de negociación (FRTB) porque el VaR no ve el tamaño de la cola.</p></div>
+  <div class="panel example">
+    <span class="tag">Calculadora · VaR y ES paramétricos (normal)</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="rV">Valor del portafolio<input id="rV" type="number" min="0" value="1000000"></label>
+        <label for="rS">Volatilidad diaria (%)<input id="rS" type="number" min="0" step="0.1" value="1.2"></label>
+        <label for="rH">Horizonte (días)<input id="rH" type="number" min="1" step="1" value="10"></label>
+        <label for="rA">Confianza<select id="rA"><option value="0.95">95 %</option><option value="0.975">97,5 %</option><option value="0.99" selected>99 %</option></select></label>
+      </div>
+      <div class="metrics" id="rOut"></div>
+    </div>
+    <p class="note">La normal subestima las colas de los retornos reales. En la práctica se usa VaR histórico, simulación con colas pesadas (t de Student) o volatilidad que cambia en el tiempo (GARCH), y siempre backtesting de excepciones.</p>
+  </div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Modelo de Merton: la acción como una call sobre los activos</span>
+    <p style="font-size:.93rem">Merton (1974) ve el patrimonio como una opción de compra sobre los activos de la empresa con precio de ejercicio igual a la deuda. La empresa entra en default si al vencimiento los activos valen menos que la deuda. De ahí sale una PD de mercado, la idea detrás de modelos comerciales como la "distancia al default".</p>
+    <div class="calc">
+      <div class="inputs">
+        <label for="zV">Valor de los activos<input id="zV" type="number" min="1" value="120"></label>
+        <label for="zD">Deuda (valor nominal)<input id="zD" type="number" min="1" value="80"></label>
+        <label for="zS">Volatilidad de los activos (%)<input id="zS" type="number" min="1" step="1" value="25"></label>
+        <label for="zT">Horizonte (años)<input id="zT" type="number" min="0.1" step="0.5" value="1"></label>
+        <label for="zR">Tasa libre de riesgo (%)<input id="zR" type="number" step="0.25" value="4"></label>
+      </div>
+      <div class="metrics" id="zOut"></div>
+    </div>
+  </div>
+  <div class="bridge" data-topic="riesgo"></div>
+</div></section>
+
+<!-- 10 AVANZADO -->
+<section class="mod" id="avanzado"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">10 · Lo que distingue a un perfil senior</span><span class="lv lv4">Experto</span></div><h2>Métodos avanzados y temas de frontera</h2></div>
+  <div class="techs">
+    <div class="tech"><div class="tech-h"><h3>Econometría financiera</h3><span class="lv lv3">Avanzado</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Los retornos tienen colas pesadas y agrupación de volatilidad: días tranquilos seguidos de días agitados.</dd>
+      <dt>Técnica</dt><dd>GARCH y variantes asimétricas (GJR, EGARCH), estudios de evento, regresiones de Fama-MacBeth, errores estándar de Newey-West.</dd>
+      <dt>Ejemplo dummy</dt><dd>Un GARCH(1,1) con α + β = 0,97: un choque de volatilidad tarda unas 23 jornadas en disiparse a la mitad.</dd></dl>
+      <div class="libs"><span class="lib">arch</span><span class="lib">statsmodels</span><span class="lib">linearmodels</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Cálculo estocástico y Monte Carlo</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Valorar derivados sin fórmula cerrada: opciones asiáticas, barreras, americanas.</dd>
+      <dt>Técnica</dt><dd>Movimiento browniano geométrico, lema de Itô, medida neutral al riesgo; Monte Carlo con reducción de varianza, árboles binomiales, Longstaff-Schwartz para opciones americanas.</dd>
+      <dt>Ejemplo dummy</dt><dd>Con 100.000 trayectorias y variables antitéticas, el error estándar de una asiática baja de 0,08 a 0,03.</dd></dl>
+      <div class="libs"><span class="lib">numpy</span><span class="lib">QuantLib</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Machine learning en finanzas</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Un backtest con validación cruzada normal parece excelente y falla en vivo.</dd>
+      <dt>Técnica</dt><dd>Validación cruzada purgada con embargo, etiquetado por triple barrera, ajuste por múltiples pruebas (deflated Sharpe ratio), modelos de retornos con árboles y redes, y su límite: poca señal y mucho ruido.</dd>
+      <dt>Ejemplo dummy</dt><dd>Tras probar 200 estrategias, la mejor tiene Sharpe 1,4; corregida por el número de pruebas, no es distinguible de cero.</dd></dl>
+      <div class="libs"><span class="lib">scikit-learn</span><span class="lib">lightgbm</span><span class="lib">mlfinlab</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Optimización robusta de portafolios</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Markowitz con medias estimadas da pesos extremos e inestables.</dd>
+      <dt>Técnica</dt><dd>Black-Litterman, contracción de covarianzas (Ledoit-Wolf), paridad de riesgo, Hierarchical Risk Parity, restricciones de rotación y costos.</dd>
+      <dt>Ejemplo dummy</dt><dd>Con Ledoit-Wolf, la rotación mensual baja de 60 % a 18 % y el Sharpe fuera de muestra sube de 0,4 a 0,6.</dd></dl>
+      <div class="libs"><span class="lib">PyPortfolioOpt</span><span class="lib">riskfolio-lib</span><span class="lib">cvxpy</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Finanzas sostenibles y ética</h3><span class="lv lv3">Avanzado</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Inversionistas y reguladores piden medir riesgo climático y ESG, con datos heterogéneos y riesgo de greenwashing.</dd>
+      <dt>Técnica</dt><dd>Escenarios climáticos (NGFS), riesgo físico y de transición en carteras, divergencia entre calificaciones ESG, bonos verdes; ética profesional según el código del CFA Institute.</dd>
+      <dt>Ejemplo dummy</dt><dd>En un escenario de transición desordenada, la cartera de crédito a sectores intensivos en carbono duplica su pérdida esperada.</dd></dl>
+      <div class="libs"><span class="lib">pandas</span><span class="lib">escenarios NGFS</span></div></div>
+    <div class="tech"><div class="tech-h"><h3>Microestructura y fintech</h3><span class="lv lv4">Experto</span></div>
+      <dl class="kv"><dt>Problema</dt><dd>Cómo se forma el precio en el libro de órdenes, cuánto cuesta ejecutar, y cómo cambian los pagos y el crédito digital.</dd>
+      <dt>Técnica</dt><dd>Spread, impacto de mercado, ejecución óptima (Almgren-Chriss); pagos inmediatos, open finance, tokenización y finanzas descentralizadas.</dd>
+      <dt>Ejemplo dummy</dt><dd>Partir una orden grande en 20 tramos baja el costo de impacto de 35 a 12 puntos básicos.</dd></dl>
+      <div class="libs"><span class="lib">numpy</span><span class="lib">pandas</span></div></div>
+  </div>
+  <div class="panel">
+    <h3>Así se vería en Python: GARCH y VaR condicional</h3>
+<pre class="code">import yfinance as yf
+from arch import arch_model
+from scipy.stats import norm
+
+px = yf.download("SPY", start="2015-01-01", auto_adjust=True)["Close"].squeeze()
+r = 100 * px.pct_change().dropna()                 # retornos diarios en %
+
+am = arch_model(r, mean="Constant", vol="GARCH", p=1, q=1, dist="t")
+res = am.fit(disp="off")
+print(res.summary())
+
+f = res.forecast(horizon=1)
+sigma = f.variance.iloc[-1, 0] ** 0.5               # volatilidad esperada mañana
+var99 = -(res.params["mu"] + sigma * norm.ppf(0.01))
+print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
+    <p class="muted" style="font-size:.88rem">El VaR usa la normal para simplificar aunque el modelo se ajustó con t de Student; para ser consistente, usa el cuantil de la t con los grados de libertad estimados. Revisa la documentación de <span class="mono">arch</span> y de <span class="mono">yfinance</span> antes de correrlo.</p>
+  </div>
+</div></section>
+
+<!-- 11 CATALOGO -->
+<section class="mod" id="catalogo"><div class="wrap">
+  <div class="head"><span class="eyebrow">11 · Mapa del campo</span><h2>Catálogo de modelos y técnicas</h2>
+  <p class="muted">De la tasa efectiva anual al cálculo estocástico. Filtra por nivel o área, o busca un término.</p></div>
+  <div class="filters">
+    <div class="frow2" id="catLv" role="group" aria-label="Nivel">
+      <button type="button" class="fchip" data-lv="0" aria-pressed="true">Todos</button>
+      <button type="button" class="fchip" data-lv="1" aria-pressed="false">Fundamentos</button>
+      <button type="button" class="fchip" data-lv="2" aria-pressed="false">Intermedio</button>
+      <button type="button" class="fchip" data-lv="3" aria-pressed="false">Avanzado</button>
+      <button type="button" class="fchip" data-lv="4" aria-pressed="false">Experto</button>
+    </div>
+    <div class="frow2">
+      <select id="catArea" aria-label="Área"><option value="">Todas las áreas</option></select>
+      <input type="search" id="catQ" placeholder="Buscar: duración, WACC, GARCH, opciones…" aria-label="Buscar técnica">
+    </div>
+    <span class="mono muted" style="font-size:.8rem" id="catCount"></span>
+  </div>
+  <div class="cat" id="catBox"></div>
+</div></section>
+
+<!-- 12 QUIZ -->
+<section class="mod" id="quiz"><div class="wrap">
+  <div class="head"><span class="eyebrow">12 · Practica</span><h2>Quiz</h2>
+  <p class="muted">Veinte preguntas de fundamentos a experto, al estilo de un examen de máster o del CFA. Se guarda en este navegador.</p></div>
+  <div class="qbar"><span class="mono" id="qScore">0 / 20 correctas · 0 respondidas</span><button class="btn" id="qReset" type="button">Reiniciar quiz</button></div>
+  <div class="qfil" id="qFil" role="group" aria-label="Filtrar por nivel">
+    <button type="button" class="fchip" data-q="0" aria-pressed="true">Todas</button>
+    <button type="button" class="fchip" data-q="1" aria-pressed="false">Fundamentos</button>
+    <button type="button" class="fchip" data-q="2" aria-pressed="false">Intermedio</button>
+    <button type="button" class="fchip" data-q="3" aria-pressed="false">Avanzado</button>
+    <button type="button" class="fchip" data-q="4" aria-pressed="false">Experto</button>
+  </div>
+  <div class="quiz" id="quizBox"></div>
+</div></section>
+
+<!-- 13 PLAN -->
+<section class="mod" id="plan"><div class="wrap">
+  <div class="head"><span class="eyebrow">13 · 6 a 8 horas por semana</span><h2>Plan de 16 semanas</h2>
+  <p class="muted">Ritmo de un semestre de máster: lectura del texto de referencia, problemas y un entregable en Python cada semana. Marca cada semana al terminarla; se guarda en este navegador.</p></div>
+  <div class="progress"><i id="planBar"></i></div>
+  <div class="plan" id="planBox"></div>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>Textos de referencia:</b> Berk y DeMarzo, <i>Corporate Finance</i> · Bodie, Kane y Marcus, <i>Investments</i> · Hull, <i>Options, Futures, and Other Derivatives</i> · Fabozzi, <i>Bond Markets, Analysis, and Strategies</i> · Damodaran, <i>Investment Valuation</i> · Cochrane, <i>Asset Pricing</i> · Campbell, Lo y MacKinlay, <i>The Econometrics of Financial Markets</i> · Tsay, <i>Analysis of Financial Time Series</i> · López de Prado, <i>Advances in Financial Machine Learning</i>.</p>
+  <p><b>Cursos abiertos:</b> MIT OpenCourseWare 15.401 Finance Theory I · Yale, Financial Markets (Robert Shiller) · clases de valoración de Aswath Damodaran (NYU Stern) · currículo del programa CFA.</p>
+  <p><b>Programas consultados:</b> <a href="https://mitsloan.mit.edu/mfin/explore-program/mfin-curriculum">MIT Sloan MFin</a> · <a href="https://bcf.princeton.edu/requirements-and-core-courses">Princeton MFin</a> · <a href="https://www.sbs.ox.ac.uk/programmes/degrees/msc-financial-economics/core-courses-and-electives">Oxford MSc Financial Economics</a> · <a href="https://www.lse.ac.uk/study-at-lse/Graduate/degree-programmes-2021/MSc-Finance-full-time">LSE MSc Finance</a>.</p>
+  <p>Todos los números de esta página son inventados y las fórmulas están simplificadas para aprender. No es asesoría de inversión.</p>
+</div></footer>
+
+<button class="fab" id="chatOpen" type="button" hidden>Pregúntale a Claude</button>
+<div class="chat" id="chat" role="dialog" aria-label="Preguntas a Claude" hidden>
+  <div class="chat-h"><b>Pregúntale a Claude</b><button type="button" id="chatClose" aria-label="Cerrar">×</button></div>
+  <div class="chat-log" id="chatLog">
+    <div class="msg a">Pregúntame lo que quieras sobre finanzas, las calculadoras o el quiz.</div>
+    <div class="chips" id="chatChips">
+      <button class="chip" type="button">Explícame la duración con un ejemplo de TES</button>
+      <button class="chip" type="button">Dame un ejercicio nuevo de DCF</button>
+      <button class="chip" type="button">¿Por qué una opción no depende del retorno esperado?</button>
+      <button class="chip" type="button">¿Qué preguntan en una entrevista de finanzas corporativas?</button>
+    </div>
+  </div>
+  <form class="chat-f" id="chatForm">
+    <textarea id="chatInput" rows="1" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta"></textarea>
+    <button type="submit" id="chatSend">Enviar</button>
+  </form>
+</div>
+
+<script>
+(function(){
+  const store = {
+    get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+    set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  };
+  const fmt = (n, d=0) => isFinite(n) ? n.toLocaleString('es-CO', {minimumFractionDigits:d, maximumFractionDigits:d}) : '—';
+  const $ = id => document.getElementById(id);
+  const val = id => parseFloat($(id).value) || 0;
+  const metric = (k, v, c) => `<div class="metric ${c||''}"><small>${k}</small><b>${v}</b></div>`;
+  function N(x){ const t = 1/(1+0.2316419*Math.abs(x)); const d = 0.3989422804*Math.exp(-x*x/2);
+    const p = d*t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429)))); return x > 0 ? 1-p : p; }
+  const phi = x => Math.exp(-x*x/2)/Math.sqrt(2*Math.PI);
+  function G(p){ let lo=-10, hi=10; for(let i=0;i<80;i++){ const m=(lo+hi)/2; if(N(m)<p) lo=m; else hi=m; } return (lo+hi)/2; }
+
+  /* 02 Tasas */
+  function rates(){
+    const j=val('tNom')/100, m=+$('tM').value, P=val('tP'), n=Math.max(1,Math.round(val('tN')));
+    const ea=Math.pow(1+j/m,m)-1, im=Math.pow(1+ea,1/12)-1, c = im>0 ? P*im/(1-Math.pow(1+im,-n)) : P/n;
+    $('tOut').innerHTML = metric('Tasa efectiva anual', fmt(ea*100,2)+' % E.A.', 'key') + metric('Tasa mensual equivalente', fmt(im*100,3)+' %') + metric('Cuota mensual', '$'+fmt(c), 'key') + metric('Total pagado', '$'+fmt(c*n)) + metric('Intereses', '$'+fmt(c*n-P)) + metric('Diferencia EA − nominal', fmt((ea-j)*100,2)+' pp');
+  }
+  ['tNom','tP','tN'].forEach(i => $(i).addEventListener('input', rates)); $('tM').addEventListener('change', rates); rates();
+
+  /* 02 VPN / TIR */
+  function npvF(fl, r){ return fl.reduce((s,c,t)=>s+c/Math.pow(1+r,t),0); }
+  function flows(){
+    const fl = $('fFlows').value.split(',').map(s=>parseFloat(s.trim())).filter(x=>isFinite(x)), r=val('fRate')/100;
+    if (fl.length<2){ $('fOut').innerHTML = metric('Flujos', 'Escribe al menos dos'); $('fNote').textContent=''; return; }
+    const npv=npvF(fl,r); let irr=NaN, lo=-0.99, hi=10;
+    if (npvF(fl,lo)*npvF(fl,hi)<0){ for(let i=0;i<200;i++){ const m=(lo+hi)/2; if(npvF(fl,lo)*npvF(fl,m)<=0) hi=m; else lo=m; } irr=(lo+hi)/2; }
+    let cum=0, pb=NaN; for(let t=0;t<fl.length;t++){ const prev=cum; cum+=fl[t]; if(t>0 && prev<0 && cum>=0){ pb=t-1+(-prev)/fl[t]; break; } }
+    const pv = fl.slice(1).reduce((s,c,t)=>s+c/Math.pow(1+r,t+1),0);
+    $('fOut').innerHTML = metric('VPN', fmt(npv,1), 'key '+(npv<0?'neg':'pos')) + metric('TIR', isFinite(irr)?fmt(irr*100,2)+' %':'sin cambio de signo', 'key') + metric('Payback simple', isFinite(pb)?fmt(pb,1)+' años':'no se recupera') + metric('Índice de rentabilidad', fl[0]<0?fmt(pv/-fl[0],2):'—');
+    $('fNote').textContent = npv>=0 ? `Con VPN positivo el proyecto crea valor a una tasa de ${fmt(r*100,1)} %. La TIR es la tasa que hace el VPN cero: mientras supere el costo de capital, el proyecto conviene.`
+      : `El VPN es negativo: a ${fmt(r*100,1)} % el proyecto destruye valor aunque recupere la inversión. Ojo: con flujos que cambian de signo varias veces puede haber varias TIR; el VPN es el criterio confiable.`;
+  }
+  ['fFlows','fRate'].forEach(i => $(i).addEventListener('input', flows)); flows();
+
+  /* 03 DuPont */
+  function dupont(){
+    const v=val('dVen'), u=val('dUn'), a=Math.max(val('dAct'),1e-9), p=Math.max(val('dPat'),1e-9);
+    const mg=v?u/v:NaN, rot=v/a, lev=a/p, roe=u/p;
+    $('dOut').innerHTML = metric('Margen neto', fmt(mg*100,1)+' %') + metric('Rotación de activos', fmt(rot,2)+'×') + metric('Apalancamiento', fmt(lev,2)+'×') + metric('ROE', fmt(roe*100,1)+' %', 'key') + metric('ROA', fmt(u/a*100,1)+' %') + metric('Deuda / patrimonio', fmt((a-p)/p,2)+'×');
+    $('dNote').textContent = `Con estos datos, el ROE de ${fmt(roe*100,1)} % sale de ${fmt(mg*100,1)} % de margen, ${fmt(rot,2)} vueltas de los activos y ${fmt(lev,2)} veces de apalancamiento. Una segunda empresa con margen de 2 %, rotación de 2,5 y apalancamiento de 5 tiene también 25 % de ROE, pero su riesgo es muy distinto: depende de la deuda.`;
+  }
+  ['dVen','dUn','dAct','dPat'].forEach(i => $(i).addEventListener('input', dupont)); dupont();
+
+  /* 04 DCF */
+  function dcfPrice(F, g1, w, g, D, S){
+    if (w<=g) return {ok:false};
+    let pv=0, f=F, last=F; for(let t=1;t<=5;t++){ if(t>1) f*= (1+g1); pv+=f/Math.pow(1+w,t); last=f; }
+    const tv=last*(1+g)/(w-g), pvtv=tv/Math.pow(1+w,5), ev=pv+pvtv;
+    return {ok:true, pv, pvtv, ev, eq:ev-D, px:(ev-D)/S};
+  }
+  function dcf(){
+    const F=val('vF'), g1=val('vG1')/100, w=val('vW')/100, g=val('vG')/100, D=val('vD'), S=Math.max(val('vS'),1e-9);
+    const r=dcfPrice(F,g1,w,g,D,S);
+    if(!r.ok){ $('vOut').innerHTML = metric('Error', 'El WACC debe ser mayor que g', 'neg'); $('vSens').innerHTML=''; $('vNote').textContent='Si g ≥ WACC el valor terminal es infinito: ninguna empresa crece para siempre más rápido que su costo de capital.'; return; }
+    $('vOut').innerHTML = metric('VP de flujos años 1–5', fmt(r.pv,0)) + metric('VP del valor terminal', fmt(r.pvtv,0)) + metric('Valor de la empresa (EV)', fmt(r.ev,0), 'key') + metric('Valor del patrimonio', fmt(r.eq,0)) + metric('Precio por acción', '$'+fmt(r.px,2), 'key') + metric('Peso del valor terminal', fmt(r.pvtv/r.ev*100,0)+' %');
+    const ws=[-1,-.5,0,.5,1].map(d=>w+d/100), gs=[-.5,0,.5].map(d=>g+d/100);
+    $('vSens').innerHTML = `<thead><tr><th>WACC \\ g</th>${gs.map(x=>`<th class="num">${fmt(x*100,2)} %</th>`).join('')}</tr></thead><tbody>${ws.map(wi=>`<tr class="${Math.abs(wi-w)<1e-9?'hi':''}"><td>${fmt(wi*100,2)} %</td>${gs.map(gi=>{const q=dcfPrice(F,g1,wi,gi,D,S);return `<td class="num">${q.ok?'$'+fmt(q.px,2):'—'}</td>`;}).join('')}</tr>`).join('')}</tbody>`;
+    const lo=dcfPrice(F,g1,w+.01,g-.005,D,S), hi=dcfPrice(F,g1,w-.01,g+.005,D,S);
+    $('vNote').textContent = `El valor terminal es ${fmt(r.pvtv/r.ev*100,0)} % del valor. Moviendo el WACC un punto y g medio punto, el precio va de $${fmt(lo.px,2)} a $${fmt(hi.px,2)}: reporta un rango, no un número.`;
+  }
+  ['vF','vG1','vW','vG','vD','vS'].forEach(i => $(i).addEventListener('input', dcf)); dcf();
+
+  /* 05 WACC */
+  function wacc(){
+    const rf=val('wRf')/100, b=val('wB'), erp=val('wErp')/100, crp=val('wCrp')/100, kd=val('wKd')/100, t=val('wT')/100, dv=Math.min(val('wDv')/100,.95);
+    const ke=rf+b*erp+crp, w=(1-dv)*ke+dv*kd*(1-t);
+    $('wOut').innerHTML = metric('Costo del patrimonio Ke', fmt(ke*100,2)+' %') + metric('Costo de la deuda después de impuestos', fmt(kd*(1-t)*100,2)+' %') + metric('WACC', fmt(w*100,2)+' %', 'key') + metric('Ke sin prima país', fmt((rf+b*erp)*100,2)+' %');
+    $('wNote').textContent = `La prima país suma ${fmt(crp*100,1)} puntos al costo del patrimonio. Al cambiar la deuda, recuerda que la beta también cambia (fórmula de Hamada): más deuda abarata el WACC hasta que el riesgo financiero sube Ke y Kd.`;
+  }
+  ['wRf','wB','wErp','wCrp','wKd','wT','wDv'].forEach(i => $(i).addEventListener('input', wacc)); wacc();
+
+  /* 06 Portafolio */
+  function port(){
+    const m1=val('mMu1')/100, s1=Math.max(val('mS1'),.1)/100, m2=val('mMu2')/100, s2=Math.max(val('mS2'),.1)/100, rf=val('mRf')/100, rho=val('mRho');
+    $('mRhoV').textContent = fmt(rho,2);
+    const pt = w => { const mu=w*m1+(1-w)*m2, v=w*w*s1*s1+(1-w)*(1-w)*s2*s2+2*w*(1-w)*rho*s1*s2; return [Math.sqrt(Math.max(v,0)), mu, w]; };
+    const pts=[]; for(let i=0;i<=100;i++) pts.push(pt(i/100));
+    const den=s1*s1+s2*s2-2*rho*s1*s2; let wmv = den>0 ? (s2*s2-rho*s1*s2)/den : .5; wmv=Math.min(1,Math.max(0,wmv));
+    let best=pts[0], bs=-Infinity; pts.forEach(p=>{ const sh=p[0]>0?(p[1]-rf)/p[0]:-Infinity; if(sh>bs){bs=sh;best=p;} });
+    const mv=pt(wmv);
+    $('mOut').innerHTML = metric('Mínima varianza', `${fmt(wmv*100,0)} % acciones`) + metric('Volatilidad mínima', fmt(mv[0]*100,2)+' %') + metric('Tangencia', `${fmt(best[2]*100,0)} % acciones`, 'key') + metric('Sharpe de tangencia', fmt(bs,2), 'key') + metric('Sharpe solo acciones', fmt((m1-rf)/s1,2)) + metric('Sharpe solo bonos', fmt((m2-rf)/s2,2));
+    const W=640,H=260,L=44,R=14,T=12,B=222, xmax=Math.max(s1,s2)*1.15, ymin=Math.min(rf,m1,m2)-0.01, ymax=Math.max(m1,m2)*1.12;
+    const xs=x=>L+(W-L-R)*x/xmax, ys=y=>B-(B-T)*(y-ymin)/(ymax-ymin);
+    let s=`<line class="ax" x1="${L}" y1="${B}" x2="${W-R}" y2="${B}"/><line class="ax" x1="${L}" y1="${T}" x2="${L}" y2="${B}"/>`;
+    for(let i=0;i<=4;i++){ const x=xmax*i/4, y=ymin+(ymax-ymin)*i/4; s+=`<text x="${xs(x)}" y="${B+16}" text-anchor="middle">${fmt(x*100,0)}%</text><text x="${L-6}" y="${ys(y)+4}" text-anchor="end">${fmt(y*100,1)}%</text>`; }
+    s+=`<text x="${W-R}" y="${H-2}" text-anchor="end">volatilidad anual</text>`;
+    const xe=Math.min(xmax, best[0]*1.8); s+=`<line x1="${xs(0)}" y1="${ys(rf)}" x2="${xs(xe)}" y2="${ys(rf+bs*xe)}" stroke="var(--c4)" stroke-width="1.6" stroke-dasharray="5 4"/>`;
+    s+=`<polyline points="${pts.map(p=>xs(p[0]).toFixed(1)+','+ys(p[1]).toFixed(1)).join(' ')}" fill="none" stroke="var(--c1)" stroke-width="2.4"/>`;
+    s+=`<circle cx="${xs(mv[0])}" cy="${ys(mv[1])}" r="5.5" fill="var(--c2)"/><circle cx="${xs(best[0])}" cy="${ys(best[1])}" r="5.5" fill="var(--c3)"/>`;
+    s+=`<text x="${xs(s1)+6}" y="${ys(m1)+4}">Acciones</text><text x="${xs(s2)+6}" y="${ys(m2)+4}">Bonos</text>`;
+    $('mChart').innerHTML = s;
+    $('mNote').textContent = rho<0.99 ? `Con correlación ${fmt(rho,2)}, el portafolio de mínima varianza tiene ${fmt(mv[0]*100,2)} % de volatilidad, menos que el activo menos riesgoso (${fmt(Math.min(s1,s2)*100,1)} %). Esa es la diversificación: baja la correlación y mira cómo la curva se dobla hacia la izquierda.`
+      : 'Con correlación 1 no hay diversificación: la combinación es una línea recta entre los dos activos.';
+  }
+  ['mMu1','mS1','mMu2','mS2','mRf','mRho'].forEach(i => $(i).addEventListener('input', port)); port();
+
+  /* 07 Bonos */
+  function bondP(c, n, y){ let p=0; for(let t=1;t<=n;t++) p+=c/Math.pow(1+y,t); return p+100/Math.pow(1+y,n); }
+  function bond(){
+    const c=val('bC'), n=Math.max(1,Math.round(val('bN'))), y=val('bY')/100, dy=val('bDy')/10000;
+    $('bDyV').textContent = (dy>0?'+':'')+fmt(dy*10000,0)+' pb';
+    const P=bondP(c,n,y); let mac=0, cx=0;
+    for(let t=1;t<=n;t++){ const cf=c+(t===n?100:0), pv=cf/Math.pow(1+y,t); mac+=t*pv; cx+=t*(t+1)*pv; }
+    mac/=P; const md=mac/(1+y); cx=cx/(P*Math.pow(1+y,2));
+    const real=(bondP(c,n,y+dy)-P)/P, d1=-md*dy, d2=d1+.5*cx*dy*dy;
+    $('bOut').innerHTML = metric('Precio', fmt(P,2), 'key') + metric('Duración Macaulay', fmt(mac,2)+' años') + metric('Duración modificada', fmt(md,2), 'key') + metric('Convexidad', fmt(cx,1)) + metric('Cambio real del precio', fmt(real*100,2)+' %', real<0?'neg':'pos') + metric('Solo duración', fmt(d1*100,2)+' %') + metric('Duración + convexidad', fmt(d2*100,2)+' %');
+    $('bNote').textContent = `${P<100?'Cotiza bajo la par porque el cupón es menor que la tasa del mercado. ':P>100?'Cotiza sobre la par porque el cupón supera la tasa del mercado. ':''}Con ${dy>=0?'una subida':'una bajada'} de ${fmt(Math.abs(dy)*10000,0)} pb, la duración sola estima ${fmt(d1*100,2)} % y el cambio real es ${fmt(real*100,2)} %; la convexidad cierra casi toda la diferencia.`;
+  }
+  ['bC','bN','bY','bDy'].forEach(i => $(i).addEventListener('input', bond)); bond();
+
+  /* 08 Black-Scholes */
+  function bs(S,K,T,v,r){ const d1=(Math.log(S/K)+(r+v*v/2)*T)/(v*Math.sqrt(T)), d2=d1-v*Math.sqrt(T);
+    return {d1,d2,c:S*N(d1)-K*Math.exp(-r*T)*N(d2), p:K*Math.exp(-r*T)*N(-d2)-S*N(-d1)}; }
+  function opt(){
+    const S=Math.max(val('oS'),.01), K=Math.max(val('oK'),.01), T=Math.max(val('oT'),.01), v=Math.max(val('oV'),1)/100, r=val('oR')/100;
+    const o=bs(S,K,T,v,r), g=phi(o.d1)/(S*v*Math.sqrt(T)), vega=S*phi(o.d1)*Math.sqrt(T)/100, th=(-S*phi(o.d1)*v/(2*Math.sqrt(T))-r*K*Math.exp(-r*T)*N(o.d2))/365;
+    $('oOut').innerHTML = metric('Call', fmt(o.c,2), 'key') + metric('Put', fmt(o.p,2), 'key') + metric('Delta call', fmt(N(o.d1),3)) + metric('Gamma', fmt(g,4)) + metric('Vega (por 1 pp de σ)', fmt(vega,3)) + metric('Theta call por día', fmt(th,3)) + metric('Paridad: C − P vs S − K·e^(−rT)', fmt(o.c-o.p,2)+' = '+fmt(S-K*Math.exp(-r*T),2));
+    const W=640,H=240,L=40,R=14,T0=12,B=206, smax=K*2, cmax=Math.max(bs(smax,K,T,v,r).c, smax-K)*1.05;
+    const xs=x=>L+(W-L-R)*x/smax, ys=y=>B-(B-T0)*y/cmax;
+    let s=`<line class="ax" x1="${L}" y1="${B}" x2="${W-R}" y2="${B}"/>`;
+    for(let i=0;i<=4;i++){ const x=smax*i/4; s+=`<text x="${xs(x)}" y="${B+16}" text-anchor="middle">${fmt(x,0)}</text>`; }
+    s+=`<text x="${W-R}" y="${H-2}" text-anchor="end">precio del activo S</text>`;
+    const pts=[]; for(let i=1;i<=120;i++){ const x=smax*i/120; pts.push([x, bs(x,K,T,v,r).c]); }
+    s+=`<polyline points="${xs(0)},${ys(0)} ${xs(K)},${ys(0)} ${xs(smax)},${ys(smax-K)}" fill="none" stroke="var(--c4)" stroke-width="2" stroke-dasharray="5 4"/>`;
+    s+=`<polyline points="${pts.map(p=>xs(p[0]).toFixed(1)+','+ys(p[1]).toFixed(1)).join(' ')}" fill="none" stroke="var(--c1)" stroke-width="2.4"/>`;
+    s+=`<circle cx="${xs(Math.min(S,smax))}" cy="${ys(o.c)}" r="5" fill="var(--c3)"/>`;
+    $('oChart').innerHTML = s;
+    $('oNote').textContent = `La distancia entre las dos curvas es el valor tiempo: lo que vale la posibilidad de que el activo suba antes del vencimiento. Sube la volatilidad y la curva azul se aleja: más incertidumbre vale más para quien tiene el derecho y no la obligación.`;
+  }
+  ['oS','oK','oT','oV','oR'].forEach(i => $(i).addEventListener('input', opt)); opt();
+
+  /* 09 VaR y Merton */
+  function vr(){
+    const V=val('rV'), s=val('rS')/100, h=Math.max(1,val('rH')), a=+$('rA').value, z=G(a), sh=s*Math.sqrt(h);
+    const v=z*sh*V, es=phi(z)/(1-a)*sh*V;
+    $('rOut').innerHTML = metric('z de la normal', fmt(z,3)) + metric('Volatilidad al horizonte', fmt(sh*100,2)+' %') + metric('VaR', '$'+fmt(v), 'key') + metric('Expected Shortfall', '$'+fmt(es), 'key') + metric('ES / VaR', fmt(es/v,2)+'×');
+  }
+  ['rV','rS','rH'].forEach(i => $(i).addEventListener('input', vr)); $('rA').addEventListener('change', vr); vr();
+  function merton(){
+    const V=Math.max(val('zV'),1e-6), D=Math.max(val('zD'),1e-6), s=Math.max(val('zS'),1)/100, T=Math.max(val('zT'),.1), r=val('zR')/100;
+    const o=bs(V,D,T,s,r), E=o.c, debt=V-E, y=-Math.log(debt/D)/T;
+    $('zOut').innerHTML = metric('Valor del patrimonio (call)', fmt(E,2)) + metric('Valor de la deuda', fmt(debt,2)) + metric('Distancia al default (d₂)', fmt(o.d2,2), 'key') + metric('PD neutral al riesgo N(−d₂)', fmt(N(-o.d2)*100,2)+' %', 'key') + metric('Spread de crédito', fmt((y-r)*10000,0)+' pb');
+  }
+  ['zV','zD','zS','zT','zR'].forEach(i => $(i).addEventListener('input', merton)); merton();
+
+  /* Catálogo */
+  const CAT = [
+    {n:'Tasas efectivas y equivalentes', lv:1, a:'Fundamentos', u:'Convertir nominales, efectivas y periódicas para comparar créditos e inversiones.', e:'24 % nominal mes vencido equivale a 26,82 % E.A.', l:'numpy-financial'},
+    {n:'Anualidades y amortización', lv:1, a:'Fundamentos', u:'Cuota fija, tabla de amortización y costo total de un crédito.', e:'10 millones a 36 meses al 2 % mensual: cuota cercana a 392.000.', l:'numpy-financial, pandas'},
+    {n:'VPN, TIR y payback', lv:1, a:'Finanzas corporativas', u:'Decidir si un proyecto crea valor.', e:'VPN de 70 a 12 % y TIR de 15,3 %: el proyecto conviene.', l:'numpy-financial'},
+    {n:'Análisis de estados financieros', lv:1, a:'Finanzas corporativas', u:'Ratios de liquidez, endeudamiento, rentabilidad y eficiencia; DuPont.', e:'ROE de 25 % explicado por un apalancamiento de 2,5 veces.', l:'pandas'},
+    {n:'Flujo de caja libre', lv:1, a:'Finanzas corporativas', u:'Pasar de la utilidad contable a la caja disponible para los financiadores.', e:'EBIT 200, impuestos 35 %, depreciación 40, CAPEX 60, capital de trabajo +10: FCF de 100.', l:'pandas'},
+    {n:'Valoración DCF', lv:1, a:'Valoración', u:'Valor de la empresa como valor presente de sus flujos.', e:'EV cercano a 1.466 con WACC de 11 % y g de 3 %.', l:'pandas, numpy'},
+    {n:'Valoración por múltiplos', lv:1, a:'Valoración', u:'Comparar EV/EBITDA, P/E y P/VL contra empresas similares.', e:'Pares a 7 veces EBITDA: con EBITDA de 220, EV cercano a 1.540.', l:'pandas'},
+    {n:'CAPM y costo del patrimonio', lv:1, a:'Valoración', u:'Tasa mínima que exige el accionista según el riesgo sistemático.', e:'rf 4,3 %, beta 1,1, prima 5 %, prima país 2,8 %: Ke de 12,6 %.', l:'statsmodels'},
+    {n:'WACC y estructura de capital', lv:2, a:'Finanzas corporativas', u:'Costo promedio de financiación y efecto de la deuda en el valor.', e:'Pasar de 20 % a 40 % de deuda baja el WACC de 11,3 % a 9,9 %, si la beta no cambiara.', l:'numpy'},
+    {n:'Beta desapalancada y Hamada', lv:2, a:'Valoración', u:'Ajustar la beta de comparables a la estructura de capital propia.', e:'Beta de pares 0,8 desapalancada; reapalancada a D/E 0,67 con 35 % de impuestos: 1,15.', l:'pandas'},
+    {n:'Optimización media-varianza', lv:2, a:'Portafolios', u:'Frontera eficiente y portafolio de máximo Sharpe.', e:'Con correlación 0,1, el mínimo riesgo está en 8 % acciones y 92 % bonos.', l:'cvxpy, PyPortfolioOpt'},
+    {n:'Modelos de factores', lv:2, a:'Portafolios', u:'Explicar retornos con mercado, tamaño, valor, rentabilidad, inversión y momentum.', e:'El alfa de un fondo pasa de 2 % a −0,3 % al controlar por factores.', l:'statsmodels, pandas-datareader'},
+    {n:'Medición de desempeño', lv:2, a:'Portafolios', u:'Sharpe, Sortino, information ratio, drawdown y atribución.', e:'Sharpe de 0,8 y caída máxima de 28 % en 10 años.', l:'quantstats, empyrical'},
+    {n:'Precio y rendimiento de bonos', lv:2, a:'Renta fija', u:'Valorar bonos y calcular su YTM.', e:'Cupón 7 %, 10 años, YTM 9 %: precio 87,16.', l:'QuantLib, numpy'},
+    {n:'Duración y convexidad', lv:2, a:'Renta fija', u:'Sensibilidad del precio a la tasa e inmunización.', e:'Duración modificada de 6,7: subir la tasa 100 pb baja el precio cerca de 6,7 %.', l:'QuantLib'},
+    {n:'Curva de rendimientos', lv:2, a:'Renta fija', u:'Bootstrapping de ceros y ajuste Nelson-Siegel-Svensson.', e:'La curva de TES se ajusta con 4 parámetros y error medio de 3 pb.', l:'QuantLib, scipy'},
+    {n:'Forwards, futuros y swaps', lv:3, a:'Derivados', u:'Precio por no arbitraje, cobertura cambiaria y de tasas.', e:'Forward USD/COP a un año con tasas de 9 % y 4,3 %: 4,5 % sobre el spot.', l:'QuantLib'},
+    {n:'Árbol binomial', lv:3, a:'Derivados', u:'Valorar opciones, incluidas las americanas, con réplica paso a paso.', e:'Con 500 pasos converge al precio de Black-Scholes a 0,01.', l:'numpy'},
+    {n:'Black-Scholes y griegas', lv:3, a:'Derivados', u:'Precio de opciones europeas y cobertura delta.', e:'Call a la par con σ 25 %, r 4 % y un año: 11,84.', l:'scipy, QuantLib'},
+    {n:'Volatilidad implícita y superficie', lv:3, a:'Derivados', u:'Despejar σ del precio de mercado; smile y skew.', e:'Puts fuera del dinero con σ implícita de 32 % frente a 22 % en el dinero.', l:'py_vollib, scipy'},
+    {n:'VaR y Expected Shortfall', lv:3, a:'Riesgo financiero', u:'Pérdida en la cola con métodos paramétrico, histórico y Monte Carlo.', e:'VaR 99 % a 10 días de 88.000 sobre un millón; ES de 101.000.', l:'numpy, scipy'},
+    {n:'Backtesting de VaR', lv:3, a:'Riesgo financiero', u:'Contar excepciones y probar cobertura (Kupiec, Christoffersen).', e:'7 excepciones en 250 días al 99 %: zona amarilla del semáforo de Basilea.', l:'scipy'},
+    {n:'GARCH y volatilidad condicional', lv:3, a:'Econometría', u:'Modelar la agrupación de volatilidad y pronosticarla.', e:'Persistencia de 0,97: la volatilidad tarda semanas en volver a su media.', l:'arch'},
+    {n:'Estudios de evento', lv:3, a:'Econometría', u:'Medir el efecto de un anuncio sobre el precio con retornos anormales.', e:'Retorno anormal acumulado de −4,2 % en los 3 días tras un recorte de calificación.', l:'statsmodels'},
+    {n:'Regresiones de Fama-MacBeth', lv:3, a:'Econometría', u:'Estimar primas de riesgo de factores en sección cruzada.', e:'Prima de valor de 0,3 % mensual con t de 2,4 tras Newey-West.', l:'linearmodels'},
+    {n:'Modelo de Merton', lv:4, a:'Riesgo financiero', u:'PD y spread a partir del valor de mercado de la empresa.', e:'Activos 120, deuda 80, σ 25 %: distancia al default de 1,66 y PD neutral al riesgo de 4,9 %.', l:'scipy'},
+    {n:'Cálculo estocástico', lv:4, a:'Derivados', u:'Movimiento browniano, lema de Itô y medida neutral al riesgo.', e:'Derivar Black-Scholes por réplica dinámica en tiempo continuo.', l:'sympy'},
+    {n:'Monte Carlo para derivados exóticos', lv:4, a:'Derivados', u:'Asiáticas, barreras y americanas (Longstaff-Schwartz).', e:'Variables antitéticas bajan el error estándar a menos de la mitad.', l:'numpy, QuantLib'},
+    {n:'Modelos de tasas de interés', lv:4, a:'Renta fija', u:'Vasicek, CIR, Hull-White para valorar productos de tasa.', e:'Hull-White calibrado a la curva valora un cap con error de 2 pb.', l:'QuantLib'},
+    {n:'Black-Litterman', lv:4, a:'Portafolios', u:'Combinar el equilibrio de mercado con opiniones propias de forma estable.', e:'Una opinión de +2 % en mercados emergentes mueve su peso de 10 % a 16 %, no a 60 %.', l:'PyPortfolioOpt'},
+    {n:'Hierarchical Risk Parity', lv:4, a:'Portafolios', u:'Asignar riesgo con agrupamiento jerárquico sin invertir la covarianza.', e:'Menor caída máxima fuera de muestra que media-varianza en 8 de 10 periodos.', l:'riskfolio-lib'},
+    {n:'Validación cruzada purgada', lv:4, a:'ML en finanzas', u:'Evitar fuga de información entre etiquetas que se solapan en el tiempo.', e:'La precisión del backtest baja de 61 % a 53 % al purgar: lo real.', l:'mlfinlab, scikit-learn'},
+    {n:'Deflated Sharpe ratio', lv:4, a:'ML en finanzas', u:'Corregir el Sharpe por el número de estrategias probadas.', e:'Sharpe de 1,4 tras 200 pruebas: probabilidad de ser real de 38 %.', l:'scipy'},
+    {n:'Modelos de retornos con ML', lv:4, a:'ML en finanzas', u:'Árboles y redes para predecir retornos en sección cruzada, con mucha regularización.', e:'R² fuera de muestra de 0,4 % mensual: pequeño, pero económicamente relevante.', l:'lightgbm, PyTorch'},
+    {n:'NLP sobre reportes y noticias', lv:4, a:'ML en finanzas', u:'Extraer tono y temas de reportes anuales, llamadas de resultados y noticias.', e:'Un tono más negativo en la llamada de resultados anticipa −1,1 % de retorno anormal.', l:'transformers, FinBERT'},
+    {n:'Riesgo climático en carteras', lv:4, a:'Sostenibilidad', u:'Escenarios NGFS, riesgo físico y de transición.', e:'Escenario de transición desordenada: pérdida esperada de sectores de carbono × 2.', l:'pandas'},
+    {n:'Ejecución óptima', lv:4, a:'Microestructura', u:'Partir órdenes grandes para equilibrar impacto y riesgo de precio.', e:'Almgren-Chriss reduce el costo de 35 a 12 pb.', l:'numpy'}
+  ];
+  const LVN = ['', 'Fundamentos', 'Intermedio', 'Avanzado', 'Experto'];
+  const TOP = {
+    dinero:{q:'¿Cómo comparo plata en momentos distintos?', i:[['Tasas efectivas y equivalentes','Siempre a la misma base antes de comparar.'],['Anualidades y amortización','La cuota de un crédito.'],['VPN, TIR y payback','Decidir si invertir.']]},
+    contable:{q:'¿Qué tan sana y rentable es la empresa?', i:[['Análisis de estados financieros','Ratios y DuPont.'],['Flujo de caja libre','La caja que realmente genera.'],['NLP sobre reportes y noticias','Leer lo que los números no dicen.']]},
+    valoracion:{q:'¿Cuánto vale la empresa?', i:[['Valoración DCF','Valor intrínseco.'],['Valoración por múltiplos','Valor relativo.'],['Flujo de caja libre','La entrada del DCF.'],['Modelo de Merton','El patrimonio como opción.']]},
+    costo:{q:'¿A qué tasa descuento?', i:[['CAPM y costo del patrimonio','Lo que pide el accionista.'],['Beta desapalancada y Hamada','Beta para tu estructura de capital.'],['WACC y estructura de capital','El costo promedio.']]},
+    portafolio:{q:'¿Cómo combino activos?', i:[['Optimización media-varianza','Frontera y tangencia.'],['Modelos de factores','De dónde sale el retorno.'],['Medición de desempeño','Cómo se evalúa un gestor.'],['Black-Litterman','Pesos estables con opiniones.'],['Hierarchical Risk Parity','Sin invertir la covarianza.']]},
+    bonos:{q:'¿Cómo se mueven los bonos con las tasas?', i:[['Precio y rendimiento de bonos','La base.'],['Duración y convexidad','Sensibilidad a la tasa.'],['Curva de rendimientos','Tasas por plazo.'],['Modelos de tasas de interés','Dinámica de la curva.']]},
+    derivados:{q:'¿Cuánto vale un derecho?', i:[['Forwards, futuros y swaps','Sin opcionalidad.'],['Árbol binomial','Réplica discreta.'],['Black-Scholes y griegas','Réplica continua.'],['Volatilidad implícita y superficie','Lo que dice el mercado.'],['Cálculo estocástico','La teoría detrás.'],['Monte Carlo para derivados exóticos','Cuando no hay fórmula.']]},
+    riesgo:{q:'¿Cuánto puedo perder?', i:[['VaR y Expected Shortfall','La cola de pérdidas.'],['Backtesting de VaR','¿El modelo acierta?'],['GARCH y volatilidad condicional','Volatilidad que cambia.'],['Modelo de Merton','Puente con riesgo de crédito.'],['Riesgo climático en carteras','Escenarios de largo plazo.']]}
+  };
+  const byName = Object.fromEntries(CAT.map(c => [c.n, c]));
+  const areaSel = $('catArea');
+  areaSel.insertAdjacentHTML('beforeend', [...new Set(CAT.map(c => c.a))].sort().map(a => `<option>${a}</option>`).join(''));
+  let catLv = 0;
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  function renderCat(){
+    const q = norm($('catQ').value.trim()), ar = areaSel.value;
+    const list = CAT.filter(c => (!catLv || c.lv === catLv) && (!ar || c.a === ar) && (!q || norm(c.n+' '+c.u+' '+c.e+' '+c.l+' '+c.a).includes(q)));
+    $('catCount').textContent = `${list.length} de ${CAT.length} técnicas`;
+    $('catBox').innerHTML = list.length ? list.map(c => `<div class="ci"><span class="lv lv${c.lv}">${LVN[c.lv]}</span><span class="area">${c.a}</span><h3>${c.n}</h3><p>${c.u}</p><p class="ex"><b>Ejemplo dummy:</b> ${c.e}</p><div class="libs">${c.l.split(', ').map(x => `<span class="lib">${x}</span>`).join('')}</div><button type="button" class="ask-more" data-cat="${CAT.indexOf(c)}">Pregúntale a Claude cómo aplicarlo</button></div>`).join('') : '<div class="empty">Ninguna técnica coincide. Prueba otra palabra o quita filtros.</div>';
+  }
+  $('catLv').addEventListener('click', e => { const b = e.target.closest('.fchip'); if (!b) return; catLv = +b.dataset.lv; document.querySelectorAll('#catLv .fchip').forEach(x => x.setAttribute('aria-pressed', x === b)); renderCat(); });
+  areaSel.addEventListener('change', renderCat); $('catQ').addEventListener('input', renderCat);
+  $('catBox').addEventListener('click', e => { const b = e.target.closest('.ask-more'); if (!b) return; const c = CAT[+b.dataset.cat];
+    askFromPage(`¿Cómo aplicaría "${c.n}"? Dame los pasos, qué datos necesito, un ejemplo corto en Python y los errores comunes.`); });
+  renderCat();
+  function goCat(name){
+    catLv = 0; areaSel.value = ''; document.querySelectorAll('#catLv .fchip').forEach(x => x.setAttribute('aria-pressed', x.dataset.lv === '0'));
+    $('catQ').value = name; renderCat();
+    const card = document.querySelector('#catBox .ci');
+    if (card) { card.classList.add('flash'); card.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'}); setTimeout(() => card.classList.remove('flash'), 2500); }
+  }
+  document.querySelectorAll('.bridge').forEach(el => { const tp = TOP[el.dataset.topic]; if (!tp) return;
+    const items = [...tp.i].sort((a, b) => byName[a[0]].lv - byName[b[0]].lv);
+    el.innerHTML = `<div class="bridge-h"><span class="eyebrow">Técnicas del catálogo</span><p>${tp.q}</p></div><div class="blist">${items.map(([n, t]) => `<div class="bi"><span class="lv lv${byName[n].lv}">${LVN[byName[n].lv]}</span><div><button type="button" data-go="${n}">${n}</button><span class="t">${t}</span></div></div>`).join('')}</div>`; });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) goCat(b.dataset.go); });
+
+  /* Quiz */
+  const Q = [
+    {lv:1, s:'Valor del dinero', q:'Un banco ofrece 24 % nominal anual con capitalización mensual. ¿Cuál es la tasa efectiva anual aproximada?', o:['24 %','26,8 %','28,8 %'], a:1, w:'(1 + 0,24/12)¹² − 1 = 1,02¹² − 1 ≈ 26,8 %. Compruébalo en la calculadora de tasas.'},
+    {lv:1, s:'Valor del dinero', q:'Un proyecto tiene TIR de 15 % y el costo de capital es 12 %. ¿Qué signo tiene su VPN a 12 %?', o:['Positivo','Negativo','Cero'], a:0, w:'Si la TIR supera la tasa de descuento, el VPN a esa tasa es positivo (con flujos convencionales).'},
+    {lv:1, s:'Estados financieros', q:'Margen neto 5 %, rotación de activos 2 y apalancamiento 2,5. ¿Cuál es el ROE?', o:['9,5 %','25 %','12,5 %'], a:1, w:'5 % × 2 × 2,5 = 25 %.'},
+    {lv:1, s:'Estados financieros', q:'¿Por qué una empresa con utilidad puede quedarse sin caja?', o:['No puede','Porque la utilidad incluye ventas a crédito y no resta la inversión en capital de trabajo ni el CAPEX','Porque la depreciación es salida de caja'], a:1, w:'La utilidad es contable; la caja depende de cobrar, del inventario y de las inversiones. La depreciación no es salida de caja.'},
+    {lv:1, s:'Valoración', q:'FCF del próximo año 100, WACC 10 %, crecimiento perpetuo 2 %. ¿Cuál es el valor hoy?', o:['1.000','1.250','1.020'], a:1, w:'Perpetuidad creciente: 100 / (0,10 − 0,02) = 1.250.'},
+    {lv:1, s:'Costo de capital', q:'rf 4 %, beta 1,2, prima de mercado 5 %. ¿Cuál es el costo del patrimonio por CAPM?', o:['10 %','9 %','6 %'], a:0, w:'4 % + 1,2 × 5 % = 10 %.'},
+    {lv:1, s:'Costo de capital', q:'¿Por qué el costo de la deuda entra al WACC multiplicado por (1 − t)?', o:['Porque los intereses son deducibles de impuestos','Porque la deuda es más riesgosa','Por convención contable'], a:0, w:'El escudo fiscal de los intereses abarata la deuda para la empresa.'},
+    {lv:2, s:'Portafolio', q:'Dos activos con correlación −1 y volatilidades positivas. ¿Qué se puede lograr?', o:['Nada, el riesgo se suma','Un portafolio con volatilidad cero','Solo bajar el retorno'], a:1, w:'Con correlación perfecta negativa existe una combinación sin riesgo.'},
+    {lv:2, s:'Portafolio', q:'Según el CAPM, ¿qué riesgo se premia?', o:['La volatilidad total','El riesgo sistemático, medido por beta','El riesgo idiosincrático'], a:1, w:'El riesgo propio de cada empresa se diversifica y no recibe premio.'},
+    {lv:2, s:'Portafolio', q:'Un fondo tiene alfa de 2 % frente al mercado, pero −0,3 % frente a un modelo de 5 factores. ¿Qué concluyes?', o:['Es un gran gestor','Su retorno extra se explica por exposición a factores, no por habilidad','El modelo de factores está mal'], a:1, w:'Exponerse a valor, tamaño o momentum se puede replicar barato; no es alfa.'},
+    {lv:2, s:'Renta fija', q:'Si suben las tasas de mercado, ¿qué pasa con el precio de un bono de cupón fijo?', o:['Sube','Baja','No cambia'], a:1, w:'El precio es el valor presente de flujos fijos: una tasa mayor lo reduce.'},
+    {lv:2, s:'Renta fija', q:'Un bono tiene duración modificada de 6. Si la tasa sube 50 pb, ¿cuánto cambia su precio aproximadamente?', o:['−3 %','−6 %','−0,5 %'], a:0, w:'−6 × 0,005 = −3 %.'},
+    {lv:2, s:'Renta fija', q:'¿Para qué sirve la convexidad?', o:['Para medir el riesgo de crédito','Para corregir el error de la duración en cambios grandes de tasa','Para calcular el cupón'], a:1, w:'La relación precio-tasa es curva; la duración es su aproximación lineal.'},
+    {lv:3, s:'Derivados', q:'¿Por qué el precio de Black-Scholes no depende del retorno esperado del activo?', o:['Porque se asume que es cero','Porque la opción se replica con el activo y deuda, y se valora en un mundo neutral al riesgo','Porque es un error del modelo'], a:1, w:'La réplica elimina el riesgo, así que la tasa relevante es la libre de riesgo.'},
+    {lv:3, s:'Derivados', q:'S = 100, K = 100, r = 0, call = 8. Por paridad put-call, ¿cuánto vale la put?', o:['8','0','108'], a:0, w:'C − P = S − K·e^(−rT) = 0, así que P = C = 8.'},
+    {lv:3, s:'Derivados', q:'¿Qué griega mide cuánto cambia la opción si sube la volatilidad?', o:['Delta','Vega','Theta'], a:1, w:'Vega. Delta es frente al precio y theta frente al paso del tiempo.'},
+    {lv:3, s:'Riesgo financiero', q:'¿Qué ventaja tiene el Expected Shortfall sobre el VaR?', o:['Es más fácil de calcular','Mide el tamaño promedio de las pérdidas más allá del umbral','Siempre es menor'], a:1, w:'El VaR dice dónde empieza la cola; el ES dice qué tan grave es. También es subaditivo.'},
+    {lv:3, s:'Econometría', q:'En un GARCH(1,1), α + β cercano a 1 indica:', o:['Volatilidad muy persistente','Retornos normales','Ausencia de riesgo'], a:0, w:'Los choques de volatilidad tardan mucho en disiparse.'},
+    {lv:4, s:'Experto', q:'En el modelo de Merton, el patrimonio de una empresa equivale a:', o:['Una put sobre la deuda','Una call sobre los activos con ejercicio igual a la deuda','Un bono cero cupón'], a:1, w:'Los accionistas reciben lo que sobra de los activos tras pagar la deuda: max(V − D, 0).'},
+    {lv:4, s:'Experto', q:'Probaste 200 estrategias y la mejor tiene Sharpe 1,4 en el backtest. ¿Qué haces?', o:['La lanzo','Ajusto por múltiples pruebas (deflated Sharpe) y valido con datos fuera de muestra y CV purgada','Pruebo 200 más'], a:1, w:'Con muchas pruebas, un Sharpe alto aparece por azar. Hay que corregir y validar.'}
+  ];
+  let ans = store.get('fin_quiz', {}), qLv = 0;
+  const box = $('quizBox');
+  function renderQuiz(){
+    box.innerHTML = Q.map((x, i) => {
+      if (qLv && x.lv !== qLv) return '';
+      const picked = ans[i], done = picked !== undefined;
+      const opts = x.o.map((t, j) => { let cls = ''; if (done && j === x.a) cls = 'right'; else if (done && j === picked) cls = 'wrong';
+        return `<button type="button" class="opt ${cls}" data-q="${i}" data-o="${j}" ${done ? 'disabled' : ''}><span class="k">${'abc'[j]})</span><span>${t}</span></button>`; }).join('');
+      const why = done ? `<div class="why">${picked === x.a ? '<b class="ok">Correcto.</b>' : '<b class="no">No es esa.</b>'} ${x.w}<button type="button" class="ask-more" data-ask="${i}">Pregúntale más a Claude sobre esto</button></div>` : '';
+      return `<div class="q"><span class="qn">${String(i+1).padStart(2,'0')} · ${LVN[x.lv]} · ${x.s}</span><div class="qt">${x.q}</div><div class="opts">${opts}</div>${why}</div>`;
+    }).join('');
+    const answered = Object.keys(ans).length, right = Q.filter((x, i) => ans[i] === x.a).length;
+    $('qScore').textContent = `${right} / ${Q.length} correctas · ${answered} respondidas`;
+    $('sQuiz').textContent = `${right} / ${Q.length}`;
+  }
+  box.addEventListener('click', e => {
+    const m = e.target.closest('.ask-more');
+    if (m) { const x = Q[+m.dataset.ask]; askFromPage(`Explícame mejor esta pregunta del quiz: "${x.q}". La respuesta correcta es "${x.o[x.a]}". Yo respondí "${x.o[ans[m.dataset.ask]]}".`); return; }
+    const b = e.target.closest('.opt'); if (!b || b.disabled) return;
+    ans[b.dataset.q] = +b.dataset.o; store.set('fin_quiz', ans); renderQuiz();
+  });
+  $('qFil').addEventListener('click', e => { const b = e.target.closest('.fchip'); if (!b) return; qLv = +b.dataset.q; document.querySelectorAll('#qFil .fchip').forEach(x => x.setAttribute('aria-pressed', x === b)); renderQuiz(); });
+  $('qReset').addEventListener('click', () => { ans = {}; store.set('fin_quiz', ans); renderQuiz(); });
+  renderQuiz();
+
+  /* Plan */
+  const P = [
+    [1,'Fundamentos','Valor del dinero','Berk-DeMarzo, capítulos de valor del dinero. MIT OCW 15.401, primeras clases. Entregable: tabla de amortización en Python con tasas E.A.'],
+    [2,'Fundamentos','Estados financieros','Lee un reporte anual real de una empresa listada en la Bolsa de Valores de Colombia. Entregable: ratios y DuPont de 5 años con pandas.'],
+    [3,'Fundamentos','Presupuesto de capital y DCF','VPN, TIR, flujo de caja libre. Entregable: DCF completo de la misma empresa con tabla de sensibilidad.'],
+    [4,'Fundamentos','Costo de capital y estructura','CAPM, prima país, beta desapalancada, Modigliani-Miller. Entregable: WACC defendible para tu DCF.'],
+    [5,'Intermedio','Teoría de portafolio','Bodie-Kane-Marcus, capítulos de media-varianza. Entregable: frontera eficiente con 10 ETF y datos reales.'],
+    [6,'Intermedio','CAPM y factores','Regresiones de Fama-French con datos de la Kenneth French Data Library. Entregable: alfa y cargas de 3 fondos.'],
+    [7,'Intermedio','Renta fija I','Precio, YTM, duración y convexidad. Entregable: calculadora de bonos y cartera inmunizada.'],
+    [8,'Intermedio','Renta fija II','Curva de rendimientos: bootstrapping y Nelson-Siegel sobre la curva de TES. Examen parcial: quiz de esta página dos veces.'],
+    [9,'Avanzado','Forwards, futuros y swaps','Hull, capítulos iniciales. Entregable: valoración de un forward USD/COP y un swap de tasa.'],
+    [10,'Avanzado','Opciones I','Árbol binomial y Black-Scholes. Entregable: implementa ambos y muestra la convergencia.'],
+    [11,'Avanzado','Opciones II','Griegas, cobertura delta y volatilidad implícita. Entregable: simulación de cobertura delta con costos.'],
+    [12,'Avanzado','Riesgo de mercado','VaR paramétrico, histórico y Monte Carlo; ES; backtesting de Kupiec. Entregable: reporte de riesgo de un portafolio.'],
+    [13,'Avanzado','Econometría financiera','Campbell-Lo-MacKinlay y Tsay: GARCH, estudios de evento. Entregable: estudio de evento sobre anuncios de política monetaria.'],
+    [14,'Experto','Cálculo estocástico y Monte Carlo','Itô, medida neutral al riesgo, Longstaff-Schwartz. Entregable: precio de una opción asiática con reducción de varianza.'],
+    [15,'Experto','ML en finanzas y portafolios robustos','López de Prado: CV purgada, deflated Sharpe; Ledoit-Wolf y HRP. Entregable: backtest honesto de una estrategia.'],
+    [16,'Experto','Proyecto final','Elige uno: valoración completa de una empresa, gestor de portafolio con factores y riesgo, o modelo de Merton para empresas listadas. Publícalo en GitHub con README y presentación de 10 minutos.']
+  ];
+  let done = store.get('fin_plan', {});
+  const planBox = $('planBox');
+  function renderPlan(){
+    let last = '';
+    planBox.innerHTML = P.map((p, i) => { const wk = p[1] !== last ? `<div class="week">${p[1]}</div>` : ''; last = p[1];
+      return `${wk}<label class="day ${done[i] ? 'done' : ''}" for="w${i}"><input type="checkbox" id="w${i}" data-i="${i}" ${done[i] ? 'checked' : ''}><span class="d">Sem ${p[0]}</span><span><b>${p[2]}</b><span>${p[3]}</span></span></label>`; }).join('');
+    const n = P.filter((p, i) => done[i]).length;
+    $('sPlan').textContent = `${n} / ${P.length}`; $('planBar').style.width = (n / P.length * 100) + '%';
+  }
+  planBox.addEventListener('change', e => { const i = e.target.dataset.i; if (i === undefined) return; done[i] = e.target.checked; store.set('fin_plan', done); renderPlan(); });
+  renderPlan();
+
+  /* Nav activa */
+  const links = [...document.querySelectorAll('nav.top a')], secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  function spy(){ let cur = 0; secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < 140) cur = i; }); links.forEach((a, i) => a.classList.toggle('on', i === cur)); }
+  addEventListener('scroll', spy, {passive:true}); spy();
+
+  /* Chat con Claude (solo dentro de claude.ai; fuera de ahí queda oculto) */
+  const chat = $('chat'), fab = $('chatOpen'), log = $('chatLog'), input = $('chatInput'), send = $('chatSend'), chips = $('chatChips');
+  let sample = null, busy = false, history = [], ctl = null, timer = null;
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  function md(t){ const lines = esc(t).split('\n'); let html = '', inList = false;
+    for (const l of lines) { const b = l.match(/^\s*[-*•]\s+(.*)/);
+      if (b) { if (!inList) { html += '<ul>'; inList = true; } html += '<li>' + b[1] + '</li>'; continue; }
+      if (inList) { html += '</ul>'; inList = false; } html += l.trim() ? l + '<br>' : '<br>'; }
+    if (inList) html += '</ul>'; return html.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(<br>)+$/, ''); }
+  function bubble(cls, text){ const d = document.createElement('div'); d.className = 'msg ' + cls; if (cls === 'u') d.textContent = text; else d.innerHTML = md(text); log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
+  function context(){
+    const parts = [...document.querySelectorAll('header.hero, section.mod')].map(s => s.innerText.replace(/\n{2,}/g, '\n')).join('\n\n');
+    return 'Eres un tutor de finanzas de nivel máster (finanzas corporativas, valoración, portafolios, renta fija, derivados, riesgo y econometría financiera) para profesionales en Latinoamérica. Responde en español, claro y breve (unas 150 palabras salvo que pidan más), con ejemplos numéricos inventados marcados como inventados. No des recomendaciones de inversión personalizadas. Si un dato depende de una norma o de cifras de mercado actuales y no estás seguro, dilo. Usa solo viñetas con "- " y negrita con ** si hace falta formato. Este es el contenido de la página de estudio que está viendo:\n\n' + parts.slice(0, 40000);
+  }
+  const errCopy = c => ({rate_limited:'Hay muchas preguntas seguidas. Espera un momento y vuelve a intentar.', not_granted:'No se dio permiso para usar Claude en esta página. Puedes activarlo en el menú de permisos del artefacto.', cancelled:'Pregunta cancelada.', prompt_too_large:'La conversación es muy larga. Recarga la página para empezar una nueva.'}[c] || 'No pude responder ahora. Intenta de nuevo en un momento.');
+  const touch = matchMedia('(pointer: coarse)').matches, mobile = () => matchMedia('(max-width: 600px)').matches;
+  function setBusy(on){ busy = on; send.textContent = on ? 'Detener' : 'Enviar'; send.classList.toggle('stop', on); }
+  async function ask(q){
+    if (busy || !sample || !q.trim()) return;
+    setBusy(true); chips.hidden = true; bubble('u', q); history.push({role:'user', content:q});
+    const out = bubble('a', 'Pensando…'); ctl = new AbortController(); timer = setTimeout(() => ctl && ctl.abort(), 90000);
+    try {
+      const r = await sample([{role:'user', content:context()}, {role:'assistant', content:'Entendido. ¿Qué quieres saber?'}, ...history], {cache:false, signal:ctl.signal, onText: ({text}) => { out.innerHTML = md(text); log.scrollTop = log.scrollHeight; }});
+      out.innerHTML = md(r.text) + (r.truncated ? '<br><i>(La respuesta se cortó; pide que continúe.)</i>' : ''); history.push({role:'assistant', content:r.text});
+    } catch (e) {
+      history.pop(); if (e && e.text) out.innerHTML = md(e.text); else out.remove(); bubble('a err', errCopy(e && e.code));
+      if (e && e.code === 'not_granted') { sample = null; document.body.classList.remove('can-ask'); }
+    } finally { clearTimeout(timer); ctl = null; setBusy(false); log.scrollTop = log.scrollHeight; if (!touch) input.focus(); }
+  }
+  function fitChat(){ const vv = window.visualViewport; if (chat.hidden || !mobile() || !vv) { chat.style.height = ''; chat.style.top = ''; return; } chat.style.height = vv.height + 'px'; chat.style.top = vv.offsetTop + 'px'; log.scrollTop = log.scrollHeight; }
+  if (window.visualViewport) { visualViewport.addEventListener('resize', fitChat); visualViewport.addEventListener('scroll', fitChat); }
+  addEventListener('resize', fitChat);
+  function openChat(){ chat.hidden = false; fab.hidden = true; document.body.classList.add('chat-open'); fitChat(); if (!touch) input.focus(); }
+  function closeChat(){ if (ctl) ctl.abort(); input.blur(); chat.hidden = true; fab.hidden = !sample; document.body.classList.remove('chat-open'); fitChat(); }
+  function askFromPage(q){ if (!sample) return; openChat(); ask(q); }
+  fab.addEventListener('click', openChat); $('chatClose').addEventListener('click', closeChat);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !chat.hidden) closeChat(); });
+  $('chatForm').addEventListener('submit', e => { e.preventDefault(); if (busy) { if (ctl) ctl.abort(); return; } const q = input.value; input.value = ''; input.style.height = ''; if (touch) input.blur(); ask(q); });
+  input.addEventListener('input', () => { input.style.height = ''; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; });
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !touch) { e.preventDefault(); $('chatForm').dispatchEvent(new Event('submit', {cancelable:true})); } });
+  chips.addEventListener('click', e => { const c = e.target.closest('.chip'); if (c) ask(c.textContent); });
+  if (window.claude && window.claude.use) {
+    window.claude.use('sample').then(s => { sample = s; if (s) { fab.hidden = false; document.body.classList.add('can-ask'); } }).catch(() => {});
+  }
+})();
+</script>
+
+</body></html>

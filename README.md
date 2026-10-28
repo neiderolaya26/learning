@@ -7,6 +7,7 @@ Rutas de aprendizaje interactivas en español, cada una en una sola página HTML
 | Ruta | Nivel | Qué cubre | Duración |
 | --- | --- | --- | --- |
 | [Riesgo de crédito](rutas/riesgo-de-credito/) | Fundamentos → experto | Pérdida esperada, scorecards (WoE/IV, PDO), validación (KS, Gini, calibración), cosechas y roll rates, punto de corte, pricing y RAROC, NIIF 9, capital IRB y Vasicek, PSI y riesgo de modelo, supervivencia, ML gobernado, causalidad | 12 semanas |
+| [Finanzas](rutas/finanzas/) | Fundamentos → experto | Núcleo de MIT, Princeton, Oxford y LSE: valor del dinero, estados financieros, DCF, WACC, portafolio y factores, renta fija, derivados y Black-Scholes, VaR y ES, modelo de Merton, econometría financiera, ML en finanzas | 16 semanas |
 | [Paid Media](rutas/paid-media/) | Fundamentos → avanzado | Embudo y métricas (CPM, CTR, CPA, ROAS, ROI), subasta, plataformas, fase de aprendizaje, uplift, MMM, atribución, catálogo de modelos de marketing | 14 días |
 | [IA y Data Science](rutas/ia-data-science/) | Repaso de máster → agentes | Repaso de máster en Data Science con quices y examen final, y la ruta por los cursos públicos del profesor Sergio A. Mora Pardo (PUJ): estocásticos, deep learning, NLP, grafos, LLMs y agentes | 8 semanas + cursos |
 
@@ -23,8 +24,11 @@ Rutas de aprendizaje interactivas en español, cada una en una sola página HTML
 index.html                       portada con enlaces a las rutas
 rutas/
   riesgo-de-credito/index.html
+  finanzas/index.html
   paid-media/index.html
   ia-data-science/index.html
 ```
+
+Las reglas de contribución están en [AGENTS.md](AGENTS.md) y la configuración del repo en [docs/GOBERNANZA.md](docs/GOBERNANZA.md).
 
 Para agregar una ruta nueva: crea `rutas/<nombre>/index.html`, súmala a la tabla de este README y a la portada.

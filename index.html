@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
-:root{--bg:#f4f3f6;--surface:#fff;--fg:#1d1724;--muted:#5f5769;--line:#d9d4e0;--r:#8e2a4f;--p:#2b4bff;--i:#0f7c6c;
+:root{--bg:#f4f3f6;--surface:#fff;--fg:#1d1724;--muted:#5f5769;--line:#d9d4e0;--r:#8e2a4f;--p:#2b4bff;--i:#0f7c6c;--f:#1d6b47;
   --display:"Sora","Segoe UI",system-ui,sans-serif;--body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
-@media (prefers-color-scheme:dark){:root{--bg:#141019;--surface:#1c1723;--fg:#ece7f2;--muted:#a69db3;--line:#342c40;--r:#e98aae;--p:#7d93ff;--i:#4fd1b8;color-scheme:dark}}
+@media (prefers-color-scheme:dark){:root{--bg:#141019;--surface:#1c1723;--fg:#ece7f2;--muted:#a69db3;--line:#342c40;--r:#e98aae;--p:#7d93ff;--i:#4fd1b8;--f:#6fd3a0;color-scheme:dark}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.6}
 main{max-width:880px;margin:0 auto;padding:56px max(16px,env(safe-area-inset-left)) 64px max(16px,env(safe-area-inset-right));display:grid;gap:28px}
@@ -31,6 +31,7 @@ footer{color:var(--muted);font-size:.85rem}
   <p class="lede">Páginas interactivas para estudiar a tu ritmo: conceptos, calculadoras con datos inventados, quices y planes de estudio. El progreso queda guardado en tu navegador.</p>
   <div class="grid">
     <a class="route" href="rutas/riesgo-de-credito/" style="--c:var(--r)"><span class="k">12 semanas · fundamentos a experto</span><h2>Riesgo de crédito</h2><p>Pérdida esperada, scorecards, validación, cosechas, estrategia, pricing, NIIF 9, capital IRB, monitoreo y técnicas avanzadas.</p></a>
+    <a class="route" href="rutas/finanzas/" style="--c:var(--f)"><span class="k">16 semanas · núcleo de máster</span><h2>Finanzas</h2><p>Valor del dinero, estados financieros, valoración, costo de capital, portafolio, renta fija, derivados, riesgo de mercado y ML en finanzas.</p></a>
     <a class="route" href="rutas/paid-media/" style="--c:var(--p)"><span class="k">14 días · de riesgo a marketing</span><h2>Paid Media</h2><p>Métricas del embudo, subasta, plataformas, fase de aprendizaje, uplift, MMM y catálogo de modelos de marketing.</p></a>
     <a class="route" href="rutas/ia-data-science/" style="--c:var(--i)"><span class="k">8 semanas + cursos</span><h2>IA y Data Science</h2><p>Repaso de máster con quices y examen final, y una ruta por cursos de estocásticos, deep learning, NLP, grafos, LLMs y agentes.</p></a>
   </div>
