@@ -970,4 +970,132 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
 })();
 </script>
 
+<!-- Glosario emergente: subraya siglas y términos técnicos y muestra su definición en palabras sencillas al pasar el cursor, tocar o enfocar con el teclado. -->
+<style id="glosario-css">
+.gl{border-bottom:1.5px dotted currentColor;cursor:help;border-radius:2px}
+.gl:hover,.gl[aria-expanded="true"]{background:rgba(127,127,127,.18)}
+.gl:focus-visible{outline:2px solid var(--accent,var(--s1,currentColor));outline-offset:1px}
+.gl-pop{position:fixed;z-index:60;max-width:min(300px,calc(100vw - 32px));padding:10px 12px;border-radius:10px;background:var(--fg,var(--ink,#111));color:var(--bg,#fff);font:400 .86rem/1.45 var(--body,system-ui,sans-serif);text-align:left;letter-spacing:normal;text-transform:none;box-shadow:0 8px 24px rgba(0,0,0,.25);pointer-events:none}
+.gl-pop b{display:block;font-weight:700}
+.gl-pop .gl-l{display:block;font-size:.76rem;opacity:.8;margin-bottom:4px}
+@media (prefers-reduced-motion:no-preference){.gl-pop:not([hidden]){animation:gl-in .12s ease-out}@keyframes gl-in{from{opacity:0;transform:translateY(3px)}}}
+</style>
+<script id="glosario-js">
+(function(){
+  const G = {"PD": ["Probabilidad de default","La probabilidad de que un cliente deje de pagar en un periodo, por lo general un año."],"VaR": ["Value at Risk","La pérdida que no deberías superar en un periodo con cierta confianza; por ejemplo, en 99 de cada 100 días."],"SHAP": ["SHapley Additive exPlanations","Método que reparte una predicción entre las variables para explicar por qué el modelo decidió así."],"PSI": ["Population Stability Index","Mide cuánto cambió la población que llega hoy frente a la que se usó para construir el modelo. Más de 0,25 es un cambio fuerte."],"ML": ["Machine learning","Modelos que aprenden patrones de los datos para predecir o clasificar."],"pp": ["Puntos porcentuales","Diferencia directa entre dos porcentajes: de 5 % a 7 % hay 2 pp."],"pb": ["Puntos básicos","Centésimas de un punto porcentual: 100 pb equivalen a 1 %."],"KS": ["Kolmogorov-Smirnov","La mayor separación entre buenos y malos que logra un score. Más alto significa que ordena mejor."],"AUC": ["Área bajo la curva ROC","Probabilidad de que el modelo ponga más arriba a un caso positivo que a uno negativo escogidos al azar. 0,5 es azar; 1 es perfecto."],"Gini": ["Coeficiente de Gini","Qué tan bien ordena el modelo a los clientes del más al menos riesgoso. 0 es azar y 100 % es perfecto; equivale a 2 × AUC − 1."],"NLP": ["Procesamiento de lenguaje natural","Técnicas para que un modelo entienda o genere texto."],"E.A.": ["Efectiva anual","La tasa que realmente pagas o ganas en un año, ya sumando el interés que se cobra sobre los intereses."],"EA": ["Efectiva anual","La tasa que realmente pagas o ganas en un año, ya sumando el interés que se cobra sobre los intereses."],"VPN": ["Valor presente neto","Cuánta plata crea un proyecto hoy: lo que dejará en el futuro, traído a pesos de hoy, menos lo que cuesta."],"TIR": ["Tasa interna de retorno","La rentabilidad anual que da un proyecto. Si supera lo que te cuesta la plata, conviene."],"ROE": ["Return on Equity","Cuánto gana la empresa por cada peso que pusieron los dueños."],"ROA": ["Return on Assets","Cuánto gana la empresa por cada peso de activos que usa."],"EBIT": ["Utilidad operativa","Lo que gana el negocio antes de pagar intereses e impuestos."],"EBITDA": ["Utilidad antes de intereses, impuestos, depreciación y amortización","Una aproximación a la caja que genera la operación del negocio."],"FCF": ["Flujo de caja libre","La plata que sobra después de operar y de invertir lo necesario para mantener y hacer crecer el negocio."],"FCFF": ["Flujo de caja libre de la firma","La caja disponible para todos los que financian la empresa: bancos y accionistas."],"CAPEX": ["Inversión en activos fijos","Lo que la empresa gasta en máquinas, equipos, tecnología o edificios."],"DCF": ["Flujos de caja descontados","Valorar algo sumando todo el dinero que va a generar, traído a valor de hoy."],"EV": ["Enterprise value","Lo que vale todo el negocio, para dueños y prestamistas juntos."],"WACC": ["Costo promedio ponderado de capital","Lo que en promedio le cuesta a la empresa la plata con que se financia, mezclando deuda y patrimonio."],"CAPM": ["Capital Asset Pricing Model","Fórmula que dice qué rentabilidad pedir a una inversión según cuánto se mueve con el mercado."],"Ke": ["Costo del patrimonio","La rentabilidad mínima que piden los dueños por arriesgar su plata."],"Kd": ["Costo de la deuda","La tasa que la empresa paga por sus préstamos."],"rf": ["Tasa libre de riesgo","Lo que ganarías prestándole a un emisor que casi seguro paga, como el gobierno de Estados Unidos."],"beta": ["","Cuánto se mueve una acción cuando se mueve el mercado. Con beta 1,5, si el mercado sube 10 %, la acción tiende a subir 15 %."],"Beta": ["","Cuánto se mueve una acción cuando se mueve el mercado. Con beta 1,5, si el mercado sube 10 %, la acción tiende a subir 15 %."],"Sharpe": ["Razón de Sharpe","Cuánta rentabilidad extra da una inversión por cada unidad de riesgo. Más alta es mejor."],"Expected Shortfall": ["Pérdida esperada en la cola","Cuánto pierdes en promedio en los días malos que superan el VaR."],"YTM": ["Rendimiento al vencimiento","La rentabilidad anual que obtienes si compras el bono hoy y lo guardas hasta que se vence."],"TES": ["Títulos de Tesorería","Los bonos que emite el gobierno de Colombia para financiarse."],"IBR": ["Indicador Bancario de Referencia","La tasa de corto plazo a la que se prestan los bancos en Colombia; sirve de referencia para muchos créditos."],"CFA": ["Chartered Financial Analyst","La certificación profesional más reconocida en inversiones; tiene tres niveles de examen."],"GARCH": ["","Modelo que estima cómo cambia la volatilidad: después de días agitados suelen venir más días agitados."],"ETF": ["Fondo cotizado","Un fondo que se compra y vende como una acción y que suele replicar un índice."],"P/E": ["Precio / utilidad","Cuántas veces la utilidad anual de la empresa pagas al comprar su acción."],"P/VL": ["Precio / valor en libros","Cuántas veces su patrimonio contable pagas por la acción."],"NGFS": ["Network for Greening the Financial System","Red de bancos centrales que publica escenarios de cambio climático para pruebas de estrés."],"FRTB": ["Fundamental Review of the Trading Book","La reforma de Basilea que cambió cómo los bancos miden el riesgo de mercado."],"ESG": ["Ambiental, social y de gobierno","Criterios para evaluar cómo una empresa maneja su impacto y su gestión, más allá de lo financiero."],"Delta": ["","Cuánto cambia el precio de la opción si el activo sube una unidad."],"Gamma": ["","Cuánto cambia la delta cuando se mueve el activo; mide qué tan rápido hay que ajustar la cobertura."],"Vega": ["","Cuánto cambia el precio de la opción si la volatilidad sube un punto."],"Theta": ["","Cuánto valor pierde la opción cada día que pasa."],"Call": ["Opción de compra","El derecho, no la obligación, de comprar un activo a un precio fijo."],"call": ["Opción de compra","El derecho, no la obligación, de comprar un activo a un precio fijo."],"Put": ["Opción de venta","El derecho, no la obligación, de vender un activo a un precio fijo."],"put": ["Opción de venta","El derecho, no la obligación, de vender un activo a un precio fijo."],"alfa": ["","La rentabilidad que no explican el mercado ni los factores conocidos; lo que se atribuye a la habilidad del gestor."],"spread": ["","Diferencia entre dos tasas o precios. En crédito, lo que paga un bono por encima de la tasa libre de riesgo."],"Black-Scholes": ["","Fórmula que da el precio de una opción a partir del precio del activo, el tiempo, la tasa y la volatilidad."],"Duración modificada": ["","Cuánto cae, en porcentaje, el precio de un bono si la tasa sube un punto."],"duración modificada": ["","Cuánto cae, en porcentaje, el precio de un bono si la tasa sube un punto."],"convexidad": ["","Corrige a la duración: la relación entre precio y tasa es una curva, no una línea recta."],"Convexidad": ["","Corrige a la duración: la relación entre precio y tasa es una curva, no una línea recta."],"Modigliani-Miller": ["","Teoría que dice que, sin impuestos ni costos de quiebra, la forma de financiarse no cambia lo que vale la empresa."],"DuPont": ["Análisis DuPont","Descompone el ROE en margen, rotación de activos y apalancamiento para ver de dónde sale la rentabilidad."],"Hamada": ["Fórmula de Hamada","Ajusta la beta de una empresa según cuánta deuda tiene."],"Nelson-Siegel": ["","Modelo que dibuja la curva de tasas con pocos números: nivel, pendiente y curvatura."],"Monte Carlo": ["Simulación Monte Carlo","Simular miles de escenarios al azar para estimar algo que no tiene fórmula exacta."],"payback": ["","Cuántos años tarda en recuperarse la inversión inicial."],"Payback": ["","Cuántos años tarda en recuperarse la inversión inicial."],"bootstrapping": ["","Construir la curva de tasas plazo por plazo a partir de precios de bonos."],"griegas": ["","Medidas de sensibilidad del precio de una opción: delta, gamma, vega y theta."],"apalancamiento": ["","Financiarse con deuda: multiplica las ganancias y también las pérdidas."],"Apalancamiento": ["","Financiarse con deuda: multiplica las ganancias y también las pérdidas."],"prima país": ["","Rentabilidad extra que piden los inversionistas por invertir en un país más riesgoso."],"riesgo país": ["","El riesgo extra de invertir en un país por su situación económica y política; se mide con el spread de sus bonos."],"OCW": ["OpenCourseWare","Cursos del MIT publicados gratis en internet."],"Merton": ["Modelo de Merton","Ve las acciones de una empresa como una opción sobre sus activos; de ahí saca la probabilidad de que no pague su deuda."],"Black-Litterman": ["","Forma de armar un portafolio que parte de los pesos del mercado y los ajusta con tus opiniones, sin pesos extremos."],"Ledoit-Wolf": ["","Forma de estimar la covarianza que la vuelve más estable cuando hay pocos datos."],"Sortino": ["Razón de Sortino","Como el Sharpe, pero solo cuenta como riesgo las caídas."],"drawdown": ["Caída máxima","La peor caída desde un máximo hasta un mínimo antes de recuperarse."]};
+  const keys = Object.keys(G).sort((a, b) => b.length - a.length);
+  if (!keys.length) return;
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const RE = new RegExp('(?<![\\p{L}\\p{N}_])(' + keys.map(esc).join('|') + ')(?![\\p{L}\\p{N}_])', 'gu');
+  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab';
+  const BLOCK = '.metric,.stat,.ci,.q,.card,.tech,.stg,.lvcard,.ov,.why,.fb,tr,li,.panel,.lesson,section,details,header,footer';
+  const seen = new WeakMap();
+
+  function scan(root){
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode(n){
+      const p = n.parentElement;
+      if (!p || !n.nodeValue.trim() || p.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+      RE.lastIndex = 0;
+      return RE.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }});
+    const nodes = [];
+    while (w.nextNode()) nodes.push(w.currentNode);
+    nodes.forEach(n => {
+      const box = n.parentElement.closest(BLOCK) || document.body;
+      let s = seen.get(box);
+      if (!s) { s = new Set(); seen.set(box, s); }
+      const txt = n.nodeValue;
+      let last = 0, m, frag = null;
+      RE.lastIndex = 0;
+      while ((m = RE.exec(txt))) {
+        const k = m[1];
+        if (s.has(k)) continue;
+        s.add(k);
+        frag = frag || document.createDocumentFragment();
+        frag.append(txt.slice(last, m.index));
+        const sp = document.createElement('span');
+        sp.className = 'gl'; sp.tabIndex = 0; sp.dataset.gl = k; sp.textContent = k;
+        sp.setAttribute('role', 'button'); sp.setAttribute('aria-expanded', 'false');
+        frag.append(sp);
+        last = m.index + k.length;
+      }
+      if (frag) { frag.append(txt.slice(last)); n.replaceWith(frag); }
+    });
+  }
+
+  const pop = document.createElement('div');
+  pop.className = 'gl-pop'; pop.id = 'gl-pop'; pop.setAttribute('role', 'tooltip'); pop.hidden = true;
+  document.body.appendChild(pop);
+  let cur = null, pinned = false, timer = null;
+
+  function place(){
+    if (!cur) return;
+    const r = cur.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+    const x = Math.min(Math.max(16, r.left + r.width / 2 - pw / 2), innerWidth - 16 - pw);
+    let y = r.bottom + 8;
+    if (y + ph > innerHeight - 8) y = Math.max(8, r.top - 8 - ph);
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+  }
+  function show(el, pin){
+    const d = G[el.dataset.gl];
+    if (!d) return;
+    clearTimeout(timer);
+    if (cur && cur !== el) { cur.setAttribute('aria-expanded', 'false'); cur.removeAttribute('aria-describedby'); }
+    cur = el; pinned = !!pin;
+    pop.textContent = '';
+    const b = document.createElement('b'); b.textContent = el.dataset.gl; pop.append(b);
+    if (d[0]) { const l = document.createElement('span'); l.className = 'gl-l'; l.textContent = d[0]; pop.append(l); }
+    pop.append(d[1]);
+    pop.hidden = false;
+    el.setAttribute('aria-expanded', 'true'); el.setAttribute('aria-describedby', 'gl-pop');
+    place();
+  }
+  function hide(){
+    clearTimeout(timer);
+    if (cur) { cur.setAttribute('aria-expanded', 'false'); cur.removeAttribute('aria-describedby'); }
+    cur = null; pinned = false; pop.hidden = true;
+  }
+  const glOf = e => e.target && e.target.closest ? e.target.closest('.gl') : null;
+  document.addEventListener('pointerover', e => { if (e.pointerType !== 'mouse' || pinned) return; const g = glOf(e); if (g) show(g, false); });
+  document.addEventListener('pointerout', e => {
+    if (e.pointerType !== 'mouse' || pinned) return;
+    const g = glOf(e);
+    if (g && !(e.relatedTarget && g.contains(e.relatedTarget))) timer = setTimeout(hide, 120);
+  });
+  document.addEventListener('click', e => {
+    const g = glOf(e);
+    if (g) { e.preventDefault(); e.stopPropagation(); if (cur === g && pinned) hide(); else show(g, true); return; }
+    if (pinned) hide();
+  }, true);
+  document.addEventListener('focusin', e => { const g = glOf(e); if (g && !pinned) show(g, false); });
+  document.addEventListener('focusout', e => { if (glOf(e) && !pinned) hide(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && cur) hide();
+    else if ((e.key === 'Enter' || e.key === ' ') && glOf(e)) { e.preventDefault(); show(glOf(e), true); }
+  });
+  addEventListener('scroll', () => { if (cur) { if (pinned) place(); else hide(); } }, {passive:true});
+  addEventListener('resize', () => cur && place());
+
+  // Las calculadoras, el quiz y el catálogo se vuelven a dibujar: se revisa solo lo nuevo.
+  const queue = new Set();
+  let raf = 0;
+  const mo = new MutationObserver(ms => {
+    ms.forEach(m => m.addedNodes.forEach(n => {
+      if (n.nodeType === 1 && !n.classList.contains('gl') && n !== pop) queue.add(n);
+      else if (n.nodeType === 3 && n.parentElement) queue.add(n.parentElement);
+    }));
+    if (cur && !cur.isConnected) hide();
+    if (!raf) raf = requestAnimationFrame(flush);
+  });
+  function flush(){
+    raf = 0; mo.disconnect();
+    queue.forEach(n => { if (n.isConnected) scan(n); });
+    queue.clear();
+    mo.observe(document.body, {childList:true, subtree:true});
+  }
+  scan(document.body);
+  mo.observe(document.body, {childList:true, subtree:true});
+})();
+</script>
+
 </body></html>
