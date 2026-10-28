@@ -737,7 +737,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
   Dónde estudiar: <a href="https://skillshop.withgoogle.com" target="_blank" rel="noopener">Google Skillshop</a> · <a href="https://www.facebook.com/business/learn" target="_blank" rel="noopener">Meta Blueprint</a> · TikTok Academy. Para la fase de aprendizaje, busca "fase de aprendizaje" en la ayuda de Meta para empresas y "estado de aprendizaje de la estrategia de ofertas" en la ayuda de Google Ads. Todos los números de esta página son inventados.
   <p><b>Programas consultados:</b> <a href="https://learn.cbs.columbia.edu/msm/" target="_blank" rel="noopener">Columbia MS in Marketing Science</a> · <a href="https://executiveeducation.wharton.upenn.edu/online-learning/self-paced-online-programs/marketing-analytics/" target="_blank" rel="noopener">Wharton Marketing Analytics</a> · <a href="https://www.hbs.edu/faculty/units/gm/Pages/curriculum.aspx" target="_blank" rel="noopener">Harvard Business School, currículo del MBA</a>.</p>
   <details><summary>Versión 3.1.0 · 28 oct 2026</summary><ul>
-    <li><b>3.1.0</b> · Seguir donde quedaste: tarjeta para retomar la lectura, índice con módulos leídos, botón Siguiente, barra de progreso y atajos de teclado (J, K, I).</li>
+    <li><b>3.1.0</b> · Seguir donde quedaste: tarjeta para retomar la lectura, índice con casillas para marcar o desmarcar cada módulo, botón Siguiente, barra de progreso y atajos de teclado (J, K, I). Saltar con Siguiente o el índice no marca módulos como leídos.</li>
     <li><b>3.0.0</b> · Ruta reescrita en tono profesional: sin el contexto de una entrevista ni datos personales, módulo de valor del cliente ajustado por calidad, valor del cliente después de experimentos, y plan principal de 10 semanas con casillas y el arranque de 2 semanas como opcional.</li>
     <li><b>2.1.0</b> · Bibliografía en formato APA con libros, artículos sobre subastas, experimentos, uplift y MMM, documentación oficial de las plataformas y las fuentes de cada módulo al pie.</li>
     <li><b>2.0.0</b> · Estructura alineada con Columbia, Wharton y Harvard: sección de programas, niveles, módulo de experimentos con calculadora de tamaño de muestra, plan de profundización de 10 semanas y glosario emergente.</li>
@@ -1409,7 +1409,7 @@ nav.top a.cn-read::after{content:"✓";margin-left:5px;font-size:.8em;opacity:.7
 .cn-dock{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;gap:8px}
 .cn-btn{font:600 .85rem/1 var(--body,system-ui,sans-serif);display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line,#ccc);background:var(--surface,#fff);color:var(--fg,var(--ink,#111));box-shadow:0 4px 14px rgba(0,0,0,.14);cursor:pointer}
 .cn-btn:hover{border-color:var(--accent,var(--ms))}
-.cn-btn:focus-visible,.cn-item:focus-visible,.cn-card button:focus-visible{outline:2px solid var(--accent,var(--ms));outline-offset:2px}
+.cn-btn:focus-visible,.cn-item:focus-visible,.cn-ck:focus-visible,.cn-card button:focus-visible{outline:2px solid var(--accent,var(--ms));outline-offset:2px}
 .cn-btn svg{width:16px;height:16px;flex:none}
 .cn-btn[hidden]{display:none}
 body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
@@ -1428,12 +1428,17 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
 .cn-prog{height:4px;margin:0 14px;border-radius:99px;background:var(--sunk,var(--bg,#eee));overflow:hidden}
 .cn-prog i{display:block;height:100%;background:var(--accent,var(--ms))}
 .cn-list{overflow-y:auto;overscroll-behavior:contain;padding:8px 8px 4px;display:grid;gap:2px;align-content:start}
-.cn-item{display:grid;grid-template-columns:22px 52px minmax(0,1fr);gap:6px;align-items:center;text-align:left;font:inherit;font-size:.9rem;padding:8px 8px;border:0;border-radius:10px;background:transparent;color:inherit;cursor:pointer}
-.cn-item:hover{background:var(--sunk,var(--bg,#f2f2f2))}
-.cn-item .cn-ck{font-size:.85rem;color:var(--good,var(--accent,var(--ms)))}
+.cn-row-i{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;border-radius:10px}
+.cn-row-i:hover{background:var(--sunk,var(--bg,#f2f2f2))}
+.cn-row-i[aria-current="true"]{background:var(--accent-soft,var(--ms-soft,#eef))}
+.cn-ck{width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;cursor:pointer;padding:0;color:inherit}
+.cn-ck i{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line,#bbb);display:grid;place-items:center;font-style:normal;font-size:.8rem;font-weight:700;line-height:1}
+.cn-ck[aria-pressed="true"] i{background:var(--good,var(--accent,var(--ms)));border-color:var(--good,var(--accent,var(--ms)));color:var(--surface,#fff)}
+.cn-ck[aria-pressed="true"] i::before{content:"✓"}
+.cn-item{display:grid;grid-template-columns:48px minmax(0,1fr);gap:6px;align-items:center;text-align:left;font:inherit;font-size:.9rem;padding:8px 8px 8px 0;border:0;background:transparent;color:inherit;cursor:pointer;min-height:44px}
 .cn-item .cn-n{font-family:var(--mono,ui-monospace,monospace);font-size:.75rem;color:var(--muted,#666)}
-.cn-item[aria-current="true"]{background:var(--accent-soft,var(--ms-soft,#eef))}
-.cn-item[aria-current="true"] .cn-t::after{content:" · estás aquí";font-size:.78rem;color:var(--muted,#666)}
+.cn-row-i[aria-current="true"] .cn-t::after{content:" · estás aquí";font-size:.78rem;color:var(--muted,#666)}
+.cn-hint{font-size:.76rem;color:var(--muted,#666);padding:0 14px 4px}
 .cn-sheet footer{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:space-between;padding:8px 14px 12px;border-top:1px solid var(--line,#ddd);font-size:.78rem;color:var(--muted,#666)}
 .cn-sheet footer button{font:inherit;font-weight:600;background:none;border:0;padding:6px 0;color:var(--accent,var(--ms));cursor:pointer}
 .cn-keys{display:none}
@@ -1452,6 +1457,7 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const state = read();
   state.v = state.v || {};
+  state.m = state.m || {}; // decisiones manuales de la persona: no se sobrescriben
   const info = el => {
     const e = el.querySelector('.eyebrow'), h = el.querySelector('h2');
     const et = e ? e.textContent.trim() : '';
@@ -1459,7 +1465,10 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
   };
   const navH = () => nav ? nav.getBoundingClientRect().height : 0;
   const topOf = el => el.getBoundingClientRect().top + scrollY;
-  const go = (el, off = 0) => scrollTo({top: Math.max(0, topOf(el) - navH() - 8 + off), behavior: reduce ? 'auto' : 'smooth'});
+  // Mientras dura un salto (Siguiente, índice, J/K, Continuar) no se marca nada como leído.
+  let jumping = false, jumpTimer = 0;
+  const settle = () => { clearTimeout(jumpTimer); jumpTimer = setTimeout(() => { jumping = false; }, 250); };
+  const go = (el, off = 0) => { jumping = true; settle(); scrollTo({top: Math.max(0, topOf(el) - navH() - 8 + off), behavior: reduce ? 'auto' : 'smooth'}); };
   const icon = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 
   // Barra de progreso de lectura
@@ -1495,7 +1504,10 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
       const max = document.documentElement.scrollHeight - innerHeight;
       bar.style.width = (max > 0 ? Math.min(100, scrollY / max * 100) : 0) + '%';
       cur = current();
-      secs.forEach(s => { const r = s.getBoundingClientRect(); if (r.bottom > 0 && r.bottom <= innerHeight + 40 && !state.v[s.id]) { state.v[s.id] = 1; markNav(); } });
+      if (jumping) settle();
+      // Un módulo cuenta como leído cuando su final pasa por la pantalla mientras la persona se desplaza,
+      // no cuando lo salta. Si la persona lo marcó o desmarcó a mano, se respeta su decisión.
+      else secs.forEach(s => { const r = s.getBoundingClientRect(); if (!(s.id in state.m) && !state.v[s.id] && r.bottom > innerHeight * 0.3 && r.bottom <= innerHeight - 20) { state.v[s.id] = 1; markNav(); } });
       if (!tracking && Math.abs(scrollY - yLoad) > 120) tracking = true;
       const s = secs[cur];
       if (tracking) state.last = {id: s.id, off: Math.round(scrollY - (topOf(s) - navH() - 8)), t: Date.now()};
@@ -1512,21 +1524,22 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
     sheet.querySelector('header span').textContent = `${n} de ${secs.length} leídos`;
     sheet.querySelector('.cn-prog i').style.width = (n / secs.length * 100) + '%';
     sheet.querySelector('.cn-list').innerHTML = secs.map((s, i) => { const f = info(s);
-      return `<button type="button" class="cn-item" data-i="${i}" aria-current="${i === cur}"><span class="cn-ck" aria-label="${state.v[s.id] ? 'leído' : ''}">${state.v[s.id] ? '✓' : ''}</span><span class="cn-n">${f.n}</span><span class="cn-t"></span></button>`; }).join('');
+      const on = !!state.v[s.id];
+      return `<div class="cn-row-i" aria-current="${i === cur}"><button type="button" class="cn-ck" data-ck="${i}" aria-pressed="${on}" aria-label="${on ? 'Desmarcar' : 'Marcar'} como leído"><i></i></button><button type="button" class="cn-item" data-i="${i}"><span class="cn-n">${f.n}</span><span class="cn-t"></span></button></div>`; }).join('');
     sheet.querySelectorAll('.cn-item .cn-t').forEach((el, i) => { el.textContent = info(secs[i]).t; });
   }
   function openSheet(){
     if (!sheet) {
       sheet = document.createElement('div');
       sheet.className = 'cn-sheet'; sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-label', 'Índice de la ruta'); sheet.hidden = true;
-      sheet.innerHTML = '<header><div><b>Índice</b><br><span></span></div><button type="button" data-cn="close" aria-label="Cerrar índice">×</button></header><div class="cn-prog"><i></i></div><div class="cn-list"></div><footer><button type="button" data-cn="top">Ir al inicio</button><button type="button" data-cn="reset">Reiniciar marcas de leído</button><span class="cn-keys">Atajos: J siguiente · K anterior · I índice</span></footer>';
+      sheet.innerHTML = '<header><div><b>Índice</b><br><span></span></div><button type="button" data-cn="close" aria-label="Cerrar índice">×</button></header><div class="cn-prog"><i></i></div><p class="cn-hint">Toca la casilla para marcar o desmarcar un módulo; toca el nombre para ir.</p><div class="cn-list"></div><footer><button type="button" data-cn="top">Ir al inicio</button><button type="button" data-cn="reset">Reiniciar marcas de leído</button><span class="cn-keys">Atajos: J siguiente · K anterior · I índice</span></footer>';
       document.body.appendChild(sheet);
     }
     closeCard();
     renderSheet();
     lastFocus = document.activeElement;
     sheet.hidden = false; btnIndex.setAttribute('aria-expanded', 'true');
-    const c = sheet.querySelector('.cn-item[aria-current="true"]') || sheet.querySelector('.cn-item');
+    const c = sheet.querySelector('.cn-row-i[aria-current="true"] .cn-item') || sheet.querySelector('.cn-item');
     if (c) { c.scrollIntoView({block: 'center'}); c.focus({preventScroll: true}); }
   }
   function closeSheet(){
@@ -1561,6 +1574,8 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
   }
 
   document.addEventListener('click', e => {
+    const ck = e.target.closest && e.target.closest('.cn-ck');
+    if (ck) { const s = secs[+ck.dataset.ck]; state.v[s.id] = state.v[s.id] ? 0 : 1; if (!state.v[s.id]) delete state.v[s.id]; state.m[s.id] = state.v[s.id] ? 1 : 0; write(state); markNav(); renderSheet(); const n = sheet.querySelector(`.cn-ck[data-ck="${ck.dataset.ck}"]`); if (n) n.focus({preventScroll: true}); return; }
     const b = e.target.closest && e.target.closest('[data-cn], .cn-item');
     if (!b) { if (sheet && !sheet.hidden && !e.target.closest('.cn-sheet')) closeSheet(); return; }
     if (b.classList.contains('cn-item')) { closeSheet(); go(secs[+b.dataset.i]); return; }
@@ -1569,7 +1584,7 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
     else if (a === 'next') { closeCard(); go(secs[Math.min(current() + 1, secs.length - 1)]); }
     else if (a === 'close') closeSheet();
     else if (a === 'top') { closeSheet(); scrollTo({top: 0, behavior: reduce ? 'auto' : 'smooth'}); }
-    else if (a === 'reset') { state.v = {}; write(state); markNav(); renderSheet(); }
+    else if (a === 'reset') { state.v = {}; state.m = {}; write(state); markNav(); renderSheet(); }
     else if (a === 'dismiss') { closeCard(); tracking = true; }
     else if (a === 'resume') { closeCard(); tracking = true; go(target, last.off); }
   });
@@ -1579,6 +1594,7 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
     const t = e.target;
     if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
     const k = e.key.toLowerCase();
+    if (sheet && !sheet.hidden && k !== 'i') return;
     if (k === 'j') { e.preventDefault(); go(secs[Math.min(current() + 1, secs.length - 1)]); }
     else if (k === 'k') { e.preventDefault(); go(secs[Math.max(current() - 1, 0)]); }
     else if (k === 'i') { e.preventDefault(); sheet && !sheet.hidden ? closeSheet() : openSheet(); }
