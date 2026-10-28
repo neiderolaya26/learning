@@ -19,6 +19,7 @@ STACK=(
   "feature/bibliography|feat(rutas): 📚 add bibliography and per-module sources to all learning paths|Agrega a las cuatro rutas una bibliografía en formato APA 7 con DOI o enlace oficial y las fuentes numeradas al pie de cada módulo (versión 2.1.0)."
   "feature/paid-media-professional|feat(paid-media)!: ♻️ rewrite paid media path as a professional curriculum|Reescribe la ruta de Paid Media en tono profesional, sin el contexto de una entrevista ni datos personales: módulo de valor del cliente ajustado por calidad, plan principal de 10 semanas alineado con Columbia y Wharton, y arranque opcional de 2 semanas (versión 3.0.0)."
   "feature/continue-reading|feat(rutas): 🚸 let readers resume where they left off|Agrega a las cuatro rutas la tarjeta para seguir donde quedaste, el índice con módulos leídos, el botón Siguiente, la barra de progreso y atajos de teclado; en IA reabre la última lección (versión 3.1.0)."
+  "feature/keyword-search|feat(rutas): 🔍 add keyword search to all learning paths|Agrega a las cuatro rutas un buscador de palabras clave: resalta cada coincidencia sin distinguir tildes ni mayúsculas, salta entre ellas con las flechas o Enter y abre las secciones plegadas. No oculta contenido ni marca módulos como leídos (versión 3.2.0)."
 )
 
 if ! gh repo view "$OWNER/$REPO" >/dev/null 2>&1; then
