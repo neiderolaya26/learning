@@ -205,6 +205,14 @@ pre.code{margin:0;background:var(--sunk);border-radius:10px;padding:14px;overflo
 .bi button{font:inherit;font-weight:700;font-size:.9rem;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 .bi span.t{display:block;font-size:.88rem;color:var(--fg)}
 @media (max-width:480px){.bi{grid-template-columns:1fr;gap:4px}}
+.bi button[aria-expanded]::after{content:" ▾";display:inline-block;text-decoration:none;transition:transform .15s}
+.bi button[aria-expanded="true"]::after{transform:rotate(180deg)}
+.bi-x{grid-column:1/-1;display:grid;gap:8px;border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
+.bi-x p{font-size:.88rem}
+.bi-x .ex{font-size:.84rem;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.bi-x .bi-acts{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}
+.bi-x .bi-acts button{font-size:.82rem;font-weight:600;text-decoration:none}
+.bi-x .bi-acts .ask-more{margin-top:0}
 .tmap td{font-size:.84rem}
 .tmap .mini{font:inherit;font-size:.78rem;background:none;border:0;padding:1px 0;color:var(--accent);cursor:pointer;text-align:left;display:block;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
 .tmap th:first-child,.tmap td:first-child{min-width:130px}
@@ -1131,10 +1139,23 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
   document.querySelectorAll('.bridge').forEach(el => {
     const tp = TOP[el.dataset.topic]; if (!tp) return;
     const items = [...tp.i].sort((a, b) => byName[a[0]].lv - byName[b[0]].lv);
-    el.innerHTML = `<div class="bridge-h"><span class="eyebrow">Cómo se modela esto</span><p>${tp.q}</p></div><div class="blist">${items.map(([n, t]) => `<div class="bi"><span class="lv lv${byName[n].lv}">${LVN[byName[n].lv]}</span><div><button type="button" data-go="${n}">${n}</button><span class="t">${t}</span></div></div>`).join('')}</div>`;
+    el.innerHTML = `<div class="bridge-h"><span class="eyebrow">Cómo se modela esto</span><p>${tp.q}</p></div><div class="blist">${items.map(([n, t]) => `<div class="bi"><span class="lv lv${byName[n].lv}">${LVN[byName[n].lv]}</span><div><button type="button" data-open="${n}" aria-expanded="false">${n}</button><span class="t">${t}</span></div></div>`).join('')}</div>`;
   });
   document.getElementById('tmapBody').innerHTML = Object.values(TOP).map(tp => `<tr><td><a href="#${tp.sec}"><b>${tp.t}</b></a></td><td>${tp.q}</td>${[1,2,3].map(l => `<td>${tp.i.filter(x => byName[x[0]].lv === l).map(x => `<button type="button" class="mini" data-go="${x[0]}">${x[0]}</button>`).join('') || '<span class="muted">—</span>'}</td>`).join('')}</tr>`).join('');
-  document.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) goCat(b.dataset.go); });
+  /* En los puentes la ficha se despliega en el sitio, sin saltar al catálogo */
+  function toggleBi(btn){
+    const bi = btn.closest('.bi'), open = bi.querySelector('.bi-x');
+    if (open) { open.remove(); btn.setAttribute('aria-expanded', 'false'); return; }
+    const c = byName[btn.dataset.open];
+    bi.insertAdjacentHTML('beforeend', `<div class="bi-x"><span class="area">${c.a}${c.v ? ' · <span class="star">★ Puente con riesgo</span>' : ''}</span><p>${c.u}</p><p class="ex"><b>Ejemplo dummy:</b> ${c.e}</p><div class="libs">${c.l.split(', ').map(x => `<span class="lib">${x}</span>`).join('')}</div><div class="bi-acts"><button type="button" class="ask-more" data-cat="${CAT.indexOf(c)}">Pregúntale a Claude cómo aplicarlo</button><button type="button" data-go="${c.n}">Ver en el catálogo →</button></div></div>`);
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  document.addEventListener('click', e => {
+    const o = e.target.closest('[data-open]'); if (o) { toggleBi(o); return; }
+    const m = e.target.closest('.bi-x .ask-more');
+    if (m) { const c = CAT[+m.dataset.cat]; askFromPage(`¿Cómo aplicaría "${c.n}" en marketing de una fintech de crédito? Dame los pasos, qué datos necesito, un ejemplo de código corto en Python y cómo lo presentaría a marketing.`); return; }
+    const b = e.target.closest('[data-go]'); if (b) goCat(b.dataset.go);
+  });
 
   /* Nav activa */
   const links = [...document.querySelectorAll('nav.top a')];
