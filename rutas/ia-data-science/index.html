@@ -161,6 +161,19 @@ button.ghost{font-family:var(--mono);font-size:12px;background:transparent;borde
 button.ghost:hover{color:var(--ink);border-color:var(--muted)}
 .confirm{font-family:var(--mono);font-size:12px;color:var(--muted)}
 footer{margin-top:48px;font-size:14px;color:var(--muted);max-width:70ch}
+.refs{margin:0 0 48px}
+.refs .route-head{border-top:0;padding-top:0}
+.refs .tbl{background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.refs td:first-child b{font-family:var(--display);font-size:15px}
+.refs td small{display:block;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.blocks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+@media (max-width:720px){.blocks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.blocks div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;display:grid;gap:4px}
+.blocks b{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ms)}
+.plan td.eq{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:normal}
+footer details{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+footer summary{cursor:pointer;font-family:var(--display);font-weight:600;color:var(--ink)}
+footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -170,6 +183,29 @@ footer{margin-top:48px;font-size:14px;color:var(--muted);max-width:70ch}
     <h1>De la estadística a los agentes de IA</h1>
     <p>Empieza con el módulo 0: un curso de repaso de máster en Data Science con lecciones, ejemplos resueltos, quices por tema y un examen final simulado para preparar una prueba de conocimientos. Después siguen los tres cursos del profesor Sergio A. Mora Pardo (Pontificia Universidad Javeriana): fundamentos estocásticos, deep learning con NLP y grafos, y aplicaciones con LLMs y agentes. Tu progreso y tus notas se guardan en este navegador.</p>
   </header>
+
+  <section class="refs" id="programas">
+    <div class="route-head">
+      <span class="eyebrow">Programas de referencia</span>
+      <h2>Lo que enseñan los mejores másteres en data science e IA</h2>
+      <p>El módulo 0 y los cursos siguen el núcleo de estos programas. Resumen de las fuentes oficiales; los planes cambian cada año, así que revisa la versión vigente antes de citarlos.</p>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Programa</th><th>Núcleo según la fuente oficial</th><th>En esta ruta</th></tr></thead>
+      <tbody>
+        <tr><td><b>Harvard</b><small>SM in Data Science (SEAS)</small></td><td>Obligatorios: AC 209a (introducción a data science), AC 209b (temas avanzados), CS 1810 (machine learning) y un curso de estadística, dentro de 12 cursos.</td><td>Temas 01 a 06 del módulo 0</td></tr>
+        <tr><td><b>Harvard Extension</b><small>ALM in Data Science</small></td><td>Modelado estadístico, cuatro cursos núcleo de data science (entre ellos fundamentos de LLMs y pronóstico) y cuatro electivas.</td><td>Temas 07 y 09; etapa 3</td></tr>
+        <tr><td><b>Stanford</b><small>Cursos públicos de referencia</small></td><td>CS229 Machine Learning, CS224N Natural Language Processing with Deep Learning y CS231N Deep Learning for Computer Vision, con material abierto.</td><td>Tema 09 y etapa 2</td></tr>
+        <tr><td><b>Pontificia Universidad Javeriana</b><small>Cursos del profesor Sergio A. Mora Pardo</small></td><td>Técnicas estocásticas de IA, temas avanzados de analítica e IA generativa, con notebooks públicos.</td><td>Etapas 1 a 3</td></tr>
+      </tbody>
+    </table></div>
+    <div class="blocks">
+      <div><b>Fundamentos</b>Probabilidad, álgebra lineal, optimización y SQL.</div>
+      <div><b>Aprendizaje</b>Supervisado, no supervisado, evaluación y series de tiempo.</div>
+      <div><b>Causalidad</b>Experimentos e inferencia con datos observacionales.</div>
+      <div><b>Sistemas</b>Deep learning, LLMs, agentes y MLOps.</div>
+    </div>
+  </section>
 
   <section class="m0" id="master">
     <div class="m0-head">
@@ -185,16 +221,16 @@ footer{margin-top:48px;font-size:14px;color:var(--muted);max-width:70ch}
       <summary>Plan de estudio de 8 semanas</summary>
       <div class="plan">
         <table>
-          <thead><tr><th>Semana</th><th>Temas del módulo 0</th><th>Práctica sugerida</th></tr></thead>
+          <thead><tr><th>Semana</th><th>Temas del módulo 0</th><th>Práctica sugerida</th><th>Equivalente</th></tr></thead>
           <tbody>
-            <tr><td>S1</td><td>01 Probabilidad y estadística</td><td>Simula el teorema central del límite con NumPy; calcula intervalos de confianza por bootstrap.</td></tr>
-            <tr><td>S2</td><td>02 Álgebra lineal y optimización</td><td>Implementa PCA con SVD a mano y compáralo con <code>sklearn.decomposition.PCA</code>.</td></tr>
-            <tr><td>S3</td><td>03 SQL, limpieza y preparación</td><td>Resuelve 15 ejercicios de window functions y CTEs; replica las consultas en pandas.</td></tr>
-            <tr><td>S4</td><td>04 Supervisado · 05 Evaluación</td><td>Pipeline con <code>ColumnTransformer</code>, validación cruzada estratificada y curva precision-recall.</td></tr>
-            <tr><td>S5</td><td>06 No supervisado · 07 Series de tiempo</td><td>K-means con silueta en datos de clientes; pronóstico SARIMA con backtesting.</td></tr>
-            <tr><td>S6</td><td>08 Experimentación y causalidad</td><td>Diseña un A/B test: tamaño de muestra, potencia y análisis con prueba t y bootstrap.</td></tr>
-            <tr><td>S7</td><td>09 Deep learning, NLP y LLMs</td><td>Fine-tuning ligero de un modelo de Hugging Face y un RAG mínimo con citas.</td></tr>
-            <tr><td>S8</td><td>10 MLOps, big data y ética · Examen final</td><td>Sirve un modelo con FastAPI en Docker, mide drift con PSI y haz el examen final dos veces.</td></tr>
+            <tr><td>S1</td><td>01 Probabilidad y estadística</td><td>Simula el teorema central del límite con NumPy; calcula intervalos de confianza por bootstrap.</td><td class="eq">Harvard · curso de estadística del SM</td></tr>
+            <tr><td>S2</td><td>02 Álgebra lineal y optimización</td><td>Implementa PCA con SVD a mano y compáralo con <code>sklearn.decomposition.PCA</code>.</td><td class="eq">Stanford CS229 · repaso matemático</td></tr>
+            <tr><td>S3</td><td>03 SQL, limpieza y preparación</td><td>Resuelve 15 ejercicios de window functions y CTEs; replica las consultas en pandas.</td><td class="eq">Harvard AC 209a</td></tr>
+            <tr><td>S4</td><td>04 Supervisado · 05 Evaluación</td><td>Pipeline con <code>ColumnTransformer</code>, validación cruzada estratificada y curva precision-recall.</td><td class="eq">Harvard CS 1810 · Stanford CS229</td></tr>
+            <tr><td>S5</td><td>06 No supervisado · 07 Series de tiempo</td><td>K-means con silueta en datos de clientes; pronóstico SARIMA con backtesting.</td><td class="eq">Harvard AC 209a</td></tr>
+            <tr><td>S6</td><td>08 Experimentación y causalidad</td><td>Diseña un A/B test: tamaño de muestra, potencia y análisis con prueba t y bootstrap.</td><td class="eq">Experimentación en la industria; Harvard AC 209b</td></tr>
+            <tr><td>S7</td><td>09 Deep learning, NLP y LLMs</td><td>Fine-tuning ligero de un modelo de Hugging Face y un RAG mínimo con citas.</td><td class="eq">Stanford CS224N · CS231N</td></tr>
+            <tr><td>S8</td><td>10 MLOps, big data y ética · Examen final</td><td>Sirve un modelo con FastAPI en Docker, mide drift con PSI y haz el examen final dos veces.</td><td class="eq">Harvard AC 209b · Harvard Extension</td></tr>
           </tbody>
         </table>
       </div>
@@ -211,7 +247,12 @@ footer{margin-top:48px;font-size:14px;color:var(--muted);max-width:70ch}
 
   <div id="stages"></div>
 
-  <footer>Contenido tomado de los repositorios públicos <a href="https://github.com/sergiomorapardo/StochasticAITechniquesClass">StochasticAITechniquesClass</a>, <a href="https://github.com/sergiomorapardo/AdvancedTopicsAnalytics">AdvancedTopicsAnalytics</a> y <a href="https://github.com/sergiomorapardo/AdvancedGenAI">AdvancedGenAI</a>. AdvancedGenAI figura como propuesta de curso en desarrollo; sus notebooks ya están publicados y ejecutados. El módulo 0 es una síntesis de los temas comunes de un máster en Data Science, no el plan de un programa concreto.</footer>
+  <footer>Contenido tomado de los repositorios públicos <a href="https://github.com/sergiomorapardo/StochasticAITechniquesClass">StochasticAITechniquesClass</a>, <a href="https://github.com/sergiomorapardo/AdvancedTopicsAnalytics">AdvancedTopicsAnalytics</a> y <a href="https://github.com/sergiomorapardo/AdvancedGenAI">AdvancedGenAI</a>. AdvancedGenAI figura como propuesta de curso en desarrollo; sus notebooks ya están publicados y ejecutados. El módulo 0 es una síntesis de los temas comunes de un máster en Data Science, no el plan de un programa concreto.
+  <p>Programas consultados: <a href="https://seas.harvard.edu/masters-data-science/degree-requirements">Harvard SM in Data Science</a> · <a href="https://extension.harvard.edu/academics/programs/data-science-graduate-program/data-science-degree-requirements">Harvard Extension ALM in Data Science</a> · <a href="https://cs229.stanford.edu/">Stanford CS229</a> · <a href="https://web.stanford.edu/class/cs224n/">Stanford CS224N</a> · <a href="https://cs231n.stanford.edu/">Stanford CS231N</a>.</p>
+  <details><summary>Versión 2.0.0 · 28 oct 2026</summary><ul>
+    <li><b>2.0.0</b> · Sección de programas de referencia (Harvard, Harvard Extension, Stanford y PUJ), plan de 8 semanas con su equivalente académico y glosario emergente.</li>
+    <li><b>1.0.0</b> · Primera versión: módulo 0 de repaso de máster con quices y examen final, y la ruta por los tres cursos.</li>
+  </ul></details></footer>
 </div>
 
 <script>
