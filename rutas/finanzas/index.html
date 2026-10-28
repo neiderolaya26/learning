@@ -187,6 +187,10 @@ pre.code{margin:0;background:var(--sunk);border-radius:10px;padding:14px;overflo
 .day b{display:block;font-size:.95rem}
 .day span{font-size:.88rem;color:var(--muted)}
 .day.done{opacity:.6} .day.done b{text-decoration:line-through}
+.day em.ref{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--accent);margin-top:2px}
+footer details{border-top:1px solid var(--line);padding-top:10px}
+footer summary{cursor:pointer;font-weight:600;color:var(--fg)}
+footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
 .week{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
 .progress{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
 .progress i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
@@ -231,7 +235,7 @@ body.can-ask .ask-more{display:block}
 <header class="hero"><div class="wrap">
   <span class="eyebrow">Ruta de aprendizaje · Finanzas</span>
   <h1>Finanzas con el núcleo de un máster de primer nivel</h1>
-  <p class="hero-sub">La ruta sigue los bloques que comparten los programas de MIT, Princeton, Oxford y LSE: finanzas corporativas, mercados y valoración de activos, renta fija, derivados, econometría financiera y riesgo. Agrega lo que exige el mercado hoy: ML en finanzas, finanzas sostenibles y fintech. Cada módulo trae una calculadora; todos los números son inventados para practicar.</p>
+  <p class="hero-sub">La ruta sigue los bloques que comparten los programas de MIT, Princeton, Oxford, LSE, Imperial College y el MBA de Harvard: finanzas corporativas, mercados y valoración de activos, renta fija, derivados, econometría financiera y riesgo. Agrega lo que exige el mercado hoy: ML en finanzas, finanzas sostenibles y fintech. Cada módulo trae una calculadora; todos los números son inventados para practicar.</p>
   <div class="levels">
     <div class="lvcard l1"><span class="k">Fundamentos</span><b>Semanas 1–4</b><span>Valor del dinero, estados financieros, valoración y costo de capital.</span></div>
     <div class="lvcard l2"><span class="k">Intermedio</span><b>Semanas 5–8</b><span>Portafolio, CAPM y factores, renta fija.</span></div>
@@ -255,6 +259,8 @@ body.can-ask .ask-more{display:block}
       <tr><td><b>Princeton</b><span class="muted" style="display:block;font-size:.78rem">Master in Finance, Bendheim Center</span></td><td>Cinco cursos núcleo de economía, matemáticas, finanzas, probabilidad y estadística, más 11 electivas.</td><td>Base cuantitativa de los módulos 06–09 y 11</td></tr>
       <tr><td><b>Oxford</b><span class="muted" style="display:block;font-size:.78rem">MSc in Financial Economics</span></td><td>Valoración de activos (asset pricing), economía, finanzas corporativas, econometría financiera y ética financiera.</td><td>Módulos 04–09 y la sección de ética y sostenibilidad</td></tr>
       <tr><td><b>LSE</b><span class="muted" style="display:block;font-size:.78rem">MSc Finance</span></td><td>Dos cursos obligatorios: Corporate Finance y Asset Markets; electivas en riesgo, ingeniería financiera, finanzas sostenibles y big data.</td><td>Módulos 04–07 y 10–11</td></tr>
+      <tr><td><b>Imperial College London</b><span class="muted" style="display:block;font-size:.78rem">MSc Risk Management &amp; Financial Engineering</span></td><td>Núcleo de estadística financiera, finanzas empíricas, ingeniería financiera, inversiones y portafolios, gestión de riesgos y valoración, y cálculo estocástico.</td><td>Módulos 06 y 08–10</td></tr>
+      <tr><td><b>Harvard Business School</b><span class="muted" style="display:block;font-size:.78rem">MBA</span></td><td>Finance I hace parte del currículo obligatorio del primer año, junto con contabilidad (Financial Reporting and Control).</td><td>Módulos 02–05</td></tr>
       <tr><td><b>CFA Institute</b><span class="muted" style="display:block;font-size:.78rem">Programa CFA</span></td><td>Estándar profesional: ética, métodos cuantitativos, economía, análisis financiero, corporativas, renta variable, renta fija, derivados, alternativos y gestión de portafolios.</td><td>Toda la ruta; útil como certificación paralela</td></tr>
     </tbody>
   </table></div>
@@ -590,8 +596,12 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
 <footer><div class="wrap">
   <p><b>Textos de referencia:</b> Berk y DeMarzo, <i>Corporate Finance</i> · Bodie, Kane y Marcus, <i>Investments</i> · Hull, <i>Options, Futures, and Other Derivatives</i> · Fabozzi, <i>Bond Markets, Analysis, and Strategies</i> · Damodaran, <i>Investment Valuation</i> · Cochrane, <i>Asset Pricing</i> · Campbell, Lo y MacKinlay, <i>The Econometrics of Financial Markets</i> · Tsay, <i>Analysis of Financial Time Series</i> · López de Prado, <i>Advances in Financial Machine Learning</i>.</p>
   <p><b>Cursos abiertos:</b> MIT OpenCourseWare 15.401 Finance Theory I · Yale, Financial Markets (Robert Shiller) · clases de valoración de Aswath Damodaran (NYU Stern) · currículo del programa CFA.</p>
-  <p><b>Programas consultados:</b> <a href="https://mitsloan.mit.edu/mfin/explore-program/mfin-curriculum">MIT Sloan MFin</a> · <a href="https://bcf.princeton.edu/requirements-and-core-courses">Princeton MFin</a> · <a href="https://www.sbs.ox.ac.uk/programmes/degrees/msc-financial-economics/core-courses-and-electives">Oxford MSc Financial Economics</a> · <a href="https://www.lse.ac.uk/study-at-lse/Graduate/degree-programmes-2021/MSc-Finance-full-time">LSE MSc Finance</a>.</p>
+  <p><b>Programas consultados:</b> <a href="https://mitsloan.mit.edu/mfin/explore-program/mfin-curriculum">MIT Sloan MFin</a> · <a href="https://bcf.princeton.edu/requirements-and-core-courses">Princeton MFin</a> · <a href="https://www.sbs.ox.ac.uk/programmes/degrees/msc-financial-economics/core-courses-and-electives">Oxford MSc Financial Economics</a> · <a href="https://www.lse.ac.uk/study-at-lse/Graduate/degree-programmes-2021/MSc-Finance-full-time">LSE MSc Finance</a> · <a href="https://www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/">Imperial MSc Risk Management &amp; Financial Engineering</a> · <a href="https://www.hbs.edu/faculty/units/finance/Pages/curriculum.aspx">Harvard Business School, Finance</a>.</p>
   <p>Todos los números de esta página son inventados y las fórmulas están simplificadas para aprender. No es asesoría de inversión.</p>
+  <details><summary>Versión 2.0.0 · 28 oct 2026</summary><ul>
+    <li><b>2.0.0</b> · Se suman Imperial College y el MBA de Harvard a los programas de referencia; cada semana del plan indica su referencia académica; glosario emergente.</li>
+    <li><b>1.1.0</b> · Primera versión: núcleo de MIT, Princeton, Oxford y LSE, 10 calculadoras, catálogo, quiz y plan de 16 semanas.</li>
+  </ul></details>
 </div></footer>
 
 <button class="fab" id="chatOpen" type="button" hidden>Pregúntale a Claude</button>
@@ -889,29 +899,29 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
 
   /* Plan */
   const P = [
-    [1,'Fundamentos','Valor del dinero','Berk-DeMarzo, capítulos de valor del dinero. MIT OCW 15.401, primeras clases. Entregable: tabla de amortización en Python con tasas E.A.'],
-    [2,'Fundamentos','Estados financieros','Lee un reporte anual real de una empresa listada en la Bolsa de Valores de Colombia. Entregable: ratios y DuPont de 5 años con pandas.'],
-    [3,'Fundamentos','Presupuesto de capital y DCF','VPN, TIR, flujo de caja libre. Entregable: DCF completo de la misma empresa con tabla de sensibilidad.'],
-    [4,'Fundamentos','Costo de capital y estructura','CAPM, prima país, beta desapalancada, Modigliani-Miller. Entregable: WACC defendible para tu DCF.'],
-    [5,'Intermedio','Teoría de portafolio','Bodie-Kane-Marcus, capítulos de media-varianza. Entregable: frontera eficiente con 10 ETF y datos reales.'],
-    [6,'Intermedio','CAPM y factores','Regresiones de Fama-French con datos de la Kenneth French Data Library. Entregable: alfa y cargas de 3 fondos.'],
-    [7,'Intermedio','Renta fija I','Precio, YTM, duración y convexidad. Entregable: calculadora de bonos y cartera inmunizada.'],
-    [8,'Intermedio','Renta fija II','Curva de rendimientos: bootstrapping y Nelson-Siegel sobre la curva de TES. Examen parcial: quiz de esta página dos veces.'],
-    [9,'Avanzado','Forwards, futuros y swaps','Hull, capítulos iniciales. Entregable: valoración de un forward USD/COP y un swap de tasa.'],
-    [10,'Avanzado','Opciones I','Árbol binomial y Black-Scholes. Entregable: implementa ambos y muestra la convergencia.'],
-    [11,'Avanzado','Opciones II','Griegas, cobertura delta y volatilidad implícita. Entregable: simulación de cobertura delta con costos.'],
-    [12,'Avanzado','Riesgo de mercado','VaR paramétrico, histórico y Monte Carlo; ES; backtesting de Kupiec. Entregable: reporte de riesgo de un portafolio.'],
-    [13,'Avanzado','Econometría financiera','Campbell-Lo-MacKinlay y Tsay: GARCH, estudios de evento. Entregable: estudio de evento sobre anuncios de política monetaria.'],
-    [14,'Experto','Cálculo estocástico y Monte Carlo','Itô, medida neutral al riesgo, Longstaff-Schwartz. Entregable: precio de una opción asiática con reducción de varianza.'],
-    [15,'Experto','ML en finanzas y portafolios robustos','López de Prado: CV purgada, deflated Sharpe; Ledoit-Wolf y HRP. Entregable: backtest honesto de una estrategia.'],
-    [16,'Experto','Proyecto final','Elige uno: valoración completa de una empresa, gestor de portafolio con factores y riesgo, o modelo de Merton para empresas listadas. Publícalo en GitHub con README y presentación de 10 minutos.']
+    [1,'Fundamentos','Valor del dinero','Berk-DeMarzo, capítulos de valor del dinero. MIT OCW 15.401, primeras clases. Entregable: tabla de amortización en Python con tasas E.A.','MIT · matemáticas financieras'],
+    [2,'Fundamentos','Estados financieros','Lee un reporte anual real de una empresa listada en la Bolsa de Valores de Colombia. Entregable: ratios y DuPont de 5 años con pandas.','HBS · Financial Reporting'],
+    [3,'Fundamentos','Presupuesto de capital y DCF','VPN, TIR, flujo de caja libre. Entregable: DCF completo de la misma empresa con tabla de sensibilidad.','LSE · Corporate Finance'],
+    [4,'Fundamentos','Costo de capital y estructura','CAPM, prima país, beta desapalancada, Modigliani-Miller. Entregable: WACC defendible para tu DCF.','HBS Finance I · LSE'],
+    [5,'Intermedio','Teoría de portafolio','Bodie-Kane-Marcus, capítulos de media-varianza. Entregable: frontera eficiente con 10 ETF y datos reales.','Oxford · Asset Pricing'],
+    [6,'Intermedio','CAPM y factores','Regresiones de Fama-French con datos de la Kenneth French Data Library. Entregable: alfa y cargas de 3 fondos.','LSE · Asset Markets'],
+    [7,'Intermedio','Renta fija I','Precio, YTM, duración y convexidad. Entregable: calculadora de bonos y cartera inmunizada.','CFA · Renta fija'],
+    [8,'Intermedio','Renta fija II','Curva de rendimientos: bootstrapping y Nelson-Siegel sobre la curva de TES. Examen parcial: quiz de esta página dos veces.','Oxford · Econometría financiera'],
+    [9,'Avanzado','Forwards, futuros y swaps','Hull, capítulos iniciales. Entregable: valoración de un forward USD/COP y un swap de tasa.','Imperial · Ingeniería financiera'],
+    [10,'Avanzado','Opciones I','Árbol binomial y Black-Scholes. Entregable: implementa ambos y muestra la convergencia.','Imperial · Cálculo estocástico'],
+    [11,'Avanzado','Opciones II','Griegas, cobertura delta y volatilidad implícita. Entregable: simulación de cobertura delta con costos.','Imperial · Ingeniería financiera'],
+    [12,'Avanzado','Riesgo de mercado','VaR paramétrico, histórico y Monte Carlo; ES; backtesting de Kupiec. Entregable: reporte de riesgo de un portafolio.','Imperial · Riesgo y valoración · FRM'],
+    [13,'Avanzado','Econometría financiera','Campbell-Lo-MacKinlay y Tsay: GARCH, estudios de evento. Entregable: estudio de evento sobre anuncios de política monetaria.','Oxford · Econometría financiera'],
+    [14,'Experto','Cálculo estocástico y Monte Carlo','Itô, medida neutral al riesgo, Longstaff-Schwartz. Entregable: precio de una opción asiática con reducción de varianza.','Imperial · Cálculo estocástico'],
+    [15,'Experto','ML en finanzas y portafolios robustos','López de Prado: CV purgada, deflated Sharpe; Ledoit-Wolf y HRP. Entregable: backtest honesto de una estrategia.','Princeton · electivas de ML'],
+    [16,'Experto','Proyecto final','Elige uno: valoración completa de una empresa, gestor de portafolio con factores y riesgo, o modelo de Merton para empresas listadas. Publícalo en GitHub con README y presentación de 10 minutos.','MIT · action learning']
   ];
   let done = store.get('fin_plan', {});
   const planBox = $('planBox');
   function renderPlan(){
     let last = '';
     planBox.innerHTML = P.map((p, i) => { const wk = p[1] !== last ? `<div class="week">${p[1]}</div>` : ''; last = p[1];
-      return `${wk}<label class="day ${done[i] ? 'done' : ''}" for="w${i}"><input type="checkbox" id="w${i}" data-i="${i}" ${done[i] ? 'checked' : ''}><span class="d">Sem ${p[0]}</span><span><b>${p[2]}</b><span>${p[3]}</span></span></label>`; }).join('');
+      return `${wk}<label class="day ${done[i] ? 'done' : ''}" for="w${i}"><input type="checkbox" id="w${i}" data-i="${i}" ${done[i] ? 'checked' : ''}><span class="d">Sem ${p[0]}</span><span><b>${p[2]}</b><span>${p[3]}</span><em class="ref">${p[4]}</em></span></label>`; }).join('');
     const n = P.filter((p, i) => done[i]).length;
     $('sPlan').textContent = `${n} / ${P.length}`; $('planBar').style.width = (n / P.length * 100) + '%';
   }
