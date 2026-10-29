@@ -9,10 +9,13 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 - Riesgo de crédito: sección de programas de referencia (GARP FRM, Imperial College, Stanford MS&E 246 y Universidad de Edimburgo) y módulo nuevo de mercados de crédito con triángulo de crédito (CDS a PD), titularización por tramos y riesgo de contraparte.
 - Paid Media: sección de programas de referencia (Columbia MS in Marketing Science, Wharton, Harvard Business School, Google y Meta), niveles por módulo, módulo de experimentos con calculadora de tamaño de muestra y plan de profundización de 10 semanas.
 - IA y Data Science: sección de programas de referencia (Harvard SM in Data Science, Harvard Extension, Stanford CS229, CS224N y CS231N, y PUJ) y equivalente académico por semana del plan del módulo 0.
+- Finanzas: Imperial College y el MBA de Harvard como programas de referencia.
+- Las cuatro rutas muestran su historial de versiones al pie de la página.
 
 ### Cambiado
 - Riesgo de crédito: módulos renumerados según el temario; cada semana del plan indica su referencia académica; quiz de 22 preguntas y catálogo de 41 técnicas.
 - Paid Media: módulos renumerados con fichas de nivel; quiz de 17 preguntas.
+- Finanzas: cada semana del plan indica su referencia académica.
 
 ## [1.1.0] - 2026-10-28
 
