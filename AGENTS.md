@@ -36,7 +36,8 @@ Reglas para cualquier persona o agente (Claude Code, Copilot, Codex) que modifiq
 ## Documentación
 
 - READMEs, guías y comentarios en español. Nombres de archivos, identificadores, commits y títulos de pull request en inglés.
-- Prefiere diagramas Mermaid cortos y tablas frente a prosa larga.
+- Usa diagramas Mermaid cuando ayuden a organizar o entender la información: flujos y pipelines (`flowchart`), arquitectura, secuencias (`sequenceDiagram`), modelos de datos (`erDiagram`), cronogramas (`gantt`) y estados (`stateDiagram`). Ubícalos en el README (sección **Diagrama**), en `docs/` y en las descripciones de pull request.
+- Mantenlos cortos (máximo ~15 nodos; divide si crecen), con etiquetas en español, y actualízalos cuando cambie lo que representan. No los fuerces en contenido trivial. Prefiere diagramas y tablas frente a prosa larga.
 
 ## Validación
 
