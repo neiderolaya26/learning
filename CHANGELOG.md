@@ -4,6 +4,23 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 
 ## [Sin publicar]
 
+## [3.2.0] - 2026-10-28
+
+Las rutas se pueden recorrer por palabra clave: basta escribir un término para encontrar cada lugar donde aparece.
+
+### Agregado
+- Botón flotante "Buscar" en las cuatro rutas, junto a "Índice" y "Siguiente". Abre una barra arriba de la página donde se escribe una palabra o frase.
+- Todas las coincidencias quedan resaltadas y la actual en otro color; el contador indica "3 de 12" y las flechas, Enter y Mayús+Enter pasan a la siguiente o a la anterior.
+- La búsqueda no distingue tildes ni mayúsculas ("perdida" encuentra "Pérdida") y abre las secciones plegadas donde haya una coincidencia.
+- Solo rastrea palabras: no oculta ni filtra contenido. Los saltos de la búsqueda no marcan módulos como leídos.
+- Atajo de teclado en computador: / abre el buscador y Esc lo cierra.
+- Riesgo de crédito y Finanzas: el catálogo ahora se llama "Catálogo de modelos aplicados a…" y abre con un mapa que cruza cada tema de la ruta con sus técnicas por nivel, como en Paid Media, más una guía de por dónde empezar.
+- IA y Data Science: nuevo "Catálogo de modelos y métodos por industria". Un mapa cruza 11 industrias con 26 métodos por nivel, y cada tarjeta dice en qué sectores se aplica el método, con un ejemplo, sus librerías y dónde está en la ruta. Se filtra por nivel, por industria o con una palabra.
+
+### Corregido
+- Paid Media, Finanzas y Riesgo de crédito: en los bloques "Cómo se modela esto" y "Técnicas del catálogo", tocar una técnica ya no salta al catálogo al final de la página; la ficha se despliega en el mismo lugar y se cierra con otro toque. Incluye un enlace "Ver en el catálogo" para quien sí quiera ir.
+- Las cuatro rutas: saltar con un enlace interno ("Ver en el catálogo", el menú superior, "En la ruta") ya no marca como leídos todos los módulos que quedan en el camino.
+
 ## [3.1.0] - 2026-10-28
 
 Las rutas recuerdan dónde quedó la lectura, así que ya no hay que desplazarse desde el principio cada vez.

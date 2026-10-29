@@ -15,6 +15,7 @@ Rutas de aprendizaje interactivas en español, cada una en una sola página HTML
 
 | Versión | Fecha | Qué cambió |
 | --- | --- | --- |
+| 3.2.0 | 2026-10-28 | Buscador de palabras clave en las cuatro rutas: resalta cada coincidencia y salta entre ellas |
 | 3.1.0 | 2026-10-28 | Seguir donde quedaste: retomar la lectura, índice con módulos leídos, botón Siguiente, barra de progreso y atajos de teclado |
 | 3.0.0 | 2026-10-28 | Ruta de Paid Media reescrita en tono profesional, con valor del cliente ajustado por calidad y plan principal de 10 semanas |
 | 2.1.0 | 2026-10-28 | Bibliografía en formato APA en las cuatro rutas y fuentes numeradas al pie de cada módulo |
