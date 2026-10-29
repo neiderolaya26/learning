@@ -8,13 +8,14 @@ Rutas de aprendizaje interactivas en español, cada una en una sola página HTML
 | --- | --- | --- | --- |
 | [Riesgo de crédito](rutas/riesgo-de-credito/) | Fundamentos → experto | Pérdida esperada, scorecards (WoE/IV, PDO), validación (KS, Gini, calibración), cosechas y roll rates, punto de corte, pricing y RAROC, NIIF 9, capital IRB y Vasicek, PSI y riesgo de modelo, supervivencia, ML gobernado, causalidad | 12 semanas |
 | [Finanzas](rutas/finanzas/) | Fundamentos → experto | Núcleo de MIT, Princeton, Oxford y LSE: valor del dinero, estados financieros, DCF, WACC, portafolio y factores, renta fija, derivados y Black-Scholes, VaR y ES, modelo de Merton, econometría financiera, ML en finanzas | 16 semanas |
-| [Paid Media](rutas/paid-media/) | Fundamentos → avanzado | Embudo y métricas (CPM, CTR, CPA, ROAS, ROI), subasta, plataformas, fase de aprendizaje, uplift, MMM, atribución, catálogo de modelos de marketing | 14 días |
+| [Paid Media](rutas/paid-media/) | Básico → avanzado | Programas de Columbia, Wharton y Harvard: embudo y métricas (CPM, CTR, CPA, ROAS, ROI), subasta, plataformas, fase de aprendizaje, experimentos, valor del cliente ajustado por calidad, uplift, MMM y atribución | 10 semanas |
 | [IA y Data Science](rutas/ia-data-science/) | Repaso de máster → agentes | Repaso de máster en Data Science con quices y examen final, y la ruta por los cursos públicos del profesor Sergio A. Mora Pardo (PUJ): estocásticos, deep learning, NLP, grafos, LLMs y agentes | 8 semanas + cursos |
 
 ## Versiones
 
 | Versión | Fecha | Qué cambió |
 | --- | --- | --- |
+| 3.0.0 | 2026-10-28 | Ruta de Paid Media reescrita en tono profesional, con valor del cliente ajustado por calidad y plan principal de 10 semanas |
 | 2.1.0 | 2026-10-28 | Bibliografía en formato APA en las cuatro rutas y fuentes numeradas al pie de cada módulo |
 | 2.0.0 | 2026-10-28 | Glosario emergente en las cuatro rutas y rutas alineadas con programas de referencia: GARP FRM, Imperial, Stanford y Edimburgo (riesgo); Columbia, Wharton y Harvard (paid media); Harvard y Stanford (IA); MIT, Princeton, Oxford, LSE, Imperial y Harvard (finanzas) |
 | 1.1.0 | 2026-10-28 | Ruta de Finanzas y gobernanza del repositorio |

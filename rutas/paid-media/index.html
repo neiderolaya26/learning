@@ -252,8 +252,8 @@ body.can-ask .ask-more{display:block}
 .lvcard.l3{background:var(--warn-soft)} .lvcard.l3 .k{color:var(--warn)}
 .head .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .head .lv{justify-self:start}
-.deep td:first-child{font-family:var(--mono);color:var(--accent);white-space:nowrap}
-.deep td em{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.day em.ref{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--accent);margin-top:2px}
+#plan h3{margin-top:8px}
 footer .wrap{display:grid;gap:10px}
 footer details{border-top:1px solid var(--line);padding-top:10px}
 footer summary{cursor:pointer;font-weight:600;color:var(--fg)}
@@ -271,21 +271,22 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
 </style>
 
 <nav class="top" aria-label="Secciones"><div class="wrap">
-  <a href="#programas">Programas</a><a href="#rol">El rol</a><a href="#embudo">Embudo</a><a href="#subasta">Subasta</a><a href="#plataformas">Plataformas</a><a href="#aprendizaje">Aprendizaje</a><a href="#ventaja">Tu ventaja</a><a href="#experimentos">Experimentos</a><a href="#modelos">Modelos</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan</a><a href="#bibliografia">Bibliografía</a>
+  <a href="#programas">Programas</a><a href="#rol">El campo</a><a href="#embudo">Embudo</a><a href="#subasta">Subasta</a><a href="#plataformas">Plataformas</a><a href="#aprendizaje">Aprendizaje</a><a href="#experimentos">Experimentos</a><a href="#ventaja">Valor del cliente</a><a href="#modelos">Modelos</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan</a><a href="#bibliografia">Bibliografía</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <span class="eyebrow">Ruta de aprendizaje · Data Science → Marketing fintech</span>
-  <h1>Paid Media para quien ya sabe de riesgo</h1>
-  <p class="hero-sub">En 2 semanas puedes hablar con soltura de métricas, subastas y fase de aprendizaje, y mostrar por qué venir de riesgo es tu ventaja. Todos los números de esta página son inventados para practicar.</p>
+  <span class="eyebrow">Ruta de aprendizaje · Analítica de marketing</span>
+  <h1>Paid Media y analítica de marketing</h1>
+  <p class="hero-sub">Cómo se compra la pauta digital, cómo se mide su efecto real y cómo se decide dónde invertir, organizado con los programas de Columbia, Wharton y Harvard. Incluye un módulo de valor del cliente para productos con riesgo, como el crédito, donde el cliente más barato no siempre es el más rentable. Todos los números de esta página son inventados para practicar.</p>
   <div class="levels">
-    <div class="lvcard l1"><span class="k">Básico</span><b>Embudo, subasta y plataformas</b><span>Las métricas y el funcionamiento de la pauta. Días 1–7 del plan corto.</span></div>
-    <div class="lvcard l2"><span class="k">Intermedio</span><b>Aprendizaje, riesgo y experimentos</b><span>Cuándo decidir, cómo medir y qué aporta venir de riesgo. Días 8–14.</span></div>
-    <div class="lvcard l3"><span class="k">Avanzado</span><b>Modelos causales y de presupuesto</b><span>Uplift, MMM, atribución y CLV. Plan de profundización de 10 semanas.</span></div>
+    <div class="lvcard l1"><span class="k">Básico</span><b>Embudo, subasta y plataformas</b><span>Las métricas del embudo y cómo funciona la pauta. Semanas 1–3.</span></div>
+    <div class="lvcard l2"><span class="k">Intermedio</span><b>Aprendizaje, experimentos y valor del cliente</b><span>Cuándo decidir, cómo medir el efecto real y cuánto vale cada cliente. Semanas 4–7.</span></div>
+    <div class="lvcard l3"><span class="k">Avanzado</span><b>Modelos causales y de presupuesto</b><span>Uplift, MMM, atribución y CLV. Semanas 8–10.</span></div>
   </div>
   <div class="stats">
     <div class="stat"><b id="sQuiz">0 / 17</b><span>Respuestas correctas</span></div>
-    <div class="stat"><b id="sPlan">0 / 14</b><span>Días del plan completados</span></div>
+    <div class="stat"><b id="sPlan10">0 / 10</b><span>Semanas del plan completadas</span></div>
+    <div class="stat"><b id="sPlan">0 / 14</b><span>Días del arranque completados</span></div>
   </div>
 </div></header>
 
@@ -297,7 +298,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
     <tbody>
       <tr><td><b>Columbia Business School</b><span class="lit">MS in Marketing Science</span></td><td>Cinco cursos núcleo: Market Intelligence, Strategic Consumer Insights, Digital Marketing, Marketing Analytics y Strategic Marketing Consulting, con enfoque en analítica.</td><td>Embudo, plataformas y el plan de profundización, que cierra con un caso de consultoría</td></tr>
       <tr><td><b>Wharton</b><span class="lit">MBA en Business Analytics y Executive Education</span></td><td>El curso MKTG 8090 Experiments for Business Decision Making, y un programa de Marketing Analytics con ciencia de marketing, segmentación y conjoint, pricing, experimentos y analítica digital con atribución multitoque.</td><td>Módulo de experimentos, segmentación y pricing; modelos de uplift y atribución</td></tr>
-      <tr><td><b>Harvard Business School</b><span class="lit">MBA</span></td><td>Marketing hace parte del currículo obligatorio del primer año.</td><td>El rol y la lógica de negocio detrás de cada métrica</td></tr>
+      <tr><td><b>Harvard Business School</b><span class="lit">MBA</span></td><td>Marketing hace parte del currículo obligatorio del primer año.</td><td>El campo y la lógica de negocio detrás de cada métrica</td></tr>
       <tr><td><b>Google y Meta</b><span class="lit">Skillshop y Blueprint</span></td><td>Certificaciones oficiales de las plataformas: subastas, estrategias de puja y medición.</td><td>Subasta, plataformas y fase de aprendizaje</td></tr>
     </tbody>
   </table></div>
@@ -311,14 +312,15 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
 </div></section>
 
 <section class="mod" id="rol"><div class="wrap">
-  <div class="head"><span class="eyebrow">02 · Lo que pidió el líder</span><h2>Qué espera marketing de ti</h2>
-  <p class="muted">No buscan un experto en pauta. Buscan a alguien que lea los datos de pauta y diga dónde mover el presupuesto.</p></div>
+  <div class="head"><span class="eyebrow">02 · El campo</span><h2>Qué hace la analítica de marketing</h2>
+  <p class="muted">Convierte datos de pauta, clientes y ventas en decisiones: a quién hablarle, en qué canal, con qué oferta y cuánto invertir. No se trata de operar las campañas, sino de leer sus datos y decir dónde mover el presupuesto.</p></div>
   <div class="cards">
-    <div class="card"><span class="n">Segmentar</span><h3>Audiencias y campañas</h3><p>Por edad, canal y plataforma: quién convierte mejor y a qué costo.</p></div>
+    <div class="card"><span class="n">Segmentar</span><h3>Audiencias y campañas</h3><p>Por edad, canal, plataforma y comportamiento: quién convierte mejor y a qué costo.</p></div>
     <div class="card"><span class="n">Comparar</span><h3>Plataformas</h3><p>TikTok, Google Search, Display y Meta tienen costos, alcance y conversión distintos.</p></div>
-    <div class="card"><span class="n">Encontrar</span><h3>Oportunidades de growth</h3><p>Con conversión, CPA, ROAS y ROI, llevadas a un dashboard.</p></div>
-    <div class="card"><span class="n">Separar</span><h3>Mercado vs. decisión</h3><p>Si un indicador empeora: ¿competencia en la subasta o una decisión de riesgo?</p></div>
-    <div class="card"><span class="n">Esperar</span><h3>Al algoritmo</h3><p>Días 1–7 optimizan conversión; días 8–14 optimizan costo (regla del líder).</p></div>
+    <div class="card"><span class="n">Encontrar</span><h3>Oportunidades de growth</h3><p>Con conversión, CPA, ROAS y ROI, y un tablero que muestre dónde está el margen.</p></div>
+    <div class="card"><span class="n">Separar</span><h3>Mercado vs. decisión</h3><p>Si un indicador empeora: ¿competencia en la subasta o un cambio interno de oferta, precio o política?</p></div>
+    <div class="card"><span class="n">Medir</span><h3>El efecto real</h3><p>Separar lo que causó la campaña de lo que habría pasado igual, con experimentos e incrementalidad.</p></div>
+    <div class="card"><span class="n">Valorar</span><h3>Al cliente</h3><p>Cuánto deja cada cliente en el tiempo y cuánto se puede pagar por conseguirlo.</p></div>
   </div>
   <p class="srcs">Fuentes de este módulo:<a href="#ref-1">[1]</a></p>
 </div></section>
@@ -364,7 +366,6 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
       </tbody>
     </table>
   </div>
-  <p class="muted" style="font-size:.9rem">El líder mencionó "CPB"; no es una sigla estándar. Pregúntale si se refiere a costo por venta o por desembolso.</p>
   <div class="bridge" data-topic="embudo"></div>
   <p class="srcs">Fuentes de este módulo:<a href="#ref-1">[1]</a></p>
 </div></section>
@@ -379,7 +380,7 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
       <li>Renovar creatividades: un anuncio mejor calificado paga menos por la misma posición.</li>
       <li>Subir la conversión del sitio o la solicitud: baja el CPA sin tocar la puja.</li>
       <li>Cambiar la estrategia de puja (CPA objetivo o tCPA, <i>target Cost Per Acquisition</i>; ROAS objetivo o tROAS, <i>target Return On Ad Spend</i>; tope de costo) según lo que se quiera proteger.</li>
-      <li>Aceptar un CPA más alto en segmentos que pagan mejor y caen menos en mora. Aquí pesa tu análisis de riesgo.</li>
+      <li>Aceptar un CPA más alto en segmentos que valen más: pagan mejor, caen menos en mora o renuevan más.</li>
     </ul>
   </div>
   <div class="bridge" data-topic="subasta"></div>
@@ -416,8 +417,8 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
       <span class="tag">Ejemplo dummy · campaña de Meta</span>
       <h3>CPA promedio por fase (USD)</h3>
       <div class="phases">
-        <div class="ph learn"><div class="col" style="height:100%">7,50</div><small>Días 1–7<br>optimiza conversión</small></div>
-        <div class="ph"><div class="col" style="height:69%">5,20</div><small>Días 8–14<br>optimiza costo</small></div>
+        <div class="ph learn"><div class="col" style="height:100%">7,50</div><small>Días 1–7<br>en aprendizaje</small></div>
+        <div class="ph"><div class="col" style="height:69%">5,20</div><small>Días 8–14<br>sale de aprendizaje</small></div>
         <div class="ph"><div class="col" style="height:67%">5,00</div><small>Días 15–30<br>estable</small></div>
       </div>
       <p style="font-size:.9rem">Apagarla el día 3 por "cara" habría matado una campaña que terminó un 33 % más barata.</p>
@@ -427,9 +428,9 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
       <ul class="clean">
         <li><b>Meta:</b> cerca de 50 eventos de optimización en unos 7 días desde el último cambio importante.</li>
         <li><b>Google (pujas automáticas):</b> varios días, a veces 1–2 semanas, según volumen y tiempo de conversión.</li>
-        <li><b>Regla del líder:</b> días 1–7 conversión; días 8–14 costo.</li>
+        <li><b>Regla práctica:</b> evaluar la conversión mientras la campaña aprende y el costo cuando ya se estabilizó.</li>
       </ul>
-      <h3>Qué cambia en tu análisis</h3>
+      <h3>Qué cambia en el análisis</h3>
       <ul class="clean">
         <li>Etiqueta cada día con su fase y compara segmentos dentro de la misma fase.</li>
         <li>Nada de decisiones con menos de 7 días de datos; revisión estratégica semanal o quincenal.</li>
@@ -449,40 +450,8 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
   <p class="srcs">Fuentes de este módulo:<a href="#ref-23">[23]</a><a href="#ref-24">[24]</a><a href="#ref-3">[3]</a><a href="#ref-2">[2]</a></p>
 </div></section>
 
-<section class="mod" id="ventaja"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">07 · Puente con tu experiencia</span><span class="lv lv2">Intermedio</span></div><h2>Tú sabes qué pasa después del lead</h2>
-  <p class="muted">Un analista de marketing típico ve el CPA. Tú puedes ver el costo por crédito desembolsado y la mora por canal.</p></div>
-  <div class="panel example">
-    <span class="tag">Ejemplo dummy · 2 edades en Meta, pérdida de 300 USD por crédito en mora</span>
-    <h3>Costo real por crédito (USD)</h3>
-    <div class="bars">
-      <div class="brow"><span>18–24 · mora 20 %</span><div class="track"><div class="seg a" style="width:42.9%"></div><div class="seg b" style="width:57.1%"></div></div><span class="v">105</span></div>
-      <div class="brow"><span>25–34 · mora 7 %</span><div class="track"><div class="seg a" style="width:57.1%"></div><div class="seg b" style="width:20%"></div></div><span class="v">81</span></div>
-    </div>
-    <div class="legend"><span><i style="background:var(--accent)"></i>Costo por desembolso (45 y 60)</span><span><i style="background:var(--bad)"></i>Pérdida esperada por mora (60 y 21)</span></div>
-    <p class="note">Mirando solo el CPA, marketing movería presupuesto a 18–24. Sumando la mora, 25–34 sale 24 USD más barato por crédito. Es la misma lógica que usaste en Solventa con el mix de desembolsos.</p>
-  </div>
-  <div class="tbl panel"><table>
-    <thead><tr><th>Lo que ya haces</th><th>Equivalente en marketing</th><th>Cómo decirlo</th></tr></thead>
-    <tbody>
-      <tr><td>Mix de desembolsos por segmento (Solventa)</td><td>Redistribuir presupuesto a los segmentos más rentables</td><td>"Muevo volumen hacia los segmentos que convierten y pagan mejor"</td></tr>
-      <tr><td>Análisis de colocación y rentabilidad</td><td>ROI real por canal, descontando mora</td><td>"Un canal con CPA bajo puede salir caro si trae clientes que no pagan"</td></tr>
-      <tr><td>Modelos de originación y renovaciones</td><td>Probabilidad de convertir y ser aprobado por segmento</td><td>"Puedo estimar qué leads terminarán en desembolso"</td></tr>
-      <tr><td>Monitoreo con PSI<span class="lit">Population Stability Index: índice de estabilidad de la población</span></td><td>Detectar cambios en el perfil de tráfico de un canal</td><td>"Si cambia el perfil de los leads de TikTok, lo veo antes que la mora"</td></tr>
-      <tr><td>Forecasting y escenarios</td><td>Proyección de presupuesto y CPA esperado</td><td>"Simulo qué pasa con el volumen si movemos inversión"</td></tr>
-      <tr><td>Churn y retención (Frubana)</td><td>Retención y reactivación de clientes</td><td>"Ya segmenté perfiles con propensión a churn"</td></tr>
-      <tr><td>Sensibilidad de pricing (Mibanco)</td><td>Efecto de la oferta en la conversión</td><td>"Analicé cómo el precio mueve el desempeño de productos de crédito"</td></tr>
-      <tr><td>Detección de fraude y patrones atípicos</td><td>Leads falsos y tráfico inválido</td><td>"Identifico patrones atípicos en los leads"</td></tr>
-      <tr><td>Python, SQL, Power BI</td><td>Dashboard de performance por plataforma, segmento y fase</td><td>"Automatizo el pipeline y lo llevo a un tablero"</td></tr>
-    </tbody>
-  </table></div>
-  <p class="muted" style="font-size:.9rem">Lo que te falta, para no exagerarlo: no has operado campañas en Meta, Google ni TikTok, ni hecho A/B testing de anuncios o modelos de atribución.</p>
-  <div class="bridge" data-topic="ventaja"></div>
-  <p class="srcs">Fuentes de este módulo:<a href="#ref-14">[14]</a><a href="#ref-13">[13]</a></p>
-</div></section>
-
 <section class="mod" id="experimentos"><div class="wrap">
-  <div class="head"><div class="row"><span class="eyebrow">08 · Medir antes de mover presupuesto</span><span class="lv lv2">Intermedio</span></div><h2>Experimentos, segmentación y pricing</h2>
+  <div class="head"><div class="row"><span class="eyebrow">07 · Medir antes de mover presupuesto</span><span class="lv lv2">Intermedio</span></div><h2>Experimentos, segmentación y pricing</h2>
   <p>Wharton y Columbia dedican cursos completos a esto: una prueba A/B bien dimensionada vale más que diez dashboards. Antes de lanzar, calcula cuántas personas necesitas para detectar la mejora que te importa; si no las tienes, la prueba no puede responder.</p></div>
   <div class="panel example">
     <span class="tag">Calculadora · Tamaño de muestra de una prueba A/B</span>
@@ -506,9 +475,40 @@ footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
   <p class="srcs">Fuentes de este módulo:<a href="#ref-2">[2]</a><a href="#ref-6">[6]</a><a href="#ref-15">[15]</a></p>
 </div></section>
 
+<section class="mod" id="ventaja"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">08 · Valor del cliente</span><span class="lv lv2">Intermedio</span></div><h2>Adquisición ajustada por calidad del cliente</h2>
+  <p class="muted">En crédito, seguros o suscripciones, el cliente más barato de conseguir no siempre es el más rentable. El costo de adquisición se mide junto con el valor esperado del cliente: lo que deja menos lo que se pierde con él. Es el puente natural entre marketing y riesgo.</p></div>
+  <div class="panel example">
+    <span class="tag">Ejemplo dummy · 2 edades en Meta, pérdida de 300 USD por crédito en mora</span>
+    <h3>Costo real por crédito (USD)</h3>
+    <div class="bars">
+      <div class="brow"><span>18–24 · mora 20 %</span><div class="track"><div class="seg a" style="width:42.9%"></div><div class="seg b" style="width:57.1%"></div></div><span class="v">105</span></div>
+      <div class="brow"><span>25–34 · mora 7 %</span><div class="track"><div class="seg a" style="width:57.1%"></div><div class="seg b" style="width:20%"></div></div><span class="v">81</span></div>
+    </div>
+    <div class="legend"><span><i style="background:var(--accent)"></i>Costo por desembolso (45 y 60)</span><span><i style="background:var(--bad)"></i>Pérdida esperada por mora (60 y 21)</span></div>
+    <p class="note">Mirando solo el CPA, marketing movería presupuesto a 18–24. Sumando la mora, 25–34 sale 24 USD más barato por crédito. La decisión cambia cuando se mira el costo por cliente que paga.</p>
+  </div>
+  <div class="tbl panel"><table>
+    <thead><tr><th>Métrica de marketing</th><th>Versión ajustada por calidad</th><th>Pregunta que responde</th></tr></thead>
+    <tbody>
+      <tr><td>CPA</td><td>Costo por cliente activo o por crédito desembolsado</td><td>¿Cuánto cuesta un cliente real, no un registro?</td></tr>
+      <tr><td>ROAS</td><td>ROI neto de pérdidas, costos operativos y comisiones</td><td>¿El canal deja plata o solo ingresos?</td></tr>
+      <tr><td>Lead scoring</td><td>Propensión a convertir × probabilidad de pago</td><td>¿Qué leads priorizar en el call center o en remarketing?</td></tr>
+      <tr><td>Audiencias lookalike</td><td>Semilla de clientes rentables y buenos pagadores</td><td>¿A quién se parecen los clientes que sí valen?</td></tr>
+      <tr><td>CLV</td><td>CLV menos pérdida esperada (PD × LGD × monto)</td><td>¿Cuánto se puede pagar por adquirir a este segmento?</td></tr>
+      <tr><td>Perfil del tráfico</td><td>PSI de las variables de los leads por canal</td><td>¿Cambió quién llega antes de que se note en la mora?</td></tr>
+      <tr><td>Elasticidad de la oferta</td><td>Conversión y PD frente a la tasa o el monto ofrecidos</td><td>¿Qué oferta mostrar sin atraer más riesgo?</td></tr>
+      <tr><td>Calidad del tráfico</td><td>Detección de leads inválidos y fraude de primera cuota</td><td>¿Estamos pagando por tráfico que no existe?</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="font-size:.9rem">Los perfiles que vienen de riesgo de crédito, finanzas o seguros ya modelan la mitad de esta tabla, la del valor; la otra mitad, la de adquisición y medición, está en los módulos de subasta, experimentos y modelos.</p>
+  <div class="bridge" data-topic="ventaja"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-14">[14]</a><a href="#ref-13">[13]</a></p>
+</div></section>
+
 <section class="mod" id="modelos"><div class="wrap">
   <div class="head"><div class="row"><span class="eyebrow">09 · Para ir más allá del dashboard</span><span class="lv lv3">Avanzado</span></div><h2>Técnicas de modelamiento para cada problema</h2>
-  <p class="muted">Propuestas para llevar tu perfil de data scientist a los temas de marketing. Empieza por uplift (la idea de Sergio) y MMM: son las dos que más directamente responden "¿dónde pongo el presupuesto?".</p></div>
+  <p class="muted">Las técnicas que más usan los equipos de marketing analítico para decidir presupuesto. Uplift y MMM van primero porque responden directamente "¿dónde pongo el presupuesto?".</p></div>
 
   <div class="panel">
     <span class="tag" style="background:var(--accent-soft);color:var(--accent)">Prioridad 1 · Segmentación causal</span>
@@ -575,7 +575,7 @@ df = df[df.uplift &gt; 0].sort_values("uplift", ascending=False)
 df["gasto_acum"] = costo * range(1, len(df) + 1)
 seleccion = df[df.gasto_acum &lt;= presupuesto]
 print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones incrementales esperadas")</pre></div>
-    <p style="font-size:.9rem"><b>En una fintech de crédito</b> no optimices solo conversión: ordena por <span class="mono">uplift × (margen − PD × pérdida)</span>, donde PD es la probabilidad de incumplimiento que ya sabes modelar. Así el presupuesto va a los persuadibles que además pagan.</p>
+    <p style="font-size:.9rem"><b>En una fintech de crédito</b> no optimices solo conversión: ordena por <span class="mono">uplift × (margen − PD × pérdida)</span>, donde PD es la probabilidad de incumplimiento que estima el equipo de riesgo. Así el presupuesto va a los persuadibles que además pagan.</p>
   </div>
 
   <div class="techs">
@@ -602,7 +602,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     </div>
 
     <div class="tech">
-      <div class="tech-h"><h3>Valor del cliente (LTV) con riesgo</h3><span class="tag" style="background:var(--good-soft);color:var(--good)">Tu ventaja</span></div>
+      <div class="tech-h"><h3>Valor del cliente (LTV) con riesgo</h3><span class="tag" style="background:var(--good-soft);color:var(--good)">Puente con riesgo</span></div>
       <dl class="kv">
         <dt>Problema</dt><dd>No todos los leads valen lo mismo; las plataformas pujan mejor si les dices cuánto vale cada conversión.</dd>
         <dt>Técnica</dt><dd>LTV esperado = ingresos esperados (incluye probabilidad de renovar) − pérdida esperada (PD × LGD × monto). Se envía como valor de conversión a Google (tROAS) o Meta (optimización por valor).</dd>
@@ -657,7 +657,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     </div>
 
     <div class="tech">
-      <div class="tech-h"><h3>Detección de leads inválidos</h3><span class="tag" style="background:var(--good-soft);color:var(--good)">Tu ventaja</span></div>
+      <div class="tech-h"><h3>Detección de leads inválidos</h3><span class="tag" style="background:var(--good-soft);color:var(--good)">Puente con riesgo</span></div>
       <dl class="kv">
         <dt>Problema</dt><dd>Un canal trae muchos leads baratos que nunca terminan solicitud: bots o fraude.</dd>
         <dt>Técnica</dt><dd>Isolation Forest o reglas de comportamiento (tiempo de llenado, dispositivos repetidos), como en tu trabajo de alertas tempranas y fraude.</dd>
@@ -667,13 +667,13 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
       <div class="libs"><span class="lib">scikit-learn (IsolationForest)</span></div>
     </div>
   </div>
-  <p class="muted" style="font-size:.9rem">Proyecto extra para el plan: entrena el uplift con Hillstrom o con el dataset de Criteo (<span class="mono">fetch_criteo</span> en sklift), simula un presupuesto y publícalo en GitHub. Es un tema que pocos candidatos de marketing dominan.</p>
+  <p class="muted" style="font-size:.9rem">Proyecto extra para el plan: entrena el uplift con Hillstrom o con el dataset de Criteo (<span class="mono">fetch_criteo</span> en sklift), simula un presupuesto y publícalo en GitHub. Es un buen proyecto de portafolio: pocos equipos lo tienen en producción.</p>
   <p class="srcs">Fuentes de este módulo:<a href="#ref-8">[8]</a><a href="#ref-7">[7]</a><a href="#ref-28">[28]</a><a href="#ref-9">[9]</a><a href="#ref-25">[25]</a><a href="#ref-26">[26]</a><a href="#ref-27">[27]</a><a href="#ref-10">[10]</a><a href="#ref-11">[11]</a><a href="#ref-12">[12]</a><a href="#ref-16">[16]</a><a href="#ref-17">[17]</a></p>
 </div></section>
 
 <section class="mod" id="catalogo"><div class="wrap">
   <div class="head"><span class="eyebrow">10 · Todo lo que se modela en marketing</span><h2>Catálogo de modelos aplicados a marketing</h2>
-  <p class="muted">De estadística básica a inferencia causal y optimización. Cada técnica trae para qué sirve, un ejemplo con números inventados y las librerías. Las marcadas "Tu ventaja" ya las haces en riesgo con otro nombre.</p></div>
+  <p class="muted">De estadística básica a inferencia causal y optimización. Cada técnica trae para qué sirve, un ejemplo con números inventados y las librerías. Las marcadas "Puente con riesgo" existen en riesgo de crédito con otro nombre.</p></div>
   <div class="panel">
     <h3>Mapa: cada tema de la ruta y los modelos que lo resuelven</h3>
     <p class="muted" style="font-size:.88rem">Lee cada fila de izquierda a derecha: de lo que puedes hacer la primera semana a lo más avanzado. Toca una técnica para ver su tarjeta.</p>
@@ -685,7 +685,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
       <button type="button" class="fchip" data-lv="1" aria-pressed="false">Básico</button>
       <button type="button" class="fchip" data-lv="2" aria-pressed="false">Intermedio</button>
       <button type="button" class="fchip" data-lv="3" aria-pressed="false">Avanzado</button>
-      <button type="button" class="fchip" id="catStar" aria-pressed="false">Solo tu ventaja</button>
+      <button type="button" class="fchip" id="catStar" aria-pressed="false">Solo puente con riesgo</button>
     </div>
     <div class="frow2">
       <select id="catArea" aria-label="Área"><option value="">Todas las áreas</option></select>
@@ -698,7 +698,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     <h3>Por dónde empezar</h3>
     <ul class="clean">
       <li><b>Primer mes en el cargo:</b> embudo y cohortes, lift por deciles, pruebas A/B bien dimensionadas y pronóstico de CPA. Son rápidas y generan confianza.</li>
-      <li><b>Segundo paso:</b> lead scoring con calidad crediticia, segmentación por clustering y audiencias lookalike de buenos pagadores. Aquí tu experiencia en riesgo te diferencia.</li>
+      <li><b>Segundo paso:</b> lead scoring con calidad crediticia, segmentación por clustering y audiencias lookalike de buenos pagadores. Aquí la experiencia en riesgo marca la diferencia.</li>
       <li><b>Cuando haya datos y confianza:</b> uplift, MMM e incrementalidad con experimentos. Responden dónde poner el presupuesto.</li>
     </ul>
   </div>
@@ -712,30 +712,15 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
 </div></section>
 
 <section class="mod" id="plan"><div class="wrap">
-  <div class="head"><span class="eyebrow">12 · 1 a 2 horas al día</span><h2>Plan de 14 días y profundización</h2>
-  <p class="muted">Semana 1 para entender; semana 2 para construir un proyecto que puedas mostrar y poner en el CV. Marca cada día al terminarlo; se guarda en este navegador.</p></div>
+  <div class="head"><span class="eyebrow">12 · 1 a 2 horas al día</span><h2>Plan de estudio</h2>
+  <p class="muted">Dos formatos. El plan de 10 semanas sigue los bloques de Columbia y Wharton y deja un entregable en Python cada semana. El arranque de 2 semanas es opcional, para dominar lo esencial antes. Marca cada paso al terminarlo; se guarda en este navegador.</p></div>
+  <h3>Plan de 10 semanas</h3>
+  <div class="progress"><i id="plan10Bar"></i></div>
+  <div class="plan" id="plan10Box"></div>
+  <h3>Arranque opcional de 2 semanas</h3>
   <div class="progress"><i id="planBar"></i></div>
   <div class="plan" id="planBox"></div>
-  <p class="muted" style="font-size:.9rem">Cuando termines, agrega al CV el proyecto y las certificaciones gratuitas que completes. Antes no, porque aún no existen.</p>
-  <div class="panel">
-    <h3>Profundización · 10 semanas al ritmo de un máster</h3>
-    <p class="muted" style="font-size:.9rem">Para después del plan corto. Cada semana sigue un bloque de los programas de Columbia y Wharton y deja un entregable en Python.</p>
-    <div class="tbl"><table class="deep">
-      <thead><tr><th>Semana</th><th>Tema y referencia</th><th>Entregable</th></tr></thead>
-      <tbody>
-        <tr><td>1</td><td>Inteligencia de mercado y embudo<em>Columbia · Market Intelligence</em></td><td>Embudo por cohorte con datos públicos de campañas</td></tr>
-        <tr><td>2</td><td>Insights del consumidor y segmentación<em>Columbia · Strategic Consumer Insights · Wharton</em></td><td>Segmentación RFM y clustering con perfiles accionables</td></tr>
-        <tr><td>3</td><td>Conjoint y valor percibido<em>Wharton · Marketing Analytics</em></td><td>Conjoint simulado de una oferta de crédito</td></tr>
-        <tr><td>4</td><td>Pricing y elasticidad<em>Wharton · Marketing Analytics</em></td><td>Curva de aceptación frente a tasa, con PD por tramo</td></tr>
-        <tr><td>5</td><td>Experimentos<em>Wharton · MKTG 8090</em></td><td>Diseño y análisis de una prueba A/B con CUPED</td></tr>
-        <tr><td>6</td><td>Analítica digital y atribución<em>Columbia · Digital Marketing · Wharton</em></td><td>Atribución por Markov frente a último clic</td></tr>
-        <tr><td>7</td><td>Uplift y causalidad<em>Wharton · experimentos de campo</em></td><td>Modelo uplift con el dataset de Hillstrom atado a presupuesto</td></tr>
-        <tr><td>8</td><td>Marketing Mix Modeling<em>Columbia · Marketing Analytics</em></td><td>MMM bayesiano con PyMC-Marketing y datos sintéticos</td></tr>
-        <tr><td>9</td><td>Valor del cliente con riesgo<em>Wharton · Customer Analytics</em></td><td>CLV menos pérdida esperada por segmento</td></tr>
-        <tr><td>10</td><td>Caso de consultoría<em>Columbia · Strategic Marketing Consulting</em></td><td>Presentación de 10 minutos con recomendación de presupuesto, publicada en GitHub</td></tr>
-      </tbody>
-    </table></div>
-  </div>
+  <p class="muted" style="font-size:.9rem">Al terminar el arranque, sigue con la semana 1 del plan de 10 semanas.</p>
   <p class="srcs">Fuentes de este módulo:<a href="#ref-1">[1]</a><a href="#ref-2">[2]</a><a href="#ref-21">[21]</a><a href="#ref-22">[22]</a></p>
 </div></section>
 
@@ -751,7 +736,8 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
 <footer><div class="wrap">
   Dónde estudiar: <a href="https://skillshop.withgoogle.com" target="_blank" rel="noopener">Google Skillshop</a> · <a href="https://www.facebook.com/business/learn" target="_blank" rel="noopener">Meta Blueprint</a> · TikTok Academy. Para la fase de aprendizaje, busca "fase de aprendizaje" en la ayuda de Meta para empresas y "estado de aprendizaje de la estrategia de ofertas" en la ayuda de Google Ads. Todos los números de esta página son inventados.
   <p><b>Programas consultados:</b> <a href="https://learn.cbs.columbia.edu/msm/" target="_blank" rel="noopener">Columbia MS in Marketing Science</a> · <a href="https://executiveeducation.wharton.upenn.edu/online-learning/self-paced-online-programs/marketing-analytics/" target="_blank" rel="noopener">Wharton Marketing Analytics</a> · <a href="https://www.hbs.edu/faculty/units/gm/Pages/curriculum.aspx" target="_blank" rel="noopener">Harvard Business School, currículo del MBA</a>.</p>
-  <details><summary>Versión 2.1.0 · 28 oct 2026</summary><ul>
+  <details><summary>Versión 3.0.0 · 28 oct 2026</summary><ul>
+    <li><b>3.0.0</b> · Ruta reescrita en tono profesional: sin el contexto de una entrevista ni datos personales, módulo de valor del cliente ajustado por calidad, valor del cliente después de experimentos, y plan principal de 10 semanas con casillas y el arranque de 2 semanas como opcional.</li>
     <li><b>2.1.0</b> · Bibliografía en formato APA con libros, artículos sobre subastas, experimentos, uplift y MMM, documentación oficial de las plataformas y las fuentes de cada módulo al pie.</li>
     <li><b>2.0.0</b> · Estructura alineada con Columbia, Wharton y Harvard: sección de programas, niveles, módulo de experimentos con calculadora de tamaño de muestra, plan de profundización de 10 semanas y glosario emergente.</li>
     <li><b>1.0.0</b> · Primera versión: ruta rápida de 14 días, modelos, catálogo y quiz de 15 preguntas.</li>
@@ -762,11 +748,11 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
 <div class="chat" id="chat" role="dialog" aria-label="Preguntas a Claude" hidden>
   <div class="chat-h"><b>Pregúntale a Claude</b><button type="button" id="chatClose" aria-label="Cerrar">×</button></div>
   <div class="chat-log" id="chatLog">
-    <div class="msg a">Pregúntame lo que quieras sobre paid media, las métricas, los quices o cómo contarlo en una entrevista.</div>
+    <div class="msg a">Pregúntame lo que quieras sobre paid media, las métricas, los modelos o el quiz.</div>
     <div class="chips" id="chatChips">
       <button class="chip" type="button">¿Qué diferencia hay entre ROAS y ROI?</button>
       <button class="chip" type="button">Dame un ejercicio nuevo de CPA con números inventados</button>
-      <button class="chip" type="button">¿Cómo explico en una entrevista que vengo de riesgo?</button>
+      <button class="chip" type="button">¿Cómo se mide el valor de un cliente con riesgo de crédito?</button>
       <button class="chip" type="button">¿Qué diferencia hay entre un S-learner, un T-learner y un X-learner?</button>
     </div>
   </div>
@@ -862,10 +848,10 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     {s:'Plataformas', q:'Display tiene un costo por desembolso de 333 USD. ¿Lo apagas?', o:['Sí, es el peor de todos','No sin medir antes su aporte a recordación y remarketing','Sí, y paso ese presupuesto a TikTok'], a:1, w:'Display trabaja arriba del embudo. Hay que ver si quienes lo vieron convierten después por otro canal.'},
     {s:'Aprendizaje', q:'Una campaña nueva de Meta lleva 4 días con un CPA 40 % por encima de la meta. ¿Qué haces?', o:['Cambio el público hoy mismo','Espero a que salga de aprendizaje (unos 7 días o cerca de 50 conversiones)','Duplico el presupuesto para que aprenda más rápido'], a:1, w:'Cambiar el público o duplicar el presupuesto son cambios grandes y reinician el aprendizaje.'},
     {s:'Mercado vs. decisión', q:'El 1 de marzo riesgo endurece la política. En marzo el CPM, los clics y los leads siguen iguales, pero la aprobación baja de 30 % a 20 %. ¿Qué pasó y cuánto sube el costo por desembolso?', o:['Mercado; sube 10 %','Decisión de negocio; sube 50 %','Decisión de negocio; sube 10 %'], a:1, w:'El CPM no cambió, así que no es el mercado. Con el mismo gasto y los mismos leads, aprobar 20 % en vez de 30 % deja dos tercios de los desembolsos: 30 / 20 = 1,5 veces el costo.'},
-    {s:'Tu ventaja', q:'Con el ejemplo de las dos edades, ¿hacia dónde mueves presupuesto?', o:['18–24, porque tiene el CPA más bajo','25–34, porque tiene el menor costo real por crédito','Lo reparto en partes iguales'], a:1, w:'25–34 cuesta 81 USD por crédito contando la mora, contra 105 USD en 18–24.'},
-    {s:'Tu ventaja', q:'Un canal nuevo tiene un costo por desembolso de 50 USD y una mora de 25 %. Con una pérdida de 300 USD por crédito en mora, ¿cuál es su costo real por crédito?', o:['75 USD','125 USD','350 USD'], a:1, w:'50 + 25 % × 300 = 50 + 75 = 125 USD.'},
-    {s:'Tu ventaja', q:'¿Qué indicador de tu trabajo en riesgo sirve para detectar que cambió el perfil de los leads de un canal?', o:['PSI','ROAS','CTR'], a:0, w:'El PSI mide cuánto cambió la distribución de una población frente a una base; sirve igual para leads que para solicitantes de crédito.'},
-    {s:'Tu ventaja', q:'El líder pregunta por qué los leads de una campaña de marzo todavía no muestran todos sus desembolsos. ¿Qué respondes?', o:['La campaña falló','La conversión a desembolso tarda días; hay que leerla por cohorte de fecha del lead','Hay que mirar solo los clics'], a:1, w:'El desembolso llega días después del lead. Mezclar cohortes incompletas hace ver peores las campañas recientes, igual que una cosecha de cartera joven.'},
+    {s:'Valor del cliente', q:'Con el ejemplo de las dos edades, ¿hacia dónde mueves presupuesto?', o:['18–24, porque tiene el CPA más bajo','25–34, porque tiene el menor costo real por crédito','Lo reparto en partes iguales'], a:1, w:'25–34 cuesta 81 USD por crédito contando la mora, contra 105 USD en 18–24.'},
+    {s:'Valor del cliente', q:'Un canal nuevo tiene un costo por desembolso de 50 USD y una mora de 25 %. Con una pérdida de 300 USD por crédito en mora, ¿cuál es su costo real por crédito?', o:['75 USD','125 USD','350 USD'], a:1, w:'50 + 25 % × 300 = 50 + 75 = 125 USD.'},
+    {s:'Valor del cliente', q:'¿Qué indicador de riesgo de crédito sirve para detectar que cambió el perfil de los leads de un canal?', o:['PSI','ROAS','CTR'], a:0, w:'El PSI mide cuánto cambió la distribución de una población frente a una base; sirve igual para leads que para solicitantes de crédito.'},
+    {s:'Valor del cliente', q:'Te preguntan por qué los leads de una campaña de marzo todavía no muestran todos sus desembolsos. ¿Qué respondes?', o:['La campaña falló','La conversión a desembolso tarda días; hay que leerla por cohorte de fecha del lead','Hay que mirar solo los clics'], a:1, w:'El desembolso llega días después del lead. Mezclar cohortes incompletas hace ver peores las campañas recientes, igual que una cosecha de cartera joven.'},
     {s:'Modelos', q:'El segmento A convierte 32 % con pauta y 30 % sin ella. El B convierte 12 % con pauta y 4 % sin ella. Cuesta lo mismo impactarlos. ¿A cuál le das presupuesto primero?', o:['A, porque convierte más','B, porque la pauta le cambia más la decisión','A los dos por igual'], a:1, w:'El uplift de A es 2 puntos y el de B es 8. A iba a convertir casi igual sin pauta: es un "seguro".'},
     {s:'Modelos', q:'¿Qué datos necesitas para entrenar un modelo uplift?', o:['Solo los clientes que vieron la campaña','Un grupo tratado y uno de control, idealmente asignados al azar','Solo los clientes que convirtieron'], a:1, w:'El uplift compara qué pasa con y sin campaña. Sin grupo de control no hay contra qué comparar.'},
     {s:'Modelos', q:'Quieres decidir cuánto invertir en cada canal el próximo trimestre, sabiendo que cada dólar extra rinde menos. ¿Qué técnica usas?', o:['Marketing Mix Modeling (MMM)','Isolation Forest','Atribución de último clic'], a:0, w:'El MMM modela la saturación y el efecto que dura semanas (adstock) por canal, y con eso optimiza cómo repartir un presupuesto total.'},
@@ -914,7 +900,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     ['11','Proyecto: escenarios','Simula mover 20 % del presupuesto del peor al mejor segmento y estima el cambio en conversiones.'],
     ['12','Proyecto: dashboard','Power BI con filtros por campaña, edad y género, y una página de recomendaciones.'],
     ['13','Publicar','Sube notebook y dashboard a GitHub con un README: pregunta, datos, hallazgo, recomendación, herramientas.'],
-    ['14','Preparar entrevista','Practica las frases de "Tu ventaja" y una respuesta de 2 minutos sobre tu proyecto.']
+    ['14','Presentar','Prepara una presentación de 10 minutos: pregunta, datos, hallazgo y recomendación de presupuesto.']
   ];
   let done = store.get('pm_plan', {});
   const planBox = document.getElementById('planBox');
@@ -932,6 +918,36 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     done[i] = e.target.checked; store.set('pm_plan', done); renderPlan();
   });
   renderPlan();
+
+  /* Plan de 10 semanas */
+  const P10 = [
+    ['Inteligencia de mercado y embudo','Columbia · Market Intelligence','Embudo por cohorte con datos públicos de campañas.'],
+    ['Insights del consumidor y segmentación','Columbia · Strategic Consumer Insights · Wharton','Segmentación RFM y clustering con perfiles accionables.'],
+    ['Conjoint y valor percibido','Wharton · Marketing Analytics','Conjoint simulado de una oferta de crédito.'],
+    ['Pricing y elasticidad','Wharton · Marketing Analytics','Curva de aceptación frente a la tasa, con PD por tramo.'],
+    ['Experimentos','Wharton · MKTG 8090','Diseño y análisis de una prueba A/B con CUPED.'],
+    ['Analítica digital y atribución','Columbia · Digital Marketing · Wharton','Atribución por Markov frente a último clic.'],
+    ['Uplift y causalidad','Wharton · experimentos de campo','Modelo uplift con el dataset de Hillstrom atado a un presupuesto.'],
+    ['Marketing Mix Modeling','Columbia · Marketing Analytics','MMM bayesiano con PyMC-Marketing y datos sintéticos.'],
+    ['Valor del cliente con riesgo','Wharton · Customer Analytics','CLV menos pérdida esperada por segmento.'],
+    ['Caso de consultoría','Columbia · Strategic Marketing Consulting','Presentación de 10 minutos con recomendación de presupuesto, publicada en GitHub.']
+  ];
+  let done10 = store.get('pm_plan10', {});
+  const plan10Box = document.getElementById('plan10Box');
+  function renderPlan10(){
+    plan10Box.innerHTML = P10.map((p, i) => {
+      const wk = i === 0 ? '<div class="week">Básico</div>' : i === 3 ? '<div class="week">Intermedio</div>' : i === 6 ? '<div class="week">Avanzado</div>' : '';
+      return `${wk}<label class="day ${done10[i] ? 'done' : ''}" for="w${i}"><input type="checkbox" id="w${i}" data-i="${i}" ${done10[i] ? 'checked' : ''}><span class="d">Sem ${i + 1}</span><span><b>${p[0]}</b><span>${p[2]}</span><em class="ref">${p[1]}</em></span></label>`;
+    }).join('');
+    const n = P10.filter((p, i) => done10[i]).length;
+    document.getElementById('sPlan10').textContent = `${n} / ${P10.length}`;
+    document.getElementById('plan10Bar').style.width = (n / P10.length * 100) + '%';
+  }
+  plan10Box.addEventListener('change', e => {
+    const i = e.target.dataset.i; if (i === undefined) return;
+    done10[i] = e.target.checked; store.set('pm_plan10', done10); renderPlan10();
+  });
+  renderPlan10();
 
   /* Uplift con presupuesto */
   const SEG = [
@@ -978,12 +994,12 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
   const CAT = [
     // Básico
     {n:'Análisis de embudo y cohortes', lv:1, a:'Medición', v:1, u:'Medir la conversión paso a paso (clic, lead, solicitud, aprobación, desembolso) por cohorte de fecha del lead.', e:'La cohorte de la semana 10 lleva 6 % de lead a desembolso a los 14 días; la de la semana 8 llevaba 9 % a la misma edad: algo se rompió.', l:'SQL, pandas'},
-    {n:'Lift por deciles y curvas de ganancia', lv:1, a:'Conversión y leads', v:1, u:'Ordenar leads por score y ver cuánto concentra cada decil. Es tu KS y tus deciles de riesgo con otro nombre.', e:'El decil 1 del score trae 28 % de los desembolsos con 10 % de los leads: lift de 2,8.', l:'pandas, scikit-plot'},
+    {n:'Lift por deciles y curvas de ganancia', lv:1, a:'Conversión y leads', v:1, u:'Ordenar leads por score y ver cuánto concentra cada decil. Es el mismo análisis de KS y deciles que se usa en riesgo.', e:'El decil 1 del score trae 28 % de los desembolsos con 10 % de los leads: lift de 2,8.', l:'pandas, scikit-plot'},
     {n:'Segmentación RFM', lv:1, a:'Audiencias y segmentación', u:'Clasificar clientes por Recencia, Frecuencia y Monto para campañas de renovación o reactivación.', e:'Clientes con último crédito hace menos de 60 días, 3 o más créditos y buen pago: 1.200 personas para ofrecer renovación.', l:'pandas'},
     {n:'Pruebas A/B con tamaño de muestra', lv:1, a:'Medición', u:'Saber si una landing, un copy o una oferta convierte más, y cuánta gente se necesita antes de empezar.', e:'Pasar de 10 % a 11 % de conversión con 80 % de potencia pide unas 15.000 personas por grupo.', l:'statsmodels, scipy'},
     {n:'Regresión lineal y elasticidad de inversión', lv:1, a:'Presupuesto y pujas', u:'Estimar cuántos leads trae cada dólar adicional por canal con un modelo log-log.', e:'Elasticidad de 0,6 en Meta: subir 10 % el gasto sube cerca de 6 % los leads.', l:'statsmodels'},
     {n:'Regresión logística de propensión', lv:1, a:'Conversión y leads', v:1, u:'Score simple y explicable de probabilidad de convertir por lead, canal y edad.', e:'Un lead de Search de 30 años tiene 18 % de probabilidad de desembolso; uno de Display de 22 años, 3 %.', l:'scikit-learn, statsmodels'},
-    {n:'Elasticidad de precio u oferta', lv:1, a:'Precio y oferta', v:1, u:'Medir cuánto cambia la conversión si cambias la tasa, el monto o el plazo ofrecido. Es tu análisis de pricing de Mibanco.', e:'Bajar la tasa 2 puntos sube la aprobación aceptada de 40 % a 46 %.', l:'statsmodels'},
+    {n:'Elasticidad de precio u oferta', lv:1, a:'Precio y oferta', v:1, u:'Medir cuánto cambia la conversión si cambias la tasa, el monto o el plazo ofrecido. Es el mismo análisis de sensibilidad de precio que se hace en riesgo.', e:'Bajar la tasa 2 puntos sube la aprobación aceptada de 40 % a 46 %.', l:'statsmodels'},
     {n:'Descomposición de series y estacionalidad', lv:1, a:'Pronóstico y pacing', u:'Separar tendencia, estacionalidad semanal y días especiales (quincenas, primas) en leads y CPA.', e:'Los leads suben 35 % en las quincenas; sin ajustar por eso, cualquier campaña lanzada el 15 parece buena.', l:'statsmodels (STL)'},
     {n:'Árboles de decisión para reglas', lv:1, a:'Audiencias y segmentación', v:1, u:'Encontrar reglas legibles de segmentación para que marketing las configure en la plataforma.', e:'Regla encontrada: edad 25–40 y Android y ciudad principal → CVR 2,3 veces el promedio.', l:'scikit-learn'},
     {n:'Control estadístico de métricas', lv:1, a:'Monitoreo y fraude', u:'Alertas cuando CPA, CTR o conversión salen de su rango normal (z-score, gráficos de control).', e:'El CPA de TikTok pasa de 6 a 9 USD en un día: 3,2 desviaciones estándar, se dispara la alerta.', l:'pandas, scipy'},
@@ -992,12 +1008,12 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     {n:'Calidad del lead (propensión × riesgo)', lv:2, a:'Conversión y leads', v:1, u:'Combinar la probabilidad de convertir con la probabilidad de impago para valorar cada lead.', e:'Lead A: 20 % de convertir y PD 5 %. Lead B: 30 % y PD 30 %. A vale más aunque convierta menos.', l:'XGBoost, scikit-learn'},
     {n:'Clustering de clientes (K-means, GMM, K-prototypes)', lv:2, a:'Audiencias y segmentación', u:'Descubrir segmentos o "personas" con comportamiento parecido para mensajes distintos.', e:'Aparecen 4 grupos; uno de 18 % de clientes, jóvenes con uso nocturno de la app, responde 2 veces mejor a TikTok.', l:'scikit-learn, kmodes'},
     {n:'Audiencias lookalike de buenos clientes', lv:2, a:'Audiencias y segmentación', v:1, u:'Armar la lista semilla con clientes rentables y buenos pagadores, no con cualquier convertido, para que Meta o Google busquen parecidos.', e:'Semilla de 5.000 buenos pagadores en vez de 20.000 convertidos: la mora de los nuevos clientes baja de 14 % a 9 %.', l:'SQL, scikit-learn'},
-    {n:'Predicción de churn', lv:2, a:'Retención y valor', v:1, u:'Detectar clientes que no van a renovar para darles una oferta a tiempo. Ya lo hiciste en Frubana.', e:'El modelo marca 800 clientes con más de 70 % de riesgo de no renovar; la campaña de retención recupera 120.', l:'XGBoost, scikit-learn'},
+    {n:'Predicción de churn', lv:2, a:'Retención y valor', v:1, u:'Detectar clientes que no van a renovar para darles una oferta a tiempo.', e:'El modelo marca 800 clientes con más de 70 % de riesgo de no renovar; la campaña de retención recupera 120.', l:'XGBoost, scikit-learn'},
     {n:'Análisis de supervivencia', lv:2, a:'Retención y valor', u:'Modelar el tiempo hasta convertir, renovar o abandonar, incluyendo a quienes aún no lo han hecho.', e:'La mitad de los leads de Search que convierten lo hacen en 3 días; en Meta, en 9. Ajusta cuándo evaluar cada canal.', l:'lifelines, scikit-survival'},
     {n:'Valor de vida del cliente (CLV/LTV)', lv:2, a:'Retención y valor', v:1, u:'Estimar cuánto dejará un cliente en toda su relación para fijar cuánto se puede pagar por adquirirlo.', e:'LTV esperado de 75 USD en el segmento 25–34 contra 40 USD en 18–24: el CAC máximo cambia por segmento.', l:'lifetimes, PyMC-Marketing'},
     {n:'Next best offer y venta cruzada', lv:2, a:'Retención y valor', u:'Recomendar el siguiente producto (tarjeta, seguro, ampliación de cupo) con reglas de asociación o filtrado colaborativo.', e:'Clientes con 2 créditos pagados al día aceptan ampliación de cupo 3 veces más que el promedio.', l:'mlxtend, implicit'},
     {n:'Pronóstico de leads, CPA y volumen', lv:2, a:'Pronóstico y pacing', v:1, u:'Proyectar a dónde llegará el mes para corregir presupuesto a tiempo.', e:'Pronóstico: 2.400 leads a 6,1 USD contra una meta de 3.000. Faltan 600 a mitad de mes.', l:'statsforecast, Prophet'},
-    {n:'Detección de anomalías y leads inválidos', lv:2, a:'Monitoreo y fraude', v:1, u:'Encontrar bots, fraude o tráfico inválido por canal, como en tus alertas tempranas.', e:'12 % de los leads de una campaña llenan el formulario en menos de 4 segundos desde el mismo dispositivo.', l:'scikit-learn (IsolationForest)'},
+    {n:'Detección de anomalías y leads inválidos', lv:2, a:'Monitoreo y fraude', v:1, u:'Encontrar bots, fraude o tráfico inválido por canal, con la misma lógica de las alertas tempranas de riesgo.', e:'12 % de los leads de una campaña llenan el formulario en menos de 4 segundos desde el mismo dispositivo.', l:'scikit-learn (IsolationForest)'},
     {n:'Explicabilidad con SHAP', lv:2, a:'Conversión y leads', v:1, u:'Explicar a marketing qué variables mueven la conversión en lenguaje de negocio.', e:'Las 3 variables que más suben la probabilidad: venir de Search, monto pedido menor a 500 USD y llenar la solicitud de día.', l:'shap'},
     {n:'Monitoreo de estabilidad (PSI)', lv:2, a:'Monitoreo y fraude', v:1, u:'Detectar que cambió el perfil de los leads que trae un canal antes de que se note en la mora.', e:'PSI de 0,28 en la edad de los leads de TikTok tras una nueva creatividad: el público cambió.', l:'numpy, pandas'},
     {n:'Atribución multitoque (Markov, Shapley)', lv:2, a:'Medición', u:'Repartir el crédito de cada conversión entre todos los canales del camino, no solo el último clic.', e:'Por último clic Display tiene 3 desembolsos; con Markov le tocan 18.', l:'ChannelAttribution'},
@@ -1060,17 +1076,17 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
       ['CausalImpact y control sintético', 'Estima qué habría pasado sin el cambio usando series que no fueron afectadas.'],
       ['Propensity score matching e IPW', 'Mide el efecto de una campaña cuando no hubo experimento.'],
       ['A/B testing avanzado (CUPED, secuencial, bayesiano)', 'Prueba cambios de política o de oferta con menos tráfico y sin falsos positivos.']]},
-    ventaja: {t:'Tu ventaja', sec:'ventaja', q:'¿A quién le hablo y cuánto vale ese cliente?', i:[
+    ventaja: {t:'Valor del cliente', sec:'ventaja', q:'¿A quién le hablo y cuánto vale ese cliente?', i:[
       ['Segmentación RFM', 'Arma audiencias de renovación con clientes recientes, frecuentes y buenos pagadores.'],
-      ['Árboles de decisión para reglas', 'Convierte tu segmentación de riesgo en reglas que marketing configura en la plataforma.'],
-      ['Elasticidad de precio u oferta', 'Tu análisis de pricing aplicado a qué tasa o monto mostrar en el anuncio.'],
-      ['Calidad del lead (propensión × riesgo)', 'Junta tu modelo de riesgo con uno de conversión: el costo real por crédito del ejemplo de edades.'],
+      ['Árboles de decisión para reglas', 'Convierte una segmentación de riesgo en reglas que marketing configura en la plataforma.'],
+      ['Elasticidad de precio u oferta', 'Qué tasa o monto mostrar en el anuncio según su efecto en conversión y riesgo.'],
+      ['Calidad del lead (propensión × riesgo)', 'Junta un modelo de riesgo con uno de conversión: el costo real por crédito del ejemplo de edades.'],
       ['Clustering de clientes (K-means, GMM, K-prototypes)', 'Descubre perfiles para mensajes y plataformas distintas.'],
-      ['Audiencias lookalike de buenos clientes', 'Usa tus buenos pagadores como semilla para que Meta y Google busquen parecidos.'],
+      ['Audiencias lookalike de buenos clientes', 'Usa a los buenos pagadores como semilla para que Meta y Google busquen parecidos.'],
       ['Valor de vida del cliente (CLV/LTV)', 'Fija cuánto se puede pagar por un cliente según su segmento y su riesgo.'],
-      ['Predicción de churn', 'Tu experiencia de Frubana aplicada a renovaciones: a quién retener antes de que se vaya.'],
+      ['Predicción de churn', 'Aplicado a renovaciones: a quién retener antes de que se vaya.'],
       ['Next best offer y venta cruzada', 'Qué producto ofrecer a cada cliente que paga bien.'],
-      ['Detección de anomalías y leads inválidos', 'Tus alertas tempranas y de fraude aplicadas a leads por canal.'],
+      ['Detección de anomalías y leads inválidos', 'Alertas tempranas y de fraude aplicadas a leads por canal.'],
       ['Optimización de oferta con restricción de riesgo', 'Maximiza conversión sin pasar un límite de pérdida esperada.'],
       ['Double Machine Learning', 'Mide el efecto real de la tasa en la conversión, separado del perfil del cliente.']]}
   };
@@ -1085,7 +1101,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     const q = norm(document.getElementById('catQ').value.trim()), ar = areaSel.value;
     const list = CAT.filter(c => (!catLv || c.lv === catLv) && (!catStar || c.v) && (!ar || c.a === ar) && (!q || norm(c.n + ' ' + c.u + ' ' + c.e + ' ' + c.l + ' ' + c.a).includes(q)));
     document.getElementById('catCount').textContent = `${list.length} de ${CAT.length} técnicas`;
-    document.getElementById('catBox').innerHTML = list.length ? list.map(c => `<div class="ci"><div class="ci-top"><span class="lv lv${c.lv}">${LVN[c.lv]}</span>${c.v ? '<span class="star">★ Tu ventaja</span>' : ''}</div><span class="area">${c.a}</span><h3>${c.n}</h3><p>${c.u}</p><p class="ex"><b>Ejemplo dummy:</b> ${c.e}</p><div class="libs">${c.l.split(', ').map(x => `<span class="lib">${x}</span>`).join('')}</div>${topicsOf(c.n).length ? `<span class="back">En la ruta: ${[...new Map(topicsOf(c.n).map(v => [v.t, v])).values()].map(v => `<a href="#${v.sec}">${v.t}</a>`).join(' · ')}</span>` : ''}<button type="button" class="ask-more" data-cat="${CAT.indexOf(c)}">Pregúntale a Claude cómo aplicarlo</button></div>`).join('') : '<div class="empty">Ninguna técnica coincide. Prueba otra palabra o quita filtros.</div>';
+    document.getElementById('catBox').innerHTML = list.length ? list.map(c => `<div class="ci"><div class="ci-top"><span class="lv lv${c.lv}">${LVN[c.lv]}</span>${c.v ? '<span class="star">★ Puente con riesgo</span>' : ''}</div><span class="area">${c.a}</span><h3>${c.n}</h3><p>${c.u}</p><p class="ex"><b>Ejemplo dummy:</b> ${c.e}</p><div class="libs">${c.l.split(', ').map(x => `<span class="lib">${x}</span>`).join('')}</div>${topicsOf(c.n).length ? `<span class="back">En la ruta: ${[...new Map(topicsOf(c.n).map(v => [v.t, v])).values()].map(v => `<a href="#${v.sec}">${v.t}</a>`).join(' · ')}</span>` : ''}<button type="button" class="ask-more" data-cat="${CAT.indexOf(c)}">Pregúntale a Claude cómo aplicarlo</button></div>`).join('') : '<div class="empty">Ninguna técnica coincide. Prueba otra palabra o quita filtros.</div>';
   }
   document.getElementById('catLv').addEventListener('click', e => {
     const b = e.target.closest('.fchip'); if (!b) return;
@@ -1151,7 +1167,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
   }
   function context(){
     const parts = [...document.querySelectorAll('header.hero, section.mod')].map(s => s.innerText.replace(/\n{2,}/g, '\n')).join('\n\n');
-    return 'Eres un tutor de paid media y analítica de marketing. Ayudas a un data scientist que viene de riesgo de crédito en fintech (Colombia y Perú) a prepararse para un rol de analítica de marketing en una fintech. Responde en español de Colombia, claro y breve (máximo unos 150 palabras salvo que pida más), con ejemplos numéricos inventados cuando ayuden y marcándolos como inventados. Si algo depende de la plataforma y no estás seguro, dilo y sugiere confirmarlo en la ayuda oficial. Usa solo viñetas con "- " y negrita con ** si hace falta formato. Este es el contenido de la página de estudio que está viendo:\n\n' + parts.slice(0, 40000);
+    return 'Eres un tutor de paid media y analítica de marketing. Ayudas a profesionales de datos a aprender analítica de marketing y paid media, con ejemplos de fintech y productos de crédito. Responde en español de Colombia, claro y breve (máximo unos 150 palabras salvo que pida más), con ejemplos numéricos inventados cuando ayuden y marcándolos como inventados. Si algo depende de la plataforma y no estás seguro, dilo y sugiere confirmarlo en la ayuda oficial. Usa solo viñetas con "- " y negrita con ** si hace falta formato. Este es el contenido de la página de estudio que está viendo:\n\n' + parts.slice(0, 40000);
   }
   const errCopy = c => ({rate_limited:'Hay muchas preguntas seguidas. Espera un momento y vuelve a intentar.', not_granted:'No se dio permiso para usar Claude en esta página. Puedes activarlo en el menú de permisos del artefacto.', cancelled:'Pregunta cancelada.', prompt_too_large:'La conversación es muy larga. Recarga la página para empezar una nueva.'}[c] || 'No pude responder ahora. Intenta de nuevo en un momento.');
   const touch = matchMedia('(pointer: coarse)').matches;
@@ -1244,7 +1260,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
 </style>
 <script id="glosario-js">
 (function(){
-  const G = {"PD": ["Probabilidad de default","La probabilidad de que un cliente deje de pagar en un periodo, por lo general un año."],"VaR": ["Value at Risk","La pérdida que no deberías superar en un periodo con cierta confianza; por ejemplo, en 99 de cada 100 días."],"SHAP": ["SHapley Additive exPlanations","Método que reparte una predicción entre las variables para explicar por qué el modelo decidió así."],"PSI": ["Population Stability Index","Mide cuánto cambió la población que llega hoy frente a la que se usó para construir el modelo. Más de 0,25 es un cambio fuerte."],"ML": ["Machine learning","Modelos que aprenden patrones de los datos para predecir o clasificar."],"pp": ["Puntos porcentuales","Diferencia directa entre dos porcentajes: de 5 % a 7 % hay 2 pp."],"pb": ["Puntos básicos","Centésimas de un punto porcentual: 100 pb equivalen a 1 %."],"KS": ["Kolmogorov-Smirnov","La mayor separación entre buenos y malos que logra un score. Más alto significa que ordena mejor."],"AUC": ["Área bajo la curva ROC","Probabilidad de que el modelo ponga más arriba a un caso positivo que a uno negativo escogidos al azar. 0,5 es azar; 1 es perfecto."],"Gini": ["Coeficiente de Gini","Qué tan bien ordena el modelo a los clientes del más al menos riesgoso. 0 es azar y 100 % es perfecto; equivale a 2 × AUC − 1."],"NLP": ["Procesamiento de lenguaje natural","Técnicas para que un modelo entienda o genere texto."],"CPM": ["Costo por mil impresiones","Lo que pagas porque tu anuncio se muestre mil veces."],"CTR": ["Click-through rate","De cada 100 personas que ven el anuncio, cuántas hacen clic."],"CPC": ["Costo por clic","Lo que pagas en promedio por cada clic."],"CVR": ["Tasa de conversión","De cada 100 clics, cuántos terminan haciendo la acción que buscas, como dejar sus datos."],"CPL": ["Costo por lead","Lo que cuesta conseguir a una persona interesada que deja sus datos."],"CPA": ["Costo por adquisición","Lo que pagas en pauta por cada acción objetivo: una venta, un registro, un crédito."],"ROAS": ["Return on ad spend","Cuántos pesos de ingreso vuelven por cada peso invertido en pauta."],"ROI": ["Return on investment","La ganancia neta sobre lo invertido, ya descontando todos los costos, incluida la mora."],"CAC": ["Costo de adquisición de cliente","Todo lo que cuesta conseguir un cliente nuevo: pauta, equipo y herramientas."],"LTV": ["Lifetime value","Cuánto deja un cliente en toda su relación con la empresa."],"CLV": ["Customer lifetime value","Cuánto deja un cliente en toda su relación con la empresa."],"CPB": ["Sigla no estándar","Puede ser costo por venta o costo por desembolso. Conviene confirmar con quien la usa."],"tCPA": ["CPA objetivo","Estrategia de puja en la que le dices a la plataforma cuánto quieres pagar por conversión."],"tROAS": ["ROAS objetivo","Estrategia de puja en la que le pides a la plataforma un retorno mínimo por peso invertido."],"MMM": ["Marketing Mix Modeling","Modelo que estima cuánto aporta cada canal a las ventas con datos agregados por semana."],"CUPED": ["","Técnica que usa datos de antes del experimento para reducir el ruido y llegar antes a una conclusión."],"A/B": ["Prueba A/B","Experimento que muestra dos versiones a grupos escogidos al azar para ver cuál funciona mejor."],"RFM": ["Recencia, frecuencia y monto","Segmenta a los clientes por hace cuánto compraron, cuántas veces y cuánto."],"holdout": ["Grupo de control","Personas que no ven la campaña, para medir su efecto real comparando con quienes sí la ven."],"uplift": ["","Cuánto cambia la probabilidad de que alguien convierta por haber visto la campaña."],"Uplift": ["","Cuánto cambia la probabilidad de que alguien convierta por haber visto la campaña."],"lookalike": ["Audiencia similar","Personas parecidas a una lista semilla de tus mejores clientes, que la plataforma busca por ti."],"adstock": ["","El efecto de la pauta que se arrastra varias semanas después de mostrarla."],"remarketing": ["","Volver a mostrar anuncios a quien ya visitó tu sitio o tu app."],"lead": ["","Persona interesada que dejó sus datos."],"leads": ["","Personas interesadas que dejaron sus datos."],"Leads": ["","Personas interesadas que dejaron sus datos."],"Qini": ["Curva Qini","Mide qué tan bien ordena un modelo uplift a las personas según cuánto les cambia la campaña."],"T-learner": ["","Método uplift con dos modelos: uno entrenado con quienes vieron la campaña y otro con quienes no."],"S-learner": ["","Método uplift con un solo modelo que recibe como variable si la persona vio la campaña."],"X-learner": ["","Método uplift en dos etapas que funciona bien cuando un grupo es mucho más grande que el otro."],"geo-lift": ["","Experimento que apaga o sube la pauta en algunas ciudades y compara con las demás."],"Thompson": ["Muestreo de Thompson","Regla que da más tráfico a la opción que va ganando, sin dejar de probar las demás."],"Bandits": ["","Algoritmos que reparten el tráfico mientras aprenden cuál opción funciona mejor."],"Search": ["Google Search","Anuncios en los resultados de búsqueda: llegan a quien ya está buscando."],"Display": ["Google Display","Anuncios gráficos en sitios web y apps: mucho alcance y poca intención de compra."],"Isolation Forest": ["","Algoritmo que detecta datos raros porque se aíslan con pocos cortes."],"MDE": ["Efecto mínimo detectable","El cambio más pequeño que el experimento puede detectar con confianza."],"conjoint": ["Análisis conjoint","Encuesta en la que la gente elige entre combinaciones de atributos, para medir cuánto valora cada uno."],"potencia": ["Potencia estadística","Probabilidad de que el experimento detecte el efecto si de verdad existe. Lo usual es 80 %."],"Skillshop": ["Google Skillshop","La plataforma gratuita de cursos y certificaciones de Google Ads."],"Blueprint": ["Meta Blueprint","La plataforma de cursos y certificaciones de publicidad de Meta."],"CausalImpact": ["","Método que estima qué habría pasado sin un cambio usando series que no fueron afectadas."],"embudo": ["","Los pasos que recorre una persona: ve el anuncio, hace clic, deja sus datos y termina comprando o tomando el crédito."]};
+  const G = {"PD": ["Probabilidad de default", "La probabilidad de que un cliente deje de pagar en un periodo, por lo general un año."], "VaR": ["Value at Risk", "La pérdida que no deberías superar en un periodo con cierta confianza; por ejemplo, en 99 de cada 100 días."], "SHAP": ["SHapley Additive exPlanations", "Método que reparte una predicción entre las variables para explicar por qué el modelo decidió así."], "PSI": ["Population Stability Index", "Mide cuánto cambió la población que llega hoy frente a la que se usó para construir el modelo. Más de 0,25 es un cambio fuerte."], "ML": ["Machine learning", "Modelos que aprenden patrones de los datos para predecir o clasificar."], "pp": ["Puntos porcentuales", "Diferencia directa entre dos porcentajes: de 5 % a 7 % hay 2 pp."], "pb": ["Puntos básicos", "Centésimas de un punto porcentual: 100 pb equivalen a 1 %."], "KS": ["Kolmogorov-Smirnov", "La mayor separación entre buenos y malos que logra un score. Más alto significa que ordena mejor."], "AUC": ["Área bajo la curva ROC", "Probabilidad de que el modelo ponga más arriba a un caso positivo que a uno negativo escogidos al azar. 0,5 es azar; 1 es perfecto."], "Gini": ["Coeficiente de Gini", "Qué tan bien ordena el modelo a los clientes del más al menos riesgoso. 0 es azar y 100 % es perfecto; equivale a 2 × AUC − 1."], "NLP": ["Procesamiento de lenguaje natural", "Técnicas para que un modelo entienda o genere texto."], "CPM": ["Costo por mil impresiones", "Lo que pagas porque tu anuncio se muestre mil veces."], "CTR": ["Click-through rate", "De cada 100 personas que ven el anuncio, cuántas hacen clic."], "CPC": ["Costo por clic", "Lo que pagas en promedio por cada clic."], "CVR": ["Tasa de conversión", "De cada 100 clics, cuántos terminan haciendo la acción que buscas, como dejar sus datos."], "CPL": ["Costo por lead", "Lo que cuesta conseguir a una persona interesada que deja sus datos."], "CPA": ["Costo por adquisición", "Lo que pagas en pauta por cada acción objetivo: una venta, un registro, un crédito."], "ROAS": ["Return on ad spend", "Cuántos pesos de ingreso vuelven por cada peso invertido en pauta."], "ROI": ["Return on investment", "La ganancia neta sobre lo invertido, ya descontando todos los costos, incluida la mora."], "CAC": ["Costo de adquisición de cliente", "Todo lo que cuesta conseguir un cliente nuevo: pauta, equipo y herramientas."], "LTV": ["Lifetime value", "Cuánto deja un cliente en toda su relación con la empresa."], "CLV": ["Customer lifetime value", "Cuánto deja un cliente en toda su relación con la empresa."], "tCPA": ["CPA objetivo", "Estrategia de puja en la que le dices a la plataforma cuánto quieres pagar por conversión."], "tROAS": ["ROAS objetivo", "Estrategia de puja en la que le pides a la plataforma un retorno mínimo por peso invertido."], "MMM": ["Marketing Mix Modeling", "Modelo que estima cuánto aporta cada canal a las ventas con datos agregados por semana."], "CUPED": ["", "Técnica que usa datos de antes del experimento para reducir el ruido y llegar antes a una conclusión."], "A/B": ["Prueba A/B", "Experimento que muestra dos versiones a grupos escogidos al azar para ver cuál funciona mejor."], "RFM": ["Recencia, frecuencia y monto", "Segmenta a los clientes por hace cuánto compraron, cuántas veces y cuánto."], "holdout": ["Grupo de control", "Personas que no ven la campaña, para medir su efecto real comparando con quienes sí la ven."], "uplift": ["", "Cuánto cambia la probabilidad de que alguien convierta por haber visto la campaña."], "Uplift": ["", "Cuánto cambia la probabilidad de que alguien convierta por haber visto la campaña."], "lookalike": ["Audiencia similar", "Personas parecidas a una lista semilla de tus mejores clientes, que la plataforma busca por ti."], "adstock": ["", "El efecto de la pauta que se arrastra varias semanas después de mostrarla."], "remarketing": ["", "Volver a mostrar anuncios a quien ya visitó tu sitio o tu app."], "lead": ["", "Persona interesada que dejó sus datos."], "leads": ["", "Personas interesadas que dejaron sus datos."], "Leads": ["", "Personas interesadas que dejaron sus datos."], "Qini": ["Curva Qini", "Mide qué tan bien ordena un modelo uplift a las personas según cuánto les cambia la campaña."], "T-learner": ["", "Método uplift con dos modelos: uno entrenado con quienes vieron la campaña y otro con quienes no."], "S-learner": ["", "Método uplift con un solo modelo que recibe como variable si la persona vio la campaña."], "X-learner": ["", "Método uplift en dos etapas que funciona bien cuando un grupo es mucho más grande que el otro."], "geo-lift": ["", "Experimento que apaga o sube la pauta en algunas ciudades y compara con las demás."], "Thompson": ["Muestreo de Thompson", "Regla que da más tráfico a la opción que va ganando, sin dejar de probar las demás."], "Bandits": ["", "Algoritmos que reparten el tráfico mientras aprenden cuál opción funciona mejor."], "Search": ["Google Search", "Anuncios en los resultados de búsqueda: llegan a quien ya está buscando."], "Display": ["Google Display", "Anuncios gráficos en sitios web y apps: mucho alcance y poca intención de compra."], "Isolation Forest": ["", "Algoritmo que detecta datos raros porque se aíslan con pocos cortes."], "MDE": ["Efecto mínimo detectable", "El cambio más pequeño que el experimento puede detectar con confianza."], "conjoint": ["Análisis conjoint", "Encuesta en la que la gente elige entre combinaciones de atributos, para medir cuánto valora cada uno."], "potencia": ["Potencia estadística", "Probabilidad de que el experimento detecte el efecto si de verdad existe. Lo usual es 80 %."], "Skillshop": ["Google Skillshop", "La plataforma gratuita de cursos y certificaciones de Google Ads."], "Blueprint": ["Meta Blueprint", "La plataforma de cursos y certificaciones de publicidad de Meta."], "CausalImpact": ["", "Método que estima qué habría pasado sin un cambio usando series que no fueron afectadas."], "embudo": ["", "Los pasos que recorre una persona: ve el anuncio, hace clic, deja sus datos y termina comprando o tomando el crédito."]};
   const keys = Object.keys(G).sort((a, b) => b.length - a.length);
   if (!keys.length) return;
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

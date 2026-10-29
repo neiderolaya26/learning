@@ -4,6 +4,16 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 
 ## [Sin publicar]
 
+## [3.0.0] - 2026-10-28
+
+La ruta de Paid Media deja de ser una preparación para una entrevista concreta y pasa a ser una ruta profesional, organizada con los programas de Columbia, Wharton y Harvard.
+
+### Cambiado
+- Paid Media: portada, módulo "El campo" y fase de aprendizaje reescritos sin el contexto de la entrevista (se quitan la "regla del líder" y la sigla CPB).
+- Paid Media: el módulo "Tu ventaja" pasa a ser "Valor del cliente: adquisición ajustada por calidad del cliente", sin datos personales ni empleadores, y se ubica después de experimentos.
+- Paid Media: el plan principal es el de 10 semanas alineado con Columbia y Wharton, con casillas de progreso; el plan de 14 días queda como arranque opcional y termina en una presentación en vez de una entrevista.
+- Paid Media: catálogo, quiz y chat sin referencias personales; la etiqueta "Tu ventaja" pasa a ser "Puente con riesgo".
+
 ## [2.1.0] - 2026-10-28
 
 Las rutas citan sus fuentes: cada afirmación se puede rastrear hasta una norma, un libro, un artículo o un programa oficial.
@@ -44,7 +54,8 @@ Las cuatro rutas se reestructuran con los planes de estudio de programas de refe
 - Ruta de **IA y Data Science**: repaso de máster con quices y examen final, y la ruta por los cursos públicos del profesor Sergio A. Mora Pardo.
 - Portada con enlaces a las rutas.
 
-[Sin publicar]: https://github.com/neiderolaya26/learning/compare/v2.1.0...HEAD
+[Sin publicar]: https://github.com/neiderolaya26/learning/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/neiderolaya26/learning/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/neiderolaya26/learning/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/neiderolaya26/learning/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/neiderolaya26/learning/compare/v1.0.0...v1.1.0
