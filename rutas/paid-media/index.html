@@ -1094,4 +1094,155 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
 })();
 </script>
 
+<!-- Glosario emergente: subraya siglas y términos técnicos y muestra su definición en palabras sencillas al pasar el cursor, tocar o enfocar con el teclado. -->
+<style id="glosario-css">
+.gl{border-bottom:1.5px dotted currentColor;cursor:pointer;border-radius:2px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.gl:hover,.gl[aria-expanded="true"]{background:rgba(127,127,127,.18)}
+.gl:focus-visible{outline:2px solid var(--accent,var(--s1,currentColor));outline-offset:1px}
+.gl-pop{position:fixed;z-index:60;max-width:min(300px,calc(100vw - 32px));padding:10px 12px;border-radius:10px;background:var(--fg,var(--ink,#111));color:var(--bg,#fff);font:400 .86rem/1.45 var(--body,system-ui,sans-serif);text-align:left;letter-spacing:normal;text-transform:none;box-shadow:0 8px 24px rgba(0,0,0,.25);pointer-events:none}
+.gl-pop b{display:block;font-weight:700}
+.gl-pop .gl-l{display:block;font-size:.76rem;opacity:.8;margin-bottom:4px}
+@media (prefers-reduced-motion:no-preference){.gl-pop:not([hidden]){animation:gl-in .12s ease-out}@keyframes gl-in{from{opacity:0;transform:translateY(3px)}}}
+</style>
+<script id="glosario-js">
+(function(){
+  const G = {"PD": ["Probabilidad de default","La probabilidad de que un cliente deje de pagar en un periodo, por lo general un año."],"VaR": ["Value at Risk","La pérdida que no deberías superar en un periodo con cierta confianza; por ejemplo, en 99 de cada 100 días."],"SHAP": ["SHapley Additive exPlanations","Método que reparte una predicción entre las variables para explicar por qué el modelo decidió así."],"PSI": ["Population Stability Index","Mide cuánto cambió la población que llega hoy frente a la que se usó para construir el modelo. Más de 0,25 es un cambio fuerte."],"ML": ["Machine learning","Modelos que aprenden patrones de los datos para predecir o clasificar."],"pp": ["Puntos porcentuales","Diferencia directa entre dos porcentajes: de 5 % a 7 % hay 2 pp."],"pb": ["Puntos básicos","Centésimas de un punto porcentual: 100 pb equivalen a 1 %."],"KS": ["Kolmogorov-Smirnov","La mayor separación entre buenos y malos que logra un score. Más alto significa que ordena mejor."],"AUC": ["Área bajo la curva ROC","Probabilidad de que el modelo ponga más arriba a un caso positivo que a uno negativo escogidos al azar. 0,5 es azar; 1 es perfecto."],"Gini": ["Coeficiente de Gini","Qué tan bien ordena el modelo a los clientes del más al menos riesgoso. 0 es azar y 100 % es perfecto; equivale a 2 × AUC − 1."],"NLP": ["Procesamiento de lenguaje natural","Técnicas para que un modelo entienda o genere texto."],"CPM": ["Costo por mil impresiones","Lo que pagas porque tu anuncio se muestre mil veces."],"CTR": ["Click-through rate","De cada 100 personas que ven el anuncio, cuántas hacen clic."],"CPC": ["Costo por clic","Lo que pagas en promedio por cada clic."],"CVR": ["Tasa de conversión","De cada 100 clics, cuántos terminan haciendo la acción que buscas, como dejar sus datos."],"CPL": ["Costo por lead","Lo que cuesta conseguir a una persona interesada que deja sus datos."],"CPA": ["Costo por adquisición","Lo que pagas en pauta por cada acción objetivo: una venta, un registro, un crédito."],"ROAS": ["Return on ad spend","Cuántos pesos de ingreso vuelven por cada peso invertido en pauta."],"ROI": ["Return on investment","La ganancia neta sobre lo invertido, ya descontando todos los costos, incluida la mora."],"CAC": ["Costo de adquisición de cliente","Todo lo que cuesta conseguir un cliente nuevo: pauta, equipo y herramientas."],"LTV": ["Lifetime value","Cuánto deja un cliente en toda su relación con la empresa."],"CLV": ["Customer lifetime value","Cuánto deja un cliente en toda su relación con la empresa."],"CPB": ["Sigla no estándar","Puede ser costo por venta o costo por desembolso. Conviene confirmar con quien la usa."],"tCPA": ["CPA objetivo","Estrategia de puja en la que le dices a la plataforma cuánto quieres pagar por conversión."],"tROAS": ["ROAS objetivo","Estrategia de puja en la que le pides a la plataforma un retorno mínimo por peso invertido."],"MMM": ["Marketing Mix Modeling","Modelo que estima cuánto aporta cada canal a las ventas con datos agregados por semana."],"CUPED": ["","Técnica que usa datos de antes del experimento para reducir el ruido y llegar antes a una conclusión."],"A/B": ["Prueba A/B","Experimento que muestra dos versiones a grupos escogidos al azar para ver cuál funciona mejor."],"RFM": ["Recencia, frecuencia y monto","Segmenta a los clientes por hace cuánto compraron, cuántas veces y cuánto."],"holdout": ["Grupo de control","Personas que no ven la campaña, para medir su efecto real comparando con quienes sí la ven."],"uplift": ["","Cuánto cambia la probabilidad de que alguien convierta por haber visto la campaña."],"Uplift": ["","Cuánto cambia la probabilidad de que alguien convierta por haber visto la campaña."],"lookalike": ["Audiencia similar","Personas parecidas a una lista semilla de tus mejores clientes, que la plataforma busca por ti."],"adstock": ["","El efecto de la pauta que se arrastra varias semanas después de mostrarla."],"remarketing": ["","Volver a mostrar anuncios a quien ya visitó tu sitio o tu app."],"lead": ["","Persona interesada que dejó sus datos."],"leads": ["","Personas interesadas que dejaron sus datos."],"Leads": ["","Personas interesadas que dejaron sus datos."],"Qini": ["Curva Qini","Mide qué tan bien ordena un modelo uplift a las personas según cuánto les cambia la campaña."],"T-learner": ["","Método uplift con dos modelos: uno entrenado con quienes vieron la campaña y otro con quienes no."],"S-learner": ["","Método uplift con un solo modelo que recibe como variable si la persona vio la campaña."],"X-learner": ["","Método uplift en dos etapas que funciona bien cuando un grupo es mucho más grande que el otro."],"geo-lift": ["","Experimento que apaga o sube la pauta en algunas ciudades y compara con las demás."],"Thompson": ["Muestreo de Thompson","Regla que da más tráfico a la opción que va ganando, sin dejar de probar las demás."],"Bandits": ["","Algoritmos que reparten el tráfico mientras aprenden cuál opción funciona mejor."],"Search": ["Google Search","Anuncios en los resultados de búsqueda: llegan a quien ya está buscando."],"Display": ["Google Display","Anuncios gráficos en sitios web y apps: mucho alcance y poca intención de compra."],"Isolation Forest": ["","Algoritmo que detecta datos raros porque se aíslan con pocos cortes."],"MDE": ["Efecto mínimo detectable","El cambio más pequeño que el experimento puede detectar con confianza."],"conjoint": ["Análisis conjoint","Encuesta en la que la gente elige entre combinaciones de atributos, para medir cuánto valora cada uno."],"potencia": ["Potencia estadística","Probabilidad de que el experimento detecte el efecto si de verdad existe. Lo usual es 80 %."],"Skillshop": ["Google Skillshop","La plataforma gratuita de cursos y certificaciones de Google Ads."],"Blueprint": ["Meta Blueprint","La plataforma de cursos y certificaciones de publicidad de Meta."],"CausalImpact": ["","Método que estima qué habría pasado sin un cambio usando series que no fueron afectadas."],"embudo": ["","Los pasos que recorre una persona: ve el anuncio, hace clic, deja sus datos y termina comprando o tomando el crédito."]};
+  const keys = Object.keys(G).sort((a, b) => b.length - a.length);
+  if (!keys.length) return;
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const RE = new RegExp('(?<![\\p{L}\\p{N}_])(' + keys.map(esc).join('|') + ')(?![\\p{L}\\p{N}_])', 'gu');
+  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab';
+  const BLOCK = '.metric,.stat,.ci,.q,.card,.tech,.stg,.lvcard,.ov,.why,.fb,tr,li,.panel,.lesson,section,details,header,footer';
+  const seen = new WeakMap();
+
+  function scan(root){
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode(n){
+      const p = n.parentElement;
+      if (!p || !n.nodeValue.trim() || p.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+      RE.lastIndex = 0;
+      return RE.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }});
+    const nodes = [];
+    while (w.nextNode()) nodes.push(w.currentNode);
+    nodes.forEach(n => {
+      const box = n.parentElement.closest(BLOCK) || document.body;
+      let s = seen.get(box);
+      if (!s) { s = new Set(); seen.set(box, s); }
+      const txt = n.nodeValue;
+      let last = 0, m, frag = null;
+      RE.lastIndex = 0;
+      while ((m = RE.exec(txt))) {
+        const k = m[1];
+        if (s.has(k)) continue;
+        s.add(k);
+        frag = frag || document.createDocumentFragment();
+        frag.append(txt.slice(last, m.index));
+        const sp = document.createElement('span');
+        sp.className = 'gl'; sp.tabIndex = 0; sp.dataset.gl = k; sp.textContent = k;
+        sp.setAttribute('role', 'button'); sp.setAttribute('aria-expanded', 'false');
+        frag.append(sp);
+        last = m.index + k.length;
+      }
+      if (frag) { frag.append(txt.slice(last)); n.replaceWith(frag); }
+    });
+  }
+
+  const pop = document.createElement('div');
+  pop.className = 'gl-pop'; pop.id = 'gl-pop'; pop.setAttribute('role', 'tooltip'); pop.hidden = true;
+  document.body.appendChild(pop);
+  let cur = null, pinned = false, timer = null;
+
+  function place(){
+    if (!cur) return;
+    const r = cur.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+    const x = Math.min(Math.max(16, r.left + r.width / 2 - pw / 2), innerWidth - 16 - pw);
+    let y = r.bottom + 8;
+    if (y + ph > innerHeight - 8) y = Math.max(8, r.top - 8 - ph);
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+  }
+  function show(el, pin){
+    const d = G[el.dataset.gl];
+    if (!d) return;
+    clearTimeout(timer);
+    if (cur && cur !== el) { cur.setAttribute('aria-expanded', 'false'); cur.removeAttribute('aria-describedby'); }
+    cur = el; pinned = !!pin;
+    pop.textContent = '';
+    const b = document.createElement('b'); b.textContent = el.dataset.gl; pop.append(b);
+    if (d[0]) { const l = document.createElement('span'); l.className = 'gl-l'; l.textContent = d[0]; pop.append(l); }
+    pop.append(d[1]);
+    pop.hidden = false;
+    el.setAttribute('aria-expanded', 'true'); el.setAttribute('aria-describedby', 'gl-pop');
+    place();
+  }
+  function hide(){
+    clearTimeout(timer);
+    if (cur) { cur.setAttribute('aria-expanded', 'false'); cur.removeAttribute('aria-describedby'); }
+    cur = null; pinned = false; pop.hidden = true;
+  }
+  const glOf = e => e.target && e.target.closest ? e.target.closest('.gl') : null;
+  document.addEventListener('pointerover', e => { if (e.pointerType !== 'mouse' || pinned) return; const g = glOf(e); if (g) show(g, false); });
+  document.addEventListener('pointerout', e => {
+    if (e.pointerType !== 'mouse' || pinned) return;
+    const g = glOf(e);
+    if (g && !(e.relatedTarget && g.contains(e.relatedTarget))) timer = setTimeout(hide, 120);
+  });
+  // En celulares el toque y la pulsación larga se manejan con eventos de puntero:
+  // Safari en iPhone no entrega el clic de un texto normal a un manejador del documento.
+  let down = null, longTimer = 0, lastTouch = 0;
+  const toggle = g => { if (cur === g && pinned) hide(); else show(g, true); };
+  document.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse') return;
+    const g = glOf(e);
+    if (!g) { if (pinned) hide(); return; }
+    down = {g, x: e.clientX, y: e.clientY, long: false};
+    clearTimeout(longTimer);
+    longTimer = setTimeout(() => { if (down) { down.long = true; show(down.g, true); } }, 450);
+  }, {passive: true});
+  document.addEventListener('pointermove', e => {
+    if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 10) { clearTimeout(longTimer); down = null; }
+  }, {passive: true});
+  document.addEventListener('pointerup', e => {
+    if (e.pointerType === 'mouse' || !down) return;
+    clearTimeout(longTimer);
+    const d = down; down = null; lastTouch = Date.now();
+    if (!d.long) toggle(d.g);
+  });
+  document.addEventListener('pointercancel', () => { clearTimeout(longTimer); down = null; });
+  document.addEventListener('contextmenu', e => { if (glOf(e)) e.preventDefault(); });
+  document.addEventListener('click', e => {
+    const g = glOf(e);
+    if (g) { e.preventDefault(); e.stopPropagation(); if (Date.now() - lastTouch > 600) toggle(g); return; }
+    if (pinned && Date.now() - lastTouch > 600) hide();
+  }, true);
+  document.addEventListener('focusin', e => { const g = glOf(e); if (g && !pinned && Date.now() - lastTouch > 600 && !down) show(g, false); });
+  document.addEventListener('focusout', e => { if (glOf(e) && !pinned) hide(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && cur) hide();
+    else if ((e.key === 'Enter' || e.key === ' ') && glOf(e)) { e.preventDefault(); show(glOf(e), true); }
+  });
+  addEventListener('scroll', () => { if (cur) { if (pinned) place(); else hide(); } }, {passive:true});
+  addEventListener('resize', () => cur && place());
+
+  // Las calculadoras, el quiz y el catálogo se vuelven a dibujar: se revisa solo lo nuevo.
+  const queue = new Set();
+  let raf = 0;
+  const mo = new MutationObserver(ms => {
+    ms.forEach(m => m.addedNodes.forEach(n => {
+      if (n.nodeType === 1 && !n.classList.contains('gl') && n !== pop) queue.add(n);
+      else if (n.nodeType === 3 && n.parentElement) queue.add(n.parentElement);
+    }));
+    if (cur && !cur.isConnected) hide();
+    if (!raf) raf = requestAnimationFrame(flush);
+  });
+  function flush(){
+    raf = 0; mo.disconnect();
+    queue.forEach(n => { if (n.isConnected) scan(n); });
+    queue.clear();
+    mo.observe(document.body, {childList:true, subtree:true});
+  }
+  scan(document.body);
+  mo.observe(document.body, {childList:true, subtree:true});
+})();
+</script>
+
 </body></html>

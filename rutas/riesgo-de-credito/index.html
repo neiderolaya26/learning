@@ -1084,4 +1084,155 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
 })();
 </script>
 
+<!-- Glosario emergente: subraya siglas y términos técnicos y muestra su definición en palabras sencillas al pasar el cursor, tocar o enfocar con el teclado. -->
+<style id="glosario-css">
+.gl{border-bottom:1.5px dotted currentColor;cursor:pointer;border-radius:2px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.gl:hover,.gl[aria-expanded="true"]{background:rgba(127,127,127,.18)}
+.gl:focus-visible{outline:2px solid var(--accent,var(--s1,currentColor));outline-offset:1px}
+.gl-pop{position:fixed;z-index:60;max-width:min(300px,calc(100vw - 32px));padding:10px 12px;border-radius:10px;background:var(--fg,var(--ink,#111));color:var(--bg,#fff);font:400 .86rem/1.45 var(--body,system-ui,sans-serif);text-align:left;letter-spacing:normal;text-transform:none;box-shadow:0 8px 24px rgba(0,0,0,.25);pointer-events:none}
+.gl-pop b{display:block;font-weight:700}
+.gl-pop .gl-l{display:block;font-size:.76rem;opacity:.8;margin-bottom:4px}
+@media (prefers-reduced-motion:no-preference){.gl-pop:not([hidden]){animation:gl-in .12s ease-out}@keyframes gl-in{from{opacity:0;transform:translateY(3px)}}}
+</style>
+<script id="glosario-js">
+(function(){
+  const G = {"PD": ["Probabilidad de default","La probabilidad de que un cliente deje de pagar en un periodo, por lo general un año."],"VaR": ["Value at Risk","La pérdida que no deberías superar en un periodo con cierta confianza; por ejemplo, en 99 de cada 100 días."],"SHAP": ["SHapley Additive exPlanations","Método que reparte una predicción entre las variables para explicar por qué el modelo decidió así."],"PSI": ["Population Stability Index","Mide cuánto cambió la población que llega hoy frente a la que se usó para construir el modelo. Más de 0,25 es un cambio fuerte."],"ML": ["Machine learning","Modelos que aprenden patrones de los datos para predecir o clasificar."],"pp": ["Puntos porcentuales","Diferencia directa entre dos porcentajes: de 5 % a 7 % hay 2 pp."],"pb": ["Puntos básicos","Centésimas de un punto porcentual: 100 pb equivalen a 1 %."],"KS": ["Kolmogorov-Smirnov","La mayor separación entre buenos y malos que logra un score. Más alto significa que ordena mejor."],"AUC": ["Área bajo la curva ROC","Probabilidad de que el modelo ponga más arriba a un caso positivo que a uno negativo escogidos al azar. 0,5 es azar; 1 es perfecto."],"Gini": ["Coeficiente de Gini","Qué tan bien ordena el modelo a los clientes del más al menos riesgoso. 0 es azar y 100 % es perfecto; equivale a 2 × AUC − 1."],"NLP": ["Procesamiento de lenguaje natural","Técnicas para que un modelo entienda o genere texto."],"LGD": ["Pérdida dado default","Qué porcentaje de lo prestado se pierde si el cliente no paga, después de lo que se logra recuperar."],"EAD": ["Exposición al default","Cuánto te debe el cliente en el momento en que deja de pagar."],"EL": ["Pérdida esperada","Lo que en promedio esperas perder: PD × LGD × EAD."],"CCF": ["Factor de conversión de crédito","Qué parte del cupo que el cliente no ha usado termina usando antes de dejar de pagar."],"WoE": ["Weight of Evidence","Indica si un tramo de una variable tiene proporcionalmente más buenos o más malos pagadores. Negativo significa más riesgo."],"IV": ["Information Value","Mide qué tanto separa una variable a los buenos de los malos pagadores."],"PDO": ["Points to Double the Odds","Cuántos puntos de score hay que sumar para que la relación buenos:malos se duplique."],"Brier": ["Brier score","Error promedio entre la probabilidad que predijo el modelo y lo que pasó. Más bajo es mejor."],"MOB": ["Months on book","Meses que lleva un crédito desde que se desembolsó."],"SICR": ["Aumento significativo del riesgo de crédito","Cuando un crédito empeoró bastante desde que se otorgó; obliga a provisionar la pérdida de toda su vida."],"ECL": ["Expected Credit Loss","La pérdida esperada que la NIIF 9 obliga a provisionar."],"NIIF 9": ["Norma Internacional de Información Financiera 9","La norma contable que define cómo provisionar la pérdida esperada de los créditos."],"IFRS 9": ["International Financial Reporting Standard 9","Nombre en inglés de la NIIF 9: cómo provisionar la pérdida esperada de los créditos."],"CECL": ["Current Expected Credit Loss","La versión de Estados Unidos de la NIIF 9: provisiona la pérdida de toda la vida del crédito desde el primer día."],"IRB": ["Internal Ratings-Based","Enfoque de Basilea en el que el banco usa sus propios modelos de PD y LGD para calcular su capital."],"RWA": ["Risk-weighted assets","Los préstamos ajustados por su riesgo; el capital mínimo es un porcentaje de ellos."],"APR": ["Activos ponderados por riesgo","Los préstamos ajustados por su riesgo; el capital mínimo es un porcentaje de ellos."],"RAROC": ["Retorno ajustado por riesgo sobre el capital","Cuánto rinde un crédito por cada peso de capital que consume."],"CSI": ["Characteristic Stability Index","El PSI calculado variable por variable, para ver cuál cambió."],"SR 11-7": ["","Guía de la Reserva Federal de Estados Unidos sobre cómo gestionar el riesgo de los modelos."],"LCR": ["Liquidity Coverage Ratio","Exige tener activos líquidos para aguantar 30 días de salidas de plata en estrés."],"NSFR": ["Net Stable Funding Ratio","Exige que lo que se presta a largo plazo esté financiado con fuentes estables."],"XGBoost": ["","Algoritmo de muchos árboles de decisión en secuencia; suele ser el más preciso con datos en tablas."],"BCBS": ["Comité de Supervisión Bancaria de Basilea","El comité internacional que define las reglas de capital de los bancos."],"EBA": ["Autoridad Bancaria Europea","El supervisor bancario de la Unión Europea."],"Basilea": ["","Reglas internacionales que fijan cuánto capital deben tener los bancos según su riesgo."],"swap-in": ["","Clientes que el modelo nuevo aprueba y el viejo rechazaba."],"swap-out": ["","Clientes que el modelo viejo aprobaba y el nuevo rechaza."],"Swap set": ["","Comparación de quién entra y quién sale al cambiar de modelo, a igual tasa de aprobación."],"cosecha": ["Vintage","Grupo de créditos desembolsados el mismo mes, que se sigue en el tiempo para ver cómo pagan."],"cosechas": ["Vintages","Grupos de créditos desembolsados el mismo mes, que se siguen en el tiempo para ver cómo pagan."],"Cosechas": ["Vintages","Grupos de créditos desembolsados el mismo mes, que se siguen en el tiempo para ver cómo pagan."],"roll rates": ["","Porcentaje de cuentas que pasan de un tramo de mora al siguiente en un mes."],"Roll rates": ["","Porcentaje de cuentas que pasan de un tramo de mora al siguiente en un mes."],"Vasicek": ["Modelo de Vasicek","Supone que todos los deudores dependen de la economía; es la base de la fórmula de capital de Basilea."],"opex": ["Costo operativo","Lo que cuesta operar el negocio: personal, tecnología, cobranza."],"TTC": ["Through the cycle","PD promedio de largo plazo, que no se mueve con el ciclo económico."],"PIT": ["Point in time","PD que refleja la situación económica del momento."],"buró": ["Central de riesgo","Base de datos con el historial de pagos de las personas, como Datacrédito o TransUnion."],"castigo": ["","Sacar del balance un crédito que ya no se va a cobrar, reconociéndolo como pérdida."],"Hosmer-Lemeshow": ["","Prueba estadística que compara, por grupos, las probabilidades predichas con lo que pasó."],"CDS": ["Credit default swap","Un seguro contra el incumplimiento de un emisor: pagas una prima anual y te pagan si no paga."],"CVA": ["Credit Valuation Adjustment","Descuento al valor de un derivado por el riesgo de que la contraparte no pague."],"FRM": ["Financial Risk Manager","Certificación de GARP en gestión de riesgos, con dos exámenes."],"GARP": ["Global Association of Risk Professionals","La asociación que otorga la certificación FRM."],"ALM": ["Asset-Liability Management","Gestionar que los plazos y tasas de lo que se presta calcen con los de lo que se debe."],"titularización": ["","Empaquetar créditos y venderlos a inversionistas como bonos divididos en tramos de riesgo."],"Titularización": ["","Empaquetar créditos y venderlos a inversionistas como bonos divididos en tramos de riesgo."],"default": ["Incumplimiento","El cliente dejó de pagar; por lo general se define como 90 días de mora."],"scorecard": ["","Modelo que asigna puntos a cada característica del cliente; la suma es su score."],"Scorecards": ["","Modelos que asignan puntos a cada característica del cliente; la suma es su score."],"scorecards": ["","Modelos que asignan puntos a cada característica del cliente; la suma es su score."],"lift": ["","Cuántas veces más malos concentra un grupo frente al promedio."],"Lift": ["","Cuántas veces más malos concentra un grupo frente al promedio."],"odds": ["Momios","La relación entre buenos y malos: odds de 50 significa 50 buenos por cada malo."],"Merton": ["Modelo de Merton","Ve las acciones de una empresa como una opción sobre sus activos; de ahí saca la probabilidad de default."],"Expected Shortfall": ["Pérdida esperada en la cola","Cuánto pierdes en promedio en los escenarios malos que superan el VaR."],"pricing": ["","Fijar la tasa o el precio de un crédito según su riesgo y sus costos."],"Pricing": ["","Fijar la tasa o el precio de un crédito según su riesgo y sus costos."],"fondeo": ["","La plata que la entidad consigue para prestar, y lo que le cuesta."]};
+  const keys = Object.keys(G).sort((a, b) => b.length - a.length);
+  if (!keys.length) return;
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const RE = new RegExp('(?<![\\p{L}\\p{N}_])(' + keys.map(esc).join('|') + ')(?![\\p{L}\\p{N}_])', 'gu');
+  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab';
+  const BLOCK = '.metric,.stat,.ci,.q,.card,.tech,.stg,.lvcard,.ov,.why,.fb,tr,li,.panel,.lesson,section,details,header,footer';
+  const seen = new WeakMap();
+
+  function scan(root){
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode(n){
+      const p = n.parentElement;
+      if (!p || !n.nodeValue.trim() || p.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+      RE.lastIndex = 0;
+      return RE.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }});
+    const nodes = [];
+    while (w.nextNode()) nodes.push(w.currentNode);
+    nodes.forEach(n => {
+      const box = n.parentElement.closest(BLOCK) || document.body;
+      let s = seen.get(box);
+      if (!s) { s = new Set(); seen.set(box, s); }
+      const txt = n.nodeValue;
+      let last = 0, m, frag = null;
+      RE.lastIndex = 0;
+      while ((m = RE.exec(txt))) {
+        const k = m[1];
+        if (s.has(k)) continue;
+        s.add(k);
+        frag = frag || document.createDocumentFragment();
+        frag.append(txt.slice(last, m.index));
+        const sp = document.createElement('span');
+        sp.className = 'gl'; sp.tabIndex = 0; sp.dataset.gl = k; sp.textContent = k;
+        sp.setAttribute('role', 'button'); sp.setAttribute('aria-expanded', 'false');
+        frag.append(sp);
+        last = m.index + k.length;
+      }
+      if (frag) { frag.append(txt.slice(last)); n.replaceWith(frag); }
+    });
+  }
+
+  const pop = document.createElement('div');
+  pop.className = 'gl-pop'; pop.id = 'gl-pop'; pop.setAttribute('role', 'tooltip'); pop.hidden = true;
+  document.body.appendChild(pop);
+  let cur = null, pinned = false, timer = null;
+
+  function place(){
+    if (!cur) return;
+    const r = cur.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+    const x = Math.min(Math.max(16, r.left + r.width / 2 - pw / 2), innerWidth - 16 - pw);
+    let y = r.bottom + 8;
+    if (y + ph > innerHeight - 8) y = Math.max(8, r.top - 8 - ph);
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+  }
+  function show(el, pin){
+    const d = G[el.dataset.gl];
+    if (!d) return;
+    clearTimeout(timer);
+    if (cur && cur !== el) { cur.setAttribute('aria-expanded', 'false'); cur.removeAttribute('aria-describedby'); }
+    cur = el; pinned = !!pin;
+    pop.textContent = '';
+    const b = document.createElement('b'); b.textContent = el.dataset.gl; pop.append(b);
+    if (d[0]) { const l = document.createElement('span'); l.className = 'gl-l'; l.textContent = d[0]; pop.append(l); }
+    pop.append(d[1]);
+    pop.hidden = false;
+    el.setAttribute('aria-expanded', 'true'); el.setAttribute('aria-describedby', 'gl-pop');
+    place();
+  }
+  function hide(){
+    clearTimeout(timer);
+    if (cur) { cur.setAttribute('aria-expanded', 'false'); cur.removeAttribute('aria-describedby'); }
+    cur = null; pinned = false; pop.hidden = true;
+  }
+  const glOf = e => e.target && e.target.closest ? e.target.closest('.gl') : null;
+  document.addEventListener('pointerover', e => { if (e.pointerType !== 'mouse' || pinned) return; const g = glOf(e); if (g) show(g, false); });
+  document.addEventListener('pointerout', e => {
+    if (e.pointerType !== 'mouse' || pinned) return;
+    const g = glOf(e);
+    if (g && !(e.relatedTarget && g.contains(e.relatedTarget))) timer = setTimeout(hide, 120);
+  });
+  // En celulares el toque y la pulsación larga se manejan con eventos de puntero:
+  // Safari en iPhone no entrega el clic de un texto normal a un manejador del documento.
+  let down = null, longTimer = 0, lastTouch = 0;
+  const toggle = g => { if (cur === g && pinned) hide(); else show(g, true); };
+  document.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse') return;
+    const g = glOf(e);
+    if (!g) { if (pinned) hide(); return; }
+    down = {g, x: e.clientX, y: e.clientY, long: false};
+    clearTimeout(longTimer);
+    longTimer = setTimeout(() => { if (down) { down.long = true; show(down.g, true); } }, 450);
+  }, {passive: true});
+  document.addEventListener('pointermove', e => {
+    if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 10) { clearTimeout(longTimer); down = null; }
+  }, {passive: true});
+  document.addEventListener('pointerup', e => {
+    if (e.pointerType === 'mouse' || !down) return;
+    clearTimeout(longTimer);
+    const d = down; down = null; lastTouch = Date.now();
+    if (!d.long) toggle(d.g);
+  });
+  document.addEventListener('pointercancel', () => { clearTimeout(longTimer); down = null; });
+  document.addEventListener('contextmenu', e => { if (glOf(e)) e.preventDefault(); });
+  document.addEventListener('click', e => {
+    const g = glOf(e);
+    if (g) { e.preventDefault(); e.stopPropagation(); if (Date.now() - lastTouch > 600) toggle(g); return; }
+    if (pinned && Date.now() - lastTouch > 600) hide();
+  }, true);
+  document.addEventListener('focusin', e => { const g = glOf(e); if (g && !pinned && Date.now() - lastTouch > 600 && !down) show(g, false); });
+  document.addEventListener('focusout', e => { if (glOf(e) && !pinned) hide(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && cur) hide();
+    else if ((e.key === 'Enter' || e.key === ' ') && glOf(e)) { e.preventDefault(); show(glOf(e), true); }
+  });
+  addEventListener('scroll', () => { if (cur) { if (pinned) place(); else hide(); } }, {passive:true});
+  addEventListener('resize', () => cur && place());
+
+  // Las calculadoras, el quiz y el catálogo se vuelven a dibujar: se revisa solo lo nuevo.
+  const queue = new Set();
+  let raf = 0;
+  const mo = new MutationObserver(ms => {
+    ms.forEach(m => m.addedNodes.forEach(n => {
+      if (n.nodeType === 1 && !n.classList.contains('gl') && n !== pop) queue.add(n);
+      else if (n.nodeType === 3 && n.parentElement) queue.add(n.parentElement);
+    }));
+    if (cur && !cur.isConnected) hide();
+    if (!raf) raf = requestAnimationFrame(flush);
+  });
+  function flush(){
+    raf = 0; mo.disconnect();
+    queue.forEach(n => { if (n.isConnected) scan(n); });
+    queue.clear();
+    mo.observe(document.body, {childList:true, subtree:true});
+  }
+  scan(document.body);
+  mo.observe(document.body, {childList:true, subtree:true});
+})();
+</script>
+
 </body></html>
