@@ -8,6 +8,7 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 - Glosario emergente en las cuatro rutas: cada sigla o término técnico (EA, PD, ROAS, WACC, PSI…) queda subrayado y muestra su definición en palabras sencillas al pasar el cursor, tocarlo o enfocarlo con el teclado. 294 definiciones en total.
 - Riesgo de crédito: sección de programas de referencia (GARP FRM, Imperial College, Stanford MS&E 246 y Universidad de Edimburgo) y módulo nuevo de mercados de crédito con triángulo de crédito (CDS a PD), titularización por tramos y riesgo de contraparte.
 - Paid Media: sección de programas de referencia (Columbia MS in Marketing Science, Wharton, Harvard Business School, Google y Meta), niveles por módulo, módulo de experimentos con calculadora de tamaño de muestra y plan de profundización de 10 semanas.
+- IA y Data Science: sección de programas de referencia (Harvard SM in Data Science, Harvard Extension, Stanford CS229, CS224N y CS231N, y PUJ) y equivalente académico por semana del plan del módulo 0.
 
 ### Cambiado
 - Riesgo de crédito: módulos renumerados según el temario; cada semana del plan indica su referencia académica; quiz de 22 preguntas y catálogo de 41 técnicas.
