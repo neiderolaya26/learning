@@ -224,12 +224,20 @@ footer .wrap{display:grid;gap:12px}
 }
 .ask-more{font:inherit;font-size:.82rem;font-weight:600;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;margin-top:6px;display:none;text-align:left}
 body.can-ask .ask-more{display:block}
+.srcs{font-size:.82rem;color:var(--muted);margin:0}
+.srcs a{font-family:var(--mono);font-weight:600;text-decoration:none;color:var(--accent);margin-left:4px}
+.srcs a:hover{text-decoration:underline}
+.biblio .grp{display:grid;gap:8px}
+.biblio ol{margin:0;padding-left:2.6em;display:grid;gap:6px;font-size:.9rem;line-height:1.5}
+.biblio li{scroll-margin-top:80px;padding:4px 8px;border-radius:6px;overflow-wrap:anywhere}
+.biblio li:target{background:var(--accent-soft)}
+.biblio .lk{font-family:var(--mono);font-size:.76rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media (max-width:480px){.inputs{grid-template-columns:1fr}}
 </style>
 
 <nav class="top" aria-label="Secciones"><div class="wrap">
-  <a href="#programas">Programas</a><a href="#dinero">Valor del dinero</a><a href="#contable">Estados financieros</a><a href="#valoracion">Valoración</a><a href="#costo">Costo de capital</a><a href="#portafolio">Portafolio</a><a href="#bonos">Renta fija</a><a href="#derivados">Derivados</a><a href="#riesgo">Riesgo financiero</a><a href="#avanzado">Avanzado</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 16 semanas</a>
+  <a href="#programas">Programas</a><a href="#dinero">Valor del dinero</a><a href="#contable">Estados financieros</a><a href="#valoracion">Valoración</a><a href="#costo">Costo de capital</a><a href="#portafolio">Portafolio</a><a href="#bonos">Renta fija</a><a href="#derivados">Derivados</a><a href="#riesgo">Riesgo financiero</a><a href="#avanzado">Avanzado</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 16 semanas</a><a href="#bibliografia">Bibliografía</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -270,6 +278,7 @@ body.can-ask .ask-more{display:block}
     <div class="card"><span class="n">Renta fija y derivados</span><p>Bonos, curvas, opciones y la valoración sin arbitraje.</p></div>
     <div class="card"><span class="n">Métodos cuantitativos</span><p>Econometría financiera, series de tiempo, simulación y ML.</p></div>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-32">[32]</a><a href="#ref-33">[33]</a><a href="#ref-34">[34]</a><a href="#ref-35">[35]</a><a href="#ref-36">[36]</a><a href="#ref-37">[37]</a><a href="#ref-38">[38]</a></p>
 </div></section>
 
 <!-- 02 VALOR DEL DINERO -->
@@ -301,6 +310,7 @@ body.can-ask .ask-more{display:block}
     <p class="note" id="fNote"></p>
   </div>
   <div class="bridge" data-topic="dinero"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-4">[4]</a><a href="#ref-39">[39]</a><a href="#ref-3">[3]</a></p>
 </div></section>
 
 <!-- 03 ESTADOS FINANCIEROS -->
@@ -327,6 +337,7 @@ body.can-ask .ask-more{display:block}
     <p style="font-size:.93rem">El flujo de caja libre de la firma (FCFF) es lo que queda para todos los financiadores, deuda y patrimonio, después de mantener y hacer crecer el negocio. Es la base de la valoración del siguiente módulo.</p>
   </div>
   <div class="bridge" data-topic="contable"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-4">[4]</a><a href="#ref-8">[8]</a></p>
 </div></section>
 
 <!-- 04 VALORACION -->
@@ -356,6 +367,7 @@ body.can-ask .ask-more{display:block}
     <div class="panel"><h3>Estructura de capital</h3><p style="font-size:.93rem">Modigliani-Miller: sin impuestos ni costos de quiebra, la mezcla deuda-patrimonio no cambia el valor. Con impuestos, la deuda genera escudo fiscal; con costos de quiebra, demasiada deuda destruye valor. El óptimo está en el balance entre ambos.</p></div>
   </div>
   <div class="bridge" data-topic="valoracion"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-4">[4]</a><a href="#ref-8">[8]</a><a href="#ref-17">[17]</a></p>
 </div></section>
 
 <!-- 05 COSTO DE CAPITAL -->
@@ -380,6 +392,7 @@ body.can-ask .ask-more{display:block}
     <p class="note" id="wNote"></p>
   </div>
   <div class="bridge" data-topic="costo"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-14">[14]</a><a href="#ref-18">[18]</a><a href="#ref-8">[8]</a><a href="#ref-40">[40]</a></p>
 </div></section>
 
 <!-- 06 PORTAFOLIO -->
@@ -408,6 +421,7 @@ body.can-ask .ask-more{display:block}
     <div class="panel"><h3>Modelos de factores</h3><p style="font-size:.93rem">Fama-French y sus extensiones agregan tamaño, valor, rentabilidad, inversión y momentum. El alfa es el retorno que no explican los factores; en la evidencia, casi todo el alfa de los fondos desaparece al controlar por factores y costos.</p></div>
   </div>
   <div class="bridge" data-topic="portafolio"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-13">[13]</a><a href="#ref-14">[14]</a><a href="#ref-15">[15]</a><a href="#ref-16">[16]</a><a href="#ref-5">[5]</a><a href="#ref-41">[41]</a></p>
 </div></section>
 
 <!-- 07 RENTA FIJA -->
@@ -433,6 +447,7 @@ body.can-ask .ask-more{display:block}
     <p style="font-size:.93rem">Relaciona tasa y plazo para bonos del mismo emisor. Se construye con bootstrapping de bonos cero cupón y se modela con Nelson-Siegel-Svensson. Una curva invertida (corto plazo más alto que largo) ha precedido a varias recesiones. En Colombia la referencia son los TES y, para el corto plazo, el IBR.</p>
   </div>
   <div class="bridge" data-topic="bonos"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-7">[7]</a><a href="#ref-21">[21]</a><a href="#ref-3">[3]</a></p>
 </div></section>
 
 <!-- 08 DERIVADOS -->
@@ -457,6 +472,7 @@ body.can-ask .ask-more{display:block}
     <p class="note" id="oNote"></p>
   </div>
   <div class="bridge" data-topic="derivados"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-19">[19]</a><a href="#ref-6">[6]</a></p>
 </div></section>
 
 <!-- 09 RIESGO FINANCIERO -->
@@ -491,6 +507,7 @@ body.can-ask .ask-more{display:block}
     </div>
   </div>
   <div class="bridge" data-topic="riesgo"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-23">[23]</a><a href="#ref-24">[24]</a><a href="#ref-1">[1]</a><a href="#ref-20">[20]</a><a href="#ref-6">[6]</a></p>
 </div></section>
 
 <!-- 10 AVANZADO -->
@@ -547,6 +564,7 @@ var99 = -(res.params["mu"] + sigma * norm.ppf(0.01))
 print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
     <p class="muted" style="font-size:.88rem">El VaR usa la normal para simplificar aunque el modelo se ajustó con t de Student; para ser consistente, usa el cuantil de la t con los grados de libertad estimados. Revisa la documentación de <span class="mono">arch</span> y de <span class="mono">yfinance</span> antes de correrlo.</p>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-10">[10]</a><a href="#ref-11">[11]</a><a href="#ref-22">[22]</a><a href="#ref-25">[25]</a><a href="#ref-12">[12]</a><a href="#ref-28">[28]</a><a href="#ref-29">[29]</a><a href="#ref-26">[26]</a><a href="#ref-27">[27]</a><a href="#ref-2">[2]</a><a href="#ref-31">[31]</a><a href="#ref-30">[30]</a></p>
 </div></section>
 
 <!-- 11 CATALOGO -->
@@ -591,6 +609,17 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
   <p class="muted">Ritmo de un semestre de máster: lectura del texto de referencia, problemas y un entregable en Python cada semana. Marca cada semana al terminarla; se guarda en este navegador.</p></div>
   <div class="progress"><i id="planBar"></i></div>
   <div class="plan" id="planBox"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-4">[4]</a><a href="#ref-5">[5]</a><a href="#ref-6">[6]</a><a href="#ref-9">[9]</a></p>
+</div></section>
+
+<section class="mod biblio" id="bibliografia"><div class="wrap">
+  <div class="head"><span class="eyebrow">Referencias</span><h2>Bibliografía</h2>
+  <p class="muted">Las referencias siguen el formato APA 7. Los rangos marcados como "referencia práctica" (por ejemplo, umbrales de KS, IV o PSI) son convenciones de la industria recogidas en estos textos, no normas. Los planes de estudio y las normas cambian: confirma la versión vigente antes de citarlos.</p></div>
+    <div class="grp"><h3>Normas, reguladores y guías</h3><ol start="1"><li id="ref-1">Basel Committee on Banking Supervision. (2019). <i>Minimum capital requirements for market risk</i>. Bank for International Settlements. <a class="lk" href="https://www.bis.org/bcbs/publ/d457.htm" target="_blank" rel="noopener">www.bis.org/bcbs/publ/d457.htm</a></li><li id="ref-2">Network for Greening the Financial System. <i>NGFS climate scenarios</i>. <a class="lk" href="https://www.ngfs.net" target="_blank" rel="noopener">www.ngfs.net</a></li><li id="ref-3">Banco de la República de Colombia. <i>Tasas de interés, TES e IBR</i> [Estadísticas]. <a class="lk" href="https://www.banrep.gov.co" target="_blank" rel="noopener">www.banrep.gov.co</a></li></ol></div>
+    <div class="grp"><h3>Libros</h3><ol start="4"><li id="ref-4">Berk, J., &amp; DeMarzo, P. (2023). <i>Corporate finance</i> (6.ª ed.). Pearson.</li><li id="ref-5">Bodie, Z., Kane, A., &amp; Marcus, A. J. (2021). <i>Investments</i> (12.ª ed.). McGraw Hill.</li><li id="ref-6">Hull, J. C. (2022). <i>Options, futures, and other derivatives</i> (11.ª ed.). Pearson.</li><li id="ref-7">Fabozzi, F. J. (2015). <i>Bond markets, analysis, and strategies</i> (9.ª ed.). Pearson.</li><li id="ref-8">Damodaran, A. (2012). <i>Investment valuation: Tools and techniques for determining the value of any asset</i> (3.ª ed.). Wiley.</li><li id="ref-9">Cochrane, J. H. (2005). <i>Asset pricing</i> (ed. rev.). Princeton University Press.</li><li id="ref-10">Campbell, J. Y., Lo, A. W., &amp; MacKinlay, A. C. (1997). <i>The econometrics of financial markets</i>. Princeton University Press.</li><li id="ref-11">Tsay, R. S. (2010). <i>Analysis of financial time series</i> (3.ª ed.). Wiley.</li><li id="ref-12">López de Prado, M. (2018). <i>Advances in financial machine learning</i>. Wiley.</li></ol></div>
+    <div class="grp"><h3>Artículos</h3><ol start="13"><li id="ref-13">Markowitz, H. (1952). Portfolio selection. <i>The Journal of Finance, 7</i>(1), 77–91. <a class="lk" href="https://doi.org/10.1111/j.1540-6261.1952.tb01525.x" target="_blank" rel="noopener">doi.org/10.1111/j.1540-6261.1952.tb01525.x</a></li><li id="ref-14">Sharpe, W. F. (1964). Capital asset prices: A theory of market equilibrium under conditions of risk. <i>The Journal of Finance, 19</i>(3), 425–442. <a class="lk" href="https://doi.org/10.1111/j.1540-6261.1964.tb02865.x" target="_blank" rel="noopener">doi.org/10.1111/j.1540-6261.1964.tb02865.x</a></li><li id="ref-15">Fama, E. F., &amp; French, K. R. (1993). Common risk factors in the returns on stocks and bonds. <i>Journal of Financial Economics, 33</i>(1), 3–56. <a class="lk" href="https://doi.org/10.1016/0304-405X(93)90023-5" target="_blank" rel="noopener">doi.org/10.1016/0304-405X(93)90023-5</a></li><li id="ref-16">Fama, E. F., &amp; French, K. R. (2015). A five-factor asset pricing model. <i>Journal of Financial Economics, 116</i>(1), 1–22. <a class="lk" href="https://doi.org/10.1016/j.jfineco.2014.10.010" target="_blank" rel="noopener">doi.org/10.1016/j.jfineco.2014.10.010</a></li><li id="ref-17">Modigliani, F., &amp; Miller, M. H. (1958). The cost of capital, corporation finance and the theory of investment. <i>The American Economic Review, 48</i>(3), 261–297.</li><li id="ref-18">Hamada, R. S. (1972). The effect of the firm's capital structure on the systematic risk of common stocks. <i>The Journal of Finance, 27</i>(2), 435–452.</li><li id="ref-19">Black, F., &amp; Scholes, M. (1973). The pricing of options and corporate liabilities. <i>Journal of Political Economy, 81</i>(3), 637–654. <a class="lk" href="https://doi.org/10.1086/260062" target="_blank" rel="noopener">doi.org/10.1086/260062</a></li><li id="ref-20">Merton, R. C. (1974). On the pricing of corporate debt: The risk structure of interest rates. <i>The Journal of Finance, 29</i>(2), 449–470. <a class="lk" href="https://doi.org/10.1111/j.1540-6261.1974.tb03058.x" target="_blank" rel="noopener">doi.org/10.1111/j.1540-6261.1974.tb03058.x</a></li><li id="ref-21">Nelson, C. R., &amp; Siegel, A. F. (1987). Parsimonious modeling of yield curves. <i>The Journal of Business, 60</i>(4), 473–489. <a class="lk" href="https://doi.org/10.1086/296409" target="_blank" rel="noopener">doi.org/10.1086/296409</a></li><li id="ref-22">Bollerslev, T. (1986). Generalized autoregressive conditional heteroskedasticity. <i>Journal of Econometrics, 31</i>(3), 307–327. <a class="lk" href="https://doi.org/10.1016/0304-4076(86)90063-1" target="_blank" rel="noopener">doi.org/10.1016/0304-4076(86)90063-1</a></li><li id="ref-23">Artzner, P., Delbaen, F., Eber, J.-M., &amp; Heath, D. (1999). Coherent measures of risk. <i>Mathematical Finance, 9</i>(3), 203–228. <a class="lk" href="https://doi.org/10.1111/1467-9965.00068" target="_blank" rel="noopener">doi.org/10.1111/1467-9965.00068</a></li><li id="ref-24">Kupiec, P. H. (1995). Techniques for verifying the accuracy of risk measurement models. <i>The Journal of Derivatives, 3</i>(2), 73–84.</li><li id="ref-25">Longstaff, F. A., &amp; Schwartz, E. S. (2001). Valuing American options by simulation: A simple least-squares approach. <i>The Review of Financial Studies, 14</i>(1), 113–147. <a class="lk" href="https://doi.org/10.1093/rfs/14.1.113" target="_blank" rel="noopener">doi.org/10.1093/rfs/14.1.113</a></li><li id="ref-26">Black, F., &amp; Litterman, R. (1992). Global portfolio optimization. <i>Financial Analysts Journal, 48</i>(5), 28–43. <a class="lk" href="https://doi.org/10.2469/faj.v48.n5.28" target="_blank" rel="noopener">doi.org/10.2469/faj.v48.n5.28</a></li><li id="ref-27">Ledoit, O., &amp; Wolf, M. (2004). A well-conditioned estimator for large-dimensional covariance matrices. <i>Journal of Multivariate Analysis, 88</i>(2), 365–411. <a class="lk" href="https://doi.org/10.1016/S0047-259X(03)00096-4" target="_blank" rel="noopener">doi.org/10.1016/S0047-259X(03)00096-4</a></li><li id="ref-28">Bailey, D. H., &amp; López de Prado, M. (2014). The deflated Sharpe ratio: Correcting for selection bias, backtest overfitting, and non-normality. <i>The Journal of Portfolio Management, 40</i>(5), 94–107. <a class="lk" href="https://doi.org/10.3905/jpm.2014.40.5.094" target="_blank" rel="noopener">doi.org/10.3905/jpm.2014.40.5.094</a></li><li id="ref-29">Gu, S., Kelly, B., &amp; Xiu, D. (2020). Empirical asset pricing via machine learning. <i>The Review of Financial Studies, 33</i>(5), 2223–2273. <a class="lk" href="https://doi.org/10.1093/rfs/hhaa009" target="_blank" rel="noopener">doi.org/10.1093/rfs/hhaa009</a></li><li id="ref-30">Loughran, T., &amp; McDonald, B. (2011). When is a liability not a liability? Textual analysis, dictionaries, and 10-Ks. <i>The Journal of Finance, 66</i>(1), 35–65. <a class="lk" href="https://doi.org/10.1111/j.1540-6261.2010.01625.x" target="_blank" rel="noopener">doi.org/10.1111/j.1540-6261.2010.01625.x</a></li><li id="ref-31">Almgren, R., &amp; Chriss, N. (2001). Optimal execution of portfolio transactions. <i>Journal of Risk, 3</i>(2), 5–39.</li></ol></div>
+    <div class="grp"><h3>Programas académicos y certificaciones</h3><ol start="32"><li id="ref-32">MIT Sloan School of Management. <i>Master of Finance: Curriculum</i>. <a class="lk" href="https://mitsloan.mit.edu/mfin/explore-program/mfin-curriculum" target="_blank" rel="noopener">mitsloan.mit.edu/mfin/explore-program/mfin-curriculum</a></li><li id="ref-33">Bendheim Center for Finance, Princeton University. <i>Master in Finance: Requirements and core courses</i>. <a class="lk" href="https://bcf.princeton.edu/requirements-and-core-courses" target="_blank" rel="noopener">bcf.princeton.edu/requirements-and-core-courses</a></li><li id="ref-34">Saïd Business School, University of Oxford. <i>MSc in Financial Economics: Core courses and electives</i>. <a class="lk" href="https://www.sbs.ox.ac.uk/programmes/degrees/msc-financial-economics/core-courses-and-electives" target="_blank" rel="noopener">www.sbs.ox.ac.uk/programmes/degrees/msc-financial-economics/core-courses-and-electives</a></li><li id="ref-35">London School of Economics. <i>MSc Finance</i>. <a class="lk" href="https://www.lse.ac.uk/study-at-lse/Graduate/degree-programmes-2021/MSc-Finance-full-time" target="_blank" rel="noopener">www.lse.ac.uk/study-at-lse/Graduate/degree-programmes-2021/MSc-Finance-full-time</a></li><li id="ref-36">Imperial College Business School. <i>MSc Risk Management &amp; Financial Engineering: Core modules</i>. <a class="lk" href="https://www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/" target="_blank" rel="noopener">www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/</a></li><li id="ref-37">Harvard Business School. <i>Finance unit: MBA curriculum</i>. <a class="lk" href="https://www.hbs.edu/faculty/units/finance/Pages/curriculum.aspx" target="_blank" rel="noopener">www.hbs.edu/faculty/units/finance/Pages/curriculum.aspx</a></li><li id="ref-38">CFA Institute. <i>CFA Program curriculum</i>. <a class="lk" href="https://www.cfainstitute.org" target="_blank" rel="noopener">www.cfainstitute.org</a></li><li id="ref-39">Lo, A. (2008). <i>15.401 Finance Theory I</i> [Curso]. MIT OpenCourseWare. <a class="lk" href="https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/" target="_blank" rel="noopener">ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/</a></li></ol></div>
+    <div class="grp"><h3>Documentación técnica y datos</h3><ol start="40"><li id="ref-40">Damodaran, A. <i>Country default spreads and risk premiums</i> [Datos actualizados periódicamente]. NYU Stern. <a class="lk" href="https://pages.stern.nyu.edu/~adamodar/" target="_blank" rel="noopener">pages.stern.nyu.edu/~adamodar/</a></li><li id="ref-41">French, K. R. <i>Data library</i> [Factores de Fama-French]. Dartmouth College. <a class="lk" href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html" target="_blank" rel="noopener">mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html</a></li></ol></div>
 </div></section>
 
 <footer><div class="wrap">
@@ -598,7 +627,8 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
   <p><b>Cursos abiertos:</b> MIT OpenCourseWare 15.401 Finance Theory I · Yale, Financial Markets (Robert Shiller) · clases de valoración de Aswath Damodaran (NYU Stern) · currículo del programa CFA.</p>
   <p><b>Programas consultados:</b> <a href="https://mitsloan.mit.edu/mfin/explore-program/mfin-curriculum">MIT Sloan MFin</a> · <a href="https://bcf.princeton.edu/requirements-and-core-courses">Princeton MFin</a> · <a href="https://www.sbs.ox.ac.uk/programmes/degrees/msc-financial-economics/core-courses-and-electives">Oxford MSc Financial Economics</a> · <a href="https://www.lse.ac.uk/study-at-lse/Graduate/degree-programmes-2021/MSc-Finance-full-time">LSE MSc Finance</a> · <a href="https://www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/">Imperial MSc Risk Management &amp; Financial Engineering</a> · <a href="https://www.hbs.edu/faculty/units/finance/Pages/curriculum.aspx">Harvard Business School, Finance</a>.</p>
   <p>Todos los números de esta página son inventados y las fórmulas están simplificadas para aprender. No es asesoría de inversión.</p>
-  <details><summary>Versión 2.0.0 · 28 oct 2026</summary><ul>
+  <details><summary>Versión 2.1.0 · 28 oct 2026</summary><ul>
+    <li><b>2.1.0</b> · Bibliografía en formato APA con los textos y artículos fundacionales (Markowitz, Sharpe, Black-Scholes, Fama-French, Merton) y las fuentes de cada módulo al pie con su número.</li>
     <li><b>2.0.0</b> · Se suman Imperial College y el MBA de Harvard a los programas de referencia; cada semana del plan indica su referencia académica; glosario emergente.</li>
     <li><b>1.1.0</b> · Primera versión: núcleo de MIT, Princeton, Oxford y LSE, 10 calculadoras, catálogo, quiz y plan de 16 semanas.</li>
   </ul></details>
@@ -997,7 +1027,7 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
   if (!keys.length) return;
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const RE = new RegExp('(?<![\\p{L}\\p{N}_])(' + keys.map(esc).join('|') + ')(?![\\p{L}\\p{N}_])', 'gu');
-  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab';
+  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab,.biblio,.srcs';
   const BLOCK = '.metric,.stat,.ci,.q,.card,.tech,.stg,.lvcard,.ov,.why,.fb,tr,li,.panel,.lesson,section,details,header,footer';
   const seen = new WeakMap();
 

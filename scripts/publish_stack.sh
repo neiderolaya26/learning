@@ -16,6 +16,7 @@ STACK=(
   "feature/ia-curricula|feat(ia): ✨ add reference programs to the AI and data science path|Agrega a la ruta de IA y data science la sección de programas de referencia (Harvard, Harvard Extension, Stanford y PUJ) y el equivalente académico de cada semana del plan del módulo 0."
   "feature/finance-curricula|feat(finanzas): ✨ add Imperial and Harvard references to the finance path|Suma Imperial College y el MBA de Harvard a los programas de referencia de la ruta de finanzas, agrega la referencia académica de cada semana del plan y el historial de versiones al pie de las cuatro rutas."
   "feature/release-v2|chore(release): 🔖 release v2.0.0|Cierra la versión 2.0.0 en el CHANGELOG, agrega la sección de versiones al README y a la portada, y documenta cómo publicar y fusionar la pila."
+  "feature/bibliography|feat(rutas): 📚 add bibliography and per-module sources to all learning paths|Agrega a las cuatro rutas una bibliografía en formato APA 7 con DOI o enlace oficial y las fuentes numeradas al pie de cada módulo (versión 2.1.0)."
 )
 
 if ! gh repo view "$OWNER/$REPO" >/dev/null 2>&1; then

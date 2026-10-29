@@ -1,6 +1,6 @@
-# Publicar la versión 2.0.0 en GitHub
+# Publicar las versiones 2.0.0 y 2.1.0 en GitHub
 
-El repositorio se armó sin acceso para crear repos en GitHub, así que todo el historial está listo en local: commits convencionales, etiquetas `v1.0.0` y `v1.1.0` y seis ramas apiladas, una por cambio. Estos pasos lo suben y dejan la trazabilidad completa de PR en GitHub.
+El repositorio se armó sin acceso para crear repos en GitHub, así que todo el historial está listo en local: commits convencionales, etiquetas `v1.0.0` y `v1.1.0` y siete ramas apiladas, una por cambio. Estos pasos lo suben y dejan la trazabilidad completa de PR en GitHub.
 
 ## La pila de cambios
 
@@ -12,6 +12,7 @@ flowchart BT
   C --> D["feature/ia-curricula<br/>IA: Harvard, Stanford, PUJ"]
   D --> E["feature/finance-curricula<br/>finanzas: Imperial, Harvard"]
   E --> F["feature/release-v2<br/>CHANGELOG 2.0.0"]
+  F --> G["feature/bibliography<br/>bibliografía · 2.1.0"]
 ```
 
 Cada capa es un pull request que apunta a la rama de abajo y cambia menos de 12 archivos.
@@ -23,7 +24,7 @@ Todo el historial viene en el archivo `learning.bundle` que quedó en el chat (u
 ```bash
 git clone learning.bundle learning
 cd learning
-for b in glossary-popovers risk-curricula paid-media-curricula ia-curricula finance-curricula release-v2 topicos; do
+for b in glossary-popovers risk-curricula paid-media-curricula ia-curricula finance-curricula release-v2 bibliography topicos; do
   if [ "$b" = topicos ]; then git show-ref --quiet refs/heads/topicos || git branch --track topicos origin/topicos; continue; fi
   git show-ref --quiet "refs/heads/feature/$b" || git branch --track "feature/$b" "origin/feature/$b"
 done
@@ -36,11 +37,11 @@ git tag    # debe mostrar v1.0.0 y v1.1.0
 
 ```bash
 gh auth login            # una sola vez
-git checkout feature/release-v2
+git checkout feature/bibliography
 bash scripts/publish_stack.sh
 ```
 
-El script crea `neiderolaya26/learning` (privado), sube `main`, las etiquetas y la rama de datos `topicos`, configura squash merge con el título del PR, sube las seis ramas, abre los seis PR apilados con la plantilla completa y comenta `@claude` en cada uno.
+El script crea `neiderolaya26/learning` (privado), sube `main`, las etiquetas y la rama de datos `topicos`, configura squash merge con el título del PR, sube las siete ramas, abre los siete PR apilados con la plantilla completa y comenta `@claude` en cada uno.
 
 Antes de que corran los workflows de Claude, instala la app con `/install-github-app` en Claude Code, para crear el secreto `CLAUDE_CODE_OAUTH_TOKEN`.
 
@@ -63,13 +64,16 @@ Para cada PR, empezando por `feature/glossary-popovers`:
 
 ## 4. Publicar la versión
 
-Cuando estén fusionados los seis PR:
+Etiqueta cada versión cuando se fusione su PR: `v2.0.0` al fusionar `feature/release-v2` y `v2.1.0` al fusionar `feature/bibliography`. Por ejemplo, al final:
 
 ```bash
 git checkout main && git pull --ff-only
-git tag -a v2.0.0 -m "v2.0.0: glosario emergente y rutas alineadas con programas de referencia"
-git push origin v2.0.0
-gh release create v2.0.0 --title "v2.0.0" --notes "$(awk '/^## \[2.0.0\]/{f=1;next} /^## \[/{f=0} f' CHANGELOG.md)"
+git tag -a v2.0.0 <commit-del-PR-6> -m "v2.0.0: glosario emergente y rutas alineadas con programas de referencia"
+git tag -a v2.1.0 -m "v2.1.0: bibliografía y fuentes por módulo"
+git push origin v2.0.0 v2.1.0
+for v in 2.0.0 2.1.0; do
+  gh release create "v$v" --title "v$v" --notes "$(awk -v v="$v" '$0 ~ "^## \\[" v "\\]" {f=1;next} /^## \[/{f=0} f' CHANGELOG.md)"
+done
 ```
 
 ## 5. Reactivar los tópicos de investigación

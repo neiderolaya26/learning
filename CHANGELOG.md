@@ -4,6 +4,15 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 
 ## [Sin publicar]
 
+## [2.1.0] - 2026-10-28
+
+Las rutas citan sus fuentes: cada afirmación se puede rastrear hasta una norma, un libro, un artículo o un programa oficial.
+
+### Agregado
+- Bibliografía en formato APA 7 al final de las cuatro rutas, agrupada en normas y reguladores, libros, artículos, programas académicos y documentación técnica, con DOI o enlace oficial cuando existe: 31 referencias en Riesgo de crédito, 41 en Finanzas, 28 en Paid Media y 25 en IA y Data Science.
+- "Fuentes de este módulo" al pie de cada módulo, con citas numeradas que llevan a la referencia. En la ruta de IA, las fuentes se agrupan por tema del módulo 0.
+- Nota sobre qué cifras son convenciones de la industria y no normas.
+
 ## [2.0.0] - 2026-10-28
 
 Las cuatro rutas se reestructuran con los planes de estudio de programas de referencia y suman un glosario emergente.
@@ -35,7 +44,8 @@ Las cuatro rutas se reestructuran con los planes de estudio de programas de refe
 - Ruta de **IA y Data Science**: repaso de máster con quices y examen final, y la ruta por los cursos públicos del profesor Sergio A. Mora Pardo.
 - Portada con enlaces a las rutas.
 
-[Sin publicar]: https://github.com/neiderolaya26/learning/compare/v2.0.0...HEAD
+[Sin publicar]: https://github.com/neiderolaya26/learning/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/neiderolaya26/learning/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/neiderolaya26/learning/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/neiderolaya26/learning/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/neiderolaya26/learning/releases/tag/v1.0.0

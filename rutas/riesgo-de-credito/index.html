@@ -224,12 +224,20 @@ footer .wrap{display:grid;gap:12px}
 }
 .ask-more{font:inherit;font-size:.82rem;font-weight:600;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;margin-top:6px;display:none;text-align:left}
 body.can-ask .ask-more{display:block}
+.srcs{font-size:.82rem;color:var(--muted);margin:0}
+.srcs a{font-family:var(--mono);font-weight:600;text-decoration:none;color:var(--accent);margin-left:4px}
+.srcs a:hover{text-decoration:underline}
+.biblio .grp{display:grid;gap:8px}
+.biblio ol{margin:0;padding-left:2.6em;display:grid;gap:6px;font-size:.9rem;line-height:1.5}
+.biblio li{scroll-margin-top:80px;padding:4px 8px;border-radius:6px;overflow-wrap:anywhere}
+.biblio li:target{background:var(--accent-soft)}
+.biblio .lk{font-family:var(--mono);font-size:.76rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media (max-width:480px){.inputs{grid-template-columns:1fr}}
 </style>
 
 <nav class="top" aria-label="Secciones"><div class="wrap">
-  <a href="#programas">Programas</a><a href="#mapa">Mapa</a><a href="#perdida">Pérdida esperada</a><a href="#scorecards">Scorecards</a><a href="#validacion">Validación</a><a href="#cosechas">Cosechas</a><a href="#estrategia">Estrategia</a><a href="#pricing">Pricing</a><a href="#provisiones">NIIF 9</a><a href="#capital">Capital</a><a href="#monitoreo">Monitoreo</a><a href="#frm">Estándar FRM</a><a href="#avanzado">Avanzado</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 12 semanas</a>
+  <a href="#programas">Programas</a><a href="#mapa">Mapa</a><a href="#perdida">Pérdida esperada</a><a href="#scorecards">Scorecards</a><a href="#validacion">Validación</a><a href="#cosechas">Cosechas</a><a href="#estrategia">Estrategia</a><a href="#pricing">Pricing</a><a href="#provisiones">NIIF 9</a><a href="#capital">Capital</a><a href="#monitoreo">Monitoreo</a><a href="#frm">Estándar FRM</a><a href="#avanzado">Avanzado</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 12 semanas</a><a href="#bibliografia">Bibliografía</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -268,6 +276,7 @@ body.can-ask .ask-more{display:block}
     <div class="card"><span class="n">Reservar</span><p>Provisiones NIIF 9 y capital de Basilea para la pérdida esperada y la no esperada.</p></div>
     <div class="card"><span class="n">Gobernar</span><p>Monitorear, validar y documentar los modelos como pide la regulación.</p></div>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-25">[25]</a><a href="#ref-26">[26]</a><a href="#ref-27">[27]</a><a href="#ref-28">[28]</a></p>
 </div></section>
 
 <!-- 01 MAPA -->
@@ -296,6 +305,7 @@ body.can-ask .ask-more{display:block}
       </tbody>
     </table></div>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-13">[13]</a><a href="#ref-11">[11]</a></p>
 </div></section>
 
 <!-- 02 PERDIDA ESPERADA -->
@@ -323,6 +333,7 @@ body.can-ask .ask-more{display:block}
     <div class="panel"><h3>Esperada y no esperada</h3><p style="font-size:.93rem">La pérdida esperada es un costo del negocio: se cubre con tasa y provisiones. La no esperada es la desviación en un mal año: se cubre con capital. El módulo de capital muestra cómo se calcula.</p></div>
   </div>
   <div class="bridge" data-topic="perdida"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-2">[2]</a><a href="#ref-11">[11]</a><a href="#ref-13">[13]</a></p>
 </div></section>
 
 <!-- 03 SCORECARDS -->
@@ -383,6 +394,7 @@ print(sc.table(style="detailed").head(20))       # puntos por tramo
 score_te = sc.score(X_te)</pre>
   </div>
   <div class="bridge" data-topic="scorecards"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-9">[9]</a><a href="#ref-10">[10]</a><a href="#ref-29">[29]</a></p>
 </div></section>
 
 <!-- 04 VALIDACION -->
@@ -411,6 +423,7 @@ score_te = sc.score(X_te)</pre>
     </tbody>
   </table></div>
   <div class="bridge" data-topic="validacion"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-10">[10]</a><a href="#ref-14">[14]</a><a href="#ref-11">[11]</a><a href="#ref-7">[7]</a></p>
 </div></section>
 
 <!-- 05 COSECHAS -->
@@ -438,6 +451,7 @@ score_te = sc.score(X_te)</pre>
     <p class="note" id="rNote"></p>
   </div>
   <div class="bridge" data-topic="cosechas"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-10">[10]</a><a href="#ref-11">[11]</a></p>
 </div></section>
 
 <!-- 06 ESTRATEGIA -->
@@ -465,6 +479,7 @@ score_te = sc.score(X_te)</pre>
     <div class="panel"><h3>Inferencia de rechazados</h3><p style="font-size:.93rem">El modelo se entrena solo con aprobados: nunca vio cómo pagan los rechazados. Para corregir ese sesgo de selección se usan aumentación, parcelamiento, modelos de Heckman, datos de buró de los rechazados o, lo más limpio, una pequeña población aprobada al azar por debajo del corte.</p></div>
   </div>
   <div class="bridge" data-topic="estrategia"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-10">[10]</a><a href="#ref-9">[9]</a><a href="#ref-19">[19]</a></p>
 </div></section>
 
 <!-- 07 PRICING -->
@@ -490,6 +505,7 @@ score_te = sc.score(X_te)</pre>
   </div>
   <p class="muted" style="font-size:.9rem">Cuidado con la selección adversa: si subes la tasa a un segmento, los clientes que aceptan suelen ser los más riesgosos. Por eso la elasticidad y la PD se estiman juntas, idealmente con experimentos de precio.</p>
   <div class="bridge" data-topic="pricing"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-13">[13]</a><a href="#ref-11">[11]</a></p>
 </div></section>
 
 <!-- 08 NIIF 9 -->
@@ -529,6 +545,7 @@ score_te = sc.score(X_te)</pre>
     <p class="muted" style="font-size:.88rem">En Colombia, los estados financieros separados de las entidades vigiladas aplican las reglas de provisión de la Superintendencia Financiera (modelos de referencia por cartera), y NIIF 9 aplica en los consolidados. En Estados Unidos el equivalente es CECL, que usa vida completa para todo. Confirma el detalle en la normativa vigente antes de citarlo.</p>
   </div>
   <div class="bridge" data-topic="provisiones"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-4">[4]</a><a href="#ref-5">[5]</a><a href="#ref-12">[12]</a><a href="#ref-8">[8]</a></p>
 </div></section>
 
 <!-- 09 CAPITAL -->
@@ -553,6 +570,7 @@ score_te = sc.score(X_te)</pre>
     <p class="note" id="kNote"></p>
   </div>
   <div class="bridge" data-topic="capital"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-2">[2]</a><a href="#ref-3">[3]</a><a href="#ref-18">[18]</a><a href="#ref-1">[1]</a></p>
 </div></section>
 
 <!-- 10 MONITOREO -->
@@ -581,6 +599,7 @@ score_te = sc.score(X_te)</pre>
     </div>
   </div>
   <div class="bridge" data-topic="monitoreo"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-6">[6]</a><a href="#ref-24">[24]</a><a href="#ref-9">[9]</a></p>
 </div></section>
 
 <!-- FRM -->
@@ -615,6 +634,7 @@ score_te = sc.score(X_te)</pre>
     <div class="card"><span class="n">Operacional y resiliencia</span><p>Pérdidas por fallas de procesos, personas, sistemas o eventos externos, y la capacidad de seguir operando.</p></div>
   </div>
   <div class="bridge" data-topic="frm"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-25">[25]</a><a href="#ref-13">[13]</a><a href="#ref-17">[17]</a><a href="#ref-15">[15]</a></p>
 </div></section>
 
 <!-- 11 AVANZADO -->
@@ -681,6 +701,7 @@ clf.fit(X_tr, y_tr, eval_set=[(X_va, y_va)], verbose=False)
 print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
     <p class="muted" style="font-size:.88rem">Recalibra al final (Platt o isotónica) si vas a usar la probabilidad para provisiones o precio, y documenta todo para validación.</p>
   </div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-20">[20]</a><a href="#ref-23">[23]</a><a href="#ref-22">[22]</a><a href="#ref-21">[21]</a><a href="#ref-16">[16]</a></p>
 </div></section>
 
 <!-- 12 CATALOGO -->
@@ -725,6 +746,17 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
   <p class="muted">Cada semana tiene teoría y un entregable en código. El proyecto que se va armando usa datos públicos y termina publicado en GitHub. Marca cada semana al terminarla; se guarda en este navegador.</p></div>
   <div class="progress"><i id="planBar"></i></div>
   <div class="plan" id="planBox"></div>
+  <p class="srcs">Fuentes de este módulo:<a href="#ref-30">[30]</a><a href="#ref-31">[31]</a><a href="#ref-9">[9]</a></p>
+</div></section>
+
+<section class="mod biblio" id="bibliografia"><div class="wrap">
+  <div class="head"><span class="eyebrow">Referencias</span><h2>Bibliografía</h2>
+  <p class="muted">Las referencias siguen el formato APA 7. Los rangos marcados como "referencia práctica" (por ejemplo, umbrales de KS, IV o PSI) son convenciones de la industria recogidas en estos textos, no normas. Los planes de estudio y las normas cambian: confirma la versión vigente antes de citarlos.</p></div>
+    <div class="grp"><h3>Normas, reguladores y guías</h3><ol start="1"><li id="ref-1">Basel Committee on Banking Supervision. (2017). <i>Basel III: Finalising post-crisis reforms</i>. Bank for International Settlements. <a class="lk" href="https://www.bis.org/bcbs/publ/d424.htm" target="_blank" rel="noopener">www.bis.org/bcbs/publ/d424.htm</a></li><li id="ref-2">Basel Committee on Banking Supervision. (2005). <i>An explanatory note on the Basel II IRB risk weight functions</i>. Bank for International Settlements. <a class="lk" href="https://www.bis.org/bcbs/irbriskweight.htm" target="_blank" rel="noopener">www.bis.org/bcbs/irbriskweight.htm</a></li><li id="ref-3">Basel Committee on Banking Supervision. (2019). <i>Basel Framework, CRE31: IRB approach: risk weight functions</i>. Bank for International Settlements. <a class="lk" href="https://www.bis.org/basel_framework/chapter/CRE/31.htm" target="_blank" rel="noopener">www.bis.org/basel_framework/chapter/CRE/31.htm</a></li><li id="ref-4">IFRS Foundation. (2014). <i>IFRS 9 Financial Instruments</i>. International Accounting Standards Board. <a class="lk" href="https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/" target="_blank" rel="noopener">www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/</a></li><li id="ref-5">Financial Accounting Standards Board. (2016). <i>Accounting Standards Update 2016-13: Financial Instruments—Credit Losses (Topic 326)</i>. <a class="lk" href="https://www.fasb.org" target="_blank" rel="noopener">www.fasb.org</a></li><li id="ref-6">Board of Governors of the Federal Reserve System &amp; Office of the Comptroller of the Currency. (2011). <i>SR 11-7: Guidance on model risk management</i>. <a class="lk" href="https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm" target="_blank" rel="noopener">www.federalreserve.gov/supervisionreg/srletters/sr1107.htm</a></li><li id="ref-7">European Banking Authority. (2017). <i>Guidelines on PD estimation, LGD estimation and the treatment of defaulted exposures</i> (EBA/GL/2017/16). <a class="lk" href="https://www.eba.europa.eu" target="_blank" rel="noopener">www.eba.europa.eu</a></li><li id="ref-8">Superintendencia Financiera de Colombia. <i>Circular Básica Contable y Financiera</i> (Circular Externa 100 de 1995 y sus modificaciones). <a class="lk" href="https://www.superfinanciera.gov.co" target="_blank" rel="noopener">www.superfinanciera.gov.co</a></li></ol></div>
+    <div class="grp"><h3>Libros</h3><ol start="9"><li id="ref-9">Siddiqi, N. (2017). <i>Intelligent credit scoring: Building and implementing better credit risk scorecards</i> (2.ª ed.). Wiley.</li><li id="ref-10">Thomas, L. C., Crook, J. N., &amp; Edelman, D. B. (2017). <i>Credit scoring and its applications</i> (2.ª ed.). SIAM.</li><li id="ref-11">Baesens, B., Rösch, D., &amp; Scheule, H. (2016). <i>Credit risk analytics: Measurement techniques, applications, and examples in SAS</i>. Wiley.</li><li id="ref-12">Bellini, T. (2019). <i>IFRS 9 and CECL credit risk modelling and validation</i>. Academic Press.</li><li id="ref-13">Hull, J. C. (2018). <i>Risk management and financial institutions</i> (5.ª ed.). Wiley.</li><li id="ref-14">Hosmer, D. W., Lemeshow, S., &amp; Sturdivant, R. X. (2013). <i>Applied logistic regression</i> (3.ª ed.). Wiley.</li><li id="ref-15">Gregory, J. (2020). <i>The xVA challenge: Counterparty risk, funding, collateral, capital and initial margin</i> (4.ª ed.). Wiley.</li><li id="ref-16">Barocas, S., Hardt, M., &amp; Narayanan, A. (2023). <i>Fairness and machine learning: Limitations and opportunities</i>. MIT Press. <a class="lk" href="https://fairmlbook.org" target="_blank" rel="noopener">fairmlbook.org</a></li></ol></div>
+    <div class="grp"><h3>Artículos</h3><ol start="17"><li id="ref-17">Merton, R. C. (1974). On the pricing of corporate debt: The risk structure of interest rates. <i>The Journal of Finance, 29</i>(2), 449–470. <a class="lk" href="https://doi.org/10.1111/j.1540-6261.1974.tb03058.x" target="_blank" rel="noopener">doi.org/10.1111/j.1540-6261.1974.tb03058.x</a></li><li id="ref-18">Vasicek, O. (2002). The distribution of loan portfolio value. <i>Risk, 15</i>(12), 160–162.</li><li id="ref-19">Crook, J., &amp; Banasik, J. (2004). Does reject inference really improve the performance of application scoring models? <i>Journal of Banking &amp; Finance, 28</i>(4), 857–874.</li><li id="ref-20">Fine, J. P., &amp; Gray, R. J. (1999). A proportional hazards model for the subdistribution of a competing risk. <i>Journal of the American Statistical Association, 94</i>(446), 496–509. <a class="lk" href="https://doi.org/10.1080/01621459.1999.10474144" target="_blank" rel="noopener">doi.org/10.1080/01621459.1999.10474144</a></li><li id="ref-21">Chernozhukov, V., Chetverikov, D., Demirer, M., Duflo, E., Hansen, C., Newey, W., &amp; Robins, J. (2018). Double/debiased machine learning for treatment and structural parameters. <i>The Econometrics Journal, 21</i>(1), C1–C68. <a class="lk" href="https://doi.org/10.1111/ectj.12097" target="_blank" rel="noopener">doi.org/10.1111/ectj.12097</a></li><li id="ref-22">Lundberg, S. M., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. En <i>Advances in Neural Information Processing Systems 30</i>. <a class="lk" href="https://arxiv.org/abs/1705.07874" target="_blank" rel="noopener">arxiv.org/abs/1705.07874</a></li><li id="ref-23">Chen, T., &amp; Guestrin, C. (2016). XGBoost: A scalable tree boosting system. En <i>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</i> (pp. 785–794). <a class="lk" href="https://doi.org/10.1145/2939672.2939785" target="_blank" rel="noopener">doi.org/10.1145/2939672.2939785</a></li><li id="ref-24">Yurdakul, B. (2018). <i>Statistical properties of population stability index</i> [Tesis doctoral, Western Michigan University].</li></ol></div>
+    <div class="grp"><h3>Programas académicos y certificaciones</h3><ol start="25"><li id="ref-25">Global Association of Risk Professionals. (2026). <i>FRM study guide 2026</i>. <a class="lk" href="https://www.garp.org/frm/study-materials" target="_blank" rel="noopener">www.garp.org/frm/study-materials</a></li><li id="ref-26">Imperial College Business School. <i>MSc Risk Management &amp; Financial Engineering: Core modules</i>. <a class="lk" href="https://www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/" target="_blank" rel="noopener">www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/</a></li><li id="ref-27">Stanford University. <i>MS&amp;E 246: Financial Risk Analytics</i>. Stanford Bulletin. <a class="lk" href="https://bulletin.stanford.edu/courses/2158531" target="_blank" rel="noopener">bulletin.stanford.edu/courses/2158531</a></li><li id="ref-28">University of Edinburgh Business School. <i>Credit Research Centre</i>. <a class="lk" href="https://cer.business-school.ed.ac.uk/" target="_blank" rel="noopener">cer.business-school.ed.ac.uk/</a></li></ol></div>
+    <div class="grp"><h3>Documentación técnica y datos</h3><ol start="29"><li id="ref-29">Navas-Palencia, G. (2020). <i>Optimal binning: Mathematical programming formulation</i>. arXiv:2001.08025. Documentación de la librería optbinning. <a class="lk" href="https://arxiv.org/abs/2001.08025" target="_blank" rel="noopener">arxiv.org/abs/2001.08025</a></li><li id="ref-30">Home Credit Group. (2018). <i>Home Credit Default Risk</i> [Conjunto de datos]. Kaggle. <a class="lk" href="https://www.kaggle.com/c/home-credit-default-risk" target="_blank" rel="noopener">www.kaggle.com/c/home-credit-default-risk</a></li><li id="ref-31">Freddie Mac. <i>Single-Family Loan-Level Dataset</i> [Conjunto de datos]. <a class="lk" href="https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset" target="_blank" rel="noopener">www.freddiemac.com/research/datasets/sf-loanlevel-dataset</a></li></ol></div>
 </div></section>
 
 <footer><div class="wrap">
@@ -733,7 +765,8 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
   <p><b>Datos públicos para practicar:</b> Home Credit Default Risk y Give Me Some Credit (Kaggle) · Freddie Mac Single-Family Loan-Level Dataset · Lending Club (copias históricas).</p>
   <p><b>Programas consultados:</b> <a href="https://www.garp.org/frm/study-materials">GARP FRM</a> · <a href="https://www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/">Imperial MSc Risk Management &amp; Financial Engineering</a> · <a href="https://bulletin.stanford.edu/courses/2158531">Stanford MS&amp;E 246</a> · <a href="https://cer.business-school.ed.ac.uk/">University of Edinburgh, Credit Research Centre</a>.</p>
   <p>Todos los números de esta página son inventados. Las fórmulas están simplificadas para aprender; confirma los detalles en la norma y en la política de tu entidad antes de usarlas.</p>
-  <details><summary>Versión 2.0.0 · 28 oct 2026</summary><ul>
+  <details><summary>Versión 2.1.0 · 28 oct 2026</summary><ul>
+    <li><b>2.1.0</b> · Bibliografía en formato APA con normas (BCBS, NIIF 9, SR 11-7), libros, artículos y programas, y las fuentes de cada módulo al pie con su número.</li>
     <li><b>2.0.0</b> · Estructura alineada con FRM, Imperial, Stanford y Edimburgo; módulo de mercados de crédito con triángulo de crédito y titularización; plan con referencia académica por semana; glosario emergente.</li>
     <li><b>1.0.0</b> · Primera versión: 11 módulos, catálogo, quiz y plan de 12 semanas.</li>
   </ul></details>
@@ -1186,7 +1219,7 @@ print("Gini:", 2 * roc_auc_score(y_te, clf.predict_proba(X_te)[:, 1]) - 1)</pre>
   if (!keys.length) return;
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const RE = new RegExp('(?<![\\p{L}\\p{N}_])(' + keys.map(esc).join('|') + ')(?![\\p{L}\\p{N}_])', 'gu');
-  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab';
+  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab,.biblio,.srcs';
   const BLOCK = '.metric,.stat,.ci,.q,.card,.tech,.stg,.lvcard,.ov,.why,.fb,tr,li,.panel,.lesson,section,details,header,footer';
   const seen = new WeakMap();
 
