@@ -242,26 +242,67 @@ pre.code{margin:0;background:var(--sunk);border-radius:10px;padding:14px;overflo
 }
 .ask-more{font:inherit;font-size:.82rem;font-weight:600;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;margin-top:6px;display:none}
 body.can-ask .ask-more{display:block}
+.levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.levels{grid-template-columns:1fr}}
+.lvcard{border-radius:12px;padding:12px 14px;display:grid;gap:4px;font-size:.88rem}
+.lvcard b{font-family:var(--display);font-weight:500;font-size:.92rem}
+.lvcard .k{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.lvcard.l1{background:var(--good-soft)} .lvcard.l1 .k{color:var(--good)}
+.lvcard.l2{background:var(--accent-soft)} .lvcard.l2 .k{color:var(--accent)}
+.lvcard.l3{background:var(--warn-soft)} .lvcard.l3 .k{color:var(--warn)}
+.head .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.head .lv{justify-self:start}
+.deep td:first-child{font-family:var(--mono);color:var(--accent);white-space:nowrap}
+.deep td em{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+footer .wrap{display:grid;gap:10px}
+footer details{border-top:1px solid var(--line);padding-top:10px}
+footer summary{cursor:pointer;font-weight:600;color:var(--fg)}
+footer details ul{margin:8px 0 0;padding-left:1.2em;display:grid;gap:4px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media (max-width:480px){.inputs{grid-template-columns:1fr}.brow{grid-template-columns:84px minmax(0,1fr) 52px}.frow{grid-template-columns:80px minmax(0,1fr)}}
 </style>
 
 <nav class="top" aria-label="Secciones"><div class="wrap">
-  <a href="#rol">El rol</a><a href="#embudo">Embudo</a><a href="#subasta">Subasta</a><a href="#plataformas">Plataformas</a><a href="#aprendizaje">Aprendizaje</a><a href="#ventaja">Tu ventaja</a><a href="#modelos">Modelos</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan 14 días</a>
+  <a href="#programas">Programas</a><a href="#rol">El rol</a><a href="#embudo">Embudo</a><a href="#subasta">Subasta</a><a href="#plataformas">Plataformas</a><a href="#aprendizaje">Aprendizaje</a><a href="#ventaja">Tu ventaja</a><a href="#experimentos">Experimentos</a><a href="#modelos">Modelos</a><a href="#catalogo">Catálogo</a><a href="#quiz">Quiz</a><a href="#plan">Plan</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <span class="eyebrow">Ruta rápida · Data Science → Marketing fintech</span>
+  <span class="eyebrow">Ruta de aprendizaje · Data Science → Marketing fintech</span>
   <h1>Paid Media para quien ya sabe de riesgo</h1>
   <p class="hero-sub">En 2 semanas puedes hablar con soltura de métricas, subastas y fase de aprendizaje, y mostrar por qué venir de riesgo es tu ventaja. Todos los números de esta página son inventados para practicar.</p>
+  <div class="levels">
+    <div class="lvcard l1"><span class="k">Básico</span><b>Embudo, subasta y plataformas</b><span>Las métricas y el funcionamiento de la pauta. Días 1–7 del plan corto.</span></div>
+    <div class="lvcard l2"><span class="k">Intermedio</span><b>Aprendizaje, riesgo y experimentos</b><span>Cuándo decidir, cómo medir y qué aporta venir de riesgo. Días 8–14.</span></div>
+    <div class="lvcard l3"><span class="k">Avanzado</span><b>Modelos causales y de presupuesto</b><span>Uplift, MMM, atribución y CLV. Plan de profundización de 10 semanas.</span></div>
+  </div>
   <div class="stats">
-    <div class="stat"><b id="sQuiz">0 / 15</b><span>Respuestas correctas</span></div>
+    <div class="stat"><b id="sQuiz">0 / 17</b><span>Respuestas correctas</span></div>
     <div class="stat"><b id="sPlan">0 / 14</b><span>Días del plan completados</span></div>
   </div>
 </div></header>
 
+<section class="mod" id="programas"><div class="wrap">
+  <div class="head"><span class="eyebrow">01 · De dónde sale esta ruta</span><h2>Lo que enseñan los mejores programas de marketing analítico</h2>
+  <p class="muted">Resumen de las fuentes oficiales de cada programa. Los planes cambian cada año: revisa la versión vigente antes de citarlos.</p></div>
+  <div class="tbl panel"><table>
+    <thead><tr><th>Programa</th><th>Qué cubre según la fuente oficial</th><th>En esta ruta</th></tr></thead>
+    <tbody>
+      <tr><td><b>Columbia Business School</b><span class="lit">MS in Marketing Science</span></td><td>Cinco cursos núcleo: Market Intelligence, Strategic Consumer Insights, Digital Marketing, Marketing Analytics y Strategic Marketing Consulting, con enfoque en analítica.</td><td>Embudo, plataformas y el plan de profundización, que cierra con un caso de consultoría</td></tr>
+      <tr><td><b>Wharton</b><span class="lit">MBA en Business Analytics y Executive Education</span></td><td>El curso MKTG 8090 Experiments for Business Decision Making, y un programa de Marketing Analytics con ciencia de marketing, segmentación y conjoint, pricing, experimentos y analítica digital con atribución multitoque.</td><td>Módulo de experimentos, segmentación y pricing; modelos de uplift y atribución</td></tr>
+      <tr><td><b>Harvard Business School</b><span class="lit">MBA</span></td><td>Marketing hace parte del currículo obligatorio del primer año.</td><td>El rol y la lógica de negocio detrás de cada métrica</td></tr>
+      <tr><td><b>Google y Meta</b><span class="lit">Skillshop y Blueprint</span></td><td>Certificaciones oficiales de las plataformas: subastas, estrategias de puja y medición.</td><td>Subasta, plataformas y fase de aprendizaje</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cards">
+    <div class="card"><span class="n">Entender</span><h3>Mercado y cliente</h3><p>Quién compra, por qué y cuánto vale cada cliente.</p></div>
+    <div class="card"><span class="n">Comprar</span><h3>Pauta y plataformas</h3><p>Cómo funciona la subasta y qué hace bien cada canal.</p></div>
+    <div class="card"><span class="n">Medir</span><h3>Experimentos y causalidad</h3><p>Separar lo que causó la campaña de lo que habría pasado igual.</p></div>
+    <div class="card"><span class="n">Decidir</span><h3>Presupuesto y valor</h3><p>Repartir la inversión donde el retorno marginal es mayor, contando el riesgo.</p></div>
+  </div>
+</div></section>
+
 <section class="mod" id="rol"><div class="wrap">
-  <div class="head"><span class="eyebrow">01 · Lo que pidió el líder</span><h2>Qué espera marketing de ti</h2>
+  <div class="head"><span class="eyebrow">02 · Lo que pidió el líder</span><h2>Qué espera marketing de ti</h2>
   <p class="muted">No buscan un experto en pauta. Buscan a alguien que lea los datos de pauta y diga dónde mover el presupuesto.</p></div>
   <div class="cards">
     <div class="card"><span class="n">Segmentar</span><h3>Audiencias y campañas</h3><p>Por edad, canal y plataforma: quién convierte mejor y a qué costo.</p></div>
@@ -273,7 +314,7 @@ body.can-ask .ask-more{display:block}
 </div></section>
 
 <section class="mod" id="embudo"><div class="wrap">
-  <div class="head"><span class="eyebrow">02 · Métricas</span><h2>El embudo y sus métricas</h2>
+  <div class="head"><div class="row"><span class="eyebrow">03 · Métricas</span><span class="lv lv1">Básico</span></div><h2>El embudo y sus métricas</h2>
   <p class="muted">Impresión → clic → lead → desembolso. Cada métrica mide un paso o el costo de llegar a él. Cambia los números y mira cómo se mueven.</p></div>
   <div class="panel example">
     <span class="tag">Ejemplo dummy · Google Search, 1 mes</span>
@@ -318,7 +359,7 @@ body.can-ask .ask-more{display:block}
 </div></section>
 
 <section class="mod" id="subasta"><div class="wrap">
-  <div class="head"><span class="eyebrow">03 · Cómo se compra la pauta</span><h2>La subasta</h2>
+  <div class="head"><div class="row"><span class="eyebrow">04 · Cómo se compra la pauta</span><span class="lv lv1">Básico</span></div><h2>La subasta</h2>
   <p>Cada vez que alguien puede ver un anuncio, la plataforma hace una subasta entre los anunciantes que apuntan a esa persona. No gana solo la puja más alta: pesan también la calidad del anuncio y la probabilidad de que la persona actúe. Si tu público es el mismo que el de la competencia, la puja sube y con ella el CPM y el CPA.</p></div>
   <div class="panel">
     <h3>Qué hacer cuando la subasta se encarece</h3>
@@ -334,7 +375,7 @@ body.can-ask .ask-more{display:block}
 </div></section>
 
 <section class="mod" id="plataformas"><div class="wrap">
-  <div class="head"><span class="eyebrow">04 · Dónde se pauta</span><h2>Cada plataforma hace un trabajo distinto</h2>
+  <div class="head"><div class="row"><span class="eyebrow">05 · Dónde se pauta</span><span class="lv lv1">Básico</span></div><h2>Cada plataforma hace un trabajo distinto</h2>
   <p class="muted">No se comparan solo por CPA: se comparan por lo que aportan al embudo.</p></div>
   <div class="panel example">
     <span class="tag">Ejemplo dummy · 4 plataformas, mismo mes</span>
@@ -355,7 +396,7 @@ body.can-ask .ask-more{display:block}
 </div></section>
 
 <section class="mod" id="aprendizaje"><div class="wrap">
-  <div class="head"><span class="eyebrow">05 · Tiempos del algoritmo</span><h2>Fase de aprendizaje</h2>
+  <div class="head"><div class="row"><span class="eyebrow">06 · Tiempos del algoritmo</span><span class="lv lv2">Intermedio</span></div><h2>Fase de aprendizaje</h2>
   <p>Cuando una campaña arranca o cambia mucho (presupuesto, puja, público, creatividad), el algoritmo prueba a quién mostrarla. Mientras aprende, los resultados son inestables y más caros.</p></div>
   <div class="twocol">
     <div class="panel example">
@@ -395,7 +436,7 @@ body.can-ask .ask-more{display:block}
 </div></section>
 
 <section class="mod" id="ventaja"><div class="wrap">
-  <div class="head"><span class="eyebrow">06 · Puente con tu experiencia</span><h2>Tú sabes qué pasa después del lead</h2>
+  <div class="head"><div class="row"><span class="eyebrow">07 · Puente con tu experiencia</span><span class="lv lv2">Intermedio</span></div><h2>Tú sabes qué pasa después del lead</h2>
   <p class="muted">Un analista de marketing típico ve el CPA. Tú puedes ver el costo por crédito desembolsado y la mora por canal.</p></div>
   <div class="panel example">
     <span class="tag">Ejemplo dummy · 2 edades en Meta, pérdida de 300 USD por crédito en mora</span>
@@ -425,8 +466,32 @@ body.can-ask .ask-more{display:block}
   <div class="bridge" data-topic="ventaja"></div>
 </div></section>
 
+<section class="mod" id="experimentos"><div class="wrap">
+  <div class="head"><div class="row"><span class="eyebrow">08 · Medir antes de mover presupuesto</span><span class="lv lv2">Intermedio</span></div><h2>Experimentos, segmentación y pricing</h2>
+  <p>Wharton y Columbia dedican cursos completos a esto: una prueba A/B bien dimensionada vale más que diez dashboards. Antes de lanzar, calcula cuántas personas necesitas para detectar la mejora que te importa; si no las tienes, la prueba no puede responder.</p></div>
+  <div class="panel example">
+    <span class="tag">Calculadora · Tamaño de muestra de una prueba A/B</span>
+    <div class="calc">
+      <div class="inputs">
+        <label for="abP">Conversión actual (%)<input id="abP" type="number" min="0.1" max="99" step="0.1" value="10"></label>
+        <label for="abD">Mejora a detectar (pp)<input id="abD" type="number" min="0.05" step="0.05" value="1"></label>
+        <label for="abA">Confianza<select id="abA"><option value="0.10">90 %</option><option value="0.05" selected>95 %</option><option value="0.01">99 %</option></select></label>
+        <label for="abW">Potencia<select id="abW"><option value="0.8" selected>80 %</option><option value="0.9">90 %</option></select></label>
+        <label for="abT" style="grid-column:1/-1">Personas por día en cada grupo<input id="abT" type="number" min="1" step="50" value="1000"></label>
+      </div>
+      <div class="metrics" id="abOut"></div>
+    </div>
+    <p class="note" id="abNote"></p>
+  </div>
+  <div class="cards">
+    <div class="card"><span class="n">Segmentación y conjoint</span><p>El conjoint pide elegir entre ofertas armadas con distintos atributos (tasa, plazo, monto, cuota) y estima cuánto pesa cada uno en la decisión. Sirve para diseñar la oferta antes de pautarla.</p></div>
+    <div class="card"><span class="n">Pricing</span><p>Elasticidad de la conversión a la tasa o al monto ofrecido. En crédito se combina con la PD: bajar la tasa puede subir la aprobación aceptada y cambiar el perfil de riesgo.</p></div>
+    <div class="card"><span class="n">Analítica digital</span><p>Atribución multitoque, incrementalidad con holdouts y geo-lift. La plataforma reporta lo que se atribuye; el experimento dice lo que causó.</p></div>
+  </div>
+</div></section>
+
 <section class="mod" id="modelos"><div class="wrap">
-  <div class="head"><span class="eyebrow">07 · Para ir más allá del dashboard</span><h2>Técnicas de modelamiento para cada problema</h2>
+  <div class="head"><div class="row"><span class="eyebrow">09 · Para ir más allá del dashboard</span><span class="lv lv3">Avanzado</span></div><h2>Técnicas de modelamiento para cada problema</h2>
   <p class="muted">Propuestas para llevar tu perfil de data scientist a los temas de marketing. Empieza por uplift (la idea de Sergio) y MMM: son las dos que más directamente responden "¿dónde pongo el presupuesto?".</p></div>
 
   <div class="panel">
@@ -590,7 +655,7 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
 </div></section>
 
 <section class="mod" id="catalogo"><div class="wrap">
-  <div class="head"><span class="eyebrow">08 · Todo lo que se modela en marketing</span><h2>Catálogo de modelos aplicados a marketing</h2>
+  <div class="head"><span class="eyebrow">10 · Todo lo que se modela en marketing</span><h2>Catálogo de modelos aplicados a marketing</h2>
   <p class="muted">De estadística básica a inferencia causal y optimización. Cada técnica trae para qué sirve, un ejemplo con números inventados y las librerías. Las marcadas "Tu ventaja" ya las haces en riesgo con otro nombre.</p></div>
   <div class="panel">
     <h3>Mapa: cada tema de la ruta y los modelos que lo resuelven</h3>
@@ -623,22 +688,46 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
 </div></section>
 
 <section class="mod" id="quiz"><div class="wrap">
-  <div class="head"><span class="eyebrow">09 · Practica</span><h2>Quiz</h2>
+  <div class="head"><span class="eyebrow">11 · Practica</span><h2>Quiz</h2>
   <p class="muted">Elige una opción: verás al instante si acertaste y por qué.</p></div>
-  <div class="qbar"><span class="mono" id="qScore">0 / 15 correctas · 0 respondidas</span><button class="btn" id="qReset" type="button">Reiniciar quiz</button></div>
+  <div class="qbar"><span class="mono" id="qScore">0 / 17 correctas · 0 respondidas</span><button class="btn" id="qReset" type="button">Reiniciar quiz</button></div>
   <div class="quiz" id="quizBox"></div>
 </div></section>
 
 <section class="mod" id="plan"><div class="wrap">
-  <div class="head"><span class="eyebrow">10 · 1 a 2 horas al día</span><h2>Plan de 14 días</h2>
+  <div class="head"><span class="eyebrow">12 · 1 a 2 horas al día</span><h2>Plan de 14 días y profundización</h2>
   <p class="muted">Semana 1 para entender; semana 2 para construir un proyecto que puedas mostrar y poner en el CV. Marca cada día al terminarlo; se guarda en este navegador.</p></div>
   <div class="progress"><i id="planBar"></i></div>
   <div class="plan" id="planBox"></div>
   <p class="muted" style="font-size:.9rem">Cuando termines, agrega al CV el proyecto y las certificaciones gratuitas que completes. Antes no, porque aún no existen.</p>
+  <div class="panel">
+    <h3>Profundización · 10 semanas al ritmo de un máster</h3>
+    <p class="muted" style="font-size:.9rem">Para después del plan corto. Cada semana sigue un bloque de los programas de Columbia y Wharton y deja un entregable en Python.</p>
+    <div class="tbl"><table class="deep">
+      <thead><tr><th>Semana</th><th>Tema y referencia</th><th>Entregable</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Inteligencia de mercado y embudo<em>Columbia · Market Intelligence</em></td><td>Embudo por cohorte con datos públicos de campañas</td></tr>
+        <tr><td>2</td><td>Insights del consumidor y segmentación<em>Columbia · Strategic Consumer Insights · Wharton</em></td><td>Segmentación RFM y clustering con perfiles accionables</td></tr>
+        <tr><td>3</td><td>Conjoint y valor percibido<em>Wharton · Marketing Analytics</em></td><td>Conjoint simulado de una oferta de crédito</td></tr>
+        <tr><td>4</td><td>Pricing y elasticidad<em>Wharton · Marketing Analytics</em></td><td>Curva de aceptación frente a tasa, con PD por tramo</td></tr>
+        <tr><td>5</td><td>Experimentos<em>Wharton · MKTG 8090</em></td><td>Diseño y análisis de una prueba A/B con CUPED</td></tr>
+        <tr><td>6</td><td>Analítica digital y atribución<em>Columbia · Digital Marketing · Wharton</em></td><td>Atribución por Markov frente a último clic</td></tr>
+        <tr><td>7</td><td>Uplift y causalidad<em>Wharton · experimentos de campo</em></td><td>Modelo uplift con el dataset de Hillstrom atado a presupuesto</td></tr>
+        <tr><td>8</td><td>Marketing Mix Modeling<em>Columbia · Marketing Analytics</em></td><td>MMM bayesiano con PyMC-Marketing y datos sintéticos</td></tr>
+        <tr><td>9</td><td>Valor del cliente con riesgo<em>Wharton · Customer Analytics</em></td><td>CLV menos pérdida esperada por segmento</td></tr>
+        <tr><td>10</td><td>Caso de consultoría<em>Columbia · Strategic Marketing Consulting</em></td><td>Presentación de 10 minutos con recomendación de presupuesto, publicada en GitHub</td></tr>
+      </tbody>
+    </table></div>
+  </div>
 </div></section>
 
 <footer><div class="wrap">
   Dónde estudiar: <a href="https://skillshop.withgoogle.com" target="_blank" rel="noopener">Google Skillshop</a> · <a href="https://www.facebook.com/business/learn" target="_blank" rel="noopener">Meta Blueprint</a> · TikTok Academy. Para la fase de aprendizaje, busca "fase de aprendizaje" en la ayuda de Meta para empresas y "estado de aprendizaje de la estrategia de ofertas" en la ayuda de Google Ads. Todos los números de esta página son inventados.
+  <p><b>Programas consultados:</b> <a href="https://learn.cbs.columbia.edu/msm/" target="_blank" rel="noopener">Columbia MS in Marketing Science</a> · <a href="https://executiveeducation.wharton.upenn.edu/online-learning/self-paced-online-programs/marketing-analytics/" target="_blank" rel="noopener">Wharton Marketing Analytics</a> · <a href="https://www.hbs.edu/faculty/units/gm/Pages/curriculum.aspx" target="_blank" rel="noopener">Harvard Business School, currículo del MBA</a>.</p>
+  <details><summary>Versión 2.0.0 · 28 oct 2026</summary><ul>
+    <li><b>2.0.0</b> · Estructura alineada con Columbia, Wharton y Harvard: sección de programas, niveles, módulo de experimentos con calculadora de tamaño de muestra, plan de profundización de 10 semanas y glosario emergente.</li>
+    <li><b>1.0.0</b> · Primera versión: ruta rápida de 14 días, modelos, catálogo y quiz de 15 preguntas.</li>
+  </ul></details>
 </div></footer>
 
 <button class="fab" id="chatOpen" type="button" hidden>Pregúntale a Claude</button>
@@ -716,6 +805,25 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     `<tr class="${i === 0 ? 'best' : ''}"><td><b>${p[0]}</b></td><td class="num">$${fmt(p[1])}</td><td class="num">${fmt(p[2])}</td><td class="num">$${fmt(p[1]/p[2]*1000,2)}</td><td class="num">${fmt(p[3]/p[2]*100,1)} %</td><td class="num">${fmt(p[4])}</td><td class="num">$${fmt(p[1]/p[4],2)}</td><td class="num">${fmt(p[5]/p[4]*100,1)} %</td></tr>`
   ).join('');
 
+  /* Tamaño de muestra A/B */
+  const ncdf = x => { const t = 1/(1+0.2316419*Math.abs(x)), d = 0.3989422804*Math.exp(-x*x/2);
+    const q = d*t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429)))); return x > 0 ? 1-q : q; };
+  const nq = p => { let lo = -10, hi = 10; for (let i = 0; i < 80; i++) { const m = (lo+hi)/2; if (ncdf(m) < p) lo = m; else hi = m; } return (lo+hi)/2; };
+  function abCalc(){
+    const g = id => parseFloat(document.getElementById(id).value) || 0;
+    const p1 = Math.min(Math.max(g('abP')/100, .001), .99), d = Math.max(g('abD')/100, .0005), p2 = Math.min(p1 + d, .999);
+    const a = +document.getElementById('abA').value, pw = +document.getElementById('abW').value, t = Math.max(g('abT'), 1);
+    const za = nq(1 - a/2), zb = nq(pw), pb = (p1+p2)/2;
+    const n = Math.ceil(Math.pow(za*Math.sqrt(2*pb*(1-pb)) + zb*Math.sqrt(p1*(1-p1)+p2*(1-p2)), 2) / Math.pow(p2-p1, 2));
+    const days = Math.ceil(n / t), weeks = Math.ceil(days / 7);
+    const m = (k, v, c) => `<div class="metric ${c||''}"><small>${k}</small><b>${v}</b></div>`;
+    document.getElementById('abOut').innerHTML = m('Personas por grupo', fmt(n), 'key') + m('Total del experimento', fmt(2*n)) + m('Días necesarios', fmt(days), 'key') + m('Mejora relativa', '+' + fmt((p2-p1)/p1*100, 1) + ' %');
+    document.getElementById('abNote').textContent = `Para pasar de ${fmt(p1*100,1)} % a ${fmt(p2*100,1)} % necesitas ${fmt(n)} personas por grupo: ${fmt(days)} días con tu tráfico. Corre semanas completas (${weeks} ${weeks===1?'semana':'semanas'}) para no sesgar por el día de la semana, y no mires el resultado a mitad de camino para decidir. Si buscas la mitad de mejora, necesitas cerca de cuatro veces más gente.`;
+  }
+  ['abP','abD','abT'].forEach(id => document.getElementById(id).addEventListener('input', abCalc));
+  ['abA','abW'].forEach(id => document.getElementById(id).addEventListener('change', abCalc));
+  abCalc();
+
   /* Quiz */
   const Q = [
     {s:'Métricas', q:'Gastas 1.500 USD, obtienes 3.000 clics y 150 leads. ¿Cuál es el CPL?', o:['0,50 USD','10 USD','20 USD'], a:1, w:'CPL = gasto / leads = 1.500 / 150 = 10. La opción a) es el CPC (1.500 / 3.000).'},
@@ -732,7 +840,9 @@ print(len(seleccion), "clientes;", round(seleccion.uplift.sum()), "conversiones 
     {s:'Tu ventaja', q:'El líder pregunta por qué los leads de una campaña de marzo todavía no muestran todos sus desembolsos. ¿Qué respondes?', o:['La campaña falló','La conversión a desembolso tarda días; hay que leerla por cohorte de fecha del lead','Hay que mirar solo los clics'], a:1, w:'El desembolso llega días después del lead. Mezclar cohortes incompletas hace ver peores las campañas recientes, igual que una cosecha de cartera joven.'},
     {s:'Modelos', q:'El segmento A convierte 32 % con pauta y 30 % sin ella. El B convierte 12 % con pauta y 4 % sin ella. Cuesta lo mismo impactarlos. ¿A cuál le das presupuesto primero?', o:['A, porque convierte más','B, porque la pauta le cambia más la decisión','A los dos por igual'], a:1, w:'El uplift de A es 2 puntos y el de B es 8. A iba a convertir casi igual sin pauta: es un "seguro".'},
     {s:'Modelos', q:'¿Qué datos necesitas para entrenar un modelo uplift?', o:['Solo los clientes que vieron la campaña','Un grupo tratado y uno de control, idealmente asignados al azar','Solo los clientes que convirtieron'], a:1, w:'El uplift compara qué pasa con y sin campaña. Sin grupo de control no hay contra qué comparar.'},
-    {s:'Modelos', q:'Quieres decidir cuánto invertir en cada canal el próximo trimestre, sabiendo que cada dólar extra rinde menos. ¿Qué técnica usas?', o:['Marketing Mix Modeling (MMM)','Isolation Forest','Atribución de último clic'], a:0, w:'El MMM modela la saturación y el efecto que dura semanas (adstock) por canal, y con eso optimiza cómo repartir un presupuesto total.'}
+    {s:'Modelos', q:'Quieres decidir cuánto invertir en cada canal el próximo trimestre, sabiendo que cada dólar extra rinde menos. ¿Qué técnica usas?', o:['Marketing Mix Modeling (MMM)','Isolation Forest','Atribución de último clic'], a:0, w:'El MMM modela la saturación y el efecto que dura semanas (adstock) por canal, y con eso optimiza cómo repartir un presupuesto total.'},
+    {s:'Experimentos', q:'Conversión actual 10 %. Quieres detectar una subida a 11 % con 95 % de confianza y 80 % de potencia. ¿Cuántas personas necesitas por grupo?', o:['Unas 1.500','Unas 15.000','Unas 150.000'], a:1, w:'La fórmula de dos proporciones da cerca de 14.750 por grupo. Para detectar medio punto necesitarías unas cuatro veces más. Pruébalo en la calculadora de experimentos.'},
+    {s:'Experimentos', q:'¿Para qué sirve un análisis conjoint en una fintech?', o:['Para medir el ROAS de cada canal','Para estimar cuánto pesa cada atributo de la oferta (tasa, plazo, monto) en la decisión del cliente','Para repartir el crédito de una conversión entre canales'], a:1, w:'La gente elige entre ofertas con distintas combinaciones de atributos; de esas elecciones se estima cuánto valora cada uno.'}
   ];
   let ans = store.get('pm_quiz', {});
   const box = document.getElementById('quizBox');
