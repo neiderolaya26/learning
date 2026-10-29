@@ -11,10 +11,21 @@ Rutas de aprendizaje interactivas en español, cada una en una sola página HTML
 | [Paid Media](rutas/paid-media/) | Fundamentos → avanzado | Embudo y métricas (CPM, CTR, CPA, ROAS, ROI), subasta, plataformas, fase de aprendizaje, uplift, MMM, atribución, catálogo de modelos de marketing | 14 días |
 | [IA y Data Science](rutas/ia-data-science/) | Repaso de máster → agentes | Repaso de máster en Data Science con quices y examen final, y la ruta por los cursos públicos del profesor Sergio A. Mora Pardo (PUJ): estocásticos, deep learning, NLP, grafos, LLMs y agentes | 8 semanas + cursos |
 
+## Versiones
+
+| Versión | Fecha | Qué cambió |
+| --- | --- | --- |
+| 2.0.0 | 2026-10-28 | Glosario emergente en las cuatro rutas y rutas alineadas con programas de referencia: GARP FRM, Imperial, Stanford y Edimburgo (riesgo); Columbia, Wharton y Harvard (paid media); Harvard y Stanford (IA); MIT, Princeton, Oxford, LSE, Imperial y Harvard (finanzas) |
+| 1.1.0 | 2026-10-28 | Ruta de Finanzas y gobernanza del repositorio |
+| 1.0.0 | 2026-10-28 | Rutas de Riesgo de crédito, Paid Media e IA |
+
+El detalle está en [CHANGELOG.md](CHANGELOG.md). Cada cambio entra por un pull request con revisión y squash merge, así que cada commit de `main` lleva al PR que lo produjo.
+
 ## Cómo usarlas
 
 - Abre el `index.html` de cada ruta en el navegador; no necesitan instalación ni servidor.
 - El progreso del quiz y del plan se guarda solo en tu navegador.
+- Las siglas y los términos técnicos están subrayados: pasa el cursor o tócalos para ver su definición en palabras sencillas.
 - Todos los números de los ejemplos son inventados para practicar. Las fórmulas están simplificadas con fines de aprendizaje; confirma los detalles en la norma o la documentación oficial antes de usarlas en trabajo real.
 - El botón "Pregúntale a Claude" solo aparece cuando la página se abre como artefacto en claude.ai; en GitHub Pages queda oculto.
 

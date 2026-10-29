@@ -4,6 +4,10 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 
 ## [Sin publicar]
 
+## [2.0.0] - 2026-10-28
+
+Las cuatro rutas se reestructuran con los planes de estudio de programas de referencia y suman un glosario emergente.
+
 ### Agregado
 - Glosario emergente en las cuatro rutas: cada sigla o término técnico (EA, PD, ROAS, WACC, PSI…) queda subrayado y muestra su definición en palabras sencillas al pasar el cursor, tocarlo o enfocarlo con el teclado. 294 definiciones en total.
 - Riesgo de crédito: sección de programas de referencia (GARP FRM, Imperial College, Stanford MS&E 246 y Universidad de Edimburgo) y módulo nuevo de mercados de crédito con triángulo de crédito (CDS a PD), titularización por tramos y riesgo de contraparte.
@@ -31,6 +35,7 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 - Ruta de **IA y Data Science**: repaso de máster con quices y examen final, y la ruta por los cursos públicos del profesor Sergio A. Mora Pardo.
 - Portada con enlaces a las rutas.
 
-[Sin publicar]: https://github.com/neiderolaya26/learning/compare/v1.1.0...HEAD
+[Sin publicar]: https://github.com/neiderolaya26/learning/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/neiderolaya26/learning/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/neiderolaya26/learning/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/neiderolaya26/learning/releases/tag/v1.0.0
