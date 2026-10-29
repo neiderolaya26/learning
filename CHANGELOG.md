@@ -4,6 +4,19 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 
 ## [Sin publicar]
 
+## [3.1.0] - 2026-10-28
+
+Las rutas recuerdan dónde quedó la lectura, así que ya no hay que desplazarse desde el principio cada vez.
+
+### Agregado
+- Tarjeta "Seguir donde quedaste" al abrir una ruta: muestra el módulo y hace cuánto se leyó, y con "Continuar" vuelve al punto exacto. No salta sola, para no desorientar.
+- Botones flotantes "Índice" y "Siguiente": el índice lista los módulos con una casilla para marcar o desmarcar cada uno e indica dónde estás; "Siguiente" baja al próximo módulo.
+- Un módulo se marca solo cuando su final pasa por la pantalla mientras la persona se desplaza. Los saltos con Siguiente, el índice, J, K o Continuar no marcan nada, y lo que se marque o desmarque a mano se respeta.
+- Barra de progreso de lectura y ✓ en el menú superior para los módulos leídos.
+- Atajos de teclado en computador: J siguiente módulo, K anterior, I índice, Esc cierra.
+- IA y Data Science: reabre la última lección del módulo 0 que estabas leyendo.
+- El punto de lectura se guarda solo en el navegador y solo cuando hay desplazamiento, así que abrir y cerrar la página no lo borra.
+
 ## [3.0.0] - 2026-10-28
 
 La ruta de Paid Media deja de ser una preparación para una entrevista concreta y pasa a ser una ruta profesional, organizada con los programas de Columbia, Wharton y Harvard.
@@ -54,7 +67,8 @@ Las cuatro rutas se reestructuran con los planes de estudio de programas de refe
 - Ruta de **IA y Data Science**: repaso de máster con quices y examen final, y la ruta por los cursos públicos del profesor Sergio A. Mora Pardo.
 - Portada con enlaces a las rutas.
 
-[Sin publicar]: https://github.com/neiderolaya26/learning/compare/v3.0.0...HEAD
+[Sin publicar]: https://github.com/neiderolaya26/learning/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/neiderolaya26/learning/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/neiderolaya26/learning/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/neiderolaya26/learning/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/neiderolaya26/learning/compare/v1.1.0...v2.0.0

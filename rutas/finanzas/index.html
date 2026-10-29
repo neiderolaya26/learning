@@ -627,7 +627,8 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
   <p><b>Cursos abiertos:</b> MIT OpenCourseWare 15.401 Finance Theory I · Yale, Financial Markets (Robert Shiller) · clases de valoración de Aswath Damodaran (NYU Stern) · currículo del programa CFA.</p>
   <p><b>Programas consultados:</b> <a href="https://mitsloan.mit.edu/mfin/explore-program/mfin-curriculum">MIT Sloan MFin</a> · <a href="https://bcf.princeton.edu/requirements-and-core-courses">Princeton MFin</a> · <a href="https://www.sbs.ox.ac.uk/programmes/degrees/msc-financial-economics/core-courses-and-electives">Oxford MSc Financial Economics</a> · <a href="https://www.lse.ac.uk/study-at-lse/Graduate/degree-programmes-2021/MSc-Finance-full-time">LSE MSc Finance</a> · <a href="https://www.imperial.ac.uk/business-school/programmes/msc-risk-management/programme/core-modules/">Imperial MSc Risk Management &amp; Financial Engineering</a> · <a href="https://www.hbs.edu/faculty/units/finance/Pages/curriculum.aspx">Harvard Business School, Finance</a>.</p>
   <p>Todos los números de esta página son inventados y las fórmulas están simplificadas para aprender. No es asesoría de inversión.</p>
-  <details><summary>Versión 2.1.0 · 28 oct 2026</summary><ul>
+  <details><summary>Versión 3.1.0 · 28 oct 2026</summary><ul>
+    <li><b>3.1.0</b> · Seguir donde quedaste: tarjeta para retomar la lectura, índice con casillas para marcar o desmarcar cada módulo, botón Siguiente, barra de progreso y atajos de teclado (J, K, I). Saltar con Siguiente o el índice no marca módulos como leídos.</li>
     <li><b>2.1.0</b> · Bibliografía en formato APA con los textos y artículos fundacionales (Markowitz, Sharpe, Black-Scholes, Fama-French, Merton) y las fuentes de cada módulo al pie con su número.</li>
     <li><b>2.0.0</b> · Se suman Imperial College y el MBA de Harvard a los programas de referencia; cada semana del plan indica su referencia académica; glosario emergente.</li>
     <li><b>1.1.0</b> · Primera versión: núcleo de MIT, Princeton, Oxford y LSE, 10 calculadoras, catálogo, quiz y plan de 16 semanas.</li>
@@ -1027,7 +1028,7 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
   if (!keys.length) return;
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const RE = new RegExp('(?<![\\p{L}\\p{N}_])(' + keys.map(esc).join('|') + ')(?![\\p{L}\\p{N}_])', 'gu');
-  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab,.biblio,.srcs';
+  const SKIP = 'script,style,textarea,input,select,option,button,pre,code,a,svg,nav,h1,title,.gl,.gl-pop,.chat,.fab,.biblio,.srcs,.cn-card,.cn-sheet,.cn-dock';
   const BLOCK = '.metric,.stat,.ci,.q,.card,.tech,.stg,.lvcard,.ov,.why,.fb,tr,li,.panel,.lesson,section,details,header,footer';
   const seen = new WeakMap();
 
@@ -1158,6 +1159,211 @@ print(f"VaR 99 % a un día: {var99:.2f} % del portafolio")</pre>
   }
   scan(document.body);
   mo.observe(document.body, {childList:true, subtree:true});
+})();
+</script>
+
+<!-- Continuar donde quedaste: guarda el punto de lectura, ofrece retomarlo, muestra el avance y da atajos para moverse entre módulos. -->
+<style id="continuar-css">
+.cn-bar{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:var(--accent,var(--ms,currentColor));transition:width .15s linear;pointer-events:none}
+.cn-bar.fixed{position:fixed;top:env(safe-area-inset-top,0px);bottom:auto;z-index:40}
+nav.top{position:sticky}
+nav.top a.cn-read::after{content:"✓";margin-left:5px;font-size:.8em;opacity:.75}
+.cn-dock{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;gap:8px}
+.cn-btn{font:600 .85rem/1 var(--body,system-ui,sans-serif);display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line,#ccc);background:var(--surface,#fff);color:var(--fg,var(--ink,#111));box-shadow:0 4px 14px rgba(0,0,0,.14);cursor:pointer}
+.cn-btn:hover{border-color:var(--accent,var(--ms))}
+.cn-btn:focus-visible,.cn-item:focus-visible,.cn-ck:focus-visible,.cn-card button:focus-visible{outline:2px solid var(--accent,var(--ms));outline-offset:2px}
+.cn-btn svg{width:16px;height:16px;flex:none}
+.cn-btn[hidden]{display:none}
+body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
+.cn-card{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:31;width:min(360px,calc(100vw - 32px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));background:var(--surface,#fff);color:var(--fg,var(--ink,#111));border:1px solid var(--line,#ccc);border-radius:14px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.2);display:grid;gap:10px;font-family:var(--body,system-ui,sans-serif)}
+.cn-card small{font-size:.75rem;color:var(--muted,#666);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.cn-card b{font-size:1rem;line-height:1.3}
+.cn-card .cn-when{font-size:.82rem;color:var(--muted,#666)}
+.cn-card .cn-row{display:flex;gap:8px;flex-wrap:wrap}
+.cn-card button{font:600 .88rem var(--body,system-ui,sans-serif);min-height:40px;padding:0 14px;border-radius:999px;cursor:pointer;border:1px solid var(--line,#ccc);background:transparent;color:inherit}
+.cn-card button.cn-go{background:var(--accent,var(--ms));border-color:var(--accent,var(--ms));color:var(--accent-fg,#fff)}
+.cn-sheet{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:32;width:min(380px,calc(100vw - 32px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));max-height:min(70vh,560px);display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--surface,#fff);color:var(--fg,var(--ink,#111));border:1px solid var(--line,#ccc);border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.25);font-family:var(--body,system-ui,sans-serif)}
+.cn-sheet header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px 8px}
+.cn-sheet header b{font-size:.98rem}
+.cn-sheet header span{font-size:.8rem;color:var(--muted,#666)}
+.cn-sheet header button{font:inherit;font-size:1.4rem;line-height:1;background:none;border:0;color:var(--muted,#666);cursor:pointer;min-width:40px;min-height:40px;border-radius:8px}
+.cn-prog{height:4px;margin:0 14px;border-radius:99px;background:var(--sunk,var(--bg,#eee));overflow:hidden}
+.cn-prog i{display:block;height:100%;background:var(--accent,var(--ms))}
+.cn-list{overflow-y:auto;overscroll-behavior:contain;padding:8px 8px 4px;display:grid;gap:2px;align-content:start}
+.cn-row-i{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;border-radius:10px}
+.cn-row-i:hover{background:var(--sunk,var(--bg,#f2f2f2))}
+.cn-row-i[aria-current="true"]{background:var(--accent-soft,var(--ms-soft,#eef))}
+.cn-ck{width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;cursor:pointer;padding:0;color:inherit}
+.cn-ck i{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line,#bbb);display:grid;place-items:center;font-style:normal;font-size:.8rem;font-weight:700;line-height:1}
+.cn-ck[aria-pressed="true"] i{background:var(--good,var(--accent,var(--ms)));border-color:var(--good,var(--accent,var(--ms)));color:var(--surface,#fff)}
+.cn-ck[aria-pressed="true"] i::before{content:"✓"}
+.cn-item{display:grid;grid-template-columns:48px minmax(0,1fr);gap:6px;align-items:center;text-align:left;font:inherit;font-size:.9rem;padding:8px 8px 8px 0;border:0;background:transparent;color:inherit;cursor:pointer;min-height:44px}
+.cn-item .cn-n{font-family:var(--mono,ui-monospace,monospace);font-size:.75rem;color:var(--muted,#666)}
+.cn-row-i[aria-current="true"] .cn-t::after{content:" · estás aquí";font-size:.78rem;color:var(--muted,#666)}
+.cn-hint{font-size:.76rem;color:var(--muted,#666);padding:0 14px 4px}
+.cn-sheet footer{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:space-between;padding:8px 14px 12px;border-top:1px solid var(--line,#ddd);font-size:.78rem;color:var(--muted,#666)}
+.cn-sheet footer button{font:inherit;font-weight:600;background:none;border:0;padding:6px 0;color:var(--accent,var(--ms));cursor:pointer}
+.cn-keys{display:none}
+@media (hover:hover) and (pointer:fine){.cn-keys{display:inline}}
+@media (max-width:600px){.cn-sheet{left:0;right:0;bottom:0;width:100%;max-height:75vh;border-radius:16px 16px 0 0;padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}}
+@media (prefers-reduced-motion:reduce){.cn-bar{transition:none}}
+</style>
+<script id="continuar-js">
+(function(){
+  const CFG = {"key": "cn-finanzas"};
+  const read = () => { try { return JSON.parse(localStorage.getItem(CFG.key) || 'null') || {}; } catch (e) { return {}; } };
+  const write = v => { try { localStorage.setItem(CFG.key, JSON.stringify(v)); } catch (e) {} };
+  const secs = (CFG.sections ? CFG.sections.map(q => document.querySelector(q)) : [...document.querySelectorAll('section.mod[id]')]).filter(Boolean);
+  if (secs.length < 2) return;
+  const nav = document.querySelector('nav.top');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const state = read();
+  state.v = state.v || {};
+  state.m = state.m || {}; // decisiones manuales de la persona: no se sobrescriben
+  const info = el => {
+    const e = el.querySelector('.eyebrow'), h = el.querySelector('h2');
+    const et = e ? e.textContent.trim() : '';
+    return {n: et.includes('·') ? et.split('·')[0].trim() : '', t: (h ? h.textContent : el.id).trim()};
+  };
+  const navH = () => nav ? nav.getBoundingClientRect().height : 0;
+  const topOf = el => el.getBoundingClientRect().top + scrollY;
+  // Mientras dura un salto (Siguiente, índice, J/K, Continuar) no se marca nada como leído.
+  let jumping = false, jumpTimer = 0;
+  const settle = () => { clearTimeout(jumpTimer); jumpTimer = setTimeout(() => { jumping = false; }, 250); };
+  const go = (el, off = 0) => { jumping = true; settle(); scrollTo({top: Math.max(0, topOf(el) - navH() - 8 + off), behavior: reduce ? 'auto' : 'smooth'}); };
+  const icon = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+
+  // Barra de progreso de lectura
+  const bar = document.createElement('div');
+  bar.className = 'cn-bar';
+  if (nav) nav.appendChild(bar); else { bar.classList.add('fixed'); document.body.appendChild(bar); }
+
+  // Botones flotantes
+  const dock = document.createElement('div');
+  dock.className = 'cn-dock';
+  dock.innerHTML = `<button type="button" class="cn-btn" data-cn="index" aria-haspopup="dialog" aria-expanded="false">${icon('<path d="M4 6h16M4 12h16M4 18h10"/>')}Índice</button><button type="button" class="cn-btn" data-cn="next">${icon('<path d="M12 5v14M6 13l6 6 6-6"/>')}Siguiente</button>`;
+  document.body.appendChild(dock);
+  const btnIndex = dock.querySelector('[data-cn="index"]'), btnNext = dock.querySelector('[data-cn="next"]');
+
+  let cur = 0;
+  // Solo se guarda el punto de lectura cuando la persona se mueve: abrir y cerrar la página no lo borra.
+  const yLoad = scrollY; let tracking = false;
+  function current(){
+    const line = navH() + 120;
+    let k = 0;
+    secs.forEach((s, i) => { if (s.getBoundingClientRect().top <= line) k = i; });
+    return k;
+  }
+  function markNav(){
+    if (!nav) return;
+    secs.forEach(s => { const a = nav.querySelector(`a[href="#${s.id}"]`); if (a) a.classList.toggle('cn-read', !!state.v[s.id]); });
+  }
+  let pending = 0;
+  function onScroll(){
+    if (pending) return;
+    pending = requestAnimationFrame(() => {
+      pending = 0;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.width = (max > 0 ? Math.min(100, scrollY / max * 100) : 0) + '%';
+      cur = current();
+      if (jumping) settle();
+      // Un módulo cuenta como leído cuando su final pasa por la pantalla mientras la persona se desplaza,
+      // no cuando lo salta. Si la persona lo marcó o desmarcó a mano, se respeta su decisión.
+      else secs.forEach(s => { const r = s.getBoundingClientRect(); if (!(s.id in state.m) && !state.v[s.id] && r.bottom > innerHeight * 0.3 && r.bottom <= innerHeight - 20) { state.v[s.id] = 1; markNav(); } });
+      if (!tracking && Math.abs(scrollY - yLoad) > 120) tracking = true;
+      const s = secs[cur];
+      if (tracking) state.last = {id: s.id, off: Math.round(scrollY - (topOf(s) - navH() - 8)), t: Date.now()};
+      if (tracking) write(state);
+      btnNext.hidden = cur >= secs.length - 1;
+      if (sheet && !sheet.hidden) renderSheet();
+    });
+  }
+
+  // Índice
+  let sheet = null, lastFocus = null;
+  function renderSheet(){
+    const n = secs.filter(s => state.v[s.id]).length;
+    sheet.querySelector('header span').textContent = `${n} de ${secs.length} leídos`;
+    sheet.querySelector('.cn-prog i').style.width = (n / secs.length * 100) + '%';
+    sheet.querySelector('.cn-list').innerHTML = secs.map((s, i) => { const f = info(s);
+      const on = !!state.v[s.id];
+      return `<div class="cn-row-i" aria-current="${i === cur}"><button type="button" class="cn-ck" data-ck="${i}" aria-pressed="${on}" aria-label="${on ? 'Desmarcar' : 'Marcar'} como leído"><i></i></button><button type="button" class="cn-item" data-i="${i}"><span class="cn-n">${f.n}</span><span class="cn-t"></span></button></div>`; }).join('');
+    sheet.querySelectorAll('.cn-item .cn-t').forEach((el, i) => { el.textContent = info(secs[i]).t; });
+  }
+  function openSheet(){
+    if (!sheet) {
+      sheet = document.createElement('div');
+      sheet.className = 'cn-sheet'; sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-label', 'Índice de la ruta'); sheet.hidden = true;
+      sheet.innerHTML = '<header><div><b>Índice</b><br><span></span></div><button type="button" data-cn="close" aria-label="Cerrar índice">×</button></header><div class="cn-prog"><i></i></div><p class="cn-hint">Toca la casilla para marcar o desmarcar un módulo; toca el nombre para ir.</p><div class="cn-list"></div><footer><button type="button" data-cn="top">Ir al inicio</button><button type="button" data-cn="reset">Reiniciar marcas de leído</button><span class="cn-keys">Atajos: J siguiente · K anterior · I índice</span></footer>';
+      document.body.appendChild(sheet);
+    }
+    closeCard();
+    renderSheet();
+    lastFocus = document.activeElement;
+    sheet.hidden = false; btnIndex.setAttribute('aria-expanded', 'true');
+    const c = sheet.querySelector('.cn-row-i[aria-current="true"] .cn-item') || sheet.querySelector('.cn-item');
+    if (c) { c.scrollIntoView({block: 'center'}); c.focus({preventScroll: true}); }
+  }
+  function closeSheet(){
+    if (!sheet || sheet.hidden) return;
+    sheet.hidden = true; btnIndex.setAttribute('aria-expanded', 'false');
+    if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll: true});
+  }
+
+  // Tarjeta para retomar
+  let card = null;
+  function closeCard(){ if (card) { card.remove(); card = null; } }
+  function ago(t){
+    const m = Math.round((Date.now() - t) / 60000);
+    if (m < 2) return 'hace un momento';
+    if (m < 60) return `hace ${m} minutos`;
+    const h = Math.round(m / 60); if (h < 24) return `hace ${h} ${h === 1 ? 'hora' : 'horas'}`;
+    const d = Math.round(h / 24); return `hace ${d} ${d === 1 ? 'día' : 'días'}`;
+  }
+  const last = state.last;
+  const target = last && document.getElementById(last.id);
+  if (target && !location.hash && (secs.indexOf(target) > 0 || last.off > 400)) {
+    const f = info(target);
+    card = document.createElement('div');
+    card.className = 'cn-card'; card.setAttribute('role', 'status');
+    card.innerHTML = '<small>Seguir donde quedaste</small><b></b><span class="cn-when"></span><div class="cn-row"><button type="button" class="cn-go" data-cn="resume">Continuar</button><button type="button" data-cn="dismiss">Empezar desde arriba</button></div>';
+    card.querySelector('b').textContent = (f.n ? f.n + ' · ' : '') + f.t;
+    card.querySelector('.cn-when').textContent = 'Leíste aquí por última vez ' + ago(last.t) + '.';
+    document.body.appendChild(card);
+    const y0 = scrollY;
+    const away = () => { if (Math.abs(scrollY - y0) > 400) { closeCard(); removeEventListener('scroll', away); } };
+    addEventListener('scroll', away, {passive: true});
+  }
+
+  document.addEventListener('click', e => {
+    const ck = e.target.closest && e.target.closest('.cn-ck');
+    if (ck) { const s = secs[+ck.dataset.ck]; state.v[s.id] = state.v[s.id] ? 0 : 1; if (!state.v[s.id]) delete state.v[s.id]; state.m[s.id] = state.v[s.id] ? 1 : 0; write(state); markNav(); renderSheet(); const n = sheet.querySelector(`.cn-ck[data-ck="${ck.dataset.ck}"]`); if (n) n.focus({preventScroll: true}); return; }
+    const b = e.target.closest && e.target.closest('[data-cn], .cn-item');
+    if (!b) { if (sheet && !sheet.hidden && !e.target.closest('.cn-sheet')) closeSheet(); return; }
+    if (b.classList.contains('cn-item')) { closeSheet(); go(secs[+b.dataset.i]); return; }
+    const a = b.dataset.cn;
+    if (a === 'index') { sheet && !sheet.hidden ? closeSheet() : openSheet(); }
+    else if (a === 'next') { closeCard(); go(secs[Math.min(current() + 1, secs.length - 1)]); }
+    else if (a === 'close') closeSheet();
+    else if (a === 'top') { closeSheet(); scrollTo({top: 0, behavior: reduce ? 'auto' : 'smooth'}); }
+    else if (a === 'reset') { state.v = {}; state.m = {}; write(state); markNav(); renderSheet(); }
+    else if (a === 'dismiss') { closeCard(); tracking = true; }
+    else if (a === 'resume') { closeCard(); tracking = true; go(target, last.off); }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeSheet(); closeCard(); return; }
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    const k = e.key.toLowerCase();
+    if (sheet && !sheet.hidden && k !== 'i') return;
+    if (k === 'j') { e.preventDefault(); go(secs[Math.min(current() + 1, secs.length - 1)]); }
+    else if (k === 'k') { e.preventDefault(); go(secs[Math.max(current() - 1, 0)]); }
+    else if (k === 'i') { e.preventDefault(); sheet && !sheet.hidden ? closeSheet() : openSheet(); }
+  });
+  addEventListener('scroll', onScroll, {passive: true});
+  addEventListener('resize', onScroll);
+  markNav(); onScroll();
 })();
 </script>
 

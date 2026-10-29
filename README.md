@@ -15,6 +15,7 @@ Rutas de aprendizaje interactivas en español, cada una en una sola página HTML
 
 | Versión | Fecha | Qué cambió |
 | --- | --- | --- |
+| 3.1.0 | 2026-10-28 | Seguir donde quedaste: retomar la lectura, índice con módulos leídos, botón Siguiente, barra de progreso y atajos de teclado |
 | 3.0.0 | 2026-10-28 | Ruta de Paid Media reescrita en tono profesional, con valor del cliente ajustado por calidad y plan principal de 10 semanas |
 | 2.1.0 | 2026-10-28 | Bibliografía en formato APA en las cuatro rutas y fuentes numeradas al pie de cada módulo |
 | 2.0.0 | 2026-10-28 | Glosario emergente en las cuatro rutas y rutas alineadas con programas de referencia: GARP FRM, Imperial, Stanford y Edimburgo (riesgo); Columbia, Wharton y Harvard (paid media); Harvard y Stanford (IA); MIT, Princeton, Oxford, LSE, Imperial y Harvard (finanzas) |
@@ -28,6 +29,7 @@ El detalle está en [CHANGELOG.md](CHANGELOG.md). Cada cambio entra por un pull 
 - Abre el `index.html` de cada ruta en el navegador; no necesitan instalación ni servidor.
 - El progreso del quiz y del plan se guarda solo en tu navegador.
 - Las siglas y los términos técnicos están subrayados: pasa el cursor o tócalos para ver su definición en palabras sencillas.
+- Cada ruta recuerda dónde quedaste: al volver, la tarjeta "Seguir donde quedaste" te lleva al punto exacto. Los botones "Índice" y "Siguiente" (o las teclas I, J y K) te mueven entre módulos.
 - Todos los números de los ejemplos son inventados para practicar. Las fórmulas están simplificadas con fines de aprendizaje; confirma los detalles en la norma o la documentación oficial antes de usarlas en trabajo real.
 - El botón "Pregúntale a Claude" solo aparece cuando la página se abre como artefacto en claude.ai; en GitHub Pages queda oculto.
 
