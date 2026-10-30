@@ -4,6 +4,10 @@ Cada versión resume qué cambió en las rutas de aprendizaje. El formato sigue 
 
 ## [Sin publicar]
 
+### Agregado
+- Videos explicativos en las cuatro rutas, como complemento de la lectura. Riesgo, Finanzas y Paid Media muestran al final de cada módulo un bloque "Videos para este tema". IA y Data Science tiene una sección "Videos explicativos por tema", con un grupo por cada tema del módulo 0 y cada etapa.
+- Son 70 enlaces, y cada video se verificó en YouTube antes de incluirlo. Los artefactos no pueden reproducir videos externos, así que cada enlace abre YouTube en otra pestaña. Cada video indica su canal y su idioma (ES o EN).
+
 ## [3.2.0] - 2026-10-28
 
 Las rutas se pueden recorrer por palabra clave: basta escribir un término para encontrar cada lugar donde aparece.

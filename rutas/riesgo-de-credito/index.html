@@ -1609,6 +1609,34 @@ body.chat-open .cn-dock,body.chat-open .cn-card{display:none}
 
 
 <!-- Buscador de palabras: resalta en la ruta las coincidencias de lo que escribe la persona y salta entre ellas, sin ocultar ni filtrar contenido. -->
+<style id="videos-css">
+.vids{display:grid;gap:10px;margin-top:4px}
+.vids-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.vids-h h3{font-size:1rem}
+.vids-h span{font-size:.78rem;color:var(--muted)}
+.vids ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.vids li{min-width:0}
+.vids a{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);text-decoration:none}
+.vids a:hover{border-color:var(--accent)}
+.vids a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.vids .play{grid-row:span 2;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:.7rem}
+.vids .vt{font-size:.88rem;font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.vids .vm{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.vids .lg{font-weight:700;color:var(--fg)}
+</style>
+<script id="videos-js">
+(function(){
+  // Videos verificados (existen en YouTube); se abren fuera del artefacto porque este no puede incrustarlos.
+  const V = {"perdida": [{"u": "https://www.youtube.com/watch?v=pSIIXwgp7sI", "t": "PD vs LGD vs EAD Explained", "c": "CandiMentor", "l": "EN"}, {"u": "https://www.youtube.com/watch?v=wIYDUXBeIwk", "t": "PD, LGD, EAD and Expected Credit Loss Explained With Practical Calculations", "c": "CandiMentor", "l": "EN"}], "scorecards": [{"u": "https://www.youtube.com/watch?v=XakSGB0oHDs", "t": "Weight of Evidence (WOE) and Information Value (IV) in Credit Risk Modeling", "c": "MinAI Edu", "l": "EN"}, {"u": "https://www.youtube.com/watch?v=yIYKR4sgzI8", "t": "StatQuest: Logistic Regression", "c": "StatQuest", "l": "EN"}, {"u": "https://www.youtube.com/watch?v=-lcO5HL1YZk", "t": "Credit Risk Modeling: PD Model with Scorecard", "c": "Computer Tutorials", "l": "EN"}], "validacion": [{"u": "https://www.youtube.com/watch?v=4jRBRDbJemM", "t": "ROC and AUC, Clearly Explained!", "c": "StatQuest", "l": "EN"}], "cosechas": [{"u": "https://www.youtube.com/watch?v=Lzw0Hty5SNc", "t": "Vintage Analysis (Cohort Analysis) in Python", "c": "Analytics With Rajat", "l": "EN"}], "pricing": [{"u": "https://www.youtube.com/watch?v=JUF-UScpEqs", "t": "FRM: Risk-adjusted return on capital (RAROC)", "c": "Bionic Turtle", "l": "EN"}], "provisiones": [{"u": "https://www.youtube.com/watch?v=x0OsNn-qm6c", "t": "IFRS 9 Expected Credit Losses: The 3 Stages Explained", "c": "Farhat Lectures", "l": "EN"}, {"u": "https://www.youtube.com/watch?v=yhr2eIRgYw4", "t": "IFRS 9 ECL Model in Excel: PD, LGD, EAD, Staging & Forward-Looking Scenarios", "c": "Peaks2Tails", "l": "EN"}], "capital": [{"u": "https://www.youtube.com/watch?v=1UXfDvsnMxg", "t": "FRM: Basel internal ratings-based (IRB) risk weight function", "c": "Bionic Turtle", "l": "EN"}, {"u": "https://www.youtube.com/watch?v=t9OOTbyOWhs", "t": "Vasicek Model for Credit Risk Capital", "c": "finRGB", "l": "EN"}], "monitoreo": [{"u": "https://www.youtube.com/watch?v=iWJcITAge-c", "t": "Population Stability Index (PSI) for Scorecards", "c": "Analytics With Rajat", "l": "EN"}, {"u": "https://www.youtube.com/watch?v=r4W90z2LyyA", "t": "Population Stability Index in Credit Scoring", "c": "Manoel Gadi", "l": "EN"}], "avanzado": [{"u": "https://www.youtube.com/watch?v=OtD8wVaFm6E", "t": "XGBoost Part 1 (of 4): Regression", "c": "StatQuest", "l": "EN"}]};
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  Object.entries(V).forEach(([id, list]) => {
+    const wrap = document.querySelector('section#' + id + ' > .wrap'); if (!wrap) return;
+    const box = document.createElement('div'); box.className = 'vids';
+    box.innerHTML = `<div class="vids-h"><h3>Videos para este tema</h3><span>Se abren en YouTube, en otra pestaña. Los videos en inglés tienen subtítulos automáticos en español (rueda ⚙ → Subtítulos → Traducir).</span></div><ul>${list.map(x => `<li><a href="${esc(x.u)}" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true">▶</span><span class="vt">${esc(x.t)}</span><span class="vm"><span class="lg">${x.l}</span> · ${esc(x.c)}</span></a></li>`).join('')}</ul>`;
+    wrap.appendChild(box);
+  });
+})();
+</script>
 <style id="buscar-css">
 ::highlight(bs-hit){background-color:#ffe58a;color:#111}
 ::highlight(bs-cur){background-color:#ff9f43;color:#111}
