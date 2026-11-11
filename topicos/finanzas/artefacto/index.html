@@ -82,6 +82,9 @@ dl.facts dd{margin:2px 0 0;min-width:0}
 .more table{border-collapse:collapse;font-size:.84rem;min-width:100%}
 .more th,.more td{border:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
 .more th{background:var(--accent-soft);font-weight:600}
+.more.ctx{border-left:4px solid var(--accent);background:var(--surface)}
+.more.ctx summary{color:var(--fg)}
+.more.ctx summary::after{content:" · base para leer la pieza";font-weight:400;color:var(--muted);font-size:.82rem}
 .routine{margin-top:28px;border-top:1px solid var(--line);padding-top:18px;font-size:.92rem}
 .routine code{font-family:var(--f-mono);font-size:.82rem}
 /* Quices */
@@ -163,6 +166,14 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div class="byline">Ziyao Wang, Svetlozar T. Rachev, Frank J. Fabozzi · arXiv v1 6 nov 2026</div>
       </div>
       <div class="chips"><span class="chip topic">Asset pricing empírico</span><span class="chip">Costos de transacción</span><span class="chip">Sin código</span></div>
+      <details class="more ctx"><summary>Contexto previo: carteras de factores y reglas de selección</summary><div class="body">
+<p><b>Qué es:</b> una cartera de factores (<i>factor portfolio</i>) es una cartera larga-corta que compra acciones con un valor alto de una característica (la señal) y vende las de valor bajo, para aislar una prima de riesgo o una anomalía (<i>anomaly</i>). La manera de traducir la señal en posiciones es la regla de selección (<i>screen</i> o <i>sort</i>).</p>
+<p><b>De qué se compone:</b> (1) una señal por acción, como valor contable sobre precio (B/M), <i>momentum</i> de 12 meses o volatilidad; (2) un ranking transversal cada mes; (3) cortes (deciles, terciles, mediana); (4) una ponderación, igual o por capitalización; (5) un rebalanceo periódico. El retorno del factor es r_larga − r_corta. La rotación (<i>turnover</i>) es la fracción de la cartera que cambia en cada rebalanceo, y el costo aproximado es rotación × costo por operación (por ejemplo, medio <i>spread</i>).</p>
+<p><b>Cómo se ha trabajado:</b> Fama y French (1993) construyen SMB y HML con <i>sorts</i> dobles por tamaño y B/M; Carhart (1997) añade <i>momentum</i>, y Fama y French (2015) llegan a cinco factores. Para combinar señales se usan <i>sorts</i> dobles o condicionales, intersecciones de <i>screens</i> ("Y") o puntajes compuestos (promedio de rankings). Más recientemente, árboles y redes buscan reglas no lineales.</p>
+<p><b>Dónde está la dificultad:</b> al combinar señales no queda claro cuánto de la exposición viene de cada señal y cuánto de su interacción, ni por qué unas reglas rotan más que otras. Muchas anomalías se reportan en retornos brutos y se debilitan netas de costos, y buscar entre millones de combinaciones invita al sobreajuste.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> si el 90 % de las acciones del quintil alto de valor sigue ahí al mes siguiente, y el 80 % de las de baja volatilidad también, una acción que cumple ambas condiciones, con señales independientes, las sigue cumpliendo con probabilidad 0,9 × 0,8 = 0,72. La intersección cambia más a menudo que cada <i>screen</i> por separado, y cada cambio paga <i>spread</i>.</p>
+<p><b>Conexión:</b> el paper formaliza esta intuición y la usa para medir costos. Para el lector es el mismo problema que combinar varios cortes en un <i>scorecard</i> de crédito: más cortes, más cambios de categoría.</p>
+      </div></details>
       <dl class="facts">
         <div><dt>Qué cambia</dt><dd>Escribe reglas de inversión ("top decil", "alto momentum Y baja volatilidad") como funciones booleanas de umbrales sobre rankings y las descompone (Walsh) en exposiciones a señales individuales y a sus interacciones. Con los mismos coeficientes predice la rotación.</dd></div>
         <div><dt>Por qué importa</dt><dd>Explica por qué los screens combinados rotan más y cuestan más, y da test assets que prueban todas las reglas de <i>k</i> señales a la vez.</dd></div>
@@ -200,6 +211,14 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div class="byline">Mikhail Chernov, Bryan T. Kelly, Semyon Malamud, Johannes Schwab · NBER WP 35988, emitido el 9 nov 2026</div>
       </div>
       <div class="chips"><span class="chip topic">Portafolios</span><span class="chip warn">Solo resumen leído</span></div>
+      <details class="more ctx"><summary>Contexto previo: Sharpe máximo y portafolio tangente</summary><div class="body">
+<p><b>Qué es:</b> el índice de Sharpe (<i>Sharpe ratio</i>) es el exceso de retorno esperado dividido por la volatilidad. Entre todas las combinaciones de activos riesgosos, el portafolio tangente (<i>tangency portfolio</i>) tiene el mayor Sharpe; ese valor es el Sharpe máximo (<i>maximal Sharpe ratio</i>).</p>
+<p><b>De qué se compone:</b> el vector de primas esperadas μ y la matriz de covarianzas Σ. Los pesos óptimos son proporcionales a Σ⁻¹μ, y el Sharpe máximo al cuadrado es θ² = μ′Σ⁻¹μ. En la base de componentes principales, θ² es la suma de μᵢ²/λᵢ: cada dirección aporta su prima al cuadrado dividida por su varianza λᵢ (su autovalor).</p>
+<p><b>Cómo se ha trabajado:</b> Markowitz (1952) plantea la optimización media-varianza y Sharpe (1966) define el índice. En la práctica se reemplazan μ y Σ por estimaciones muestrales, lo que produce pesos extremos e inestables. Las respuestas clásicas son encoger la covarianza (<i>shrinkage</i>, Ledoit y Wolf, 2004), prohibir ventas en corto, trabajar con pocos factores o penalizar con ridge, que equivale a sumar una constante z a cada autovalor. Para el Sharpe máximo muestral existen correcciones de sesgo cuando el número de activos N se acerca al número de periodos T.</p>
+<p><b>Dónde está la dificultad:</b> el término μᵢ²/λᵢ se dispara justo donde λᵢ es pequeño, y ahí la estimación es peor. La regularización apaga esas direcciones para ganar estabilidad, pero si contienen prima real se pierde Sharpe, y no se sabe cuánto.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> una dirección con prima de 0,6 % mensual y volatilidad de 6 % aporta (0,006)²/0,0036 = 0,01 al Sharpe² mensual. Otra con prima de 0,1 % y volatilidad de 0,5 % aporta (0,001)²/0,000025 = 0,04, cuatro veces más. Un ridge con z = 0,0001 casi no toca la primera, pero quintuplica la varianza efectiva de la segunda (de 0,000025 a 0,000125) y le quita casi todo su peso.</p>
+<p><b>Conexión:</b> el paper intenta medir lo que se pierde. Para el lector es la misma tensión entre regularizar y sesgar que en un modelo de probabilidad de incumplimiento con muchas variables.</p>
+      </div></details>
       <dl class="facts">
         <div><dt>Qué cambia</dt><dd>Estima el Sharpe máximo de un corte transversal grande sin construir el portafolio eficiente, recuperando las direcciones de autovalores pequeños que la regularización suprime, con cotas e intervalos asintóticos.</dd></div>
         <div><dt>Por qué importa</dt><dd>Da una vara para saber cuánto Sharpe queda sobre la mesa en un Markowitz con ridge.</dd></div>
@@ -232,6 +251,14 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div class="byline">Zaichao Du, Juan Carlos Escanciano, Pei Pei · arXiv v1 10 nov 2026</div>
       </div>
       <div class="chips"><span class="chip topic">Riesgo de mercado</span><span class="chip">Econometría</span><span class="chip">Sin código</span></div>
+      <details class="more ctx"><summary>Contexto previo: VaR, déficit esperado y backtesting</summary><div class="body">
+<p><b>Qué es:</b> el valor en riesgo (<i>Value-at-Risk</i>, VaR) al nivel α es el cuantil α de la distribución de resultados: la pérdida que solo se supera con probabilidad α. El déficit esperado (<i>expected shortfall</i>, ES) es la pérdida promedio cuando se supera el VaR. El <i>backtesting</i> compara pronósticos pasados con lo que ocurrió para decidir si el modelo es aceptable.</p>
+<p><b>De qué se compone:</b> pronósticos condicionales (VaRₜ, ESₜ) hechos con información hasta t−1; resultados realizados; excepciones (días en que la pérdida supera el VaR); y un estadístico con su distribución bajo la hipótesis nula de modelo correcto. En fórmula, ES_α = E[Y dado que Y ≤ VaR_α].</p>
+<p><b>Cómo se ha trabajado:</b> para el VaR, el test de cobertura incondicional de Kupiec (1995) cuenta excepciones y Christoffersen (1998) añade su independencia en el tiempo; Basilea usó un "semáforo" de excepciones del VaR al 99 %. Con la revisión del marco de riesgo de mercado (FRTB), Basilea adopta el ES al 97,5 %. Backtestear el ES es más difícil: Gneiting (2011) mostró que el ES no es elicitable por sí solo, y Fissler y Ziegel (2016) que sí lo es junto con el VaR. Acerbi y Székely (2014) propusieron tests específicos de ES. Otra familia usa regresiones: pregunta si alguna variable conocida en t−1 predice el error de pronóstico.</p>
+<p><b>Dónde está la dificultad:</b> la mayoría de los tests trata el pronóstico como dado e ignora que sus parámetros se estimaron. Con pocos parámetros el efecto es pequeño; con decenas de predictores y Lasso, el error de estimación puede parecer mala especificación. La literatura de <i>double machine learning</i> resolvió un problema análogo para inferencia sobre coeficientes.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> con un VaR al 1 % y 250 días se esperan 2,5 excepciones. Si el VaR se estimó con solo 100 días, el cuantil estimado varía mucho de una muestra a otra; aun con el modelo correcto, a veces caen 6 excepciones y un test que supone el VaR conocido lo rechaza.</p>
+<p><b>Conexión:</b> el paper ataca este problema en alta dimensión. Para el lector es como validar una PD con un test de calibración que ignora que la PD también se estimó.</p>
+      </div></details>
       <dl class="facts">
         <div><dt>Qué cambia</dt><dd>Si el VaR y el ES se estiman con muchos predictores regularizados, los backtests convencionales heredan un sesgo de primer orden. Proponen momentos ortogonales que lo eliminan y que, en el caso lineal, se implementan como Double Lasso sobre un puntaje ajustado por la cola.</dd></div>
         <div><dt>Por qué importa</dt><dd>El ES es la medida de Basilea para riesgo de mercado, y cada vez se pronostica con más variables.</dd></div>
@@ -271,6 +298,14 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div class="byline">Alessio Brini · arXiv v1 10 nov 2026</div>
       </div>
       <div class="chips"><span class="chip topic">ML y texto financiero</span><span class="chip">Look-ahead bias</span><span class="chip">Código citado</span></div>
+      <details class="more ctx"><summary>Contexto previo: texto financiero, embeddings y sesgo de anticipación</summary><div class="body">
+<p><b>Qué es:</b> el análisis de texto financiero convierte documentos como informes 10-K, noticias o llamadas de resultados (<i>earnings calls</i>) en números que entran a un modelo. Hoy se hace sobre todo con embeddings (<i>embeddings</i>): vectores producidos por un codificador (<i>encoder</i>) de lenguaje, en los que textos parecidos quedan cerca.</p>
+<p><b>De qué se compone:</b> un corpus fechado; un codificador preentrenado (tipo BERT), a veces ajustado al dominio; una tarea (recuperar pasajes, clasificar tono, predecir retornos o sorpresas de beneficios); y una evaluación temporal: entrenar hasta t y evaluar después de t.</p>
+<p><b>Cómo se ha trabajado:</b> primero con diccionarios: Loughran y McDonald (2011) mostraron que las listas generales de palabras negativas clasifican mal el lenguaje financiero y crearon una propia. Luego vinieron la bolsa de palabras y TF-IDF con regresiones penalizadas y, desde BERT (Devlin et al., 2019), los modelos preentrenados, incluidas variantes financieras. La generación aumentada por recuperación (<i>retrieval-augmented generation</i>, RAG) usa embeddings para encontrar pasajes que luego lee un modelo de lenguaje.</p>
+<p><b>Dónde está la dificultad:</b> un modelo preentrenado con texto de 2023 "sabe" cosas que no se sabían en 2015. Si se usa en un backtest de 2015 hay sesgo de anticipación (<i>look-ahead bias</i>): fuga de información futura, aunque los precios estén bien fechados. Es difícil de detectar porque no está en los datos, sino en los pesos del modelo.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> en 2015 una empresa habla de "migrar a la nube". Un codificador entrenado con texto hasta 2023 ya vio miles de llamadas en las que esa frase precede a buenos resultados y la ubica junto a "crecimiento"; uno entrenado hasta 2014 no tiene esa asociación. El backtest con el primero podría mostrar un IC de 0,04 cuando el alcanzable en su momento era 0,02.</p>
+<p><b>Conexión:</b> el paper mide cuánto pesa esa fuga. Para el lector es el principio de validación fuera de tiempo (<i>out-of-time</i>) de los modelos de crédito, aplicado ahora al modelo de texto.</p>
+      </div></details>
       <dl class="facts">
         <div><dt>Qué cambia</dt><dd>Entrena encoders por "vintage" (cortes anuales 2010–2024) que solo leen llamadas de resultados fechadas antes de cada corte, para backtests sin look-ahead, y los ajusta con los pares pregunta-respuesta de las propias llamadas.</dd></div>
         <div><dt>Por qué importa</dt><dd>Cualquier señal de texto con un modelo preentrenado en el futuro filtra información. Aquí se mide cuánto pesa.</dd></div>
@@ -306,6 +341,14 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div class="byline">Christoph Boehm, Husang Kim, T. Niklas Kroner · NBER WP 36004, emitido el 9 nov 2026</div>
       </div>
       <div class="chips"><span class="chip topic">Política monetaria</span><span class="chip">VAR</span><span class="chip">Sin código</span></div>
+      <details class="more ctx"><summary>Contexto previo: choques de política monetaria y su identificación</summary><div class="body">
+<p><b>Qué es:</b> un choque de política monetaria (<i>monetary policy shock</i>) es la parte de una decisión del banco central que el mercado no anticipaba. Se aísla porque la parte anticipada responde a la economía, y usarla mezclaría causa y efecto.</p>
+<p><b>De qué se compone:</b> una medida de la postura (tasa de política o tasas a 1–2 años); un método para aislar la sorpresa; y un modelo que trace sus efectos, normalmente un vector autorregresivo (<i>vector autoregression</i>, VAR) o proyecciones locales (<i>local projections</i>). Del VAR se leen las respuestas impulso (<i>impulse responses</i>) y la descomposición de varianza (<i>forecast error variance decomposition</i>): qué parte de la incertidumbre de pronóstico de una variable se debe al choque.</p>
+<p><b>Cómo se ha trabajado:</b> (a) VAR con identificación recursiva o de Cholesky, que ordena la tasa después de producción y precios (Christiano, Eichenbaum y Evans, 1999); (b) enfoque narrativo con los pronósticos internos de la Fed (Romer y Romer, 2004); (c) sorpresas de alta frecuencia: el cambio de los futuros de tasas en una ventana corta alrededor del anuncio (Kuttner, 2001; Gürkaynak, Sack y Swanson, 2005, que separan un factor de tasa objetivo y uno de sendero, <i>path</i>). Estas sorpresas se usan como instrumentos externos en un VAR.</p>
+<p><b>Dónde está la dificultad:</b> con estas medidas, la política monetaria suele explicar una fracción pequeña de las fluctuaciones del producto y los precios. No está claro si es porque importa poco o porque cada medida captura solo una parte de lo que comunica la Fed (guía futura, información sobre la economía, balance). Además, las sorpresas pueden mezclar la reacción a la política con la reacción a lo que el banco central revela sobre la economía.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> el mercado esperaba un recorte de 25 pb y la Fed recorta 25 pb, pero anuncia que no habrá más. La tasa cercana no se sorprende; la de dos años sube 10 pb y el dólar se aprecia 0,5 %. Una medida basada solo en la tasa cercana registraría un choque de cero.</p>
+<p><b>Conexión:</b> el paper combina varias sorpresas para capturar más de lo que comunica la Fed. Para el lector en Colombia, el canal del dólar es el que llega a las tasas locales y al riesgo de crédito en moneda extranjera.</p>
+      </div></details>
       <dl class="facts">
         <div><dt>Qué cambia</dt><dd>Define el choque monetario principal como la combinación de sorpresas de alta frecuencia (tasa cercana, PATH y el choque "no-yield" de Boehm y Kroner, 2024) que más explica la varianza de pronóstico de producción industrial y CPI a 48 meses.</dd></div>
         <div><dt>Por qué importa</dt><dd>A diferencia de trabajos previos, la política monetaria explica una parte no trivial del ciclo, y lo hace vía el dólar y las materias primas más que vía las tasas.</dd></div>
@@ -348,16 +391,16 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
     </ul>
   </div>
 
-  <div class="routine"><b>Ediciones anteriores:</b> esta es la primera edición del tópico. Fechas v1, autores y cifras de las piezas 01, 03 y 04 verificados de nuevo contra arXiv el 11 nov. Cada pieza trae ahora un resumen ampliado en español (desplegable): 01, 03 y 04 desde el texto completo; 02 y 05 solo desde el resumen de NBER, porque el PDF respondió 403. El informe de esta semana está en <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/finanzas/2026-11-11.md" target="_blank" rel="noopener">topicos/finanzas/2026-11-11.md</a>.<br>
+  <div class="routine"><b>Ediciones anteriores:</b> esta es la primera edición del tópico. Fechas v1, autores y cifras de las piezas 01, 03 y 04 verificados de nuevo contra arXiv el 11 nov. Cada pieza abre con un contexto previo (desplegable con borde verde) que explica el tema de fondo antes del paper, y trae un resumen ampliado en español (desplegable): 01, 03 y 04 desde el texto completo; 02 y 05 solo desde el resumen de NBER, porque el PDF respondió 403. El informe de esta semana está en <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/finanzas/2026-11-11.md" target="_blank" rel="noopener">topicos/finanzas/2026-11-11.md</a>.<br>
     <b>Rutina semanal:</b> cada miércoles se genera un informe nuevo, que se guarda en <code>topicos/finanzas/</code> de la rama <code>topicos</code> del repositorio <code>learning</code>. Ruta relacionada: <a href="https://claude.ai/artifact/4djBhELtDbCmDn1He9ydZk" target="_blank" rel="noopener">Ruta Finanzas</a>.</div>
 </section>
 
 <!-- ============ QUICES ============ -->
 <section id="v-quices" data-panel="quices" hidden>
   <h1>Quices</h1>
-  <p class="lede">Trece preguntas sobre las piezas de esta edición y sus conceptos. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
+  <p class="lede">Quince preguntas sobre las piezas de esta edición y sus conceptos. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
   <div class="qbar">
-    <span class="score" id="score">0 / 13 correctas · 0 respondidas</span>
+    <span class="score" id="score">0 / 15 correctas · 0 respondidas</span>
     <div class="meter" aria-hidden="true"><i id="meter"></i></div>
     <button class="btn" id="reset" type="button">Reiniciar</button>
   </div>
@@ -476,7 +519,9 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
     {t:"pit",q:"¿Qué es un vintage point-in-time en este paper?",o:["Un modelo que solo leyó texto fechado hasta su corte anual","Un modelo entrenado con todos los datos","Una versión comprimida de BERT","Un índice de tono"],a:0,e:"Hay un encoder por año de corte entre 2010 y 2024, y cada uno lee solo llamadas anteriores a su corte."},
     {t:"pit",q:"Según el autor, ¿dónde importan más los vintages point-in-time?",o:["En el pronóstico de retornos","En la recuperación de pasajes (retrieval)","En el cálculo de betas","En la valoración por múltiplos"],a:1,e:"El vintage de 2024 no pronostica retornos mejor; la diferencia aparece sobre todo en recuperación."},
     {t:"mmp",q:"¿Qué hace un choque monetario principal contractivo según el paper?",o:["Sube mucho las tasas largas","Deja las tasas casi iguales, baja el CPI de forma persistente y aprecia el dólar","No tiene efectos","Solo afecta el empleo"],a:1,e:"Difiere del choque de manual: actúa sobre todo vía el dólar y las materias primas."},
-    {t:"mmp",q:"¿Por qué los autores dicen que sus participaciones de varianza son cotas inferiores?",o:["Porque usan pocos rezagos","Porque las sorpresas omiten noticias monetarias fuera de las reuniones del FOMC, como discursos","Porque excluyen el CPI","Porque usan datos trimestrales"],a:1,e:"Lo que no capturan las ventanas del FOMC queda fuera del choque y subestima la importancia de la política monetaria."}
+    {t:"mmp",q:"¿Por qué los autores dicen que sus participaciones de varianza son cotas inferiores?",o:["Porque usan pocos rezagos","Porque las sorpresas omiten noticias monetarias fuera de las reuniones del FOMC, como discursos","Porque excluyen el CPI","Porque usan datos trimestrales"],a:1,e:"Lo que no capturan las ventanas del FOMC queda fuera del choque y subestima la importancia de la política monetaria."},
+    {t:"conceptos",q:"Según el contexto previo, ¿por qué una dirección de cartera con varianza muy baja puede aportar mucho al Sharpe máximo?",o:["Porque tiene beta alta con el mercado","Porque su aporte al Sharpe² es prima²/varianza, y una varianza pequeña agranda una prima pequeña","Porque rota poco","Porque no tiene costos de transacción"],a:1,e:"En la base de componentes principales, el Sharpe² máximo suma μᵢ²/λᵢ. Por eso las direcciones de autovalor pequeño pesan tanto y por eso el ridge, al apagarlas, deja Sharpe sobre la mesa."},
+    {t:"conceptos",q:"Según el contexto previo, ¿qué mide una sorpresa monetaria de alta frecuencia?",o:["El cambio de la tasa de política en el año","El cambio de precios de mercado en una ventana corta alrededor del anuncio, la parte no anticipada","El promedio de pronósticos de analistas","La inflación del mes del anuncio"],a:1,e:"Al mirar solo minutos alrededor del anuncio, el cambio de precios refleja lo que el mercado no esperaba, no la respuesta anticipada a la economía."}
   ];
   const KEY="topicos-finanzas-2026-11-11";
   let ans={};
