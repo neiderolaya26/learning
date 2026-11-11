@@ -71,6 +71,17 @@ dl.facts dd{margin:2px 0 0;min-width:0}
 .watch{margin-top:24px;font-size:.9rem}
 .watch h3{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
 .watch ul{margin:0;padding-left:18px;display:grid;gap:6px;color:var(--muted)}
+.more{margin-top:12px;border:1px solid var(--line);border-radius:4px;background:var(--bg)}
+.more summary{cursor:pointer;padding:10px 12px;font-weight:600;font-size:.9rem;color:var(--accent);list-style-position:inside}
+.more summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.more[open] summary{border-bottom:1px solid var(--line)}
+.more .body{padding:4px 14px 12px;font-size:.92rem;overflow-wrap:anywhere}
+.more .body p{margin:10px 0}.more .body ul,.more .body ol{margin:6px 0;padding-left:20px}.more .body li{margin:3px 0}
+.more .body code{font-family:var(--f-mono);font-size:.82rem}
+.more .tbl{overflow-x:auto;margin:8px 0}
+.more table{border-collapse:collapse;font-size:.84rem;min-width:100%}
+.more th,.more td{border:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+.more th{background:var(--accent-soft);font-weight:600}
 .routine{margin-top:28px;border-top:1px solid var(--line);padding-top:18px;font-size:.92rem}
 .routine code{font-family:var(--f-mono);font-size:.82rem}
 /* Quices */
@@ -160,6 +171,27 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div><dt>Experimento sugerido</dt><dd>Con los 25 portafolios tamaño × B/M de la Kenneth French Data Library, construye la interacción (esquinas 2×2 como diferencia en diferencias). Baseline: HML. Métrica: alfa de la interacción sobre FF5 + Mom y su t; éxito si |t| &gt; 2 en 1995–2024.</dd></div>
       </dl>
       <div class="res">El paper no enlaza código. Datos CRSP/Compustat (licenciados).</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>Problema y motivación:</b> Toda cartera de factores usa una regla (comprar el decil superior, exigir <i>momentum</i> alto y volatilidad baja). Suele tratarse como detalle, pero fija exposiciones y rotación.</p>
+<p><b>Conceptos clave:</b></p>
+<ul><li>Literal (<i>literal</i>): indicador sí/no, p. ej. "el rango de la señal supera el cuantil q".</li><li>Regla booleana (<i>Boolean rule</i>): literales combinados con Y (<i>AND</i>), O (<i>OR</i>) o mayoría (<i>majority</i>).</li><li>Expansión de Walsh (<i>Walsh expansion</i>): separa la regla en exposiciones a señales individuales (orden 1) y a interacciones (orden ≥ 2).</li><li>Persistencia (<i>persistence</i>): correlación mes a mes del literal de cada acción.</li><li>Rotación (<i>turnover</i>): fracción de la cartera vendida cada mes.</li></ul>
+<p><b>Datos:</b> CRSP y Compustat (vía WRDS, no públicos); acciones comunes de NYSE/AMEX/NASDAQ, sin financieras ni acciones bajo el percentil 20 de capitalización NYSE. 623 meses (febrero 1973–diciembre 2024), 1.257 acciones por mes en promedio, doce señales clásicas. Costos: medio <i>spread</i> cotizado (<i>quoted half-spread</i>) desde 1995. Factores FF5/FF6 de Kenneth French (públicos).</p>
+<p><b>Método paso a paso:</b></p>
+<ol><li>Rankear señales y crear literales (mediana, percentiles 20/50/80, rangos).</li><li>Expresar la regla en la base de Walsh: su retorno es la suma exacta de carteras long-short por término (<i>character portfolios</i>), sin supuestos sobre retornos.</li><li>Supuesto: literales persistentes e independientes entre señales; la persistencia de una interacción es el producto de las de sus componentes (dos literales con 0,9 dan 0,81; tres, 0,73).</li><li>Rotación de una pata = (1 − cobertura) × promedio de (1 − persistencia), ponderado por el peso de cada interacción.</li><li>Cargar costos y estimar carteras tangentes con <i>ridge</i> en 1973–2004, evaluadas en 2005–2024.</li></ol>
+<p><b>Resultados:</b></p>
+<ul><li>Persistencia predicha vs. realizada: correlación de al menos 0,999 por orden; rotación de 286 reglas con pendiente 1,02 <span class="tag t-med">MEDIDO</span>.</li><li>Persistencia media de orden 2: 0,63 (mediana), 0,69 (tres umbrales), 0,73 (rangos) <span class="tag t-med">MEDIDO</span>.</li></ul>
+<div class="tbl"><table><thead><tr><th>Orden (1995–2024)</th><th>Costo (pb/mes)</th><th>\</th><th>Prima\</th><th>(pb/mes)</th><th>Prima &gt; costo</th></tr></thead><tbody><tr><td>1</td><td>4,8</td><td>5,4</td><td>58%</td></tr><tr><td>2</td><td>7,5</td><td>3,5</td><td>24%</td></tr><tr><td>3</td><td>9,5</td><td>2,6</td><td>6%</td></tr></tbody></table></div>
+<p><span class="tag t-med">MEDIDO</span></p>
+<ul><li>Sharpe anualizado fuera de muestra (2005–2024): 0,18 solo orden 1; 0,48 añadiendo orden 2; netos, 0,11 vs. 0,32 <span class="tag t-med">MEDIDO</span>.</li><li>GRS: el orden 2 tiene alfas no nulas sobre el orden 1 (p &lt; 0,001). En 1995–2024 el orden ≤ 2 rechaza FF6 (p = 0,007); los <i>sorts</i> convencionales no (p entre 0,24 y 0,90) <span class="tag t-med">MEDIDO</span>.</li></ul>
+<p><b>Robustez y limitaciones:</b></p>
+<ul><li>Señales contables cambian juntas (correlación 0,38 entre crecimiento de activos y de ventas); esas patas rotan 7% menos de lo predicho <span class="tag t-aut">AUTORES</span>.</li><li>La mejora de Sharpe viene de 2005–2019 (0,04 vs. 0,48); en 2020–2024 ambos rinden cerca de 0,5 <span class="tag t-aut">AUTORES</span>.</li><li>El <i>spread</i> cotizado omite el costo de préstamo de acciones y el impacto de órdenes grandes <span class="tag t-aut">AUTORES</span>.</li><li>Buscar la "mejor" entre dieciséis millones de reglas sobreajusta: t = 8,6 en entrenamiento, t medio de 1,4 fuera de muestra <span class="tag t-aut">AUTORES</span>.</li><li>Solo EE. UU. y doce señales; falta validar en otros mercados <span class="tag t-inf">INFERENCIA</span>.</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> El <i>machine learning</i> busca la regla óptima; aquí la regla es dada y se pregunta qué contiene y cuánto cuesta. Une interacciones y costos en una fórmula y da activos de prueba más exigentes.</p>
+<p><b>Cómo aplicarlo:</b></p>
+<ul><li>Con los <i>sorts</i> 2×2 de Kenneth French, calcular la interacción ¼(HH − HL − LH + LL) <span class="tag t-inf">INFERENCIA</span>.</li><li>Con Yahoo Finance, medir la persistencia de cada literal y predecir la rotación antes del backtest <span class="tag t-inf">INFERENCIA</span>.</li><li>Analogía de crédito: como en <i>scorecards</i>, un <i>score</i> continuo cambia menos de categoría que varios cortes combinados <span class="tag t-inf">INFERENCIA</span>.</li><li>Preferir orden 2, rangos suaves y zonas de amortiguación (<i>buffer zones</i>) <span class="tag t-aut">AUTORES</span>.</li></ul>
+<p><b>Glosario breve:</b></p>
+<ul><li>Cobertura (<i>coverage</i>): peso del universo dentro de la pata.</li><li>GRS: test conjunto de alfas nulas.</li><li>Cartera tangente (<i>tangency portfolio</i>): combinación de máximo Sharpe.</li></ul>
+<p><b>Frase para recordar:</b> Cada "Y" que agregas multiplica persistencias y suma rotación: la lógica de la regla ya fija su costo.</p>
+      </div></details>
     </article>
 
     <article class="piece">
@@ -176,6 +208,22 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div><dt>Experimento sugerido</dt><dd>Con los 100 portafolios tamaño × B/M de French, compara el Sharpe fuera de muestra de un Markowitz con ridge (ventana expansiva) con una estimación corregida por sesgo del Sharpe² muestral, (T−N−2)/T·θ̂² − N/T. No es el estimador del paper. Métrica: brecha entre ambos al variar la penalización.</dd></div>
       </dl>
       <div class="res">Código y datos: no verificados.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><i>Solo pude leer el resumen oficial de NBER: el PDF respondió 403 en las dos ejecuciones de hoy. Este resumen ampliado se limita a lo que dice ese resumen y no completa datos, métodos ni tablas que no vi.</i></p>
+<p><b>Problema y motivación:</b> ¿Cuál es el mayor Sharpe que se podría obtener combinando de forma óptima miles de activos? Para responderlo se suele construir el portafolio eficiente de Markowitz y medir su Sharpe fuera de muestra. Pero con muchos activos la matriz de covarianzas se estima mal y hay que regularizarla. Esa regularización apaga justamente las direcciones de poca varianza, que pueden aportar mucho Sharpe. Por eso los benchmarks basados en portafolios subestimarían el máximo.</p>
+<p><b>Conceptos clave:</b></p>
+<ul><li>Sharpe máximo (<i>maximal Sharpe ratio</i>): el Sharpe del portafolio tangente, el mejor posible con esos activos.</li><li>Regularización (<i>regularization</i>) y ridge: sumar una penalización a la covarianza para que su inversa sea estable.</li><li>Direcciones de autovalores pequeños (<i>small-eigenvalue directions</i>): combinaciones de activos con muy poca varianza; con poca varianza, una prima pequeña ya da un Sharpe alto.</li><li>Cotas superior e inferior (<i>upper and lower bounds</i>) con intervalos de confianza asintóticos.</li><li>Pesos no lineales (<i>nonlinear portfolio weights</i>): pesos que dependen de las características de forma no lineal.</li></ul>
+<p><b>Datos:</b> acciones de EE. UU. con y sin micro-caps, características de firma y bonos corporativos. El resumen no da periodo, frecuencia ni número de activos.</p>
+<p><b>Método paso a paso:</b> según el resumen, el estimador recupera de forma progresiva la contribución de las direcciones que la regularización suprime y, en lugar de un número, entrega cotas superior e inferior "ajustadas" con intervalos asintóticos. No lo hace construyendo el portafolio eficiente. Además muestran teóricamente cuánto pierde un Markowitz con ridge. No vi la ecuación central.</p>
+<p><b>Resultados:</b></p>
+<ul><li><span class="tag t-med">MEDIDO</span> Sharpe máximo anualizado estimado de ~7,4 en acciones de EE. UU.</li><li><span class="tag t-med">MEDIDO</span> ~5,0 sin micro-caps.</li><li><span class="tag t-med">MEDIDO</span> Benchmarks existentes basados en portafolios: 1,0–4,0.</li><li><span class="tag t-med">MEDIDO</span> Añadir bonos corporativos sube el máximo, pero no de forma estadísticamente significativa.</li><li><span class="tag t-aut">AUTORES</span> Los pesos no lineales dominan a los lineales.</li><li><span class="tag t-aut">AUTORES</span> Las características introducidas después de 2004 aportan poco Sharpe adicional.</li></ul>
+<p><b>Robustez y limitaciones:</b></p>
+<ul><li><span class="tag t-aut">AUTORES</span> Los Markowitz con ridge quedan por debajo del máximo por un factor multiplicativo explícito que no desaparece con más datos.</li><li><span class="tag t-inf">INFERENCIA</span> Es un máximo poblacional: no incluye costos de transacción, restricciones de corto ni capacidad. No es un Sharpe que un gestor pueda alcanzar.</li><li><span class="tag t-inf">INFERENCIA</span> Sin el texto completo no puedo evaluar supuestos (estacionariedad, número de activos frente a periodos) ni la sensibilidad a micro-caps más allá de la cifra dada.</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> <span class="tag t-inf">INFERENCIA</span> se contrasta con la línea de portafolios de "factor zoo" y ML (Kelly, Malamud y coautores) que reportan Sharpe fuera de muestra altos con Markowitz regularizado; aquí se mide cuánto queda fuera.</p>
+<p><b>Cómo aplicarlo:</b> <span class="tag t-inf">INFERENCIA</span> úsalo como vara: si tu portafolio con ridge sobre portafolios de French da un Sharpe X, la pregunta es cuánto de la brecha frente al máximo se debe a la penalización. El experimento sugerido (100 portafolios tamaño × B/M) va en esa dirección con un estimador más simple, no con el del paper.</p>
+<p><b>Glosario breve:</b> portafolio tangente; ridge; autovalor; micro-cap; Sharpe fuera de muestra.</p>
+<p><b>Frase para recordar:</b> regularizar estabiliza el portafolio, pero esconde Sharpe en las direcciones que casi no varían.</p>
+      </div></details>
     </article>
 
     <article class="piece">
@@ -192,6 +240,29 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div><dt>Experimento sugerido</dt><dd>Simula retornos GARCH-t con 50 predictores de ruido, estima VaR por regresión cuantílica L1 y ES por Lasso, y repite 200 veces. Baseline: backtest regresivo sin residualizar. Métrica: tasa de rechazo bajo H0 cerca de 5 %.</dd></div>
       </dl>
       <div class="res">Sin código enlazado. Datos de FRED, OECD y la base macrofinanciera de Jordà et al.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>Problema y motivación:</b> Con muchos predictores y regularización, el sesgo de estimación puede hacer que un modelo óptimo "falle" un <i>backtest</i> convencional, aun fuera de muestra.</p>
+<p><b>Conceptos clave:</b></p>
+<ul><li>Valor en riesgo (<i>Value-at-Risk</i>, VaR): cuantil α condicional; aquí α = 0,10.</li><li>Déficit esperado (<i>expected shortfall</i>, ES): media del resultado bajo el VaR. Solo es elicitable junto con el VaR (<i>joint elicitability</i>).</li><li>Pseudo-resultado (<i>tail-size-adjusted score</i>): Y* = q + (1/α)·1{Y ≤ q}·(Y − q). Su media condicional es el ES.</li><li>Función de prueba (<i>test function</i>, w): dirección donde se busca el error, p. ej. un predictor omitido.</li><li>Ortogonalidad de Neyman (<i>Neyman-orthogonal score</i>): el momento no cambia, a primer orden, ante pequeños errores de estimación.</li><li>Equivalencia con el oráculo (<i>oracle equivalence</i>): el estadístico se comporta como si los parámetros fueran conocidos.</li></ul>
+<p><b>Datos:</b></p>
+<ul><li>Simulaciones: innovaciones t₅, predictores dependientes; pT − 1 ∈ {25, 50, 100, 150}, T ∈ {250, 500, 1000, 5000}, P = ⌊0,3T⌋, 200 réplicas.</li><li>Aplicación: crecimiento interanual del PIB trimestral del G7, 1962Q1–2019Q4; 64 predictores (15 series macrofinancieras y el crecimiento, con 4 rezagos). Fuentes: FRED, OECD y Jordà et al. Evaluación 2002Q3–2019Q4 (R = 154, P = 70; Canadá P = 68). Sin datos en tiempo real ni código publicado.</li></ul>
+<p><b>Método paso a paso:</b></p>
+<ol><li>Estimar el VaR con regresión cuantílica Lasso.</li><li>Construir Y* y estimar el ES con Lasso sobre Y*.</li><li>Regresar w sobre los regresores del ES (todo Xₜ) y quedarse con el residuo k.</li><li>Score por fecha: S = k·(Y* − ES pronosticado).</li><li>J = P·S̄′Ω̂⁻¹S̄ con Ω̂ HAC, contra una χ² con dim(w) grados de libertad.</li></ol>
+<p>Supuestos: VaR y ES óptimos dados Xₜ, β-mixing, momentos finitos (q &gt; 4); ventanas fijas, móviles o expansivas.</p>
+<p><b>Resultados:</b></p>
+<ul><li>Tamaño nominal 5 % <span class="tag t-med">MEDIDO</span>: el test ortogonal (LR) rechaza entre 3,0 % y 8,5 %; el convencional (NLR), entre 11,5 % y 39,5 %.</li><li>Potencia <span class="tag t-med">MEDIDO</span>: con T = 5000 y η = 0,03, 25,0 % (50 predictores) y 39,5 % (150) ante heterocedasticidad no lineal.</li></ul>
+<div class="tbl"><table><thead><tr><th>G7, 2002–2019 (p-valores)</th><th>Baseline</th><th>LR</th></tr></thead><tbody><tr><td>EE. UU., M0 sin finanzas</td><td>0,0001</td><td>0,0009 (Holm 14: 0,0120)</td></tr><tr><td>Italia, M0</td><td>0,0373</td><td>0,0152 (Holm 14: 0,1979)</td></tr><tr><td>Canadá, M1 no lineal</td><td>0,0002</td><td>0,8125</td></tr><tr><td>Canadá, ES²</td><td>0,7776</td><td>0,0061</td></tr></tbody></table></div>
+<ul><li><span class="tag t-med">MEDIDO</span> En EE. UU., Lasso selecciona 0,00 predictores financieros para el ES y aun así se rechaza M0. Con el modelo M3, la pérdida cuadrática baja de 4,4244 a 4,2781 (3,31 %).</li><li><span class="tag t-med">MEDIDO</span> Las excedencias del GaR van de 7,1 % a 22,9 %.</li></ul>
+<p><b>Robustez y limitaciones:</b></p>
+<ul><li><span class="tag t-aut">AUTORES</span> El rechazo de EE. UU. resiste con 2 y 8 rezagos HAC. Persiste sobre-rechazo bajo H₀ (7 % a 15,5 %) en los diseños con predictores omitidos.</li><li><span class="tag t-aut">AUTORES</span> No corrige sesgos ni incoherencias del pronóstico (ES &gt; VaR) y depende de un GaR bien especificado. M3 es exploratorio.</li><li><span class="tag t-inf">INFERENCIA</span> Con P = 70, un trimestre de crisis puede dominar el score (~54 % en Canadá).</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> Lleva Double Lasso (Chernozhukov et al.) a ES en series de tiempo y extiende West (1996) y Barendse et al. (2023) a alta dimensión. Frente a los e-backtests, evalúa optimalidad, no solo subestimación.</p>
+<p><b>Cómo aplicarlo:</b> <span class="tag t-inf">INFERENCIA</span> Con FRED (PIB, NFCI, diferencial de plazos) y Kenneth French (factores), en Python:</p>
+<ul><li>VaR: <code>QuantileRegressor</code> (L1) de scikit-learn.</li><li>ES: <code>LassoCV</code> sobre Y*.</li><li>Residualización: Lasso sobre la misma Xₜ.</li><li>Ω̂: <code>cov_hac</code> de statsmodels.</li></ul>
+<p>Compara NLR y LR; en crédito, w puede ser un indicador macro omitido.</p>
+<p><b>Glosario breve:</b></p>
+<ul><li>HAC: varianza robusta a heterocedasticidad y autocorrelación.</li><li>Holm: ajuste por pruebas múltiples.</li><li>GaR/GES: crecimiento en riesgo y su ES.</li><li>Residualizar: quitar a w lo que el ES ya explica.</li></ul>
+<p><b>Frase para recordar:</b> que Lasso no elija un predictor no prueba que el ES esté bien especificado; eso solo lo dice un <i>backtest</i> ortogonal.</p>
+      </div></details>
     </article>
 
     <article class="piece">
@@ -208,6 +279,25 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div><dt>Experimento sugerido</dt><dd>Con secciones MD&amp;A de 10-K de EDGAR para ~200 firmas, ajusta TF-IDF con todo el corpus y luego solo con años previos. Baseline: IC de tamaño + retorno pasado (Yahoo Finance). Métrica: diferencia de IC entre las dos versiones.</dd></div>
       </dl>
       <div class="res">El paper cita <a href="https://github.com/Alessiobrini/point-in-time-encoders-for-earnings-calls" target="_blank" rel="noopener">github.com/Alessiobrini/point-in-time-encoders-for-earnings-calls</a>; respondió 403 desde mi entorno y no lo verifiqué.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>Problema y motivación:</b> Los codificadores convierten las conferencias de resultados (<i>earnings calls</i>) en vectores para buscar, alimentar modelos de lenguaje o predecir. En un backtest, cada vector de la fecha t debe salir de un codificador que no leyó texto posterior a t. Esa fuga nunca se había medido.</p>
+<p><b>Conceptos clave:</b></p>
+<ul><li>Sesgo de anticipación (<i>look-ahead bias</i>): usar información inexistente en la fecha simulada.</li><li>Vintage (<i>vintage</i>): versión del modelo entrenada solo con texto hasta su corte (31 de diciembre del año Y).</li><li>Ajuste fino contrastivo (<i>contrastive fine-tuning</i>): acerca cada pregunta a su respuesta y la aleja de las demás del lote.</li><li>Preentrenamiento adaptativo al dominio (<i>domain-adaptive pretraining</i>, DAPT): seguir preentrenando un modelo general con texto del dominio.</li><li>Prima de anticipación (<i>look-ahead premium</i>): cambio en una métrica al usar un vintage posterior al disponible en su momento.</li><li>Coeficiente de información (<i>information coefficient</i>, IC): correlación de rangos entre pronóstico y resultado.</li></ul>
+<p><b>Datos:</b> 412 248 llamadas de más de 16 000 empresas (septiembre 2004–septiembre 2026), de Capital IQ en WRDS, incluidas empresas ya deslistadas; retornos de CRSP, factores diarios Fama-French y beneficios de Compustat. No son públicos; el código sí. Se reserva el 10 % de las llamadas para evaluar.</p>
+<p><b>Método paso a paso:</b></p>
+<ol><li>Pares pregunta del analista–respuesta del directivo como supervisión sin etiquetado.</li><li>Codificador ModernBERT de 33,8M parámetros, vintages anuales 2010–2024.</li><li>Cuatro recetas: desde cero (1,2B tokens fijos), encadenada (cada vintage continúa el anterior con el año nuevo), ChronoBERT + ajuste contrastivo y ChronoBERT + DAPT.</li><li>Mismo ajuste contrastivo para todas, solo con pares fechados hasta el corte; un registro bloquea vintages posteriores a la consulta.</li><li>Evaluación: recuperación en el segundo trimestre de Y+1; ridge reestimada cada enero; vecinos más cercanos; control de repetición (<i>replay</i>) para separar texto nuevo de entrenamiento extra.</li></ol>
+<p><b>Resultados:</b></p>
+<div class="tbl"><table><thead><tr><th>Recall@1 dentro de la llamada (15 trimestres)</th><th>Valor</th></tr></thead><tbody><tr><td>Desde cero / e5-base / bge-small</td><td>0,728 / 0,584 / 0,538 <span class="tag t-med">MEDIDO</span></td></tr><tr><td>Diferencia frente a e5-base</td><td>+0,144 [0,139; 0,149] <span class="tag t-med">MEDIDO</span></td></tr></tbody></table></div>
+<ul><li>Recall@5: 0,952 frente a 0,880 de e5-base <span class="tag t-med">MEDIDO</span>.</li><li>IC al día siguiente, 2013–2025: el baseline de precios logra 0,025; los vectores desde cero suman +0,012 (t = 3,0), «alrededor de la mitad» <span class="tag t-med">MEDIDO</span>.</li><li>Prima en recuperación: encadenada +0,0041 (mismo año) y +0,0090 (vintage 2024); desde cero, sin ganancia neta (−0,0003 y −0,0028) <span class="tag t-med">MEDIDO</span>. El replay da −0,0027; el texto posterior, +0,0069 <span class="tag t-med">MEDIDO</span>.</li><li>Un modelo de lenguaje que lee lo recuperado hereda +0,0764 nats por token; sin la respuesta real entre candidatos, la prima cae a 0,0018 <span class="tag t-med">MEDIDO</span>.</li><li>Sorpresa de beneficios con solo texto: prima 0,0134 (t = 3,7); en llamadas reservadas, 0,0126 con intervalo [−0,0105; 0,0276] <span class="tag t-med">MEDIDO</span>. Retornos: sin mejora en ningún horizonte <span class="tag t-med">MEDIDO</span>.</li></ul>
+<p><b>Robustez y limitaciones:</b></p>
+<ul><li>Un solo corpus, modelos de hasta 149,0M parámetros; exige turnos de preguntas y respuestas, ausentes en noticias o filings <span class="tag t-aut">AUTORES</span>.</li><li>De 96 primas, pocas superan Bonferroni; las ganancias del texto son pequeñas <span class="tag t-aut">AUTORES</span>.</li><li>Sin WRDS no hay Capital IQ ni CRSP; replicarlo exige otra fuente de transcritos <span class="tag t-inf">INFERENCIA</span>.</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> ChronoBERT y DatedGPT fechan el modelo de lenguaje, no el recuperador. Aquí se mide la fuga por el codificador y se muestra que llega a la recuperación aumentada.</p>
+<p><b>Cómo aplicarlo:</b></p>
+<ul><li>Guarda con cada embedding su fecha de corte y rechaza consultas anteriores <span class="tag t-inf">INFERENCIA</span>.</li><li>Usa EDGAR (8-K) para fechar anuncios, Yahoo Finance para precios y los factores diarios de Kenneth French para el mercado <span class="tag t-inf">INFERENCIA</span>.</li><li>Mide el IC trimestral con ventanas expansivas, como en la validación temporal de scorecards de crédito <span class="tag t-inf">INFERENCIA</span>.</li></ul>
+<p><b>Glosario breve:</b></p>
+<ul><li>Vintage: modelo congelado a una fecha.</li><li>Recall@1: proporción de preguntas cuya respuesta queda primera.</li></ul>
+<p><b>Frase para recordar:</b> en un backtest, el codificador también tiene fecha; la fuga pesa en la recuperación y poco en los retornos.</p>
+      </div></details>
     </article>
 
     <article class="piece">
@@ -224,6 +314,22 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
         <div><dt>Experimento sugerido</dt><dd>VAR en statsmodels con INDPRO, CPI, GS1, DGS5, VIX y el índice amplio del dólar (FRED), más las sorpresas del USMPD. Baseline: Cholesky con la tasa a 1 año. Métrica: participación en la varianza del CPI a 48 meses.</dd></div>
       </dl>
       <div class="res">Sin código enlazado. Sorpresas del U.S. Monetary Policy Event-Study Database (Acosta et al., 2025); no verifiqué su URL. El PDF respondió 403 en la nueva verificación del 11 nov: las fechas y el resumen se confirmaron en NBER, pero las cifras porcentuales no se pudieron volver a contrastar.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><i>En esta ejecución solo pude leer el resumen oficial de NBER (el PDF respondió 403). Las cifras del VAR vienen de la lectura del texto completo en una ejecución anterior de hoy y no se pudieron volver a contrastar. No completo con suposiciones lo que no vi.</i></p>
+<p><b>Problema y motivación:</b> la literatura de choques monetarios de alta frecuencia suele concluir que la política monetaria explica poco de las fluctuaciones del ciclo. Pero cada medida de sorpresa (tasa de corto plazo, pendiente, "no-yield") captura solo una parte de lo que comunica la Fed. La pregunta es qué combinación de esas sorpresas explica más de la macro y cuánto explica.</p>
+<p><b>Conceptos clave:</b></p>
+<ul><li>Sorpresa monetaria de alta frecuencia (<i>high-frequency surprise</i>): cambio de precios de mercado en una ventana corta alrededor de un anuncio del FOMC.</li><li>Sorpresas de la curva de rendimientos (<i>yield-curve surprises</i>): una de la tasa cercana y otra del sendero esperado (<i>path</i>).</li><li>Choque "no-yield" (<i>non-yield shock</i>, Boehm y Kroner, 2024): noticias del FOMC que mueven otros activos (acciones, dólar, materias primas) sin mover las tasas.</li><li>Choque monetario principal (<i>main monetary policy shock</i>, MMP): la combinación lineal de sorpresas que mejor explica las fluctuaciones macro.</li><li>Descomposición de la varianza del error de pronóstico (<i>forecast error variance decomposition</i>): qué parte de la incertidumbre de una variable a cierto horizonte se debe a cada choque.</li></ul>
+<p><b>Datos:</b> [lectura anterior] VAR mensual de 1996m1 a 2025m7 con 12 rezagos, que incluye al menos producción industrial, CPI y el índice amplio del dólar (las variables cuya varianza se reporta), más sorpresas del U.S. Monetary Policy Event-Study Database (Acosta et al., 2025). No volví a verificar la lista completa de variables ni la URL de esa base.</p>
+<p><b>Método paso a paso:</b> (1) se toman las tres sorpresas; (2) [lectura anterior] se busca la combinación lineal que maximiza la participación en la varianza de pronóstico de producción industrial y CPI a 48 meses; (3) esa combinación es el choque MMP y se estudian sus respuestas impulso. El resumen lo describe como "un procedimiento nuevo"; no reproduzco la ecuación porque no la pude volver a ver.</p>
+<p><b>Resultados:</b></p>
+<ul><li><span class="tag t-aut">AUTORES</span> El MMP explica variación no trivial del ciclo en los últimos 30 años, en contraste con hallazgos previos.</li><li><span class="tag t-med">MEDIDO LECTURA ANTERIOR</span> En promedio a cuatro años explica ~9 % de la varianza de la producción industrial, ~18 % de la del CPI y ~16 % de la del dólar amplio.</li><li><span class="tag t-med">MEDIDO</span> Un choque contractivo deja las tasas casi iguales, baja de forma persistente los precios y aprecia el dólar; endurece temporalmente las condiciones financieras y deprime la producción industrial.</li></ul>
+<p><b>Robustez y limitaciones:</b></p>
+<ul><li><span class="tag t-aut">AUTORES</span> Las participaciones son cotas inferiores, porque las sorpresas omiten noticias monetarias fuera de las reuniones del FOMC.</li><li><span class="tag t-inf">INFERENCIA</span> Elegir la combinación que maximiza la varianza explicada puede sobreajustar en muestra; habría que ver cómo lo controlan (no lo verifiqué).</li><li><span class="tag t-inf">INFERENCIA</span> Es Estados Unidos; la transmisión a economías como Colombia vía el dólar es una hipótesis, no un resultado del paper.</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> combina la literatura de sorpresas de alta frecuencia (tasa y path) con el choque no-yield, y cambia la conclusión de "poca importancia" a "importancia no trivial", con un canal cambiario más que de tasas.</p>
+<p><b>Cómo aplicarlo:</b> <span class="tag t-inf">INFERENCIA</span> estima un VAR en statsmodels con datos de FRED y compara la participación del CPI con identificación Cholesky frente a una combinación de sorpresas. Para un portafolio, sugiere vigilar el dólar y las materias primas tras el FOMC, no solo la curva.</p>
+<p><b>Glosario breve:</b> FOMC; VAR; respuesta impulso; descomposición de varianza; choque no-yield.</p>
+<p><b>Frase para recordar:</b> el choque monetario que más mueve la economía casi no mueve las tasas: mueve el dólar.</p>
+      </div></details>
     </article>
   </div>
 
@@ -242,7 +348,7 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
     </ul>
   </div>
 
-  <div class="routine"><b>Ediciones anteriores:</b> esta es la primera edición del tópico. Fechas v1, autores y cifras de las piezas 01, 03 y 04 verificados de nuevo contra arXiv el 11 nov. El informe de esta semana está en <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/finanzas/2026-11-11.md" target="_blank" rel="noopener">topicos/finanzas/2026-11-11.md</a>.<br>
+  <div class="routine"><b>Ediciones anteriores:</b> esta es la primera edición del tópico. Fechas v1, autores y cifras de las piezas 01, 03 y 04 verificados de nuevo contra arXiv el 11 nov. Cada pieza trae ahora un resumen ampliado en español (desplegable): 01, 03 y 04 desde el texto completo; 02 y 05 solo desde el resumen de NBER, porque el PDF respondió 403. El informe de esta semana está en <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/finanzas/2026-11-11.md" target="_blank" rel="noopener">topicos/finanzas/2026-11-11.md</a>.<br>
     <b>Rutina semanal:</b> cada miércoles se genera un informe nuevo, que se guarda en <code>topicos/finanzas/</code> de la rama <code>topicos</code> del repositorio <code>learning</code>. Ruta relacionada: <a href="https://claude.ai/artifact/4djBhELtDbCmDn1He9ydZk" target="_blank" rel="noopener">Ruta Finanzas</a>.</div>
 </section>
 
