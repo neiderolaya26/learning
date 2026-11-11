@@ -1,0 +1,490 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tópicos Riesgo de Crédito</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: expediente semanal de riesgo — cabecera fija con pestañas, columna de lectura de ~70ch, fichas por pieza y paneles de simulación con datos inventados. Paleta vino tinto de la ruta de riesgo. */
+:root{
+  --bg:#f4f3f6; --surface:#ffffff; --sunk:#ebe8ef; --fg:#1d1724; --muted:#5f5769; --line:#d9d4e0;
+  --accent:#8e2a4f; --accent-soft:#f6e3ea; --accent-fg:#ffffff;
+  --med:#2b5fc2; --med-bg:#e2eafb; --aut:#6b3fa0; --aut-bg:#eee6f7; --inf:#a86400; --inf-bg:#fdf0d9;
+  --ok:#12805c; --ok-bg:#dcf3ea; --bad:#c2372f; --bad-bg:#fbe3e1;
+  --f-display:"Sora","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141019; --surface:#1c1723; --sunk:#262030; --fg:#ece7f2; --muted:#a69db3; --line:#342c40;
+  --accent:#e98aae; --accent-soft:#3a1d2a; --accent-fg:#141019;
+  --med:#8fb0ff; --med-bg:#1d2a48; --aut:#c9a2ef; --aut-bg:#2c2040; --inf:#f2b45a; --inf-bg:#3d2c10;
+  --ok:#4fd3a2; --ok-bg:#123a2e; --bad:#ff8a80; --bad-bg:#47201f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141019; --surface:#1c1723; --sunk:#262030; --fg:#ece7f2; --muted:#a69db3; --line:#342c40;
+  --accent:#e98aae; --accent-soft:#3a1d2a; --accent-fg:#141019;
+  --med:#8fb0ff; --med-bg:#1d2a48; --aut:#c9a2ef; --aut-bg:#2c2040; --inf:#f2b45a; --inf-bg:#3d2c10;
+  --ok:#4fd3a2; --ok-bg:#123a2e; --bad:#ff8a80; --bad-bg:#47201f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:780px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding-block:10px}
+.brand{font-family:var(--f-display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
+.brand small{font-family:var(--f-mono);font-weight:400;font-size:.72rem;color:var(--muted);margin-left:8px}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap}
+nav.tabs a{font-size:.88rem;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent}
+nav.tabs a:hover{color:var(--fg)}
+nav.tabs a[aria-current="page"]{color:var(--accent-fg);background:var(--accent);border-color:var(--accent)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{padding-block:28px 64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;letter-spacing:-.015em}
+h1{font-size:clamp(1.7rem,4.5vw,2.3rem);margin:0 0 8px}
+h2{font-size:1.3rem;margin:0 0 6px}
+.lede{color:var(--muted);max-width:64ch;margin:0}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.meta{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px;margin:14px 0 0}
+.method{font-size:.9rem;color:var(--muted);margin:14px 0 0;max-width:70ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;font-size:.85rem;color:var(--muted);align-items:center}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.7rem;font-weight:600;letter-spacing:.03em;padding:1px 7px;border-radius:4px;white-space:nowrap}
+.t-med{color:var(--med);background:var(--med-bg)} .t-aut{color:var(--aut);background:var(--aut-bg)} .t-inf{color:var(--inf);background:var(--inf-bg)}
+.stack{display:flex;flex-direction:column;gap:20px;margin-top:28px}
+article.piece{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 20px 16px;min-width:0}
+.piece-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:start}
+.rank{font-family:var(--f-display);font-weight:700;font-size:2rem;line-height:1;color:var(--accent);grid-row:span 2}
+.piece h2{font-size:1.1rem;margin:0;overflow-wrap:anywhere}
+.byline{font-size:.85rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
+.chip{font-size:.75rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--muted)}
+.chip.topic{color:var(--accent);border-color:var(--accent)}
+dl.facts{margin:10px 0 0;display:grid;gap:10px}
+dl.facts dt{font-family:var(--f-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+dl.facts dd{margin:2px 0 0;min-width:0}
+.res{font-size:.88rem;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);overflow-wrap:anywhere}
+.prio{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.prio div{border:1px solid var(--accent);border-radius:12px;padding:14px 16px;background:var(--accent-soft)}
+.prio b{display:block;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.follow{margin-top:24px;font-size:.92rem}
+.follow ul{padding-left:1.2em;display:grid;gap:6px;margin:6px 0 0}
+.routine{margin-top:28px;border-top:1px solid var(--line);padding-top:18px;font-size:.9rem;color:var(--muted)}
+.routine code{font-family:var(--f-mono);font-size:.82rem}
+
+.qbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:20px;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.score{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:.95rem}
+.meter{flex:1 1 160px;height:8px;background:var(--sunk);border-radius:999px;overflow:hidden;min-width:120px}
+.meter i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.filter{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+button{font:inherit;cursor:pointer}
+.btn{font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.btn:hover{border-color:var(--accent)}
+.btn[aria-pressed="true"]{border-color:var(--fg);background:var(--fg);color:var(--bg)}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.q .qmeta{font-family:var(--f-mono);font-size:.72rem;color:var(--accent);letter-spacing:.04em;font-weight:600}
+.q p.stem{font-weight:600;margin:6px 0 10px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);line-height:1.45}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.explain{margin-top:10px;font-size:.9rem;padding:10px 12px;border-radius:10px;background:var(--sunk)}
+
+.dummy-flag{display:inline-block;font-family:var(--f-mono);font-size:.7rem;font-weight:600;letter-spacing:.06em;color:var(--inf);background:var(--inf-bg);padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.ex{background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:18px 20px;min-width:0}
+.ex h2{font-size:1.1rem}
+.controls{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0;align-items:center}
+.controls label{font-size:.85rem;color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+input[type=range]{accent-color:var(--accent)}
+select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.outcome{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{font-size:.8rem;font-weight:600;padding:3px 10px;border-radius:999px}
+.pill.ok{color:var(--ok);background:var(--ok-bg)} .pill.bad{color:var(--bad);background:var(--bad-bg)} .pill.neu{color:var(--muted);background:var(--sunk)}
+.takeaway{font-size:.9rem;margin:12px 0 0}
+.tbl{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;font-size:.85rem;width:100%;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-family:var(--f-mono)}
+.bar{position:relative;height:26px;background:var(--sunk);border-radius:6px;margin-top:10px}
+.bar .iv{position:absolute;top:0;bottom:0;background:var(--accent-soft);border:1px solid var(--accent);border-radius:6px}
+.bar .pt{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--fg);border-radius:2px}
+.scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);margin-top:4px}
+.narr{background:var(--sunk);border-radius:10px;padding:12px 14px;font-size:.92rem}
+.narr mark{background:var(--bad-bg);color:var(--bad);padding:0 3px;border-radius:3px}
+.narr .okm{background:var(--ok-bg);color:var(--ok);padding:0 3px;border-radius:3px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Tópicos Riesgo de Crédito<small>edición 10 nov 2026</small></div>
+    <nav class="tabs" aria-label="Secciones">
+      <a href="#informe" data-view="informe">Informe</a>
+      <a href="#quices" data-view="quices">Quices</a>
+      <a href="#ejemplos" data-view="ejemplos">Ejemplos dummy</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ INFORME ============ -->
+<section data-panel="informe">
+  <span class="eyebrow">Edición 1 · 3 al 10 de noviembre de 2026</span>
+  <h1>Rechazados sin etiqueta, cobranza confundida y explicaciones sesgadas</h1>
+  <p class="lede">Cinco piezas de la semana para un data scientist de riesgo de crédito en fintech de consumo en Latinoamérica: inferencia de rechazados en la cola, evaluación off-policy en cobranza, fraude con transacciones bloqueadas, narrativas de LLM sobre SHAP y LLMs en supervisión.</p>
+  <div class="meta"><span>~200 registros de arXiv en la ventana</span><span>9 candidatos</span><span>6 textos completos</span><span>Primera edición del tópico</span></div>
+  <p class="method">Fuentes: API de arXiv (q-fin.RM, q-fin.ST, stat.ML, cs.LG y afines), feeds de BIS, BCE, Banco de Inglaterra y NBER, listado FEDS 2026 de la Fed y búsquedas web para Banco de la República y SSRN. No pude revisar SSRN (403), las alertas de la EBA (contenido cargado con JavaScript) ni el listado de Borradores del Banco de la República (404). Los repositorios de GitHub citados respondieron 403 desde mi entorno y no están verificados.</p>
+  <div class="legend">Cómo leer la evidencia:
+    <span class="tag t-med">MEDIDO</span> resultado reportado
+    <span class="tag t-aut">AUTORES</span> afirmación de los autores
+    <span class="tag t-inf">INFERENCIA</span> opinión del informe
+  </div>
+
+  <div class="stack">
+    <article class="piece">
+      <div class="piece-head"><span class="rank">1</span>
+        <h2><a href="https://arxiv.org/abs/2611.12713" target="_blank" rel="noopener">Hidden Tails: Certifying Tail-Risk Claims under Selective Labels</a></h2>
+        <div class="byline">El Mustapha Mansouri · v1 9 nov 2026 · aceptado en NeurIPS 2026</div>
+      </div>
+      <div class="chips"><span class="chip topic">Inferencia de rechazados</span><span class="chip">Validación</span><span class="chip">Código citado</span></div>
+      <dl class="facts">
+        <div><dt>Qué cambia</dt><dd>Lleva la inferencia de rechazados del promedio a la cola: da cotas exactas del CVaR de un modelo cuando los rechazados no tienen etiqueta, bajo un parámetro Γ que acota cuánto pueden diferir los odds de default entre observados y ocultos con las mismas variables. Agrega certificados estadísticos y una regla para decidir qué etiquetas ocultas conviene comprar (aprobación aleatoria, buró) por unidad de costo.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Cambia la pregunta "¿qué modelo es mejor?" por "¿bajo qué supuesto de sesgo sigue siéndolo?", útil para un comité de modelos.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En LendingClub 2012 (390.644 solicitudes, 53.367 préstamos maduros), solo con aprobados gana el modelo ponderado; con Γ = 1 se invierten dos de tres órdenes. Con máscaras controladas, recuperar ~16 % de etiquetas elimina una mediana de 61 % de la ambigüedad, frente a 16 % al azar. <span class="tag t-aut">AUTORES</span> Γ debe justificarse externamente. <span class="tag t-inf">INFERENCIA</span> Elegir Γ será la discusión real en validación.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Home Credit: oculta etiquetas de forma dependiente del resultado; compara logística y LightGBM con CVaR solo de aprobados (baseline) frente a intervalos con Γ ∈ {1, 2, 3}. Éxito: el intervalo contiene el CVaR real.</dd></div>
+      </dl>
+      <div class="res">Código citado: <a href="https://github.com/E-zClap/hidden-tails" target="_blank" rel="noopener">github.com/E-zClap/hidden-tails</a> (no verificado). Datos: LendingClub en Kaggle (CC0).</div>
+    </article>
+
+    <article class="piece">
+      <div class="piece-head"><span class="rank">2</span>
+        <h2><a href="https://arxiv.org/abs/2611.10972" target="_blank" rel="noopener">JUBILEE: A Benchmark Environment for Off-Policy Evaluation in Debt Collections</a></h2>
+        <div class="byline">Silva Prado, Amaral Penteado de Jesus, Caldas de Souza, Bevitori Maffia De Oliveira · v1 7 nov 2026</div>
+      </div>
+      <div class="chips"><span class="chip topic">Cobranza y causalidad</span><span class="chip">Código y datos</span></div>
+      <dl class="facts">
+        <div><dt>Qué cambia</dt><dd>Es un simulador de cobranza (un millón de créditos, SMS, app, llamada o visita, descuentos de 0 a 55 %, recuperación y castigo como riesgos competitivos) con valores de referencia por Monte Carlo para calificar estimadores off-policy (IPS, SNIPS, DR, método directo) cuando factores ocultos influyen en la acción asignada.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Evaluar una estrategia nueva de cobranza con logs históricos es la práctica común; aquí se mide cuánto se equivoca.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Con asignación dependiente de factores ocultos, los estimadores tabulares y con boosting subestiman la política de visitas en cerca de un quinto; los intervalos DR que cubren la referencia sin confusión casi nunca la cubren con ella. Con decisiones aleatorizadas el error grande desaparece, con intervalos unas tres veces más anchos. La visita queda última por puntaje y primera por caja simulada. <span class="tag t-aut">AUTORES</span> Parámetros no calibrados a ninguna cartera. <span class="tag t-inf">INFERENCIA</span> El argumento a favor de un grupo de control aleatorio es fuerte.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Con los datos de Zenodo, compara DR con todos los logs (baseline) contra DR solo con decisiones aleatorizadas. Métrica: error y cobertura frente a la referencia publicada.</dd></div>
+      </dl>
+      <div class="res">Código: <a href="https://github.com/alpha-synthesis/jubilee" target="_blank" rel="noopener">github.com/alpha-synthesis/jubilee</a> (no verificado). Datos: <a href="https://doi.org/10.5281/zenodo.24008544" target="_blank" rel="noopener">Zenodo 10.5281/zenodo.24008544</a> (respondió OK).</div>
+    </article>
+
+    <article class="piece">
+      <div class="piece-head"><span class="rank">3</span>
+        <h2><a href="https://arxiv.org/abs/2611.08706" target="_blank" rel="noopener">Dual-Stream LLM-Guided Reward Design for Reject-Inference-Aware Reinforcement Learning in E-Commerce Payment Fraud Detection</a></h2>
+        <div class="byline">Bo Qu, Zhurong Wang, Frank Zahradnik, Ming Ouyang · v1 5 nov 2026</div>
+      </div>
+      <div class="chips"><span class="chip topic">Fraude</span><span class="chip">LLM con evidencia</span><span class="chip">Sin código</span></div>
+      <dl class="facts">
+        <div><dt>Qué cambia</dt><dd>Ataca la inferencia de rechazados en fraude dentro de la recompensa. Un LLM (modelo abierto de la familia Qwen3, ~27B) escribe como código una recompensa con dos flujos: precisión ponderada por dólares en aprobados etiquetados y, en transacciones bloqueadas sin etiqueta, el contraste entre el score GBM nuevo y el score legado que causó el bloqueo.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Casi todo modelo de fraude se entrena solo con lo aprobado; esto aprovecha ~3,9 M bloqueos que normalmente se descartan, y la recompensa queda auditable.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En prueba fuera de tiempo (abril a julio de 2026), precisión ponderada por dólares de 55,15 / 46,36 / 35,92 % con recall de 80 / 85 / 90 %, frente a 47,09 / 39,95 / 29,91 % del GBM de producción. Por mes, con 90 % de recall gana el agente previo en tres de cuatro. <span class="tag t-aut">AUTORES</span> Las recompensas del flujo bloqueado pueden heredar el sesgo legado; no son etiquetas verdaderas. <span class="tag t-inf">INFERENCIA</span> Datos propietarios y sin código: no es reproducible.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Fraude en tarjetas de Kaggle con un bloqueo legado sintético: compara LightGBM solo con aprobados (baseline) contra uno que agrega bloqueados con pseudoetiqueta por contraste de scores. Métrica: precisión ponderada por monto con 85 % de recall.</dd></div>
+      </dl>
+      <div class="res">Código y datos: no publicados.</div>
+    </article>
+
+    <article class="piece">
+      <div class="piece-head"><span class="rank">4</span>
+        <h2><a href="https://arxiv.org/abs/2611.12592" target="_blank" rel="noopener">Fairness in Explainable AI Narratives: Decomposing Social Disparities in LLM-Generated Explanations</a></h2>
+        <div class="byline">Wannes Van den Bulck, Sofie Goethals, David Martens · v1 9 nov 2026</div>
+      </div>
+      <div class="chips"><span class="chip topic">Explicabilidad y equidad</span><span class="chip">Código citado</span></div>
+      <dl class="facts">
+        <div><dt>Qué cambia</dt><dd>Audita las narrativas que un LLM escribe a partir de SHAP para explicar una decisión adversa (como un rechazo de crédito). Genera cada narrativa con el atributo protegido revelado, oculto o intercambiado para separar si la disparidad viene de los valores de las variables o del atributo mismo.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Convertir SHAP en códigos de razón legibles con un LLM es tentador; esta es la auditoría que pediría cumplimiento.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Cinco LLM sobre German Credit y otros tres datasets. Los dos modelos pequeños aciertan el signo en 71–76 %; el 86 % de los errores de signo presenta una variable favorable como causa del rechazo. En German Credit, gpt-4o-mini acierta la variable principal en 65 % de mujeres frente a 90 % de hombres. Ninguna de las 19 disparidades de fidelidad aparece en gpt-4.1 ni en claude-sonnet-4-6. <span class="tag t-aut">AUTORES</span> Una plantilla de prompt y una generación por caso. <span class="tag t-inf">INFERENCIA</span> German Credit es pequeño y antiguo.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Scorecard en Give Me Some Credit, top-3 SHAP y narrativas con un LLM local. Baseline: códigos de razón por plantilla. Métrica: exactitud de signo y rango por grupo de edad.</dd></div>
+      </dl>
+      <div class="res">Código citado: <a href="https://github.com/WannesVandenBulck/fairxain" target="_blank" rel="noopener">github.com/WannesVandenBulck/fairxain</a> (no verificado).</div>
+    </article>
+
+    <article class="piece">
+      <div class="piece-head"><span class="rank">5</span>
+        <h2><a href="https://www.ecb.europa.eu/pub/pdf/scpwps/ecb.wp3308~a6e82e37aa.en.pdf" target="_blank" rel="noopener">Unlocking supervisory effectiveness in credit risk: insights from the ECB's supervisory findings and measures</a></h2>
+        <div class="byline">Agati, Fontana, Matos Leite, Schwarz · BCE, Working Paper 3308 · 9 nov 2026</div>
+      </div>
+      <div class="chips"><span class="chip topic">Riesgo de modelo y supervisión</span><span class="chip">LLM con evidencia</span><span class="chip">Datos confidenciales</span></div>
+      <dl class="facts">
+        <div><dt>Qué cambia</dt><dd>Usa GPT-4.1 para clasificar 8.106 medidas supervisoras de riesgo de crédito (2016–2025) como de remediación total, parcial o nula, a partir de las narrativas de cierre. Después modela qué explica la remediación con logit y modelos de Cox.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Muestra qué hallazgos supervisores cuestan más cerrar, entre ellos datos, reporte y TI, y provisiones y riesgo de modelo, y aporta un caso real de LLM como etiquetador con validación.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Diez corridas con voto mayoritario; la réplica con o4-mini coincide en ~90 %. Cada tema adicional en un hallazgo baja la tasa de cierre (hazard) en 16 %. Gobierno y controles cierra 39 % más rápido que datos, reporte y TI; las medidas originadas en el SREP cierran 34 % más lento que las de inspección in situ. <span class="tag t-aut">AUTORES</span> Asociaciones, no causalidad. <span class="tag t-inf">INFERENCIA</span> La lección para una fintech: los hallazgos de datos y TI tardan más en cerrarse.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Simula etiquetas con ~10 % de ruido, como el que dejaría un LLM etiquetador, y mide el sesgo en los coeficientes de un logit frente a las etiquetas limpias (baseline).</dd></div>
+      </dl>
+      <div class="res">Datos confidenciales del BCE; sin código.</div>
+    </article>
+  </div>
+
+  <div class="prio">
+    <div><b>Prioridad de lectura</b>La #1, Hidden Tails. Da un lenguaje formal (Γ, intervalos de CVaR) para defender en validación una comparación de modelos entrenados solo con aprobados, y convierte la inferencia de rechazados en una decisión de cuántas etiquetas comprar.</div>
+    <div><b>Prioridad de experimentación</b>La #2, JUBILEE. Trae datos y referencias publicadas, corre en CPU y responde algo directo para cobranza: cuánto miente la evaluación off-policy con logs confundidos y cuánto ayuda un grupo aleatorizado.</div>
+  </div>
+
+  <div class="follow"><b>En seguimiento</b>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2611.04819" target="_blank" rel="noopener">Reconstructing Fraudulent Strategies in Online Payments via Interpretable IRL</a> (3 nov): secuencias de fraude sintéticas con datos de Ant International; sin código ni datos públicos.</li>
+      <li><a href="https://arxiv.org/abs/2611.10607" target="_blank" rel="noopener">Worst-Case Contagion in Financial Networks</a> (7 nov): estrés interbancario certificable con MILP/LP; más sistémico que de consumo.</li>
+      <li><a href="https://arxiv.org/abs/2611.06514" target="_blank" rel="noopener">Decision Framework for FDIC-Assisted Distressed Bank Acquisitions</a> (4 nov): resultado negativo reportado con honestidad (AUC 0,594 frente a 0,615 de la logística), pero sobre 55 casos.</li>
+      <li><a href="https://www.bis.org/publications/scenarios-future-banking-implications-profitability-liquidity-and-solvency" target="_blank" rel="noopener">Scenarios for future banking</a> (BIS, 4 nov): no pude leer el texto; pendiente para la próxima semana.</li>
+    </ul>
+  </div>
+
+  <div class="routine"><b>Ediciones en GitHub:</b>
+    <ul>
+      <li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/riesgo/2026-11-10.md" target="_blank" rel="noopener">2026-11-10</a> (esta edición, la primera)</li>
+    </ul>
+    Se genera cada martes en <code>topicos/riesgo/</code> de la rama <code>topicos</code>. Ruta relacionada: <a href="https://claude.ai/artifact/HPiqaab1BMyFVLDJ8UcKu2" target="_blank" rel="noopener">Ruta Riesgo de Crédito</a>.</div>
+</section>
+
+<!-- ============ QUICES ============ -->
+<section data-panel="quices" hidden>
+  <h1>Quices</h1>
+  <p class="lede">Doce preguntas: nueve sobre las piezas de esta edición y tres de conceptos de base. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
+  <div class="qbar">
+    <span class="score" id="score">0 / 12 correctas · 0 respondidas</span>
+    <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+    <button class="btn" id="reset" type="button">Reiniciar</button>
+  </div>
+  <div class="filter" role="group" aria-label="Filtrar por tema">
+    <button class="btn" type="button" data-f="all" aria-pressed="true">Todas</button>
+    <button class="btn" type="button" data-f="conceptos" aria-pressed="false">Conceptos</button>
+    <button class="btn" type="button" data-f="tails" aria-pressed="false">Hidden Tails</button>
+    <button class="btn" type="button" data-f="jub" aria-pressed="false">JUBILEE</button>
+    <button class="btn" type="button" data-f="fraude" aria-pressed="false">Fraude</button>
+    <button class="btn" type="button" data-f="xain" aria-pressed="false">Narrativas XAI</button>
+    <button class="btn" type="button" data-f="ecb" aria-pressed="false">Supervisión BCE</button>
+  </div>
+  <div class="stack" id="quiz"></div>
+</section>
+
+<!-- ============ EJEMPLOS ============ -->
+<section data-panel="ejemplos" hidden>
+  <h1>Ejemplos dummy</h1>
+  <p class="lede">Cinco simulaciones de juguete, una por pieza. Los datos, clientes y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
+  <div class="stack">
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>1 · Cuánto puede valer la mora de los rechazados</h2>
+      <p>Segmento dummy: entre los aprobados, la mora observada es 10 %. Los rechazados son el 40 % del segmento y no tienen etiqueta. Mueve Γ, el límite de cuánto pueden diferir los odds de default entre ocultos y observados.</p>
+      <div class="controls">
+        <label for="g-g">Γ = <b id="g-gv">2,0</b>
+          <input type="range" id="g-g" min="1" max="4" step="0.25" value="2"></label>
+      </div>
+      <div class="bar" aria-hidden="true"><div class="iv" id="g-iv"></div><div class="pt" id="g-pt"></div></div>
+      <div class="scale"><span>0 %</span><span>10 %</span><span>20 %</span><span>30 %</span></div>
+      <div class="outcome" id="g-out"></div>
+      <p class="takeaway"><b>Idea:</b> sin etiquetas de rechazados, la mora de la población completa no es un número sino un rango que crece con Γ. El paper usa esta acotación de odds para el CVaR de la pérdida de un modelo; este juguete solo la aplica a una tasa de mora inventada.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>2 · La visita parece peor de lo que es</h2>
+      <p>Una política dummy de visitas tiene un valor real de 100 por decisión. Los cobradores mandan visitas a quienes tienen más dificultades no registradas. Mueve cuánto pesa ese factor oculto en la asignación.</p>
+      <div class="controls">
+        <label for="j-c">Peso del factor oculto: <b id="j-cv">60</b> %
+          <input type="range" id="j-c" min="0" max="100" step="10" value="60"></label>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>Estimador</th><th class="num">Estimado</th><th class="num">Intervalo</th><th>¿Contiene 100?</th></tr></thead>
+        <tbody id="j-body"></tbody>
+      </table></div>
+      <div class="outcome" id="j-out"></div>
+      <p class="takeaway"><b>Idea:</b> con logs confundidos el estimador se equivoca con un intervalo estrecho; con decisiones aleatorizadas acierta en promedio pero con un intervalo ancho. JUBILEE reporta ese patrón en su simulador; las cifras de esta tabla son inventadas.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>3 · Qué hacer con lo que el sistema bloqueó</h2>
+      <p>Ocho transacciones dummy bloqueadas por el sistema legado, sin etiqueta. La regla de contraste marca como probable fraude las que el modelo nuevo también ve riesgosas. Mueve el umbral del modelo nuevo.</p>
+      <div class="controls">
+        <label for="f-t">Umbral del score nuevo: <b id="f-tv">0,60</b>
+          <input type="range" id="f-t" min="0.2" max="0.9" step="0.05" value="0.6"></label>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>Tx</th><th class="num">Monto USD</th><th class="num">Score legado</th><th class="num">Score nuevo</th><th>Pseudoetiqueta</th></tr></thead>
+        <tbody id="f-body"></tbody>
+      </table></div>
+      <div class="outcome" id="f-out"></div>
+      <p class="takeaway"><b>Idea:</b> las transacciones bloqueadas dejan de descartarse y aportan una señal débil al entrenamiento. En el paper un LLM escribe esa recompensa como código y la evalúa con datos reales; aquí la regla y los montos son inventados.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>4 · Una narrativa que contradice a SHAP</h2>
+      <p>Un solicitante dummy rechazado con sus tres variables SHAP principales. Elige el narrador y compara lo que dice con el signo real de cada variable.</p>
+      <div class="controls">
+        <label for="x-m">Narrador
+          <select id="x-m">
+            <option value="fiel">Modelo fiel</option>
+            <option value="plaus" selected>Modelo con "falsedad plausible"</option>
+          </select></label>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>Variable</th><th>Valor</th><th class="num">SHAP</th><th>Empuja hacia</th></tr></thead>
+        <tbody>
+          <tr><td>Utilización de cupo</td><td>92 %</td><td class="num">+0,41</td><td>rechazo</td></tr>
+          <tr><td>Sin cuenta de ahorros</td><td>sí</td><td class="num">−0,12</td><td>aprobación</td></tr>
+          <tr><td>Moras 30+ en 12 meses</td><td>2</td><td class="num">+0,18</td><td>rechazo</td></tr>
+        </tbody>
+      </table></div>
+      <div class="narr" id="x-narr" aria-live="polite"></div>
+      <div class="outcome" id="x-out"></div>
+      <p class="takeaway"><b>Idea:</b> un valor que "suena mal" puede empujar a favor, y un narrador débil lo presenta como causa del rechazo. El paper documenta este error (86 % de sus errores de signo); el solicitante y el texto son inventados.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>5 · Etiquetas de un LLM con ruido</h2>
+      <p>Dos tipos de hallazgo dummy con tasas reales de remediación total de 70 % y 50 %. Un etiquetador invierte al azar una fracción de las etiquetas. Mira cómo se achica la diferencia que verías.</p>
+      <div class="controls">
+        <label for="e-n">Etiquetas invertidas: <b id="e-nv">10</b> %
+          <input type="range" id="e-n" min="0" max="40" step="5" value="10"></label>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>Tipo de hallazgo</th><th class="num">Tasa real</th><th class="num">Tasa observada</th></tr></thead>
+        <tbody id="e-body"></tbody>
+      </table></div>
+      <div class="outcome" id="e-out"></div>
+      <p class="takeaway"><b>Idea:</b> el ruido simétrico en la etiqueta atenúa las diferencias hacia cero, en un factor (1 − 2·ruido). El BCE valida su etiquetador con voto mayoritario y una réplica con otro modelo (~90 % de acuerdo); el juguete no usa sus datos.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  const views=["informe","quices","ejemplos"];
+  function show(){
+    const h=(location.hash||"").replace("#","");
+    const v=views.includes(h)?h:"informe";
+    document.querySelectorAll("[data-panel]").forEach(p=>p.hidden=p.dataset.panel!==v);
+    document.querySelectorAll("nav.tabs a").forEach(a=>{ if(a.dataset.view===v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  }
+  window.addEventListener("hashchange",()=>{show();window.scrollTo(0,0)});
+  show();
+
+  const Q=[
+    {t:"conceptos",q:"¿Qué es la inferencia de rechazados?",o:["Predecir quién rechazará una oferta de crédito","Corregir el sesgo de entrenar solo con aprobados, cuyo default sí se observa","Eliminar del modelo las variables que causan rechazos","Calibrar la PD de los clientes en mora"],a:1,e:"Los rechazados nunca reciben crédito, así que su default no se observa. Las piezas 1 y 3 atacan este mismo problema, una en crédito y otra en fraude."},
+    {t:"conceptos",q:"¿Qué mide el CVaR al nivel α = 95 %?",o:["La pérdida máxima posible","La pérdida promedio dentro del peor 5 % de los casos","La pérdida mediana","La probabilidad de pérdida"],a:1,e:"Es el promedio de la cola, no un cuantil. Hidden Tails acota ese promedio cuando parte de la cola está oculta."},
+    {t:"conceptos",q:"En evaluación off-policy, ¿qué hace un estimador doblemente robusto (DR)?",o:["Entrena dos modelos de PD y promedia","Combina un modelo de resultado con pesos de propensión; es consistente si uno de los dos está bien","Duplica la muestra para reducir varianza","Evalúa la política en dos periodos"],a:1,e:"DR protege contra un error en el modelo de resultado o en el de propensión, pero no contra factores ocultos que afecten a ambos, que es lo que JUBILEE mide."},
+    {t:"tails",q:"En Hidden Tails, ¿qué representa Γ?",o:["El nivel de la cola del CVaR","Un límite a cuánto pueden diferir los odds de default entre casos ocultos y observados con las mismas variables","El número de modelos comparados","La tasa de aprobación"],a:1,e:"Con Γ = 1 ocultos y observados se comportan igual; Γ = 2 permite que los odds se dupliquen o reduzcan a la mitad. Γ debe justificarse fuera de los datos."},
+    {t:"tails",q:"En el experimento de máscaras con LendingClub, ¿qué logró recuperar ~16 % de las etiquetas ocultas con la regla del paper?",o:["Eliminar toda la ambigüedad","Eliminar una mediana de 61 % de la ambigüedad, frente a 16 % al recuperar al azar","Mejorar el AUC en 16 puntos","Nada medible"],a:1,e:"Priorizar las etiquetas por ambigüedad eliminada por unidad de costo rinde mucho más que comprar etiquetas al azar."},
+    {t:"jub",q:"En JUBILEE, ¿qué pasa con la política de visitas cuando factores ocultos influyen en la asignación?",o:["Los estimadores la sobrestiman","Los estimadores tabulares y con boosting la subestiman en cerca de un quinto","Ningún estimador la puede evaluar","Su valor real cae a cero"],a:1,e:"Las visitas se asignan a deudores con dificultades no registradas, así que los logs las hacen ver peores de lo que son."},
+    {t:"jub",q:"¿Qué ventaja y qué costo tienen los estimadores que usan solo decisiones aleatorizadas?",o:["Evitan el error grande, pero sus intervalos son unas tres veces más anchos","Son más precisos y más baratos","No tienen ventaja","Eliminan la necesidad de un simulador"],a:0,e:"La aleatorización elimina la confusión, pero con eventos raros y pocas decisiones aleatorias la precisión cae."},
+    {t:"fraude",q:"¿Qué hace el segundo flujo de la recompensa en el paper de fraude?",o:["Etiqueta a mano las transacciones bloqueadas","Puntúa las bloqueadas sin etiqueta contrastando el score GBM nuevo con el score legado que causó el bloqueo","Descarta las transacciones bloqueadas","Usa el LLM para clasificar cada transacción en producción"],a:1,e:"El LLM escribe la recompensa como código y no participa en la inferencia; por eso la política no agrega costo en producción."},
+    {t:"fraude",q:"¿Qué advierten los autores sobre las recompensas del flujo bloqueado?",o:["Que son etiquetas verdaderas","Que pueden heredar el sesgo de la política legada y no deben tratarse como verdad","Que solo sirven con recall de 90 %","Que requieren datos de buró"],a:1,e:"Si el bloqueo legado usó variables que el modelo nuevo no ve, el contraste propaga ese sesgo."},
+    {t:"xain",q:"¿Cuál fue el error más frecuente en las narrativas generadas por LLM a partir de SHAP?",o:["Inventar valores numéricos","Presentar una variable favorable como causa del rechazo","Omitir la probabilidad predicha","Escribir en otro idioma"],a:1,e:"Los autores la llaman falsedad plausible: suena razonable y contradice a SHAP. Explica el 86 % de los errores de signo."},
+    {t:"xain",q:"Según el paper, ¿qué combinación reduce las disparidades entre grupos?",o:["Revelar siempre el atributo protegido","Un modelo más fiel y ocultar el atributo protegido; ninguna de las dos basta sola","Usar temperatura alta","Pedir narrativas más largas"],a:1,e:"La fidelidad elimina las disparidades que vienen de los valores; ocultar el atributo elimina casi todas las demás."},
+    {t:"ecb",q:"En el working paper del BCE, ¿qué tipo de hallazgo se asocia con la remediación más lenta?",o:["Gobierno y controles","Datos, reporte y TI","Gestión del ciclo de crédito","Ninguno, todos tardan igual"],a:1,e:"Gobierno y controles cierra 39 % más rápido que datos, reporte y TI, la categoría de referencia."}
+  ];
+  const KEY="topicos-riesgo-2026-11-10";
+  let ans={};
+  try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){ans={}}
+  const names={conceptos:"Conceptos",tails:"Hidden Tails",jub:"JUBILEE",fraude:"Fraude",xain:"Narrativas XAI",ecb:"Supervisión BCE"};
+  const box=document.getElementById("quiz");
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}}
+  let filt="all";
+  function applyFilter(){box.querySelectorAll(".q").forEach(q=>q.hidden=!(filt==="all"||q.dataset.t===filt))}
+  function render(){
+    box.innerHTML="";
+    Q.forEach((it,i)=>{
+      const d=document.createElement("div");d.className="q";d.dataset.t=it.t;
+      d.innerHTML='<div class="qmeta">PREGUNTA '+(i+1)+' · '+names[it.t].toUpperCase()+'</div><p class="stem"></p><div class="opts"></div>';
+      d.querySelector(".stem").textContent=it.q;
+      const opts=d.querySelector(".opts");
+      it.o.forEach((txt,j)=>{
+        const b=document.createElement("button");b.type="button";b.className="opt";b.textContent=txt;
+        if(ans[i]!==undefined){b.disabled=true;if(j===it.a)b.classList.add("right");else if(j===ans[i])b.classList.add("wrong");}
+        b.addEventListener("click",()=>{ans[i]=j;save();render();});
+        opts.appendChild(b);
+      });
+      if(ans[i]!==undefined){
+        const ex=document.createElement("div");ex.className="explain";
+        ex.textContent=(ans[i]===it.a?"Correcto. ":"No es esa. ")+it.e;d.appendChild(ex);
+      }
+      box.appendChild(d);
+    });
+    const done=Object.keys(ans).length, ok=Object.keys(ans).filter(k=>Q[k]&&ans[k]===Q[k].a).length;
+    document.getElementById("score").textContent=ok+" / "+Q.length+" correctas · "+done+" respondidas";
+    document.getElementById("meter").style.width=(done/Q.length*100)+"%";
+    applyFilter();
+  }
+  document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{
+    filt=b.dataset.f;document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));applyFilter();
+  }));
+  document.getElementById("reset").addEventListener("click",()=>{ans={};save();render();});
+  render();
+
+  const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+  const pills=(el,arr)=>{el.innerHTML=arr.map(p=>'<span class="pill '+p[0]+'">'+esc(p[1])+'</span>').join("")};
+  const pct=(x,d)=>(x*100).toFixed(d===undefined?1:d).replace(".",",")+" %";
+
+  // 1 · Hidden Tails: cota de odds
+  const gg=document.getElementById("g-g");
+  function gRender(){
+    const G=+gg.value; document.getElementById("g-gv").textContent=G.toFixed(2).replace(".",",");
+    const p=0.10, hid=0.40;
+    const lo0=p/(p+G*(1-p)), hi0=G*p/(1-p+G*p);
+    const lo=(1-hid)*p+hid*lo0, hi=(1-hid)*p+hid*hi0;
+    const max=0.30, iv=document.getElementById("g-iv"), pt=document.getElementById("g-pt");
+    iv.style.left=(lo/max*100)+"%"; iv.style.width=Math.max(0.6,(hi-lo)/max*100)+"%";
+    pt.style.left="calc("+(p/max*100)+"% - 1px)";
+    pills(document.getElementById("g-out"),[["neu","Mora de rechazados: "+pct(lo0)+" a "+pct(hi0)],[G>1?"bad":"ok","Mora del segmento: "+pct(lo)+" a "+pct(hi)],["neu","Barra negra: 10 % solo con aprobados"]]);
+  }
+  gg.addEventListener("input",gRender);gRender();
+
+  // 2 · JUBILEE: confusión oculta
+  const jc=document.getElementById("j-c");
+  function jRender(){
+    const c=+jc.value/100; document.getElementById("j-cv").textContent=Math.round(c*100);
+    const naive=100*(1-0.3*c), rnd=100-2*c;
+    const rows=[["DR con todos los logs",naive,8],["DR solo aleatorizadas",rnd,24]];
+    document.getElementById("j-body").innerHTML=rows.map(r=>{const lo=r[1]-r[2],hi=r[1]+r[2],ok=lo<=100&&hi>=100;return '<tr><td><b>'+r[0]+'</b></td><td class="num">'+r[1].toFixed(0)+'</td><td class="num">'+lo.toFixed(0)+' – '+hi.toFixed(0)+'</td><td>'+(ok?"sí":"no")+'</td></tr>'}).join("");
+    const miss=naive+8<100;
+    pills(document.getElementById("j-out"),[[miss?"bad":"ok",miss?"Logs: intervalo estrecho que no contiene el valor real":"Logs: todavía contiene el valor real"],["neu","Aleatorizadas: centradas, pero 3× más anchas"]]);
+  }
+  jc.addEventListener("input",jRender);jRender();
+
+  // 3 · Fraude: pseudoetiquetas en bloqueadas
+  const TX=[["T1",320,0.91,0.88],["T2",45,0.82,0.31],["T3",1200,0.77,0.72],["T4",80,0.95,0.40],["T5",640,0.73,0.66],["T6",25,0.88,0.22],["T7",410,0.80,0.57],["T8",900,0.86,0.81]];
+  const ft=document.getElementById("f-t");
+  function fRender(){
+    const t=+ft.value; document.getElementById("f-tv").textContent=t.toFixed(2).replace(".",",");
+    let n=0,amt=0;
+    document.getElementById("f-body").innerHTML=TX.map(x=>{const f=x[3]>=t;if(f){n++;amt+=x[1]}return '<tr><td><b>'+x[0]+'</b></td><td class="num">'+x[1]+'</td><td class="num">'+x[2].toFixed(2).replace(".",",")+'</td><td class="num">'+x[3].toFixed(2).replace(".",",")+'</td><td>'+(f?"probable fraude":"probable legítima")+'</td></tr>'}).join("");
+    pills(document.getElementById("f-out"),[["neu",n+" de 8 marcadas como fraude"],["neu","Monto marcado: USD "+amt],[n===8?"bad":"ok",n===8?"Copia la decisión legada sin agregar información":"El contraste separa bloqueos dudosos"]]);
+  }
+  ft.addEventListener("input",fRender);fRender();
+
+  // 4 · Narrativa SHAP
+  const xm=document.getElementById("x-m");
+  function xRender(){
+    const fiel=xm.value==="fiel";
+    document.getElementById("x-narr").innerHTML=fiel
+      ? 'Tu solicitud fue rechazada sobre todo porque usas <span class="okm">el 92 % de tu cupo</span> y registras <span class="okm">dos moras de más de 30 días</span> en el último año. <span class="okm">No tener cuenta de ahorros jugó a tu favor</span> en este modelo.'
+      : 'Tu solicitud fue rechazada porque usas el 92 % de tu cupo, registras dos moras recientes y <mark>no tienes una cuenta de ahorros que demuestre estabilidad</mark>.';
+    pills(document.getElementById("x-out"),fiel?[["ok","Signos correctos: 3 de 3"]]:[["bad","Signos correctos: 2 de 3"],["neu","Falsedad plausible: una variable favorable presentada como causa"]]);
+  }
+  xm.addEventListener("change",xRender);xRender();
+
+  // 5 · Ruido de etiquetas
+  const en=document.getElementById("e-n");
+  function eRender(){
+    const e=+en.value/100; document.getElementById("e-nv").textContent=Math.round(e*100);
+    const obs=r=>r*(1-e)+(1-r)*e;
+    const a=obs(0.70), b=obs(0.50);
+    document.getElementById("e-body").innerHTML='<tr><td><b>Gobierno y controles</b></td><td class="num">70,0 %</td><td class="num">'+pct(a)+'</td></tr><tr><td><b>Datos, reporte y TI</b></td><td class="num">50,0 %</td><td class="num">'+pct(b)+'</td></tr>';
+    const d=(a-b)*100;
+    pills(document.getElementById("e-out"),[["neu","Diferencia real: 20,0 pp"],[e>0.15?"bad":"ok","Diferencia observada: "+d.toFixed(1).replace(".",",")+" pp"]]);
+  }
+  en.addEventListener("input",eRender);eRender();
+})();
+</script>
+
+</body></html>
