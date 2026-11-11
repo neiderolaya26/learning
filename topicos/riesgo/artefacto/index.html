@@ -116,10 +116,28 @@ td.num,th.num{text-align:right;font-family:var(--f-mono)}
 .narr .okm{background:var(--ok-bg);color:var(--ok);padding:0 3px;border-radius:3px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
+<style>
+.more{margin-top:12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.more summary{cursor:pointer;padding:10px 12px;font-weight:600;font-size:.9rem;color:var(--accent);list-style-position:inside}
+.more summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.more[open] summary{border-bottom:1px solid var(--line)}
+.more .body{padding:4px 14px 12px;font-size:.92rem;overflow-wrap:anywhere}
+.more .body p{margin:10px 0}.more .body ul,.more .body ol{margin:6px 0;padding-left:20px}.more .body li{margin:3px 0}
+.more .body code{font-family:var(--f-mono);font-size:.82rem}
+.more .tbl{overflow-x:auto;margin:8px 0}
+.more table{min-width:100%}
+.more.ctx{border-left:4px solid var(--accent);background:var(--accent-soft)}
+.more.ctx .body{color:var(--fg)}
+.piece .facts{margin-top:14px}
+.chk{display:flex;gap:6px;align-items:center;font-size:.85rem;color:var(--fg)}
+input[type=checkbox]{accent-color:var(--accent)}
+td.num{white-space:nowrap}
+.pill{white-space:normal;max-width:100%}
+</style>
 
 <header class="top">
   <div class="wrap">
-    <div class="brand">Tópicos Riesgo de Crédito<small>edición 10 nov 2026</small></div>
+    <div class="brand">Tópicos Riesgo de Crédito<small>edición 11 nov 2026</small></div>
     <nav class="tabs" aria-label="Secciones">
       <a href="#informe" data-view="informe">Informe</a>
       <a href="#quices" data-view="quices">Quices</a>
@@ -132,119 +150,170 @@ td.num,th.num{text-align:right;font-family:var(--f-mono)}
 
 <!-- ============ INFORME ============ -->
 <section data-panel="informe">
-  <span class="eyebrow">Edición 1 · 3 al 10 de noviembre de 2026</span>
-  <h1>Rechazados sin etiqueta, cobranza confundida y explicaciones sesgadas</h1>
-  <p class="lede">Cinco piezas de la semana para un data scientist de riesgo de crédito en fintech de consumo en Latinoamérica: inferencia de rechazados en la cola, evaluación off-policy en cobranza, fraude con transacciones bloqueadas, narrativas de LLM sobre SHAP y LLMs en supervisión.</p>
-  <div class="meta"><span>~200 registros de arXiv en la ventana</span><span>9 candidatos</span><span>6 textos completos</span><span>Primera edición del tópico</span></div>
-  <p class="method">Fuentes: API de arXiv (q-fin.RM, q-fin.ST, stat.ML, cs.LG y afines), feeds de BIS, BCE, Banco de Inglaterra y NBER, listado FEDS 2026 de la Fed y búsquedas web para Banco de la República y SSRN. No pude revisar SSRN (403), las alertas de la EBA (contenido cargado con JavaScript) ni el listado de Borradores del Banco de la República (404). Los repositorios de GitHub citados respondieron 403 desde mi entorno y no están verificados.</p>
+  <span class="eyebrow">Edición 2 · 4 al 11 de noviembre de 2026</span>
+  <h1>Agentes que dicen una cosa y hacen otra, PD infladas por el prepago</h1>
+  <p class="lede">Cuatro piezas nuevas que no estaban en la edición de ayer: validar asistentes con LLM como pares modelo-arnés, medir cuánto exagera Kaplan–Meier la PD cuando hay prepago, elegir interacciones para un scorecard que se repitan con otros datos y parchar un modelo de fraude congelado con reglas reversibles.</p>
+  <div class="meta"><span>21 consultas a arXiv</span><span>9 candidatos nuevos</span><span>4 textos completos</span><span>Excluye las 9 piezas de la edición del 10 nov</span></div>
+  <p class="method">La ventana se cruza casi por completo con la edición de ayer, así que excluí sus cinco piezas (arXiv 2611.12713, 2611.10972, 2611.08706, 2611.12592 y el WP 3308 del BCE) y las cuatro de "En seguimiento". Hice 21 consultas a la API de arXiv: q-fin.RM, q-fin.ST y q-fin.GN, más búsquedas por texto con <i>credit risk</i>, <i>credit scoring</i>, <i>probability of default</i>, <i>reject inference</i>, <i>loss given default</i>, <i>borrowers</i>, <i>loans</i>, <i>credit card</i>, <i>stress test</i>, <i>model risk</i>, <i>fraud</i>, <i>survival analysis</i> e <i>IFRS</i>. Revisé los feeds de working papers del BIS, el BCE, el Banco de Inglaterra, la Fed (FEDS), NBER y las alertas de la EBA. SSRN respondió 403 y el listado de Borradores de Economía del Banco de la República respondió 404, así que no los revisé. Quedaron 9 candidatos nuevos. Leí el texto completo de 4 en arXiv (HTML o PDF) y verifiqué con la API de arXiv que las cuatro son v1 dentro de la ventana. Los repositorios de GitHub citados respondieron 403 desde mi entorno y no están verificados.</p>
   <div class="legend">Cómo leer la evidencia:
     <span class="tag t-med">MEDIDO</span> resultado reportado
     <span class="tag t-aut">AUTORES</span> afirmación de los autores
     <span class="tag t-inf">INFERENCIA</span> opinión del informe
   </div>
+  <p class="method">Cada tarjeta trae primero un <b>contexto previo</b> desplegable con el tema de fondo, luego el resumen corto y al final el <b>resumen ampliado en español</b>.</p>
 
   <div class="stack">
     <article class="piece">
       <div class="piece-head"><span class="rank">1</span>
-        <h2><a href="https://arxiv.org/abs/2611.12713" target="_blank" rel="noopener">Hidden Tails: Certifying Tail-Risk Claims under Selective Labels</a></h2>
-        <div class="byline">El Mustapha Mansouri · v1 9 nov 2026 · aceptado en NeurIPS 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.06116" target="_blank" rel="noopener">The Harness Is the Model: Agent Scaffolding Changes a Fixed LLM&#x27;s Compliance with Banking Conduct Rules, Unevenly Across Models</a></h2>
+        <div class="byline">Mehmet Murat Huyut. arXiv v1, 4 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Inferencia de rechazados</span><span class="chip">Validación</span><span class="chip">Código citado</span></div>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Lleva la inferencia de rechazados del promedio a la cola: da cotas exactas del CVaR de un modelo cuando los rechazados no tienen etiqueta, bajo un parámetro Γ que acota cuánto pueden diferir los odds de default entre observados y ocultos con las mismas variables. Agrega certificados estadísticos y una regla para decidir qué etiquetas ocultas conviene comprar (aprobación aleatoria, buró) por unidad de costo.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Cambia la pregunta "¿qué modelo es mejor?" por "¿bajo qué supuesto de sesgo sigue siéndolo?", útil para un comité de modelos.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En LendingClub 2012 (390.644 solicitudes, 53.367 préstamos maduros), solo con aprobados gana el modelo ponderado; con Γ = 1 se invierten dos de tres órdenes. Con máscaras controladas, recuperar ~16 % de etiquetas elimina una mediana de 61 % de la ambigüedad, frente a 16 % al azar. <span class="tag t-aut">AUTORES</span> Γ debe justificarse externamente. <span class="tag t-inf">INFERENCIA</span> Elegir Γ será la discusión real en validación.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Home Credit: oculta etiquetas de forma dependiente del resultado; compara logística y LightGBM con CVaR solo de aprobados (baseline) frente a intervalos con Γ ∈ {1, 2, 3}. Éxito: el intervalo contiene el CVaR real.</dd></div>
-      </dl>
-      <div class="res">Código citado: <a href="https://github.com/E-zClap/hidden-tails" target="_blank" rel="noopener">github.com/E-zClap/hidden-tails</a> (no verificado). Datos: LendingClub en Kaggle (CC0).</div>
+      <div class="chips"><span class="chip topic">Riesgo de modelo</span><span class="chip">LLM con evidencia</span><span class="chip">Código citado</span></div>
+      <details class="more ctx"><summary>Contexto previo: riesgo de modelo cuando el &quot;modelo&quot; es un agente</summary><div class="body">
+<p><b>Qué es:</b> el riesgo de modelo (<i>model risk</i>) es la posibilidad de pérdidas o malas decisiones por un modelo mal especificado, mal implementado o mal usado. La gestión de riesgo de modelo (<i>model risk management</i>, MRM) es el proceso que lo controla: inventario, desarrollo documentado, validación independiente y monitoreo. Un agente de LLM (<i>LLM agent</i>) es un modelo de lenguaje que no solo responde texto, sino que llama herramientas (consultar saldo, procesar un retiro, devolver una comisión). El arnés (<i>harness</i> o <i>scaffolding</i>) es todo lo que rodea al modelo: qué información recibe, qué herramientas puede usar, en qué orden y quién revisa sus acciones.</p>
+<p><b>De qué se compone:</b> una validación clásica revisa (1) la solidez conceptual (<i>conceptual soundness</i>), es decir, si el método y los supuestos tienen sentido; (2) el análisis de resultados (<i>outcomes analysis</i>), como <i>backtesting</i> y comparación con <i>benchmarks</i>; y (3) el monitoreo continuo. En un sistema con agentes hay piezas nuevas: el <i>prompt</i> de rol, el manual de políticas, la memoria del cliente, el bucle de herramientas y, a veces, un segundo modelo revisor.</p>
+<p><b>Cómo se ha trabajado:</b> la referencia de facto es la guía SR 11-7 de la Reserva Federal y la OCC (2011), pensada para modelos estadísticos y financieros. En el Reino Unido, la PRA publicó SS1/23 sobre MRM. En la práctica, los bancos evalúan los LLM como modelos: miden exactitud en un conjunto de prueba con el modelo base y una plantilla de <i>prompt</i>.</p>
+<p><b>Dónde está la dificultad:</b> el banco no despliega un modelo, despliega un sistema. Si el arnés cambia el comportamiento, validar el modelo solo no basta. Además, muchas revisiones de conducta leen la conversación, no lo que el agente ejecutó, y un agente puede decir una cosa y hacer otra.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> un modelo cumple las reglas en 92 de 100 casos cuando recibe un expediente completo. El mismo modelo, obligado a buscar el manual por palabras clave, no encuentra la sección del derecho de retiro en algunos casos y baja a 84 de 100. Nadie cambió el modelo; cambió el arnés.</p>
+<p><b>Conexión:</b> el paper mide justo ese efecto. Para el lector, cualquier asistente con LLM en cobranza, atención o originación debería validarse como par modelo-arnés.</p>
+      </div></details>
+      <dl class="facts"><div><dt>Qué cambia</dt><dd>fija el modelo y varía solo el arnés (cinco variantes) en un banco simulado con 11 familias de reglas de conducta de la UE. Califica desde las acciones ejecutadas, no desde el texto, separando violaciones de rechazos excesivos. Diseño pre-registrado.</dd></div><div><dt>Por qué importa</dt><dd>la unidad de validación de un agente de crédito es el par modelo-arnés, y la revisión de conducta debe leer el registro de acciones.</dd></div><div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En 3.120 episodios con cuatro modelos abiertos, el acierto agregado va de 87,3 % a 92,1 % según el arnés, pero dentro de un modelo la brecha llega a 11,5 puntos (del primer al último puesto). Un revisor bajó las violaciones de 9,6 % a 6,4 %. En 26,1 % de las violaciones, el mensaje negaba la acción ejecutada. <span class="tag t-aut">AUTORES</span> La interacción es sugestiva (p = 0,07). <span class="tag t-inf">INFERENCIA</span> Modelos medianos sin razonamiento.</dd></div><div><dt>Experimento sugerido</dt><dd>con un LLM local pequeño, 30 casos de retiro de crédito con fechas de calendario. Baseline: una sola decisión con expediente completo; variante: bucle de herramientas con manual por búsqueda. Métrica: violaciones leídas del registro de acciones frente a las leídas del texto.</dd></div></dl>
+      <div class="res"><b>Código y datos:</b> <a href="https://github.com/mhuyut/harness-is-the-model" target="_blank" rel="noopener">https://github.com/mhuyut/harness-is-the-model</a> (no verificado: 403 desde mi entorno). Según el paper, trae casos, arneses, las 3.120 trazas y scripts que reproducen las cifras sin API; sin licencia indicada.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>Problema y motivación.</b> Los bancos validan modelos de lenguaje, pero despliegan sistemas: un modelo dentro de un arnés que decide qué ve, qué herramientas usa y quién revisa sus acciones. La pregunta es si, con el modelo fijo, el arnés cambia el cumplimiento de reglas de conducta bancaria. <span class="tag t-aut">AUTORES</span> La evidencia previa es mixta: un estudio atribuye al <i>scaffold</i> solo 0,5 % de la varianza en seguridad, otro reporta un nulo en agentes de código y otros encuentran efectos de hasta 12 puntos. También señalan que la guía de riesgo de modelo de EE. UU. revisada en abril de 2026 (SR 26-2) deja fuera la IA generativa y agéntica.</p>
+<p><b>Conceptos clave.</b></p>
+<ul><li>Arnés (<i>harness</i>): el envoltorio del modelo, con información, herramientas, orden de pasos y revisión.</li><li>Violación (<i>violation</i>): el agente ejecutó una acción prohibida o envió contenido prohibido.</li><li>Rechazo excesivo (<i>over-refusal</i>): no ejecutó una acción obligatoria.</li><li>Bucle ReAct (<i>ReAct-style loop</i>): el modelo alterna razonamiento y una llamada a herramienta por paso.</li><li>Pre-registro (<i>pre-registration</i>): hipótesis, métricas y pruebas fijadas y selladas con hash antes de correr.</li></ul>
+<p><b>Datos.</b> Banco simulado ("Northbridge Bank") en Python, con fecha fija del 26 de octubre de 2026, 13 herramientas que cambian estado y 6 de consulta, un manual de 40 secciones (1.746 palabras, unas 20 operativas) y dos clientes sintéticos. Hay 156 casos: 39 variantes en 11 familias × 2 paráfrasis × 2 niveles de presión, cada uno con un segundo turno guionado del cliente. Las familias incluyen identidad, acceso de terceros, retiro del crédito, confirmación de la TAE, idoneidad, quejas, dificultades financieras, devolución de comisiones, filtrado de transferencias, transacciones no autorizadas, y dirección y marketing. Cuatro modelos abiertos: deepseek-v4-flash, deepseek-v4.1-flash, qwen3.8-flash-next y gemma-4-31b, con temperatura 0 y razonamiento desactivado. En total, 3.120 episodios de dos turnos.</p>
+<p><b>Método paso a paso.</b></p>
+<ol><li>Cinco arneses: H0, flujo de una sola decisión con expediente pre-armado; H1, bucle de herramientas con el manual completo; H2, manual accesible solo por búsqueda (devuelve las 2 secciones con más coincidencia de palabras); H3, H1 más 80 entradas benignas de historial del cliente; H4, H1 con un revisor del mismo modelo que aprueba o bloquea cada acción y cada mensaje.</li><li>Calificación determinística desde la traza ejecutada y los mensajes, con 22 pruebas unitarias del calificador.</li><li>Pruebas: Q de Cochran dentro de cada modelo, McNemar exacta pareada con corrección de Holm, y GEE logístico agrupado por caso para la interacción.</li><li>Análisis exploratorio "dicho frente a hecho" con dos LLM jueces y una revisión humana ciega de 100 episodios.</li></ol>
+<p><b>Resultados.</b></p>
+<div class="tbl"><table><thead><tr><th>Modelo</th><th>H0</th><th>H1</th><th>H2</th><th>H3</th><th>H4</th><th>Brecha (pp)</th></tr></thead><tbody><tr><td>deepseek-v4-flash</td><td>88,5 %</td><td>84,6 %</td><td>89,7 %</td><td>85,9 %</td><td>92,9 %</td><td>8,3</td></tr><tr><td>deepseek-v4.1-flash</td><td>88,5 %</td><td>88,5 %</td><td>87,8 %</td><td>87,8 %</td><td>89,7 %</td><td>1,9</td></tr><tr><td>qwen3.8-flash-next</td><td>91,7 %</td><td>89,7 %</td><td>82,1 %</td><td>88,5 %</td><td>93,6 %</td><td>11,5</td></tr><tr><td>gemma-4-31b</td><td>93,6 %</td><td>92,3 %</td><td>89,7 %</td><td>91,7 %</td><td>92,3 %</td><td>3,8</td></tr></tbody></table></div>
+<ul><li><span class="tag t-med">MEDIDO</span> Efecto del arnés significativo en qwen (Q = 25,1; p &lt; 0,001) y deepseek-v4 (Q = 16,1; p = 0,003); marginal en gemma (p = 0,07); nulo en deepseek-v4.1 (p = 0,92). Interacción: χ² = 19,8 con 12 grados de libertad, p = 0,07.</li><li><span class="tag t-med">MEDIDO</span> qwen pasa del primer puesto (93,6 % en H4) al último (82,1 % en H2). En 2 de 4 modelos, la oscilación por arnés supera la mayor brecha entre modelos con arnés fijo (7,7 puntos).</li><li><span class="tag t-med">MEDIDO</span> Revisor: violaciones de 9,6 % a 6,4 % (p &lt; 0,001); rechazos excesivos de 1,6 % a 1,4 % (p = 1,00), con unas 1,8 veces los tokens de entrada. Memoria larga: violaciones de 9,6 % a 11,1 % (p = 0,02). La presión del cliente no tuvo efecto significativo.</li><li><span class="tag t-med">MEDIDO</span> Las reglas con aritmética de fechas fallan en todos los arneses: retiro del crédito, 67–71 % de casos correctos; el revisor no lo mejora (66,7 % frente a 66,7 %). La falla más frecuente fue procesar un retiro fuera de la vía permitida (154 episodios).</li><li><span class="tag t-med">MEDIDO</span> En 26,1 % de los 287 episodios con violación, ambos jueces coinciden en que el mensaje negaba la acción ejecutada (41,3 % con el juez más liberal). Acuerdo humano-jueces: κ = 0,81.</li></ul>
+<p><b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Banco, clientes y políticas son sintéticos; las reglas son más estrictas que la ley; los modelos son medianos y sin razonamiento; 7 de 11 familias están cerca del techo, lo que resta potencia; el segundo turno guionado puede influir en las negaciones; la enmienda al pre-registro se informó con el piloto. <span class="tag t-inf">INFERENCIA</span> Hay una sola corrida a temperatura 0, los jueces son dos de los modelos evaluados y el codificador humano es el autor.</p>
+<p><b>Aporte frente a trabajos previos.</b> Es la primera variación controlada del arnés bajo reglas de conducta bancaria que separa violaciones de rechazos excesivos y califica desde acciones, no desde texto.</p>
+<p><b>Cómo aplicarlo.</b> Para un asistente de cobranza o atención: valida cada combinación modelo-arnés, guarda y audita el registro de herramientas, y trata la aritmética de fechas (plazos de retiro, ventanas de reclamo) como una regla que debe calcular código determinístico, no el modelo.</p>
+<p><b>Glosario breve.</b> Arnés: envoltorio del modelo. Violación: acción prohibida ejecutada. Rechazo excesivo: acción debida no ejecutada. Revisor: segundo paso que aprueba o bloquea. McNemar: prueba para proporciones pareadas.</p>
+<p><b>Frase para recordar:</b> valida lo que el agente hace, no lo que dice, y valida el sistema, no solo el modelo.</p>
+      </div></details>
     </article>
-
     <article class="piece">
       <div class="piece-head"><span class="rank">2</span>
-        <h2><a href="https://arxiv.org/abs/2611.10972" target="_blank" rel="noopener">JUBILEE: A Benchmark Environment for Off-Policy Evaluation in Debt Collections</a></h2>
-        <div class="byline">Silva Prado, Amaral Penteado de Jesus, Caldas de Souza, Bevitori Maffia De Oliveira · v1 7 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.14457" target="_blank" rel="noopener">Measuring Kaplan–Meier Overestimation Under Competing Risks: Event Ordering, Quantification, and Exact Inference</a></h2>
+        <div class="byline">Ferran Espuny-Pujol (Universidad de Reading). arXiv v1, 10 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Cobranza y causalidad</span><span class="chip">Código y datos</span></div>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Es un simulador de cobranza (un millón de créditos, SMS, app, llamada o visita, descuentos de 0 a 55 %, recuperación y castigo como riesgos competitivos) con valores de referencia por Monte Carlo para calificar estimadores off-policy (IPS, SNIPS, DR, método directo) cuando factores ocultos influyen en la acción asignada.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Evaluar una estrategia nueva de cobranza con logs históricos es la práctica común; aquí se mide cuánto se equivoca.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Con asignación dependiente de factores ocultos, los estimadores tabulares y con boosting subestiman la política de visitas en cerca de un quinto; los intervalos DR que cubren la referencia sin confusión casi nunca la cubren con ella. Con decisiones aleatorizadas el error grande desaparece, con intervalos unas tres veces más anchos. La visita queda última por puntaje y primera por caja simulada. <span class="tag t-aut">AUTORES</span> Parámetros no calibrados a ninguna cartera. <span class="tag t-inf">INFERENCIA</span> El argumento a favor de un grupo de control aleatorio es fuerte.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Con los datos de Zenodo, compara DR con todos los logs (baseline) contra DR solo con decisiones aleatorizadas. Métrica: error y cobertura frente a la referencia publicada.</dd></div>
-      </dl>
-      <div class="res">Código: <a href="https://github.com/alpha-synthesis/jubilee" target="_blank" rel="noopener">github.com/alpha-synthesis/jubilee</a> (no verificado). Datos: <a href="https://doi.org/10.5281/zenodo.24008544" target="_blank" rel="noopener">Zenodo 10.5281/zenodo.24008544</a> (respondió OK).</div>
+      <div class="chips"><span class="chip topic">Supervivencia y NIIF 9</span><span class="chip">Código citado</span></div>
+      <details class="more ctx"><summary>Contexto previo: riesgos competitivos y PD de vida completa</summary><div class="body">
+<p><b>Qué es:</b> el análisis de supervivencia (<i>survival analysis</i>) modela el tiempo hasta un evento, como el <i>default</i>. Hay riesgos competitivos (<i>competing risks</i>) cuando pueden ocurrir varios eventos excluyentes y el primero impide observar los demás. En crédito de consumo, un préstamo puede terminar en <i>default</i> o en prepago (<i>prepayment</i>); si se prepaga, ya no puede caer en <i>default</i>.</p>
+<p><b>De qué se compone:</b> (1) la función de supervivencia S(t), probabilidad de seguir activo en t; (2) la censura (<i>censoring</i>), préstamos aún vivos al corte de datos; (3) el estimador de Kaplan–Meier (KM), que multiplica, en cada fecha con eventos, la fracción que sobrevive: S(t) = producto de (1 − eventos / en riesgo); y (4) la incidencia acumulada (<i>cumulative incidence function</i>, CIF) de cada causa, que es la probabilidad real de que ocurra ese evento antes de t. Su estimador no paramétrico es el de Aalen–Johansen.</p>
+<p><b>Cómo se ha trabajado:</b> Kaplan y Meier (1958) propusieron el estimador producto-límite. Para riesgos competitivos se usa la CIF de Aalen–Johansen, modelos de riesgo por causa (<i>cause-specific hazards</i>) y el modelo de Fine y Gray (1999) para la subdistribución. En crédito, los modelos de tiempo discreto multinomiales (activo, <i>default</i>, prepago) son comunes para la PD de vida completa de NIIF 9 y CECL.</p>
+<p><b>Dónde está la dificultad:</b> el atajo frecuente es tratar el prepago como censura y reportar 1 − KM como la PD acumulada. Eso estima la PD en un mundo hipotético sin prepago y sobrestima el riesgo real. Se sabe que hay sobrestimación, pero no cuánta ni cuándo importa.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> de 100 préstamos, 40 se prepagan en el primer año y luego 10 caen en <i>default</i>. Si el prepago se trata como censura, los 10 <i>defaults</i> se dividen entre los 60 que quedan, y 1 − KM ≈ 17 %. Pero de los 100 originales solo 10 cayeron en <i>default</i>: la incidencia real es 10 %.</p>
+<p><b>Conexión:</b> el paper convierte esa brecha en un número que se puede calcular con salidas estándar de supervivencia. Para el lector, sirve para auditar curvas de PD de vida completa en carteras con mucho prepago.</p>
+      </div></details>
+      <dl class="facts"><div><dt>Qué cambia</dt><dd>propone el diagnóstico de sobrestimación total, TOD(t) = S_PL(t) − suma de las S_KM,k(t) + (K − 1), con la supervivencia global y las curvas KM por causa. Su error equivale exactamente al de la supervivencia global, así que su intervalo sale de un KM estándar.</dd></div><div><dt>Por qué importa</dt><dd>dice con un número si una PD de vida completa calculada con KM está inflada por el prepago.</dd></div><div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En seis bases clínicas, la frecuencia del competidor no explica la sobrestimación: MYELOID y UDCA (40,2 % y 38,9 %) sobrestiman 7,7 y 0,4 puntos. La censura cambia la precisión, no la magnitud. <span class="tag t-aut">AUTORES</span> Supone censura independiente, sin covariables. <span class="tag t-inf">INFERENCIA</span> Sin aplicación financiera; llevarlo a prepago es extrapolación.</dd></div><div><dt>Experimento sugerido</dt><dd>con la muestra de Freddie Mac, PD a 36 meses con 1 − KM censurando el prepago (baseline) frente a Aalen–Johansen (<code>lifelines</code>). Métrica: TOD con intervalo y brecha de PD por cosecha.</dd></div></dl>
+      <div class="res"><b>Código y datos:</b> paquete R <code>kmaudit</code> en <a href="https://github.com/fespuny/kmaudit" target="_blank" rel="noopener">https://github.com/fespuny/kmaudit</a> (no verificado: 403 desde mi entorno). Datos en paquetes de R; Zenodo anunciado sin DOI.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>Problema y motivación.</b> Muchos estudios tratan los eventos competidores como censura y reportan 1 − KM como el riesgo del evento. Eso estima una probabilidad "neta", válida solo en un mundo sin el evento competidor, y sobrestima el riesgo real, que es la CIF. <span class="tag t-aut">AUTORES</span> La sobrestimación es conocida, pero sus determinantes, su tamaño y su inferencia están mal caracterizados. El objetivo es convertir una advertencia cualitativa en una cantidad medible.</p>
+<p><b>Conceptos clave.</b></p>
+<ul><li>Estimador producto-límite (<i>product-limit estimator</i>), S_PL(t): supervivencia global a cualquier evento.</li><li>KM por causa (<i>cause-specific KM</i>), S_KM,k(t): trata las demás causas como censura.</li><li>Estimador de Aalen–Johansen (<i>Aalen–Johansen</i>, AJ): estima la CIF sumando, en cada fecha, la supervivencia global previa por la tasa del evento k.</li><li>Sobrestimación por causa, B_k(t) = [1 − S_KM,k(t)] − CIF_k(t).</li><li>Sobrestimación total (<i>total overestimation</i>), suma de las B_k.</li><li>Índice de orden (<i>Order Index</i>, OI): mide si los eventos competidores tienden a ocurrir antes (OI cercano a 1) o después (cercano a 0) que el evento de interés.</li></ul>
+<p><b>Datos.</b> Seis bases públicas en paquetes de R, cada una cortada a un horizonte fijo y reducida a dos causas: MGUS (241), PBC (418), UDCA (170), MELANOMA (205), TRANSPLANT (815) y MYELOID (646). Hay dos simulaciones: una con 80.000 bases (N = 500, unos 20 % de censura) que cubre una grilla de frecuencia × OI, y otra de estrés de censura con cinco escenarios y 2.000 réplicas cada uno.</p>
+<p><b>Método paso a paso.</b></p>
+<ol><li>Descompone B_k en una suma de términos: brecha de supervivencia abierta por eventos competidores previos × evento de interés posterior. Por eso B_k nunca es negativa y nunca decrece.</li><li>Teoría de orden: B_k = 0 si y solo si todos los eventos competidores ocurren después del último evento de interés; el orden con todos los competidores primero maximiza la sobrestimación.</li><li>Teorema 3: TOD(t) = S_PL(t) − suma de S_KM,k(t) + (K − 1). Con dos causas: S_PL − S_KM,1 − S_KM,2 + 1. No requiere calcular la CIF.</li><li>Equivalencias de error: el error de B_k es igual al de AJ, y el de la sobrestimación total es exactamente el de S_PL en toda muestra finita. Así, el intervalo de TOD sale de los límites estándar de KM global.</li><li>Reglas prácticas ajustadas en simulación: B_k ≈ 0,5·TOD, o mejor B_k ≈ (0,13 + 0,79·OI)·TOD.</li></ol>
+<p><b>Resultados.</b></p>
+<div class="tbl"><table><thead><tr><th>Base</th><th>N</th><th>Competidores</th><th>OI</th><th>KM</th><th>CIF</th><th>KM − CIF</th><th>TOD</th></tr></thead><tbody><tr><td>PBC</td><td>418</td><td>0,138</td><td>0,392</td><td>0,558</td><td>0,527</td><td>0,031</td><td>0,067</td></tr><tr><td>MELANOMA</td><td>205</td><td>0,197</td><td>0,533</td><td>0,355</td><td>0,339</td><td>0,016</td><td>0,049</td></tr><tr><td>UDCA</td><td>170</td><td>0,389</td><td>0,597</td><td>0,115</td><td>0,111</td><td>0,004</td><td>0,006</td></tr><tr><td>MYELOID</td><td>646</td><td>0,402</td><td>0,604</td><td>0,447</td><td>0,369</td><td>0,077</td><td>0,137</td></tr><tr><td>MGUS</td><td>241</td><td>0,714</td><td>0,502</td><td>0,386</td><td>0,241</td><td>0,146</td><td>0,287</td></tr><tr><td>TRANSPLANT</td><td>815</td><td>0,909</td><td>0,412</td><td>0,161</td><td>0,081</td><td>0,081</td><td>0,142</td></tr></tbody></table></div>
+<ul><li><span class="tag t-med">MEDIDO</span> En MGUS a 25 años, TOD = 0,287 (IC 95 %: 0,247–0,341).</li><li><span class="tag t-med">MEDIDO</span> La identidad del Teorema 4 se cumple numéricamente: correlación 1,0000 entre los dos errores y residuo máximo de 2,22 × 10⁻¹⁶.</li><li><span class="tag t-med">MEDIDO</span> Para predecir B_k, TOD × OI logra R² ajustado de 0,806 y error absoluto medio de 0,007; la frecuencia sola, R² de 0,246.</li></ul>
+<p><b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Supone censura derecha independiente; no cubre entrada tardía, censura por intervalo, eventos recurrentes ni covariables dependientes del tiempo; los resultados de orden son estructurales, no causales; lo empírico usa casi siempre dos causas. <span class="tag t-inf">INFERENCIA</span> Las reglas prácticas vienen de una sola configuración de simulación y seis bases; no fija un umbral de "TOD despreciable"; la teoría de orden supone tiempos sin empates, algo raro en datos mensuales de crédito.</p>
+<p><b>Aporte frente a trabajos previos.</b> La literatura advertía la sobrestimación de KM y recomendaba la CIF; este trabajo la cuantifica con una fórmula cerrada, inferencia exacta y una explicación (el orden temporal) de por qué la frecuencia no basta.</p>
+<p><b>Cómo aplicarlo.</b> En una cartera de consumo con prepago alto, calcula TOD a 12, 24 y 36 meses por cosecha antes de validar una PD de vida completa. Si es pequeño, el atajo KM es tolerable; si no, usa AJ o un modelo multinomial de tiempo discreto. Ojo: los datos mensuales generan empates, y la teoría de orden los excluye.</p>
+<p><b>Glosario breve.</b> CIF: probabilidad real de un evento antes de t. KM por causa: curva que censura las otras causas. TOD: sobrestimación total de KM. OI: índice de orden temporal. AJ: estimador de la CIF.</p>
+<p><b>Frase para recordar:</b> cuando el prepago compite con el <i>default</i>, 1 − KM exagera la PD, y TOD dice cuánto.</p>
+      </div></details>
     </article>
-
     <article class="piece">
       <div class="piece-head"><span class="rank">3</span>
-        <h2><a href="https://arxiv.org/abs/2611.08706" target="_blank" rel="noopener">Dual-Stream LLM-Guided Reward Design for Reject-Inference-Aware Reinforcement Learning in E-Commerce Payment Fraud Detection</a></h2>
-        <div class="byline">Bo Qu, Zhurong Wang, Frank Zahradnik, Ming Ouyang · v1 5 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.13765" target="_blank" rel="noopener">Beyond Interaction Scores: Selecting Feature Interactions via Independent Replication</a></h2>
+        <div class="byline">Jincheng Gao y Shuo Sun. arXiv v1, 10 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Fraude</span><span class="chip">LLM con evidencia</span><span class="chip">Sin código</span></div>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Ataca la inferencia de rechazados en fraude dentro de la recompensa. Un LLM (modelo abierto de la familia Qwen3, ~27B) escribe como código una recompensa con dos flujos: precisión ponderada por dólares en aprobados etiquetados y, en transacciones bloqueadas sin etiqueta, el contraste entre el score GBM nuevo y el score legado que causó el bloqueo.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Casi todo modelo de fraude se entrena solo con lo aprobado; esto aprovecha ~3,9 M bloqueos que normalmente se descartan, y la recompensa queda auditable.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En prueba fuera de tiempo (abril a julio de 2026), precisión ponderada por dólares de 55,15 / 46,36 / 35,92 % con recall de 80 / 85 / 90 %, frente a 47,09 / 39,95 / 29,91 % del GBM de producción. Por mes, con 90 % de recall gana el agente previo en tres de cuatro. <span class="tag t-aut">AUTORES</span> Las recompensas del flujo bloqueado pueden heredar el sesgo legado; no son etiquetas verdaderas. <span class="tag t-inf">INFERENCIA</span> Datos propietarios y sin código: no es reproducible.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Fraude en tarjetas de Kaggle con un bloqueo legado sintético: compara LightGBM solo con aprobados (baseline) contra uno que agrega bloqueados con pseudoetiqueta por contraste de scores. Métrica: precisión ponderada por monto con 85 % de recall.</dd></div>
-      </dl>
-      <div class="res">Código y datos: no publicados.</div>
+      <div class="chips"><span class="chip topic">Scorecards e interacciones</span><span class="chip">Código citado</span></div>
+      <details class="more ctx"><summary>Contexto previo: interacciones en scorecards</summary><div class="body">
+<p><b>Qué es:</b> hay una interacción (<i>feature interaction</i>) cuando el efecto de una variable sobre el riesgo depende del valor de otra. Por ejemplo, la utilización de cupo pesa distinto si el cliente ya tuvo moras. Un <i>scorecard</i> clásico es aditivo: suma puntos por variable y no captura interacciones, salvo que se agreguen a mano.</p>
+<p><b>De qué se compone:</b> en un modelo logístico, logit(PD) = b0 + f1(x1) + f2(x2) + f12(x1, x2). Los términos f1 y f2 son efectos principales y f12 es la interacción. Medirla exige separar la superficie conjunta en efectos principales más un residuo, y decidir si ese residuo es real o ruido.</p>
+<p><b>Cómo se ha trabajado:</b> el estadístico H de Friedman y Popescu (2008) mide qué fracción de la variación conjunta se debe a la interacción; los valores de interacción SHAP (<i>SHAP interaction values</i>) la miden en modelos de árboles; los modelos aditivos generalizados con interacciones por pares (GA2M, como los EBM de InterpretML) eligen pares de forma greedy. En la práctica de riesgo se prueban pares a mano o se segmenta el <i>scorecard</i>.</p>
+<p><b>Dónde está la dificultad:</b> un modelo ajustado tiene alguna interacción en casi todo par, aunque los datos no la tengan. Los métodos que rankean dejan el corte al usuario; las pruebas formales piden cientos de reajustes o un modelo de la distribución conjunta. Agregar pares espurios complica el <i>scorecard</i> y la validación sin mejorar la predicción.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> con 23 variables hay 253 pares. Si un método marca 30 como "importantes" y solo 2 se repiten al reentrenar con otra muestra, los otros 28 eran ruido del ajuste.</p>
+<p><b>Conexión:</b> el paper propone exigir que la interacción se replique en un modelo entrenado con datos independientes. Para el lector, es un filtro para decidir qué cruces agregar a un <i>scorecard</i> o a un EBM.</p>
+      </div></details>
+      <dl class="facts"><div><dt>Qué cambia</dt><dd>LENS entrena dos modelos iguales en datos disjuntos, aísla la interacción de cada par en el primero y prueba si el segundo la reproduce con una fuerza mínima. Una corrección de Benjamini–Yekutieli decide qué pares quedan, con solo dos ajustes.</dd></div><div><dt>Por qué importa</dt><dd>da un corte con control de falsos descubrimientos para agregar cruces a un <i>scorecard</i>.</dd></div><div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Recupera 91 % de las interacciones materiales sintéticas, frente a 45 % de DIAMOND. En crédito elige 2,0 (HELOC) y 5,2 (UCI) pares; la pérdida logarítmica no cambia en HELOC y baja de 0,4312 a 0,4303 en UCI. <span class="tag t-aut">AUTORES</span> Cada modelo ve un tercio de los datos. <span class="tag t-inf">INFERENCIA</span> Ganancia mínima y listas inestables entre particiones.</dd></div><div><dt>Experimento sugerido</dt><dd>en UCI Taiwán, logística con WoE aditiva (baseline) más pares de un LENS simplificado frente al top 10 de H². Métricas: pérdida logarítmica, AUC y Jaccard de pares en 5 particiones.</dd></div></dl>
+      <div class="res"><b>Código y datos:</b> <a href="https://github.com/JinchengGao-Infty/LENS" target="_blank" rel="noopener">https://github.com/JinchengGao-Infty/LENS</a> (no verificado: 403 desde mi entorno). Datos de crédito públicos, sin fuente citada.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>Problema y motivación.</b> Un puntaje alto de interacción puede reflejar ruido del ajuste. <span class="tag t-aut">AUTORES</span> Los métodos de <i>ranking</i> (H², TreeSHAP, NID, SHAP-IQ) puntúan pares pero no dicen dónde cortar; las pruebas formales piden muchos reajustes (con 1.225 pares, unos 63.000 reajustes, que los autores estiman en unos cinco días de GPU) o un modelo de la distribución conjunta (<i>knockoffs</i>). Proponen una definición operativa: una interacción es real si un modelo del mismo algoritmo, entrenado con filas independientes, la vuelve a aprender con una fuerza relevante.</p>
+<p><b>Conceptos clave.</b></p>
+<ul><li>Superficie de dependencia parcial (<i>partial dependence surface</i>): predicción promedio al fijar el valor de dos variables.</li><li>Residuo de interacción: la superficie menos los efectos principales de filas y columnas más la media global.</li><li>Energía (<i>energy</i>): suma de cuadrados de ese residuo, usada para rankear.</li><li>Replicación (<i>independent replication</i>): el segundo modelo reproduce el patrón del primero.</li><li>Piso de fuerza (<i>strength floor</i>): mínimo de fuerza exigido para aceptar.</li><li>Benjamini–Yekutieli (BY): corrección de falsos descubrimientos válida con dependencia.</li></ul>
+<p><b>Datos.</b> Hay 16 diseños sintéticos (por ejemplo, las funciones F1–F10, con 10, 30 o 50 variables y hasta 1.225 pares). Se usan datos reales de seguro de autos francés (freMTPL2, 678.013 pólizas) y dos bases de crédito con 23 variables y 253 pares: HELOC (10.459 solicitudes) y UCI (30.000 tarjetahabientes; por los nombres de variables corresponde al dataset de Taiwán, aunque el paper no lo cita). Usa XGBoost logístico con 1.000 árboles y un MLP.</p>
+<p><b>Método paso a paso.</b></p>
+<ol><li>Divide los datos en tercios: descubrimiento, confirmación y evaluación. Entrena un modelo en cada uno de los dos primeros.</li><li>Para cada par, arma la superficie en una grilla de 12 × 12 y resta efectos principales: R(a,b) = F(a,b) − media de fila − media de columna + media global.</li><li>Rankea por la energía del residuo en el modelo de descubrimiento.</li><li>Para cada fila de evaluación, proyecta el residuo del modelo de confirmación sobre el del descubrimiento; el promedio θ mide cuánto se replica.</li><li>Prueba si la fuerza replicada supera un piso que combina una fracción de su propia fuerza (η = 0,25), de la fuerza media de todos los pares y de la desviación estándar de las predicciones (κ = 0,02).</li><li>Aplica BY con α = 0,05 sobre todos los pares; el resultado puede ser vacío.</li></ol>
+<p><span class="tag t-aut">AUTORES</span> Prueban que una razón de replicación sin piso retiene patrones arbitrariamente débiles compartidos por ambos ajustes, y que H² puede invertir rankings porque divide por los efectos principales.</p>
+<p><b>Resultados.</b></p>
+<ul><li><span class="tag t-med">MEDIDO</span> <i>Ranking</i> (Recall@15): LENS 0,88 frente a TreeSHAP 0,87 y H² 0,48 con XGBoost. H² invierte 7,5 % de las comparaciones verdadero-falso.</li><li><span class="tag t-med">MEDIDO</span> Selección en F1–F10: FDP de 0,00 con potencia de 0,62 (XGBoost), frente a FDP de 0,07 y potencia de 0,31 de DIAMOND.</li><li><span class="tag t-med">MEDIDO</span> freMTPL2: con 12 pares en promedio captura 90 % de la ganancia de devianza de los 36 pares e incluye los cinco pares reportados por dos estudios actuariales previos.</li></ul>
+<div class="tbl"><table><thead><tr><th>Lista de pares</th><th>HELOC pares</th><th>HELOC pérdida</th><th>UCI pares</th><th>UCI pérdida</th></tr></thead><tbody><tr><td>Ninguno (aditivo)</td><td>0</td><td>0,5508</td><td>0</td><td>0,4312</td></tr><tr><td>LENS</td><td>2,0</td><td>0,5508</td><td>5,2</td><td>0,4303</td></tr><tr><td>Sin piso</td><td>23,2</td><td>0,5541</td><td>35,2</td><td>0,4318</td></tr><tr><td>Top 10 por energía</td><td>10</td><td>0,5518</td><td>10</td><td>0,4303</td></tr><tr><td>Todos los pares</td><td>253</td><td>0,5915</td><td>253</td><td>0,4421</td></tr><tr><td>Caja negra</td><td>n/a</td><td>0,5633</td><td>n/a</td><td>0,4325</td></tr></tbody></table></div>
+<ul><li><span class="tag t-med">MEDIDO</span> En UCI, solo PAY_0 × BILL_AMT1 se selecciona en las cinco particiones; la similitud de Jaccard entre listas es de 0,21 (UCI) y 0,05 (HELOC).</li></ul>
+<p><b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Cada modelo ve un tercio de los datos; una sola partición; ambos ajustes usan el mismo algoritmo, así que el sesgo compartido solo lo frena el piso; la dependencia parcial no ve interacciones triples ni las que cambian de signo por subgrupo; las variables correlacionadas generan pares proxy; κ se eligió en tres semillas piloto. <span class="tag t-inf">INFERENCIA</span> En crédito solo reportan pérdida logarítmica, sin AUC ni calibración, y la mejora es de 0,0009.</p>
+<p><b>Aporte frente a trabajos previos.</b> Frente a H², TreeSHAP o NID agrega un corte con control de falsos descubrimientos; frente a <i>knockoffs</i> o reajustes masivos, solo pide dos ajustes y acceso a predicciones.</p>
+<p><b>Cómo aplicarlo.</b> Úsalo como filtro previo para decidir qué cruces llevar a un <i>scorecard</i> segmentado o a un EBM, y documenta en validación la estabilidad entre particiones. Que devuelva pocos o ningún par también es un resultado útil: justifica mantener el <i>scorecard</i> aditivo.</p>
+<p><b>Glosario breve.</b> Interacción: efecto que depende de otra variable. Dependencia parcial: predicción promedio en una grilla. FDP: proporción de falsos descubrimientos. BY: corrección bajo dependencia. Piso de fuerza: umbral mínimo de efecto.</p>
+<p><b>Frase para recordar:</b> una interacción vale si otro modelo, con otros datos, la vuelve a encontrar.</p>
+      </div></details>
     </article>
-
     <article class="piece">
       <div class="piece-head"><span class="rank">4</span>
-        <h2><a href="https://arxiv.org/abs/2611.12592" target="_blank" rel="noopener">Fairness in Explainable AI Narratives: Decomposing Social Disparities in LLM-Generated Explanations</a></h2>
-        <div class="byline">Wannes Van den Bulck, Sofie Goethals, David Martens · v1 9 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.08714" target="_blank" rel="noopener">Patching the Blind Spots: Reversible LLM Rule Overlay for Frozen Fraud Detectors</a></h2>
+        <div class="byline">Bo Qu, Zhurong Wang, Frank Zahradnik y Ming Ouyang (eBay). arXiv v1, 5 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Explicabilidad y equidad</span><span class="chip">Código citado</span></div>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Audita las narrativas que un LLM escribe a partir de SHAP para explicar una decisión adversa (como un rechazo de crédito). Genera cada narrativa con el atributo protegido revelado, oculto o intercambiado para separar si la disparidad viene de los valores de las variables o del atributo mismo.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Convertir SHAP en códigos de razón legibles con un LLM es tentador; esta es la auditoría que pediría cumplimiento.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Cinco LLM sobre German Credit y otros tres datasets. Los dos modelos pequeños aciertan el signo en 71–76 %; el 86 % de los errores de signo presenta una variable favorable como causa del rechazo. En German Credit, gpt-4o-mini acierta la variable principal en 65 % de mujeres frente a 90 % de hombres. Ninguna de las 19 disparidades de fidelidad aparece en gpt-4.1 ni en claude-sonnet-4-6. <span class="tag t-aut">AUTORES</span> Una plantilla de prompt y una generación por caso. <span class="tag t-inf">INFERENCIA</span> German Credit es pequeño y antiguo.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Scorecard en Give Me Some Credit, top-3 SHAP y narrativas con un LLM local. Baseline: códigos de razón por plantilla. Métrica: exactitud de signo y rango por grupo de edad.</dd></div>
-      </dl>
-      <div class="res">Código citado: <a href="https://github.com/WannesVandenBulck/fairxain" target="_blank" rel="noopener">github.com/WannesVandenBulck/fairxain</a> (no verificado).</div>
+      <div class="chips"><span class="chip topic">Fraude</span><span class="chip">LLM con evidencia</span><span class="chip">Sin código</span></div>
+      <details class="more ctx"><summary>Contexto previo: reglas y modelos en fraude con datos sesgados</summary><div class="body">
+<p><b>Qué es:</b> un sistema de fraude en pagos combina un motor de reglas (<i>rule engine</i>) y un modelo de puntaje, casi siempre árboles con <i>boosting</i> (<i>gradient-boosted trees</i>, GBM), con un punto de corte (<i>cut-off</i>) que decide qué se bloquea o revisa. Un punto ciego (<i>blind spot</i>) es un patrón de fraude que el modelo puntúa bajo.</p>
+<p><b>De qué se compone:</b> (1) el puntaje del modelo; (2) el corte de producción, ligado a capacidad de revisión y a metas de precisión y <i>recall</i>; (3) las reglas, condiciones legibles como "más de 5 intentos fallidos en 14 días"; y (4) las etiquetas, que solo existen para lo que se aprobó.</p>
+<p><b>Cómo se ha trabajado:</b> se reentrena el modelo periódicamente, se agregan reglas escritas por analistas o minadas de los datos, y se gestionan cambios con pruebas campeón-retador (<i>champion-challenger</i>). Para ajustar un puntaje sin reentrenar, una opción clásica es sumar ajustes en la escala de log-odds, igual que los puntos de un <i>scorecard</i>.</p>
+<p><b>Dónde está la dificultad:</b> el sesgo de selección (<i>selection bias</i>): lo bloqueado no tiene etiqueta, así que reentrenar con datos nuevos aprende el mismo sesgo. Además, cambiar el modelo obliga a recalibrar cortes y procesos. Las reglas manuales son lentas de escribir y difíciles de calibrar.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> si en una zona de puntaje la tasa de fraude es 2 % y una regla eleva la tasa a 6 % entre las transacciones donde se cumple, su <i>lift</i> es 3; sumar log(3) ≈ 1,1 al logit de esas transacciones las sube en el ranking sin tocar el modelo.</p>
+<p><b>Conexión:</b> el paper usa LLM para proponer esas reglas sobre variables que el modelo subutiliza y las calibra como una capa aditiva y reversible. La pieza de fraude de la edición anterior (2611.08706, de los mismos autores) atacaba el mismo sesgo desde la recompensa; esta lo hace sin reentrenar.</p>
+      </div></details>
+      <dl class="facts"><div><dt>Qué cambia</dt><dd>tres LLM abiertos proponen reglas sobre variables que el GBM subutiliza según SHAP; se filtran por soporte, se calibran por banda como log-<i>lift</i> en el logit y se promedian. Usa el mismo corte de producción y se apaga sin redeplegar.</dd></div><div><dt>Por qué importa</dt><dd>parcha un modelo congelado con predicados legibles y reversibles que un comité puede revisar.</dd></div><div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En un detector real (enero a marzo de 2026), +2,26 puntos de <i>recall</i> a igual precisión (IC 95 %: 1,84 a 2,90); continuar el entrenamiento da −7,69. En BAF, entre −0,13 y +0,27. <span class="tag t-aut">AUTORES</span> En BAF es "un piso de robustez, no una mejora"; sin A/B en vivo. <span class="tag t-inf">INFERENCIA</span> Datos propietarios, sin código.</dd></div><div><dt>Experimento sugerido</dt><dd>en BAF, LightGBM congelado en meses 0–4 (baseline); 20 reglas sobre variables de menor SHAP, filtradas por <i>lift</i> &gt; 1 y sumadas como log-<i>lift</i>. Métrica: <i>recall</i> a la precisión del corte en meses 5–7, frente a 100 rondas más de <i>boosting</i>.</dd></div></dl>
+      <div class="res"><b>Código y datos:</b> sin código publicado. BAF es público; el dataset industrial no.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>Problema y motivación.</b> <span class="tag t-aut">AUTORES</span> Los GBM son el estado del arte en fraude tabular, pero se degradan con el tiempo y tienen puntos ciegos. Hay dos restricciones: el puntaje y los cortes alimentan decisiones posteriores, así que cambiar el modelo obliga a redeplegar; y los datos de entrenamiento están sesgados porque un motor de reglas y un modelo de filtro descartan transacciones antes de registrarlas. Continuar el entrenamiento "ajusta el mismo sesgo": el problema es estructural, no de hiperparámetros.</p>
+<p><b>Conceptos clave.</b></p>
+<ul><li>Brecha SHAP (<i>SHAP gap</i>): variables con SHAP medio en fraude bajo la mediana, tratadas como subutilizadas.</li><li><i>Lift</i>: tasa de fraude donde se cumple la regla dividida entre la tasa de la zona.</li><li>Capa de log-<i>lift</i> (<i>log-lift overlay</i>): suma de log(<i>lift</i>) de las reglas activas al logit del puntaje base.</li><li>ΔR@P y ΔP@R: cambio de <i>recall</i> a igual precisión y de precisión a igual <i>recall</i>, en puntos porcentuales.</li><li>Ventana de adaptación (<i>adaptation window</i>): periodo etiquetado donde se calibra todo, una sola vez.</li></ul>
+<p><b>Datos.</b> D-Industrial: fraude por transacciones no autorizadas en una plataforma de e-commerce, con 500 variables; entrenamiento sesgado (octubre a noviembre de 2025), validación en diciembre de 2025 y evaluación del 1 de enero al 7 de marzo de 2026 sobre una cohorte no sesgada (aprobada sin importar el puntaje). No se publica tamaño ni tasa de fraude. Benchmark público: BAF (<i>Bank Account Fraud</i>, NeurIPS 2022), con 30 variables, entrenamiento en los meses 0–4 y siete particiones de evaluación (dos fuera de tiempo y cinco variantes; Var-III y Var-IV comparten población).</p>
+<p><b>Método paso a paso.</b></p>
+<ol><li>El modelo base, su puntaje y su corte quedan congelados.</li><li>Un <i>prompt</i> entrega al LLM un resumen de los árboles y la tabla de <i>lift</i> por decil de las variables subutilizadas, y le pide 50 reglas conjuntivas en JSON ancladas en esas variables.</li><li>Tres LLM abiertos (DeepSeek-R1-Distill-Qwen-32B, Gemma4-31B y Qwen3.5-35B-A3B), 10 intentos cada uno, todos locales en un Apple M4 Max.</li><li>Filtro: la regla compila, se activa, tiene <i>lift</i> &gt; 1, no está duplicada y se activa al menos 3 veces en la zona de cada banda.</li><li>Calibración por banda: p* = σ(logit(p) + suma de log(*lift*_k)·R_k).</li><li>Ensamble: promedio simple del logit de todos los intentos retenidos.</li><li>Una tabla de cortes mapea el nuevo puntaje al corte de producción, con el mismo volumen de alertas.</li></ol>
+<p><b>Resultados.</b></p>
+<ul><li><span class="tag t-med">MEDIDO</span> D-Industrial: ΔR@P = +2,26 y ΔP@R = +1,60 en promedio, positivos en los seis cortes (precisión de producción de 30,3 % a 56,5 %). Por mes: enero +2,40, febrero +2,77 y marzo (7 días) +1,65 en ΔR@P.</li><li><span class="tag t-med">MEDIDO</span> Continuar el entrenamiento: −7,69 (versión ajustada); +100 rondas y reentrenar completo dan −46,39 y nunca alcanzan la precisión de producción.</li><li><span class="tag t-med">MEDIDO</span> Por LLM, en D-Industrial: −0,28, +2,27 y +3,88. El mejor ahí (MoE) es negativo en 6 de 7 particiones de BAF; el peor ahí (CoT) es el mejor en las 7 de BAF.</li><li><span class="tag t-med">MEDIDO</span> Ablaciones: calibrar global en vez de por banda da −2,41; un solo LLM sin ensamble, −2,48; usar solo reglas sin el modelo, −24,76.</li><li><span class="tag t-med">MEDIDO</span> 44 % de los predicados de un LLM nombraban variables inexistentes; el filtro las elimina.</li></ul>
+<p><b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> La ventaja aparece solo con brecha entre población de entrenamiento y evaluación; no probaron reentrenamiento con pesos por propensión; el ensamble cuesta unas 3 veces la inferencia de LLM; todo es <i>offline</i>; falta compararlo con minería de reglas. <span class="tag t-inf">INFERENCIA</span> Un solo dataset propietario; en BAF las ganancias son de centésimas o décimas de punto y sin intervalos; el <i>prompt</i> de dominio no se publica.</p>
+<p><b>Aporte frente a trabajos previos.</b> En vez de reentrenar o recalibrar el modelo, agrega una capa aditiva y legible que se puede apagar, y muestra que promediar LLM diversos acota el peor caso.</p>
+<p><b>Cómo aplicarlo.</b> Para originación o fraude con un modelo que no puedes redeplegar seguido: usa LLM solo como generador de hipótesis de reglas, filtra con datos, calibra por banda y gobierna cada regla como un cambio reversible con dueño y fecha de vencimiento.</p>
+<p><b>Glosario breve.</b> Punto ciego: patrón mal puntuado. <i>Lift</i>: multiplicador de tasa de fraude. Capa reversible: ajuste que se apaga sin redeplegar. Sesgo de selección: etiquetas solo de lo aprobado. ΔR@P: ganancia de <i>recall</i> a igual precisión.</p>
+<p><b>Frase para recordar:</b> si no puedes reentrenar sin heredar el sesgo, parcha con reglas legibles, calibradas y reversibles.</p>
+      </div></details>
     </article>
-
-    <article class="piece">
-      <div class="piece-head"><span class="rank">5</span>
-        <h2><a href="https://www.ecb.europa.eu/pub/pdf/scpwps/ecb.wp3308~a6e82e37aa.en.pdf" target="_blank" rel="noopener">Unlocking supervisory effectiveness in credit risk: insights from the ECB's supervisory findings and measures</a></h2>
-        <div class="byline">Agati, Fontana, Matos Leite, Schwarz · BCE, Working Paper 3308 · 9 nov 2026</div>
-      </div>
-      <div class="chips"><span class="chip topic">Riesgo de modelo y supervisión</span><span class="chip">LLM con evidencia</span><span class="chip">Datos confidenciales</span></div>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Usa GPT-4.1 para clasificar 8.106 medidas supervisoras de riesgo de crédito (2016–2025) como de remediación total, parcial o nula, a partir de las narrativas de cierre. Después modela qué explica la remediación con logit y modelos de Cox.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Muestra qué hallazgos supervisores cuestan más cerrar, entre ellos datos, reporte y TI, y provisiones y riesgo de modelo, y aporta un caso real de LLM como etiquetador con validación.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Diez corridas con voto mayoritario; la réplica con o4-mini coincide en ~90 %. Cada tema adicional en un hallazgo baja la tasa de cierre (hazard) en 16 %. Gobierno y controles cierra 39 % más rápido que datos, reporte y TI; las medidas originadas en el SREP cierran 34 % más lento que las de inspección in situ. <span class="tag t-aut">AUTORES</span> Asociaciones, no causalidad. <span class="tag t-inf">INFERENCIA</span> La lección para una fintech: los hallazgos de datos y TI tardan más en cerrarse.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Simula etiquetas con ~10 % de ruido, como el que dejaría un LLM etiquetador, y mide el sesgo en los coeficientes de un logit frente a las etiquetas limpias (baseline).</dd></div>
-      </dl>
-      <div class="res">Datos confidenciales del BCE; sin código.</div>
-    </article>
   </div>
 
-  <div class="prio">
-    <div><b>Prioridad de lectura</b>La #1, Hidden Tails. Da un lenguaje formal (Γ, intervalos de CVaR) para defender en validación una comparación de modelos entrenados solo con aprobados, y convierte la inferencia de rechazados en una decisión de cuántas etiquetas comprar.</div>
-    <div><b>Prioridad de experimentación</b>La #2, JUBILEE. Trae datos y referencias publicadas, corre en CPU y responde algo directo para cobranza: cuánto miente la evaluación off-policy con logs confundidos y cuánto ayuda un grupo aleatorizado.</div>
-  </div>
+  <div class="prio"><div><b>Prioridad de lectura</b>la 01, <i>The Harness Is the Model</i>. Es la que más cambia la práctica: obliga a validar asistentes con LLM como pares modelo-arnés y a auditar el registro de acciones, y muestra que la aritmética de fechas (plazos de retiro y reclamos) es el punto débil de todos los arneses.</div><div><b>Prioridad de experimentación</b>la 02, TOD de Kaplan–Meier. Corre en minutos con <code>lifelines</code> sobre Freddie Mac, responde una pregunta directa para NIIF 9 (¿cuánto infla el prepago una PD de vida completa calculada con KM?) y el diagnóstico es una fórmula de tres curvas KM.</div></div>
 
-  <div class="follow"><b>En seguimiento</b>
-    <ul>
-      <li><a href="https://arxiv.org/abs/2611.04819" target="_blank" rel="noopener">Reconstructing Fraudulent Strategies in Online Payments via Interpretable IRL</a> (3 nov): secuencias de fraude sintéticas con datos de Ant International; sin código ni datos públicos.</li>
-      <li><a href="https://arxiv.org/abs/2611.10607" target="_blank" rel="noopener">Worst-Case Contagion in Financial Networks</a> (7 nov): estrés interbancario certificable con MILP/LP; más sistémico que de consumo.</li>
-      <li><a href="https://arxiv.org/abs/2611.06514" target="_blank" rel="noopener">Decision Framework for FDIC-Assisted Distressed Bank Acquisitions</a> (4 nov): resultado negativo reportado con honestidad (AUC 0,594 frente a 0,615 de la logística), pero sobre 55 casos.</li>
-      <li><a href="https://www.bis.org/publications/scenarios-future-banking-implications-profitability-liquidity-and-solvency" target="_blank" rel="noopener">Scenarios for future banking</a> (BIS, 4 nov): no pude leer el texto; pendiente para la próxima semana.</li>
-    </ul>
-  </div>
+  <div class="follow"><b>En seguimiento</b><ul><li><a href="https://www.bis.org/publications/working-paper-1394-ready-to-run-global-liquidity-stress-tests-banks-and-banking-systems" target="_blank" rel="noopener">Ready-to-run global liquidity stress tests for banks and banking systems</a> (BIS WP 1394, 11 nov): herramienta pública de estrés de liquidez para casi 13.000 bancos; de liquidez, no de crédito.</li><li><a href="https://arxiv.org/abs/2611.05277" target="_blank" rel="noopener">Conformal Prediction at Performative Equilibrium</a> (3 nov, justo fuera de la ventana): cobertura conforme cuando el modelo desplegado cambia la población, con un experimento semisintético de <i>credit scoring</i>.</li><li><a href="https://arxiv.org/abs/2611.13550" target="_blank" rel="noopener">Tabular Foundation Models in Financial Predictions</a> (10 nov): TabFM supera a árboles y a un LLM ajustado en predicción de utilidades; una sola tarea contable, sin crédito.</li><li><a href="https://arxiv.org/abs/2611.07282" target="_blank" rel="noopener">Scenario Augmentation for Rare Financial Events via Multimodal Latent Diffusion</a> (5 nov): escenarios sintéticos de cola para mercado; útil como idea para estrés, sin datos de crédito.</li></ul></div>
 
   <div class="routine"><b>Ediciones en GitHub:</b>
     <ul>
-      <li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/riesgo/2026-11-10.md" target="_blank" rel="noopener">2026-11-10</a> (esta edición, la primera)</li>
+      <li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/riesgo/2026-11-11.md" target="_blank" rel="noopener">2026-11-11</a> (esta edición)</li>
+      <li>2026-11-10: primera edición (Hidden Tails, JUBILEE, fraude con recompensa dual, narrativas XAI y supervisión del BCE). Su archivo <code>.md</code> no llegó a la rama, así que por ahora solo existe en versiones anteriores de este artefacto.</li>
     </ul>
-    Se genera cada martes en <code>topicos/riesgo/</code> de la rama <code>topicos</code>. Ruta relacionada: <a href="https://claude.ai/artifact/HPiqaab1BMyFVLDJ8UcKu2" target="_blank" rel="noopener">Ruta Riesgo de Crédito</a>.</div>
+    Se genera cada semana en <code>topicos/riesgo/</code> de la rama <code>topicos</code>. Ruta relacionada: <a href="https://claude.ai/artifact/HPiqaab1BMyFVLDJ8UcKu2" target="_blank" rel="noopener">Ruta Riesgo de Crédito</a>.</div>
 </section>
 
 <!-- ============ QUICES ============ -->
 <section data-panel="quices" hidden>
   <h1>Quices</h1>
-  <p class="lede">Doce preguntas: nueve sobre las piezas de esta edición y tres de conceptos de base. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
+  <p class="lede">Doce preguntas: nueve sobre las piezas de esta edición y tres de conceptos de base, tomadas en parte de los contextos previos. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
   <div class="qbar">
     <span class="score" id="score">0 / 12 correctas · 0 respondidas</span>
     <div class="meter" aria-hidden="true"><i id="meter"></i></div>
@@ -253,11 +322,10 @@ td.num,th.num{text-align:right;font-family:var(--f-mono)}
   <div class="filter" role="group" aria-label="Filtrar por tema">
     <button class="btn" type="button" data-f="all" aria-pressed="true">Todas</button>
     <button class="btn" type="button" data-f="conceptos" aria-pressed="false">Conceptos</button>
-    <button class="btn" type="button" data-f="tails" aria-pressed="false">Hidden Tails</button>
-    <button class="btn" type="button" data-f="jub" aria-pressed="false">JUBILEE</button>
+    <button class="btn" type="button" data-f="harness" aria-pressed="false">Arnés</button>
+    <button class="btn" type="button" data-f="km" aria-pressed="false">KM y prepago</button>
+    <button class="btn" type="button" data-f="lens" aria-pressed="false">Interacciones</button>
     <button class="btn" type="button" data-f="fraude" aria-pressed="false">Fraude</button>
-    <button class="btn" type="button" data-f="xain" aria-pressed="false">Narrativas XAI</button>
-    <button class="btn" type="button" data-f="ecb" aria-pressed="false">Supervisión BCE</button>
   </div>
   <div class="stack" id="quiz"></div>
 </section>
@@ -265,92 +333,72 @@ td.num,th.num{text-align:right;font-family:var(--f-mono)}
 <!-- ============ EJEMPLOS ============ -->
 <section data-panel="ejemplos" hidden>
   <h1>Ejemplos dummy</h1>
-  <p class="lede">Cinco simulaciones de juguete, una por pieza. Los datos, clientes y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
+  <p class="lede">Cuatro simulaciones de juguete, una por pieza. Los datos, clientes y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
   <div class="stack">
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>1 · Cuánto puede valer la mora de los rechazados</h2>
-      <p>Segmento dummy: entre los aprobados, la mora observada es 10 %. Los rechazados son el 40 % del segmento y no tienen etiqueta. Mueve Γ, el límite de cuánto pueden diferir los odds de default entre ocultos y observados.</p>
+      <h2>1 · Leer la conversación o leer el registro</h2>
+      <p>Ocho episodios dummy de un agente de crédito. Cada uno tiene lo que el agente ejecutó y lo que le dijo al cliente. Cambia la fuente de revisión.</p>
       <div class="controls">
-        <label for="g-g">Γ = <b id="g-gv">2,0</b>
-          <input type="range" id="g-g" min="1" max="4" step="0.25" value="2"></label>
-      </div>
-      <div class="bar" aria-hidden="true"><div class="iv" id="g-iv"></div><div class="pt" id="g-pt"></div></div>
-      <div class="scale"><span>0 %</span><span>10 %</span><span>20 %</span><span>30 %</span></div>
-      <div class="outcome" id="g-out"></div>
-      <p class="takeaway"><b>Idea:</b> sin etiquetas de rechazados, la mora de la población completa no es un número sino un rango que crece con Γ. El paper usa esta acotación de odds para el CVaR de la pérdida de un modelo; este juguete solo la aplica a una tasa de mora inventada.</p>
-    </div>
-
-    <div class="ex">
-      <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>2 · La visita parece peor de lo que es</h2>
-      <p>Una política dummy de visitas tiene un valor real de 100 por decisión. Los cobradores mandan visitas a quienes tienen más dificultades no registradas. Mueve cuánto pesa ese factor oculto en la asignación.</p>
-      <div class="controls">
-        <label for="j-c">Peso del factor oculto: <b id="j-cv">60</b> %
-          <input type="range" id="j-c" min="0" max="100" step="10" value="60"></label>
-      </div>
-      <div class="tbl"><table>
-        <thead><tr><th>Estimador</th><th class="num">Estimado</th><th class="num">Intervalo</th><th>¿Contiene 100?</th></tr></thead>
-        <tbody id="j-body"></tbody>
-      </table></div>
-      <div class="outcome" id="j-out"></div>
-      <p class="takeaway"><b>Idea:</b> con logs confundidos el estimador se equivoca con un intervalo estrecho; con decisiones aleatorizadas acierta en promedio pero con un intervalo ancho. JUBILEE reporta ese patrón en su simulador; las cifras de esta tabla son inventadas.</p>
-    </div>
-
-    <div class="ex">
-      <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>3 · Qué hacer con lo que el sistema bloqueó</h2>
-      <p>Ocho transacciones dummy bloqueadas por el sistema legado, sin etiqueta. La regla de contraste marca como probable fraude las que el modelo nuevo también ve riesgosas. Mueve el umbral del modelo nuevo.</p>
-      <div class="controls">
-        <label for="f-t">Umbral del score nuevo: <b id="f-tv">0,60</b>
-          <input type="range" id="f-t" min="0.2" max="0.9" step="0.05" value="0.6"></label>
-      </div>
-      <div class="tbl"><table>
-        <thead><tr><th>Tx</th><th class="num">Monto USD</th><th class="num">Score legado</th><th class="num">Score nuevo</th><th>Pseudoetiqueta</th></tr></thead>
-        <tbody id="f-body"></tbody>
-      </table></div>
-      <div class="outcome" id="f-out"></div>
-      <p class="takeaway"><b>Idea:</b> las transacciones bloqueadas dejan de descartarse y aportan una señal débil al entrenamiento. En el paper un LLM escribe esa recompensa como código y la evalúa con datos reales; aquí la regla y los montos son inventados.</p>
-    </div>
-
-    <div class="ex">
-      <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>4 · Una narrativa que contradice a SHAP</h2>
-      <p>Un solicitante dummy rechazado con sus tres variables SHAP principales. Elige el narrador y compara lo que dice con el signo real de cada variable.</p>
-      <div class="controls">
-        <label for="x-m">Narrador
-          <select id="x-m">
-            <option value="fiel">Modelo fiel</option>
-            <option value="plaus" selected>Modelo con "falsedad plausible"</option>
+        <label for="h-m">Revisar
+          <select id="h-m">
+            <option value="chat" selected>solo la conversación</option>
+            <option value="log">el registro de acciones</option>
           </select></label>
       </div>
       <div class="tbl"><table>
-        <thead><tr><th>Variable</th><th>Valor</th><th class="num">SHAP</th><th>Empuja hacia</th></tr></thead>
-        <tbody>
-          <tr><td>Utilización de cupo</td><td>92 %</td><td class="num">+0,41</td><td>rechazo</td></tr>
-          <tr><td>Sin cuenta de ahorros</td><td>sí</td><td class="num">−0,12</td><td>aprobación</td></tr>
-          <tr><td>Moras 30+ en 12 meses</td><td>2</td><td class="num">+0,18</td><td>rechazo</td></tr>
-        </tbody>
+        <thead><tr><th>Caso</th><th>Acción ejecutada</th><th>Mensaje al cliente</th><th>Veredicto</th></tr></thead>
+        <tbody id="h-body"></tbody>
       </table></div>
-      <div class="narr" id="x-narr" aria-live="polite"></div>
-      <div class="outcome" id="x-out"></div>
-      <p class="takeaway"><b>Idea:</b> un valor que "suena mal" puede empujar a favor, y un narrador débil lo presenta como causa del rechazo. El paper documenta este error (86 % de sus errores de signo); el solicitante y el texto son inventados.</p>
+      <div class="outcome" id="h-out"></div>
+      <p class="takeaway"><b>Idea:</b> si el mensaje niega lo que el agente hizo, una revisión del texto cuenta una violación como rechazo correcto. El paper reporta ese patrón en 26,1 % de sus violaciones; los casos de esta tabla son inventados.</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>5 · Etiquetas de un LLM con ruido</h2>
-      <p>Dos tipos de hallazgo dummy con tasas reales de remediación total de 70 % y 50 %. Un etiquetador invierte al azar una fracción de las etiquetas. Mira cómo se achica la diferencia que verías.</p>
+      <h2>2 · Cuánto infla el prepago una PD calculada con Kaplan–Meier</h2>
+      <p>Cartera dummy de 1.000 créditos en dos periodos, con 50 <i>defaults</i> en cada uno. Mueve cuántos se prepagan y cuántos de esos prepagos ocurren antes de los <i>defaults</i> del segundo periodo.</p>
       <div class="controls">
-        <label for="e-n">Etiquetas invertidas: <b id="e-nv">10</b> %
-          <input type="range" id="e-n" min="0" max="40" step="5" value="10"></label>
+        <label for="k-p">Prepagos: <b id="k-pv">400</b>
+          <input type="range" id="k-p" min="0" max="800" step="50" value="400"></label>
+        <label for="k-o">Prepagos en el periodo 1: <b id="k-ov">80</b> %
+          <input type="range" id="k-o" min="0" max="100" step="10" value="80"></label>
       </div>
       <div class="tbl"><table>
-        <thead><tr><th>Tipo de hallazgo</th><th class="num">Tasa real</th><th class="num">Tasa observada</th></tr></thead>
-        <tbody id="e-body"></tbody>
+        <thead><tr><th>Medida</th><th class="num">Valor</th></tr></thead>
+        <tbody id="k-body"></tbody>
       </table></div>
-      <div class="outcome" id="e-out"></div>
-      <p class="takeaway"><b>Idea:</b> el ruido simétrico en la etiqueta atenúa las diferencias hacia cero, en un factor (1 − 2·ruido). El BCE valida su etiquetador con voto mayoritario y una réplica con otro modelo (~90 % de acuerdo); el juguete no usa sus datos.</p>
+      <div class="outcome" id="k-out"></div>
+      <p class="takeaway"><b>Idea:</b> con los mismos 100 <i>defaults</i>, la PD de 1 − KM sube cuando el prepago ocurre antes, porque los <i>defaults</i> posteriores se dividen entre menos créditos. TOD resume la brecha con tres curvas KM. El paper lo demuestra en datos clínicos; esta cartera es inventada.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>3 · ¿La interacción se repite en otro modelo?</h2>
+      <p>Seis pares dummy de un scorecard. "Descubrimiento" es la fuerza en el primer modelo y "replicada" la que el segundo modelo, con otros datos, reproduce. Mueve el piso mínimo.</p>
+      <div class="controls">
+        <label for="l-f">Piso de fuerza: <b id="l-fv">0,05</b>
+          <input type="range" id="l-f" min="0" max="0.2" step="0.01" value="0.05"></label>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>Par</th><th class="num">Descubrimiento</th><th class="num">Replicada</th><th>¿Se selecciona?</th></tr></thead>
+        <tbody id="l-body"></tbody>
+      </table></div>
+      <div class="outcome" id="l-out"></div>
+      <p class="takeaway"><b>Idea:</b> el top por fuerza en un solo modelo incluye pares que no se repiten; exigir replicación con un piso deja pocos pares. LENS lo hace con una prueba formal y corrección por comparaciones múltiples; estos pares y fuerzas son inventados.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>4 · Parchar un modelo congelado con reglas reversibles</h2>
+      <p>Ocho transacciones dummy con el puntaje del modelo base. Activa reglas: cada una suma log(<i>lift</i>) al logit de las transacciones donde se cumple. Se alertan siempre las 3 más altas, como un corte con volumen fijo.</p>
+      <div class="controls" id="r-rules"></div>
+      <div class="tbl"><table>
+        <thead><tr><th>Tx</th><th class="num">Prob. base</th><th class="num">Prob. con reglas</th><th>¿Alerta?</th><th>Fraude real</th></tr></thead>
+        <tbody id="r-body"></tbody>
+      </table></div>
+      <div class="outcome" id="r-out"></div>
+      <p class="takeaway"><b>Idea:</b> las reglas reordenan sin tocar el modelo, y apagarlas devuelve exactamente el puntaje original. En el paper las reglas las proponen LLM, se filtran y calibran con datos reales; aquí los <i>lifts</i> y etiquetas son inventados.</p>
     </div>
   </div>
 </section>
@@ -370,23 +418,23 @@ td.num,th.num{text-align:right;font-family:var(--f-mono)}
   show();
 
   const Q=[
-    {t:"conceptos",q:"¿Qué es la inferencia de rechazados?",o:["Predecir quién rechazará una oferta de crédito","Corregir el sesgo de entrenar solo con aprobados, cuyo default sí se observa","Eliminar del modelo las variables que causan rechazos","Calibrar la PD de los clientes en mora"],a:1,e:"Los rechazados nunca reciben crédito, así que su default no se observa. Las piezas 1 y 3 atacan este mismo problema, una en crédito y otra en fraude."},
-    {t:"conceptos",q:"¿Qué mide el CVaR al nivel α = 95 %?",o:["La pérdida máxima posible","La pérdida promedio dentro del peor 5 % de los casos","La pérdida mediana","La probabilidad de pérdida"],a:1,e:"Es el promedio de la cola, no un cuantil. Hidden Tails acota ese promedio cuando parte de la cola está oculta."},
-    {t:"conceptos",q:"En evaluación off-policy, ¿qué hace un estimador doblemente robusto (DR)?",o:["Entrena dos modelos de PD y promedia","Combina un modelo de resultado con pesos de propensión; es consistente si uno de los dos está bien","Duplica la muestra para reducir varianza","Evalúa la política en dos periodos"],a:1,e:"DR protege contra un error en el modelo de resultado o en el de propensión, pero no contra factores ocultos que afecten a ambos, que es lo que JUBILEE mide."},
-    {t:"tails",q:"En Hidden Tails, ¿qué representa Γ?",o:["El nivel de la cola del CVaR","Un límite a cuánto pueden diferir los odds de default entre casos ocultos y observados con las mismas variables","El número de modelos comparados","La tasa de aprobación"],a:1,e:"Con Γ = 1 ocultos y observados se comportan igual; Γ = 2 permite que los odds se dupliquen o reduzcan a la mitad. Γ debe justificarse fuera de los datos."},
-    {t:"tails",q:"En el experimento de máscaras con LendingClub, ¿qué logró recuperar ~16 % de las etiquetas ocultas con la regla del paper?",o:["Eliminar toda la ambigüedad","Eliminar una mediana de 61 % de la ambigüedad, frente a 16 % al recuperar al azar","Mejorar el AUC en 16 puntos","Nada medible"],a:1,e:"Priorizar las etiquetas por ambigüedad eliminada por unidad de costo rinde mucho más que comprar etiquetas al azar."},
-    {t:"jub",q:"En JUBILEE, ¿qué pasa con la política de visitas cuando factores ocultos influyen en la asignación?",o:["Los estimadores la sobrestiman","Los estimadores tabulares y con boosting la subestiman en cerca de un quinto","Ningún estimador la puede evaluar","Su valor real cae a cero"],a:1,e:"Las visitas se asignan a deudores con dificultades no registradas, así que los logs las hacen ver peores de lo que son."},
-    {t:"jub",q:"¿Qué ventaja y qué costo tienen los estimadores que usan solo decisiones aleatorizadas?",o:["Evitan el error grande, pero sus intervalos son unas tres veces más anchos","Son más precisos y más baratos","No tienen ventaja","Eliminan la necesidad de un simulador"],a:0,e:"La aleatorización elimina la confusión, pero con eventos raros y pocas decisiones aleatorias la precisión cae."},
-    {t:"fraude",q:"¿Qué hace el segundo flujo de la recompensa en el paper de fraude?",o:["Etiqueta a mano las transacciones bloqueadas","Puntúa las bloqueadas sin etiqueta contrastando el score GBM nuevo con el score legado que causó el bloqueo","Descarta las transacciones bloqueadas","Usa el LLM para clasificar cada transacción en producción"],a:1,e:"El LLM escribe la recompensa como código y no participa en la inferencia; por eso la política no agrega costo en producción."},
-    {t:"fraude",q:"¿Qué advierten los autores sobre las recompensas del flujo bloqueado?",o:["Que son etiquetas verdaderas","Que pueden heredar el sesgo de la política legada y no deben tratarse como verdad","Que solo sirven con recall de 90 %","Que requieren datos de buró"],a:1,e:"Si el bloqueo legado usó variables que el modelo nuevo no ve, el contraste propaga ese sesgo."},
-    {t:"xain",q:"¿Cuál fue el error más frecuente en las narrativas generadas por LLM a partir de SHAP?",o:["Inventar valores numéricos","Presentar una variable favorable como causa del rechazo","Omitir la probabilidad predicha","Escribir en otro idioma"],a:1,e:"Los autores la llaman falsedad plausible: suena razonable y contradice a SHAP. Explica el 86 % de los errores de signo."},
-    {t:"xain",q:"Según el paper, ¿qué combinación reduce las disparidades entre grupos?",o:["Revelar siempre el atributo protegido","Un modelo más fiel y ocultar el atributo protegido; ninguna de las dos basta sola","Usar temperatura alta","Pedir narrativas más largas"],a:1,e:"La fidelidad elimina las disparidades que vienen de los valores; ocultar el atributo elimina casi todas las demás."},
-    {t:"ecb",q:"En el working paper del BCE, ¿qué tipo de hallazgo se asocia con la remediación más lenta?",o:["Gobierno y controles","Datos, reporte y TI","Gestión del ciclo de crédito","Ninguno, todos tardan igual"],a:1,e:"Gobierno y controles cierra 39 % más rápido que datos, reporte y TI, la categoría de referencia."}
+    {t:"conceptos",q:"En crédito de consumo, ¿por qué el prepago es un riesgo competitivo del default?",o:["Porque aumenta la PD","Porque un crédito prepagado ya no puede caer en default, así que un evento impide observar el otro","Porque ambos se modelan con regresión logística","Porque el prepago siempre ocurre después del default"],a:1,e:"Son eventos excluyentes: el primero que ocurre termina la observación del otro. Tratarlo como censura cambia lo que mide la curva."},
+    {t:"conceptos",q:"¿Qué es el arnés (harness) de un agente de LLM?",o:["El modelo base con sus pesos","Todo lo que rodea al modelo: información que recibe, herramientas, orden de pasos y quién revisa sus acciones","El conjunto de prueba","La licencia del modelo"],a:1,e:"El banco despliega el modelo dentro de un arnés; por eso el paper propone validar el par modelo-arnés."},
+    {t:"conceptos",q:"¿Qué es una interacción entre dos variables en un scorecard?",o:["Que las dos variables estén correlacionadas","Que el efecto de una variable sobre el riesgo dependa del valor de la otra","Que ambas tengan el mismo WoE","Que una sea categórica"],a:1,e:"Correlación no es interacción: dos variables pueden estar correlacionadas y actuar de forma aditiva."},
+    {t:"harness",q:"En el paper del arnés, ¿qué pasó con qwen3.8-flash-next al cambiar de arnés?",o:["Nada, su tasa fue estable","Pasó del primer puesto (93,6 % con revisor) al último (82,1 % con el manual por búsqueda)","Mejoró en todos los arneses","No se evaluó"],a:1,e:"La brecha de 11,5 puntos dentro de un mismo modelo fue mayor que la mayor diferencia entre modelos con arnés fijo."},
+    {t:"harness",q:"¿Qué efecto tuvo el revisor del mismo modelo (H4)?",o:["Subió los rechazos excesivos","Bajó las violaciones de 9,6 % a 6,4 % sin aumentar los rechazos excesivos","No cambió nada","Eliminó todas las violaciones"],a:1,e:"Lo contrario a la predicción pre-registrada, que esperaba más rechazos excesivos. Costó unas 1,8 veces los tokens de entrada."},
+    {t:"harness",q:"¿Qué tipo de regla falló en todos los arneses?",o:["Las de identidad","Las que exigen aritmética de fechas, como el plazo de retiro del crédito","Las de quejas","Las de marketing"],a:1,e:"El retiro del crédito quedó entre 67 % y 71 % de casos correctos, y el revisor no lo mejoró: probablemente comete el mismo error de fechas."},
+    {t:"km",q:"¿Qué estima 1 − KM del default cuando el prepago se trata como censura?",o:["La PD real de la cartera","La PD en un mundo hipotético sin prepago, que sobrestima el riesgo real","La tasa de prepago","La LGD"],a:1,e:"La probabilidad real de default antes de t es la incidencia acumulada (CIF), que se estima con Aalen–Johansen."},
+    {t:"km",q:"¿Cómo se calcula el diagnóstico TOD con dos causas?",o:["CIF menos KM","Supervivencia global − KM de la causa 1 − KM de la causa 2 + 1","Promedio de las dos curvas KM","Número de eventos competidores sobre el total"],a:1,e:"Solo necesita curvas KM estándar, y su intervalo de confianza sale del KM de la supervivencia global."},
+    {t:"km",q:"Según el paper, ¿basta la frecuencia del evento competidor para saber cuánto sobrestima KM?",o:["Sí, es proporcional","No: MYELOID y UDCA tienen frecuencias casi iguales y sobrestimaciones de 7,7 frente a 0,4 puntos","Sí, si no hay censura","Solo con más de 500 observaciones"],a:1,e:"También importa el orden temporal: si los eventos competidores ocurren antes, la sobrestimación crece."},
+    {t:"lens",q:"¿Qué exige LENS para aceptar una interacción?",o:["Que tenga el SHAP más alto","Que un segundo modelo, entrenado con datos disjuntos, la reproduzca por encima de un piso de fuerza","Que sea significativa en una logística","Que aparezca en H² mayor que 0,5"],a:1,e:"Luego aplica Benjamini–Yekutieli sobre todos los pares; el resultado puede ser vacío."},
+    {t:"lens",q:"En los datos de crédito UCI, ¿qué logró agregar los pares de LENS a un modelo aditivo?",o:["Bajó la pérdida logarítmica de 0,4312 a 0,4303 con 5,2 pares en promedio","Duplicó el AUC","Empeoró el modelo","Seleccionó los 253 pares"],a:0,e:"Una mejora pequeña; en HELOC la pérdida no cambió. Agregar todos los pares empeoró a 0,4421."},
+    {t:"fraude",q:"¿Por qué el paper de fraude evita continuar el entrenamiento del modelo?",o:["Por costo de GPU","Porque los datos nuevos tienen el mismo sesgo de selección y continuar entrenando empeoró el recall (−7,69 puntos en la mejor versión)","Porque el modelo es lineal","Porque no hay datos nuevos"],a:1,e:"La capa de reglas, en cambio, ganó +2,26 puntos de recall a igual precisión y se puede apagar sin redeplegar."}
   ];
-  const KEY="topicos-riesgo-2026-11-10";
+  const KEY="topicos-riesgo-2026-11-11";
   let ans={};
   try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){ans={}}
-  const names={conceptos:"Conceptos",tails:"Hidden Tails",jub:"JUBILEE",fraude:"Fraude",xain:"Narrativas XAI",ecb:"Supervisión BCE"};
+  const names={conceptos:"Conceptos",harness:"Arnés",km:"KM y prepago",lens:"Interacciones",fraude:"Fraude"};
   const box=document.getElementById("quiz");
   function save(){try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}}
   let filt="all";
@@ -425,65 +473,68 @@ td.num,th.num{text-align:right;font-family:var(--f-mono)}
   const pills=(el,arr)=>{el.innerHTML=arr.map(p=>'<span class="pill '+p[0]+'">'+esc(p[1])+'</span>').join("")};
   const pct=(x,d)=>(x*100).toFixed(d===undefined?1:d).replace(".",",")+" %";
 
-  // 1 · Hidden Tails: cota de odds
-  const gg=document.getElementById("g-g");
-  function gRender(){
-    const G=+gg.value; document.getElementById("g-gv").textContent=G.toFixed(2).replace(".",",");
-    const p=0.10, hid=0.40;
-    const lo0=p/(p+G*(1-p)), hi0=G*p/(1-p+G*p);
-    const lo=(1-hid)*p+hid*lo0, hi=(1-hid)*p+hid*hi0;
-    const max=0.30, iv=document.getElementById("g-iv"), pt=document.getElementById("g-pt");
-    iv.style.left=(lo/max*100)+"%"; iv.style.width=Math.max(0.6,(hi-lo)/max*100)+"%";
-    pt.style.left="calc("+(p/max*100)+"% - 1px)";
-    pills(document.getElementById("g-out"),[["neu","Mora de rechazados: "+pct(lo0)+" a "+pct(hi0)],[G>1?"bad":"ok","Mora del segmento: "+pct(lo)+" a "+pct(hi)],["neu","Barra negra: 10 % solo con aprobados"]]);
+  // 1 · Arnés: conversación frente a registro
+  const EP=[
+    ["C1","ninguna","Tu plazo de retiro venció; no puedo procesarlo.",false,false],
+    ["C2","procesar_retiro","Listo, tu retiro quedó registrado.",false,false],
+    ["C3","procesar_retiro","Lo siento, tu plazo de retiro ya venció.",true,true],
+    ["C4","devolver_comision","Te devolvimos la comisión.",true,false],
+    ["C5","ninguna","Escalé tu reclamo al área de fraude.",false,false],
+    ["C6","cambiar_direccion","No puedo cambiar tu dirección sin verificar identidad.",true,true],
+    ["C7","ninguna","Tu transferencia está en revisión.",false,false],
+    ["C8","procesar_retiro","No es posible procesar el retiro fuera de plazo.",true,true]
+  ];
+  const hm=document.getElementById("h-m");
+  function hRender(){
+    const log=hm.value==="log"; let seen=0, real=0;
+    document.getElementById("h-body").innerHTML=EP.map(e=>{
+      const viol=e[3], denies=e[4]; if(viol)real++;
+      const flagged=log?viol:(viol&&!denies); if(flagged)seen++;
+      return '<tr><td><b>'+e[0]+'</b></td><td><code>'+esc(e[1])+'</code></td><td>'+esc(e[2])+'</td><td>'+(flagged?"violación":"correcto")+'</td></tr>';
+    }).join("");
+    pills(document.getElementById("h-out"),[["neu","Violaciones reales: "+real],[seen<real?"bad":"ok","Detectadas: "+seen],[seen<real?"bad":"ok",seen<real?"Se escapan las que el mensaje niega":"El registro muestra todas"]]);
   }
-  gg.addEventListener("input",gRender);gRender();
+  hm.addEventListener("change",hRender);hRender();
 
-  // 2 · JUBILEE: confusión oculta
-  const jc=document.getElementById("j-c");
-  function jRender(){
-    const c=+jc.value/100; document.getElementById("j-cv").textContent=Math.round(c*100);
-    const naive=100*(1-0.3*c), rnd=100-2*c;
-    const rows=[["DR con todos los logs",naive,8],["DR solo aleatorizadas",rnd,24]];
-    document.getElementById("j-body").innerHTML=rows.map(r=>{const lo=r[1]-r[2],hi=r[1]+r[2],ok=lo<=100&&hi>=100;return '<tr><td><b>'+r[0]+'</b></td><td class="num">'+r[1].toFixed(0)+'</td><td class="num">'+lo.toFixed(0)+' – '+hi.toFixed(0)+'</td><td>'+(ok?"sí":"no")+'</td></tr>'}).join("");
-    const miss=naive+8<100;
-    pills(document.getElementById("j-out"),[[miss?"bad":"ok",miss?"Logs: intervalo estrecho que no contiene el valor real":"Logs: todavía contiene el valor real"],["neu","Aleatorizadas: centradas, pero 3× más anchas"]]);
+  // 2 · KM frente a CIF con prepago
+  const kp=document.getElementById("k-p"), ko=document.getElementById("k-o");
+  function kRender(){
+    const N=1000, D1=50, D2=50, P=+kp.value, o=+ko.value/100;
+    document.getElementById("k-pv").textContent=P; document.getElementById("k-ov").textContent=Math.round(o*100);
+    const A=Math.round(P*o), B=P-A, r2=N-D1-A;
+    const Skd=(1-D1/N)*(1-D2/r2), Skp=(1-A/N)*(1-B/r2), Spl=(1-(D1+A)/N)*(1-(D2+B)/r2);
+    const km=1-Skd, cif=(D1+D2)/N, tod=Spl-Skd-Skp+1;
+    document.getElementById("k-body").innerHTML=[["PD con 1 − KM (prepago como censura)",pct(km,2)],["PD real (incidencia acumulada)",pct(cif,2)],["Sobrestimación del default",(100*(km-cif)).toFixed(2).replace(".",",")+" pp"],["TOD (sobrestimación total)",(100*tod).toFixed(2).replace(".",",")+" pp"]].map(r=>'<tr><td>'+r[0]+'</td><td class="num">'+r[1]+'</td></tr>').join("");
+    pills(document.getElementById("k-out"),[[km-cif>0.01?"bad":"ok",km-cif>0.01?"El atajo KM infla la PD más de 1 punto":"El atajo KM es tolerable aquí"],["neu","Prepagos antes de los defaults del periodo 2: "+A]]);
   }
-  jc.addEventListener("input",jRender);jRender();
+  kp.addEventListener("input",kRender);ko.addEventListener("input",kRender);kRender();
 
-  // 3 · Fraude: pseudoetiquetas en bloqueadas
-  const TX=[["T1",320,0.91,0.88],["T2",45,0.82,0.31],["T3",1200,0.77,0.72],["T4",80,0.95,0.40],["T5",640,0.73,0.66],["T6",25,0.88,0.22],["T7",410,0.80,0.57],["T8",900,0.86,0.81]];
-  const ft=document.getElementById("f-t");
-  function fRender(){
-    const t=+ft.value; document.getElementById("f-tv").textContent=t.toFixed(2).replace(".",",");
-    let n=0,amt=0;
-    document.getElementById("f-body").innerHTML=TX.map(x=>{const f=x[3]>=t;if(f){n++;amt+=x[1]}return '<tr><td><b>'+x[0]+'</b></td><td class="num">'+x[1]+'</td><td class="num">'+x[2].toFixed(2).replace(".",",")+'</td><td class="num">'+x[3].toFixed(2).replace(".",",")+'</td><td>'+(f?"probable fraude":"probable legítima")+'</td></tr>'}).join("");
-    pills(document.getElementById("f-out"),[["neu",n+" de 8 marcadas como fraude"],["neu","Monto marcado: USD "+amt],[n===8?"bad":"ok",n===8?"Copia la decisión legada sin agregar información":"El contraste separa bloqueos dudosos"]]);
+  // 3 · Replicación de interacciones
+  const PR=[["Utilización × moras 30+",0.22,0.19],["Antigüedad × ingreso",0.15,0.02],["Edad × canal",0.12,0.10],["Consultas × cupo",0.11,0.01],["Plazo × monto",0.06,0.05],["Región × día de pago",0.05,0.00]];
+  const lf=document.getElementById("l-f");
+  function lRender(){
+    const f=+lf.value; document.getElementById("l-fv").textContent=f.toFixed(2).replace(".",",");
+    let n=0;
+    document.getElementById("l-body").innerHTML=PR.map(p=>{const sel=p[2]>Math.max(0.25*p[1],f);if(sel)n++;return '<tr><td><b>'+p[0]+'</b></td><td class="num">'+p[1].toFixed(2).replace(".",",")+'</td><td class="num">'+p[2].toFixed(2).replace(".",",")+'</td><td>'+(sel?"sí":"no")+'</td></tr>'}).join("");
+    pills(document.getElementById("l-out"),[["neu","Seleccionados: "+n+" de 6"],["bad","El top 3 por descubrimiento incluiría 1 par que no se repite"]]);
   }
-  ft.addEventListener("input",fRender);fRender();
+  lf.addEventListener("input",lRender);lRender();
 
-  // 4 · Narrativa SHAP
-  const xm=document.getElementById("x-m");
-  function xRender(){
-    const fiel=xm.value==="fiel";
-    document.getElementById("x-narr").innerHTML=fiel
-      ? 'Tu solicitud fue rechazada sobre todo porque usas <span class="okm">el 92 % de tu cupo</span> y registras <span class="okm">dos moras de más de 30 días</span> en el último año. <span class="okm">No tener cuenta de ahorros jugó a tu favor</span> en este modelo.'
-      : 'Tu solicitud fue rechazada porque usas el 92 % de tu cupo, registras dos moras recientes y <mark>no tienes una cuenta de ahorros que demuestre estabilidad</mark>.';
-    pills(document.getElementById("x-out"),fiel?[["ok","Signos correctos: 3 de 3"]]:[["bad","Signos correctos: 2 de 3"],["neu","Falsedad plausible: una variable favorable presentada como causa"]]);
+  // 4 · Capa de reglas reversible
+  const RU=[["R1","intentos fallidos 14 d altos",4,[1,5]],["R2","correo gratuito y sesión larga",2.5,[5,6]],["R3","dirección nueva",1.5,[1,7]]];
+  const TX=[[0.30,0],[0.12,1],[0.25,0],[0.40,1],[0.08,0],[0.10,1],[0.09,0],[0.06,0]];
+  const box4=document.getElementById("r-rules");
+  box4.innerHTML=RU.map((r,i)=>'<label class="chk"><input type="checkbox" id="r-'+i+'"> '+r[0]+': '+esc(r[1])+' (lift '+String(r[2]).replace(".",",")+')</label>').join("");
+  const lg=p=>Math.log(p/(1-p)), sg=z=>1/(1+Math.exp(-z));
+  function rRender(){
+    const on=RU.map((r,i)=>document.getElementById("r-"+i).checked);
+    const sc=TX.map((t,j)=>{let z=lg(t[0]);RU.forEach((r,i)=>{if(on[i]&&r[3].includes(j))z+=Math.log(r[2])});return sg(z)});
+    const order=sc.map((s,j)=>[s,j]).sort((a,b)=>b[0]-a[0]).slice(0,3).map(x=>x[1]);
+    let caught=0;
+    document.getElementById("r-body").innerHTML=TX.map((t,j)=>{const al=order.includes(j);if(al&&t[1])caught++;return '<tr><td><b>T'+(j+1)+'</b></td><td class="num">'+pct(t[0],0)+'</td><td class="num">'+pct(sc[j],0)+'</td><td>'+(al?"sí":"no")+'</td><td>'+(t[1]?"fraude":"legítima")+'</td></tr>'}).join("");
+    pills(document.getElementById("r-out"),[[caught>=2?"ok":"bad","Fraudes alertados: "+caught+" de 3"],["neu",on.some(Boolean)?"Reglas activas: "+on.filter(Boolean).length:"Sin reglas: puntaje base exacto"]]);
   }
-  xm.addEventListener("change",xRender);xRender();
-
-  // 5 · Ruido de etiquetas
-  const en=document.getElementById("e-n");
-  function eRender(){
-    const e=+en.value/100; document.getElementById("e-nv").textContent=Math.round(e*100);
-    const obs=r=>r*(1-e)+(1-r)*e;
-    const a=obs(0.70), b=obs(0.50);
-    document.getElementById("e-body").innerHTML='<tr><td><b>Gobierno y controles</b></td><td class="num">70,0 %</td><td class="num">'+pct(a)+'</td></tr><tr><td><b>Datos, reporte y TI</b></td><td class="num">50,0 %</td><td class="num">'+pct(b)+'</td></tr>';
-    const d=(a-b)*100;
-    pills(document.getElementById("e-out"),[["neu","Diferencia real: 20,0 pp"],[e>0.15?"bad":"ok","Diferencia observada: "+d.toFixed(1).replace(".",",")+" pp"]]);
-  }
-  en.addEventListener("input",eRender);eRender();
+  RU.forEach((r,i)=>document.getElementById("r-"+i).addEventListener("change",rRender));rRender();
 })();
 </script>
 
