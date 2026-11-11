@@ -35,6 +35,8 @@ Reglas del resumen ampliado:
 - En el informe `.md`, ponlo bajo cada pieza con el encabezado `#### Resumen ampliado en español`.
 - En el artefacto (pestaña Informe), ponlo dentro de la tarjeta de cada pieza como un desplegable `<details><summary>Resumen ampliado en español</summary>…</details>`. Debe estar cerrado por defecto, ser legible en el celular y en modo oscuro, y usar los colores del tema. Los quices pueden incluir preguntas basadas en el resumen ampliado.
 
+- En el `.md` y en el HTML, nunca uses el carácter `|` dentro de una celda de tabla (por ejemplo, para valor absoluto): escribe "en valor absoluto". En el HTML, escribe las tablas directamente con `<table>`, revisa que cada fila tenga el mismo número de celdas que el encabezado y que no queden barras invertidas sueltas.
+
 ## Artefacto semanal
 - **URL fija:** https://claude.ai/artifact/42pf8ADNKYSFGfXW9tFyCn. Siempre se actualiza esta misma; nunca se crea un artefacto nuevo.
 - **Fuente:** `topicos/ai-engineering/artefacto/index.html`. Antes de editarla, lee el artefacto publicado con la herramienta Artifact (`action: "read"`, `url` = la de arriba). Si la versión publicada difiere del archivo del repo, parte de la publicada, porque pudo editarse desde la página.
