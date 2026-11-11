@@ -10,7 +10,7 @@ Instrucciones comunes que sigue cada tarea programada de tópicos. Cada tópico 
 4. Verifica fechas. En arXiv usa `export.arxiv.org/api/query?id_list=...` para distinguir una v1 de una versión nueva de un trabajo anterior; en SSRN, NBER y bancos centrales usa la fecha de publicación o de revisión que muestre la página. No repitas piezas salvo que haya un cambio relevante, y en ese caso explica cuál.
 5. Lee el texto completo (HTML o PDF) de los finalistas. Comprueba que los enlaces a código y datos respondan. Si no puedes acceder a algo, dilo.
 6. Selecciona entre 3 y 5 piezas, o menos si no hay calidad suficiente, sin rellenar. Si no hay novedades relevantes, dilo claramente.
-7. Escribe `topicos/<tema>/AAAA-MM-DD.md` con el formato de abajo, incluido el resumen ampliado en español de cada pieza.
+7. Escribe `topicos/<tema>/AAAA-MM-DD.md` con el formato de abajo, incluidos el contexto previo y el resumen ampliado en español de cada pieza.
 8. Actualiza el artefacto del tópico (sección "Artefacto").
 9. Haz commit en la rama `topicos` con un Conventional Commit, por ejemplo `docs(topicos-riesgo): 📝 add 2026-11-03 edition`, y `git push -u origin topicos`. No abras pull request: `topicos` es una rama de datos que no se fusiona a `main`.
 
@@ -30,6 +30,24 @@ Por pieza, en 120–180 palabras:
 - **Código y datos** oficiales, si existen.
 
 Cierra con **una** prioridad de lectura y **una** de experimentación, explicando por qué, y una nota "En seguimiento" con 2–4 piezas que casi entran.
+
+## Contexto previo (por pieza, va primero)
+
+Cada pieza empieza con un **contexto previo en español** de 250–450 palabras que explica el tema de fondo **antes** del paper, para que el lector no lea papers sueltos sino que entienda en qué conversación se insertan. Ejemplo: si el paper propone una nueva forma de hallar un punto de equilibrio, el contexto explica qué es un punto de equilibrio, de qué se compone, cómo se ha calculado tradicionalmente y qué problemas tiene, y solo después viene el paper. Usa siempre esta estructura:
+
+1. **Qué es:** definición clara del concepto o problema central, en español sencillo, con el término en inglés entre paréntesis.
+2. **De qué se compone:** sus elementos, variables o supuestos principales. Si ayuda, incluye una fórmula básica explicada en palabras.
+3. **Cómo se ha trabajado:** los enfoques clásicos y los más usados en la práctica, con referencias canónicas (libros de texto, papers fundacionales o normas como Basilea o NIIF 9) solo si estás seguro de que existen.
+4. **Dónde está la dificultad:** qué limitaciones o preguntas abiertas tienen esos enfoques. Es justo lo que el paper intenta mejorar.
+5. **Ejemplo intuitivo:** un caso pequeño, con números simples marcados como ilustrativos.
+6. **Cómo se conecta con el paper y con la práctica del lector**, en una o dos frases.
+
+Reglas del contexto previo:
+- Es material de base, no un resumen del paper. No adelantes resultados del paper aquí.
+- No inventes referencias, autores ni cifras. Si no estás seguro de una referencia, describe el enfoque sin citarla.
+- Si dos piezas de la misma edición comparten tema de fondo, escribe el contexto una vez en la primera y, en la segunda, remite a él y agrega solo lo que falte.
+- En el informe `.md`, ponlo como primer bloque de cada pieza, justo después del título y los datos, con el encabezado `#### Contexto previo: <tema>`.
+- En el artefacto (pestaña Informe), ponlo como el primer elemento de la tarjeta de cada pieza, antes de "Qué cambia", en un desplegable `<details><summary>Contexto previo: <tema></summary>…</details>`. Debe estar cerrado por defecto, verse distinto del resumen ampliado (por ejemplo con un borde lateral del color de acento) y ser legible en el celular y en modo oscuro. El orden dentro de la tarjeta es: contexto previo → resumen corto → resumen ampliado. Los quices pueden incluir 1–2 preguntas de conceptos basadas en el contexto previo.
 
 ## Resumen ampliado en español (por pieza)
 
