@@ -10,7 +10,7 @@ Instrucciones comunes que sigue cada tarea programada de tópicos. Cada tópico 
 4. Verifica fechas. En arXiv usa `export.arxiv.org/api/query?id_list=...` para distinguir una v1 de una versión nueva de un trabajo anterior; en SSRN, NBER y bancos centrales usa la fecha de publicación o de revisión que muestre la página. No repitas piezas salvo que haya un cambio relevante, y en ese caso explica cuál.
 5. Lee el texto completo (HTML o PDF) de los finalistas. Comprueba que los enlaces a código y datos respondan. Si no puedes acceder a algo, dilo.
 6. Selecciona entre 3 y 5 piezas, o menos si no hay calidad suficiente, sin rellenar. Si no hay novedades relevantes, dilo claramente.
-7. Escribe `topicos/<tema>/AAAA-MM-DD.md` con el formato de abajo.
+7. Escribe `topicos/<tema>/AAAA-MM-DD.md` con el formato de abajo, incluido el resumen ampliado en español de cada pieza.
 8. Actualiza el artefacto del tópico (sección "Artefacto").
 9. Haz commit en la rama `topicos` con un Conventional Commit, por ejemplo `docs(topicos-riesgo): 📝 add 2026-11-03 edition`, y `git push -u origin topicos`. No abras pull request: `topicos` es una rama de datos que no se fusiona a `main`.
 
@@ -30,6 +30,26 @@ Por pieza, en 120–180 palabras:
 - **Código y datos** oficiales, si existen.
 
 Cierra con **una** prioridad de lectura y **una** de experimentación, explicando por qué, y una nota "En seguimiento" con 2–4 piezas que casi entran.
+
+## Resumen ampliado en español (por pieza)
+
+Además del resumen corto de 120–180 palabras, cada pieza lleva un **resumen ampliado en español** de 400–700 palabras. Escríbelo a partir del texto completo, no solo del abstract, para que el lector entienda el paper sin leerlo en inglés y sin perder información importante. Usa siempre esta estructura:
+
+1. **Problema y motivación:** qué pregunta responde el paper y por qué no estaba resuelta.
+2. **Conceptos clave:** explica en español sencillo cada término técnico necesario. La primera vez, pon el término original en inglés entre paréntesis, por ejemplo "déficit esperado (*expected shortfall*, ES)".
+3. **Datos:** fuentes, periodo, frecuencia, tamaño de la muestra y si son públicos.
+4. **Método paso a paso:** cómo funciona y qué supuestos usa. Si ayuda, incluye la ecuación central en notación simple, explicada en palabras.
+5. **Resultados:** todas las cifras principales, cada una con su contexto (contra qué baseline, en qué muestra y periodo) y marcadas [medido]. Resume en prosa o en una tabla pequeña las tablas clave del paper.
+6. **Robustez y limitaciones:** las que reconocen los autores, marcadas [autores], y las que detecta el informe, marcadas [inferencia].
+7. **Aporte frente a trabajos previos:** con qué literatura o métodos se compara y qué agrega.
+8. **Cómo aplicarlo:** cómo se conecta con la práctica del lector descrito en el archivo de fuentes o de criterios.
+9. **Glosario breve** (3–6 términos) y **una frase para recordar** la idea central.
+
+Reglas del resumen ampliado:
+- Traduce con fidelidad. No inventes cifras, supuestos ni resultados.
+- Si solo pudiste leer el abstract o una parte del texto, dilo en la primera línea del resumen ampliado y no completes lo que falta con suposiciones.
+- En el informe `.md`, ponlo bajo cada pieza con el encabezado `#### Resumen ampliado en español`.
+- En el artefacto (pestaña Informe), ponlo dentro de la tarjeta de cada pieza como un desplegable `<details><summary>Resumen ampliado en español</summary>…</details>`. Debe estar cerrado por defecto, ser legible en el celular y en modo oscuro, y usar los colores del tema. Los quices pueden incluir preguntas basadas en el resumen ampliado.
 
 ## Artefacto
 

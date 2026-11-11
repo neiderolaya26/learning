@@ -11,9 +11,29 @@ Instrucciones que sigue la tarea programada cada semana. Si editas este archivo,
 3. Verifica la fecha de la v1 y la de la última versión con la API de arXiv (`export.arxiv.org/api/query?id_list=...`). Distingue un trabajo nuevo de una versión nueva de uno antiguo. No repitas piezas anteriores salvo que haya un cambio relevante, y en ese caso explica cuál.
 4. Lee el texto completo (HTML de arXiv o PDF) de los finalistas. Comprueba que los enlaces a código, datos y checkpoints respondan. Si no puedes acceder a algo, dilo.
 5. Selecciona entre 3 y 5 piezas, o menos si no hay calidad suficiente, sin rellenar. Si no hay novedades relevantes, dilo claramente.
-6. Escribe `topicos/ai-engineering/AAAA-MM-DD.md` siguiendo el formato del informe del 2026-10-27.
+6. Escribe `topicos/ai-engineering/AAAA-MM-DD.md` siguiendo el formato del informe del 2026-10-27, más el resumen ampliado en español de cada pieza (ver su sección).
 7. Actualiza el artefacto (ver la sección "Artefacto semanal").
 8. Haz commit con un Conventional Commit (por ejemplo `docs(topicos-ai): 📝 add AAAA-MM-DD edition`) y push a la rama `topicos` del repositorio `learning`. No abras pull request.
+
+## Resumen ampliado en español (por pieza)
+
+Además del resumen corto de 120–180 palabras, cada pieza lleva un **resumen ampliado en español** de 400–700 palabras. Escríbelo a partir del texto completo, no solo del abstract, para que el lector entienda el paper sin leerlo en inglés y sin perder información importante. Usa siempre esta estructura:
+
+1. **Problema y motivación:** qué pregunta responde el paper y por qué no estaba resuelta.
+2. **Conceptos clave:** explica en español sencillo cada término técnico necesario. La primera vez, pon el término original en inglés entre paréntesis, por ejemplo "déficit esperado (*expected shortfall*, ES)".
+3. **Datos:** fuentes, periodo, frecuencia, tamaño de la muestra y si son públicos.
+4. **Método paso a paso:** cómo funciona y qué supuestos usa. Si ayuda, incluye la ecuación central en notación simple, explicada en palabras.
+5. **Resultados:** todas las cifras principales, cada una con su contexto (contra qué baseline, en qué muestra y periodo) y marcadas [medido]. Resume en prosa o en una tabla pequeña las tablas clave del paper.
+6. **Robustez y limitaciones:** las que reconocen los autores, marcadas [autores], y las que detecta el informe, marcadas [inferencia].
+7. **Aporte frente a trabajos previos:** con qué literatura o métodos se compara y qué agrega.
+8. **Cómo aplicarlo:** cómo se conecta con la práctica del lector descrito en el archivo de fuentes o de criterios.
+9. **Glosario breve** (3–6 términos) y **una frase para recordar** la idea central.
+
+Reglas del resumen ampliado:
+- Traduce con fidelidad. No inventes cifras, supuestos ni resultados.
+- Si solo pudiste leer el abstract o una parte del texto, dilo en la primera línea del resumen ampliado y no completes lo que falta con suposiciones.
+- En el informe `.md`, ponlo bajo cada pieza con el encabezado `#### Resumen ampliado en español`.
+- En el artefacto (pestaña Informe), ponlo dentro de la tarjeta de cada pieza como un desplegable `<details><summary>Resumen ampliado en español</summary>…</details>`. Debe estar cerrado por defecto, ser legible en el celular y en modo oscuro, y usar los colores del tema. Los quices pueden incluir preguntas basadas en el resumen ampliado.
 
 ## Artefacto semanal
 - **URL fija:** https://claude.ai/artifact/42pf8ADNKYSFGfXW9tFyCn. Siempre se actualiza esta misma; nunca se crea un artefacto nuevo.
