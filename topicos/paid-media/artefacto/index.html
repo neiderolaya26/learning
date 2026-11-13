@@ -105,11 +105,22 @@ th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line)}
 th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
 td.num,th.num{text-align:right}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.more{margin-top:12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.more summary{cursor:pointer;padding:10px 12px;font-weight:600;font-size:.9rem;color:var(--accent);list-style-position:inside}
+.more[open] summary{border-bottom:1px solid var(--line)}
+.more .body{padding:4px 14px 12px;font-size:.92rem;overflow-wrap:anywhere}
+.more .body p{margin:10px 0}.more .body ul{margin:6px 0;padding-left:20px}.more .body li{margin:3px 0}
+.more .body code{font-family:var(--f-mono);font-size:.82rem}
+.more .tbl{overflow-x:auto;margin:8px 0}
+.more.ctx{border-left:4px solid var(--accent);background:var(--accent-soft)}
+.more.ctx .body{color:var(--fg)}
+.facts code,.res code{font-family:var(--f-mono);font-size:.82rem;overflow-wrap:anywhere}
+input[type=range]{accent-color:var(--accent);max-width:100%}
 </style>
 
 <header class="top">
   <div class="wrap">
-    <div class="brand">Tópicos Paid Media<small>edición 9 nov 2026</small></div>
+    <div class="brand">Tópicos Paid Media<small>edición 13 nov 2026</small></div>
     <nav class="tabs" aria-label="Secciones">
       <a href="#informe" data-view="informe">Informe</a>
       <a href="#quices" data-view="quices">Quices</a>
@@ -121,9 +132,9 @@ td.num,th.num{text-align:right}
 <main class="wrap">
 
 <section id="v-informe" data-panel="informe">
-  <h1>Tres lecturas de la semana</h1>
-  <p class="lede">Lo más útil publicado entre el 2 y el 9 de noviembre de 2026 sobre medición de marketing, uplift con presupuesto y pujas automáticas. Preparado para un data scientist que pasa de riesgo de crédito a growth en fintech. Esta semana solo tres piezas superaron el filtro; no se rellenó hasta cinco.</p>
-  <div class="meta"><span>Fuente: API de arXiv, ~40 búsquedas por palabra clave</span><span>~10 candidatos · 6 resúmenes · 3 textos completos</span><span>No se revisaron blogs, revistas, SSRN ni repositorios</span></div>
+  <h1>Cuatro lecturas de la semana</h1>
+  <p class="lede">Lo más útil publicado entre el 6 y el 13 de noviembre de 2026 sobre churn medido en dinero, pujas con fatiga publicitaria, anuncios en asistentes de IA y lift neto de promociones. Cada tarjeta empieza con un contexto previo y termina con un resumen ampliado, ambos desplegables.</p>
+  <div class="meta"><span>arXiv: 8 listados semanales (hasta el 11 nov)</span><span>~60 títulos · 14 resúmenes · 6 textos completos</span><span>GitHub inaccesible desde el entorno (403): repos sin revisar</span><span>Sin revisar: blogs, revistas, SSRN</span></div>
   <div class="legend">Cómo leer la evidencia:
     <span class="tag t-med">MEDIDO</span> resultado reportado por los autores
     <span class="tag t-aut">AUTORES</span> interpretación de los autores
@@ -133,139 +144,249 @@ td.num,th.num{text-align:right}
   <div class="stack">
     <article class="piece">
       <div class="piece-head"><span class="rank">1</span>
-        <h2><a href="https://arxiv.org/abs/2611.06111" target="_blank" rel="noopener">When Predictive Fit Misleads: Selecting Marketing Mix Models Using Experimental RoAS Benchmarks</a></h2>
-        <div class="byline">Hao Chen, Alvin Lim · v1 4 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.12942" target="_blank" rel="noopener">Tabular Foundation Models vs Tuned Gradient Boosting for Telecom Churn: A Profit- and Calibration-Aware Evaluation</a></h2>
+        <div class="byline">Ismail Hossain Polas (Jahangirnagar University) · v1, 6 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">MMM y calibración</span><span class="chip">Código bajo solicitud</span></div>
+      <div class="chips"><span class="chip topic">LTV y churn</span><span class="chip">Código en Zenodo</span></div>
+      <details class="more ctx"><summary>Contexto previo: evaluar un modelo de churn en dinero, no en AUC</summary><div class="body">
+<p><b>1.</b> <b>Qué es:</b> un modelo de abandono (<i>churn</i>) estima la probabilidad de que un cliente se vaya en un periodo. En la práctica se usa para decidir a quién contactar en una campaña de retención (<i>retention campaign</i>) con un incentivo que cuesta dinero.</p>
+<p><b>2.</b> <b>De qué se compone:</b> un <i>score</i> que ordena a los clientes, un corte (contactar al x % más alto o a quien supere un umbral de probabilidad) y un modelo de costos: valor del cliente (<i>customer lifetime value</i>, CLV), costo del incentivo, costo de contacto y la probabilidad de que un cliente contactado acepte la oferta. La ganancia de contactar a un cliente se puede escribir como: si iba a irse y acepta, gana CLV menos incentivo menos contacto; si iba a irse y no acepta, pierde el contacto; si no iba a irse, pierde incentivo más contacto.</p>
+<p><b>3.</b> <b>Cómo se ha trabajado:</b> lo habitual es comparar modelos por AUC, PR-AUC o lift en el primer decil. En la literatura de churn y de scoring de crédito, Verbraken, Baesens y coautores propusieron la ganancia máxima esperada (<i>expected maximum profit</i>, EMP): la ganancia por cliente en el mejor corte posible, promediada sobre una distribución Beta de la tasa de aceptación. En modelos, los árboles con <i>gradient boosting</i> (GBDT: LightGBM, XGBoost, CatBoost) son el estándar en datos tabulares. Hace poco aparecieron los modelos fundacionales tabulares (<i>tabular foundation models</i>, TFM, como TabPFN y TabICL), que predicen a partir de la tabla de entrenamiento como contexto, sin ajustar hiperparámetros.</p>
+<p><b>4.</b> <b>Dónde está la dificultad:</b> el AUC no dice cuánto dinero deja la campaña. Además, muchos benchmarks comparan un modelo nuevo contra un GBDT sin ajustar, lo que infla la ventaja. Y si la decisión es un umbral sobre probabilidades, importa la calibración, no solo el orden.</p>
+<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> con CLV de 200, incentivo de 10 y contacto de 1, contactar a 100 clientes de los que 30 iban a irse y aceptan 9 deja 9 × 189 − 21 × 1 − 70 × 11 = 910. Dos modelos con el mismo AUC pueden dar ganancias distintas si uno concentra mejor a los que se van en el tramo que realmente se contacta.</p>
+<p><b>6.</b> <b>Conexión:</b> es el mismo problema que elegir un scorecard por ganancia esperada y no por Gini. El paper lo aplica a retención con modelos nuevos.</p>
+      </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Los MMM se comparan con R², MAPE o RMSE sobre ventas. Con RoAS conocido en simulación, el mejor ajuste suele no ser el que mejor recupera el RoAS. Propone elegir la especificación contra benchmarks experimentales (geo-tests), aunque sean imprecisos.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Es como elegir un scorecard por AUC cuando lo que importa es la decisión: el ajuste predictivo no garantiza el estimando causal que mueve el presupuesto.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> En 320 datasets con candidatos que difieren solo en saturación, el modelo de mayor R² fue el mejor en RoAS el 17,5 % de las veces (azar: 25 %) y su error fue 1,47× el del mejor. Un benchmark con 25 % de ruido redujo el error 19 % frente a elegir por R². En el caso real, dos modelos con R² casi igual diferían 60 % en exactitud de RoAS. <span class="tag t-aut">AUTORES</span> Si todos los candidatos omiten el carryover, el R² vuelve a informar (acuerdo 55 %).</dd></div>
-        <div><dt>Limitaciones</dt><dd>Simulaciones propias; datos reales anónimos y no públicos. <span class="tag t-inf">INFERENCIA</span> Con benchmark al 50 % de ruido y sin adstock la ventaja desaparece.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Laptop: 200 datasets sintéticos de MMM con 3 canales y RoAS verdadero; ajusta 4 formas de saturación. Baseline: elegir por R² fuera de muestra. Alternativa: elegir por cercanía a un RoAS «experimental» con 25 % de ruido. Métrica: error absoluto medio del RoAS y tasa de acuerdo con el mejor modelo.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Reevalúa un benchmark que declaraba superiores a los TFM en churn, ahora con GBDT ajustados, la EMP como métrica principal, 10 particiones, el test corregido de Nadeau-Bengio y la corrección de Holm. Separa orden, ganancia y uso de las probabilidades como umbral.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Es un protocolo replicable para decidir con dinero si un modelo nuevo vale la pena, con herramientas que el lector ya usa en riesgo: calibración y Brier.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> TabPFN-3.5 gana EMP de forma significativa frente al mejor GBDT ajustado en Cell2Cell (+1,9 %) e Iranian (+7,6 %); en Orange (+14,3 %) no es significativo tras Holm. TabICL v2 subestima el churn de Orange en 2,1 puntos y pierde 15,7 % de la ganancia con umbral fijo. <span class="tag t-aut">AUTORES</span> La licencia no comercial de TabPFN-3.5, no el cómputo, impide usarlo en producción. <span class="tag t-inf">INFERENCIA</span> Solo hay tres operadores reales.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Con IBM Telco y Cell2Cell en 10 particiones 60/20/20, compara LightGBM por defecto (baseline), LightGBM ajustado con 40 pruebas de Optuna y regresión logística. Métricas: EMP (Beta(6,14), CLV de 200, incentivo de 10, contacto de 1) y regret del umbral antes y después de isotónica, con el test de Nadeau-Bengio.</dd></div>
       </dl>
-      <div class="res">El paper ofrece el código «bajo solicitud»; no hay repositorio público.</div>
+      <div class="res"><b>Código y datos.</b> Repositorio <code>github.com/ihpolash/tfm-churn-profit-audit</code> (no lo pude abrir: 403 desde este entorno). Archivo en Zenodo, versión 1.5: <a href="https://doi.org/10.5281/zenodo.24015719" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.24015719</a> (responde). Los cinco datasets son públicos.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>1.</b> <b>Problema y motivación.</b> Un benchmark reciente (Seyedzadeh y Karimi) concluyó que los TFM superan "de forma decisiva" a los árboles en churn. Pero usó XGBoost y random forest con hiperparámetros por defecto, midió solo métricas de ranking (F1, ROC-AUC, PR-AUC, log loss) y estimó el impacto financiero escalando la diferencia de PR-AUC. El autor pregunta si la ventaja sobrevive a baselines ajustados, a una métrica de campaña y a pruebas estadísticas con corrección por comparaciones múltiples.</p>
+<p><b>2.</b> <b>Conceptos clave.</b> <i>Modelo fundacional tabular</i> (TFM): red preentrenada en tablas sintéticas que predice condicionando en el set de entrenamiento como contexto. <i>Ganancia máxima esperada</i> (EMP): ganancia por cliente en el corte óptimo, promediada sobre la tasa de aceptación γ ~ Beta(6,14); solo depende del orden. <i>Calibración en lo grande</i> (<i>calibration-in-the-large</i>, CITL): churn observado menos churn medio predicho, en puntos. <i>Regret de política</i>: porcentaje de la ganancia del mejor corte que se pierde al contactar con un umbral fijo.</p>
+<p><b>3.</b> <b>Datos.</b> Cinco datasets públicos de telecomunicaciones. Tres de operadores reales: Cell2Cell (51.047 filas, 28,8 % de churn), Iranian (2.836 filas, 15,6 %) y Orange de KDD Cup 2009 (50.000 filas, 7,3 %). Dos ficticios: IBM Telco (7.003 filas) y Maven (6.589). Un sexto, E-Commerce de Kaggle, solo sirve para replicar. Se eliminan duplicados para que el modelo no vea al "gemelo" de un cliente de prueba.</p>
+<p><b>4.</b> <b>Método paso a paso.</b> (a) 10 particiones estratificadas 60/20/20 en entrenamiento, calibración y prueba. (b) Cuatro TFM (TabPFN-2.5, TabPFN-3.5, TabPFN-3.5-Fast y TabICL v2) sin ajuste, con todo el entrenamiento como contexto. (c) LightGBM y XGBoost ajustados con 40 pruebas de Optuna y CatBoost con 25, optimizando AUC; además EBM y regresión logística. (d) El GBDT de referencia por dataset se elige en el split de calibración, sin mirar la prueba. (e) Prueba primaria: diferencia de EMP contra la referencia, 20 comparaciones, con el test de Nadeau-Bengio (infla la varianza por 1/J + n_prueba/n_entrenamiento) y Holm. (f) Prueba exigente: ganarle a cada GBDT por separado. (g) Calibración con ECE, Brier y CITL, en crudo y recalibrada.</p>
+<p><b>5.</b> <b>Resultados.</b></p>
+<ul><li><span class="tag t-med">MEDIDO</span> De las 20 comparaciones primarias, 6 son significativas y ninguna favorece al GBDT. Solo 3 superan a los tres GBDT por separado: TabPFN-3.5 en Cell2Cell y en Iranian, y TabPFN-3.5-Fast en Cell2Cell.</li><li><span class="tag t-med">MEDIDO</span> Diferencia de EMP de TabPFN-3.5 por cliente: +0,175 en Cell2Cell (1,9 %, Holm p &lt; 0,001), +0,597 en Iranian (7,6 %, Holm p = 0,003) y +0,082 en Orange (14,3 %, Holm p = 0,155). En Telco y Maven, ninguna diferencia sobrevive a la corrección.</li><li><span class="tag t-med">MEDIDO</span> Cuando los modelos empatan, la EMP cambia el ganador respecto al AUC (7 de 10 particiones en Telco y Maven); cuando hay un líder claro, casi nunca (0 de 10 en Cell2Cell).</li><li><span class="tag t-med">MEDIDO</span> Fuera de Orange, la política de umbral pierde como máximo 3,1 % sin recalibrar. En Orange, TabICL v2 pierde 15,7 %; con isotónica baja a 7,5 % y con Platt a 6,3 %.</li><li><span class="tag t-med">MEDIDO</span> Balancear el contexto (1:1 o 1:2) empeora: la ganancia de TabPFN-3.5 en Orange baja de 14,3 % a 8,4 % (1:2) y a 4,5 % (1:1), y el churn predicho se infla hasta 35,3 puntos.</li><li><span class="tag t-med">MEDIDO</span> En E-Commerce, ajustar el GBDT reduce la ventaja de TabICL v2 en PR-AUC de 6,1 a 4,0 puntos. Con contexto en caché, TabPFN-3.5 puntúa 10.000 clientes en 45 s en una T4, frente a 0,8 s de LightGBM en CPU.</li></ul>
+<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Solo tres datasets reales, particiones que remuestrean a los mismos clientes, potencia limitada, sin ingeniería de variables y GBDT ajustados con AUC y no con EMP. Con 200 pruebas de ajuste o particiones agrupadas, las conclusiones no cambian. <span class="tag t-inf">INFERENCIA</span> Los costos de contacto e incentivo de una fintech son muy distintos a CLV de 200 e incentivo de 10. Además, la EMP ignora el uplift: contacta a quien se va a ir, no a quien se queda gracias al incentivo.</p>
+<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Une la línea de evaluación por ganancia (EMP y e-Profits) con los TFM, que no se habían evaluado así en churn, y aplica a churn el diagnóstico que Baesens y coautores reportaron para riesgo de crédito: la ventaja depende de la generación del modelo, no de la familia.</p>
+<p><b>8.</b> <b>Cómo aplicarlo.</b> Ajusta el GBDT, evalúa en ganancia de campaña sobre datos reservados, revisa la CITL, recalibra antes de usar umbrales y revisa la licencia de los pesos. En fintech sirve para campañas de reactivación o retención de tarjetas.</p>
+<p><b>9.</b> <b>Glosario breve.</b> EMP: ganancia máxima esperada. CITL: calibración en lo grande. Nadeau-Bengio: test t para particiones solapadas. Holm: corrección por comparaciones múltiples.</p>
+<p><b>Frase para recordar:</b> contra un GBDT bien ajustado y medido en dinero, la ventaja de los modelos fundacionales es selectiva, depende de la versión y está condicionada por la licencia.</p>
+      </div></details>
     </article>
-
     <article class="piece">
       <div class="piece-head"><span class="rank">2</span>
-        <h2><a href="https://arxiv.org/abs/2611.08990" target="_blank" rel="noopener">Action-Centered Causal Bandits for Budget-Constrained Promotion Targeting</a></h2>
-        <div class="byline">Yifan Lin, Kaixu Yang, Di Mo · v1 6 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.14000" target="_blank" rel="noopener">DynamAuction: A Reinforcement Learning Environment for Repeated Auctions with Dynamic Value</a></h2>
+        <div class="byline">Eugénie Patard, Corentin Pla, Benjamin Heymann y Patrick Loiseau (INRIA FairPlay, Criteo AI Lab y CREST-ENSAE) · v1, 10 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Uplift e incrementalidad</span><span class="chip">Sin código enlazado</span></div>
+      <div class="chips"><span class="chip topic">Subastas y pujas</span><span class="chip">Repo sin verificar</span></div>
+      <details class="more ctx"><summary>Contexto previo: pujar cuando lo que ganas hoy cambia lo que vale mañana</summary><div class="body">
+<p><b>1.</b> <b>Qué es:</b> en publicidad programática (<i>real-time bidding</i>, RTB), cada impresión se subasta en milisegundos. El anunciante puja por mostrar un anuncio a un usuario. En una subasta de segundo precio (<i>second-price</i>, Vickrey), gana la puja más alta y paga la segunda. En una de primer precio, paga lo que pujó.</p>
+<p><b>2.</b> <b>De qué se compone:</b> el valor de la impresión (probabilidad de conversión por el valor de la conversión), el precio a vencer (la mejor puja rival), la regla de pago y, en campañas, el presupuesto y la meta de costo (CPA o ROAS). En segundo precio con valor fijo, la teoría clásica dice que lo óptimo es pujar el propio valor.</p>
+<p><b>3.</b> <b>Cómo se ha trabajado:</b> la mayoría de los algoritmos tratan cada subasta como un <i>bandit contextual</i>: aprenden el valor y la distribución de la competencia, y acoplan las pujas en el tiempo solo con un multiplicador dual por presupuesto o ROI (<i>pacing</i>). Otra línea usa aprendizaje por refuerzo (RL) con el presupuesto restante como estado. En atribución, se sabe que las exposiciones repetidas tienen rendimientos decrecientes: es la intuición del <i>adstock</i> y de la saturación en MMM, y del tope de frecuencia (<i>frequency cap</i>).</p>
+<p><b>4.</b> <b>Dónde está la dificultad:</b> si mostrar el anuncio hoy reduce la respuesta del usuario mañana (fatiga), el valor de una impresión depende del historial de victorias. Pujar el valor "miope" (<i>myopic</i>) de la impresión actual sobrepuja, porque ignora el costo de oportunidad sobre las siguientes. Evaluar alternativas con logs reales es difícil porque solo reflejan la política que los generó, y los A/B son lentos y caros.</p>
+<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> un usuario convierte con 10 % de probabilidad la primera vez y con 4 % si vio el anuncio hace una hora. Si se ganan dos impresiones seguidas, la segunda vale menos de la mitad; esperar y ganar solo la mejor de las dos puede dejar más ganancia neta.</p>
+<p><b>6.</b> <b>Conexión:</b> es la versión a nivel de subasta del carryover que el lector ve en MMM, y explica por qué los topes de frecuencia y el <i>pacing</i> importan para el CPA.</p>
+      </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Asigna a cada usuario una intervención con costo bajo un presupuesto global como bandit contextual con efectos heterogéneos. Aprende el contraste de tratamiento (DR-CATE-CBwK): un aprendiz doblemente robusto offline arranca el estimador y un control primal-dual hace cumplir el presupuesto.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Es decidir a quién ofrecer un incentivo con presupuesto fijo, sin tener que modelar bien la línea base de resultados.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> En un benchmark semisintético (32 semillas), regret 498 ± 56 frente a 620 ± 38 del mejor baseline por recompensa; todos respetan el presupuesto de 600. <span class="tag t-aut">AUTORES</span> Cota de regret Õ(Kd√T) para CATE lineal con contextos i.i.d.</dd></div>
-        <div><dt>Limitaciones</dt><dd>La teoría pide CATE lineal y estacionariedad; la variante práctica (Thompson) no cumple la condición de cobertura. Resultados simulados. <span class="tag t-inf">INFERENCIA</span> No demuestra mejoras de incrementalidad real.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Laptop: datos de Hillstrom o un simulador sintético con línea base no lineal y costos por acción; presupuesto del 10 %. Baseline: regresión de recompensa por brazo con la misma regla de presupuesto. Métrica: conversiones incrementales (o regret frente a un oráculo sintético) con 20 semillas.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Publica un entorno Gymnasium donde la recompensa de cada impresión depende de un estado de arrastre (<i>carry-over</i>) de las victorias pasadas, con primer y segundo precio, conversiones retrasadas, saturación y recencia. Propone un control predictivo (<i>model predictive control</i>, MPC) que elige un multiplicador de la puja simulando el resto de la campaña.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Formaliza la fatiga publicitaria como un problema de planificación, no de predicción, y da un banco de pruebas barato para estrategias de frecuencia y <i>shading</i>.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En el escenario de fatiga (1.000 campañas), el mejor MPC logra 4,33 de recompensa media contra 3,68 del <i>shading</i> ajustado (diferencia pareada +0,65 ± 0,13); pujar el valor miope verdadero logra 2,82. PPO, TD3 y SAC quedan por debajo del <i>shading</i>. <span class="tag t-aut">AUTORES</span> Datos sintéticos; presupuesto y ROI quedan fuera. <span class="tag t-inf">INFERENCIA</span> El escenario se diseñó para que planificar importe, así que la magnitud no se traslada a campañas reales.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>En numpy, simula subastas de segundo precio con competencia log-normal y fatiga multiplicativa. Compara pujar el valor miope (baseline) con un <i>shading</i> α entre 0,2 y 1,0 elegido en validación. Métrica: ganancia neta media en 1.000 campañas con IC pareado.</dd></div>
       </dl>
-      <div class="res">No encontré enlace a código en el texto.</div>
+      <div class="res"><b>Código y datos.</b> Repositorio <code>github.com/eugeniepatard/dynamauction</code> (citado en el paper; no lo pude abrir: 403 desde este entorno). Datos sintéticos generados por el entorno.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>1.</b> <b>Problema y motivación.</b> La literatura de subastas repetidas se centra en aprender a pujar (valor y competencia) y deja de lado la planificación que aparece cuando el valor de hoy depende de lo ganado antes. En display, mostrar el mismo banner varias veces seguidas al mismo usuario reduce su efecto. Los recursos públicos existentes (iPinYou, el dataset de atribución de Criteo, AuctionGym, AuctionNet, BAT) no modelan esa dependencia.</p>
+<p><b>2.</b> <b>Conceptos clave.</b> <i>Contexto de arrastre</i> (<i>carry-over context</i>): resumen del historial de victorias para un usuario. Se construye con un <i>monoide conmutativo</i>, una operación asociativa y conmutativa con elemento neutro, para que el orden de agregación no importe. Ejemplos: contador aditivo, producto de factores en [0,1] o tiempo desde la última victoria (mínimo). <i>Kernel de recompensa</i>: distribución de las conversiones en el tiempo tras una impresión, con una parte instantánea y otra retrasada. <i>Valor miope óptimo</i>: el valor de ganar ahora ignorando el efecto sobre las oportunidades futuras. <i>MPC</i>: optimiza con un modelo sobre un horizonte finito, ejecuta solo la primera acción y vuelve a planificar.</p>
+<p><b>3.</b> <b>Datos.</b> Totalmente sintéticos. Escenario principal: segundo precio, duración de campaña exponencial con media de 50 (47,7 subastas por campaña en promedio), llegadas de Poisson de tasa 1, puja rival LogNormal(−1, 1), vector de usuario y de impresión normales de dimensión 3. Fatiga: factor φ igual al producto de (1 − 0,9·e^(−Δt)) sobre los intervalos entre victorias. Conversión retrasada con densidad e^(−τ). Evaluación en 1.000 campañas de prueba; 200 de validación para los hiperparámetros de RL.</p>
+<p><b>4.</b> <b>Método paso a paso.</b> (a) Para cada subasta se estima el valor miope V̂₀ con una "cabeza" entrenada. (b) Candidatas: pujas b = α·V̂₀ con α en una grilla. (c) Para cada α se simulan M trayectorias del resto de la campaña dentro de un horizonte H, con números aleatorios comunes para reducir varianza. Las subastas futuras usan un multiplicador fijo α_cont. (d) Puntaje = conversiones simuladas menos pagos. (e) Se elige el α de mayor puntaje promedio (el menor, en empate), se puja y se replanifica en la siguiente subasta. Baselines: puja constante por grilla, FiPla (valor miope verdadero, con oráculo), GreedyMyopic (diferencia entre forzar victoria y derrota), <i>shading</i> (GreedyMyopic por un α* ajustado) y PPO, SAC y TD3 de Stable-Baselines3 (tres semillas).</p>
+<p><b>5.</b> <b>Resultados.</b> <span class="tag t-med">MEDIDO</span> Recompensa media ± IC del 95 %:</p>
+<div class="tbl"><table><thead><tr><th>Política</th><th>Recompensa</th><th>Diferencia frente a <i>shading</i></th></tr></thead><tbody><tr><td>MPC (H = 35, M = 60, α_cont = 0,4)</td><td>4,328 ± 0,275</td><td>+0,65 ± 0,13</td></tr><tr><td>MPC (H = 10, M = 60)</td><td>3,938 ± 0,238</td><td>+0,26 ± 0,11</td></tr><tr><td>Shading (α = 0,4)</td><td>3,680 ± 0,234</td><td>referencia</td></tr><tr><td>PPO (media de 3)</td><td>2,965 ± 0,182</td><td>−0,71 ± 0,12</td></tr><tr><td>FiPla</td><td>2,821 ± 0,160</td><td>−0,86 ± 0,16</td></tr><tr><td>Constante (b = 0,11)</td><td>1,026 ± 0,099</td><td>−2,65 ± 0,19</td></tr><tr><td>SAC (media de 3)</td><td>0,707 ± 0,119</td><td>−2,97 ± 0,24</td></tr></tbody></table></div>
+<p><span class="tag t-med">MEDIDO</span> El MPC tolera errores moderados en V̂₀: entrenado con 100 o 300 campañas queda cerca de la referencia. Con ruido multiplicativo σ = 1 cae al nivel del <i>shading</i>. Ignorar la fatiga en la cabeza cuesta 0,48 ± 0,11. Duplicar la escala de V̂₀ cuesta 0,45 ± 0,12; reducirla a la mitad no daña. <span class="tag t-aut">AUTORES</span> Una de las tres corridas de TD3 converge a no pujar nunca, y PPO varía mucho entre semillas.</p>
+<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Datos sintéticos a propósito; sin presupuesto ni ROI; un único escenario principal (con una variante de conversiones inmediatas en el apéndice). <span class="tag t-inf">INFERENCIA</span> El factor de fatiga es fuerte (c = 0,9) y observable como escalar; en la práctica la fatiga se estima con ruido y se mezcla con selección (los usuarios más expuestos son distintos). <span class="tag t-inf">INFERENCIA</span> El costo computacional del MPC por subasta (M simulaciones por candidato) puede ser incompatible con la latencia del RTB.</p>
+<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Complementa a AuctionGym, AuctionNet y BAT (aprender a pujar, <i>pacing</i> con restricciones) con un entorno de planificación con valor dinámico. Retoma la valuación miope óptima de Bompaire y coautores (Criteo) y la convierte en base de un planificador práctico.</p>
+<p><b>8.</b> <b>Cómo aplicarlo.</b> Úsalo para razonar sobre topes de frecuencia y <i>shading</i> por recencia en campañas de adquisición (por ejemplo, retargeting de solicitudes de tarjeta abandonadas): si la segunda impresión en una hora vale mucho menos, una puja plana desperdicia CPA. Antes de llevarlo a producción hace falta estimar la curva de fatiga con un experimento de frecuencia aleatorizado.</p>
+<p><b>9.</b> <b>Glosario breve.</b> Shading: reducir la puja por debajo del valor estimado. Carry-over: arrastre del efecto de exposiciones pasadas. MPC: control predictivo con replanificación. Números aleatorios comunes: misma semilla para comparar alternativas con menos varianza. Valor miope: valor de la impresión actual sin mirar el futuro.</p>
+<p><b>Frase para recordar:</b> cuando ganar hoy abarata lo que vale mañana, pujar el valor de hoy es pujar de más.</p>
+      </div></details>
     </article>
-
     <article class="piece">
       <div class="piece-head"><span class="rank">3</span>
-        <h2><a href="https://arxiv.org/abs/2611.09091" target="_blank" rel="noopener">TUGB: A Two-stage Uncertainty-aware Generative Auto-Bidding Framework</a></h2>
-        <div class="byline">Luzhan Yuan, Chao Mi, Xiahao Shi y otros · v1 6 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.11955" target="_blank" rel="noopener">CHO-Bench: How Do Context Hints Affect Ad Rankings in LLM Advertising?</a></h2>
+        <div class="byline">Shiqi Zhang, Yang Fei y Xiaokui Xiao (National University of Singapore; PyroWis AI) · v1, 9 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Subastas y pujas</span><span class="chip">Sin código enlazado</span></div>
+      <div class="chips"><span class="chip topic">Creatividades e IA generativa</span><span class="chip">Código anunciado</span></div>
+      <details class="more ctx"><summary>Contexto previo: anuncios dentro de conversaciones con un asistente de IA</summary><div class="body">
+<p><b>1.</b> <b>Qué es:</b> la publicidad en LLM (<i>LLM advertising</i>) muestra anuncios junto a las respuestas de un asistente conversacional según lo que el usuario está hablando, no solo según una búsqueda explícita de producto. ChatGPT Ads, Microsoft Copilot y las búsquedas con IA de Google ya integran contenido patrocinado.</p>
+<p><b>2.</b> <b>De qué se compone:</b> la configuración de campaña (objetivo, presupuesto, puja), la tarjeta del anuncio (<i>ad card</i>: título, descripción y creatividad), un ranking de anuncios candidatos según la conversación, una subasta que pondera relevancia y puja, y la presentación. En ChatGPT Ads el anunciante también puede escribir pistas de contexto (<i>context hints</i>): textos libres sobre qué ofrece, a quién le sirve y cuándo.</p>
+<p><b>3.</b> <b>Cómo se ha trabajado:</b> en búsqueda pagada, el anunciante controla las palabras clave y las creatividades, y la plataforma mide relevancia con modelos semánticos (<i>embeddings</i>) y señales de comportamiento. La optimización de creatividades busca más CTR o conversión del texto o la imagen que ve el usuario. La "optimización para motores generativos" (<i>generative engine optimization</i>, GEO) reescribe contenido web para aparecer en respuestas de IA.</p>
+<p><b>4.</b> <b>Dónde está la dificultad:</b> en una conversación, la necesidad del usuario puede estar implícita ("¿cómo gano músculo?" puede llevar a un anuncio de comidas altas en proteína). No se sabe qué información conviene poner en las pistas, ni si lo que funciona con un ranker de embeddings funciona con un ranker LLM.</p>
+<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> con 10 anuncios candidatos, un anuncio de cuenta de ahorro queda 6.º para la consulta "¿cómo armo un fondo de emergencia?". Si se le agrega la pista "para quien quiere separar 3 meses de gastos sin comisiones", el ranker podría subirlo al 3.º sin cambiar la tarjeta.</p>
+<p><b>6.</b> <b>Conexión:</b> es un canal nuevo de adquisición donde la "creatividad" incluye texto que el usuario no ve pero el algoritmo sí. El paper mide cuánto mueve el ranking.</p>
+      </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Pre-entrena un Decision Transformer por clonación de comportamiento, sin condicionar por return-to-go, y lo afina con GRPO dentro de un simulador de subasta en conjunto cuyo desacuerdo penaliza trayectorias inciertas.</dd></div>
-        <div><dt>Por qué importa</dt><dd>La puja automática con CPA objetivo es donde la plataforma ejecuta la meta de costo del anunciante; conocer sus límites ayuda a fijar restricciones.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> En AuctionNet mejora hasta 3,43 % y 4,08 % sobre el mejor baseline no-TUGB (estándar y escaso). <span class="tag t-aut">AUTORES</span> Despliegue en JD Search Ad: +2,32 % de costo y +3,57 % de costo objetivo en un A/B de 7 días frente a USCB.</dd></div>
-        <div><dt>Limitaciones</dt><dd>Datos y sistema de producción propios; ganancias modestas; no vi intervalos de confianza. <span class="tag t-inf">INFERENCIA</span> «Más costo» no equivale a más valor incremental para el anunciante.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Laptop: en AuctionNet (arXiv 2412.10798; no verifiqué el repositorio) o un simulador sintético, compara pacing PID hacia tCPA con un bidder lineal con λ de dual. Métrica: conversiones a CPA objetivo y violación de la restricción.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Define la optimización de pistas de contexto (CHO) con k pistas y crea CHO-Bench: 5 datasets, 8 estrategias de generación (qué, quién y cuándo), 2 generadores y 4 rankers, con un diseño pareado con y sin pistas.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Es la primera evaluación sistemática de un control que ya tienen los anunciantes en un canal nuevo. Sirve para preparar pruebas antes de gastar.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Las pistas mejoran la posición del anuncio objetivo entre 0,56 y 1,16 puestos y la tasa de primer puesto entre 5,42 y 14,40 puntos porcentuales; 292 de 320 configuraciones son significativas en ΔRank. Las siete estrategias difieren poco en promedio (0,07 a 0,24 puestos) y combinarlas todas no gana de forma consistente. <span class="tag t-aut">AUTORES</span> Los rankers son sustitutos offline, no el sistema de ChatGPT. <span class="tag t-inf">INFERENCIA</span> Subir de puesto no equivale a más clics ni a conversiones incrementales.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Con <code>all-MiniLM-L6-v2</code> en CPU, 60 consultas financieras sintéticas y 10 anuncios por consulta. Baseline: similitud con la tarjeta sola. Tratamiento: 0,5 × tarjeta + 0,5 × máxima similitud con pistas de plantilla (quién, qué, cuándo). Métricas: ΔRank y Δ primer puesto pareados, con k de 1 a 20.</dd></div>
       </dl>
-      <div class="res">El paper no enlaza código; AuctionNet se describe como benchmark público en su propio paper.</div>
+      <div class="res"><b>Código y datos.</b> Los autores dicen que los datos, prompts, pistas y código "se publicarán"; no encontré enlace. Usa bibliotecas públicas de anuncios de ChatGPT, como <a href="https://viren040.github.io/chatgpt-ads-library/" target="_blank" rel="noopener">https://viren040.github.io/chatgpt-ads-library/</a>.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>1.</b> <b>Problema y motivación.</b> En la publicidad en asistentes, el reto del anunciante es aparecer en conversaciones diversas que no piden un producto de forma explícita. ChatGPT Ads permite agregar pistas de contexto en lenguaje natural, pero no hay evidencia de si mejoran el ranking ni de cómo escribirlas. Los autores preguntan si las pistas mejoran el ranking, qué dimensiones funcionan mejor y cómo cambia el efecto con el ranker y el número de pistas.</p>
+<p><b>2.</b> <b>Conceptos clave.</b> <i>Pista de contexto</i> (<i>context hint</i>): texto adicional que usa el ranking y no ve el usuario. <i>Presupuesto de pistas</i> k: número máximo de pistas. <i>Value Proposition Canvas</i>: marco de marketing que separa el mapa de valor (características, alivio de dolores, creación de ganancias) del perfil de cliente (segmentos y "trabajos por hacer", <i>jobs-to-be-done</i>). <i>Customer Journey</i>: etapas de conciencia, consideración y compra. <i>ΔRank</i>: puestos que sube el anuncio objetivo. <i>ΔWin</i>: cambio en la tasa de quedar primero.</p>
+<p><b>3.</b> <b>Datos.</b> Cinco datasets. AdLib-US (109 consultas, 883 anuncios, 1.093 pares) y AdLib-IN (72 consultas, 67 anuncios, 740 pares) salen de bibliotecas públicas de anuncios vistos en ChatGPT. LM-Market (387 consultas) y NaiAD (243) vienen de benchmarks previos, con pools de 10 anuncios de una librería de 4.778. E-GEO tiene 1.934 consultas de compra y 16.446 productos de Amazon. Las tarjetas respetan los límites de ChatGPT Ads (50 y 100 caracteres).</p>
+<p><b>4.</b> <b>Método paso a paso.</b> (a) Siete "recolectores" generan con un LLM afirmaciones sobre el anuncio a partir de su corpus (web del anunciante o metadatos), una por dimensión: características del producto, alivio de dolores, creación de ganancias, segmentos de cliente, trabajos del cliente, escenarios de uso y etapas de decisión. Una octava estrategia, <i>Unified</i>, combina las siete. (b) Un agregador común resume las afirmaciones en pistas, siguiendo la guía de OpenAI. (c) Rankers: dos de embeddings (OpenAI text-embedding-3-large y Qwen3-Embedding-4B) con puntaje s = λ·s_tarjeta + (1 − λ)·máx s_pista, con λ = 0,5; y dos LLM con ranking por lista (GPT-5.6-Luna y DeepSeek-4.1-flash), con cuatro órdenes de candidatos. (d) Para cada consulta y anuncio objetivo se compara el ranking sin pistas (control) y con pistas (tratamiento), dejando fijo todo lo demás. Tres repeticiones de generación. (e) En total, 520 configuraciones y 1.195.584 evaluaciones pareadas, con pruebas t pareadas, errores agrupados por anuncio y Holm.</p>
+<p><b>5.</b> <b>Resultados.</b></p>
+<ul><li><span class="tag t-med">MEDIDO</span> Posición media sin pistas: 7,28 (AdLib-US), 4,79 (AdLib-IN), 5,28 (LM-Market), 5,43 (NaiAD) y 5,16 (E-GEO).</li><li><span class="tag t-med">MEDIDO</span> Con pistas, ΔRank entre +0,56 y +1,16 puestos y ΔWin entre +5,42 y +14,40 puntos. Por ejemplo, "segmentos de cliente" logra +0,93 puestos y +6,01 puntos en AdLib-US, y +1,11 y +13,90 en E-GEO.</li><li><span class="tag t-med">MEDIDO</span> Por configuración, 292 de 320 (91,3 %) tienen ΔRank positivo y significativo, y 256 (80,0 %) ΔWin; ninguna es negativa y significativa.</li><li><span class="tag t-med">MEDIDO</span> Las diferencias entre estrategias crecen en configuraciones concretas: en AdLib-IN con GPT-6 y embeddings de OpenAI, "etapas de decisión" logra +1,03 puestos contra +0,46 de "trabajos del cliente". Los rankers de embeddings favorecen el "cuándo"; los LLM, el "quién".</li><li><span class="tag t-med">MEDIDO</span> Más pistas, más ganancia, pero decreciente: en AdLib-US con Gemini y Qwen, ΔRank de 1,27 con k = 3, 2,39 con k = 20 y 3,16 con k = 100. Los rankers de embeddings se benefician más porque toman la máxima similitud entre todas las pistas.</li></ul>
+<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Los rankers son bloques básicos evaluados offline, no el sistema real de la plataforma; la selección del anuncio objetivo no implica relevancia verificada; los resultados dependen del generador y del ranker. <span class="tag t-inf">INFERENCIA</span> Que k = 100 suba el ranking en un ranker de máxima similitud sugiere que la métrica premia el "relleno" de pistas; una plataforma real probablemente lo limite o penalice. <span class="tag t-inf">INFERENCIA</span> No hay ninguna medida de clics, conversiones ni incrementalidad; subir en el ranking podría atraer tráfico menos calificado.</p>
+<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Hasta ahora la investigación en publicidad con LLM se centró en mecanismos de subasta, asignación e integración del anuncio en la respuesta. Este trabajo abre el lado del anunciante: optimizar una entrada al ranking que no es la creatividad visible ni el contenido web (GEO).</p>
+<p><b>8.</b> <b>Cómo aplicarlo.</b> Si la fintech prueba anuncios en asistentes, trata las pistas como un factor experimental: pocas pistas concretas por segmento o momento de uso, medidas con un test de incrementalidad de conversiones, no solo con posición o CTR.</p>
+<p><b>9.</b> <b>Glosario breve.</b> Context hint: pista para el ranking. ΔRank: mejora de posición. ΔWin: cambio en la tasa de primer puesto. GEO: optimización para motores generativos.</p>
+<p><b>Frase para recordar:</b> unas pocas pistas bien escritas suben un anuncio en rankers offline, pero nadie ha medido todavía si eso vende más.</p>
+      </div></details>
+    </article>
+    <article class="piece">
+      <div class="piece-head"><span class="rank">4</span>
+        <h2><a href="https://arxiv.org/abs/2611.12665" target="_blank" rel="noopener">Trade Promotion Optimisation for Consumer Goods</a></h2>
+        <div class="byline">Ankur Verma y Namrata Gupta (TrueGradient AI) · v1, 9 nov 2026</div>
+      </div>
+      <div class="chips"><span class="chip topic">Incrementalidad y promociones</span><span class="chip">Sin código</span></div>
+      <details class="more ctx"><summary>Contexto previo: elasticidad, lift bruto y lift neto de una promoción</summary><div class="body">
+<p><b>1.</b> <b>Qué es:</b> una promoción comercial (<i>trade promotion</i>) es un descuento temporal financiado por el fabricante o el minorista. Para decidir su profundidad hace falta la elasticidad precio (<i>price elasticity</i>): el cambio porcentual de unidades ante un cambio porcentual de precio.</p>
+<p><b>2.</b> <b>De qué se compone:</b> la elasticidad propia, la sustitución (<i>cannibalization</i>: unidades que salen de productos hermanos), el adelanto de compras (<i>pantry loading</i>), que produce una caída después de la promoción (<i>post-promo dip</i>), y las restricciones de inventario y financiación. El lift neto es el bruto menos la sustitución y menos la caída posterior.</p>
+<p><b>3.</b> <b>Cómo se ha trabajado:</b> regresiones log-log de unidades contra precio por producto, promedios por jerarquía (categoría o marca) cuando un producto tiene pocos eventos de precio, y modelos jerárquicos o de <i>empirical Bayes</i> que encogen (<i>shrinkage</i>) la estimación propia hacia la del grupo. Para separar confusores (tendencia, estacionalidad) se usa el "partialling-out" de Frisch-Waugh-Lovell, base del <i>double machine learning</i>. Con quiebres de inventario, la demanda está censurada y se usa un modelo Tobit.</p>
+<p><b>4.</b> <b>Dónde está la dificultad:</b> la mayoría de los productos tienen pocos eventos de precio; la estacionalidad confunde la regresión ingenua; los quiebres de stock subestiman la elasticidad; y una respuesta lineal empuja al descuento máximo permitido (una "solución de esquina" en la que los planificadores no confían).</p>
+<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> con una elasticidad de −3, un descuento de 20 % sube las unidades 60 % en la ventana. Pero si después las ventas caen 20 % durante cuatro semanas y una parte vino de un producto hermano, el lift neto puede ser la mitad, y el margen, negativo.</p>
+<p><b>6.</b> <b>Conexión:</b> es el mismo esquema que una campaña de cashback o de tasa promocional en fintech: el lift bruto de la ventana exagera el efecto si no se descuentan la canibalización y el adelanto.</p>
+      </div></details>
+      <dl class="facts">
+        <div><dt>Qué cambia</dt><dd>Encadena la estimación de elasticidad (por eventos y causal con Tobit), el préstamo de evidencia entre productos análogos (ridge + <i>shrinkage</i>), una curva con óptimo interior y el paso de lift bruto a neto.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Muestra con cifras reales cómo un plan que se ve rentable en bruto pierde margen al descontar la caída posterior.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En 39 SKU de una marca, durante cuatro semanas, la plataforma reporta +20,6 % de unidades, +6,9 % de ingresos y +0,37 % de margen. Al descontar la caída posterior (16 % del pico), quedan +17,3 % de unidades, +3,6 % de ingresos y una pérdida de margen de unos 23.000 dólares. En simulación, el pool de análogos reduce el RMSE de la elasticidad de 0,71 a 0,37 y el regret de ingresos en 73 % frente al promedio por jerarquía. <span class="tag t-inf">INFERENCIA</span> No hay grupo de control aleatorio.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Simula 1.000 productos en una jerarquía de 3 niveles con elasticidades verdaderas y de 0 a 6 eventos de precio cada uno. Compara la estimación propia, el promedio por jerarquía (baseline) y ridge con <i>shrinkage</i>. Métricas: RMSE de la elasticidad y regret de ingresos al elegir el descuento.</dd></div>
+      </dl>
+      <div class="res"><b>Código y datos.</b> No se enlaza código; los datos de la marca son privados.</div>
+      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
+<p><b>1.</b> <b>Problema y motivación.</b> Las promociones consumen una parte grande de los ingresos de consumo masivo, pero los planificadores suelen fijar descuentos con una sola elasticidad por artículo, poco fiable. Los autores argumentan que la evidencia escasa, la curvatura, el lift y el lift neto deben resolverse como una sola cadena, no en módulos separados.</p>
+<p><b>2.</b> <b>Conceptos clave.</b> <i>Elasticidad puntual</i> b₁: respuesta con un descuento leve. <i>Curvatura</i> b₂: cuánto se aplana la respuesta al profundizar el descuento; la curva es e(d) = b₁ + b₂·d. <i>Partialling-out</i> (Frisch-Waugh-Lovell): se quitan tendencia y estacionalidad de las unidades y del precio antes de estimar la pendiente. <i>Tobit</i>: verosimilitud para semanas en que la venta tocó el techo del inventario. <i>Shrinkage</i> empírico-bayesiano: β = ω·propio + (1 − ω)·predicho, con ω = τ²/(τ² + s²). <i>Lift neto</i>: lift propio menos sustitución menos caída posterior.</p>
+<p><b>3.</b> <b>Datos.</b> Estudio A: una marca anonimizada con 39 SKU, historial semanal de octubre de 2024 a octubre de 2026 y una ventana de promoción de cuatro semanas desde octubre de 2026; descuentos de 0 a −35 %, financiados por completo. Estudio B: simulación de 1.440 SKU en una jerarquía 4 × 3 × 4 con 12 marcas y 20 semillas. Ningún dato es público.</p>
+<p><b>4.</b> <b>Método paso a paso.</b> (a) Precio regular robusto de 365 días. (b) Elasticidad posterior: detecta cambios de precio de al menos 5 % contra un precio regular móvil, calcula lift entre cambio de precio por evento y mezcla 80/20 con la elasticidad del modelo de demanda. (c) Elasticidad durante la promoción: residualiza log unidades y log precio contra tendencia, Fourier y promoción; ajusta y = b₁·x + b₂·d·x con Tobit en semanas censuradas. (d) Actualización bayesiana con la primera semana limpia de promoción (peso 0,35). (e) Pool de análogos: una ridge con jerarquía, marca, línea de precio y TF-IDF de la descripción predice b₁ y b₂ fuera de muestra, y la estimación propia se encoge hacia esa predicción; sin 3 donantes, se abstiene. (f) El optimizador maximiza una mezcla de ingreso y margen con el lift neto (propio, menos sustitución con elasticidades cruzadas del mismo grupo de análogos, menos caída posterior con decaimiento ρ), ajusta por inventario y calcula la ganancia incremental con financiación.</p>
+<p><b>5.</b> <b>Resultados.</b></p>
+<ul><li><span class="tag t-med">MEDIDO</span> Estudio A: elasticidad media de −3,06 (mediana −2,90). Se descuentan 32 SKU (profundidad media de 26,2 %) y 7 quedan a precio completo. 12 SKU tocan el piso de −31 % o −35 % porque el plan usó respuesta lineal (la curva con b₂ no estaba activa en ese plan).</li><li><span class="tag t-med">MEDIDO</span> Resultado bruto de cuatro semanas: +10.900 unidades (+20,64 %), +76.700 dólares de ingresos (+6,87 %) y +2.900 dólares de margen (+0,37 %). La elasticidad ponderada por volumen es solo −1,46: cinco SKU concentran el 83,1 % del volumen y son inelásticos.</li><li><span class="tag t-med">MEDIDO</span> La primera semana después de la promoción queda 21 % bajo la línea base (elasticidad posterior de alrededor de −0,80). En cuatro semanas, la caída equivale al 16 % del pico. El neto queda en +17,3 % de unidades, +3,6 % de ingresos y una pérdida de margen de unos 23.000 dólares. La sustitución no se descontó, así que es una cota superior.</li><li><span class="tag t-med">MEDIDO</span> Con financiación completa, solo 2 de 39 SKU tienen ganancia incremental positiva.</li><li><span class="tag t-med">MEDIDO</span> Estudio B: el pool de análogos baja el RMSE de b₁ de 0,71 a 0,37, reduce el regret de ingresos en 73 % frente al promedio por jerarquía y baja el error de los "prestatarios" en 24 % y el de las estimaciones ruidosas en 58 %. Para b₂, el RMSE de las curvaturas ruidosas pasa de 0,98 a 0,60.</li></ul>
+<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Falta comparar el lift realizado con el planeado en promociones en vivo; la sustitución no se descontó en el Estudio A. <span class="tag t-inf">INFERENCIA</span> El Estudio A no tiene grupo de control aleatorio: el contrafactual es el pronóstico base de la propia plataforma del proveedor, que no comparte código ni datos.</p>
+<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Junta piezas conocidas (caída posterior, Tobit, <i>double machine learning</i>, <i>empirical Bayes</i>) en una cadena operativa y agrega el préstamo de curvatura entre análogos.</p>
+<p><b>8.</b> <b>Cómo aplicarlo.</b> Para promociones en fintech (cashback, tasa promocional, meses sin intereses), el mensaje práctico es medir el lift neto: separar la canibalización entre productos y el adelanto de uso, y prestar evidencia entre segmentos parecidos con <i>shrinkage</i> cuando un segmento tiene pocos eventos. Idealmente, validar con un holdout aleatorio.</p>
+<p><b>9.</b> <b>Glosario breve.</b> Elasticidad: respuesta porcentual de unidades al precio. Post-promo dip: caída tras la promoción. Shrinkage: mezcla de la estimación propia y la del grupo. Tobit: modelo para datos censurados.</p>
+<p><b>Frase para recordar:</b> el lift que se ve en la ventana de la promoción no es el lift que se queda el negocio.</p>
+      </div></details>
     </article>
   </div>
 
   <div class="prio">
-    <div><b>Prioridad de lectura</b>La #1, MMM. Es corta, se entiende sin teoría y cambia cómo elegir un modelo para repartir presupuesto.</div>
-    <div><b>Prioridad de experimentación</b>La #1 en versión simulada: cabe en una laptop, el baseline (R²) es claro y la métrica (error de RoAS) es objetiva.</div>
+    <div><b>Prioridad de lectura</b>pieza 1 (churn con EMP). Es la que mejor conecta riesgo de crédito con retención: evaluación por ganancia, calibración, test corregido para particiones solapadas y corrección por comparaciones múltiples. Además, es un buen ejemplo de cómo auditar un benchmark que parece demasiado bueno.</div>
+    <div><b>Prioridad de experimentación</b>pieza 2 (DynamAuction). Un simulador de fatiga de unas 100 líneas en numpy basta para ver por qué pujar el valor miope sobrepuja. Corre en segundos en una laptop, tiene un baseline claro (pujar el valor miope o un <i>shading</i> ajustado) y una métrica objetiva (ganancia neta por campaña con IC pareado).</div>
   </div>
 
   <div class="note"><b>En seguimiento:</b>
-    <ul>
-      <li>On the Complexity of Exact Autobidding Equilibria (2611.04475): complejidad FIXP; poco accionable.</li>
-      <li>Coercive at the equilibrium, monotone nowhere (2611.04545): convergencia en subastas de primer precio; teórico, no leído en detalle.</li>
-      <li>Fairness-Aware Design for Contextual Experiments (2611.01867): experimentos con equidad entre subgrupos; solo resumen.</li>
-      <li>Beyond Single-Episode Optimization (2607.25233v3, revisado el 3 nov): no verifiqué qué cambió respecto a v2.</li>
-    </ul></div>
+    <ul><li><i>Exploiting Feature-invariant Scaling Laws for Efficient A/B Experimentation in Recommendation Systems</i> (2611.13539, Meta, v1 10 nov): predice el efecto a escala completa de un cambio de modelo con leyes de escalado; trata de pérdida de validación offline, no de experimentos causales online.</li><li><i>What Matters for LLM Persona Simulation: Signal Form in Cold-Start E-Commerce Advertising</i> (2611.08840, v1 6 nov): estima el CTR antes del lanzamiento con personas simuladas por LLM; se basa en una sola campaña de Google Ads con cinco segmentos.</li><li><i>Query- and Candidate-Aware Long User Sequence Modeling for Sponsored Product Ranking in Search</i> (2611.11675, v1 8 nov): A/B online con mejoras de CTR y conversión atribuida; no leí el texto completo.</li><li><i>Robust Analysis of First-Price Auctions with Large Supply</i> (2611.10294, v1 6 nov): precio de la anarquía en subastas de primer precio multiunidad; teórico.</li></ul></div>
 
   <div class="routine"><b>Ediciones anteriores:</b>
-    <ul><li>Ninguna: esta es la primera edición.</li></ul>
-    <b>Esta edición en GitHub:</b> <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/paid-media/2026-11-09.md" target="_blank" rel="noopener">2026-11-09</a>. <b>Rutina semanal:</b> cada lunes se genera un informe nuevo en <code>topicos/paid-media/</code> de la rama <code>topicos</code>.</div>
+    <ul><li>9 nov 2026: publicada solo en este artefacto (piezas 2611.06111, 2611.08990 y 2611.09091). Su <code>.md</code> no llegó al repositorio porque falló el push de esa ejecución.</li></ul>
+    <b>Esta edición en GitHub:</b> <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/paid-media/2026-11-13.md" target="_blank" rel="noopener">2026-11-13</a>. <b>Rutina semanal:</b> cada semana se genera un informe nuevo en <code>topicos/paid-media/</code> de la rama <code>topicos</code>.</div>
 </section>
 
 <section id="v-quices" data-panel="quices" hidden>
   <h1>Quices</h1>
-  <p class="lede">Once preguntas: ocho sobre las piezas de esta edición y tres de conceptos. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
+  <p class="lede">Doce preguntas: nueve sobre las piezas de esta edición y tres de conceptos tomados de los contextos previos. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
   <div class="qbar">
-    <span class="score" id="score">0 / 11 correctas · 0 respondidas</span>
+    <span class="score" id="score">0 / 12 correctas · 0 respondidas</span>
     <div class="meter" aria-hidden="true"><i id="meter"></i></div>
     <button class="btn" id="reset" type="button">Reiniciar</button>
   </div>
   <div class="filter" role="group" aria-label="Filtrar por tema">
     <button class="btn" type="button" data-f="all" aria-pressed="true">Todas</button>
     <button class="btn" type="button" data-f="conceptos" aria-pressed="false">Conceptos</button>
-    <button class="btn" type="button" data-f="mmm" aria-pressed="false">MMM</button>
-    <button class="btn" type="button" data-f="bandit" aria-pressed="false">Bandit con presupuesto</button>
-    <button class="btn" type="button" data-f="bid" aria-pressed="false">Pujas</button>
+    <button class="btn" type="button" data-f="churn" aria-pressed="false">Churn y EMP</button>
+    <button class="btn" type="button" data-f="puja" aria-pressed="false">Pujas con fatiga</button>
+    <button class="btn" type="button" data-f="cho" aria-pressed="false">Anuncios en LLM</button>
+    <button class="btn" type="button" data-f="promo" aria-pressed="false">Promociones</button>
   </div>
   <div class="stack" id="quiz"></div>
 </section>
 
 <section id="v-ejemplos" data-panel="ejemplos" hidden>
   <h1>Ejemplos dummy</h1>
-  <p class="lede">Tres simulaciones de juguete, una por pieza. Los datos y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
+  <p class="lede">Cuatro simulaciones de juguete, una por pieza. Los datos y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
   <div class="stack">
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>1 · Dos modelos, mismo R², distinto RoAS</h2>
-      <p>El RoAS verdadero del canal es 2,0. Dos modelos dummy ajustan casi igual las ventas. Mueve el ruido del experimento y mira qué modelo elige cada criterio.</p>
+      <h2>1 · Mismo orden casi igual, distinta ganancia</h2>
+      <p>Diez clientes dummy, cuatro de los cuales se iban a ir. Dos modelos los ordenan distinto. Cada contacto cuesta 1, el incentivo cuesta 10, el CLV es 200 y un churner contactado acepta con probabilidad 0,3. Elige a cuántos contactar.</p>
       <div class="controls">
-        <label for="m-n">Ruido del experimento: <b id="m-nv">25</b> %
-          <input type="range" id="m-n" min="0" max="60" step="5" value="25"></label>
+        <label for="c-k">Contactar a los primeros <b id="c-kv">3</b>
+          <input type="range" id="c-k" min="1" max="10" step="1" value="3"></label>
       </div>
       <div class="tbl"><table>
-        <thead><tr><th>Modelo</th><th class="num">R²</th><th class="num">RoAS estimado</th><th class="num">Error vs verdad</th></tr></thead>
-        <tbody id="m-body"></tbody>
+        <thead><tr><th>Modelo</th><th>Orden (C = se va)</th><th class="num">Ganancia esperada</th><th class="num">Mejor corte</th></tr></thead>
+        <tbody id="c-body"></tbody>
       </table></div>
-      <div class="outcome" id="m-out"></div>
-      <p class="takeaway"><b>Idea:</b> con ajuste casi idéntico, el R² no distingue qué RoAS es más cercano al real; un experimento con ruido moderado sí. El paper lo mide en cientos de simulaciones propias; esta tabla es solo un caso inventado.</p>
+      <div class="outcome" id="c-out"></div>
+      <p class="takeaway"><b>Idea:</b> la ganancia depende de dónde caen los churners dentro del tramo que se contacta, no solo del orden global. El paper mide la EMP en cinco datasets reales y ficticios; estos diez clientes son inventados.</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>2 · Quién recibe el incentivo con presupuesto fijo</h2>
-      <p>Seis clientes dummy tienen probabilidad base de convertir y uplift inventados. El incentivo cuesta 1 y el presupuesto alcanza para tres. Elige el criterio de orden.</p>
+      <h2>2 · Pujar con fatiga publicitaria</h2>
+      <p>Diez subastas de segundo precio para un mismo usuario. El valor base de cada impresión es 1,0, pero cada victoria lo multiplica por (1 − fatiga) y se recupera a la mitad del daño en cada paso. Se puja α × valor actual.</p>
       <div class="controls">
-        <label for="b-mode">Criterio
-          <select id="b-mode">
-            <option value="raw">Mayor probabilidad de convertir (recompensa)</option>
-            <option value="uplift" selected>Mayor uplift (efecto del incentivo)</option>
-          </select></label>
+        <label for="f-a">α (shading): <b id="f-av">1,0</b>
+          <input type="range" id="f-a" min="0.2" max="1.2" step="0.1" value="1"></label>
+        <label for="f-c">Fatiga: <b id="f-cv">0,6</b>
+          <input type="range" id="f-c" min="0" max="0.9" step="0.1" value="0.6"></label>
       </div>
-      <div class="tbl"><table>
-        <thead><tr><th>Cliente</th><th class="num">P(convertir)</th><th class="num">Uplift</th><th>Recibe</th></tr></thead>
-        <tbody id="b-body"></tbody>
-      </table></div>
-      <div class="outcome" id="b-out"></div>
-      <p class="takeaway"><b>Idea:</b> ordenar por probabilidad reparte el incentivo a quienes ya iban a convertir. El paper aprende el contraste de tratamiento con garantías de presupuesto; este juguete no usa su algoritmo ni sus cifras.</p>
+      <div class="trace" id="f-trace" aria-live="polite"></div>
+      <div class="outcome" id="f-out"></div>
+      <p class="takeaway"><b>Idea:</b> con fatiga fuerte, pujar el valor completo gana impresiones seguidas que valen poco. El paper compara MPC, shading y RL en 1.000 campañas simuladas; esta secuencia de diez precios es inventada.</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>3 · Penalizar la incertidumbre al pujar</h2>
-      <p>Un bidder dummy elige entre tres estrategias con recompensa simulada y desacuerdo del conjunto inventados. Sube el castigo λ por incertidumbre.</p>
+      <h2>3 · Pistas de contexto y ranking por similitud</h2>
+      <p>Consulta dummy: «¿cómo armo un fondo de emergencia?». Cinco anuncios tienen una similitud inventada entre la tarjeta y la consulta. El anuncio objetivo («Cuenta Ahorro») puede sumar pistas. Puntaje = λ × tarjeta + (1 − λ) × la máxima similitud entre sus pistas.</p>
       <div class="controls">
-        <label for="u-l">λ: <b id="u-lv">1,0</b>
-          <input type="range" id="u-l" min="0" max="3" step="0.5" value="1"></label>
+        <label for="h-k">Pistas: <b id="h-kv">0</b>
+          <input type="range" id="h-k" min="0" max="5" step="1" value="0"></label>
+        <label for="h-l">λ: <b id="h-lv">0,5</b>
+          <input type="range" id="h-l" min="0.1" max="1" step="0.1" value="0.5"></label>
       </div>
-      <div class="trace" id="u-trace" aria-live="polite"></div>
-      <div class="outcome" id="u-out"></div>
-      <p class="takeaway"><b>Idea:</b> sin penalización gana la estrategia con mayor recompensa simulada aunque sea poco fiable. TUGB resta una penalización por desacuerdo del conjunto (R − λσ); las estrategias y números aquí son inventados.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Anuncio</th><th class="num">Puntaje</th><th class="num">Puesto</th></tr></thead>
+        <tbody id="h-body"></tbody>
+      </table></div>
+      <div class="outcome" id="h-out"></div>
+      <p class="takeaway"><b>Idea:</b> con un ranker de máxima similitud, cada pista extra es otra oportunidad de parecerse a la consulta, por eso la ganancia crece y se aplana. El paper lo mide en 1,19 millones de pares; las similitudes aquí son inventadas y subir de puesto no implica más ventas.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>4 · Del lift bruto al lift neto</h2>
+      <p>Un producto dummy vende 1.000 unidades por semana a precio 10 con costo 4. Una promoción de cuatro semanas aplica un descuento con elasticidad constante. Mueve la caída posterior y la canibalización.</p>
+      <div class="controls">
+        <label for="p-d">Descuento: <b id="p-dv">20</b> %
+          <input type="range" id="p-d" min="5" max="40" step="5" value="20"></label>
+        <label for="p-e">Elasticidad: <b id="p-ev">−3,0</b>
+          <input type="range" id="p-e" min="-5" max="-0.5" step="0.5" value="-3"></label>
+        <label for="p-p">Caída posterior: <b id="p-pv">16</b> % del pico
+          <input type="range" id="p-p" min="0" max="50" step="2" value="16"></label>
+        <label for="p-s">Canibalización: <b id="p-sv">20</b> % del pico
+          <input type="range" id="p-s" min="0" max="50" step="5" value="20"></label>
+      </div>
+      <div class="trace" id="p-trace" aria-live="polite"></div>
+      <div class="outcome" id="p-out"></div>
+      <p class="takeaway"><b>Idea:</b> la ventana de la promoción muestra el pico bruto; restar el adelanto y lo que sale de productos hermanos puede volver negativo el margen. El paper reporta este patrón para una marca de 39 SKU; este producto y sus números son inventados.</p>
     </div>
   </div>
 </section>
@@ -285,22 +406,23 @@ td.num,th.num{text-align:right}
   show();
 
   const Q=[
-    {t:"conceptos",q:"¿Qué mide el RoAS de un canal en un MMM?",o:["El retorno incremental por unidad monetaria invertida en ese canal","Las ventas totales del periodo","La tasa de clics","El costo por mil impresiones"],a:0,e:"Es ingreso incremental atribuible al gasto en el canal dividido entre ese gasto. Es un estimando causal, no una correlación con ventas."},
-    {t:"conceptos",q:"¿Qué es el adstock (carryover) en un MMM?",o:["Un descuento por volumen","El efecto de la publicidad que persiste y se diluye en periodos posteriores","El inventario de anuncios","Un límite de frecuencia"],a:1,e:"Modela que el gasto de hoy sigue influyendo en las ventas de las semanas siguientes. La pieza 1 muestra que omitirlo o forzar mal su forma cambia cuánto sirve el R²."},
-    {t:"conceptos",q:"¿Qué es el uplift de un tratamiento?",o:["La probabilidad de convertir","El cambio en el resultado causado por recibir el tratamiento frente a no recibirlo","El tamaño de la audiencia","El costo del tratamiento"],a:1,e:"Es el efecto causal individual (o condicional). Quien convertiría de todos modos tiene uplift cero aunque su probabilidad sea alta."},
-    {t:"mmm",q:"Con candidatos que difieren solo en la saturación, ¿con qué frecuencia el modelo de mayor R² fue el mejor en RoAS?",o:["Casi siempre","17,5 % de los datasets, por debajo del 25 % del azar","50 %","Nunca"],a:1,e:"[medido] En 320 datasets simulados, el acuerdo fue 17,5 % (IC 13,7–22,0 %)."},
-    {t:"mmm",q:"¿Qué propone el paper cuando hay geo-experimentos disponibles?",o:["Ignorarlos y usar el R²","Usar su RoAS como objetivo para seleccionar entre especificaciones, aunque sea impreciso","Reemplazar el MMM por el experimento","Solo comparar el modelo final"],a:1,e:"La calibración sirve para elegir la especificación, no solo para validar la ya elegida. Con 25 % de ruido bajó el error 19 % frente al R²."},
-    {t:"mmm",q:"¿Cuándo el R² vuelve a ser más informativo, según el paper?",o:["Cuando todos los candidatos omiten el carryover","Cuando hay mucha colinealidad","Nunca","Cuando el ruido es cero"],a:0,e:"[medido] Si todos están estructuralmente mal por omitir adstock, el ajuste y el RoAS se degradan juntos y el acuerdo sube a 55 %."},
-    {t:"bandit",q:"¿Qué aprende directamente DR-CATE-CBwK?",o:["La recompensa total por brazo","El contraste de tratamiento entre acciones, con línea base cancelada","La distribución de precios","El costo de cada usuario"],a:1,e:"La línea base que no depende de la acción se cancela al comparar, así que modelarla mal no sesga el contraste; solo añade varianza."},
-    {t:"bandit",q:"¿Qué limita la evidencia de la pieza 2?",o:["Es un experimento A/B en producción","Los resultados vienen de un benchmark semisintético con resultados simulados","No tiene presupuesto","No compara baselines"],a:1,e:"Los features son reales pero los resultados son simulados. La mejora de regret (498 frente a 620) no prueba incrementalidad real."},
-    {t:"bid",q:"¿Qué penaliza TUGB al afinar la política en el simulador?",o:["El tamaño del modelo","El desacuerdo (incertidumbre epistémica) de un conjunto de modelos de entorno","La latencia","El número de pujas"],a:1,e:"La recompensa se ajusta como R − λσ para que la política no explote errores del simulador en zonas poco exploradas."},
-    {t:"bid",q:"¿Qué reporta el paper del despliegue en JD Search Ad?",o:["Una caída del costo del 10 %","+2,32 % de costo y +3,57 % de costo objetivo en un A/B de 7 días frente a USCB","Un aumento de ventas incrementales verificado con geo-test","Un ahorro de CPA del 30 %"],a:1,e:"[autores] Son aumentos de gasto y de gasto objetivo, no de valor incremental. Por eso la lectura del resultado exige cautela."},
-    {t:"bid",q:"¿Por qué TUGB quita la dependencia del return-to-go (RTG) en el preentrenamiento?",o:["Porque el RTG es caro de calcular en GPU","Porque fijar el RTG a mano es difícil con tráfico no visto y suele ser subóptimo","Porque la subasta es de primer precio","Porque no hay datos offline"],a:1,e:"[autores] El preentrenamiento imita comportamiento sin RTG y el afinado con RL pasa a optimizar la puja directamente."}
+    {t:"conceptos",q:"¿Qué mide la ganancia máxima esperada (EMP) de un modelo de churn?",o:["La AUC ponderada por clase","La ganancia por cliente en el mejor corte de contacto, promediada sobre la incertidumbre de la tasa de aceptación","El porcentaje de churners detectados en el primer decil","El error de calibración"],a:1,e:"Viene del contexto previo de la pieza 1: combina CLV, incentivo, contacto y una tasa de aceptación Beta, y elige el corte que maximiza la ganancia."},
+    {t:"conceptos",q:"En una subasta de segundo precio con valor fijo, ¿qué puja es óptima según la teoría clásica?",o:["La mitad del valor","El propio valor","El precio de la última subasta","Siempre la puja mínima"],a:1,e:"Pagas la segunda puja, así que pujar tu valor es dominante. La pieza 2 muestra por qué deja de serlo cuando ganar hoy reduce el valor de mañana."},
+    {t:"conceptos",q:"¿Qué es el lift neto de una promoción?",o:["El aumento de unidades dentro de la ventana","El lift bruto menos la canibalización de productos hermanos y menos la caída posterior por adelanto de compras","El descuento promedio aplicado","La elasticidad precio"],a:1,e:"Contexto previo de la pieza 4: el pico de la ventana exagera el efecto si parte de las ventas se adelantan o salen de otros productos."},
+    {t:"churn",q:"¿Por qué el paper de churn reevalúa el benchmark previo de modelos fundacionales tabulares?",o:["Porque usaba datos privados","Porque comparó contra árboles sin ajustar y solo con métricas de ranking","Porque no incluía TabPFN","Porque usaba subastas"],a:1,e:"El benchmark previo usó XGBoost y random forest por defecto y estimó el impacto escalando PR-AUC. Ajustar el GBDT redujo la ventaja de TabICL v2 en E-Commerce de 6,1 a 4,0 puntos."},
+    {t:"churn",q:"¿Qué ocurrió con TabPFN-3.5 en Orange?",o:["Perdió contra el GBDT en todas las particiones","Ganó en las 10 particiones (+14,3 % de EMP), pero no fue significativo tras Holm","Fue significativo con p < 0,001","No se evaluó"],a:1,e:"[medido] Holm p = 0,155. Los autores lo leen como una dirección consistente que merece más estudio, no como un beneficio confirmado."},
+    {t:"churn",q:"Según los autores, ¿qué impide hoy usar TabPFN-3.5 en producción?",o:["El costo de GPU","La latencia en batch","La licencia no comercial de los pesos","La falta de calibración"],a:2,e:"[autores] Con contexto en caché, el puntaje en batch es barato; la licencia prohíbe usar sus salidas en decisiones comerciales sin un acuerdo."},
+    {t:"puja",q:"¿Qué añade DynamAuction frente a AuctionGym o AuctionNet?",o:["Datos reales de una DSP","Que el valor de cada impresión dependa del historial de victorias (arrastre)","Subastas VCG","Restricciones de presupuesto"],a:1,e:"El estado de arrastre se construye con un monoide conmutativo (contador, producto de factores o tiempo desde la última victoria). Presupuesto y ROI quedan fuera."},
+    {t:"puja",q:"En el escenario de fatiga, ¿cómo le fue a la política que puja el valor miope verdadero (FiPla) frente al shading ajustado?",o:["Mejor, con 4,33","Igual","Peor: 2,82 contra 3,68","No se comparó"],a:2,e:"[medido] Pujar el valor miope ignora el costo sobre las impresiones futuras. El mejor MPC logró 4,33 (+0,65 ± 0,13 frente al shading)."},
+    {t:"cho",q:"¿Qué optimiza CHO-Bench?",o:["El texto que ve el usuario en la tarjeta","Las pistas de contexto que usa el ranking, dejando fijas la tarjeta y el ranker","La puja","El modelo de embeddings"],a:1,e:"Es un diseño pareado: el mismo pool y la misma tarjeta, con y sin pistas para el anuncio objetivo."},
+    {t:"cho",q:"¿Qué pasa al aumentar el número de pistas k?",o:["El ranking empeora","La mejora crece con rendimientos decrecientes, más en rankers de embeddings","No cambia nada","Solo mejora con rankers LLM"],a:1,e:"[medido] En AdLib-US con Gemini y Qwen: ΔRank de 1,27 con k = 3, 2,39 con k = 20 y 3,16 con k = 100. Los rankers de embeddings toman la máxima similitud entre todas las pistas."},
+    {t:"promo",q:"En el Estudio A, ¿qué pasa con el margen al descontar la caída posterior?",o:["Sube a +20 %","Pasa de +2.900 dólares a una pérdida de unos 23.000","No cambia","No se calculó"],a:1,e:"[medido] El bruto reporta +0,37 % de margen; la caída posterior equivale al 16 % del pico. Sin descontar sustitución, es una cota superior."},
+    {t:"promo",q:"¿Qué logró el pool de análogos en la simulación (Estudio B)?",o:["Nada frente al promedio por jerarquía","Bajó el RMSE de la elasticidad de 0,71 a 0,37 y el regret de ingresos en 73 %","Eliminó la necesidad de eventos de precio","Mejoró solo la curvatura"],a:1,e:"[medido] Ridge con jerarquía, marca, línea de precio y texto, más shrinkage empírico-bayesiano. Es una simulación, no una prueba en datos reales."}
   ];
-  const KEY="topicos-paid-media-2026-11-09";
+  const KEY="topicos-paid-media-2026-11-13";
   let ans={};
   try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){ans={}}
-  const names={conceptos:"Conceptos",mmm:"MMM",bandit:"Bandit con presupuesto",bid:"Pujas"};
+  const names={conceptos:"Conceptos",churn:"Churn y EMP",puja:"Pujas con fatiga",cho:"Anuncios en LLM",promo:"Promociones"};
   const box=document.getElementById("quiz");
   function save(){try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}}
   let filt="all";
@@ -337,43 +459,71 @@ td.num,th.num{text-align:right}
   const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
   const line=(cls,txt)=>'<span class="'+cls+'">'+esc(txt)+'</span>';
   const pills=(el,arr)=>{el.innerHTML=arr.map(p=>'<span class="pill '+p[0]+'">'+esc(p[1])+'</span>').join("")};
-  const fm=(x,d)=>x.toFixed(d).replace(".",",");
+  const fm=(x,d)=>x.toFixed(d).replace(".",",").replace("-","−");
 
-  // Ejemplo 1
-  const mn=document.getElementById("m-n"),mb=document.getElementById("m-body"),mo=document.getElementById("m-out");
-  const M=[["Modelo A",0.91,2.9],["Modelo B",0.89,2.2]];
-  function mRender(){
-    const noise=+mn.value;document.getElementById("m-nv").textContent=noise;
-    mb.innerHTML=M.map(m=>'<tr><td><b>'+m[0]+'</b></td><td class="num">'+fm(m[1],2)+'</td><td class="num">'+fm(m[2],1)+'</td><td class="num">'+fm(Math.abs(m[2]-2),1)+'</td></tr>').join("");
-    const exp=2.0*(1+noise/100*0.5); // experimento dummy: sesgo proporcional al ruido
-    const pick=Math.abs(M[0][2]-exp)<Math.abs(M[1][2]-exp)?0:1;
-    pills(mo,[["bad","Por R² gana: "+M[0][0]],[pick===1?"ok":"bad","Por experimento ("+fm(exp,1)+") gana: "+M[pick][0]],["neu","RoAS verdadero: 2,0"]]);
+  // Ejemplo 1: ganancia de campaña por corte
+  const CLV=200,INC=10,CON=1,G=0.3;
+  const M1=[["Modelo A",[1,1,0,1,0,0,1,0,0,0]],["Modelo B",[1,0,1,0,1,1,0,0,0,0]]];
+  const prof=(seq,k)=>{let s=0;for(let i=0;i<k;i++){s+=seq[i]?(G*(CLV-INC-CON)-(1-G)*CON):-(INC+CON);}return s};
+  const ck=document.getElementById("c-k"),cb=document.getElementById("c-body"),co=document.getElementById("c-out");
+  function cRender(){
+    const k=+ck.value;document.getElementById("c-kv").textContent=k;
+    const res=M1.map(m=>{let best=1,bv=-1e9;for(let j=1;j<=10;j++){const v=prof(m[1],j);if(v>bv){bv=v;best=j}}return {n:m[0],seq:m[1],p:prof(m[1],k),best,bv}});
+    cb.innerHTML=res.map(r=>'<tr><td><b>'+r.n+'</b></td><td><code>'+r.seq.map((x,i)=>(i<k?(x?"C":"·"):(x?"c":"-"))).join("")+'</code></td><td class="num">'+fm(r.p,1)+'</td><td class="num">'+r.best+' → '+fm(r.bv,1)+'</td></tr>').join("");
+    const w=res[0].p>=res[1].p?0:1;
+    pills(co,[Math.abs(res[0].p-res[1].p)<1e-9?["neu","Empate con este corte"]:[res[w].p>0?"ok":"bad","Gana con este corte: "+res[w].n],["neu","Mayúsculas: clientes contactados"]]);
   }
-  mn.addEventListener("input",mRender);mRender();
+  ck.addEventListener("input",cRender);cRender();
 
-  // Ejemplo 2
-  const C=[["C1",0.80,0.01],["C2",0.70,0.02],["C3",0.60,0.03],["C4",0.30,0.12],["C5",0.25,0.15],["C6",0.20,0.10]];
-  const bm=document.getElementById("b-mode"),bb=document.getElementById("b-body"),bo=document.getElementById("b-out");
-  function bRender(){
-    const key=bm.value==="raw"?1:2;
-    const idx=C.map((_,i)=>i).sort((a,b)=>C[b][key]-C[a][key]).slice(0,3);
-    bb.innerHTML=C.map((c,i)=>'<tr><td><b>'+c[0]+'</b></td><td class="num">'+fm(c[1],2)+'</td><td class="num">'+fm(c[2],2)+'</td><td>'+(idx.includes(i)?"sí":"no")+'</td></tr>').join("");
-    const inc=idx.reduce((s,i)=>s+C[i][2],0);
-    pills(bo,[["neu","Gasto: 3 incentivos"],[bm.value==="raw"?"bad":"ok","Conversiones incrementales: "+fm(inc,2)]]);
+  // Ejemplo 2: pujas con fatiga
+  const PR=[0.35,0.4,0.3,0.9,0.45,0.25,0.6,0.3,0.5,0.2];
+  const fa=document.getElementById("f-a"),fc=document.getElementById("f-c"),ft=document.getElementById("f-trace"),fo=document.getElementById("f-out");
+  function sim(a,c){let f=1,net=0,wins=0,rows=[];PR.forEach((p,i)=>{const v=f;const b=a*v;const win=b>p;if(win){net+=v-p;wins++;f=f*(1-c);}rows.push([i+1,v,b,p,win]);f=1-(1-f)*0.5;});return {net,wins,rows}}
+  function fRender(){
+    const a=+fa.value,c=+fc.value;document.getElementById("f-av").textContent=fm(a,1);document.getElementById("f-cv").textContent=fm(c,1);
+    const r=sim(a,c);
+    let best=0.2,bv=-1e9;for(let x=0.2;x<=1.2001;x+=0.1){const s=sim(x,c).net;if(s>bv+1e-9){bv=s;best=x}}
+    ft.innerHTML=line("d","# subasta  valor  puja  precio  resultado")+"\n"+r.rows.map(x=>line(x[4]?"g":"k",String(x[0]).padStart(9)+fm(x[1],2).padStart(7)+fm(x[2],2).padStart(6)+fm(x[3],2).padStart(8)+(x[4]?"  gana":"  pierde"))).join("\n");
+    pills(fo,[[r.net>=bv-1e-9?"ok":"bad","Ganancia neta: "+fm(r.net,2)],["neu","Victorias: "+r.wins],["neu","Mejor α con esta fatiga: "+fm(best,1)+" ("+fm(bv,2)+")"]]);
   }
-  bm.addEventListener("change",bRender);bRender();
+  fa.addEventListener("input",fRender);fc.addEventListener("input",fRender);fRender();
 
-  // Ejemplo 3
-  const S=[["Agresiva",120,40],["Equilibrada",100,15],["Conservadora",80,5]];
-  const ul=document.getElementById("u-l"),ut=document.getElementById("u-trace"),uo=document.getElementById("u-out");
-  function uRender(){
-    const l=+ul.value;document.getElementById("u-lv").textContent=fm(l,1);
-    const sc=S.map(s=>s[1]-l*s[2]);
-    const best=sc.indexOf(Math.max(...sc));
-    ut.innerHTML=line("d","# estrategia   R simulada   σ conjunto   R − λσ")+"\n"+S.map((s,i)=>line(i===best?"g":"k",s[0].padEnd(13)+String(s[1]).padStart(10)+String(s[2]).padStart(13)+fm(sc[i],0).padStart(11)+(i===best?"   <- elegida":""))).join("\n");
-    pills(uo,[[best===0?"bad":"ok","Elige: "+S[best][0]],["neu","λ = "+fm(l,1)]]);
+  // Ejemplo 3: pistas de contexto
+  const ADS=[["Tarjeta Viajes",0.42],["Inversión Fondos",0.55],["Cuenta Ahorro (objetivo)",0.38],["Seguro Hogar",0.30],["Crédito Libre",0.47]];
+  const HINTS=[0.49,0.61,0.52,0.66,0.58];
+  const hk=document.getElementById("h-k"),hl=document.getElementById("h-l"),hb=document.getElementById("h-body"),ho=document.getElementById("h-out");
+  function rankOf(k,l){const sc=ADS.map((a,i)=>{if(i===2&&k>0){return l*a[1]+(1-l)*Math.max(...HINTS.slice(0,k))}return a[1]});const ord=sc.map((s,i)=>i).sort((x,y)=>sc[y]-sc[x]);return {sc,pos:ord.map(i=>i)}}
+  function hRender(){
+    const k=+hk.value,l=+hl.value;document.getElementById("h-kv").textContent=k;document.getElementById("h-lv").textContent=fm(l,1);
+    const r=rankOf(k,l),r0=rankOf(0,l);
+    const place=i=>r.pos.indexOf(i)+1;
+    hb.innerHTML=ADS.map((a,i)=>'<tr><td>'+(i===2?'<b>'+esc(a[0])+'</b>':esc(a[0]))+'</td><td class="num">'+fm(r.sc[i],3)+'</td><td class="num">'+place(i)+'</td></tr>').join("");
+    const d=(r0.pos.indexOf(2)+1)-place(2);
+    pills(ho,[[d>0?"ok":"neu","ΔRank del objetivo: "+(d>0?"+":"")+d],["neu","Puesto sin pistas: "+(r0.pos.indexOf(2)+1)]]);
   }
-  ul.addEventListener("input",uRender);uRender();
+  hk.addEventListener("input",hRender);hl.addEventListener("input",hRender);hRender();
+
+  // Ejemplo 4: lift bruto y neto
+  const P0=10,COST=4,Q0=1000,W=4;
+  const pd=document.getElementById("p-d"),pe=document.getElementById("p-e"),pp=document.getElementById("p-p"),ps=document.getElementById("p-s"),pt=document.getElementById("p-trace"),po=document.getElementById("p-out");
+  function pRender(){
+    const d=+pd.value/100,e=+pe.value,dip=+pp.value/100,can=+ps.value/100;
+    document.getElementById("p-dv").textContent=Math.round(d*100);document.getElementById("p-ev").textContent=fm(e,1);document.getElementById("p-pv").textContent=Math.round(dip*100);document.getElementById("p-sv").textContent=Math.round(can*100);
+    const p1=P0*(1-d),q1=Q0*Math.pow(1-d,e);
+    const bump=(q1-Q0)*W;
+    const grossM=(p1-COST)*q1*W-(P0-COST)*Q0*W;
+    const lostDip=bump*dip*(P0-COST), lostCan=bump*can*(P0-COST);
+    const netM=grossM-lostDip-lostCan;
+    const netU=bump*(1-dip-can);
+    pt.innerHTML=line("d","# 4 semanas, contra no promocionar")+"\n"+
+      line("k","unidades extra (bruto)   "+fm(bump,0).padStart(9))+"\n"+
+      line("k","margen extra (bruto)     "+fm(grossM,0).padStart(9))+"\n"+
+      line("w","− caída posterior        "+fm(-lostDip,0).padStart(9))+"\n"+
+      line("w","− canibalización         "+fm(-lostCan,0).padStart(9))+"\n"+
+      line(netM>=0?"g":"e","margen extra (neto)      "+fm(netM,0).padStart(9));
+    pills(po,[["neu","Lift bruto de unidades: +"+fm(bump/(Q0*W)*100,1)+" %"],["neu","Lift neto: "+fm(netU/(Q0*W)*100,1)+" %"],[netM>=0?"ok":"bad","Margen neto: "+fm(netM,0)]]);
+  }
+  [pd,pe,pp,ps].forEach(x=>x.addEventListener("input",pRender));pRender();
 })();
 </script>
 
