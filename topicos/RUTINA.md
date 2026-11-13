@@ -4,13 +4,13 @@ Instrucciones comunes que sigue cada tarea programada de tópicos. Cada tópico 
 
 ## Pasos
 
-1. Lee `topicos/<tema>/FUENTES.md` completo.
+1. Lee `topicos/<tema>/FUENTES.md` completo. Lee también `topicos/PERFIL.md` completo: es la base de la sección «Cómo lo aplicas tú».
 2. Lee los informes anteriores de `topicos/<tema>/*.md` (archivos con fecha), empezando por el más reciente, y anota las piezas ya cubiertas (ID de arXiv, DOI, SSRN o URL).
 3. Busca publicaciones o actualizaciones sustanciales de los **últimos 7 días** en las fuentes de `FUENTES.md`, más búsquedas web dirigidas. Prefiere fuentes primarias: el paper, el working paper o el reporte oficial.
 4. Verifica fechas. En arXiv usa `export.arxiv.org/api/query?id_list=...` para distinguir una v1 de una versión nueva de un trabajo anterior; en SSRN, NBER y bancos centrales usa la fecha de publicación o de revisión que muestre la página. No repitas piezas salvo que haya un cambio relevante, y en ese caso explica cuál.
 5. Lee el texto completo (HTML o PDF) de los finalistas. Comprueba que los enlaces a código y datos respondan. Si no puedes acceder a algo, dilo.
 6. Selecciona entre 3 y 5 piezas, o menos si no hay calidad suficiente, sin rellenar. Si no hay novedades relevantes, dilo claramente.
-7. Escribe `topicos/<tema>/AAAA-MM-DD.md` con el formato de abajo, incluidos el contexto previo y el resumen ampliado en español de cada pieza.
+7. Escribe `topicos/<tema>/AAAA-MM-DD.md` con el formato de abajo, incluidos el contexto previo, «Cómo lo aplicas tú» y el resumen ampliado en español de cada pieza.
 8. Actualiza el artefacto del tópico (sección "Artefacto").
 9. Haz commit en la rama `topicos` con un Conventional Commit, por ejemplo `docs(topicos-riesgo): 📝 add 2026-11-03 edition`, y `git push -u origin topicos`. No abras pull request: `topicos` es una rama de datos que no se fusiona a `main`.
 
@@ -47,7 +47,26 @@ Reglas del contexto previo:
 - No inventes referencias, autores ni cifras. Si no estás seguro de una referencia, describe el enfoque sin citarla.
 - Si dos piezas de la misma edición comparten tema de fondo, escribe el contexto una vez en la primera y, en la segunda, remite a él y agrega solo lo que falte.
 - En el informe `.md`, ponlo como primer bloque de cada pieza, justo después del título y los datos, con el encabezado `#### Contexto previo: <tema>`.
-- En el artefacto (pestaña Informe), ponlo como el primer elemento de la tarjeta de cada pieza, antes de "Qué cambia", en un desplegable `<details><summary>Contexto previo: <tema></summary>…</details>`. Debe estar cerrado por defecto, verse distinto del resumen ampliado (por ejemplo con un borde lateral del color de acento) y ser legible en el celular y en modo oscuro. El orden dentro de la tarjeta es: contexto previo → resumen corto → resumen ampliado. Los quices pueden incluir 1–2 preguntas de conceptos basadas en el contexto previo.
+- En el artefacto (pestaña Informe), ponlo como el primer elemento de la tarjeta de cada pieza, antes de "Qué cambia", en un desplegable `<details><summary>Contexto previo: <tema></summary>…</details>`. Debe estar cerrado por defecto, verse distinto del resumen ampliado (por ejemplo con un borde lateral del color de acento) y ser legible en el celular y en modo oscuro. El orden dentro de la tarjeta es: contexto previo → resumen corto → cómo lo aplicas tú → resumen ampliado. Los quices pueden incluir 1–2 preguntas de conceptos basadas en el contexto previo.
+
+## Cómo lo aplicas tú (por pieza)
+
+Cada pieza lleva una sección **«Cómo lo aplicas tú»** de 150–300 palabras, escrita en segunda persona para el lector y basada **solo** en `topicos/PERFIL.md`, que debes leer completo antes de redactar. El objetivo es evaluar el paper desde lo que el lector ya sabe y ya construyó, no en abstracto. Ejemplo: ante un método nuevo de inferencia de rechazados, no basta con explicar el método; hay que decir qué parte ya conoce (cortes de aprobación, sesgo de selección en sus scorecards), qué le resulta nuevo, dónde lo probaría (el pendiente de inferencia de rechazados de `credit-risk-agent-lab`, que solo tiene aprobados) y si vale la pena en su trabajo diario. Usa siempre esta estructura:
+
+1. **Lo que ya sabes que te sirve:** el puente entre el paper y lo que el perfil dice que domina. Nombra los conceptos concretos que ya maneja y no los vuelvas a explicar.
+2. **Lo nuevo para ti:** qué parte del paper no está en su perfil y qué tendría que aprender para usarlo. Si está en "Lo que todavía no ha trabajado", dilo y estima el esfuerzo.
+3. **Dónde lo aplicas:**
+   - en su trabajo: el tipo de tarea, sin nombrar empleadores;
+   - en sus repos o rutas: el repo, la sesión o el pendiente concreto de `PERFIL.md` donde encaja.
+4. **Veredicto:** uno de **Adoptar ya**, **Probar en el lab**, **Solo leer** o **No aplica por ahora**, con la razón en una frase.
+5. **Primer paso (≤ 2 horas):** una acción concreta con los datos y herramientas que ya tiene.
+
+Reglas:
+- No supongas conocimientos, herramientas ni proyectos que no estén en `PERFIL.md`. Marca como [inferencia] cualquier juicio sobre utilidad.
+- No incluyas datos personales ni nombres de empleadores.
+- Si el paper no conecta con nada del perfil, dilo con honestidad en lugar de forzar la aplicación.
+- En el informe `.md`, ponla bajo cada pieza, después del resumen corto y antes del resumen ampliado, con el encabezado `#### Cómo lo aplicas tú`.
+- En el artefacto (pestaña Informe), ponla **visible, sin desplegable**, en un recuadro destacado dentro de la tarjeta de cada pieza: fondo suave del color de acento, título "Cómo lo aplicas tú" y el veredicto como etiqueta (chip) de color. Debe ser legible en el celular y en modo oscuro. El orden dentro de la tarjeta es: contexto previo → resumen corto → **cómo lo aplicas tú** → resumen ampliado. Los quices pueden incluir 1 pregunta de aplicación por edición.
 
 ## Resumen ampliado en español (por pieza)
 
@@ -60,7 +79,7 @@ Además del resumen corto de 120–180 palabras, cada pieza lleva un **resumen a
 5. **Resultados:** todas las cifras principales, cada una con su contexto (contra qué baseline, en qué muestra y periodo) y marcadas [medido]. Resume en prosa o en una tabla pequeña las tablas clave del paper.
 6. **Robustez y limitaciones:** las que reconocen los autores, marcadas [autores], y las que detecta el informe, marcadas [inferencia].
 7. **Aporte frente a trabajos previos:** con qué literatura o métodos se compara y qué agrega.
-8. **Cómo aplicarlo:** cómo se conecta con la práctica del lector descrito en el archivo de fuentes o de criterios.
+8. **Cómo aplicarlo:** una o dos frases; el detalle personalizado va en la sección «Cómo lo aplicas tú».
 9. **Glosario breve** (3–6 términos) y **una frase para recordar** la idea central.
 
 Reglas del resumen ampliado:
