@@ -1,5 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.aplica{margin-top:14px;border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:8px;background:var(--accent-soft);padding:12px 14px;font-size:.92rem;overflow-wrap:anywhere}.aplica h4{margin:0 0 6px;font-size:.98rem;color:var(--accent);display:flex;flex-wrap:wrap;gap:8px;align-items:center}.aplica .ver{font-size:.72rem;font-weight:700;border-radius:999px;padding:1px 10px;background:var(--accent);color:var(--surface)}.aplica p{margin:4px 0 6px}.aplica ul{margin:0;padding-left:1.1em}.aplica li{margin:4px 0}
-</style></head><body>
 <title>Tópicos Finanzas</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -131,11 +129,15 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
 .bar .fill.alt{background:var(--gold)}
 .bar .v{font-family:var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.aplica{margin-top:14px;border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:8px;background:var(--accent-soft);padding:12px 14px;font-size:.92rem;overflow-wrap:anywhere}
+.aplica h4{margin:0 0 6px;font-size:.98rem;color:var(--accent);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.aplica .ver{font-size:.72rem;font-weight:700;border-radius:999px;padding:1px 10px;background:var(--accent);color:var(--surface)}
+.aplica p{margin:4px 0 6px}.aplica ul{margin:0;padding-left:1.1em}.aplica li{margin:4px 0}.aplica code{font-family:var(--f-mono);font-size:.82rem}
 </style>
 
 <header class="top">
   <div class="wrap">
-    <div class="brand">Tópicos Finanzas<small>edición 11 nov 2026</small></div>
+    <div class="brand">Tópicos Finanzas<small>edición 18 nov 2026</small></div>
     <nav class="tabs" aria-label="Secciones">
       <a href="#informe" data-view="informe">Informe</a>
       <a href="#quices" data-view="quices">Quices</a>
@@ -144,16 +146,16 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
   </div>
 </header>
 <div class="ticker" aria-hidden="true"><div class="wrap">
-  <span>FACTORES <b>SR 0,18→0,48</b></span><span>SHARPE MÁX <b>~7,4</b></span><span>ES BACKTEST <b>11,5–39,5 %→3,0–8,5 %</b></span><span>IC TEXTO <b>+0,012</b></span><span>MMP→CPI <b>~18 %</b></span>
+  <span>R² NOTICIAS <b>30–40 %</b></span><span>R² MACRO <b>&lt;10 %</b></span><span>LLM SIN COSTOS <b>51 %</b></span><span>COBERTURA 50 ACC. <b>SPY 79 · RSP 92 · PC1 92 %</b></span><span>PÉRDIDA IA <b>16,9 BILLONES USD</b></span>
 </div></div>
 
 <main class="wrap">
 
 <!-- ============ INFORME ============ -->
 <section id="v-informe" data-panel="informe">
-  <h1>Cinco lecturas de la semana</h1>
-  <p class="lede">Lo más útil publicado entre el 4 y el 11 de noviembre de 2026 sobre factores, portafolios, riesgo de cola, texto financiero y política monetaria. Pensado para un data scientist con base en riesgo de crédito que quiere un perfil de finanzas de nivel máster y reproducir en Python con datos públicos.</p>
-  <div class="meta"><span>arXiv q-fin (72) y econ.EM (39)</span><span>NBER (44 de noviembre)</span><span>Fed, BCE, BIS, JF, JFE</span><span>4 textos completos</span><span>SSRN y RFS: 403, sin revisar</span></div>
+  <h1>Cuatro lecturas de la semana</h1>
+  <p class="lede">Lo más útil publicado entre el 11 y el 18 de noviembre de 2026: cuánto del mercado explican las noticias, qué tan creíbles son los backtests con LLM, cómo cubrir la beta con un componente principal y quién pierde si la inversión en IA decepciona. Pensado para un data scientist con base en riesgo de crédito que quiere un perfil de finanzas de nivel máster y reproducir en Python con datos públicos.</p>
+  <div class="meta"><span>arXiv q-fin (98) y econ.EM (45)</span><span>NBER (31 nuevos)</span><span>BIS, Fed, BCE, BanRep</span><span>4 textos completos</span><span>SSRN y revistas: sin revisar</span></div>
   <div class="legend">Cómo leer la evidencia:
     <span class="tag t-med">MEDIDO</span> resultado reportado en el paper
     <span class="tag t-aut">AUTORES</span> interpretación de los autores
@@ -163,261 +165,191 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
   <div class="stack">
     <article class="piece">
       <div class="piece-head"><span class="rank">01</span>
-        <h2><a href="https://arxiv.org/abs/2611.09834" target="_blank" rel="noopener">The Logic of Factor Portfolios: Boolean Rules, Interactions, and Trading Costs</a></h2>
-        <div class="byline">Ziyao Wang, Svetlozar T. Rachev, Frank J. Fabozzi · arXiv v1 6 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.22277" target="_blank" rel="noopener">Explaining Realized Returns: Roll&#x27;s R² 40 Years Later</a></h2>
+        <div class="byline">Bryan Kelly (Yale, AQR, NBER), Yinan Su (Johns Hopkins) y Chao Zhang (HKUST Guangzhou). arXiv v1, 17 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Asset pricing empírico</span><span class="chip">Costos de transacción</span><span class="chip">Sin código</span></div>
-      <details class="more ctx"><summary>Contexto previo: carteras de factores y reglas de selección</summary><div class="body">
-<p><b>Qué es:</b> una cartera de factores (<i>factor portfolio</i>) es una cartera larga-corta que compra acciones con un valor alto de una característica (la señal) y vende las de valor bajo, para aislar una prima de riesgo o una anomalía (<i>anomaly</i>). La manera de traducir la señal en posiciones es la regla de selección (<i>screen</i> o <i>sort</i>).</p>
-<p><b>De qué se compone:</b> (1) una señal por acción, como valor contable sobre precio (B/M), <i>momentum</i> de 12 meses o volatilidad; (2) un ranking transversal cada mes; (3) cortes (deciles, terciles, mediana); (4) una ponderación, igual o por capitalización; (5) un rebalanceo periódico. El retorno del factor es r_larga − r_corta. La rotación (<i>turnover</i>) es la fracción de la cartera que cambia en cada rebalanceo, y el costo aproximado es rotación × costo por operación (por ejemplo, medio <i>spread</i>).</p>
-<p><b>Cómo se ha trabajado:</b> Fama y French (1993) construyen SMB y HML con <i>sorts</i> dobles por tamaño y B/M; Carhart (1997) añade <i>momentum</i>, y Fama y French (2015) llegan a cinco factores. Para combinar señales se usan <i>sorts</i> dobles o condicionales, intersecciones de <i>screens</i> ("Y") o puntajes compuestos (promedio de rankings). Más recientemente, árboles y redes buscan reglas no lineales.</p>
-<p><b>Dónde está la dificultad:</b> al combinar señales no queda claro cuánto de la exposición viene de cada señal y cuánto de su interacción, ni por qué unas reglas rotan más que otras. Muchas anomalías se reportan en retornos brutos y se debilitan netas de costos, y buscar entre millones de combinaciones invita al sobreajuste.</p>
-<p><b>Ejemplo intuitivo (números ilustrativos):</b> si el 90 % de las acciones del quintil alto de valor sigue ahí al mes siguiente, y el 80 % de las de baja volatilidad también, una acción que cumple ambas condiciones, con señales independientes, las sigue cumpliendo con probabilidad 0,9 × 0,8 = 0,72. La intersección cambia más a menudo que cada <i>screen</i> por separado, y cada cambio paga <i>spread</i>.</p>
-<p><b>Conexión:</b> el paper formaliza esta intuición y la usa para medir costos. Para el lector es el mismo problema que combinar varios cortes en un <i>scorecard</i> de crédito: más cortes, más cambios de categoría.</p>
+      <div class="chips"><span class="chip topic">Asset pricing empírico</span><span class="chip">Texto y LLM</span><span class="chip">Sin código</span></div>
+      <details class="more ctx"><summary>Contexto previo: cuánto de los retornos se puede explicar</summary><div class="body">
+<p><b>Qué es:</b> explicar un retorno (<i>explaining realized returns</i>) no es pronosticarlo. Pronosticar es usar información de t−1 para adivinar el retorno de t. Explicar es mirar hacia atrás y preguntar qué parte de la variación observada se puede atribuir a hechos del mundo. La medida usual es el coeficiente de determinación (<i>R²</i>): la fracción de la varianza del retorno que reproduce un modelo.</p>
+<p><b>De qué se compone:</b> (1) el retorno a explicar, por ejemplo el del S&amp;P 500 en un día o un mes; (2) los candidatos a explicación, como datos macro, dividendos, expectativas de analistas, flujos de inversionistas o noticias; (3) un mapeo estable del candidato al retorno, por ejemplo una regresión; (4) una evaluación honesta. En fórmula, R² = 1 − Σ(r − r̂)² / Σ(r − r̄)². Si se calcula fuera de muestra (<i>out-of-sample</i>, OOS), puede ser negativo: el modelo explica peor que la media.</p>
+<p><b>Cómo se ha trabajado:</b> Richard Roll, en su discurso presidencial de la American Finance Association de 1988 ("R²"), mostró que la información pública conocida explicaba poca variación de los retornos de acciones individuales. Cutler, Poterba y Summers (1989), en "What Moves Stock Prices?", llegaron a una conclusión parecida para el mercado agregado con variables macro y noticias clasificadas a mano. Otra rama descompone el retorno en noticias de flujo de caja y de tasa de descuento (Campbell y Shiller), pero esas descomposiciones usan los propios precios y dan R² de casi 100 % por construcción. La literatura de análisis de texto (Tetlock, 2007; Loughran y McDonald, 2011) mide el tono de las noticias, más para pronosticar que para explicar.</p>
+<p><b>Dónde está la dificultad:</b> los datos macro llegan mensuales o trimestrales, revisados y con rezago, mientras el mercado reacciona el mismo día a la noticia. Las noticias, en cambio, son texto no estructurado y suelen describir el propio movimiento de precios ("las acciones cayeron"), lo que infla el R² sin explicar nada. Y queda la duda de si el periodista elige, después de ver el precio, la razón que encaja.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> si el mercado varía con una desviación de 1 % diaria y un modelo deja errores con desviación de 0,84 %, el R² es 1 − 0,84² ≈ 0,29. Si el modelo usa una frase que dice "el S&amp;P subió 1 %", el R² sería casi 1, pero sería trampa.</p>
+<p><b>Cómo se conecta:</b> el paper usa LLMs para leer solo las razones de una nota diaria y medir cuánto explican. Para el lector es la diferencia entre un modelo que predice el default y uno que explica después por qué subió la mora de una cosecha.</p>
       </div></details>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Escribe reglas de inversión ("top decil", "alto momentum Y baja volatilidad") como funciones booleanas de umbrales sobre rankings y las descompone (Walsh) en exposiciones a señales individuales y a sus interacciones. Con los mismos coeficientes predice la rotación.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Explica por qué los screens combinados rotan más y cuestan más, y da test assets que prueban todas las reglas de <i>k</i> señales a la vez.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> CRSP/Compustat 1973–2024 con doce señales: persistencia predicha y realizada con correlación ≥ 0,999 y rotación con pendiente 1,02. Cubren su costo de spread el 58 % de los portafolios de una señal, el 24 % de los de dos y el 6 % de los de tres. Fuera de muestra (2005–2024), añadir interacciones sube el Sharpe de la tangente de 0,18 a 0,48 (de 0,11 a 0,32 neto). <span class="tag t-aut">AUTORES</span> La ganancia se concentra en 2005–2019.</dd></div>
-        <div><dt>Limitaciones</dt><dd><span class="tag t-inf">INFERENCIA</span> Replicarlo completo exige WRDS; la intuición y los test assets sí se pueden aproximar con datos públicos.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Con los 25 portafolios tamaño × B/M de la Kenneth French Data Library, construye la interacción (esquinas 2×2 como diferencia en diferencias). Baseline: HML. Métrica: alfa de la interacción sobre FF5 + Mom y su t; éxito si |t| &gt; 2 en 1995–2024.</dd></div>
-      </dl>
-      <div class="res">El paper no enlaza código. Datos CRSP/Compustat (licenciados).</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Solo leer</span></h4><p>La idea de descomponer reglas combinadas es útil, pero replicarlo exige CRSP/Compustat.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Combinar varios cortes en una política de aprobación (score Y ingreso Y mora previa) es exactamente una regla booleana. Ya ves en producción que más cortes implican más clientes que cambian de segmento: la rotación del paper es el análogo de la migración entre bandas que vigilas con PSI.</li><li><strong>Lo nuevo para ti:</strong> La descomposición de Walsh (separar el efecto de cada señal del de su interacción), los costos de transacción y el asset pricing empírico (alfa sobre FF5). Tienes la econometría; te falta la parte de portafolios, que está en tu ruta de Finanzas.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, para analizar políticas con varias reglas y saber cuánto de su efecto viene de la interacción. En <code>credit-risk-agent-lab</code>, donde la política no supera un corte simple por subgrado, descomponerla regla por regla ayudaría a ver qué regla sobra [inferencia].</li><li><strong>Primer paso (≤ 2 h):</strong> En el lab, cruza dos reglas de la política en una tabla 2×2 con tasa de aprobación y mora, y calcula la interacción como diferencia en diferencias de las esquinas.</li></ul></section>
+      <dl class="facts"><div><dt>Qué cambia</dt><dd>mide fuera de muestra cuánto explican del mercado las razones que da el Wall Street Journal. Un LLM extrae solo las razones, sin lenguaje de precios, y se convierten en embeddings.</dd></div><div><dt>Por qué importa</dt><dd>da una vara de cuánto del mercado entendemos y una plantilla para usar texto sin fuga del objetivo.</dd></div><div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En 2002–2024, las variables macro y de flujo de caja dan R² mensual negativo o casi nulo; los flujos, cerca de 10 %. Las razones explican 29,8 % diario y 40,3 % mensual. <span class="tag t-aut">AUTORES</span> Las razones anticipadas contradicen una atribución puramente ex post. <span class="tag t-inf">INFERENCIA</span> El WSJ es licenciado y el LLM pudo conocer las reacciones de 2002–2023.</dd></div><div><dt>Experimento sugerido</dt><dd>baseline: ridge sobre FRED-MD sin series financieras para el retorno mensual del mercado de French, con validación cruzada de 5 bloques. Luego, embeddings locales de los comunicados del FOMC para el retorno de esos días. Métrica: R² OOS; éxito si el texto supera 0.</dd></div></dl>
+      <div class="res">sin código. WSJ licenciado; FRED-MD y Shiller públicos.</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>El método se reproduce a escala pequeña con texto público y embeddings locales, y deja una disciplina útil contra la fuga de información.</p><ul><li><b>Lo que ya sabes que te sirve:</b> el R² fuera de muestra, la validación cruzada, ridge y lasso, y sobre todo el reflejo de buscar fuga de la variable objetivo, como cuando una variable de cobranza se cuela en un scorecard de originación. Como economista, ya conoces FRED y el problema de rezagos y revisiones de los datos macro.</li><li><b>Lo nuevo para ti:</b> los embeddings de texto como regresores, la extracción con LLM y su filtro de fuga, y el filtro HAR, que quita persistencia de una serie. El asset pricing del mercado agregado está en tu ruta de Finanzas. El esfuerzo es moderado, porque no hay que entrenar redes, solo usar embeddings ya hechos.</li><li><b>Dónde lo aplicas:</b><ul><li>En tu trabajo: <span class="tag t-inf">INFERENCIA</span> en el P&amp;L de cartera o en los comités de riesgo, la misma idea sirve para medir cuánto de los movimientos mensuales de mora explican las razones que se escriben en los informes, con una regla: el texto no puede mencionar la propia mora.</li><li>En tus repos: en <code>credit-risk-agent-lab</code>, el agente redacta justificaciones; puedes medir si sus razones, convertidas en embeddings, explican la decisión fuera de muestra o si solo la repiten.</li></ul></li><li><b>Primer paso (≤ 2 h):</b> baja FRED-MD, quita las series financieras y corre ridge con validación cruzada de 5 bloques contra el retorno mensual del mercado de Kenneth French. Así reproduces el baseline negativo del paper con tus herramientas.</li></ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><b>Problema y motivación:</b> Toda cartera de factores usa una regla (comprar el decil superior, exigir <i>momentum</i> alto y volatilidad baja). Suele tratarse como detalle, pero fija exposiciones y rotación.</p>
+<p><b>Problema y motivación:</b> Roll (1988) preguntó si, en retrospectiva y con información pública, se podían explicar los precios, y encontró que no. Los autores retoman la pregunta para el mercado agregado de EE. UU.: no pronostican ni identifican causas, miden cuánta variación explican las razones que da la prensa.</p>
 <p><b>Conceptos clave:</b></p>
-<ul><li>Literal (<i>literal</i>): indicador sí/no, p. ej. "el rango de la señal supera el cuantil q".</li><li>Regla booleana (<i>Boolean rule</i>): literales combinados con Y (<i>AND</i>), O (<i>OR</i>) o mayoría (<i>majority</i>).</li><li>Expansión de Walsh (<i>Walsh expansion</i>): separa la regla en exposiciones a señales individuales (orden 1) y a interacciones (orden ≥ 2).</li><li>Persistencia (<i>persistence</i>): correlación mes a mes del literal de cada acción.</li><li>Rotación (<i>turnover</i>): fracción de la cartera vendida cada mes.</li></ul>
-<p><b>Datos:</b> CRSP y Compustat (vía WRDS, no públicos); acciones comunes de NYSE/AMEX/NASDAQ, sin financieras ni acciones bajo el percentil 20 de capitalización NYSE. 623 meses (febrero 1973–diciembre 2024), 1.257 acciones por mes en promedio, doce señales clásicas. Costos: medio <i>spread</i> cotizado (<i>quoted half-spread</i>) desde 1995. Factores FF5/FF6 de Kenneth French (públicos).</p>
+<ul><li>Criterio 1, sin fuga de precios (<i>neither about nor derived from asset prices</i>): la explicación no contiene el retorno ni transformaciones de él.</li><li>Criterio 2, mapeo estable (<i>consistently mapped</i>): razones parecidas, reacciones parecidas; se mide con R² fuera de muestra.</li><li>Fragmento de razón (<i>reason snippet</i>): cita textual de la nota que el artículo presenta como causa del movimiento.</li><li>Regresión sobre embeddings (<i>embedding regression</i>): regresión regularizada del retorno sobre el vector numérico del texto.</li><li>Inferencia sin ejemplos (<i>zero-shot</i>): pedirle a un LLM el retorno implícito sin entrenarlo con la muestra.</li><li>Filtro HAR (<i>heterogeneous autoregressive filter</i>): quita a la serie de retornos implícitos su media y su persistencia predecible, sin usar retornos realizados.</li></ul>
+<p><b>Datos:</b> una nota diaria de la columna "Today's Markets" del Wall Street Journal (licenciada), 2002–2024. Baselines: 99 series de FRED-MD sin índices financieros, dividendos y utilidades de Shiller, expectativas de analistas y flujos de 12 sectores inversionistas (Gabaix y Koijen, 2021).</p>
 <p><b>Método paso a paso:</b></p>
-<ol><li>Rankear señales y crear literales (mediana, percentiles 20/50/80, rangos).</li><li>Expresar la regla en la base de Walsh: su retorno es la suma exacta de carteras long-short por término (<i>character portfolios</i>), sin supuestos sobre retornos.</li><li>Supuesto: literales persistentes e independientes entre señales; la persistencia de una interacción es el producto de las de sus componentes (dos literales con 0,9 dan 0,81; tres, 0,73).</li><li>Rotación de una pata = (1 − cobertura) × promedio de (1 − persistencia), ponderado por el peso de cada interacción.</li><li>Cargar costos y estimar carteras tangentes con <i>ridge</i> en 1973–2004, evaluadas en 2005–2024.</li></ol>
+<ol><li>Un LLM extrae citas textuales en pares: razón y movimiento de precio.</li><li>Un segundo pase elimina fragmentos con lenguaje de precios, incluso sutil ("rebotó").</li><li>Los fragmentos del día se convierten en embeddings de 3.072 dimensiones (text-embedding-3-large) o de 768 (BERT).</li><li>Se estima r_t = f(x_t) + error con ridge o lasso y validación cruzada de 5 bloques; los días sin razones reciben retorno implícito cero.</li><li>Sin ejemplos: gpt-4o-mini (corte de octubre de 2023) lee las razones y da un retorno implícito.</li><li>Una taxonomía de 12 metaclústeres permite descomponer el R² por tipo de razón.</li></ol>
 <p><b>Resultados:</b></p>
-<ul><li>Persistencia predicha vs. realizada: correlación de al menos 0,999 por orden; rotación de 286 reglas con pendiente 1,02 <span class="tag t-med">MEDIDO</span>.</li><li>Persistencia media de orden 2: 0,63 (mediana), 0,69 (tres umbrales), 0,73 (rangos) <span class="tag t-med">MEDIDO</span>.</li></ul>
-<div class="tbl"><table><thead><tr><th>Orden (1995–2024)</th><th>Costo (pb/mes)</th><th>Prima en valor absoluto (pb/mes)</th><th>Prima &gt; costo</th></tr></thead><tbody><tr><td>1</td><td>4,8</td><td>5,4</td><td>58%</td></tr><tr><td>2</td><td>7,5</td><td>3,5</td><td>24%</td></tr><tr><td>3</td><td>9,5</td><td>2,6</td><td>6%</td></tr></tbody></table></div>
-<p><span class="tag t-med">MEDIDO</span></p>
-<ul><li>Sharpe anualizado fuera de muestra (2005–2024): 0,18 solo orden 1; 0,48 añadiendo orden 2; netos, 0,11 vs. 0,32 <span class="tag t-med">MEDIDO</span>.</li><li>GRS: el orden 2 tiene alfas no nulas sobre el orden 1 (p &lt; 0,001). En 1995–2024 el orden ≤ 2 rechaza FF6 (p = 0,007); los <i>sorts</i> convencionales no (p entre 0,24 y 0,90) <span class="tag t-med">MEDIDO</span>.</li></ul>
+<div class="tbl"><table><thead><tr><th>Especificación</th><th>R² diario (%)</th><th>R² mensual (%)</th></tr></thead><tbody><tr><td>Embeddings grandes + ridge</td><td>29,82</td><td>40,30</td></tr><tr><td>Embeddings grandes + lasso</td><td>28,99</td><td>32,54</td></tr><tr><td>BERT + ridge</td><td>12,60</td><td>24,35</td></tr><tr><td>Sin ejemplos, crudo</td><td>25,58</td><td>−115,03</td></tr><tr><td>Sin ejemplos, filtro HAR</td><td>31,88</td><td>49,84</td></tr><tr><td>Ridge diario sumado, filtro HAR</td><td>33,88</td><td>44,42</td></tr></tbody></table></div>
+<p>Todas las cifras son <span class="tag t-med">MEDIDO</span> y fuera de muestra.</p>
+<ul><li><span class="tag t-med">MEDIDO</span> Los baselines sin noticias tienen R² mensual mayormente negativo; los flujos, cerca de 10 %. No hay baseline diario.</li><li><span class="tag t-med">MEDIDO</span> Noticias corporativas (22 % de los fragmentos), macro (19 %) y sentimiento (14 %) explican cada una entre 6 % y 9 % del retorno diario; la política monetaria (16 %), cerca de 4 %.</li><li><span class="tag t-med">MEDIDO</span> Las razones anticipadas en notas previas son el 4,1 % de los fragmentos y tienen un R² activo de 11,47 %, frente a 12,09 % del clúster monetario (bootstrap, p = 1,2 %).</li><li><span class="tag t-med">MEDIDO</span> En los días de FOMC, el retorno implícito del clúster monetario tiene una pendiente de 0,94 (t = 4,24, N = 193) sobre la respuesta intradía del S&amp;P 500.</li></ul>
 <p><b>Robustez y limitaciones:</b></p>
-<ul><li>Señales contables cambian juntas (correlación 0,38 entre crecimiento de activos y de ventas); esas patas rotan 7% menos de lo predicho <span class="tag t-aut">AUTORES</span>.</li><li>La mejora de Sharpe viene de 2005–2019 (0,04 vs. 0,48); en 2020–2024 ambos rinden cerca de 0,5 <span class="tag t-aut">AUTORES</span>.</li><li>El <i>spread</i> cotizado omite el costo de préstamo de acciones y el impacto de órdenes grandes <span class="tag t-aut">AUTORES</span>.</li><li>Buscar la "mejor" entre dieciséis millones de reglas sobreajusta: t = 8,6 en entrenamiento, t medio de 1,4 fuera de muestra <span class="tag t-aut">AUTORES</span>.</li><li>Solo EE. UU. y doce señales; falta validar en otros mercados <span class="tag t-inf">INFERENCIA</span>.</li></ul>
-<p><b>Aporte frente a trabajos previos:</b> El <i>machine learning</i> busca la regla óptima; aquí la regla es dada y se pregunta qué contiene y cuánto cuesta. Une interacciones y costos en una fórmula y da activos de prueba más exigentes.</p>
-<p><b>Cómo aplicarlo:</b></p>
-<ul><li>Con los <i>sorts</i> 2×2 de Kenneth French, calcular la interacción ¼(HH − HL − LH + LL) <span class="tag t-inf">INFERENCIA</span>.</li><li>Con Yahoo Finance, medir la persistencia de cada literal y predecir la rotación antes del backtest <span class="tag t-inf">INFERENCIA</span>.</li><li>Analogía de crédito: como en <i>scorecards</i>, un <i>score</i> continuo cambia menos de categoría que varios cortes combinados <span class="tag t-inf">INFERENCIA</span>.</li><li>Preferir orden 2, rangos suaves y zonas de amortiguación (<i>buffer zones</i>) <span class="tag t-aut">AUTORES</span>.</li></ul>
-<p><b>Glosario breve:</b></p>
-<ul><li>Cobertura (<i>coverage</i>): peso del universo dentro de la pata.</li><li>GRS: test conjunto de alfas nulas.</li><li>Cartera tangente (<i>tangency portfolio</i>): combinación de máximo Sharpe.</li></ul>
-<p><b>Frase para recordar:</b> Cada "Y" que agregas multiplica persistencias y suma rotación: la lógica de la regla ya fija su costo.</p>
+<ul><li><span class="tag t-aut">AUTORES</span> Una sola nota diaria es una cota conservadora; las razones declaradas no son causas identificadas.</li><li><span class="tag t-aut">AUTORES</span> Los flujos podrían responder al precio (causalidad inversa), lo que afectaría su R².</li><li><span class="tag t-inf">INFERENCIA</span> El embedding y gpt-4o-mini se entrenaron con texto que pudo describir las reacciones de 2002–2023; parte del R² sin ejemplos podría ser memoria, y no hay prueba posterior al corte del modelo.</li><li><span class="tag t-inf">INFERENCIA</span> Sin el WSJ no hay réplica exacta con datos públicos.</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> pasa de contar o clasificar noticias (Cutler, Poterba y Summers; Baker et al. sobre saltos del mercado) a medir cuánto explica su contenido, con criterios que excluyen las descomposiciones basadas en precios.</p>
+<p><b>Cómo aplicarlo:</b> reproduce el baseline con FRED-MD y luego explica días de evento con texto público.</p>
+<p><b>Glosario breve:</b> R² fuera de muestra; fuga de precios; embedding; zero-shot; filtro HAR; R² activo.</p>
+<p><b>Frase para recordar:</b> con buenos datos de texto y sin dejar que el precio se cuele, ya se explica cerca de un tercio del mercado diario; con datos macro, casi nada.</p>
       </div></details>
     </article>
 
     <article class="piece">
       <div class="piece-head"><span class="rank">02</span>
-        <h2><a href="https://www.nber.org/papers/w35988" target="_blank" rel="noopener">The Hidden Sharpe Ratio</a></h2>
-        <div class="byline">Mikhail Chernov, Bryan T. Kelly, Semyon Malamud, Johannes Schwab · NBER WP 35988, emitido el 9 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.18934" target="_blank" rel="noopener">Short Windows, Unmodelled Costs, Unknown Cutoffs: A Pre-Registered Evidence Audit of 91 LLM Trading Papers</a></h2>
+        <div class="byline">Henry Zhang (investigador independiente). arXiv v1, 13 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Portafolios</span><span class="chip warn">Solo resumen leído</span></div>
-      <details class="more ctx"><summary>Contexto previo: Sharpe máximo y portafolio tangente</summary><div class="body">
-<p><b>Qué es:</b> el índice de Sharpe (<i>Sharpe ratio</i>) es el exceso de retorno esperado dividido por la volatilidad. Entre todas las combinaciones de activos riesgosos, el portafolio tangente (<i>tangency portfolio</i>) tiene el mayor Sharpe; ese valor es el Sharpe máximo (<i>maximal Sharpe ratio</i>).</p>
-<p><b>De qué se compone:</b> el vector de primas esperadas μ y la matriz de covarianzas Σ. Los pesos óptimos son proporcionales a Σ⁻¹μ, y el Sharpe máximo al cuadrado es θ² = μ′Σ⁻¹μ. En la base de componentes principales, θ² es la suma de μᵢ²/λᵢ: cada dirección aporta su prima al cuadrado dividida por su varianza λᵢ (su autovalor).</p>
-<p><b>Cómo se ha trabajado:</b> Markowitz (1952) plantea la optimización media-varianza y Sharpe (1966) define el índice. En la práctica se reemplazan μ y Σ por estimaciones muestrales, lo que produce pesos extremos e inestables. Las respuestas clásicas son encoger la covarianza (<i>shrinkage</i>, Ledoit y Wolf, 2004), prohibir ventas en corto, trabajar con pocos factores o penalizar con ridge, que equivale a sumar una constante z a cada autovalor. Para el Sharpe máximo muestral existen correcciones de sesgo cuando el número de activos N se acerca al número de periodos T.</p>
-<p><b>Dónde está la dificultad:</b> el término μᵢ²/λᵢ se dispara justo donde λᵢ es pequeño, y ahí la estimación es peor. La regularización apaga esas direcciones para ganar estabilidad, pero si contienen prima real se pierde Sharpe, y no se sabe cuánto.</p>
-<p><b>Ejemplo intuitivo (números ilustrativos):</b> una dirección con prima de 0,6 % mensual y volatilidad de 6 % aporta (0,006)²/0,0036 = 0,01 al Sharpe² mensual. Otra con prima de 0,1 % y volatilidad de 0,5 % aporta (0,001)²/0,000025 = 0,04, cuatro veces más. Un ridge con z = 0,0001 casi no toca la primera, pero quintuplica la varianza efectiva de la segunda (de 0,000025 a 0,000125) y le quita casi todo su peso.</p>
-<p><b>Conexión:</b> el paper intenta medir lo que se pierde. Para el lector es la misma tensión entre regularizar y sesgar que en un modelo de probabilidad de incumplimiento con muchas variables.</p>
+      <div class="chips"><span class="chip topic">ML en finanzas</span><span class="chip">Validación honesta</span><span class="chip">Código citado (no verificado)</span></div>
+      <details class="more ctx"><summary>Contexto previo: sobreajuste de backtests y pruebas múltiples</summary><div class="body">
+<p><b>Qué es:</b> un backtest simula cómo habría rendido una estrategia en el pasado. El sobreajuste de backtests (<i>backtest overfitting</i>) aparece cuando se prueban muchas variantes y se reporta la mejor: su desempeño refleja suerte y no habilidad. El sesgo de anticipación (<i>look-ahead bias</i>) ya se explicó en la pieza 04 de la edición del 11 de noviembre; aquí se suma el problema de la búsqueda.</p>
+<p><b>De qué se compone:</b> (1) una ventana de prueba fechada y un universo de activos; (2) costos de transacción (spread, impacto, préstamo de acciones); (3) el número de estrategias probadas (<i>trials</i>); (4) un estadístico que corrija por ese número; (5) un benchmark, como comprar y mantener (<i>buy-and-hold</i>). Con N estrategias de Sharpe real cero, el máximo Sharpe estimado crece aproximadamente con √(2·ln N) veces su error estándar.</p>
+<p><b>Cómo se ha trabajado:</b> Lo y MacKinlay (1990) y White (2000, <i>reality check</i>) formalizaron el fisgoneo de datos (<i>data snooping</i>). Hansen (2005) propuso el test de habilidad predictiva superior. Harvey, Liu y Zhu (2016) pidieron subir el umbral t a cerca de 3 en asset pricing, y Hou, Xue y Zhang (2020) encontraron que muchas anomalías no se replican. Bailey y López de Prado (2014) propusieron el Sharpe deflactado (<i>deflated Sharpe ratio</i>), que descuenta el número de pruebas y la no normalidad. McLean y Pontiff (2016) mostraron que la predictibilidad cae después de publicarse.</p>
+<p><b>Dónde está la dificultad:</b> el número de pruebas casi nunca se reporta. Los LLM agravan el problema de dos formas: un agente genera cientos de estrategias en minutos, y el modelo pudo leer en su preentrenamiento lo que pasó en la ventana de prueba. Además, las ventanas cortas y sin costos inflan el Sharpe.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> prueba 100 estrategias aleatorias durante 12 meses. Con Sharpe real cero, el error estándar del Sharpe anual estimado es cerca de 1. El máximo de 100 suele quedar alrededor de 2,5. Reportar solo ese "2,5" parece un hallazgo, pero es ruido.</p>
+<p><b>Cómo se conecta:</b> el paper cuenta cuántos papers de trading con LLM controlan estos problemas. Para el lector es el equivalente de reportar en un modelo de crédito cuántas variables y especificaciones se probaron antes de elegir el campeón.</p>
       </div></details>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Estima el Sharpe máximo de un corte transversal grande sin construir el portafolio eficiente, recuperando las direcciones de autovalores pequeños que la regularización suprime, con cotas e intervalos asintóticos.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Da una vara para saber cuánto Sharpe queda sobre la mesa en un Markowitz con ridge.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> Sharpe máximo anualizado de ~7,4 en acciones de EE. UU. (5,0 sin micro-caps), frente a 1,0–4,0 de los benchmarks basados en portafolios. Añadir bonos corporativos lo sube sin significancia estadística. <span class="tag t-aut">AUTORES</span> El Markowitz con ridge queda por debajo del máximo por un factor multiplicativo que no desaparece; las características publicadas después de 2004 aportan poco.</dd></div>
-        <div><dt>Limitaciones</dt><dd>El PDF me devolvió "Access denied", así que todo sale del resumen. <span class="tag t-inf">INFERENCIA</span> Un máximo teórico no es un Sharpe alcanzable neto de costos.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Con los 100 portafolios tamaño × B/M de French, compara el Sharpe fuera de muestra de un Markowitz con ridge (ventana expansiva) con una estimación corregida por sesgo del Sharpe² muestral, (T−N−2)/T·θ̂² − N/T. No es el estimador del paper. Métrica: brecha entre ambos al variar la penalización.</dd></div>
-      </dl>
-      <div class="res">Código y datos: no verificados.</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Solo leer</span></h4><p>Es teoría de portafolios de alta dimensión y del paper solo se leyó el resumen.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> La regularización (L2 en logística y en LightGBM) y el equilibrio sesgo-varianza. También sabes que el desempeño en entrenamiento no es el alcanzable fuera de muestra.</li><li><strong>Lo nuevo para ti:</strong> La optimización media-varianza, los autovalores de matrices de covarianza grandes y la asintótica de alta dimensión. Está en lo que todavía no has trabajado: esfuerzo alto.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, la aplicación es indirecta: la idea de techo teórico frente a desempeño alcanzable sirve para fijar expectativas de mejora de un modelo de PD [inferencia]. En tus rutas, encaja en el módulo de portafolios de Finanzas.</li><li><strong>Primer paso (≤ 2 h):</strong> Con los 25 portafolios tamaño × B/M de Kenneth French, calcula en pandas el Sharpe de la cartera tangente dentro y fuera de muestra, con y sin ridge, y mira la brecha.</li></ul></section>
+      <dl class="facts"><div><dt>Qué cambia</dt><dd>audita 91 papers con un diseño pre-registrado: población, rúbrica de diez campos, cinco hipótesis y script fijados antes de codificar, con citas textuales verificadas.</dd></div><div><dt>Por qué importa</dt><dd>convierte la sospecha sobre los Sharpe con LLM en conteos y propone seis líneas mínimas de reporte.</dd></div><div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> De 75 papers con prueba de trading, el 51 % no descuenta costos y el 9 % los modela con datos; la ventana mediana es de 12 meses. De 51 cuyo test podría solaparse con el entrenamiento del modelo, el 98 % no lo controla. <span class="tag t-aut">AUTORES</span> Es un corpus curado, codificado por LLMs, y el autor vende herramientas del área.</dd></div><div><dt>Experimento sugerido</dt><dd>simula 200 estrategias de ruido por 12 meses y elige la mejor. Baseline: p-valor crudo de su Sharpe. Métrica: tasa de falsos descubrimientos frente al Sharpe deflactado; éxito si baja cerca de 5 %.</dd></div></dl>
+      <div class="res">cita <a href="https://github.com/henryzhangpku/llm-trading-evidence-audit" target="_blank" rel="noopener">https://github.com/henryzhangpku/llm-trading-evidence-audit</a>; respondió 403 desde mi entorno y no lo verifiqué.</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Adoptar ya</span></h4><p>Las seis líneas de reporte cuestan una tarde y protegen tus backtests y tus evals con LLM.</p><ul><li><b>Lo que ya sabes que te sirve:</b> la validación fuera de tiempo, la selección de un campeón entre 6 modelos y el backtest de tu política de aprobación. Ya sabes que el AUC en desarrollo no es el de producción. El paper aplica esa misma disciplina a la literatura.</li><li><b>Lo nuevo para ti:</b> el Sharpe deflactado, el <i>reality check</i> de White y la idea de que el número de configuraciones probadas es parte del resultado. También la pre-registración como herramienta de un estudio. El esfuerzo es bajo: son fórmulas cortas en numpy.</li><li><b>Dónde lo aplicas:</b><ul><li>En tu trabajo: <span class="tag t-inf">INFERENCIA</span> al presentar un nuevo modelo o una política, reporta cuántas especificaciones probaste, la ventana fechada y el corte de entrenamiento de cualquier LLM que intervenga.</li><li>En tus repos: <code>credit-risk-agent-lab</code> tiene backtest y evals con un juez LLM sobre préstamos de Lending Club de años en que el LLM ya estaba entrenado. Las líneas 2 y 4 del mínimo (corte del modelo y número de configuraciones) aplican directo a sus evals.</li></ul></li><li><b>Primer paso (≤ 2 h):</b> agrega al README del lab una tabla con las seis líneas del paper llenas para tu backtest de política, incluido el costo de equilibrio: la pérdida esperada a la que la política deja de ganarle al corte por subgrado.</li></ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><i>Solo pude leer el resumen oficial de NBER: el PDF respondió 403 en las dos ejecuciones de hoy. Este resumen ampliado se limita a lo que dice ese resumen y no completa datos, métodos ni tablas que no vi.</i></p>
-<p><b>Problema y motivación:</b> ¿Cuál es el mayor Sharpe que se podría obtener combinando de forma óptima miles de activos? Para responderlo se suele construir el portafolio eficiente de Markowitz y medir su Sharpe fuera de muestra. Pero con muchos activos la matriz de covarianzas se estima mal y hay que regularizarla. Esa regularización apaga justamente las direcciones de poca varianza, que pueden aportar mucho Sharpe. Por eso los benchmarks basados en portafolios subestimarían el máximo.</p>
+<p><b>Problema y motivación:</b> los papers de trading con LLM reportan Sharpe notables. El autor pregunta si descuentan costos, si controlan que el modelo no haya leído el periodo de prueba y si reportan cuántas estrategias probaron.</p>
 <p><b>Conceptos clave:</b></p>
-<ul><li>Sharpe máximo (<i>maximal Sharpe ratio</i>): el Sharpe del portafolio tangente, el mejor posible con esos activos.</li><li>Regularización (<i>regularization</i>) y ridge: sumar una penalización a la covarianza para que su inversa sea estable.</li><li>Direcciones de autovalores pequeños (<i>small-eigenvalue directions</i>): combinaciones de activos con muy poca varianza; con poca varianza, una prima pequeña ya da un Sharpe alto.</li><li>Cotas superior e inferior (<i>upper and lower bounds</i>) con intervalos de confianza asintóticos.</li><li>Pesos no lineales (<i>nonlinear portfolio weights</i>): pesos que dependen de las características de forma no lineal.</li></ul>
-<p><b>Datos:</b> acciones de EE. UU. con y sin micro-caps, características de firma y bonos corporativos. El resumen no da periodo, frecuencia ni número de activos.</p>
-<p><b>Método paso a paso:</b> según el resumen, el estimador recupera de forma progresiva la contribución de las direcciones que la regularización suprime y, en lugar de un número, entrega cotas superior e inferior "ajustadas" con intervalos asintóticos. No lo hace construyendo el portafolio eficiente. Además muestran teóricamente cuánto pierde un Markowitz con ridge. No vi la ecuación central.</p>
+<ul><li>Pre-registro (<i>pre-registration</i>): fijar población, rúbrica, hipótesis y script antes de mirar los datos, y guardarlos en control de versiones.</li><li>Rúbrica de codificación (<i>coding rubric</i>): diez campos por paper (ventana, activos, costos, fuga, pruebas, baseline, Sharpe titular, código).</li><li>Fuga por entrenamiento (<i>training leakage</i>): que la ventana de prueba caiga antes del corte de conocimiento del modelo.</li><li>Modelo cronológicamente consistente (<i>chronologically consistent model</i>): modelo entrenado solo con texto anterior a cada fecha.</li><li>Resultado ajustado por multiplicidad (<i>multiplicity-adjusted result</i>): Sharpe deflactado, <i>reality check</i> o control de falsos descubrimientos.</li><li>Costo de equilibrio (<i>breakeven cost</i>): el costo al que el resultado desaparece.</li></ul>
+<p><b>Datos:</b> de un corpus curado de 233 papers, la población son 91 papers de agentes o minería de alfas, o que reportan Sharpe o retorno anual: 50 de agentes, 13 benchmarks, 11 de minería de alfas y 17 de otros tipos. La mayoría son preprints de 2024–2026.</p>
+<p><b>Método paso a paso:</b></p>
+<ol><li>Congelar papers, rúbrica, cinco hipótesis (H1 a H5) y script.</li><li>Codificar con LLMs; cada código exige una cita textual que un script verifica. Ninguna falló.</li><li>Recodificar a ciegas 18 papers: acuerdo del 100 % en costos y del 89 % al 94 % en el resto.</li><li>Registrar los tres cambios posteriores y probar H3 y H5 con permutaciones.</li></ol>
 <p><b>Resultados:</b></p>
-<ul><li><span class="tag t-med">MEDIDO</span> Sharpe máximo anualizado estimado de ~7,4 en acciones de EE. UU.</li><li><span class="tag t-med">MEDIDO</span> ~5,0 sin micro-caps.</li><li><span class="tag t-med">MEDIDO</span> Benchmarks existentes basados en portafolios: 1,0–4,0.</li><li><span class="tag t-med">MEDIDO</span> Añadir bonos corporativos sube el máximo, pero no de forma estadísticamente significativa.</li><li><span class="tag t-aut">AUTORES</span> Los pesos no lineales dominan a los lineales.</li><li><span class="tag t-aut">AUTORES</span> Las características introducidas después de 2004 aportan poco Sharpe adicional.</li></ul>
+<div class="tbl"><table><thead><tr><th>Campo (75 papers con prueba de trading)</th><th>Papers</th><th>Porcentaje</th></tr></thead><tbody><tr><td>Sin costos descontados</td><td>38</td><td>51 %</td></tr><tr><td>Tasa fija declarada</td><td>30</td><td>40 %</td></tr><tr><td>Costos modelados con datos</td><td>7</td><td>9 %</td></tr><tr><td>Fuga no discutida</td><td>30</td><td>40 %</td></tr><tr><td>Prueba después del corte del modelo</td><td>14</td><td>19 %</td></tr><tr><td>Evaluación en vivo</td><td>6</td><td>8 %</td></tr><tr><td>Reporta número de pruebas</td><td>23</td><td>31 %</td></tr><tr><td>Resultado ajustado por multiplicidad</td><td>7</td><td>9 %</td></tr><tr><td>Baseline de comprar y mantener</td><td>47</td><td>63 %</td></tr><tr><td>Código público</td><td>22</td><td>29 %</td></tr><tr><td>Costos, control de fuga y número de pruebas a la vez</td><td>5</td><td>7 %</td></tr></tbody></table></div>
+<p>Todas las cifras son <span class="tag t-med">MEDIDO</span>.</p>
+<ul><li><span class="tag t-med">MEDIDO</span> H2 se cumple: la ventana mediana es de 12 meses (cuartiles de 6 y 36) y 18 papers prueban en seis meses o menos. 20 de 54 papers prueban con diez activos o menos.</li><li><span class="tag t-med">MEDIDO</span> H4 se cumple: de 51 papers cuyo corte no consta como anterior a la prueba, 50 (98 %) no la prueban después del corte, ni en vivo, ni con un modelo cronológico.</li><li><span class="tag t-med">MEDIDO</span> H1 falla: el 40 % reporta pruebas o ajuste, pero 13 de los 23 conteos son semillas aleatorias repetidas, no estrategias buscadas. Con la lectura estrecha, el 23 % revela su búsqueda.</li><li><span class="tag t-med">MEDIDO</span> H3 y H5 fallan por falta de muestra: solo 13 papers dan un Sharpe titular (mediana 2,0). La correlación con la longitud de la ventana es −0,10 (p = 0,36). Las medianas con y sin costos son 1,62 y 3,46 (p = 0,10).</li></ul>
 <p><b>Robustez y limitaciones:</b></p>
-<ul><li><span class="tag t-aut">AUTORES</span> Los Markowitz con ridge quedan por debajo del máximo por un factor multiplicativo explícito que no desaparece con más datos.</li><li><span class="tag t-inf">INFERENCIA</span> Es un máximo poblacional: no incluye costos de transacción, restricciones de corto ni capacidad. No es un Sharpe que un gestor pueda alcanzar.</li><li><span class="tag t-inf">INFERENCIA</span> Sin el texto completo no puedo evaluar supuestos (estacionariedad, número de activos frente a periodos) ni la sensibilidad a micro-caps más allá de la cifra dada.</li></ul>
-<p><b>Aporte frente a trabajos previos:</b> <span class="tag t-inf">INFERENCIA</span> se contrasta con la línea de portafolios de "factor zoo" y ML (Kelly, Malamud y coautores) que reportan Sharpe fuera de muestra altos con Markowitz regularizado; aquí se mide cuánto queda fuera.</p>
-<p><b>Cómo aplicarlo:</b> <span class="tag t-inf">INFERENCIA</span> úsalo como vara: si tu portafolio con ridge sobre portafolios de French da un Sharpe X, la pregunta es cuánto de la brecha frente al máximo se debe a la penalización. El experimento sugerido (100 portafolios tamaño × B/M) va en esa dirección con un estimador más simple, no con el del paper.</p>
-<p><b>Glosario breve:</b> portafolio tangente; ridge; autovalor; micro-cap; Sharpe fuera de muestra.</p>
-<p><b>Frase para recordar:</b> regularizar estabiliza el portafolio, pero esconde Sharpe en las direcciones que casi no varían.</p>
+<ul><li><span class="tag t-aut">AUTORES</span> Es un corpus curado, no una búsqueda sistemática; 29 papers quedan con corte indeterminado.</li><li><span class="tag t-aut">AUTORES</span> Codificaron LLMs: la verificación de citas garantiza que el texto exista, no que el juicio sea correcto.</li><li><span class="tag t-aut">AUTORES</span> El autor vende herramientas del área; por eso publica códigos y script.</li><li><span class="tag t-inf">INFERENCIA</span> Son seis páginas: una nota corta, no una revisión sistemática.</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> una revisión de alcance previa sobre realismo de ejecución en sistemas de trading con LLM se guardaba sus conteos por campo; este paper los publica para una población definida y con un diseño difícil de manipular.</p>
+<p><b>Cómo aplicarlo:</b> usa el mínimo de seis líneas: (1) ventana fechada y número de activos; (2) modelo y su corte de entrenamiento; (3) modelo de costos y costo de equilibrio; (4) número de estrategias, prompts o configuraciones probadas; (5) un estadístico ajustado por ese número; (6) un benchmark o nulo comparable.</p>
+<p><b>Glosario breve:</b> pre-registro; Sharpe deflactado; <i>reality check</i>; fuga por entrenamiento; costo de equilibrio.</p>
+<p><b>Frase para recordar:</b> la mitad de los backtests con LLM no paga costos y casi ninguno sabe si su modelo ya había leído el examen.</p>
       </div></details>
     </article>
 
     <article class="piece">
       <div class="piece-head"><span class="rank">03</span>
-        <h2><a href="https://arxiv.org/abs/2611.13882" target="_blank" rel="noopener">Backtesting High-Dimensional Expected Shortfall</a></h2>
-        <div class="byline">Zaichao Du, Juan Carlos Escanciano, Pei Pei · arXiv v1 10 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.20363" target="_blank" rel="noopener">EWMA Principal Eigenportfolios of Equity Returns: Market Representation and Beta-Hedging Performance</a></h2>
+        <div class="byline">Andrew Kangmin Kim (Universidad de Oxford) y Aurora Neyan Zhou (Universidad de Warwick). arXiv v1, 16 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Riesgo de mercado</span><span class="chip">Econometría</span><span class="chip">Sin código</span></div>
-      <details class="more ctx"><summary>Contexto previo: VaR, déficit esperado y backtesting</summary><div class="body">
-<p><b>Qué es:</b> el valor en riesgo (<i>Value-at-Risk</i>, VaR) al nivel α es el cuantil α de la distribución de resultados: la pérdida que solo se supera con probabilidad α. El déficit esperado (<i>expected shortfall</i>, ES) es la pérdida promedio cuando se supera el VaR. El <i>backtesting</i> compara pronósticos pasados con lo que ocurrió para decidir si el modelo es aceptable.</p>
-<p><b>De qué se compone:</b> pronósticos condicionales (VaRₜ, ESₜ) hechos con información hasta t−1; resultados realizados; excepciones (días en que la pérdida supera el VaR); y un estadístico con su distribución bajo la hipótesis nula de modelo correcto. En fórmula, ES_α = E[Y dado que Y ≤ VaR_α].</p>
-<p><b>Cómo se ha trabajado:</b> para el VaR, el test de cobertura incondicional de Kupiec (1995) cuenta excepciones y Christoffersen (1998) añade su independencia en el tiempo; Basilea usó un "semáforo" de excepciones del VaR al 99 %. Con la revisión del marco de riesgo de mercado (FRTB), Basilea adopta el ES al 97,5 %. Backtestear el ES es más difícil: Gneiting (2011) mostró que el ES no es elicitable por sí solo, y Fissler y Ziegel (2016) que sí lo es junto con el VaR. Acerbi y Székely (2014) propusieron tests específicos de ES. Otra familia usa regresiones: pregunta si alguna variable conocida en t−1 predice el error de pronóstico.</p>
-<p><b>Dónde está la dificultad:</b> la mayoría de los tests trata el pronóstico como dado e ignora que sus parámetros se estimaron. Con pocos parámetros el efecto es pequeño; con decenas de predictores y Lasso, el error de estimación puede parecer mala especificación. La literatura de <i>double machine learning</i> resolvió un problema análogo para inferencia sobre coeficientes.</p>
-<p><b>Ejemplo intuitivo (números ilustrativos):</b> con un VaR al 1 % y 250 días se esperan 2,5 excepciones. Si el VaR se estimó con solo 100 días, el cuantil estimado varía mucho de una muestra a otra; aun con el modelo correcto, a veces caen 6 excepciones y un test que supone el VaR conocido lo rechaza.</p>
-<p><b>Conexión:</b> el paper ataca este problema en alta dimensión. Para el lector es como validar una PD con un test de calibración que ignora que la PD también se estimó.</p>
+      <div class="chips"><span class="chip topic">Portafolios y riesgo</span><span class="chip">Datos públicos</span><span class="chip">Sin código</span></div>
+      <details class="more ctx"><summary>Contexto previo: componentes principales y cobertura de beta</summary><div class="body">
+<p><b>Qué es:</b> cubrir la beta (<i>beta hedging</i>) es vender la cantidad justa de un instrumento de mercado para quitarle a un portafolio su exposición a los movimientos generales. Un eigenportafolio (<i>eigenportfolio</i>) es un portafolio cuyos pesos salen de un vector propio de la matriz de covarianzas o correlaciones de los retornos. El primero, PC1, suele parecerse al mercado.</p>
+<p><b>De qué se compone:</b> (1) los retornos de las acciones; (2) una matriz de segundos momentos, a menudo de retornos estandarizados por su volatilidad; (3) su descomposición en vectores y valores propios (análisis de componentes principales, <i>principal component analysis</i>, PCA); (4) una normalización que convierte el vector propio en pesos que suman 1; (5) un coeficiente de cobertura b = Cov(r_P, r_H)/Var(r_H). La efectividad se mide como reducción de varianza: 1 − Var(residuo)/Var(portafolio).</p>
+<p><b>Cómo se ha trabajado:</b> Sharpe (1964) puso el riesgo de mercado en el centro del CAPM, y Roll (1977) advirtió que cualquier índice es solo un proxy del portafolio de mercado. Ederington (1979) evaluó coberturas por reducción de varianza. Con matrices de correlación, Laloux et al. (1999) y Plerou et al. (2002) mostraron que el valor propio mayor corresponde a un modo de mercado y que buena parte del resto parece ruido. Avellaneda y Lee (2010) usaron factores de PCA para arbitraje estadístico. RiskMetrics (1996) popularizó el promedio móvil exponencial (<i>exponentially weighted moving average</i>, EWMA) para volatilidades y covarianzas.</p>
+<p><b>Dónde está la dificultad:</b> el SPY pondera por capitalización y queda dominado por pocas empresas grandes, que quizá no representan la exposición de un portafolio concreto. Un PC1 estimado de los datos podría cubrir mejor, pero si se compara solo contra el SPY no se sabe si la ganancia viene del método o de ponderar distinto. El índice equiponderado (RSP) es la prueba exigente, al estilo del 1/N de DeMiguel et al. (2009).</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> un portafolio de 50 acciones medianas tiene volatilidad diaria de 1,2 %. Cubierto con el SPY, queda en 0,55 %: reducción de varianza de 1 − (0,55/1,2)² ≈ 79 %. Si con un índice equiponderado queda en 0,34 %, la reducción es de 92 %, porque el portafolio se parece más al promedio que a los gigantes.</p>
+<p><b>Cómo se conecta:</b> el paper construye un PC1 adaptativo y lo compara con ambos índices. Para el lector, el PC1 es como el factor común que mueve todas las cosechas de una cartera.</p>
       </div></details>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Si el VaR y el ES se estiman con muchos predictores regularizados, los backtests convencionales heredan un sesgo de primer orden. Proponen momentos ortogonales que lo eliminan y que, en el caso lineal, se implementan como Double Lasso sobre un puntaje ajustado por la cola.</dd></div>
-        <div><dt>Por qué importa</dt><dd>El ES es la medida de Basilea para riesgo de mercado, y cada vez se pronostica con más variables.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> En simulaciones al 5 % nominal, el test ortogonal rechaza entre 3,0 % y 8,5 %, y el convencional entre 11,5 % y 39,5 %. En el G7 rechaza el modelo de crecimiento a la baja de EE. UU. sin variables financieras (p = 0,0009; 0,012 con Holm). En Canadá el convencional rechaza y el ortogonal no (0,0002 frente a 0,8125). <span class="tag t-aut">AUTORES</span> Con la especificación verdadera desconocida, eso no prueba que el rechazo convencional sea falso.</dd></div>
-        <div><dt>Limitaciones</dt><dd><span class="tag t-inf">INFERENCIA</span> El aporte es más de método que empírico; la aplicación es macro (Growth-at-Risk) y no de portafolios.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Simula retornos GARCH-t con 50 predictores de ruido, estima VaR por regresión cuantílica L1 y ES por Lasso, y repite 200 veces. Baseline: backtest regresivo sin residualizar. Métrica: tasa de rechazo bajo H0 cerca de 5 %.</dd></div>
-      </dl>
-      <div class="res">Sin código enlazado. Datos de FRED, OECD y la base macrofinanciera de Jordà et al.</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>Te enseña doble selección (double ML), que reutilizas en tu agenda causal.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> El backtesting de modelos (predicho contra observado por cosecha), Lasso y la validación fuera de tiempo. El problema del paper, que un modelo con muchas variables regularizadas engañe al test de validación, es el mismo que enfrentas al validar una PD con muchas variables.</li><li><strong>Lo nuevo para ti:</strong> VaR y déficit esperado (ES), la regresión cuantílica y los momentos ortogonales (Double Lasso). Esto último conecta con la inferencia causal que estás aprendiendo.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, en la validación y el riesgo de modelo: backtests de pérdida o de estrés por cartera. En tus repos, el análisis causal de <code>credit-risk-agent-lab</code> y el uplift de <code>growth-marketing-agent</code> usan la misma idea de residualizar.</li><li><strong>Primer paso (≤ 2 h):</strong> En numpy, simula 200 réplicas de una regresión con 50 variables de ruido y compara la tasa de rechazo del test ingenuo con la del test residualizado (LassoCV de scikit-learn).</li></ul></section>
+      <dl class="facts"><div><dt>Qué cambia</dt><dd>construye un PC1 diario desde una matriz EWMA de retornos estandarizados del S&amp;P 500 histórico y lo compara con SPY y RSP como cobertura de 1.000 portafolios aleatorios por tamaño.</dd></div><div><dt>Por qué importa</dt><dd>separa dos logros que suelen confundirse: parecerse al mercado y cubrir mejor.</dd></div><div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En 2018–2026, el PC1 correlaciona 0,925 con SPY y 0,993 con RSP. En portafolios de 50 acciones (Dirichlet) reduce la varianza 92,17 %, frente a 79,03 % del SPY y 91,93 % del RSP; con pesos inclinados a liquidez gana el RSP. <span class="tag t-aut">AUTORES</span> Es efectividad bruta, sin costos.</dd></div><div><dt>Experimento sugerido</dt><dd>con los 49 portafolios de industrias diarios de Kenneth French, construye el PC1 EWMA y cubre 1.000 combinaciones aleatorias de 10 industrias. Baselines: el mercado de French y el promedio equiponderado. Métrica: reducción de varianza media; éxito si el PC1 supera al mercado.</dd></div></dl>
+      <div class="res">no enlaza código. Precios de Yahoo Finance y miembros históricos reconstruidos desde Wikipedia.</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>Se reproduce entero con datos públicos y pandas, y te da PCA y EWMA aplicados a riesgo de mercado.</p><ul><li><b>Lo que ya sabes que te sirve:</b> la regresión (el coeficiente de cobertura es una beta de MCO), la validación con ventanas móviles, el bootstrap y la idea de comparar contra un baseline simple antes de declarar ganador, como cuando un LightGBM debe superar a una logística. Como economista conoces el CAPM.</li><li><b>Lo nuevo para ti:</b> PCA sobre matrices de covarianza, EWMA, eigenportafolios y la cobertura de beta con ETFs. Los derivados y la microestructura no aparecen, así que el esfuerzo es bajo a moderado.</li><li><b>Dónde lo aplicas:</b><ul><li>En tu trabajo: <span class="tag t-inf">INFERENCIA</span> el PC1 de las curvas de mora por cosecha o por segmento es un "factor común" de la cartera. Separarlo del componente propio de cada segmento ayuda a explicar si un deterioro es sistémico o local.</li><li>En tus repos o rutas: es un ejercicio natural del módulo de portafolios y riesgo de mercado de tu ruta de Finanzas.</li></ul></li><li><b>Primer paso (≤ 2 h):</b> baja los 49 portafolios de industrias diarios de Kenneth French. Calcula la matriz EWMA de retornos estandarizados con vida media de 252 días y compara el PC1 con el retorno del mercado de French (correlación y pesos positivos).</li></ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><b>Problema y motivación:</b> Con muchos predictores y regularización, el sesgo de estimación puede hacer que un modelo óptimo "falle" un <i>backtest</i> convencional, aun fuera de muestra.</p>
+<p><b>Problema y motivación:</b> para conservar acciones sin exposición al mercado hace falta un instrumento que capture el movimiento común. SPY y RSP no eligen pesos según la dependencia observada. ¿Cubre mejor un PC1 adaptativo, y depende del portafolio cubierto?</p>
 <p><b>Conceptos clave:</b></p>
-<ul><li>Valor en riesgo (<i>Value-at-Risk</i>, VaR): cuantil α condicional; aquí α = 0,10.</li><li>Déficit esperado (<i>expected shortfall</i>, ES): media del resultado bajo el VaR. Solo es elicitable junto con el VaR (<i>joint elicitability</i>).</li><li>Pseudo-resultado (<i>tail-size-adjusted score</i>): Y* = q + (1/α)·1{Y ≤ q}·(Y − q). Su media condicional es el ES.</li><li>Función de prueba (<i>test function</i>, w): dirección donde se busca el error, p. ej. un predictor omitido.</li><li>Ortogonalidad de Neyman (<i>Neyman-orthogonal score</i>): el momento no cambia, a primer orden, ante pequeños errores de estimación.</li><li>Equivalencia con el oráculo (<i>oracle equivalence</i>): el estadístico se comporta como si los parámetros fueran conocidos.</li></ul>
-<p><b>Datos:</b></p>
-<ul><li>Simulaciones: innovaciones t₅, predictores dependientes; pT − 1 ∈ {25, 50, 100, 150}, T ∈ {250, 500, 1000, 5000}, P = ⌊0,3T⌋, 200 réplicas.</li><li>Aplicación: crecimiento interanual del PIB trimestral del G7, 1962Q1–2019Q4; 64 predictores (15 series macrofinancieras y el crecimiento, con 4 rezagos). Fuentes: FRED, OECD y Jordà et al. Evaluación 2002Q3–2019Q4 (R = 154, P = 70; Canadá P = 68). Sin datos en tiempo real ni código publicado.</li></ul>
+<ul><li>Componente principal (<i>principal component</i>): dirección de máxima varianza de una matriz; el primero, PC1, suele ser el modo de mercado.</li><li>EWMA (<i>exponentially weighted moving average</i>): promedio que da más peso a lo reciente; la vida media es el número de días en que una observación pierde la mitad de su peso.</li><li>Retorno estandarizado (<i>volatility-standardised return</i>): retorno dividido por la volatilidad estimada el día anterior.</li><li>Inversión neta unitaria (<i>unit net investment</i>): normalizar los pesos para que sumen 1.</li><li>Reducción de varianza (<i>variance reduction</i>): 1 − Var(residuo cubierto)/Var(portafolio).</li><li>Correlación residual media (<i>average pairwise residual correlation</i>): cuánto se mueven juntos los portafolios ya cubiertos.</li><li>Bootstrap estacionario por bloques (<i>stationary block bootstrap</i>): remuestreo de fechas por bloques que conserva la dependencia temporal.</li></ul>
+<p><b>Datos:</b> precios diarios de Yahoo Finance de los miembros históricos del S&amp;P 500, SPY y RSP, de enero de 2015 a agosto de 2026; tras 756 días de calentamiento, el análisis cubre 2.170 días desde enero de 2018. De 744 tickers, 134 no tenían precios.</p>
 <p><b>Método paso a paso:</b></p>
-<ol><li>Estimar el VaR con regresión cuantílica Lasso.</li><li>Construir Y* y estimar el ES con Lasso sobre Y*.</li><li>Regresar w sobre los regresores del ES (todo Xₜ) y quedarse con el residuo k.</li><li>Score por fecha: S = k·(Y* − ES pronosticado).</li><li>J = P·S̄′Ω̂⁻¹S̄ con Ω̂ HAC, contra una χ² con dim(w) grados de libertad.</li></ol>
-<p>Supuestos: VaR y ES óptimos dados Xₜ, β-mixing, momentos finitos (q &gt; 4); ventanas fijas, móviles o expansivas.</p>
+<ol><li>Volatilidad EWMA de cada acción con vida media de 60 actualizaciones; retorno estandarizado, recortado a ±10.</li><li>Matriz EWMA de segundos momentos sin centrar, con vida media de 252 días; reinicio de fila y columna cuando una acción entra al índice.</li><li>Cada día, vector propio principal sobre los miembros activos (al menos 30); pesos = v_i/σ_i normalizados para sumar 1.</li><li>1.000 portafolios por tamaño (1, 10, 20 y 50 acciones) formados el 3 de enero de 2018, con pesos Dirichlet o inclinados a liquidez.</li><li>Coeficiente de cobertura con ventanas móviles de 126 días, actualizado cada 21 días con datos hasta el día anterior.</li><li>Comparación de reducción de varianza y de correlación residual, con bootstrap de 500 réplicas y bloques de media 21 días.</li></ol>
 <p><b>Resultados:</b></p>
-<ul><li>Tamaño nominal 5 % <span class="tag t-med">MEDIDO</span>: el test ortogonal (LR) rechaza entre 3,0 % y 8,5 %; el convencional (NLR), entre 11,5 % y 39,5 %.</li><li>Potencia <span class="tag t-med">MEDIDO</span>: con T = 5000 y η = 0,03, 25,0 % (50 predictores) y 39,5 % (150) ante heterocedasticidad no lineal.</li></ul>
-<div class="tbl"><table><thead><tr><th>G7, 2002–2019 (p-valores)</th><th>Baseline</th><th>LR</th></tr></thead><tbody><tr><td>EE. UU., M0 sin finanzas</td><td>0,0001</td><td>0,0009 (Holm 14: 0,0120)</td></tr><tr><td>Italia, M0</td><td>0,0373</td><td>0,0152 (Holm 14: 0,1979)</td></tr><tr><td>Canadá, M1 no lineal</td><td>0,0002</td><td>0,8125</td></tr><tr><td>Canadá, ES²</td><td>0,7776</td><td>0,0061</td></tr></tbody></table></div>
-<ul><li><span class="tag t-med">MEDIDO</span> En EE. UU., Lasso selecciona 0,00 predictores financieros para el ES y aun así se rechaza M0. Con el modelo M3, la pérdida cuadrática baja de 4,4244 a 4,2781 (3,31 %).</li><li><span class="tag t-med">MEDIDO</span> Las excedencias del GaR van de 7,1 % a 22,9 %.</li></ul>
+<ul><li><span class="tag t-med">MEDIDO</span> El PC1 tiene una mediana de 472 nombres activos y 100 % de pesos positivos (mínimo 98,80 %). Los diez mayores pesos suman 4,06 % y el PC1 explica una mediana de 29,30 % del segundo momento estandarizado.</li></ul>
+<div class="tbl"><table><thead><tr><th>Reducción de varianza media (%)</th><th>SPY</th><th>RSP</th><th>PC1</th></tr></thead><tbody><tr><td>1 acción</td><td>30,80</td><td>35,45</td><td>35,72</td></tr><tr><td>10, Dirichlet</td><td>63,52</td><td>73,69</td><td>74,03</td></tr><tr><td>50, Dirichlet</td><td>79,03</td><td>91,93</td><td>92,17</td></tr><tr><td>10, liquidez</td><td>61,17</td><td>66,45</td><td>66,31</td></tr><tr><td>50, liquidez</td><td>80,93</td><td>83,65</td><td>82,99</td></tr></tbody></table></div>
+<p>Todas las cifras son <span class="tag t-med">MEDIDO</span>.</p>
+<ul><li><span class="tag t-med">MEDIDO</span> Frente al SPY, el PC1 da residuos al cuadrado significativamente menores en todos los tamaños Dirichlet y en 1, 10 y 20 con liquidez. Frente al RSP, ninguna diferencia Dirichlet es significativa, y el RSP gana con significancia en los portafolios de varias acciones inclinados a liquidez.</li><li><span class="tag t-med">MEDIDO</span> En 50 acciones Dirichlet, la correlación media pasa de 0,9335 sin cubrir a 0,6840 con SPY, 0,1593 con RSP y 0,1244 con PC1.</li></ul>
 <p><b>Robustez y limitaciones:</b></p>
-<ul><li><span class="tag t-aut">AUTORES</span> El rechazo de EE. UU. resiste con 2 y 8 rezagos HAC. Persiste sobre-rechazo bajo H₀ (7 % a 15,5 %) en los diseños con predictores omitidos.</li><li><span class="tag t-aut">AUTORES</span> No corrige sesgos ni incoherencias del pronóstico (ES &gt; VaR) y depende de un GaR bien especificado. M3 es exploratorio.</li><li><span class="tag t-inf">INFERENCIA</span> Con P = 70, un trimestre de crisis puede dominar el score (~54 % en Canadá).</li></ul>
-<p><b>Aporte frente a trabajos previos:</b> Lleva Double Lasso (Chernozhukov et al.) a ES en series de tiempo y extiende West (1996) y Barendse et al. (2023) a alta dimensión. Frente a los e-backtests, evalúa optimalidad, no solo subestimación.</p>
-<p><b>Cómo aplicarlo:</b> <span class="tag t-inf">INFERENCIA</span> Con FRED (PIB, NFCI, diferencial de plazos) y Kenneth French (factores), en Python:</p>
-<ul><li>VaR: <code>QuantileRegressor</code> (L1) de scikit-learn.</li><li>ES: <code>LassoCV</code> sobre Y*.</li><li>Residualización: Lasso sobre la misma Xₜ.</li><li>Ω̂: <code>cov_hac</code> de statsmodels.</li></ul>
-<p>Compara NLR y LR; en crédito, w puede ser un indicador macro omitido.</p>
-<p><b>Glosario breve:</b></p>
-<ul><li>HAC: varianza robusta a heterocedasticidad y autocorrelación.</li><li>Holm: ajuste por pruebas múltiples.</li><li>GaR/GES: crecimiento en riesgo y su ES.</li><li>Residualizar: quitar a w lo que el ES ya explica.</li></ul>
-<p><b>Frase para recordar:</b> que Lasso no elija un predictor no prueba que el ES esté bien especificado; eso solo lo dice un <i>backtest</i> ortogonal.</p>
+<ul><li><span class="tag t-aut">AUTORES</span> No incluye costos de transacción, financiamiento ni préstamo de acciones; mide efectividad estadística bruta.</li><li><span class="tag t-aut">AUTORES</span> Las vidas medias son fijas, no óptimas. La reconstrucción histórica no elimina el sesgo por las historias de precios que faltan.</li><li><span class="tag t-aut">AUTORES</span> El experimento no aísla si la ventaja viene de la ponderación o de la concentración.</li><li><span class="tag t-inf">INFERENCIA</span> El PC1 se rebalancea a diario sobre unos 470 nombres; replicarlo en la práctica costaría más que mantener el RSP.</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> Avellaneda et al. ya construyeron eigenportafolios y los compararon con el mercado ponderado por capitalización. Este paper agrega el benchmark equiponderado y muestra que buena parte de la ventaja del PCA sobre el SPY ya la da un ETF equiponderado.</p>
+<p><b>Cómo aplicarlo:</b> reproduce el ejercicio con industrias de Kenneth French y valida siempre contra el benchmark simple equiponderado antes de atribuir valor al método.</p>
+<p><b>Glosario breve:</b> PC1; EWMA; vida media; reducción de varianza; correlación residual; bootstrap por bloques.</p>
+<p><b>Frase para recordar:</b> que un componente se parezca al mercado no lo hace mejor cobertura; compáralo con el índice equiponderado antes de celebrar.</p>
       </div></details>
     </article>
 
     <article class="piece">
       <div class="piece-head"><span class="rank">04</span>
-        <h2><a href="https://arxiv.org/abs/2611.14325" target="_blank" rel="noopener">Point-in-Time Encoders for Earnings Calls</a></h2>
-        <div class="byline">Alessio Brini · arXiv v1 10 nov 2026</div>
+        <h2><a href="https://www.nber.org/papers/w36032" target="_blank" rel="noopener">Clouds of Credit: Mapping the Financial Web Behind AI Compute</a></h2>
+        <div class="byline">Stijn Van Nieuwerburgh y Zijin Su (Columbia Business School). NBER WP 36032, publicado el 16 nov 2026 (primer borrador del 1 nov)</div>
       </div>
-      <div class="chips"><span class="chip topic">ML y texto financiero</span><span class="chip">Look-ahead bias</span><span class="chip">Código citado</span></div>
-      <details class="more ctx"><summary>Contexto previo: texto financiero, embeddings y sesgo de anticipación</summary><div class="body">
-<p><b>Qué es:</b> el análisis de texto financiero convierte documentos como informes 10-K, noticias o llamadas de resultados (<i>earnings calls</i>) en números que entran a un modelo. Hoy se hace sobre todo con embeddings (<i>embeddings</i>): vectores producidos por un codificador (<i>encoder</i>) de lenguaje, en los que textos parecidos quedan cerca.</p>
-<p><b>De qué se compone:</b> un corpus fechado; un codificador preentrenado (tipo BERT), a veces ajustado al dominio; una tarea (recuperar pasajes, clasificar tono, predecir retornos o sorpresas de beneficios); y una evaluación temporal: entrenar hasta t y evaluar después de t.</p>
-<p><b>Cómo se ha trabajado:</b> primero con diccionarios: Loughran y McDonald (2011) mostraron que las listas generales de palabras negativas clasifican mal el lenguaje financiero y crearon una propia. Luego vinieron la bolsa de palabras y TF-IDF con regresiones penalizadas y, desde BERT (Devlin et al., 2019), los modelos preentrenados, incluidas variantes financieras. La generación aumentada por recuperación (<i>retrieval-augmented generation</i>, RAG) usa embeddings para encontrar pasajes que luego lee un modelo de lenguaje.</p>
-<p><b>Dónde está la dificultad:</b> un modelo preentrenado con texto de 2023 "sabe" cosas que no se sabían en 2015. Si se usa en un backtest de 2015 hay sesgo de anticipación (<i>look-ahead bias</i>): fuga de información futura, aunque los precios estén bien fechados. Es difícil de detectar porque no está en los datos, sino en los pesos del modelo.</p>
-<p><b>Ejemplo intuitivo (números ilustrativos):</b> en 2015 una empresa habla de "migrar a la nube". Un codificador entrenado con texto hasta 2023 ya vio miles de llamadas en las que esa frase precede a buenos resultados y la ubica junto a "crecimiento"; uno entrenado hasta 2014 no tiene esa asociación. El backtest con el primero podría mostrar un IC de 0,04 cuando el alcanzable en su momento era 0,02.</p>
-<p><b>Conexión:</b> el paper mide cuánto pesa esa fuga. Para el lector es el principio de validación fuera de tiempo (<i>out-of-time</i>) de los modelos de crédito, aplicado ahora al modelo de texto.</p>
+      <div class="chips"><span class="chip topic">Finanzas corporativas</span><span class="chip">Riesgo de crédito en red</span><span class="chip">Sin código</span></div>
+      <details class="more ctx"><summary>Contexto previo: contagio en redes financieras y pérdida dado incumplimiento</summary><div class="body">
+<p><b>Qué es:</b> el contagio en redes (<i>network contagion</i>) ocurre cuando el impago de una empresa reduce lo que reciben sus acreedores, que a su vez dejan de pagar a los suyos. La pérdida dado incumplimiento (<i>loss given default</i>, LGD) es la fracción de la deuda que el acreedor no recupera cuando el deudor incumple.</p>
+<p><b>De qué se compone:</b> (1) un libro de obligaciones entre empresas (quién debe a quién y con qué prioridad); (2) los activos externos de cada empresa; (3) las participaciones de capital cruzadas; (4) una regla de compensación (<i>clearing</i>): cada empresa paga lo que debe o, si no le alcanza, reparte lo que tiene en proporción. Con deuda garantizada sin recurso (<i>non-recourse</i>), el prestamista solo cobra de los flujos del proyecto pignorado, no del resto de la empresa.</p>
+<p><b>Cómo se ha trabajado:</b> Eisenberg y Noe (2001) definieron el vector de pagos de equilibrio en una red de obligaciones. Elliott, Golub y Jackson (2014) estudiaron cascadas con participaciones cruzadas, y Acemoglu, Ozdaglar y Tahbaz-Salehi (2015) mostraron que la misma red puede amortiguar choques pequeños y amplificar choques grandes. En crédito minorista y Basilea, la LGD se modela por tipo de garantía y prioridad. Stulz y Johnson (1985) mostraron que garantizar deuda nueva con la inversión nueva puede aliviar el sobreendeudamiento (<i>debt overhang</i>).</p>
+<p><b>Dónde está la dificultad:</b> las exposiciones están dispersas en reportes, contratos y notas de prensa, y los contratos de servicio o arriendo no siempre aparecen como deuda. Sin un libro consolidado, no se sabe si el capital de una empresa sana protege a los acreedores de otra.</p>
+<p><b>Ejemplo intuitivo (números ilustrativos):</b> A debe 100 a B y B debe 80 a un banco. Si A solo puede pagar 40, B recibe 40 y, si no tiene otros activos, paga 40 al banco: LGD del banco de 50 %, aunque el banco nunca le prestó a A. Si B tuviera 60 de otros negocios, pagaría completo.</p>
+<p><b>Cómo se conecta:</b> el paper construye ese libro para las empresas del auge de la IA. Para el lector, es LGD y prioridad de pago, conceptos que ya maneja, en una red de empresas en lugar de una cartera de consumo.</p>
       </div></details>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Entrena encoders por "vintage" (cortes anuales 2010–2024) que solo leen llamadas de resultados fechadas antes de cada corte, para backtests sin look-ahead, y los ajusta con los pares pregunta-respuesta de las propias llamadas.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Cualquier señal de texto con un modelo preentrenado en el futuro filtra información. Aquí se mide cuánto pesa.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> Sobre 412.248 llamadas, los vintages de 33,8 M de parámetros recuperan respuestas mejor que los retrievers generales probados en todos los trimestres. El IC de la línea base de precios con el retorno del día siguiente es 0,025, y los embeddings lo suben +0,012 (t = 3,0). <span class="tag t-aut">AUTORES</span> Los vintages point-in-time importan sobre todo para la recuperación y poco para pronosticar retornos.</dd></div>
-        <div><dt>Limitaciones</dt><dd><span class="tag t-inf">INFERENCIA</span> Las transcripciones vienen de Capital IQ en WRDS y no se redistribuyen; eso limita replicarlo.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Con secciones MD&amp;A de 10-K de EDGAR para ~200 firmas, ajusta TF-IDF con todo el corpus y luego solo con años previos. Baseline: IC de tamaño + retorno pasado (Yahoo Finance). Métrica: diferencia de IC entre las dos versiones.</dd></div>
-      </dl>
-      <div class="res">El paper cita <a href="https://github.com/Alessiobrini/point-in-time-encoders-for-earnings-calls" target="_blank" rel="noopener">github.com/Alessiobrini/point-in-time-encoders-for-earnings-calls</a>; respondió 403 desde mi entorno y no lo verifiqué.</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Adoptar ya</span></h4><p>La regla de fechas cuesta poco y protege tus evals; no hace falta entrenar ningún encoder.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> La fuga de información (look-ahead) es el mismo problema que una variable de desempeño colada en la ventana de observación de un scorecard. Ya cuidas las fechas de corte y la validación fuera de tiempo.</li><li><strong>Lo nuevo para ti:</strong> Los embeddings de texto, los encoders y retrievers, y el coeficiente de información (IC) como métrica. Aplicar la regla es fácil; entrenar encoders propios es deep learning, que todavía no has trabajado.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, si usas texto o LLMs sobre datos de clientes, un modelo preentrenado con datos posteriores puede «saber» el futuro en un backtest. En <code>credit-risk-agent-lab</code>, el agente y el juez evalúan préstamos de 2015 con modelos entrenados mucho después [inferencia].</li><li><strong>Primer paso (≤ 2 h):</strong> Agrega a la documentación de evals del lab la fecha de corte de conocimiento de cada modelo usado y una advertencia de posible look-ahead.</li></ul></section>
+      <dl class="facts"><div><dt>Qué cambia</dt><dd>arma un libro de deudas, arriendos, compromisos y participaciones entre 11 empresas del auge de la IA y los arrendadores de centros de datos, y lo calibra en un modelo con inversión y financiamiento endógenos.</dd></div><div><dt>Por qué importa</dt><dd>muestra cómo los contratos de servicio y la deuda sin recurso llevan el riesgo de la IA a acreedores que no prestaron a los laboratorios.</dd></div><div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> El equilibrio invierte 55 % más que el óptimo social y la deuda financia el 59 %. En el estado malo se pierden 16,87 billones de dólares y los prestamistas externos pierden 42,3 %; sin contagio de pagos, 11,81 billones. <span class="tag t-inf">INFERENCIA</span> El escenario malo es calibrado, no estimado.</dd></div><div><dt>Experimento sugerido</dt><dd>Eisenberg-Noe en numpy con 6 empresas sintéticas. Baseline: pérdidas sin contagio. Métrica: fracción de pérdidas debida a la propagación.</dd></div></dl>
+      <div class="res">sin código. SEC (pública); CRSP, Compustat y Pitchbook (licenciados).</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Solo leer</span></h4><p>Usa conceptos que ya dominas (LGD, prioridad, garantías) en un contexto de finanzas corporativas, pero el modelo no es reproducible con tus datos.</p><ul><li><b>Lo que ya sabes que te sirve:</b> LGD, deuda garantizada frente a obligaciones ordinarias, pérdida esperada y estrés por escenarios. El análisis de "qué pasa si cae la productividad" es la lógica de un estrés de cartera con escenarios macro.</li><li><b>Lo nuevo para ti:</b> los modelos de compensación en redes (Eisenberg-Noe), la valoración con probabilidades neutrales al riesgo, la deuda de proyecto sin recurso y el equilibrio de Nash en inversión. Es finanzas corporativas avanzada, con un esfuerzo moderado a alto.</li><li><b>Dónde lo aplicas:</b><ul><li>En tu trabajo: <span class="tag t-inf">INFERENCIA</span> la lección "la solvencia de la empresa no garantiza el pago de la deuda de proyecto" se traslada a créditos con garantía específica y a la concentración en aliados comerciales de una fintech.</li><li>En tus repos: el módulo de LGD de <code>credit-risk-agent-lab</code> estima LGD por préstamo. Este paper agrega una idea que el lab no tiene: la LGD depende de lo que paguen los deudores de tu deudor.</li></ul></li><li><b>Primer paso (≤ 2 h):</b> escribe en numpy el vector de pagos de Eisenberg-Noe para una red de 4 nodos con números inventados y mide cuánto cambia la LGD de un banco externo al quitar los pagos entre nodos.</li></ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><b>Problema y motivación:</b> Los codificadores convierten las conferencias de resultados (<i>earnings calls</i>) en vectores para buscar, alimentar modelos de lenguaje o predecir. En un backtest, cada vector de la fecha t debe salir de un codificador que no leyó texto posterior a t. Esa fuga nunca se había medido.</p>
+<p><b>Problema y motivación:</b> la expansión de cómputo para la IA supera lo que las grandes tecnológicas financian con caja y crea una red de contratos, arriendos, préstamos y participaciones. ¿Cuánto puede financiar la red, invierte de más y quién pierde si la IA decepciona?</p>
 <p><b>Conceptos clave:</b></p>
-<ul><li>Sesgo de anticipación (<i>look-ahead bias</i>): usar información inexistente en la fecha simulada.</li><li>Vintage (<i>vintage</i>): versión del modelo entrenada solo con texto hasta su corte (31 de diciembre del año Y).</li><li>Ajuste fino contrastivo (<i>contrastive fine-tuning</i>): acerca cada pregunta a su respuesta y la aleja de las demás del lote.</li><li>Preentrenamiento adaptativo al dominio (<i>domain-adaptive pretraining</i>, DAPT): seguir preentrenando un modelo general con texto del dominio.</li><li>Prima de anticipación (<i>look-ahead premium</i>): cambio en una métrica al usar un vintage posterior al disponible en su momento.</li><li>Coeficiente de información (<i>information coefficient</i>, IC): correlación de rangos entre pronóstico y resultado.</li></ul>
-<p><b>Datos:</b> 412 248 llamadas de más de 16 000 empresas (septiembre 2004–septiembre 2026), de Capital IQ en WRDS, incluidas empresas ya deslistadas; retornos de CRSP, factores diarios Fama-French y beneficios de Compustat. No son públicos; el código sí. Se reserva el 10 % de las llamadas para evaluar.</p>
+<ul><li>Hyperscaler: proveedor de nube a gran escala (Microsoft, Amazon, Alphabet, Meta, Oracle y el grupo SpaceX/xAI/X).</li><li>Neocloud: proveedor especializado en cómputo de IA (CoreWeave, Nebius).</li><li>Deuda sin recurso (<i>non-recourse debt</i>): préstamo que solo se cobra con los flujos del proyecto pignorado.</li><li>Obligaciones heredadas (<i>legacy obligations</i>): deudas y compromisos firmados antes de la nueva inversión.</li><li>Probabilidades neutrales al riesgo (<i>risk-neutral probabilities</i>): probabilidades ajustadas que valoran los activos descontando a la tasa libre de riesgo.</li><li>Externalidad de robo de negocio (<i>business-stealing externality</i>): cada empresa no internaliza que su expansión reduce los ingresos de las demás.</li></ul>
+<p><b>Datos:</b> libro al 30 de junio de 2026 con reportes de la SEC, anuncios y prensa; CRSP y Compustat; Pitchbook para valoraciones privadas; Cleanview para capacidad y Epoch AI para chips. Los compromisos se descuentan al 5 % anual.</p>
 <p><b>Método paso a paso:</b></p>
-<ol><li>Pares pregunta del analista–respuesta del directivo como supervisión sin etiquetado.</li><li>Codificador ModernBERT de 33,8M parámetros, vintages anuales 2010–2024.</li><li>Cuatro recetas: desde cero (1,2B tokens fijos), encadenada (cada vintage continúa el anterior con el año nuevo), ChronoBERT + ajuste contrastivo y ChronoBERT + DAPT.</li><li>Mismo ajuste contrastivo para todas, solo con pares fechados hasta el corte; un registro bloquea vintages posteriores a la consulta.</li><li>Evaluación: recuperación en el segundo trimestre de Y+1; ridge reestimada cada enero; vecinos más cercanos; control de repetición (<i>replay</i>) para separar texto nuevo de entrenamiento extra.</li></ol>
+<ol><li>Registrar cada reclamo bilateral y asignar el resto de las obligaciones a acreedores externos.</li><li>Calibrar ingresos heredados para reproducir el patrimonio de referencia de cada empresa.</li><li>Resolver un equilibrio de Nash: cada usuario de cómputo elige su expansión para maximizar el valor de sus accionistas actuales.</li><li>Valorar contratos y deuda nueva con un mismo sistema de precios: productividad de la IA de (1,95; 1; 0,05) con probabilidades físicas (25 %, 50 %, 25 %) y neutrales al riesgo (15 %, 50 %, 35 %); tasa bruta de 1,05.</li><li>Compensar pagos en el estado malo según prioridades contractuales y consolidar las tenencias internas.</li></ol>
 <p><b>Resultados:</b></p>
-<div class="tbl"><table><thead><tr><th>Recall@1 dentro de la llamada (15 trimestres)</th><th>Valor</th></tr></thead><tbody><tr><td>Desde cero / e5-base / bge-small</td><td>0,728 / 0,584 / 0,538 <span class="tag t-med">MEDIDO</span></td></tr><tr><td>Diferencia frente a e5-base</td><td>+0,144 [0,139; 0,149] <span class="tag t-med">MEDIDO</span></td></tr></tbody></table></div>
-<ul><li>Recall@5: 0,952 frente a 0,880 de e5-base <span class="tag t-med">MEDIDO</span>.</li><li>IC al día siguiente, 2013–2025: el baseline de precios logra 0,025; los vectores desde cero suman +0,012 (t = 3,0), «alrededor de la mitad» <span class="tag t-med">MEDIDO</span>.</li><li>Prima en recuperación: encadenada +0,0041 (mismo año) y +0,0090 (vintage 2024); desde cero, sin ganancia neta (−0,0003 y −0,0028) <span class="tag t-med">MEDIDO</span>. El replay da −0,0027; el texto posterior, +0,0069 <span class="tag t-med">MEDIDO</span>.</li><li>Un modelo de lenguaje que lee lo recuperado hereda +0,0764 nats por token; sin la respuesta real entre candidatos, la prima cae a 0,0018 <span class="tag t-med">MEDIDO</span>.</li><li>Sorpresa de beneficios con solo texto: prima 0,0134 (t = 3,7); en llamadas reservadas, 0,0126 con intervalo [−0,0105; 0,0276] <span class="tag t-med">MEDIDO</span>. Retornos: sin mejora en ningún horizonte <span class="tag t-med">MEDIDO</span>.</li></ul>
+<ul><li><span class="tag t-med">MEDIDO</span> Antes de la expansión hay 1,21 billones de dólares de deuda con prestamistas frente a 20,55 billones de patrimonio. Las obligaciones heredadas suman 5,22 billones.</li><li><span class="tag t-med">MEDIDO</span> El equilibrio descentralizado instala 277,5 GW con 6,30 billones de capex, frente a 178,9 GW del óptimo social (55 % más). Se financia con 3,73 billones de préstamos, 2,26 billones de acciones nuevas y 0,31 billones de caja.</li><li><span class="tag t-med">MEDIDO</span> La deuda con prestamistas sobre patrimonio pasa de 5,9 % a 26,3 %; las obligaciones brutas, de 25,4 % a 71,2 % del patrimonio.</li></ul>
+<div class="tbl"><table><thead><tr><th>Estado de baja productividad (billones de USD)</th><th>Sin expansión</th><th>Con expansión</th></tr></thead><tbody><tr><td>Pérdida de accionistas externos</td><td>8,61</td><td>14,64</td></tr><tr><td>Pérdida de prestamistas externos</td><td>0,05</td><td>2,07</td></tr><tr><td>Pérdida de otros acreedores externos</td><td>0,12</td><td>0,16</td></tr><tr><td>Pérdida consolidada</td><td>8,78</td><td>16,87</td></tr></tbody></table></div>
+<p>Todas las cifras son <span class="tag t-med">MEDIDO</span> dentro del modelo calibrado.</p>
+<ul><li><span class="tag t-med">MEDIDO</span> Con la expansión, OpenAI, Anthropic y Oracle pagan 9,24 %, 12,88 % y 3,11 % de sus obligaciones ordinarias. CoreWeave paga 42,99 %, pero cubre completos sus préstamos garantizados nuevos.</li><li><span class="tag t-med">MEDIDO</span> Los prestamistas externos pierden 42,3 % de su inversión inicial (el resumen lo redondea como LGD de 40 %).</li><li><span class="tag t-med">MEDIDO</span> Si el gobierno cubre los pagos faltantes entre las empresas clave (5,06 billones en transferencias), las pérdidas privadas bajan de 16,87 a 11,81 billones, cerca de 30 % menos.</li></ul>
 <p><b>Robustez y limitaciones:</b></p>
-<ul><li>Un solo corpus, modelos de hasta 149,0M parámetros; exige turnos de preguntas y respuestas, ausentes en noticias o filings <span class="tag t-aut">AUTORES</span>.</li><li>De 96 primas, pocas superan Bonferroni; las ganancias del texto son pequeñas <span class="tag t-aut">AUTORES</span>.</li><li>Sin WRDS no hay Capital IQ ni CRSP; replicarlo exige otra fuente de transcritos <span class="tag t-inf">INFERENCIA</span>.</li></ul>
-<p><b>Aporte frente a trabajos previos:</b> ChronoBERT y DatedGPT fechan el modelo de lenguaje, no el recuperador. Aquí se mide la fuga por el codificador y se muestra que llega a la recuperación aumentada.</p>
-<p><b>Cómo aplicarlo:</b></p>
-<ul><li>Guarda con cada embedding su fecha de corte y rechaza consultas anteriores <span class="tag t-inf">INFERENCIA</span>.</li><li>Usa EDGAR (8-K) para fechar anuncios, Yahoo Finance para precios y los factores diarios de Kenneth French para el mercado <span class="tag t-inf">INFERENCIA</span>.</li><li>Mide el IC trimestral con ventanas expansivas, como en la validación temporal de scorecards de crédito <span class="tag t-inf">INFERENCIA</span>.</li></ul>
-<p><b>Glosario breve:</b></p>
-<ul><li>Vintage: modelo congelado a una fecha.</li><li>Recall@1: proporción de preguntas cuya respuesta queda primera.</li></ul>
-<p><b>Frase para recordar:</b> en un backtest, el codificador también tiene fecha; la fuga pesa en la recuperación y poco en los retornos.</p>
-      </div></details>
-    </article>
-
-    <article class="piece">
-      <div class="piece-head"><span class="rank">05</span>
-        <h2><a href="https://www.nber.org/papers/w36004" target="_blank" rel="noopener">The Main Monetary Policy Shock</a></h2>
-        <div class="byline">Christoph Boehm, Husang Kim, T. Niklas Kroner · NBER WP 36004, emitido el 9 nov 2026</div>
-      </div>
-      <div class="chips"><span class="chip topic">Política monetaria</span><span class="chip">VAR</span><span class="chip">Sin código</span></div>
-      <details class="more ctx"><summary>Contexto previo: choques de política monetaria y su identificación</summary><div class="body">
-<p><b>Qué es:</b> un choque de política monetaria (<i>monetary policy shock</i>) es la parte de una decisión del banco central que el mercado no anticipaba. Se aísla porque la parte anticipada responde a la economía, y usarla mezclaría causa y efecto.</p>
-<p><b>De qué se compone:</b> una medida de la postura (tasa de política o tasas a 1–2 años); un método para aislar la sorpresa; y un modelo que trace sus efectos, normalmente un vector autorregresivo (<i>vector autoregression</i>, VAR) o proyecciones locales (<i>local projections</i>). Del VAR se leen las respuestas impulso (<i>impulse responses</i>) y la descomposición de varianza (<i>forecast error variance decomposition</i>): qué parte de la incertidumbre de pronóstico de una variable se debe al choque.</p>
-<p><b>Cómo se ha trabajado:</b> (a) VAR con identificación recursiva o de Cholesky, que ordena la tasa después de producción y precios (Christiano, Eichenbaum y Evans, 1999); (b) enfoque narrativo con los pronósticos internos de la Fed (Romer y Romer, 2004); (c) sorpresas de alta frecuencia: el cambio de los futuros de tasas en una ventana corta alrededor del anuncio (Kuttner, 2001; Gürkaynak, Sack y Swanson, 2005, que separan un factor de tasa objetivo y uno de sendero, <i>path</i>). Estas sorpresas se usan como instrumentos externos en un VAR.</p>
-<p><b>Dónde está la dificultad:</b> con estas medidas, la política monetaria suele explicar una fracción pequeña de las fluctuaciones del producto y los precios. No está claro si es porque importa poco o porque cada medida captura solo una parte de lo que comunica la Fed (guía futura, información sobre la economía, balance). Además, las sorpresas pueden mezclar la reacción a la política con la reacción a lo que el banco central revela sobre la economía.</p>
-<p><b>Ejemplo intuitivo (números ilustrativos):</b> el mercado esperaba un recorte de 25 pb y la Fed recorta 25 pb, pero anuncia que no habrá más. La tasa cercana no se sorprende; la de dos años sube 10 pb y el dólar se aprecia 0,5 %. Una medida basada solo en la tasa cercana registraría un choque de cero.</p>
-<p><b>Conexión:</b> el paper combina varias sorpresas para capturar más de lo que comunica la Fed. Para el lector en Colombia, el canal del dólar es el que llega a las tasas locales y al riesgo de crédito en moneda extranjera.</p>
-      </div></details>
-      <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Define el choque monetario principal como la combinación de sorpresas de alta frecuencia (tasa cercana, PATH y el choque "no-yield" de Boehm y Kroner, 2024) que más explica la varianza de pronóstico de producción industrial y CPI a 48 meses.</dd></div>
-        <div><dt>Por qué importa</dt><dd>A diferencia de trabajos previos, la política monetaria explica una parte no trivial del ciclo, y lo hace vía el dólar y las materias primas más que vía las tasas.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> VAR mensual 1996m1–2025m7 con 12 rezagos: en promedio a cuatro años explica ~9 % de la producción industrial, ~18 % del CPI y ~16 % del dólar amplio. Un choque contractivo casi no mueve las tasas y aprecia el dólar de forma persistente. <span class="tag t-aut">AUTORES</span> Las participaciones son cotas inferiores, porque las sorpresas omiten noticias fuera de las reuniones del FOMC.</dd></div>
-        <div><dt>Limitaciones</dt><dd><span class="tag t-inf">INFERENCIA</span> Sirve para pensar la transmisión a economías como la colombiana vía el dólar, pero el paper no lo estudia.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>VAR en statsmodels con INDPRO, CPI, GS1, DGS5, VIX y el índice amplio del dólar (FRED), más las sorpresas del USMPD. Baseline: Cholesky con la tasa a 1 año. Métrica: participación en la varianza del CPI a 48 meses.</dd></div>
-      </dl>
-      <div class="res">Sin código enlazado. Sorpresas del U.S. Monetary Policy Event-Study Database (Acosta et al., 2025); no verifiqué su URL. El PDF respondió 403 en la nueva verificación del 11 nov: las fechas y el resumen se confirmaron en NBER, pero las cifras porcentuales no se pudieron volver a contrastar.</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>Tu formación de economista lo vuelve accesible y conecta con escenarios macro de NIIF 9.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Como economista conoces los VAR, la descomposición de varianza, la identificación por Cholesky y la transmisión de la política monetaria. En riesgo de crédito usas escenarios macro.</li><li><strong>Lo nuevo para ti:</strong> Las sorpresas de alta frecuencia como instrumentos y el choque «no-yield». Es metodología macro reciente; con tu base, el esfuerzo es moderado.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, en los escenarios macro para la PD forward-looking (NIIF 9) y en el estrés de una cartera de consumo latinoamericana, donde el canal del dólar pesa en la inflación y en las tasas locales [inferencia]. En tus rutas, en Finanzas y en el módulo de estrés de Riesgo.</li><li><strong>Primer paso (≤ 2 h):</strong> Con statsmodels y FRED (CPI, INDPRO, tasa a 1 año y dólar amplio), estima un VAR identificado por Cholesky y saca la descomposición de varianza del CPI a 48 meses.</li></ul></section>
-      <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><i>En esta ejecución solo pude leer el resumen oficial de NBER (el PDF respondió 403). Las cifras del VAR vienen de la lectura del texto completo en una ejecución anterior de hoy y no se pudieron volver a contrastar. No completo con suposiciones lo que no vi.</i></p>
-<p><b>Problema y motivación:</b> la literatura de choques monetarios de alta frecuencia suele concluir que la política monetaria explica poco de las fluctuaciones del ciclo. Pero cada medida de sorpresa (tasa de corto plazo, pendiente, "no-yield") captura solo una parte de lo que comunica la Fed. La pregunta es qué combinación de esas sorpresas explica más de la macro y cuánto explica.</p>
-<p><b>Conceptos clave:</b></p>
-<ul><li>Sorpresa monetaria de alta frecuencia (<i>high-frequency surprise</i>): cambio de precios de mercado en una ventana corta alrededor de un anuncio del FOMC.</li><li>Sorpresas de la curva de rendimientos (<i>yield-curve surprises</i>): una de la tasa cercana y otra del sendero esperado (<i>path</i>).</li><li>Choque "no-yield" (<i>non-yield shock</i>, Boehm y Kroner, 2024): noticias del FOMC que mueven otros activos (acciones, dólar, materias primas) sin mover las tasas.</li><li>Choque monetario principal (<i>main monetary policy shock</i>, MMP): la combinación lineal de sorpresas que mejor explica las fluctuaciones macro.</li><li>Descomposición de la varianza del error de pronóstico (<i>forecast error variance decomposition</i>): qué parte de la incertidumbre de una variable a cierto horizonte se debe a cada choque.</li></ul>
-<p><b>Datos:</b> [lectura anterior] VAR mensual de 1996m1 a 2025m7 con 12 rezagos, que incluye al menos producción industrial, CPI y el índice amplio del dólar (las variables cuya varianza se reporta), más sorpresas del U.S. Monetary Policy Event-Study Database (Acosta et al., 2025). No volví a verificar la lista completa de variables ni la URL de esa base.</p>
-<p><b>Método paso a paso:</b> (1) se toman las tres sorpresas; (2) [lectura anterior] se busca la combinación lineal que maximiza la participación en la varianza de pronóstico de producción industrial y CPI a 48 meses; (3) esa combinación es el choque MMP y se estudian sus respuestas impulso. El resumen lo describe como "un procedimiento nuevo"; no reproduzco la ecuación porque no la pude volver a ver.</p>
-<p><b>Resultados:</b></p>
-<ul><li><span class="tag t-aut">AUTORES</span> El MMP explica variación no trivial del ciclo en los últimos 30 años, en contraste con hallazgos previos.</li><li><span class="tag t-med">MEDIDO LECTURA ANTERIOR</span> En promedio a cuatro años explica ~9 % de la varianza de la producción industrial, ~18 % de la del CPI y ~16 % de la del dólar amplio.</li><li><span class="tag t-med">MEDIDO</span> Un choque contractivo deja las tasas casi iguales, baja de forma persistente los precios y aprecia el dólar; endurece temporalmente las condiciones financieras y deprime la producción industrial.</li></ul>
-<p><b>Robustez y limitaciones:</b></p>
-<ul><li><span class="tag t-aut">AUTORES</span> Las participaciones son cotas inferiores, porque las sorpresas omiten noticias monetarias fuera de las reuniones del FOMC.</li><li><span class="tag t-inf">INFERENCIA</span> Elegir la combinación que maximiza la varianza explicada puede sobreajustar en muestra; habría que ver cómo lo controlan (no lo verifiqué).</li><li><span class="tag t-inf">INFERENCIA</span> Es Estados Unidos; la transmisión a economías como Colombia vía el dólar es una hipótesis, no un resultado del paper.</li></ul>
-<p><b>Aporte frente a trabajos previos:</b> combina la literatura de sorpresas de alta frecuencia (tasa y path) con el choque no-yield, y cambia la conclusión de "poca importancia" a "importancia no trivial", con un canal cambiario más que de tasas.</p>
-<p><b>Cómo aplicarlo:</b> <span class="tag t-inf">INFERENCIA</span> estima un VAR en statsmodels con datos de FRED y compara la participación del CPI con identificación Cholesky frente a una combinación de sorpresas. Para un portafolio, sugiere vigilar el dólar y las materias primas tras el FOMC, no solo la curva.</p>
-<p><b>Glosario breve:</b> FOMC; VAR; respuesta impulso; descomposición de varianza; choque no-yield.</p>
-<p><b>Frase para recordar:</b> el choque monetario que más mueve la economía casi no mueve las tasas: mueve el dólar.</p>
+<ul><li><span class="tag t-aut">AUTORES</span> Donde faltan datos, el libro usa supuestos explícitos, por ejemplo para el sector arrendador; el sistema de precios se toma como dado.</li><li><span class="tag t-inf">INFERENCIA</span> Un estado con productividad de 0,05 y probabilidad de 25 % es un escenario severo; las pérdidas son condicionales a él, no un pronóstico.</li><li><span class="tag t-inf">INFERENCIA</span> Solo cubre once empresas nombradas y un sector agregado, y una parte de los datos es licenciada.</li></ul>
+<p><b>Aporte frente a trabajos previos:</b> lleva la teoría de redes de pagos (Eisenberg y Noe; Elliott, Golub y Jackson; Acemoglu et al.) a un caso donde las mismas empresas son a la vez clientes, proveedores, deudoras e inversionistas, y la combina con inversión endógena y contratos con precio.</p>
+<p><b>Cómo aplicarlo:</b> usa el ejemplo de compensación de pagos para entender por qué la LGD de un acreedor depende de la red de su deudor.</p>
+<p><b>Glosario breve:</b> deuda sin recurso; compensación de Eisenberg-Noe; obligaciones heredadas; probabilidades neutrales al riesgo; externalidad de robo de negocio.</p>
+<p><b>Frase para recordar:</b> el patrimonio de la red es grande, pero no está donde están las deudas: las pérdidas viajan por los contratos.</p>
       </div></details>
     </article>
   </div>
 
   <div class="prio">
-    <div><b>Prioridad de lectura</b>La 01, The Logic of Factor Portfolios. Une factores, rotación y costos con una herramienta simple y explica por qué muchas estrategias multiseñal no sobreviven a los costos. Las secciones 2–4 se leen sin datos propietarios.</div>
-    <div><b>Prioridad de experimentación</b>La 03, backtest de ES en alta dimensión. Corre con datos sintéticos en una laptop, toca el ES de Basilea desde una base de riesgo de crédito y deja una lección reutilizable: validar un modelo regularizado con un test que ignora la estimación puede dar rechazos falsos.</div>
+    <div><b>Prioridad de lectura</b>01, Roll's R² 40 Years Later. Es una pregunta fundacional de asset pricing respondida con herramientas que el lector está aprendiendo (embeddings, LLM, validación fuera de muestra). Además enseña a construir variables de texto sin dejar que se cuele el objetivo. Las secciones 2 y 5 se leen sin datos propietarios.</div>
+    <div><b>Prioridad de experimentación</b>03, EWMA-PC1. Se reproduce entero en una laptop con datos públicos (industrias diarias de Kenneth French o Yahoo Finance) y un centenar de líneas de pandas. Además deja una lección general: compara siempre contra el baseline simple equiponderado antes de atribuirle valor al método.</div>
   </div>
 
   <div class="watch">
     <h3>En seguimiento</h3>
     <ul>
-      <li><a href="https://arxiv.org/abs/2611.09286" target="_blank" rel="noopener">The End-of-Day Reversal After 2019</a> (v1 6 nov): replicación pre-registrada; la reversión sigue en 3,05 pb diarios en 2023–2026 en la muestra principal, pero cae a 0,74 pb en el índice completo. Requiere datos intradía.</li>
-      <li><a href="https://arxiv.org/abs/2611.06607" target="_blank" rel="noopener">Hard to Fool</a> (v1 4 nov): bucle de investigación con LLM y holdout de un solo uso; un sobreviviente con Sharpe ~3 en validación cae a 0,26 en el holdout. Solo leí el resumen.</li>
-      <li><a href="https://arxiv.org/abs/2611.07287" target="_blank" rel="noopener">Neural Realized Measures</a> (v1 5 nov): agregación intradía aprendida para volatilidad; mejora el QLIKE en 54 de 54 comparaciones, solo en criptomonedas.</li>
-      <li><a href="https://www.nber.org/papers/w35973" target="_blank" rel="noopener">Risk and Return in Government Bonds</a> (NBER, 2 nov, justo fuera de la ventana): la prima esperada de los Treasuries sigue su beta con acciones (correlación de 67 %).</li>
+      <li><a href="https://arxiv.org/abs/2611.15657" target="_blank" rel="noopener">Global Seasonality Factor Investing</a> (arXiv 2611.15657, v1 11 nov). Cinco anomalías estacionales en futuros. Las rápidas (día de la semana y del mes) mueren netas de costos; las lentas, salvo el día del trimestre, sobreviven, y carry, momentum y asimetría no las explican. Requiere datos de futuros.</li>
+      <li><a href="https://arxiv.org/abs/2611.19849" target="_blank" rel="noopener">NoLBERT-Calls</a> (arXiv 2611.19849, v1 15 nov). Continúa la pieza 04 de la semana pasada: un codificador pre-entrenado con texto de 1976–1995 y adaptado a llamadas hasta 2023 elige la respuesta correcta en el 78,0 % de las preguntas y no muestra prima de anticipación año a año. Solo leí el resumen.</li>
+      <li><a href="https://arxiv.org/abs/2611.13550" target="_blank" rel="noopener">Tabular Foundation Models in Financial Predictions</a> (arXiv 2611.13550, v1 10 nov, justo antes de la ventana). TabFM supera a un LLM ajustado y a árboles al predecir cambios de utilidades, en una sola tarea de prueba. Toca directo los modelos tabulares del lector.</li>
+      <li><a href="https://www.bis.org/publications/working-paper-1394-ready-to-run-global-liquidity-stress-tests-banks-and-banking-systems" target="_blank" rel="noopener">Ready-to-run global liquidity stress tests for banks and banking systems</a> (BIS WP 1394, 11 nov). Pruebas de estrés de liquidez listas para usar. No leí el texto.</li>
     </ul>
   </div>
 
-  <div class="routine"><b>Ediciones anteriores:</b> esta es la primera edición del tópico. Fechas v1, autores y cifras de las piezas 01, 03 y 04 verificados de nuevo contra arXiv el 11 nov. Cada pieza abre con un contexto previo (desplegable con borde verde) que explica el tema de fondo antes del paper, y trae un resumen ampliado en español (desplegable): 01, 03 y 04 desde el texto completo; 02 y 05 solo desde el resumen de NBER, porque el PDF respondió 403. El informe de esta semana está en <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/finanzas/2026-11-11.md" target="_blank" rel="noopener">topicos/finanzas/2026-11-11.md</a>.<br>
-    <b>Rutina semanal:</b> cada miércoles se genera un informe nuevo, que se guarda en <code>topicos/finanzas/</code> de la rama <code>topicos</code> del repositorio <code>learning</code>. Ruta relacionada: <a href="https://claude.ai/artifact/4djBhELtDbCmDn1He9ydZk" target="_blank" rel="noopener">Ruta Finanzas</a>.</div>
+  <div class="routine"><b>Método:</b> Revisé la lista semanal de arXiv q-fin (98 envíos, con listados cruzados) y econ.EM (45), la lista de NBER marcada como nueva esta semana (31 working papers) y los feeds de working papers del BIS, la Fed (FEDS), el BCE y el Banco de la República. Esta vez no revisé SSRN ni las revistas (JF, JFE, RFS, JFQA). Confirmé con la API de arXiv que las tres piezas de arXiv son v1 dentro de la ventana, y en la página de NBER, que la fecha de publicación de w36032 es el 16 nov 2026. Quedaron 10 finalistas. Leí el texto completo de las 4 piezas elegidas: los PDF de arXiv y el de NBER respondieron bien. Los repositorios de GitHub que citan los papers devolvieron 403 desde mi entorno, así que no los verifiqué. Ninguna pieza repite las de la edición anterior. NoLBERT-Calls continúa el tema de la pieza 04 de la semana pasada y queda en seguimiento.<br><br>
+    <b>Ediciones anteriores:</b> <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/finanzas/2026-11-11.md" target="_blank" rel="noopener">11 nov 2026</a> (factores booleanos, Sharpe oculto, backtest de ES, encoders point-in-time, choque monetario principal). El informe de esta semana está en <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/finanzas/2026-11-18.md" target="_blank" rel="noopener">topicos/finanzas/2026-11-18.md</a>.<br>
+    <b>Rutina semanal:</b> cada miércoles se genera un informe nuevo en <code>topicos/finanzas/</code> de la rama <code>topicos</code> del repositorio <code>learning</code>. Ruta relacionada: <a href="https://claude.ai/artifact/4djBhELtDbCmDn1He9ydZk" target="_blank" rel="noopener">Ruta Finanzas</a>.</div>
 </section>
 
 <!-- ============ QUICES ============ -->
 <section id="v-quices" data-panel="quices" hidden>
   <h1>Quices</h1>
-  <p class="lede">Quince preguntas sobre las piezas de esta edición y sus conceptos. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
+  <p class="lede">Trece preguntas sobre las piezas de esta edición, sus conceptos de base y cómo aplicarlas. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
   <div class="qbar">
-    <span class="score" id="score">0 / 15 correctas · 0 respondidas</span>
+    <span class="score" id="score">0 / 13 correctas · 0 respondidas</span>
     <div class="meter" aria-hidden="true"><i id="meter"></i></div>
     <button class="btn" id="reset" type="button">Reiniciar</button>
   </div>
   <div class="filter" role="group" aria-label="Filtrar por tema">
     <button class="btn" type="button" data-f="all" aria-pressed="true">Todas</button>
     <button class="btn" type="button" data-f="conceptos" aria-pressed="false">Conceptos</button>
-    <button class="btn" type="button" data-f="fact" aria-pressed="false">Reglas booleanas</button>
-    <button class="btn" type="button" data-f="sharpe" aria-pressed="false">Sharpe oculto</button>
-    <button class="btn" type="button" data-f="es" aria-pressed="false">Backtest de ES</button>
-    <button class="btn" type="button" data-f="pit" aria-pressed="false">Encoders point-in-time</button>
-    <button class="btn" type="button" data-f="mmp" aria-pressed="false">Choque monetario</button>
+    <button class="btn" type="button" data-f="roll" aria-pressed="false">R² de Roll</button>
+    <button class="btn" type="button" data-f="audit" aria-pressed="false">Auditoría LLM</button>
+    <button class="btn" type="button" data-f="pc1" aria-pressed="false">EWMA-PC1</button>
+    <button class="btn" type="button" data-f="ia" aria-pressed="false">Crédito e IA</button>
   </div>
   <div class="stack" id="quiz"></div>
 </section>
@@ -425,74 +357,61 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
 <!-- ============ EJEMPLOS ============ -->
 <section id="v-ejemplos" data-panel="ejemplos" hidden>
   <h1>Ejemplos dummy</h1>
-  <p class="lede">Cinco simulaciones de juguete, una por pieza. Los datos y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
+  <p class="lede">Cuatro simulaciones de juguete, una por pieza. Los datos y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
   <div class="stack">
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>01 · La interacción rota más que sus partes</h2>
-      <p>Dos señales con persistencia mensual inventada. Una interacción de dos señales (por ejemplo, "alto momentum Y baja volatilidad" frente a la unión) tiene persistencia igual al producto de las persistencias de sus componentes. Más baja la persistencia, más rotación y más costo.</p>
+      <h2>01 · Cuando el precio se cuela en el texto</h2>
+      <p>500 días inventados. Una variable de "noticias" explica una parte del retorno. Si algunos textos además dicen "las acciones subieron/bajaron", esa fuga se suma como variable. El R² se calcula fuera de muestra con validación cruzada de 5 bloques.</p>
       <div class="controls">
-        <label for="f-r1">Persistencia señal A: <b id="f-r1v">0,90</b><input type="range" id="f-r1" min="0.5" max="0.99" step="0.01" value="0.90"></label>
-        <label for="f-r2">Persistencia señal B: <b id="f-r2v">0,60</b><input type="range" id="f-r2" min="0.3" max="0.99" step="0.01" value="0.60"></label>
+        <label for="r-s">Varianza explicada por las noticias: <b id="r-sv">30 %</b><input type="range" id="r-s" min="0" max="0.8" step="0.05" value="0.3"></label>
+        <label for="r-l">Días con lenguaje de precios: <b id="r-lv">0 %</b><input type="range" id="r-l" min="0" max="1" step="0.05" value="0"></label>
+        <button class="btn" id="r-run" type="button">Nueva muestra</button>
       </div>
-      <div class="bars" id="f-bars"></div>
-      <div class="outcome" id="f-out"></div>
-      <p class="takeaway"><b>Idea:</b> las interacciones son menos persistentes que sus componentes y por eso rotan más. El paper lo demuestra y lo mide en CRSP; la rotación de este juguete es un índice proporcional a 1 − persistencia, no su fórmula exacta.</p>
+      <div class="bars" id="r-bars"></div>
+      <div class="outcome" id="r-out"></div>
+      <p class="takeaway"><b>Idea:</b> si el texto describe el propio movimiento, el R² sube sin explicar nada; por eso el paper filtra el lenguaje de precios antes de medir. El 30–40 % del paper es su medición con el WSJ; los números de este juguete los fijas tú.</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>02 · Cuánto Sharpe esconde el ridge</h2>
-      <p>Diez factores dummy con autovalores y primas en la base de componentes principales. El Sharpe máximo es √Σ μ²/λ. Un Markowitz con ridge de penalización z pondera cada dirección por 1/(λ+z) y apaga las de autovalor pequeño.</p>
+      <h2>02 · El mejor de N backtests de ruido</h2>
+      <p>N estrategias sin habilidad (Sharpe real cero) probadas durante una ventana corta. Se reporta la mejor. El juguete compara cuántas veces "descubres" algo con un umbral ingenuo y con un umbral que descuenta el número de pruebas.</p>
       <div class="controls">
-        <label for="s-z">Penalización ridge z: <b id="s-zv">0,010</b><input type="range" id="s-z" min="-4" max="0" step="0.1" value="-2"></label>
+        <label for="a-n">Estrategias probadas N: <b id="a-nv">100</b><input type="range" id="a-n" min="1" max="500" step="1" value="100"></label>
+        <label for="a-m">Ventana de prueba: <b id="a-mv">12 meses</b><input type="range" id="a-m" min="3" max="60" step="3" value="12"></label>
+        <button class="btn" id="a-run" type="button">Correr 2.000 réplicas</button>
       </div>
-      <div class="bars" id="s-bars"></div>
-      <div class="outcome" id="s-out"></div>
-      <p class="takeaway"><b>Idea:</b> la regularización estabiliza el portafolio pero recorta el Sharpe de las direcciones de poca varianza. El paper estima el máximo sin construir el portafolio; este juguete conoce μ y λ, cosa que en la práctica no ocurre.</p>
+      <div class="trace" id="a-trace" aria-live="polite"></div>
+      <div class="outcome" id="a-out"></div>
+      <p class="takeaway"><b>Idea:</b> sin contar las pruebas, el ganador de muchas estrategias de ruido parece un hallazgo casi siempre. El paper no simula esto: cuenta cuántos papers reportan su búsqueda (23 % en la lectura estricta).</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>03 · Un backtest que ignora la estimación</h2>
-      <p>Monte Carlo en tu navegador: retornos t de Student con 4 grados de libertad, VaR al 2,5 % estimado por simulación histórica con una muestra de entrenamiento y backtest de 250 días con un test binomial que supone el VaR conocido. El modelo es correcto en población; solo cambia cuánto se estimó.</p>
+      <h2>03 · ¿Qué índice cubre mejor tu portafolio?</h2>
+      <p>Modelo de dos factores inventado: el mercado y un factor común de empresas pequeñas. Un índice por capitalización carga poco en el factor de pequeñas; uno equiponderado, más. El PC1 del juguete toma la carga promedio del universo, como un índice equiponderado.</p>
       <div class="controls">
-        <label for="e-n">Días de entrenamiento: <b id="e-nv">250</b><input type="range" id="e-n" min="100" max="2000" step="50" value="250"></label>
-        <button class="btn" id="e-run" type="button">Correr 400 réplicas</button>
+        <label for="h-w">Peso en empresas pequeñas del portafolio: <b id="h-wv">50 %</b><input type="range" id="h-w" min="0" max="1" step="0.05" value="0.5"></label>
+        <label for="h-z">Fuerza del factor de pequeñas: <b id="h-zv">0,40</b><input type="range" id="h-z" min="0" max="1" step="0.05" value="0.4"></label>
       </div>
-      <div class="trace" id="e-trace" aria-live="polite"></div>
-      <div class="outcome" id="e-out"></div>
-      <p class="takeaway"><b>Idea:</b> con poco entrenamiento el error de estimación se confunde con mala especificación y el test rechaza de más. El paper trata el caso de alta dimensión con un remedio ortogonal; este juguete usa VaR univariado y su tasa de rechazo no es la del paper.</p>
+      <div class="bars" id="h-bars"></div>
+      <div class="outcome" id="h-out"></div>
+      <p class="takeaway"><b>Idea:</b> la mejor cobertura es la que se parece a lo que tienes. El paper encuentra que el PC1 supera al SPY pero queda casi empatado con el RSP; las cargas y varianzas de este juguete son inventadas.</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>04 · ¿Qué leyó tu encoder?</h2>
-      <p>Elige la fecha del backtest y el encoder. El juguete cuenta cuántos años de texto posteriores a esa fecha leyó el modelo durante su preentrenamiento.</p>
+      <h2>04 · Cómo viaja un impago por la red</h2>
+      <p>Red de cuatro nodos inventada: un laboratorio de IA debe 100 a una nube; la nube debe 60 a un arrendador y 50 a un banco de proyecto; el arrendador debe 40 al mismo banco. Cada nodo tiene algo de ingresos propios. Los pagos se compensan con el algoritmo de Eisenberg-Noe.</p>
       <div class="controls">
-        <label for="p-y">Fecha del backtest: <b id="p-yv">2016</b><input type="range" id="p-y" min="2011" max="2025" step="1" value="2016"></label>
-        <label for="p-m">Encoder
-          <select id="p-m">
-            <option value="pit" selected>Vintage point-in-time</option>
-            <option value="last">Último vintage (corte 2024)</option>
-          </select></label>
+        <label for="n-p">El laboratorio puede pagar: <b id="n-pv">30 %</b><input type="range" id="n-p" min="0" max="1" step="0.05" value="0.3"></label>
+        <label for="n-b">Respaldo de pagos internos <select id="n-b"><option value="0" selected>No</option><option value="1">Sí</option></select></label>
       </div>
-      <div class="trace" id="p-trace" aria-live="polite"></div>
-      <div class="outcome" id="p-out"></div>
-      <p class="takeaway"><b>Idea:</b> en un backtest, el modelo de texto debe tener fecha igual que los datos. El paper encuentra que esto importa sobre todo para la recuperación de pasajes y poco para pronosticar retornos; el juguete solo cuenta años filtrados.</p>
-    </div>
-
-    <div class="ex">
-      <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>05 · La combinación de sorpresas que más explica</h2>
-      <p>Dos sorpresas monetarias dummy (tasa cercana y no-yield) con contribuciones inventadas a la varianza del CPI. Gira el peso de la combinación y busca el ángulo que maximiza la participación.</p>
-      <div class="controls">
-        <label for="m-t">Ángulo de la combinación: <b id="m-tv">0°</b><input type="range" id="m-t" min="0" max="180" step="1" value="0"></label>
-      </div>
-      <div class="bars" id="m-bars"></div>
-      <div class="outcome" id="m-out"></div>
-      <p class="takeaway"><b>Idea:</b> el choque principal es la dirección de máxima varianza explicada, no una sorpresa elegida a priori. El paper usa tres sorpresas en un VAR de siete variables; aquí hay dos sorpresas y números inventados.</p>
+      <div class="trace" id="n-trace" aria-live="polite"></div>
+      <div class="outcome" id="n-out"></div>
+      <p class="takeaway"><b>Idea:</b> el banco pierde aunque nunca le prestó al laboratorio, porque su recuperación depende de lo que cobran sus deudores. El paper mide esto para once empresas reales; aquí los montos son inventados.</p>
     </div>
   </div>
 </section>
@@ -513,26 +432,24 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
 
   // ---------- Quices ----------
   const Q=[
-    {t:"conceptos",q:"¿Qué mide el Expected Shortfall (ES) al 2,5 %?",o:["La pérdida que se supera el 2,5 % de los días","La pérdida promedio en el peor 2,5 % de los escenarios","La volatilidad anualizada","La probabilidad de impago"],a:1,e:"El VaR es el umbral; el ES promedia lo que pasa más allá del umbral. Por eso captura mejor la cola y Basilea lo usa para riesgo de mercado."},
-    {t:"conceptos",q:"¿Qué es el look-ahead bias en un backtest?",o:["Usar datos de alta frecuencia","Usar en la fecha t información que solo se conocía después de t","Incluir costos de transacción","Usar demasiados factores"],a:1,e:"Cualquier dato, parámetro o modelo entrenado con información posterior a t infla el desempeño del backtest."},
-    {t:"conceptos",q:"En una regresión de spanning, ¿qué indica un alfa significativo de un portafolio sobre FF5 + Mom?",o:["Que el portafolio tiene beta cero","Que sus retornos no son explicados por esos factores y amplía la frontera eficiente","Que el modelo está bien especificado","Que no hay costos"],a:1,e:"Si el intercepto es distinto de cero, combinar el portafolio con los factores sube el Sharpe máximo alcanzable."},
-    {t:"fact",q:"Según la descomposición de Walsh, ¿qué diferencia hay entre la intersección y la unión de dos screens?",o:["Ninguna, ambas tienen las mismas exposiciones","Tienen exposiciones de interacción de signo opuesto","La unión no tiene exposición a las señales individuales","La intersección siempre rota menos"],a:1,e:"La intersección apuesta a que las señales se refuerzan; la unión, a que basta con una. Por eso cargan con signo opuesto en la interacción."},
-    {t:"fact",q:"¿Qué fracción de portafolios de interacción de tres señales cubre su costo de spread en 1995–2024?",o:["58 %","24 %","6 %","90 %"],a:2,e:"58 % para una señal, 24 % para dos y 6 % para tres. Las primas caen con el orden y los costos suben."},
-    {t:"sharpe",q:"¿Qué Sharpe máximo anualizado estiman para acciones de EE. UU. sin micro-caps?",o:["~1,0","~5,0","~7,4","~0,5"],a:1,e:"~7,4 con todas las acciones y 5,0 sin micro-caps, frente a 1,0–4,0 de los benchmarks basados en portafolios."},
-    {t:"sharpe",q:"¿Por qué un Markowitz con ridge queda por debajo del Sharpe máximo?",o:["Porque ignora la media","Porque la regularización suprime la contribución de las direcciones de autovalores pequeños","Porque usa ventas en corto","Porque usa datos mensuales"],a:1,e:"El ridge estabiliza la inversa de la covarianza a costa de apagar direcciones de poca varianza que también aportan Sharpe."},
-    {t:"es",q:"En las simulaciones del paper, ¿cuánto rechazaba el backtest convencional bajo la hipótesis nula al 5 %?",o:["Entre 3,0 % y 8,5 %","Entre 11,5 % y 39,5 %","Exactamente 5 %","Menos de 1 %"],a:1,e:"El convencional sobrerrechaza; el ortogonal queda entre 3,0 % y 8,5 %, cerca del nominal."},
-    {t:"es",q:"En el caso lineal, ¿cómo se implementa el backtest ortogonal?",o:["Con un GARCH","Como Double Lasso con un puntaje ajustado por la cola como variable dependiente","Con una red neuronal","Con bootstrap de bloques solamente"],a:1,e:"Residualizar el instrumento quita el efecto de primer orden de estimar VaR, ES y el propio instrumento."},
-    {t:"pit",q:"¿Qué es un vintage point-in-time en este paper?",o:["Un modelo que solo leyó texto fechado hasta su corte anual","Un modelo entrenado con todos los datos","Una versión comprimida de BERT","Un índice de tono"],a:0,e:"Hay un encoder por año de corte entre 2010 y 2024, y cada uno lee solo llamadas anteriores a su corte."},
-    {t:"pit",q:"Según el autor, ¿dónde importan más los vintages point-in-time?",o:["En el pronóstico de retornos","En la recuperación de pasajes (retrieval)","En el cálculo de betas","En la valoración por múltiplos"],a:1,e:"El vintage de 2024 no pronostica retornos mejor; la diferencia aparece sobre todo en recuperación."},
-    {t:"mmp",q:"¿Qué hace un choque monetario principal contractivo según el paper?",o:["Sube mucho las tasas largas","Deja las tasas casi iguales, baja el CPI de forma persistente y aprecia el dólar","No tiene efectos","Solo afecta el empleo"],a:1,e:"Difiere del choque de manual: actúa sobre todo vía el dólar y las materias primas."},
-    {t:"mmp",q:"¿Por qué los autores dicen que sus participaciones de varianza son cotas inferiores?",o:["Porque usan pocos rezagos","Porque las sorpresas omiten noticias monetarias fuera de las reuniones del FOMC, como discursos","Porque excluyen el CPI","Porque usan datos trimestrales"],a:1,e:"Lo que no capturan las ventanas del FOMC queda fuera del choque y subestima la importancia de la política monetaria."},
-    {t:"conceptos",q:"Según el contexto previo, ¿por qué una dirección de cartera con varianza muy baja puede aportar mucho al Sharpe máximo?",o:["Porque tiene beta alta con el mercado","Porque su aporte al Sharpe² es prima²/varianza, y una varianza pequeña agranda una prima pequeña","Porque rota poco","Porque no tiene costos de transacción"],a:1,e:"En la base de componentes principales, el Sharpe² máximo suma μᵢ²/λᵢ. Por eso las direcciones de autovalor pequeño pesan tanto y por eso el ridge, al apagarlas, deja Sharpe sobre la mesa."},
-    {t:"conceptos",q:"Según el contexto previo, ¿qué mide una sorpresa monetaria de alta frecuencia?",o:["El cambio de la tasa de política en el año","El cambio de precios de mercado en una ventana corta alrededor del anuncio, la parte no anticipada","El promedio de pronósticos de analistas","La inflación del mes del anuncio"],a:1,e:"Al mirar solo minutos alrededor del anuncio, el cambio de precios refleja lo que el mercado no esperaba, no la respuesta anticipada a la economía."}
+    {t:"conceptos",q:"Según el contexto previo de la pieza 01, ¿qué diferencia hay entre explicar y pronosticar un retorno?",o:["Ninguna, son lo mismo","Pronosticar usa información de t−1; explicar mira después qué parte de la variación se atribuye a hechos del mundo","Explicar solo usa datos macro","Pronosticar no admite R²"],a:1,e:"El paper no busca predecir: pregunta cuánto de lo que ya pasó se puede atribuir, con un mapeo estable, a razones que no vienen de los precios."},
+    {t:"conceptos",q:"Según el contexto previo de la pieza 02, si pruebas 100 estrategias sin habilidad y reportas la mejor, ¿qué pasa?",o:["Su Sharpe es cero","Su Sharpe suele verse alto por pura suerte, porque el máximo de muchos ruidos crece con el número de pruebas","Siempre pierde dinero","El Sharpe deflactado sube"],a:1,e:"El máximo de N estimaciones ruidosas crece aproximadamente con √(2·ln N) errores estándar; por eso hay que reportar N y deflactar."},
+    {t:"conceptos",q:"Según el contexto previo de la pieza 04, ¿qué es una deuda sin recurso?",o:["Una deuda sin intereses","Un préstamo que solo se cobra con los flujos del proyecto pignorado, no con el resto de la empresa","Una deuda del gobierno","Un bono convertible"],a:1,e:"Por eso un prestamista de proyecto puede perder aunque la empresa que pidió el préstamo siga siendo solvente."},
+    {t:"roll",q:"¿Cuánto explican las razones extraídas del WSJ con embeddings grandes y ridge, fuera de muestra?",o:["Menos de 5 %","Cerca de 30 % diario y 40 % mensual","Cerca de 90 %","Solo funciona mensual"],a:1,e:"29,82 % diario y 40,30 % mensual, frente a R² mensuales negativos o casi nulos de los datos macro, de flujo de caja y de expectativas."},
+    {t:"roll",q:"¿Por qué los autores eliminan del texto las frases como “las acciones rebotaron”?",o:["Para ahorrar tokens","Porque describen el propio retorno y lo meterían en la variable explicativa, inflando el R²","Porque son negativas","Porque el LLM no las entiende"],a:1,e:"Es el criterio 1: la explicación no puede contener ni derivarse de los precios que explica."},
+    {t:"roll",q:"¿Qué pasa con la inferencia sin ejemplos (zero-shot) del LLM al sumar los días en un mes, sin filtrar?",o:["Explica 49,84 %","Da un R² de −115 % por un sesgo de persistencia; con el filtro HAR sube a 49,84 %","No cambia","Se vuelve igual a ridge"],a:1,e:"Los retornos implícitos son pegajosos y su suma mensual se pasa; el filtro HAR quita media y persistencia sin usar retornos realizados."},
+    {t:"audit",q:"De 75 papers de trading con LLM y prueba de trading, ¿qué fracción no descuenta ningún costo?",o:["9 %","51 %","98 %","23 %"],a:1,e:"51 % no descuenta costos, 40 % aplica una tasa fija y solo 9 % modela spread, impacto o préstamo con datos."},
+    {t:"audit",q:"¿Por qué falla la hipótesis H1 sobre reportar el número de pruebas, y con qué matiz?",o:["Porque nadie reporta nada","Porque 40 % reporta pruebas o ajuste, pero muchos conteos son semillas aleatorias repetidas, no estrategias buscadas","Porque el autor cambió la hipótesis","Porque hubo pocos papers"],a:1,e:"13 de 23 conteos son semillas; en la lectura estricta, 23 % revela su búsqueda. Aun así H1 falla y se reporta como fallida."},
+    {t:"audit",q:"¿Qué controla una prueba “después del corte de entrenamiento del modelo”?",o:["Los costos","Que el LLM no haya leído en su preentrenamiento lo que pasó en la ventana de prueba","El número de activos","La moneda"],a:1,e:"Entre los papers cuyo test podría solaparse con el entrenamiento, el 98 % no lo controla ni prueba en vivo."},
+    {t:"pc1",q:"En portafolios de 50 acciones con pesos Dirichlet, ¿cómo quedan las reducciones de varianza?",o:["SPY 92 %, PC1 79 %","PC1 92,17 %, RSP 91,93 %, SPY 79,03 %","Las tres iguales","RSP 50 %"],a:1,e:"El PC1 gana claramente al SPY pero apenas al RSP, y con pesos inclinados a liquidez el RSP le gana al PC1."},
+    {t:"pc1",q:"¿Cuál es la lección central del paper de EWMA-PC1?",o:["El PCA siempre gana","Parecerse al mercado no basta para ser mejor cobertura: hay que comparar con el benchmark equiponderado","El SPY es la mejor cobertura","Las vidas medias óptimas son 60 y 252"],a:1,e:"Gran parte de la ventaja del PC1 sobre el SPY ya la da un ETF equiponderado; los autores no aíslan si la causa es la ponderación."},
+    {t:"ia",q:"En el modelo calibrado de la red de la IA, ¿cuánto pierden los prestamistas externos en el estado de baja productividad?",o:["Nada","Cerca de 42 % de su inversión inicial (2,07 billones de dólares)","100 %","5 %"],a:1,e:"Equity absorbe la mayor parte (14,64 billones), pero los prestamistas externos pierden 42,3 %, en parte por deuda de proyecto sin recurso."},
+    {t:"ia",q:"Aplicación: según «Cómo lo aplicas tú», ¿qué idea nueva aporta la pieza 04 al módulo de LGD de credit-risk-agent-lab?",o:["Que la LGD es siempre 45 %","Que la LGD de un acreedor puede depender de lo que paguen los deudores de su deudor","Que no hace falta LGD","Que la LGD solo depende del plazo"],a:1,e:"En una red de pagos, la recuperación de un banco cae si los clientes de su deudor no pagan, aunque el banco nunca les prestó."}
   ];
-  const KEY="topicos-finanzas-2026-11-11";
+  const KEY="topicos-finanzas-2026-11-18";
   let ans={};
   try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){ans={}}
-  const names={conceptos:"Conceptos",fact:"Reglas booleanas",sharpe:"Sharpe oculto",es:"Backtest de ES",pit:"Encoders point-in-time",mmp:"Choque monetario"};
+  const names={conceptos:"Conceptos",roll:"R² de Roll",audit:"Auditoría LLM",pc1:"EWMA-PC1",ia:"Crédito e IA"};
   const box=document.getElementById("quiz");
   function save(){try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}}
   let filt="all";
@@ -573,85 +490,103 @@ select{font:inherit;font-size:.88rem;padding:5px 8px;border-radius:4px;border:1p
   const fmt=(x,d)=>x.toFixed(d).replace(".",",");
   const bars=(el,rows,max)=>{el.innerHTML=rows.map(r=>'<div class="bar"><span>'+esc(r[0])+'</span><div class="track"><div class="fill'+(r[2]?" alt":"")+'" style="width:'+Math.max(0,Math.min(100,r[1]/max*100))+'%"></div></div><span class="v">'+esc(r[3])+'</span></div>').join("")};
 
-  // ---------- 01: persistencia e interacción ----------
-  const r1=document.getElementById("f-r1"),r2=document.getElementById("f-r2");
-  function fRender(){
-    const a=+r1.value,b=+r2.value,ab=a*b;
-    document.getElementById("f-r1v").textContent=fmt(a,2);document.getElementById("f-r2v").textContent=fmt(b,2);
-    const rows=[["Señal A",1-a,false,fmt(1-a,2)],["Señal B",1-b,false,fmt(1-b,2)],["Interacción A×B",1-ab,true,fmt(1-ab,2)]];
-    bars(document.getElementById("f-bars"),rows,1);
-    pills(document.getElementById("f-out"),[["neu","Índice de rotación = 1 − persistencia"],["neu","Persistencia de A×B: "+fmt(ab,2)],[ (1-ab)>(1-Math.min(a,b))+0.05?"bad":"ok","La interacción rota "+fmt((1-ab)/Math.max(1-Math.max(a,b),0.01),1)+"× la señal más estable"]]);
-  }
-  r1.addEventListener("input",fRender);r2.addEventListener("input",fRender);fRender();
-
-  // ---------- 02: Sharpe con ridge ----------
-  const LAM=[0.40,0.20,0.10,0.05,0.03,0.02,0.012,0.008,0.005,0.003];
-  const MU=[0.020,0.015,0.012,0.010,0.009,0.008,0.007,0.006,0.005,0.004];
-  const sz=document.getElementById("s-z");
-  function sRender(){
-    const z=Math.pow(10,+sz.value);document.getElementById("s-zv").textContent=fmt(z,3);
-    let smax=0,num=0,den=0;
-    LAM.forEach((l,i)=>{const m=MU[i];smax+=m*m/l;num+=m*m/(l+z);den+=m*m*l/((l+z)*(l+z));});
-    const srMax=Math.sqrt(smax*12),srRidge=num/Math.sqrt(den)*Math.sqrt(12);
-    bars(document.getElementById("s-bars"),[["Sharpe máximo",srMax,false,fmt(srMax,2)],["Markowitz con ridge",srRidge,true,fmt(srRidge,2)]],srMax);
-    pills(document.getElementById("s-out"),[["neu","Sharpe anualizado del juguete (mensual × √12)"],[srRidge/srMax>0.9?"ok":"bad","El ridge captura "+Math.round(srRidge/srMax*100)+" % del máximo"]]);
-  }
-  sz.addEventListener("input",sRender);sRender();
-
-  // ---------- 03: Monte Carlo del backtest ----------
   function randn(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
-  function rt(nu){let c=0;for(let k=0;k<nu;k++){const z=randn();c+=z*z}return randn()/Math.sqrt(c/nu)}
-  function binomP(x,n,p){ // p-valor bilateral aproximado por normal con corrección de continuidad
-    const m=n*p,s=Math.sqrt(n*p*(1-p));const z=(Math.abs(x-m)-0.5)/s;const t=Math.max(z,0);
-    const cdf=0.5*(1+erf(t/Math.SQRT2));return 2*(1-cdf);}
-  function erf(x){const a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911;const t=1/(1+p*x);return 1-((((a5*t+a4)*t+a3)*t+a2)*t+a1)*t*Math.exp(-x*x)}
-  const en=document.getElementById("e-n"),et=document.getElementById("e-trace"),eo=document.getElementById("e-out");
-  function eRun(){
-    const n=+en.value,T=250,alpha=0.025,R=400;let rej=0,avgX=0;
-    for(let r=0;r<R;r++){
-      const tr=[];for(let i=0;i<n;i++)tr.push(rt(4));tr.sort((a,b)=>a-b);
-      const varq=tr[Math.max(0,Math.floor(alpha*n)-1)];
-      let x=0;for(let i=0;i<T;i++){if(rt(4)<varq)x++}
-      avgX+=x;if(binomP(x,T,alpha)<0.05)rej++;
+  function invNorm(p){ // aproximación de Acklam
+    const a=[-39.69683028665376,220.9460984245205,-275.9285104469687,138.357751867269,-30.66479806614716,2.506628277459239];
+    const b=[-54.47609879822406,161.5858368580409,-155.6989798598866,66.80131188771972,-13.28068155288572];
+    const c=[-0.007784894002430293,-0.3223964580411365,-2.400758277161838,-2.549732539343734,4.374664141464968,2.938163982698783];
+    const d=[0.007784695709041462,0.3224671290700398,2.445134137142996,3.754408661907416];
+    const pl=0.02425;let q,r;
+    if(p<pl){q=Math.sqrt(-2*Math.log(p));return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+    if(p>1-pl){q=Math.sqrt(-2*Math.log(1-p));return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+    q=p-0.5;r=q*q;return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+  }
+
+  // ---------- 01: fuga de precios y R² fuera de muestra ----------
+  function ols(X,y){ // mínimos cuadrados con intercepto, por ecuaciones normales
+    const k=X[0].length+1,A=[],bb=new Array(k).fill(0);
+    for(let i=0;i<k;i++)A.push(new Array(k).fill(0));
+    for(let t=0;t<y.length;t++){const x=[1].concat(X[t]);for(let i=0;i<k;i++){bb[i]+=x[i]*y[t];for(let j=0;j<k;j++)A[i][j]+=x[i]*x[j]}}
+    for(let i=0;i<k;i++)A[i][i]+=1e-9;
+    for(let i=0;i<k;i++){let p=i;for(let r=i+1;r<k;r++)if(Math.abs(A[r][i])>Math.abs(A[p][i]))p=r;[A[i],A[p]]=[A[p],A[i]];[bb[i],bb[p]]=[bb[p],bb[i]];
+      for(let r=i+1;r<k;r++){const f=A[r][i]/A[i][i];for(let j=i;j<k;j++)A[r][j]-=f*A[i][j];bb[r]-=f*bb[i]}}
+    const beta=new Array(k).fill(0);
+    for(let i=k-1;i>=0;i--){let s=bb[i];for(let j=i+1;j<k;j++)s-=A[i][j]*beta[j];beta[i]=s/A[i][i]}
+    return x=>beta[0]+x.reduce((s,v,i)=>s+v*beta[i+1],0);
+  }
+  function cvR2(X,y){
+    const n=y.length,K=5,pred=new Array(n);
+    for(let f=0;f<K;f++){const lo=Math.floor(f*n/K),hi=Math.floor((f+1)*n/K);
+      const Xt=[],yt=[];for(let t=0;t<n;t++)if(t<lo||t>=hi){Xt.push(X[t]);yt.push(y[t])}
+      const m=ols(Xt,yt);for(let t=lo;t<hi;t++)pred[t]=m(X[t]);}
+    const mu=y.reduce((a,b)=>a+b,0)/n;let ss=0,st=0;
+    for(let t=0;t<n;t++){ss+=(y[t]-pred[t])**2;st+=(y[t]-mu)**2}
+    return 1-ss/st;
+  }
+  const rs=document.getElementById("r-s"),rl=document.getElementById("r-l");
+  let seedN=[],seedE=[],seedU=[];
+  function rDraw(){seedN=[];seedE=[];seedU=[];for(let t=0;t<500;t++){seedN.push(randn());seedE.push(randn());seedU.push(Math.random())}}
+  function rRender(){
+    const s=+rs.value,l=+rl.value;
+    document.getElementById("r-sv").textContent=Math.round(s*100)+" %";document.getElementById("r-lv").textContent=Math.round(l*100)+" %";
+    const y=[],X1=[],X2=[];
+    for(let t=0;t<500;t++){const r=Math.sqrt(s)*seedN[t]+Math.sqrt(1-s)*seedE[t];y.push(r);X1.push([seedN[t]]);X2.push([seedN[t],seedU[t]<l?Math.sign(r):0])}
+    const a=Math.max(0,cvR2(X1,y)),b=Math.max(0,cvR2(X2,y));
+    bars(document.getElementById("r-bars"),[["Solo razones",a,false,fmt(a*100,1)+" %"],["Razones + precio",b,true,fmt(b*100,1)+" %"]],1);
+    pills(document.getElementById("r-out"),[["neu","R² fuera de muestra, 5 bloques"],[b-a>0.05?"bad":"ok",b-a>0.05?"La fuga infla el R² en "+fmt((b-a)*100,1)+" puntos":"Sin fuga relevante"]]);
+  }
+  rDraw();rs.addEventListener("input",rRender);rl.addEventListener("input",rRender);
+  document.getElementById("r-run").addEventListener("click",()=>{rDraw();rRender()});rRender();
+
+  // ---------- 02: el mejor de N backtests de ruido ----------
+  const an=document.getElementById("a-n"),am=document.getElementById("a-m");
+  an.addEventListener("input",()=>{document.getElementById("a-nv").textContent=an.value});
+  am.addEventListener("input",()=>{document.getElementById("a-mv").textContent=am.value+" meses"});
+  function aRun(){
+    const N=+an.value,T=+am.value,R=2000,sd=Math.sqrt(12/T);
+    const naive=1.645*sd,defl=sd*invNorm(Math.pow(0.95,1/N));
+    let rn=0,rd=0;const maxes=[];
+    for(let r=0;r<R;r++){let mx=-Infinity;for(let i=0;i<N;i++){const v=sd*randn();if(v>mx)mx=v}maxes.push(mx);if(mx>naive)rn++;if(mx>defl)rd++}
+    maxes.sort((a,b)=>a-b);
+    document.getElementById("a-trace").innerHTML=[line("d","# juguete: N estrategias con Sharpe real 0; Sharpe anual estimado ~ Normal(0, √(12/T))"),line("k","N = "+N+" · ventana = "+T+" meses · error estándar del Sharpe = "+fmt(sd,2)),line("k","Sharpe mediano del ganador = "+fmt(maxes[Math.floor(R/2)],2)),line("k","umbral ingenuo (1,645 × ee) = "+fmt(naive,2)+" · umbral que descuenta N = "+fmt(defl,2)),line(rn/R>0.1?"w":"k","falsos descubrimientos: ingenuo "+fmt(rn/R*100,1)+" % · con N "+fmt(rd/R*100,1)+" %")].join("\n");
+    pills(document.getElementById("a-out"),[[rn/R>0.1?"bad":"ok","Ingenuo: "+Math.round(rn/R*100)+" % de “hallazgos” falsos"],["neu","Contando N: cerca de 5 %"]]);
+  }
+  document.getElementById("a-run").addEventListener("click",aRun);aRun();
+
+  // ---------- 03: qué índice cubre mejor ----------
+  const hw=document.getElementById("h-w"),hz=document.getElementById("h-z");
+  function hRender(){
+    const w=+hw.value,vz=+hz.value;
+    document.getElementById("h-wv").textContent=Math.round(w*100)+" %";document.getElementById("h-zv").textContent=fmt(vz,2);
+    const lam=(2+vz+Math.sqrt(vz*vz+4))/2,hPC=(lam-1)/lam; // carga del PC1 en el factor de pequeñas
+    const vp=1+w*w*vz+0.04;
+    const vr=h=>{const c=1+w*h*vz;return c*c/(vp*(1+h*h*vz))};
+    const rows=[["Por capitalización",vr(0.15),false,fmt(vr(0.15)*100,1)+" %"],["Equiponderado",vr(0.5),false,fmt(vr(0.5)*100,1)+" %"],["PC1 del juguete",vr(hPC),true,fmt(vr(hPC)*100,1)+" %"]];
+    bars(document.getElementById("h-bars"),rows,1);
+    const best=rows.slice().sort((a,b)=>b[1]-a[1])[0][0];
+    pills(document.getElementById("h-out"),[["neu","Reducción de varianza = correlación²"],["neu","Carga del PC1 en pequeñas: "+fmt(hPC,2)],["ok","Mejor cobertura aquí: "+best]]);
+  }
+  hw.addEventListener("input",hRender);hz.addEventListener("input",hRender);hRender();
+
+  // ---------- 04: compensación de pagos (Eisenberg-Noe) ----------
+  const np=document.getElementById("n-p"),nb=document.getElementById("n-b");
+  function nRender(){
+    const p=+np.value,back=nb.value==="1";
+    document.getElementById("n-pv").textContent=Math.round(p*100)+" %";
+    const owe=[100,110,40];          // laboratorio, nube, arrendador
+    const ext=[100*p,20,10];        // ingresos propios inventados
+    let pay=owe.slice();
+    for(let it=0;it<200;it++){
+      const inCloud=back?100:pay[0], inLand=back?60:pay[1]*60/110;
+      const nw=[Math.min(owe[0],ext[0]),Math.min(owe[1],ext[1]+inCloud),Math.min(owe[2],ext[2]+inLand)];
+      if(nw.every((v,i)=>Math.abs(v-pay[i])<1e-9)){pay=nw;break}pay=nw;
     }
-    const rate=rej/R;
-    et.innerHTML=[line("d","# juguete: t(4), VaR 2,5 % por simulación histórica, test binomial de excepciones"),line("k","entrenamiento = "+n+" días · prueba = 250 días · réplicas = 400"),line("k","excepciones esperadas = 6,25 · promedio observado = "+fmt(avgX/R,2)),line(rate>0.08?"w":"k","tasa de rechazo al 5 % nominal = "+fmt(rate*100,1)+" %")].join("\n");
-    pills(eo,[[rate>0.08?"bad":"ok",rate>0.08?"Sobrerrechazo: el test confunde error de estimación con mala especificación":"Cerca del nivel nominal"],["neu","Cada corrida es aleatoria"]]);
+    const gov=back?(100-pay[0])+Math.max(0,60-pay[1]*60/110):0;
+    const bank=pay[1]*50/110+pay[2],lgd=1-bank/90;
+    document.getElementById("n-trace").innerHTML=[line("d","# pagos de equilibrio (unidades inventadas)"),line(pay[0]<owe[0]?"e":"k","laboratorio paga "+fmt(pay[0],1)+" de 100"),line(pay[1]<owe[1]?"e":"k","nube paga "+fmt(pay[1],1)+" de 110 (60 al arrendador, 50 al banco, a prorrata)"),line(pay[2]<owe[2]?"e":"k","arrendador paga "+fmt(pay[2],1)+" de 40"),line(lgd>0.001?"w":"k","banco recupera "+fmt(bank,1)+" de 90 · LGD = "+fmt(lgd*100,1)+" %"),line("d",back?"respaldo público usado: "+fmt(gov,1):"sin respaldo")].join("\n");
+    pills(document.getElementById("n-out"),[[lgd>0.001?"bad":"ok","LGD del banco: "+fmt(lgd*100,1)+" %"],["neu",back?"Con respaldo de pagos internos":"Pagos internos sin respaldo"]]);
   }
-  en.addEventListener("input",()=>{document.getElementById("e-nv").textContent=en.value});
-  document.getElementById("e-run").addEventListener("click",eRun);
-  eRun();
-
-  // ---------- 04: encoders point-in-time ----------
-  const py=document.getElementById("p-y"),pm=document.getElementById("p-m");
-  function pRender(){
-    const y=+py.value;document.getElementById("p-yv").textContent=y;
-    const cutoff=pm.value==="pit"?Math.min(y-1,2024):2024;
-    const leaked=Math.max(0,cutoff-(y-1));
-    const out=[line("d","# backtest en "+y+": solo es lícito texto hasta diciembre de "+(y-1))];
-    out.push(line("k","encoder usado: vintage con corte "+cutoff));
-    for(let yr=2010;yr<=2024;yr++){if(yr<=cutoff)out.push(line(yr>y-1?"e":"k",yr+(yr>y-1?"  leído, posterior al backtest":"  leído, permitido")))}
-    out.push(line(leaked?"w":"k","años filtrados: "+leaked));
-    document.getElementById("p-trace").innerHTML=out.join("\n");
-    pills(document.getElementById("p-out"),[[leaked?"bad":"ok",leaked?"Look-ahead: "+leaked+" años de texto futuro":"Sin texto futuro"]]);
-  }
-  py.addEventListener("input",pRender);pm.addEventListener("change",pRender);pRender();
-
-  // ---------- 05: choque principal ----------
-  const A=[0.25,0.40]; // carga inventada de cada sorpresa sobre el CPI
-  const TOT=0.6;       // varianza total inventada del pronóstico del CPI
-  const mt=document.getElementById("m-t");
-  function mRender(){
-    const th=+mt.value*Math.PI/180;document.getElementById("m-tv").textContent=mt.value+"°";
-    const w=[Math.cos(th),Math.sin(th)];
-    const share=Math.pow(A[0]*w[0]+A[1]*w[1],2)/TOT;
-    const best=Math.round(Math.atan2(A[1],A[0])*180/Math.PI);
-    const bestShare=(A[0]*A[0]+A[1]*A[1])/TOT;
-    bars(document.getElementById("m-bars"),[["Peso tasa cercana",Math.abs(w[0]),false,fmt(w[0],2)],["Peso no-yield",Math.abs(w[1]),false,fmt(w[1],2)],["Varianza del CPI explicada",share,true,Math.round(share*100)+" %"]],1);
-    pills(document.getElementById("m-out"),[["neu","Máximo en "+best+"°: "+Math.round(bestShare*100)+" %"],[Math.abs(+mt.value-best)<=3?"ok":"neu",Math.abs(+mt.value-best)<=3?"Encontraste el choque principal":"Sigue girando"]]);
-  }
-  mt.addEventListener("input",mRender);mRender();
+  np.addEventListener("input",nRender);nb.addEventListener("change",nRender);nRender();
 })();
-</script>
 
-</body></html>
+</script>
