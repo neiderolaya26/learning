@@ -1,5 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.aplica{margin-top:14px;border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:8px;background:var(--accent-soft);padding:12px 14px;font-size:.92rem;overflow-wrap:anywhere}.aplica h4{margin:0 0 6px;font-size:.98rem;color:var(--accent);display:flex;flex-wrap:wrap;gap:8px;align-items:center}.aplica .ver{font-size:.72rem;font-weight:700;border-radius:999px;padding:1px 10px;background:var(--accent);color:var(--surface)}.aplica p{margin:4px 0 6px}.aplica ul{margin:0;padding-left:1.1em}.aplica li{margin:4px 0}
-</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Tópicos Paid Media</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,7 +122,7 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
 
 <header class="top">
   <div class="wrap">
-    <div class="brand">Tópicos Paid Media<small>edición 16 nov 2026</small></div>
+    <div class="brand">Tópicos Paid Media<small>edición 23 nov 2026</small></div>
     <nav class="tabs" aria-label="Secciones">
       <a href="#informe" data-view="informe">Informe</a>
       <a href="#quices" data-view="quices">Quices</a>
@@ -136,8 +135,8 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
 
 <section id="v-informe" data-panel="informe">
   <h1>Cuatro lecturas de la semana</h1>
-  <p class="lede">Lo más útil publicado entre el 9 y el 16 de noviembre de 2026 sobre cómo comparar experimentos por su impacto en el total, a quién tratar con una meta y contagios, cómo llevar un experimento a otro mercado y cómo alinear modelos de conversión con producción. Cada tarjeta empieza con un contexto previo y termina con un resumen ampliado, ambos desplegables.</p>
-  <div class="meta"><span>arXiv: 8 listados (anuncios del 13 y 16 nov)</span><span>~800 títulos · 10 resúmenes · 4 textos completos</span><span>PyPI: PyMC-Marketing 1.4.0 (9 nov), notas sin leer</span><span>GitHub inaccesible (403) · sin revisar: revistas, SSRN</span></div>
+  <p class="lede">Lo más útil publicado entre el 16 y el 23 de noviembre de 2026 sobre dónde calibrar un puntaje en un embudo, cómo tomar prestado de experimentos pasados, cuánto vale de verdad una tasa de match y cómo salir del arranque en frío en auto-puja. Cada tarjeta empieza con un contexto previo y termina con un resumen ampliado, ambos desplegables.</p>
+  <div class="meta"><span>arXiv: 5 listados (17 a 23 nov) + 17 búsquedas en la API</span><span>362 títulos · 19 resúmenes · 4 textos completos</span><span>PyPI: PyMC-Marketing 1.5.0, Meridian 2.2.1, EconML 0.17.1 (notas sin leer)</span><span>GitHub inaccesible (403) · sin revisar: revistas, SSRN, blogs</span></div>
   <div class="legend">Cómo leer la evidencia:
     <span class="tag t-med">MEDIDO</span> resultado reportado por los autores
     <span class="tag t-aut">AUTORES</span> interpretación de los autores
@@ -147,166 +146,171 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
   <div class="stack">
     <article class="piece">
       <div class="piece-head"><span class="rank">1</span>
-        <h2><a href="https://arxiv.org/abs/2611.18411" target="_blank" rel="noopener">Making Experiment Results Comparable through Sitewide Impact Estimation</a></h2>
-        <div class="byline">Xiaochen Zhang, Wenjing Zheng, Xingye Kang y Vamsi Manthena (Roblox) · v1, 13 nov 2026 · CODE@MIT 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.22595" target="_blank" rel="noopener">Lost in the Funnel: Selection-Induced Miscalibration in Ranking and Decision Systems</a></h2>
+        <div class="byline">Aditya Somani, Rahul Ragesh, Vikas Joshi y Amit Singh (Microsoft Ads) · v1, 17 nov 2026 · en revisión</div>
       </div>
-      <div class="chips"><span class="chip topic">Experimentación e incrementalidad</span><span class="chip">Sin código</span></div>
-      <details class="more ctx"><summary>Contexto previo: del lift de un experimento al efecto en el negocio total</summary><div class="body">
-<p><b>1.</b> <b>Qué es:</b> un A/B mide el efecto de un cambio sobre los usuarios que lo pueden recibir. El <i>lift</i> del experimento (<i>experiment lift</i>) es el cambio relativo frente al control en esa población. Pero el negocio decide con métricas totales: ventas, horas de uso o desembolsos de toda la plataforma.</p>
-<p><b>2.</b> <b>De qué se compone:</b> el alcance (<i>reach</i>: cuántos usuarios toca el cambio), el peso de esos usuarios en la métrica total cuando nadie está tratado y el efecto sobre ellos. En palabras: efecto total relativo ≈ lift en el segmento × participación del segmento en la métrica total.</p>
-<p><b>3.</b> <b>Cómo se ha trabajado:</b> el análisis por disparo (<i>trigger analysis</i>) mide el efecto solo en quienes vieron el cambio, y el "efecto diluido" (<i>diluted treatment effect</i>, Deng y Hu, 2015) lo reescala a toda la población; Kohavi, Tang y Xu (2020) lo tratan como práctica estándar. Para métricas de razón se usa el método delta (Deng, Knoblich y Lu, 2018). La transportabilidad (<i>transportability</i>) lleva un efecto a una población con otra composición.</p>
-<p><b>4.</b> <b>Dónde está la dificultad:</b> los equipos comparan experimentos por su lift, aunque cada uno toca superficies con alcances y pesos muy distintos. La línea base total observada ya incluye el efecto en curso, y para métricas de razón no basta con multiplicar por un solo factor.</p>
-<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> un cambio en el formulario sube 2 % las aprobaciones en un segmento con el 10 % de los desembolsos: efecto total 0,2 %. Otro sube 0,5 % en un segmento con el 80 %: efecto total 0,4 %, el doble, con un lift cuatro veces menor.</p>
-<p><b>6.</b> <b>Conexión:</b> el paper formaliza ese reescalado como un estimando contrafactual y lo valida contra un holdout. Para el lector, sirve para priorizar pruebas del embudo por impacto en el total.</p>
+      <div class="chips"><span class="chip topic">Calibración y subastas</span><span class="chip">Sin código</span><span class="chip">Datos públicos</span></div>
+      <details class="more ctx"><summary>Contexto previo: calibración a lo largo de un embudo de decisión</summary><div class="body">
+<p><b>1.</b> <b>Qué es:</b> un puntaje está calibrado (<i>calibration</i>) cuando sus probabilidades coinciden con las frecuencias: entre los casos con 0,6, alrededor del 60 % resulta positivo; E[Y | S] = S. Importa cuando el número se usa para pujar, fijar un umbral o mezclar señales.</p>
+<p><b>2.</b> <b>De qué se compone:</b> un puntaje S, un resultado Y, el residuo R = Y − S, tramos (<i>bins</i>) del puntaje y una curva de fiabilidad. El error de calibración esperado (<i>expected calibration error</i>, ECE) promedia por tramo la diferencia en valor absoluto entre tasa observada y puntaje medio. En un sistema real el puntaje cruza un embudo: modelo → filtros → reordenamiento → reglas → subasta.</p>
+<p><b>3.</b> <b>Cómo se ha trabajado:</b> se recalibra una vez en la salida del modelo con Platt o con regresión isotónica (Zadrozny y Elkan, 2002). McMahan y Muralidharan (2012) mostraron que recalibrar con las impresiones ganadoras puede ciclar. En crédito, el problema hermano es la inferencia de rechazados.</p>
+<p><b>4.</b> <b>Dónde está la dificultad:</b> la calibración es del puntaje <b>y</b> de la población. Si un filtro posterior usa información que predice Y más allá de S, los sobrevivientes dejan de estar calibrados aunque el modelo lo esté. Los errores de signo contrario se cancelan en un promedio global.</p>
+<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> en el tramo 0,20 hay 500 candidatos y 100 positivos. Una regla de fraude que mira otra señal deja pasar 100, con solo 10 positivos: tasa real 10 % frente a 20 % prometido, justo donde se decide.</p>
+<p><b>6.</b> <b>Conexión:</b> el paper descompone ese error por fronteras del embudo y propone recalibrar donde se usa el puntaje; es preguntarse si el score está calibrado sobre quienes llegan al corte.</p>
       </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Define el impacto en el total (<i>sitewide impact</i>): cuánto se movería una métrica agregada si el tratamiento llegara al 100 % de su población objetivo. Su escala es el factor de cobertura (<i>coverage factor</i>), que combina alcance y peso sin tratamiento. Da estimadores para diferencias de medias, para razones a nivel de variante y por segmentos.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Permite ordenar pruebas de distintos canales o pasos del embudo en una misma escala y atribuir crecimiento interanual a lanzamientos.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En 139 experimentos significativos en tiempo de uso, la correlación de Spearman entre lift e impacto total es 0,20. En A/A, la mediana del impacto es prácticamente cero (p = 0,59). Frente a un holdout de pagos, la suma de impactos da 0,41 % contra 0,50 % en ventas. <span class="tag t-aut">AUTORES</span> Supone SUTVA y alcance fijo; el intervalo no incluye el error del factor de cobertura. <span class="tag t-inf">INFERENCIA</span> Es un resumen extendido de cinco páginas, sin código.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Simula 60 experimentos en numpy con alcance y peso aleatorios y un efecto verdadero conocido. Baseline: ordenar por lift. Tratamiento: ordenar por lift × factor de cobertura, reconstruyendo la línea base sin tratamiento. Métricas: Spearman y coincidencias en el top 10 frente al impacto verdadero, y error del estimador de razón frente a usar un solo factor.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Descompone el sesgo de los sobrevivientes de una frontera en error heredado (E), cambio de composición (C) y desplazamiento residual dentro de tramos (W). Da condiciones para que la calibración sobreviva y propone FAR (<i>Funnel-Aware Recalibration</i>): ajustar un isotónico sobre los sobrevivientes de la frontera donde se decide.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Todo puntaje que fija umbrales, pujas o mezclas (pCVR para pujar a CPA, score para el corte) debe estar calibrado donde se usa, no donde se produce.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> El ECE sube de 156–185 pb en la salida del modelo a 784–809 antes de la subasta, y W explica casi todo. En un A/B de 20 días, FAR baja ese ECE 60–71 %, el CTR sube 1,0–2,0 % y el RPM no cambia de forma significativa. <span class="tag t-aut">AUTORES</span> FAR se debe reajustar periódicamente. <span class="tag t-inf">INFERENCIA</span> El objetivo es relevancia juzgada, no clic, y los datos adaptados aún no se publican.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Con 1 millón de filas de Criteo Attribution, entrena S (clic) con las variables categóricas y calíbralo con isotónica; entrena un selector D (conversión) con todas las variables y conserva el 10 % superior. Baseline: isotónico en toda la población. Tratamiento: FAR en la mitad de los sobrevivientes. Métricas: ECE con 50 tramos de igual masa, sesgo con signo y descomposición E, C y W en la otra mitad.</dd></div>
       </dl>
-      <div class="res"><b>Código y datos.</b> No hay código ni datos públicos; los datos son internos de Roblox.</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Adoptar ya</span></h4><p>Es un cálculo simple que corrige un error común de priorización.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Ya ponderas por exposición: en riesgo, el cambio de PD de un segmento importa según su peso en la pérdida esperada de la cartera. Aquí el factor de cobertura cumple ese papel. También tienes el embudo, las cohortes y el valor por lead por canal de <code>growth-marketing-agent</code>.</li><li><strong>Lo nuevo para ti:</strong> Reconstruir la línea base sin tratamiento, el estimador para métricas de razón (numerador y denominador por separado) y los límites de O'Brien-Fleming para lecturas diarias. Esfuerzo bajo.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, para comparar pruebas del embudo de originación o campañas que tocan segmentos distintos en una misma unidad (desembolsos o pérdida esperada totales). En <code>growth-marketing-agent</code>, como tabla "lift del segmento → impacto en el total" por canal, y en la sesión de uplift con Hillstrom.</li><li><strong>Primer paso (≤ 2 h):</strong> En Hillstrom, toma como segmento afectado a los clientes con historial de compras de mujeres, estima el lift del correo de mujeres ahí y multiplícalo por la participación del segmento en el gasto del control.</li></ul></section>
+      <div class="res"><b>Código y datos.</b> Sin código; anuncian datos adaptados y pipeline. Datos públicos: <a href="https://kuairand.com/" target="_blank" rel="noopener">KuaiRand-1K</a> y <a href="https://ailab.criteo.com/criteo-attribution-modeling-bidding-dataset/" target="_blank" rel="noopener">Criteo Attribution</a> (ambos responden).</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Adoptar ya</span></h4><p>Es un chequeo barato que cambia dónde mides la calibración y conecta con tu pendiente de sesgo de selección.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Calibración y recalibración (tu LightGBM recalibrado en <code>credit-risk-agent-lab</code>), Brier y curvas de fiabilidad, cortes por utilidad esperada, PSI y el sesgo de entrenar solo con aprobados. E + C + W es contabilidad de promedios ponderados, como explicar un cambio de PD de cartera por mezcla y por desempeño.</li><li><strong>Lo nuevo para ti:</strong> Pensar la calibración por fronteras de un embudo, la condición Cov(R, A | S) = 0 y el uso de etiquetas previas a la exposición para medir candidatos nunca mostrados. Esfuerzo bajo.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, si una regla de fraude, una política comercial o un segundo modelo filtra después del score y antes del corte. En <code>credit-risk-agent-lab</code>, sobre los casos que pasan las reglas duras y el comité del agente; en <code>growth-marketing-agent</code>, sobre el valor por lead si luego filtras leads.</li><li><strong>Primer paso (≤ 2 h):</strong> En el conjunto de prueba de Lending Club, usa una regla dura del agente como selector, calcula ECE y E, C y W en los sobrevivientes y, si W no es cero, ajusta un isotónico en una mitad y evalúalo en la otra.</li></ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><b>1.</b> <b>Problema y motivación.</b> Roblox tiene muchas superficies de producto (descubrimiento, economía virtual, herramientas de creadores, notificaciones) con alcances y públicos muy distintos. El lift de un A/B no es comparable entre superficies. Para decidir hace falta un contrafactual: cuánto se movería la métrica total si el tratamiento llegara a toda su población objetivo.</p>
-<p><b>2.</b> <b>Conceptos clave.</b> <i>Impacto en el total</i> (L_S): cambio relativo de un agregado de la plataforma bajo despliegue completo. <i>Factor de cobertura</i> (C): participación de la población afectada en la métrica total sin tratamiento. <i>Métrica de razón a nivel de variante</i>: total del numerador entre total del denominador en cada brazo (fallas totales por hora total de juego). <i>Holdout de largo plazo</i>: grupo aleatorio al que se le retienen todos los cambios de un periodo.</p>
-<p><b>3.</b> <b>Datos.</b> Experimentos internos de 2026: 139 pruebas significativas en tiempo de uso, 1.349 experimentos usados como A/A en su periodo previo, 155 para segmentos, 484 para métricas de fallas (8 sep a 29 oct) y un holdout de pagos del 20 de enero al 18 de marzo en seis superficies. No son públicos.</p>
-<p><b>4.</b> <b>Método paso a paso.</b> (a) Para diferencias de medias, L_S = L_A × C, con C = N_A·μ_A|0 / (N_S·μ_S|0): un lift de 2 % en una población con el 10 % de la métrica es 0,2 % en el total. (b) La media total sin tratamiento se reconstruye restando el efecto en los tratados: μ̂_S|0 = μ_S observada − (N_T/N_S)·(Ȳ_T − Ȳ_C). (c) Para razones, se reconstruyen numerador y denominador sin tratamiento, se suma a cada uno el efecto del despliegue completo y se comparan las razones. (d) Por segmentos, se suman los totales contrafactuales, no los lifts. (e) El intervalo del lift se escala por C; para lecturas diarias se ensancha con Lan-DeMets y una frontera de O'Brien-Fleming.</p>
+<p><b>1.</b> <b>Problema y motivación.</b> Un puntaje calibrado en la salida del modelo se usa como probabilidad en todo el embudo, pero la calibración se valida solo donde se produce. Los autores preguntan cuándo sobrevive a la selección, cómo separar el error heredado del que crea la selección y qué falla aun con un puntaje perfecto.</p>
+<p><b>2.</b> <b>Conceptos clave.</b> <i>Residuo</i>: R = Y − S. <i>ECE</i>: error medio en valor absoluto por tramo, en puntos básicos (1 pb = 0,01 pp). <i>Brecha con signo</i>: E[Y − S], que puede cancelarse entre tramos. <i>E, C y W</i>: error heredado, cambio de composición y desplazamiento residual. <i>Quick-back</i>: volver rápido tras el clic, señal de insatisfacción. <i>RPM</i>: ingreso por mil búsquedas.</p>
+<p><b>3.</b> <b>Datos.</b> Una plataforma comercial de anuncios de búsqueda, con etiquetas binarias de relevancia juzgada por rúbrica (1 = sin defecto) para pares consulta–anuncio, se muestren o no. Isotónico ajustado con unos 500.000 candidatos previos a la subasta de una semana anterior; 25.000 candidatos por región en cada frontera para evaluar. Réplica pública: KuaiRand-1K (6,7 millones de impresiones; S: clic; D: visualización larga) y Criteo Attribution (16,5 millones; S: clic; D: conversión).</p>
+<p><b>4.</b> <b>Método paso a paso.</b> (a) Por tramo: residuo de sobrevivientes = residuo de entrada + Cov(R, A | tramo) / Pr(A = 1 | tramo). (b) Sumando tramos: sesgo = E + C + W. (c) La calibración se transfiere si y solo si Cov(R, A | S) = 0: selección solo por S (umbrales, top-k), mismo conjunto de información con S = E[Y | X], o sin información extra sobre Y. (d) FAR: declarar la frontera, ajustar g(S) monótono en sobrevivientes de la política vigente y validar en sobrevivientes retenidos. (e) Réplica: partición 60/20/20, árboles de gradiente, S calibrado y congelado, supervivencia σ(α + β(2·rank(D) − 1)) con 10 % retenido, 20 extracciones y FAR en la mitad de los sobrevivientes.</p>
 <p><b>5.</b> <b>Resultados.</b></p>
-<ul><li><span class="tag t-med">MEDIDO</span> Spearman entre lift e impacto (en valor absoluto): 0,20 en 139 experimentos. De los 10 lifts más grandes, 5 están entre los 10 mayores impactos (~7 % esperado al azar). En listas de hasta 50, coinciden entre 35 % y 50 %.</li><li><span class="tag t-med">MEDIDO</span> A/A en 1.349 experimentos (se descartan 64 con C &gt; 1 y 27 con menos de 10.000 usuarios por brazo): mediana de 0,00004 % y p = 0,59. La mediana de C es 34 %.</li><li><span class="tag t-med">MEDIDO</span> Recombinar segmentos por totales baja el error absoluto medio frente al lift global de 1,33 a 0,47 puntos en tiempo de uso y de 7,01 a 1,68 en ventas (155 experimentos).</li><li><span class="tag t-med">MEDIDO</span> Usar un solo factor en una razón da un error mediano de 3,5 % del impacto (29 % o más en uno de cada diez) con el factor del denominador; con el del numerador, 7,2 % o más en uno de cada diez.</li><li><span class="tag t-med">MEDIDO</span> Holdout de pagos con 8 innovaciones: la suma de impactos (cota superior) da 0,41 % frente a 0,50 % en ventas y 0,22 % frente a 0,21 % en probabilidad de gastar. En tiempo de uso y usuarios activos, el holdout no se distingue de cero.</li></ul>
-<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> SUTVA y alcance fijo no se pueden verificar con el experimento; si el tratamiento atrae más usuarios, el estimador queda sesgado hacia abajo. El intervalo trata a C como conocido. El cálculo es costoso porque hay que reagregar la población por ventana. <span class="tag t-inf">INFERENCIA</span> La validación contra el holdout es un caso con 8 innovaciones; el acuerdo agregado no prueba que cada impacto esté bien estimado.</p>
-<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> No es transportabilidad: no hay cambio de covariables que corregir. Generaliza el efecto diluido: reconstruye la línea base sin tratamiento, extiende el cálculo a razones a nivel de variante y recombina segmentos.</p>
-<p><b>8.</b> <b>Cómo aplicarlo.</b> Reporta cada prueba como "lift en el segmento" e "impacto en el total" con su factor de cobertura, y prioriza por el segundo.</p>
-<p><b>9.</b> <b>Glosario breve.</b> Factor de cobertura: peso del segmento afectado en la métrica total. Efecto diluido: lift reescalado a toda la población. Razón a nivel de variante: total entre total. Holdout: grupo al que se le retienen los cambios.</p>
-<p><b>Frase para recordar:</b> un lift grande en un rincón del negocio puede valer menos que un lift chico donde está el volumen.</p>
+<ul><li><span class="tag t-med">MEDIDO</span> Diagnóstico (región 1 y 2): E = +0,1 y −0,8 pp, C = +0,2 y −0,1 pp, W = −7,5 y −7,0 pp; brecha antes de la subasta de −7,3 y −7,8 pp. En el tope del puntaje, la fiabilidad queda entre 6 y 24 pp bajo la diagonal.</li></ul>
+<div class="tbl"><table><thead><tr><th>Frontera y región</th><th class="num">ECE control (pb)</th><th class="num">ECE con FAR (pb)</th><th class="num">Cambio</th></tr></thead><tbody><tr><td>Antes de la subasta, región 1</td><td class="num">784</td><td class="num">314</td><td class="num">−60 %</td></tr><tr><td>Antes de la subasta, región 2</td><td class="num">809</td><td class="num">234</td><td class="num">−71 %</td></tr><tr><td>Impresión, región 1</td><td class="num">633</td><td class="num">233</td><td class="num">−63 %</td></tr><tr><td>Impresión, región 2</td><td class="num">711</td><td class="num">143</td><td class="num">−80 %</td></tr></tbody></table></div>
+<ul><li><span class="tag t-med">MEDIDO</span> A/B de 20 días con 5 % de las búsquedas: cobertura de anuncios −3,1 % y −9,2 %; CTR +1,0 % y +2,0 %; quick-back −1,2 % y −2,4 %; RPM +0,2 % y −0,1 %, no significativos.</li><li><span class="tag t-med">MEDIDO</span> Réplica (β = 8, 10 % retenido): la selección mueve la brecha en todas las corridas y FAR la elimina. Con brecha de información, el ECE en Criteo baja de 685 a 70 pb (−90 %) y de 768 a 53 pb (−93 %); con información compartida, entre −8 % y −44 %, con dos de ocho casos no significativos.</li></ul>
+<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> FAR debilita el ciclo de recalibración sin eliminarlo; una frontera posterior puede crear un W nuevo; el signo del problema no se predice a priori. <span class="tag t-inf">INFERENCIA</span> Paper de cinco páginas; la caída de cobertura (hasta −9,2 %) podría no ser neutral en ingresos en otro negocio.</p>
+<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Reusa la isotónica y cambia dónde se ajusta. Frente a Fan y coautores (2023), recalibra un puntaje congelado sobre sobrevivientes etiquetados; frente a Bergemann y coautores (2022) y Joachims y coautores (2017), no infiere clics ni repondera exposiciones.</p>
+<p><b>8.</b> <b>Cómo aplicarlo.</b> Mide la calibración en la frontera donde el puntaje decide, con tramos fijos, y recalibra con los sobrevivientes si domina W.</p>
+<p><b>9.</b> <b>Glosario breve.</b> Calibración: probabilidades que coinciden con frecuencias. ECE: error medio por tramo. Desplazamiento residual: error que crea la selección dentro de un tramo. FAR: recalibración en la frontera de decisión.</p>
+<p><b>Frase para recordar:</b> la calibración pertenece al puntaje y a la población que atiende, no solo al modelo.</p>
       </div></details>
     </article>
 
     <article class="piece">
       <div class="piece-head"><span class="rank">2</span>
-        <h2><a href="https://arxiv.org/abs/2611.18444" target="_blank" rel="noopener">Constrained Stochastic Policy Targeting under Heterogeneous Partial Interference</a></h2>
-        <div class="byline">Elena Dal Torrione (Yale), Chan Park (UIUC) y Laura Forastiere (Yale) · v1, 13 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.27655" target="_blank" rel="noopener">Combining Past Experimental Data for Efficient Estimation: A Shrinkage Approach</a></h2>
+        <div class="byline">Qianxi Zhang, Dae Woong Ham y Stefanus Jasin (Ross School of Business, University of Michigan) · v1, 20 nov 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Uplift y políticas</span><span class="chip">Sin código</span></div>
-      <details class="more ctx"><summary>Contexto previo: a quién tratar cuando el tratamiento cuesta y se contagia</summary><div class="body">
-<p><b>1.</b> <b>Qué es:</b> el aprendizaje de políticas (<i>policy learning</i>) busca una regla que diga a quién tratar (un cupón, una llamada, una transferencia) según sus características, para optimizar un resultado promedio. Es el paso que sigue al uplift: no solo estimar el efecto, sino decidir.</p>
-<p><b>2.</b> <b>De qué se compone:</b> una clase de políticas (por ejemplo, una logística que da la probabilidad de tratar a cada perfil), un objetivo, una restricción (presupuesto o meta) y un estimador del valor de cada política con datos de un experimento, típicamente ponderación por probabilidad inversa (<i>inverse probability weighting</i>, IPW).</p>
-<p><b>3.</b> <b>Cómo se ha trabajado:</b> Kitagawa y Tetenov (2018) y Athey y Wager (2021) formalizan el aprendizaje de reglas con garantías de <i>regret</i>; Bhattacharya y Dupas (2012) estudian asignación con presupuesto. En marketing se ordena por uplift y se trata hasta agotar el presupuesto. Casi todo supone que no hay interferencia.</p>
-<p><b>4.</b> <b>Dónde está la dificultad:</b> en hogares, grupos o redes hay contagios (<i>spillovers</i>): un referido con bono invita a otros; un hermano becado puede quitarle recursos a otro. Ignorarlos sesga el valor de las políticas. Con una meta estimada, el error de muestreo puede hacer que una política que no cumple parezca cumplir.</p>
-<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> en hogares de dos personas, tratar a una sube su resultado 10 puntos y el de la otra 3. Si tratar a ambas solo agrega 1 punto más, tratar a una por hogar logra casi lo mismo con la mitad del presupuesto.</p>
-<p><b>6.</b> <b>Conexión:</b> el paper aprende la política más barata que cumple una meta con contagios dentro de grupos: el puente entre el uplift pendiente y una regla con presupuesto.</p>
+      <div class="chips"><span class="chip topic">Experimentación</span><span class="chip">Sin código</span><span class="chip">Solo simulación</span></div>
+      <details class="more ctx"><summary>Contexto previo: tomar prestado de experimentos pasados</summary><div class="body">
+<p><b>1.</b> <b>Qué es:</b> un estimador de contracción (<i>shrinkage estimator</i>) combina una estimación insesgada pero ruidosa con una referencia informativa pero quizás sesgada. Acepta algo de sesgo a cambio de menos varianza y se evalúa con el error cuadrático medio (<i>mean squared error</i>, MSE).</p>
+<p><b>2.</b> <b>De qué se compone:</b> MSE = sesgo² + varianza. Con un experimento auxiliar, θ̂ = (1 − w)·Ā + w·B̄: Ā es el efecto actual (varianza V_A), B̄ el pasado (varianza V_B) y ε el sesgo entre ambos. El peso w decide cuánto se toma prestado.</p>
+<p><b>3.</b> <b>Cómo se ha trabajado:</b> James y Stein (1961) mostraron que contraer un vector de tres o más medias baja el riesgo total. El meta-análisis combina experimentos desde Cochran (1954). CUPED (Deng, Xu, Kohavi y Walker, 2013) reduce varianza con covariables previas del mismo usuario. Rosenman y coautores (2020) contraen estimaciones experimentales hacia observacionales por subgrupo.</p>
+<p><b>4.</b> <b>Dónde está la dificultad:</b> cada experimento pasado probó algo parecido pero no igual, con sesgo de tamaño y signo desconocidos; promediar todo puede empeorar. James y Stein no garantiza mejorar <b>un solo</b> efecto, que es lo que se decide.</p>
+<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> un SMS nuevo da 3,0 pp con varianza 2,25; uno parecido del año pasado, 2,0 pp con varianza 0,25 y sesgo plausible de 0,5 pp. Con w = 0,5 el MSE es ≈ 0,69 frente a 2,25. Si el sesgo fuera 3 pp, sube a ≈ 2,88: peor que no hacer nada.</p>
+<p><b>6.</b> <b>Conexión:</b> el paper estudia cuándo y cómo tomar prestado de muchos experimentos sesgados para un solo efecto nuevo: aprovechar el archivo de campañas repetidas cuando el experimento actual es chico.</p>
       </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Plantea el problema de "meta de resultado": minimizar la probabilidad media de tratamiento sujeta a alcanzar un resultado poblacional, con políticas estocásticas individualizadas e interferencia parcial. Propone estimadores IPW y Hájek conscientes de la interferencia, un sustituto suave de la restricción con margen y márgenes adaptativos a la varianza, con cotas de regret en muestra finita.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Formaliza una pregunta frecuente de growth (el gasto mínimo que logra una meta) y advierte que ignorar los contagios puede dar políticas que no la cumplen.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En simulación con 2.000 grupos, ignorar la interferencia (NI-IPW) cumple la meta en 14,2 % de las réplicas frente a 99,2 % del IPW consciente. En el programa colombiano de transferencias, con meta 0,77, la política consciente trata 9,2 puntos menos que NI-IPW y 22,3 menos que la constante, pero cumple en 3 de 5 pliegues. <span class="tag t-aut">AUTORES</span> Requiere probabilidades de asignación conocidas. <span class="tag t-inf">INFERENCIA</span> Un solo programa, sin datos de marketing.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Replica en numpy la simulación de la ecuación 14 (grupos de 10, una covariable binaria, tratamiento al 50 %). Baseline: grilla de una logística de dos parámetros con IPW individual (NI-IPW). Tratamiento: el mismo con IPW por grupo. Métricas: probabilidad media de tratamiento y cumplimiento de la meta en 100 réplicas.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Prueba que, con sesgos y varianzas conocidos (oráculo), tomar prestado de un solo experimento sesgado siempre baja el MSE. Propone tres estimadores prácticos: plug-in general (pesos por estudio con muestra piloto), plug-in agrupado (sesgo común) y peso fijo con compuerta de prueba de hipótesis (FH). Caracteriza su MSE cuando crece el número de experimentos según el sesgo medio e y su dispersión δ.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Los equipos con archivo de A/B pueden estimar mejor efectos chicos y ruidosos, con una regla para elegir estimador.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Solo simulaciones gaussianas con 80 estudios auxiliares y 50.000 réplicas: con e y δ chicos, los tres superan a no tomar prestado; con δ grande gana el agrupado; con e grande los plug-in empeoran y FH vuelve casi al benchmark. <span class="tag t-aut">AUTORES</span> FH nunca alcanza al mejor de los extremos. <span class="tag t-inf">INFERENCIA</span> Sin datos reales ni código; cifras solo en figuras.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Reproduce en numpy el diseño de la sección 8 (θ = 10, N_A = 100, σ²_A = 64). Baseline: Ā. Tratamientos: plug-in general con w = V_A·Q⁻¹·1 estimado en la piloto y FH con α = 0,10. Métrica: MSE relativo a V_A = 0,64 en 5.000 réplicas, con M = 5, 20 y 80 y e de 0,15 y 5.</dd></div>
       </dl>
-      <div class="res"><b>Código y datos.</b> No se enlaza código. Los datos de Barrera-Osorio y coautores (2011) no los verifiqué.</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>La simulación es pequeña y enseña cuándo ignorar los contagios rompe la meta.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Decidir con utilidad esperada y cortes (tu política de aprobación en el lab), la regresión logística y la econometría para leer IPW. Aquí la "aprobación" es a quién darle el incentivo.</li><li><strong>Lo nuevo para ti:</strong> Aprendizaje de políticas con regret, interferencia parcial, estimadores de Hájek y márgenes de Bernstein empíricos. Esfuerzo medio-alto en la teoría, bajo en la simulación.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, en referidos, bonos por hogar o incentivos de renovación donde un cliente influye en otro. En <code>growth-marketing-agent</code>, en la sesión de uplift pendiente (Hillstrom y Lenta) como paso de "uplift a política con presupuesto"; la interferencia, con datos sintéticos.</li><li><strong>Primer paso (≤ 2 h):</strong> Con Hillstrom, estima la probabilidad mínima de envío por segmento de historial que alcanza una meta de tasa de visita, con IPW y grilla, y compárala con enviar a todos por igual.</li></ul></section>
+      <div class="res"><b>Código y datos.</b> No hay código ni datos; todo es simulación con el diseño descrito en el texto.</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>La simulación es barata y Hillstrom da un "verdadero" contra el cual medir; sin evidencia real, aún no lo usaría para decidir.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Sesgo-varianza y MSE de la econometría, pruebas de hipótesis y el criterio de riesgo de suavizar la tasa de un segmento chico hacia la de un grupo mayor. La compuerta de FH es una prueba t sobre una diferencia de medias.</li><li><strong>Lo nuevo para ti:</strong> La división piloto/prueba para estimar pesos sin sobreajustar, el papel no monótono de la dispersión del sesgo y la inferencia tras una compuerta. Esfuerzo medio.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, en campañas repetidas sobre el mismo segmento (recordatorios de pago, ofertas de renovación): el caso de sesgo medio chico. En <code>growth-marketing-agent</code>, Hillstrom tiene dos correos parecidos frente al mismo control; uno sirve de auxiliar del otro.</li><li><strong>Primer paso (≤ 2 h):</strong> Submuestrea 2.000 clientes del correo de mujeres y del control, usa el correo de hombres completo como auxiliar y compara Ā y FH contra el efecto de la muestra completa en 500 repeticiones.</li></ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><b>1.</b> <b>Problema y motivación.</b> Cuando los individuos interactúan, tratar a uno cambia el resultado de otros. La literatura de políticas óptimas casi siempre lo ignora y maximiza bienestar con presupuesto. Los autores estudian la política menos intensiva que alcanza una meta poblacional y también el problema con presupuesto.</p>
-<p><b>2.</b> <b>Conceptos clave.</b> <i>Interferencia parcial</i>: el resultado depende de los tratamientos del propio grupo, no de otros grupos. <i>Política estocástica individualizada</i>: probabilidad de tratamiento según características; bajo interferencia puede superar a cualquier regla determinística. <i>Hájek</i>: IPW autonormalizado, más estable. <i>Margen</i>: holgura ε exigida a la meta estimada; el <i>margen adaptativo</i> crece con la varianza de cada política. <i>Regret</i>: pérdida frente a la mejor política de la clase.</p>
-<p><b>3.</b> <b>Datos.</b> Simulación: 500 réplicas con N de 200 a 2.000 grupos de 10 personas, una covariable binaria y tratamiento Bernoulli(0,5). Aplicación: experimento de 2005 de Subsidios Condicionados a la Asistencia Escolar en Bogotá, con 6.729 estudiantes en 5.725 hogares.</p>
-<p><b>4.</b> <b>Método paso a paso.</b> (a) Política logística p(x, v) = σ(γ·(x, v)); la probabilidad del vector del hogar es el producto de las individuales. (b) El resultado de la política se estima con IPW por hogar (o Hájek). (c) mín C̄(p) sujeto a Ȳ(p) ≥ T se reescribe como riesgo = C̄(p) + C₀ × 1{Ȳ(p) &lt; T}, con el indicador reemplazado por un sustituto suave y un margen. (d) El margen se elige por validación cruzada por grupos o se adapta a la varianza. (e) Cotas de regret de orden N^(−1/4), y raíz de log(N)/N bajo condiciones adicionales.</p>
+<p><i>Leí el cuerpo principal (secciones 1 a 9), no los apéndices con las pruebas.</i></p>
+<p><b>1.</b> <b>Problema y motivación.</b> Las empresas acumulan miles de A/B (Booking.com guarda cada uno en un repositorio buscable), pero los usan de forma cualitativa. ¿Se pueden usar para estimar mejor un efecto nuevo cuando los anteriores probaron intervenciones parecidas, no idénticas?</p>
+<p><b>2.</b> <b>Conceptos clave.</b> <i>Lado A</i>: el experimento actual, insesgado. <i>Lado B</i>: los pasados, con sesgo fijo ε_i. <i>Oráculo</i>: conoce sesgos y varianzas. <i>Muestra piloto y de prueba</i>: la piloto estima pesos y la de prueba da la estimación final. <i>Sesgo medio</i> (e) y <i>dispersión</i> (δ). <i>Compuerta</i>: prueba que decide si se toma prestado.</p>
+<p><b>3.</b> <b>Datos.</b> Sin datos reales. Simulación gaussiana con θ = 10, N_A = 100 y σ²_A = 64 (V_A = 0,64); 20 % del lado A para prueba; 80 estudios auxiliares de 100 a 150 observaciones; sesgos ε_i = e + δ·U_i; entornos (e, δ) = (0,15; 0,05), (0,15; 12), (5; 2) y (5; 36); 50.000 réplicas; FH con α = 0,10.</p>
+<p><b>4.</b> <b>Método paso a paso.</b> (a) Oráculo: MSE(w) = (wᵀε)² + (1 − 1ᵀw)²·V_A + wᵀΣw; peso óptimo w* = V_A·Q⁻¹·1 con Q = εεᵀ + Σ + V_A·11ᵀ y mejora V_A²·1ᵀQ⁻¹1 &gt; 0. (b) Plug-in general: sesgos estimados como diferencias de medias piloto y pesos aplicados a las medias de prueba. (c) Plug-in agrupado: limita la reponderación por estudio. (d) FH: une las observaciones con pesos por tamaño solo si la diferencia con Ā no es significativa; si lo es, vuelve a Ā. (e) Análisis cuando M crece e intervalos de confianza.</p>
 <p><b>5.</b> <b>Resultados.</b></p>
-<div class="tbl"><table><thead><tr><th>N = 2.000</th><th class="num">Prob. de tratamiento</th><th class="num">Resultado medio</th><th class="num">Cumple la meta</th></tr></thead><tbody><tr><td>I-IPW</td><td class="num">0,368</td><td class="num">0,834</td><td class="num">99,2 %</td></tr><tr><td>I-HJ</td><td class="num">0,362</td><td class="num">0,823</td><td class="num">99,8 %</td></tr><tr><td>CI-IPW (constante)</td><td class="num">0,383</td><td class="num">0,795</td><td class="num">99,0 %</td></tr><tr><td>NI-IPW (ignora contagios)</td><td class="num">0,306</td><td class="num">0,729</td><td class="num">14,2 %</td></tr></tbody></table></div>
-<ul><li><span class="tag t-med">MEDIDO</span> La política óptima personalizada alcanza T = 0,75 con probabilidad 0,3185; la constante óptima necesita 0,354. El cumplimiento de NI-IPW cae de 87,4 % (N = 200) a 14,2 % (N = 2.000).</li><li><span class="tag t-med">MEDIDO</span> Los márgenes adaptativos bajan tratamiento y regret con cumplimiento parecido; con N = 200, el regret de IPW pasa de 0,160 a 0,100.</li><li><span class="tag t-med">MEDIDO</span> Aplicación, 5 pliegues por hogar: con meta 0,77, I-IPW trata con 0,309 (cumple en 3 de 5, pérdida 0,005), NI-IPW con 0,401 y CI-IPW con 0,532. Con 0,78, el ahorro es de unos 10 puntos; con 0,79 a 0,80 desaparece; con 0,81, solo I-IPW cumple en 3 pliegues.</li><li><span class="tag t-med">MEDIDO</span> Las políticas priorizan Suba y hogares grandes; con metas altas, las conscientes de la interferencia pasan a favorecer a mujeres y a SISBEN bajo, coherente con los efectos negativos sobre hermanas no tratadas.</li></ul>
-<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Interferencia solo dentro de hogares y propensiones conocidas; redes y datos observacionales quedan pendientes. <span class="tag t-inf">INFERENCIA</span> El ahorro de I-IPW viene con menor cumplimiento en metas bajas (0,60 frente a 0,80–1,00). El signo del sesgo de ignorar contagios depende de si son positivos o negativos.</p>
-<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Une interferencia (Hudgens y Halloran; Tchetgen Tchetgen y VanderWeele) con aprendizaje de políticas (Kitagawa y Tetenov; Athey y Wager). Frente a Park y coautores (2024), aprende probabilidades individualizadas con una meta poblacional, y aporta cotas de Bernstein empíricas uniformes para IPW y Hájek con interferencia.</p>
-<p><b>8.</b> <b>Cómo aplicarlo.</b> Si una campaña tiene contagios naturales (referidos, hogares, empresas), aleatoriza dentro de grupos y evalúa políticas con IPW por grupo y un margen sobre la meta.</p>
-<p><b>9.</b> <b>Glosario breve.</b> Interferencia parcial: contagio dentro del grupo. IPW: ponderación por probabilidad inversa. Hájek: IPW autonormalizado. Regret: pérdida frente a la mejor política. Margen: holgura sobre la meta estimada.</p>
-<p><b>Frase para recordar:</b> si el tratamiento se contagia, ignorarlo te lleva a tratar a muy pocos y a no llegar a la meta.</p>
+<ul><li><span class="tag t-med">MEDIDO</span> Teoremas 1 y 2: con oráculo, tomar prestado reduce el MSE de forma estricta, y la mejora crece con V_A.</li><li><span class="tag t-med">MEDIDO</span> Corolario 1: más sesgo medio siempre empeora el plug-in general; la dispersión tiene un óptimo interior (cancela sesgos, pero transmite el ruido de la media piloto).</li><li><span class="tag t-med">MEDIDO</span> Proposición 4: el MSE límite de FH supera al mejor de "siempre" (e²) y "nunca" (V_A).</li><li><span class="tag t-med">MEDIDO</span> Simulación: con e y δ chicos, los tres mejoran a Ā y gana el general; con δ grande, el agrupado; con e = 5, los plug-in quedan muy por encima del benchmark y FH vuelve casi a V_A. Con δ grande la convergencia es lenta y volátil.</li></ul>
+<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> El supuesto de no alineación falla si los experimentos viejos y grandes son los más sesgados; FH sacrifica mejoras con sesgo chico; los intervalos no son gaussianos. <span class="tag t-inf">INFERENCIA</span> Sesgo fijo por estudio, sin validación con un archivo real y cifras solo en gráficos.</p>
+<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Frente a James y Stein y Rosenman y coautores, el objetivo es un solo efecto; frente a CUPED, toma prestado de otros experimentos y no de covariables previas.</p>
+<p><b>8.</b> <b>Cómo aplicarlo.</b> Estima sesgo medio y dispersión del archivo y elige: general si ambos son chicos, agrupado si la dispersión es grande y FH si sospechas un sesgo medio grande.</p>
+<p><b>9.</b> <b>Glosario breve.</b> Contracción: mezclar estimación ruidosa y referencia. MSE: sesgo² + varianza. Sesgo medio: desalineación sistemática. Dispersión: heterogeneidad entre experimentos. Compuerta: prueba que decide si se toma prestado.</p>
+<p><b>Frase para recordar:</b> un experimento pasado parecido ayuda si su sesgo es chico frente al ruido del actual; si no lo sabes, ponle una compuerta.</p>
       </div></details>
     </article>
 
     <article class="piece">
       <div class="piece-head"><span class="rank">3</span>
-        <h2><a href="https://arxiv.org/abs/2611.16242" target="_blank" rel="noopener">A Sensitivity Framework for Assessing External Validity</a></h2>
-        <div class="byline">Ariel Boyarsky (Columbia Business School), Naoki Egami y Hongseok Namkoong (Columbia Business School) · v1, 12 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.23851" target="_blank" rel="noopener">Match Rate Is Not Match Quality: An Empirical Assessment of Third-Party Identity Resolution</a></h2>
+        <div class="byline">Tobias B. Konitzer (GrowthLoop) y David M. Rothschild · v1, 18 nov 2026 · econ.EM</div>
       </div>
-      <div class="chips"><span class="chip topic">Experimentos entre mercados</span><span class="chip">Sin código</span></div>
-      <details class="more ctx"><summary>Contexto previo: llevar un experimento a otro mercado</summary><div class="body">
-<p><b>1.</b> <b>Qué es:</b> la validez externa (<i>external validity</i>) pregunta si el efecto medido en un experimento se mantiene en otro lugar, momento o implementación: si un geo-test en tres ciudades predice el efecto en una cuarta, o si una prueba en un país sirve en otro.</p>
-<p><b>2.</b> <b>De qué se compone:</b> variables individuales (edad, ingreso) que cambian la composición del público, y variables del sitio (<i>site-level variables</i>: precio, tasa, promoción, competencia) que cambian el efecto mismo. En forma simple: efecto en el sitio = efecto base + suma de coeficientes × características del sitio.</p>
-<p><b>3.</b> <b>Cómo se ha trabajado:</b> la generalización repondera por covariables suponiendo un efecto condicional estable (Stuart y coautores, 2011; Dahabreh y coautores, 2020). Pearl y Bareinboim formalizaron la transportabilidad. Meager (2019) agrupa siete experimentos de microcrédito con un modelo jerárquico bayesiano. La identificación parcial de Manski reporta rangos en lugar de un punto.</p>
-<p><b>4.</b> <b>Dónde está la dificultad:</b> suele haber menos sitios que variables de sitio. Con 6 sitios hay a lo sumo 5 comparaciones independientes; con 9 términos, varios coeficientes no se identifican aunque cada efecto se conozca con exactitud.</p>
-<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> un sitio sin promoción y tasa baja tiene efecto 10; otro con promoción y tasa alta, 14. No se sabe si los 4 puntos vienen de la promoción o de la tasa. Para un sitio con promoción y tasa baja, el efecto puede ir de 10 a 14 si cada factor aporta entre 0 y 4.</p>
-<p><b>6.</b> <b>Conexión:</b> el paper convierte supuestos explícitos sobre los coeficientes en cotas del efecto en un sitio nuevo, con experimentos de microcrédito que cruzan crédito y adquisición.</p>
+      <div class="chips"><span class="chip topic">Identidad y medición con privacidad</span><span class="chip">Sin código</span><span class="chip">Datos privados</span></div>
+      <details class="more ctx"><summary>Contexto previo: resolución de identidad para audiencias propias</summary><div class="body">
+<p><b>1.</b> <b>Qué es:</b> la resolución de identidad (<i>identity resolution</i>) enlaza registros de clientes (correo, teléfono, nombre, dirección) con identificadores publicitarios, como los IDs de dispositivo móvil (<i>mobile advertising IDs</i>, MAIDs), para subir listas, excluir clientes, hacer retargeting o medir conversiones.</p>
+<p><b>2.</b> <b>De qué se compone:</b> la lista enviada, el grafo de identidad del proveedor y lo que devuelve. La tasa de match (<i>match rate</i>) es la proporción enlazada; la calidad, la proporción de enlaces que es la persona correcta. Hay enlaces uno a muchos, muchos a uno, individuales o de hogar, determinísticos o probabilísticos.</p>
+<p><b>3.</b> <b>Cómo se ha trabajado:</b> la vinculación de registros (<i>record linkage</i>) tiene una teoría clásica (Fellegi y Sunter, 1969) y se evalúa con precisión y exhaustividad. La industria reporta sobre todo la tasa. Desde iOS 14.5 (2021), los anunciantes dependen más de datos propios enlazados por terceros.</p>
+<p><b>4.</b> <b>Dónde está la dificultad:</b> el anunciante casi nunca puede auditar a quién llegó; las plataformas solo devuelven agregados. Un proveedor puede subir la tasa aceptando enlaces débiles sin que nadie lo note.</p>
+<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> con 100.000 clientes, tasa 80 % y precisión 20 % llegan a 16.000 clientes correctos; tasa 40 % y precisión 80 %, a 32.000.</p>
+<p><b>6.</b> <b>Conexión:</b> el paper mide esa precisión con datos reales de dos proveedores y da una fórmula para estimarla desde la concordancia demográfica.</p>
       </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Cotas de identificación parcial para el efecto en un sitio nuevo con un modelo parcialmente lineal (g_a(X) flexible y C'β_a lineal), con restricciones afines elegidas por el analista: topes, signos y "jerarquía de efectos". Agrega un estimador sin sesgo de primer orden que conserva el rango singular del sistema y combina antes de optimizar.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Da un lenguaje para decir "con estos supuestos, el efecto en el nuevo mercado está entre A y B" en vez de copiar el lift de otro mercado.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En Bosnia, con tres restricciones, el rango es [37,1; 127,3] y contiene el 79,8 del experimento retenido; en Marruecos queda [−1.653,1; 4.763,4]. <span class="tag t-aut">AUTORES</span> Bosnia depende de la jerarquía fuerte, de los seis sitios y de la partición (4 de 7 son infactibles); el intervalo de muestreo incluye el cero. <span class="tag t-inf">INFERENCIA</span> Exige varios experimentos comparables.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Simula 6 "ciudades" con 3 características (CPC, descuento, competencia) e interacciones (9 términos) y un efecto verdadero conocido. Con <code>scipy.optimize.linprog</code>, topes y signos, calcula las cotas para una séptima. Baseline: el efecto promedio de las 6. Métricas: cobertura del efecto verdadero y ancho del rango en 200 simulaciones.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Audita la calidad de match de dos proveedores grandes (datos de 2019–2020): compara edad y género del registro electoral enlazado con los que declaran encuestados en apps que devuelven el MAID. Un modelo de mezcla convierte la concordancia a en precisión: π = (a − b) / (1 − b), con b la concordancia por azar.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Alcance efectivo = tasa × calidad. Exclusiones, públicos similares y atribución por persona dependen de esa calidad.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> Proveedor A: 3,4 dispositivos por registro y 21,8 % de concordancia en 119 enlaces auditados. Proveedor B: 7,86 registros por dispositivo y 23,6 % en pares "individuales". Con b = 10 %, precisión implícita de 13 % y 15 %. <span class="tag t-aut">AUTORES</span> Los productos actuales pueden ser distintos y las muestras no son representativas. <span class="tag t-inf">INFERENCIA</span> Muestra chica, y ambos autores estuvieron asociados a la empresa que recolectó los datos.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Con 100.000 clientes sintéticos con edad (5 tramos) y género, simula un proveedor con precisión π conocida y error de medición e. Baseline: tomar la concordancia a como precisión. Tratamiento: la fórmula de mezcla con b empírico. Métrica: error absoluto en π para π de 10 % a 90 %, b de 5 % a 20 % y e de 0 a 10 %.</dd></div>
       </dl>
-      <div class="res"><b>Código y datos.</b> No se enlaza código. Datos: archivo de Meager (2019), <i>AEJ: Applied</i>, doi 10.1257/app.20170299 (el DOI devolvió 403 desde este entorno; no verifiqué el archivo).</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Solo leer</span></h4><p>Hoy no tienes varios experimentos comparables entre mercados; la "escalera de supuestos" sí la puedes usar ya.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> La econometría (regresión parcialmente lineal y partialling-out), la validación fuera de tiempo como pregunta de "¿sirve en otro contexto?" y el lenguaje del crédito: tasa (APR) y monto como variables del programa.</li><li><strong>Lo nuevo para ti:</strong> La identificación parcial, la programación lineal para cotas y el sesgo cero de primer orden con restricciones. Esfuerzo alto en la teoría.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, para discutir si una prueba de pricing o de campaña en una región sirve en otra con distinta tasa o mezcla de canales. En <code>credit-risk-agent-lab</code>, junto al pendiente de equidad por región; en <code>growth-marketing-agent</code>, como nota para cuando haya geo-tests.</li><li><strong>Primer paso (≤ 2 h):</strong> Reproduce con <code>linprog</code> el ejemplo de dos sitios de la sección 2 (ρ = 1,2, M = 1, rango [τ₀ + 0,2; τ₀ + 1]) y agrega un tercer sitio para ver cómo se estrecha.</li></ul></section>
+      <div class="res"><b>Código y datos.</b> No hay código y los datos no son públicos.</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Solo leer</span></h4><p>No tienes datos para replicar la auditoría, pero la idea sirve ya como criterio para evaluar proveedores.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Precisión y matrices de confusión, error de medición, el fraude de originación (también un problema de identidad) y la econometría para leer una mezcla de dos componentes.</li><li><strong>Lo nuevo para ti:</strong> El ecosistema de identificadores publicitarios (MAIDs, grafos, listas de clientes), enlaces individuales frente a hogar y la corrección por azar. Esfuerzo bajo.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, al subir listas para excluir clientes de campañas de adquisición o de buenos pagadores para públicos similares: pide evidencia de precisión, no solo de tasa. En <code>growth-marketing-agent</code>, una simulación de enlaces erróneos en el benchmark de atribución.</li><li><strong>Primer paso (≤ 2 h):</strong> Arma en un notebook la tabla π = (a − b) / (1 − b) y el alcance efectivo para 100.000 clientes, y guárdala como lista de preguntas para proveedores de identidad.</li></ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><b>1.</b> <b>Problema y motivación.</b> Los resultados de un experimento no necesariamente se generalizan. Los métodos maduros ajustan por composición individual (validez X en la taxonomía de Egami y Hartman). Este paper ataca los cambios del efecto que dependen de variables del sitio (validez C). Con menos sitios que variables, el efecto en un sitio nuevo no se identifica de forma puntual.</p>
-<p><b>2.</b> <b>Conceptos clave.</b> <i>Identificación parcial</i>: conjunto de valores compatibles con datos y supuestos. <i>Tope de magnitud</i>: cada coeficiente acotado en valor absoluto. <i>Jerarquía de efectos</i> (<i>effect hierarchy principle</i>): los cuadrados e interacciones no superan en valor absoluto a cada efecto directo, con parámetro κ. <i>Presupuesto agregado</i>: la suma de los de mayor orden no supera κ veces la de los directos. <i>Ajuste en un paso</i>: corrección del sesgo de primer orden con funciones auxiliares estimadas por machine learning.</p>
-<p><b>3.</b> <b>Datos.</b> Siete experimentos de microcrédito armonizados por Meager (2019). Resultado: ingresos del hogar en escala común. Covariables: edad, género, tamaño del hogar, sin educación formal, negocio previo y residencia urbana. Variables de sitio: tipo de promoción, tasa anual (APR) y monto medio sobre ingreso, con cuadrados e interacciones (9 términos). Se retiene Bosnia o Marruecos y se usan los otros seis.</p>
-<p><b>4.</b> <b>Método paso a paso.</b> (a) E[Y(a) | X, C] = g_a(X) + C'β_a. (b) El efecto objetivo es la media de g₁ − g₀ en su población más c_T'(β₁ − β₀). (c) Los sitios fuente dan ecuaciones lineales en β; el conjunto factible es su intersección con las restricciones. (d) Las cotas son el mínimo y el máximo del efecto en ese conjunto, como programas lineales (la jerarquía se descompone en 64 según signos). (e) Partialling-out de X a la Robinson con XGBoost y tres pliegues; el estimador conserva el rango del sistema y corrige el sesgo antes de optimizar, combinando pliegues. (f) Errores estándar por función de influencia, agrupados por unidad de aleatorización.</p>
+<p><b>1.</b> <b>Problema y motivación.</b> Los proveedores de identidad venden la tasa de match como métrica central, pero una tasa alta no dice si los identificadores devueltos son de las personas enviadas, y el anunciante casi nunca puede comprobarlo.</p>
+<p><b>2.</b> <b>Conceptos clave.</b> <i>Tasa de match</i> (m) y <i>calidad</i> (q o π); <i>alcance efectivo</i>: m × q. <i>MAID</i>: IDFA en iOS, AAID en Android. <i>Muchos a uno</i>: varios registros para un dispositivo, típico de hogares. <i>Concordancia por azar</i> (b).</p>
+<p><b>3.</b> <b>Datos.</b> En 2019–2020, una empresa de encuestas hoy cerrada enlazó el registro electoral de EE. UU. con MAIDs mediante dos proveedores. A: 65,34 % de registros enlazados; cinco estados con 2,29 millones de registros y 7,68 millones de MAIDs, cruzados con 19.154 MAIDs encuestados: 119 enlaces. B: 1.176 de 6.765 MAIDs enviados (17,38 %), unos 9.200 pares. Datos no públicos.</p>
+<p><b>4.</b> <b>Método paso a paso.</b> (a) Describir la estructura de enlaces. (b) Comparar edad en 5 tramos y género del registro con lo autodeclarado. (c) Mezcla: a = π + (1 − π)·b, así π = (a − b)/(1 − b); con error de medición e, π = (a − b)/((1 − e) − b). (d) Sensibilidad en b y e, con b empírico emparejando al azar las distribuciones del panel y del registro.</p>
 <p><b>5.</b> <b>Resultados.</b></p>
-<ul><li><span class="tag t-med">MEDIDO</span> Seis sitios dan 5 direcciones para 9 términos: 4 combinaciones sin identificar por brazo. La parte del perfil objetivo fuera del espacio de los sitios es 89 % en Marruecos y 46 % en Bosnia.</li><li><span class="tag t-med">MEDIDO</span> El signo de la tasa reduce el ancho 8,9 % en Bosnia y 30,3 % en Marruecos, sin fijar el signo. La jerarquía reduce el ancho de Bosnia 97,9 % (de 4.389,5 a 90,2) y da [37,1; 127,3], que contiene el efecto retenido de 79,8. En Marruecos reduce 1,1 % y da [−1.653,1; 4.763,4] (efecto retenido 80,9).</li><li><span class="tag t-med">MEDIDO</span> Los intervalos de muestreo al 95 % de Bosnia van de −1.069,6 a 1.407,0. En 4 de 7 particiones el programa es infactible; en las otras 3, la cota inferior va de 0,3 a 37,1.</li><li><span class="tag t-med">MEDIDO</span> Con jerarquía "por padres", el ancho baja 4,3 % y el signo queda abierto. Quitar cualquier sitio fuente deja el signo sin resolver. Mover la tasa de Bosnia en todo el rango mantiene el signo (21 de 21); el monto, en 16 de 21.</li><li><span class="tag t-med">MEDIDO</span> Simulación: con n = 500, el ajuste en un paso estándar no da intervalo en 89 % de las réplicas por desacuerdo de signos entre pliegues; el método propuesto da intervalo en todas. Desde n = 5.000, ambos cubren parecido.</li></ul>
-<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> No evalúa violaciones del modelo aditivo; Bosnia descansa en la jerarquía fuerte, en los seis sitios y en la compatibilidad de las ecuaciones estimadas con las restricciones. Recomiendan fijar restricciones antes y reportar la escalera en varios órdenes. <span class="tag t-inf">INFERENCIA</span> Usar rangos en vez de niveles para las variables de sitio es una elección fuerte; en marketing, los mercados difieren en muchas más dimensiones.</p>
-<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Frente a la generalización por composición y la transportabilidad, permite que el efecto cambie con el sitio. Frente a la sensibilidad por modificadores omitidos, ofrece un programa general con restricciones afines e inferencia válida con machine learning.</p>
-<p><b>8.</b> <b>Cómo aplicarlo.</b> Antes de extrapolar un test entre mercados, escribe las variables de mercado y los supuestos, y reporta cómo cambia el rango al agregar cada uno.</p>
-<p><b>9.</b> <b>Glosario breve.</b> Validez externa: si el efecto se mantiene en otro contexto. Identificación parcial: rango compatible con datos y supuestos. Jerarquía de efectos: las interacciones pesan menos que los directos. Sitio fuente y objetivo: donde se midió y donde se quiere predecir.</p>
-<p><b>Frase para recordar:</b> con pocos mercados, el efecto en uno nuevo es un rango; lo honesto es mostrar qué supuesto lo cierra.</p>
+<ul><li><span class="tag t-med">MEDIDO</span> A: 3,4 MAIDs por registro; 59 % con más de uno. En 119 enlaces: género 61,3 %, edad 32,8 %, ambos 21,8 % (IC 95 %: 15–30 %); 41 % si coincide el estado y 7,4 % si no; 21,7 % aun con un solo MAID (23 enlaces).</li><li><span class="tag t-med">MEDIDO</span> B: 97,03 % de los MAIDs apuntan a más de un registro (7,86 en promedio). Concordancia: 23,6 % en pares individuales, 10,8 % de hogar y 12,82 % en total.</li></ul>
+<div class="tbl"><table><thead><tr><th>Error de medición e (b = 10 %)</th><th class="num">B total</th><th class="num">B individual</th><th class="num">A</th></tr></thead><tbody><tr><td>0 %</td><td class="num">3,1 %</td><td class="num">15,1 %</td><td class="num">13,1 %</td></tr><tr><td>5 %</td><td class="num">3,3 %</td><td class="num">16,0 %</td><td class="num">13,9 %</td></tr><tr><td>10 %</td><td class="num">3,5 %</td><td class="num">17,0 %</td><td class="num">14,8 %</td></tr></tbody></table></div>
+<ul><li><span class="tag t-med">MEDIDO</span> Con b empírico de 9,4 %, la precisión sube a 3,8 % (B total) y 13,7 % (A). Un enlace de máxima confianza de B (a ≈ 19 %) es la persona correcta en un 10 % de los casos.</li></ul>
+<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Datos viejos que no evalúan productos actuales; muestra de A no representativa; el desacuerdo puede venir de errores del registro o de la encuesta; las dos auditorías no son comparables; se evalúan enlaces, no entrega de campañas. <span class="tag t-inf">INFERENCIA</span> Con 119 enlaces, el intervalo es ancho.</p>
+<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Hay poca evidencia pública sobre la precisión de grafos de identidad comerciales; usa el registro electoral como validación, como Ansolabehere y Hersh (2012).</p>
+<p><b>8.</b> <b>Cómo aplicarlo.</b> Exige precisión además de tasa, la definición de enlace individual frente a hogar y el método y la población de la validación.</p>
+<p><b>9.</b> <b>Glosario breve.</b> Tasa de match: proporción enlazada. Calidad: proporción correcta. Alcance efectivo: tasa × calidad. MAID: ID publicitario del móvil. Concordancia por azar: coincidencia de un enlace equivocado.</p>
+<p><b>Frase para recordar:</b> una tasa de match alta puede ser solo una audiencia más grande de desconocidos.</p>
       </div></details>
     </article>
 
     <article class="piece">
       <div class="piece-head"><span class="rank">4</span>
-        <h2><a href="https://arxiv.org/abs/2611.15137" target="_blank" rel="noopener">Serving-Aligned Entire-Space Conversion Modeling via Click-Through Rate Knowledge Distillation</a></h2>
-        <div class="byline">Pavel Dolin (Arizona State University; trabajo hecho en Reddit), Xun Zou, Jiatian Wu y Deguang Kong (Reddit) · v1, 11 nov 2026 (anunciado el 13)</div>
+        <h2><a href="https://arxiv.org/abs/2611.26060" target="_blank" rel="noopener">Iterative Scarcity-Guided Exploration: Bootstrapping Generative Auto-bidding from Narrow Support</a></h2>
+        <div class="byline">Qingmao Yao, Guangzheng Hu, Yusen Huo, Zhilin Zhang, Chuan Yu, Jian Xu, Xu Chu, Bo Zheng y Xiaotie Deng (Peking University, Alimama Tech y CityU Hong Kong) · v1, 19 nov 2026 · NeurIPS 2026</div>
       </div>
-      <div class="chips"><span class="chip topic">Conversión y pujas</span><span class="chip">Repo sin verificar</span><span class="chip">Datos públicos</span></div>
-      <details class="more ctx"><summary>Contexto previo: predecir clic y conversión en anuncios</summary><div class="body">
-<p><b>1.</b> <b>Qué es:</b> para ordenar anuncios por conversiones se usan la tasa de clic predicha (pCTR) y la tasa de conversión después del clic (pCVR). Su producto, pCTCVR, estima la probabilidad de clic y conversión por impresión.</p>
-<p><b>2.</b> <b>De qué se compone:</b> impresiones con etiqueta de clic y, entre los clics, etiqueta de conversión. P(clic y conversión) = P(clic) × P(conversión dado clic).</p>
-<p><b>3.</b> <b>Cómo se ha trabajado:</b> entrenar pCVR solo con clics produce sesgo de selección (<i>sample selection bias</i>). El <i>Entire Space Multi-Task Model</i> (ESMM, Ma y coautores, 2018) entrena en todas las impresiones una torre de pCTR auxiliar y otra de pCVR, supervisando pCTR y el producto. La destilación (<i>knowledge distillation</i>, Hinton y coautores, 2015) entrena un "alumno" con las predicciones de un "maestro".</p>
-<p><b>4.</b> <b>Dónde está la dificultad:</b> en producción solo se despliega la torre de pCVR, combinada con un pCTR entrenado aparte. Si difiere del auxiliar, el producto en producción no es el que se optimizó (<i>training-serving mismatch</i>). Además, submuestrear no clics descalibra las probabilidades.</p>
-<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> la torre auxiliar aprende pCTR = 2 % y el modelo de producción dice 4 %. El pCVR se ajustó para que 2 % × pCVR cuadrara con las conversiones; en producción el producto se duplica y el orden entre anuncios cambia.</p>
-<p><b>6.</b> <b>Conexión:</b> el paper alinea la torre auxiliar con el pCTR real; es análogo a componer PD × LGD con modelos entrenados por separado.</p>
+      <div class="chips"><span class="chip topic">Subastas y pujas</span><span class="chip">Repo sin verificar</span><span class="chip">Simulador</span></div>
+      <details class="more ctx"><summary>Contexto previo: auto-puja con presupuesto y restricción de CPA</summary><div class="body">
+<p><b>1.</b> <b>Qué es:</b> en la auto-puja (<i>auto-bidding</i>) el anunciante fija presupuesto y meta (por ejemplo, un CPA objetivo) y un algoritmo puja impresión por impresión para maximizar conversiones.</p>
+<p><b>2.</b> <b>De qué se compone:</b> cada impresión tiene un valor v_i y un costo c_i si se gana. Se maximiza la suma de valores ganados sujeta a gasto ≤ presupuesto B y costo por conversión ≤ CPA objetivo, en T pasos con un estado (presupuesto restante, tiempo, pujas previas) y una acción (cuánto pujar).</p>
+<p><b>3.</b> <b>Cómo se ha trabajado:</b> controladores PID que ajustan la puja al ritmo de gasto, métodos primal-duales (puja = valor dividido por un multiplicador), aprendizaje por refuerzo y, ahora, modelos generativos (AIGB) como DiffBid, que genera trayectorias de puja con difusión aprendiendo de registros históricos.</p>
+<p><b>4.</b> <b>Dónde está la dificultad:</b> el aprendizaje offline solo ve lo que hicieron las estrategias anteriores. En arranque en frío los datos son conservadores y estrechos, y el auto-entrenamiento mejora un poco y se estanca.</p>
+<p><b>5.</b> <b>Ejemplo intuitivo (números ilustrativos):</b> presupuesto 1.000 y CPA objetivo 20 (al menos 50 conversiones). Si el histórico siempre gastó 600 por 35 conversiones, el modelo nunca vio qué pasa al gastar todo con pujas más altas.</p>
+<p><b>6.</b> <b>Conexión:</b> el paper explica el estancamiento y propone explorar hacia trayectorias "escasas" sin perder retorno; es el mismo soporte estrecho de un modelo de crédito entrenado solo con aprobados.</p>
       </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Supervisa la torre auxiliar de ESMM con los puntajes pCTR registrados en producción (destilación), mezclados con la etiqueta real con peso α. Con submuestreo de no clics, corrige el objetivo del maestro con la regla de Bayes.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Es una corrección barata que mejora el pCVR y el pCTCVR que de verdad se usan para pujar y ordenar.</dd></div>
-        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En Ali-CCP, KD-0.3 sube el AUC del pCTCVR de servicio 2,1 % [1,7; 2,5] y su PR-AUC 9,9 % frente a ESMM; en pCVR, 1,6 % y 8,8 %. Con 5 % de no clics, 1,2 % y 8,5 %. <span class="tag t-aut">AUTORES</span> Solo ESMM y un dataset. <span class="tag t-inf">INFERENCIA</span> El "pCTR de servicio" es un DCN-V2 entrenado por los autores; sin prueba online.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>2 millones de impresiones de Ali-CCP. Maestro: LightGBM de clic. Alumno: ESMM pequeño en PyTorch en CPU (dos MLP de 64 unidades). Baseline: ESMM (α = 1). Tratamiento: α = 0,3. Métricas: AUC y PR-AUC del producto pCTR del maestro × pCVR, con 5 semillas e IC pareados.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Atribuye el estancamiento a un colapso de la razón señal-ruido en el borde de los datos. Propone ISGE: un "juez" (autoencoder de eliminación de ruido) puntúa la escasez de cada trayectoria y un "explorador" de difusión genera trayectorias de alto retorno y alta escasez con doble guía; la política se reentrena con la mezcla.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Ofrece una vía para salir del arranque en frío explorando fuera del histórico sin romper la restricción de CPA.</dd></div>
+        <div><dt>Evidencia y limitaciones</dt><dd><span class="tag t-med">MEDIDO</span> En AuctionNet (simulador de la competencia de NeurIPS 2024), partiendo solo de trayectorias entre los percentiles 10 y 30 de retorno, ISGE llega a 108,4 puntos frente a 102,0 del modelo con todos los datos y 77,8 del auto-entrenamiento, en tres iteraciones. <span class="tag t-aut">AUTORES</span> Supone continuidad local y explora peor cerca del óptimo. <span class="tag t-inf">INFERENCIA</span> Simulador, 7 episodios y desviaciones que se solapan con el oráculo.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>En numpy, 48 franjas de subastas de segundo precio con valores y precios sintéticos; el histórico solo usa multiplicadores entre 0,5 y 0,7. Baseline: reajustar al mejor multiplicador del histórico en cada iteración. Tratamiento: bono de exploración proporcional a la distancia al histórico, con piso de retorno. Métrica: conversiones con CPA ≤ objetivo en 3 iteraciones.</dd></div>
       </dl>
-      <div class="res"><b>Código y datos.</b> Código citado: <code>github.com/izuminka/esmm_kd_pctr</code> (no lo pude abrir: 403 desde este entorno). Datos públicos: Ali-CCP en <a href="https://tianchi.aliyun.com/dataset/408" target="_blank" rel="noopener">https://tianchi.aliyun.com/dataset/408</a> (responde).</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Solo leer</span></h4><p>Tu trabajo no ordena anuncios; la idea de alineación y la corrección por submuestreo sí te sirven.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Calibración y recalibración, AUC y PR-AUC, el sesgo de selección de entrenar solo con aprobados (tu pendiente de inferencia de rechazados) y la composición PD × LGD. La corrección por submuestreo es la misma que al submuestrear buenos en un scorecard.</li><li><strong>Lo nuevo para ti:</strong> Modelos multitarea con torres, destilación y entrenamiento en "espacio completo". El deep learning a escala está en lo que todavía no has trabajado: esfuerzo medio-alto.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, como principio al combinar un modelo de conversión de solicitudes con uno de aprobación entrenados por separado. En <code>credit-risk-agent-lab</code>, la fórmula τ(p) = p / (p + β(1 − p)) sirve para recalibrar tras submuestrear.</li><li><strong>Primer paso (≤ 2 h):</strong> En Lending Club, submuestrea los buenos al 20 %, entrena una logística, aplica la corrección inversa del paper y compara Brier y CITL contra el modelo sin submuestreo.</li></ul></section>
+      <div class="res"><b>Código y datos.</b> Código citado: <code>github.com/alimama-tech/ISGE</code> (403 desde este entorno; sin verificar). Datos: AuctionNet, benchmark público citado por los autores (repositorio también con 403; sin verificar).</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">No aplica por ahora</span></h4><p>Requiere RL y difusión, y no tienes pujas propias que optimizar.</p><ul><li><strong>Lo que ya sabes que te sirve:</strong> Optimización con restricciones y utilidad esperada (monto óptimo y pricing en <code>credit-risk-agent-lab</code>), presupuesto y ritmo de gasto desde FP&amp;A, y el sesgo de selección: el histórico solo muestra lo que la política anterior se atrevió a hacer.</li><li><strong>Lo nuevo para ti:</strong> Casi todo el método: aprendizaje por refuerzo y diseño de subastas están en lo que todavía no has trabajado, y la difusión con guía libre de clasificador es deep learning a escala. Esfuerzo alto: semanas.</li><li><strong>Dónde lo aplicas:</strong> En tu trabajo, la idea de explorar fuera de la política histórica con un límite de riesgo. En <code>credit-risk-agent-lab</code>, es el mismo problema que "solo hay aprobados"; en <code>growth-marketing-agent</code>, una nota para una futura sesión de pujas.</li><li><strong>Primer paso (≤ 2 h):</strong> Lee la formulación del apéndice A y escribe una nota de una página con el problema de auto-puja y un simulador de segundo precio de 50 líneas.</li></ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-<p><b>1.</b> <b>Problema y motivación.</b> Muchos sistemas ordenan por pCTCVR = pCTR × pCVR con modelos entrenados por separado, porque los clics llegan rápido y las conversiones tarde y escasas. ESMM entrena pCVR junto a un pCTR auxiliar, pero en producción ese pCVR se multiplica por otro pCTR. Los autores corrigen la desalineación del lado del pCVR, sin tocar el pCTR de producción.</p>
-<p><b>2.</b> <b>Conceptos clave.</b> <i>ESMM</i>: entrena sobre todas las impresiones con pérdida de clic en la torre pCTR y de clic-conversión en el producto. <i>KD-α</i>: pérdida auxiliar = α × entropía cruzada con la etiqueta + (1 − α) × entropía cruzada con el maestro. <i>Submuestreo negativo</i>: todos los clics y una fracción β de no clics. <i>Entropía normalizada</i> (NE): pérdida logarítmica media sobre la entropía de la etiqueta; menor es mejor.</p>
-<p><b>3.</b> <b>Datos.</b> Ali-CCP (Alibaba, público), con la partición oficial: 38,07 millones de impresiones de entrenamiento, 4,23 de validación y 43,02 de prueba. El pCTR "de servicio" es un DCN-V2 de los autores (AUC 0,6310).</p>
-<p><b>4.</b> <b>Método paso a paso.</b> (a) Entrenar el maestro y registrar sus puntajes p. (b) Entrenar ESMM con KD-α(y, p; q) + entropía cruzada(z, q·v). (c) Con submuestreo, objetivo del maestro τ_β(p) = p / (p + β(1 − p)); al evaluar, q se devuelve a escala completa con q·β / (1 − q + βq). (d) Comparar con ESMM, ESMM+DCN-V2 y Direct (supervisar p·v). (e) Diez semillas e IC pareados de Fieller.</p>
-<p><b>5.</b> <b>Resultados.</b> <span class="tag t-med">MEDIDO</span> Medias de diez semillas en prueba:</p>
-<div class="tbl"><table><thead><tr><th>Modelo</th><th class="num">AUC pCVR</th><th class="num">AUC pCTCVR</th><th class="num">PR-AUC pCTCVR</th></tr></thead><tbody><tr><td>ESMM</td><td class="num">0,6949</td><td class="num">0,6599</td><td class="num">0,0004588</td></tr><tr><td>ESMM+DCN-V2</td><td class="num">0,7027</td><td class="num">0,6679</td><td class="num">0,0004746</td></tr><tr><td>KD-0.3</td><td class="num">0,7063</td><td class="num">0,6736</td><td class="num">0,0005042</td></tr><tr><td>Direct</td><td class="num">0,6973</td><td class="num">0,6658</td><td class="num">0,0004633</td></tr></tbody></table></div>
-<ul><li><span class="tag t-med">MEDIDO</span> KD-0.3 frente a ESMM en pCTCVR de servicio: AUC +2,1 % [1,7; 2,5], PR-AUC +9,9 % [7,7; 12,3], NE −0,4 %. Frente a ESMM+DCN-V2: AUC +0,9 % y PR-AUC +6,2 % [−0,3; 12,8]. Frente a Direct: AUC +1,2 % y PR-AUC +8,8 %.</li><li><span class="tag t-med">MEDIDO</span> En pCVR frente a ESMM: AUC +1,6 % y PR-AUC +8,8 %.</li><li><span class="tag t-med">MEDIDO</span> Frente a ESMM+DCN-V2, la divergencia KL entre pCTR de servicio y auxiliar baja 16,3 %, y entre productos, 24,9 %. Las torres auxiliares tienen AUC de pCTR parecido al maestro: la ganancia viene de la alineación.</li><li><span class="tag t-med">MEDIDO</span> Con 5 % de no clics, KDR-0.3 frente a ESMMR: pCTCVR AUC +1,2 % y PR-AUC +8,5 %; pCVR +0,9 % y +4,5 %.</li></ul>
-<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Solo ESMM; faltan variantes y otros datasets. <span class="tag t-inf">INFERENCIA</span> Las ganancias relativas de PR-AUC son grandes sobre bases muy chicas (0,0005). No hay prueba online ni costo por conversión. Si el pCTR de producción cambia, hay que reentrenar con los nuevos puntajes.</p>
-<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> UKD y EVI destilan conversión para impresiones sin clic; aquí se destila el pCTR de servicio hacia la torre auxiliar, sin cambiar la arquitectura.</p>
-<p><b>8.</b> <b>Cómo aplicarlo.</b> Si un sistema combina dos modelos entrenados por separado, entrena el segundo con las salidas reales del primero y corrige las probabilidades tras submuestrear.</p>
-<p><b>9.</b> <b>Glosario breve.</b> pCTR: probabilidad de clic. pCVR: conversión dado clic. pCTCVR: clic y conversión. Destilación: entrenar con predicciones de otro modelo. NE: pérdida logarítmica normalizada.</p>
-<p><b>Frase para recordar:</b> el producto que se optimiza en el entrenamiento debe ser el mismo que se usa en producción.</p>
+<p><i>Leí el cuerpo principal y la formulación del apéndice A; no todos los apéndices de pruebas ni los experimentos suplementarios.</i></p>
+<p><b>1.</b> <b>Problema y motivación.</b> La auto-puja generativa con difusión depende de datos expertos con buena cobertura. En arranque en frío, el auto-entrenamiento deja de extrapolar y se estanca: "auto-bloqueo" (<i>self-locking</i>).</p>
+<p><b>2.</b> <b>Conceptos clave.</b> <i>Planificador de difusión</i>: genera una trayectoria quitando ruido, condicionado a un retorno. <i>Guía libre de clasificador</i>: mezcla predicciones con y sin condición. <i>SNR</i>: fuerza de la señal frente al ruido. <i>Escasez</i>: error de reconstrucción de un autoencoder; alto lejos de los datos. <i>Muestras regalo</i>: alto retorno y alta escasez. <i>ER</i>: proporción que excede el CPA objetivo.</p>
+<p><b>3.</b> <b>Datos.</b> AuctionNet en dos variantes: <i>Dense</i> (CPA estricto) y <i>Sparse</i> (recompensas escasas); solo trayectorias entre los percentiles 10 y 30 de retorno para simular arranque en frío. Además, una tarea sintética de dimensión 768.</p>
+<p><b>4.</b> <b>Método paso a paso.</b> (a) El paso de difusión guiada como dinámica de Langevin sesgada: el término incondicional tira hacia los datos, el ruido explora y la guía empuja al retorno. (b) En el borde, la guía se debilita frente a una penalización de curvatura. (c) El juez puntúa escasez solo en dimensiones controlables (presupuesto restante) y enmascara las del entorno (valor del tráfico). (d) El explorador genera con doble guía (w_R y w_S) hacia percentiles altos de ambos. (e) Se reentrena con la mezcla y se repite.</p>
+<p><b>5.</b> <b>Resultados.</b></p>
+<ul><li><span class="tag t-med">MEDIDO</span> Mecanismo: la similitud coseno entre la guía de retorno y la dirección óptima cae a 0,11 fuera del soporte; en las mejores muestras regalo, retorno ≈ 0,05 y escasez ≈ 0,53.</li><li><span class="tag t-med">MEDIDO</span> <i>Dense</i>: ISGE 108,4 ± 8,2 frente a 102,0 del oráculo y 77,8 del auto-entrenamiento; ER 54,3 % frente a 74,9 %. Ganancias de +66,0 % (<i>Dense</i>) y +34,4 % (<i>Sparse</i>) sobre el arranque en frío en la iteración 3; en <i>Sparse</i>, el auto-entrenamiento retrocede de 16,9 a 16,0.</li><li><span class="tag t-med">MEDIDO</span> Iteración 1: ruido en acciones o parámetros mejora ≈ 9 % y ≈ 8 %; ISGE, 38,1 % y 18,3 %. Muestras regalo: 30,4 % y 16,2 %. Zona de riesgo: 0,1 % y 2,6 % frente a hasta 6,8 % con ruido.</li><li><span class="tag t-med">MEDIDO</span> Sin máscara, las muestras regalo bajan de 30,4 % a 19,1 %; solo exploración 96,7, solo base 74,9 y mezcla 103,4.</li></ul>
+<p><b>6.</b> <b>Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Continuidad local; menos eficaz cerca del óptimo; diseñado para difusión. <span class="tag t-inf">INFERENCIA</span> Sin prueba en línea; 108,4 ± 8,2 frente a 102,0 no es una diferencia clara con 7 episodios; entrenar difusión excede una laptop sin GPU.</p>
+<p><b>7.</b> <b>Aporte frente a trabajos previos.</b> Frente a DiffBid y los Transformers generativos, apunta al arranque en frío sin datos expertos; frente a la curiosidad por transición (ICM, PGR), usa escasez a nivel de trayectoria, coherente con el presupuesto global.</p>
+<p><b>8.</b> <b>Cómo aplicarlo.</b> Si un sistema aprende solo de su política anterior, mide la distancia de las nuevas acciones al histórico y explora de forma dirigida con un piso de retorno.</p>
+<p><b>9.</b> <b>Glosario breve.</b> Auto-puja: puja automática con presupuesto y meta. Arranque en frío: sin historia. Difusión: generación por eliminación de ruido. Escasez: distancia a lo visto. ER: exceso de CPA.</p>
+<p><b>Frase para recordar:</b> cuando los datos solo cubren lo conservador, la señal de retorno se apaga en el borde; hace falta un empujón explícito hacia lo no visto.</p>
       </div></details>
     </article>
   </div>
 
   <div class="prio">
-    <div><b>Prioridad de lectura</b>pieza 1 (impacto en el total). Cinco páginas con una idea que cambia cómo se priorizan las pruebas del embudo: comparar experimentos por su peso en el total y no por su lift. Además, valida contra A/A y un holdout, algo poco común en papers de la industria.</div>
-    <div><b>Prioridad de experimentación</b>pieza 2 (meta e interferencia). La simulación de la ecuación 14 cabe en unas 80 líneas de numpy y corre en segundos. Tiene un baseline claro (IPW que ignora contagios) y métricas objetivas (probabilidad de tratamiento y cumplimiento de la meta), y es el paso natural del uplift pendiente a una regla con presupuesto.</div>
+    <div><b>Prioridad de lectura</b>pieza 1 (calibración en el embudo). Cinco páginas que cambian dónde se valida un modelo: en la frontera donde decide y no en su salida. Tiene un A/B de producción y una réplica pública, y conecta con tu pendiente de sesgo de selección y con cualquier puja a CPA.</div>
+    <div><b>Prioridad de experimentación</b>pieza 2 (experimentos pasados). El diseño de simulación está completo, el peso óptimo tiene forma cerrada (w = V_A·Q⁻¹·1) y corre en segundos con numpy. Baseline claro (no tomar prestado), métrica objetiva (MSE) y un caso real con referencia en Hillstrom.</div>
   </div>
 
   <div class="note"><b>En seguimiento:</b>
-    <ul><li><i>Positive Weights Do Not Certify TWFE Inference</i> (2611.18116, v1 13 nov): diagnóstico de diseño para diferencias en diferencias con efectos heterogéneos; útil para geo-tests escalonados, pero teórico.</li><li><i>When Does a Recommendation Spark Curiosity? Theory, Measurement, and Field Evidence</i> (2611.14938, Li y Tuzhilin, v1 11 nov): medida de curiosidad con un experimento online en una plataforma de video; no leí el texto completo.</li><li><i>Partial pooling beats synthetic respondents as estimators, not as covariates</i> (2611.14526): MRP frente a encuestados sintéticos de LLM en un panel de medios; su v1 es del 30 de septiembre según la API.</li><li>PyMC-Marketing 1.4.0 (PyPI, 9 nov): notas de versión sin leer por el 403 de GitHub.</li></ul></div>
+    <ul><li><i>Variance-Optimal Counterfactual Policy Design for Sample-Efficient Online A/B Testing</i> (2611.24757, Gupta y Maji, v1 18 nov, v3 20 nov): diseño de la política de registro para reducir varianza en A/B de ranking; solo leí el resumen.</li><li><i>Squoosh Bench</i> (2611.25200, v1 18 nov): compradores simulados aciertan 267 de 318 A/B (84,0 %); autores de la empresa del producto; solo leí el resumen.</li><li><i>CutAgent</i> (2611.22418, v1 17 nov): agentes para videos publicitarios con CTR en línea de 2,21 %; el resumen no da el CTR de referencia.</li><li><i>The Window Lever</i> (2611.26521, v1 19 nov): en pronóstico de clientes, alargar la ventana de historia pesa más que datos o arquitectura; útil para LTV; solo leí el resumen.</li></ul>
+    <p>Descartado: 2611.20794 (uplift con LLM), retirado por sus autores en la v4.</p></div>
 
   <div class="routine"><b>Ediciones anteriores:</b>
-    <ul><li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/paid-media/2026-11-13.md" target="_blank" rel="noopener">13 nov 2026</a>: churn con EMP, DynamAuction, CHO-Bench y promociones.</li><li>9 nov 2026: publicada solo en este artefacto (piezas 2611.06111, 2611.08990 y 2611.09091). Su <code>.md</code> no llegó al repositorio porque falló el push de esa ejecución.</li></ul>
-    <b>Esta edición en GitHub:</b> <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/paid-media/2026-11-16.md" target="_blank" rel="noopener">2026-11-16</a>. <b>Rutina semanal:</b> cada semana se genera un informe nuevo en <code>topicos/paid-media/</code> de la rama <code>topicos</code>.</div>
+    <ul><li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/paid-media/2026-11-16.md" target="_blank" rel="noopener">16 nov 2026</a>: impacto en el total, metas con interferencia, validez externa y conversión alineada.</li><li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/paid-media/2026-11-13.md" target="_blank" rel="noopener">13 nov 2026</a>: churn con EMP, DynamAuction, CHO-Bench y promociones.</li><li>9 nov 2026: publicada solo en este artefacto (piezas 2611.06111, 2611.08990 y 2611.09091). Su <code>.md</code> no llegó al repositorio porque falló el push de esa ejecución.</li></ul>
+    <b>Esta edición en GitHub:</b> <a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/paid-media/2026-11-23.md" target="_blank" rel="noopener">2026-11-23</a>. <b>Rutina semanal:</b> cada semana se genera un informe nuevo en <code>topicos/paid-media/</code> de la rama <code>topicos</code>.</div>
 </section>
 
 <section id="v-quices" data-panel="quices" hidden>
@@ -320,10 +324,10 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
   <div class="filter" role="group" aria-label="Filtrar por tema">
     <button class="btn" type="button" data-f="all" aria-pressed="true">Todas</button>
     <button class="btn" type="button" data-f="conceptos" aria-pressed="false">Conceptos</button>
-    <button class="btn" type="button" data-f="total" aria-pressed="false">Impacto en el total</button>
-    <button class="btn" type="button" data-f="politica" aria-pressed="false">Meta e interferencia</button>
-    <button class="btn" type="button" data-f="validez" aria-pressed="false">Validez externa</button>
-    <button class="btn" type="button" data-f="cvr" aria-pressed="false">Conversión</button>
+    <button class="btn" type="button" data-f="embudo" aria-pressed="false">Calibración en el embudo</button>
+    <button class="btn" type="button" data-f="prestado" aria-pressed="false">Experimentos pasados</button>
+    <button class="btn" type="button" data-f="identidad" aria-pressed="false">Identidad</button>
+    <button class="btn" type="button" data-f="puja" aria-pressed="false">Auto-puja</button>
   </div>
   <div class="stack" id="quiz"></div>
 </section>
@@ -334,72 +338,76 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
   <div class="stack">
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>1 · Lift del experimento frente a impacto en el total</h2>
-      <p>Cinco pruebas dummy de una fintech. Cada una tiene un lift en su segmento y un factor de cobertura (peso del segmento en los desembolsos totales sin tratamiento). Mueve la cobertura de la prueba E y cambia el orden.</p>
+      <h2>1 · Un puntaje calibrado que se descalibra al filtrar</h2>
+      <p>Cinco tramos de puntaje dummy, calibrados en la entrada. En cada tramo, la mitad de los candidatos tiene una señal oculta alta (tasa = puntaje + d) y la otra mitad baja (tasa = puntaje − d). Un filtro posterior usa esa señal. Mueve su preferencia y activa FAR.</p>
       <div class="controls">
-        <label for="s-r">Cobertura de la prueba E: <b id="s-rv">40</b> %
-          <input type="range" id="s-r" min="5" max="90" step="5" value="40"></label>
-        <label for="s-o">Ordenar por
-          <select id="s-o"><option value="lift">lift del experimento</option><option value="total" selected>impacto en el total</option></select></label>
+        <label for="f-s">Preferencia del filtro por la señal alta: <b id="f-sv">−0,60</b>
+          <input type="range" id="f-s" min="-0.9" max="0.9" step="0.1" value="-0.6"></label>
+        <label for="f-d">Información extra d: <b id="f-dv">0,10</b>
+          <input type="range" id="f-d" min="0" max="0.15" step="0.01" value="0.1"></label>
+        <label for="f-far"><input type="checkbox" id="f-far"> Recalibrar con FAR</label>
       </div>
       <div class="tbl"><table>
-        <thead><tr><th>Prueba</th><th class="num">Lift</th><th class="num">Cobertura</th><th class="num">Impacto total</th></tr></thead>
-        <tbody id="s-body"></tbody>
+        <thead><tr><th>Puntaje</th><th class="num">Tasa entrada</th><th class="num">Tasa sobrevivientes</th><th class="num">Puntaje servido</th></tr></thead>
+        <tbody id="f-body"></tbody>
       </table></div>
-      <div class="outcome" id="s-out"></div>
-      <p class="takeaway"><b>Idea:</b> impacto en el total = lift × factor de cobertura, así que el orden puede invertirse. El paper reporta una correlación de rangos de 0,20 en 139 experimentos de Roblox; estas cinco pruebas son inventadas.</p>
+      <div class="outcome" id="f-out"></div>
+      <p class="takeaway"><b>Idea:</b> si el filtro usa información que predice el resultado más allá del puntaje, los sobrevivientes dejan de estar calibrados (aquí el error es d × preferencia en cada tramo); recalibrar sobre ellos lo corrige. El paper mide 784–809 pb de ECE antes de la subasta en producción; estos tramos son inventados.</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>2 · La política más barata que cumple la meta</h2>
-      <p>Hogares dummy de dos personas, tipo A (60 %) y tipo B. Tratar a alguien sube su resultado; a los no tratados les llega un contagio que depende de cuántos tratados hay en su hogar. Elige la probabilidad de tratar a cada tipo. Meta: resultado medio ≥ 0,60.</p>
+      <h2>2 · ¿Cuánto tomar prestado de un experimento pasado?</h2>
+      <p>Un experimento nuevo con varianza V_A y uno pasado con varianza V_B y sesgo ε. Compara no tomar prestado, unir los datos por precisión (ignorando el sesgo) y el peso oráculo w* = V_A / (V_A + V_B + ε²).</p>
       <div class="controls">
-        <label for="t-a">Prob. tipo A: <b id="t-av">0,50</b>
-          <input type="range" id="t-a" min="0" max="1" step="0.05" value="0.5"></label>
-        <label for="t-b">Prob. tipo B: <b id="t-bv">0,50</b>
-          <input type="range" id="t-b" min="0" max="1" step="0.05" value="0.5"></label>
-        <label for="t-s">Contagio a no tratados: <b id="t-sv">0,20</b>
-          <input type="range" id="t-s" min="-0.2" max="0.4" step="0.05" value="0.2"></label>
+        <label for="p-a">V_A (ruido del nuevo): <b id="p-av">2,25</b>
+          <input type="range" id="p-a" min="0.1" max="4" step="0.05" value="2.25"></label>
+        <label for="p-b">V_B (ruido del pasado): <b id="p-bv">0,25</b>
+          <input type="range" id="p-b" min="0.05" max="2" step="0.05" value="0.25"></label>
+        <label for="p-e">Sesgo ε: <b id="p-ev">0,5</b>
+          <input type="range" id="p-e" min="0" max="3" step="0.1" value="0.5"></label>
       </div>
-      <div class="trace" id="t-trace" aria-live="polite"></div>
-      <div class="outcome" id="t-out"></div>
-      <p class="takeaway"><b>Idea:</b> la evaluación "sin contagios" toma el contagio como si siempre hubiera la mitad de tratados (la tasa del experimento), así que con políticas de poco tratamiento sobrestima el resultado y parece cumplir sin cumplir. El paper lo muestra con 500 réplicas y un programa real; estos hogares y efectos son inventados.</p>
+      <div class="trace" id="p-trace" aria-live="polite"></div>
+      <div class="outcome" id="p-out"></div>
+      <p class="takeaway"><b>Idea:</b> el oráculo siempre mejora a no tomar prestado, pero unir datos ignorando el sesgo puede empeorar mucho; la compuerta solo une cuando la diferencia no es significativa. El paper lo estudia con 80 experimentos simulados; estos números son inventados y la compuerta aquí usa el sesgo verdadero como aproximación.</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>3 · Cotas del efecto en un mercado nuevo</h2>
-      <p>Dos mercados fuente dummy: (0,0) con efecto τ₀ = 1,0 y (1,1) con efecto 1 + ρ. El efecto es τ₀ + θ₁·c₁ + θ₂·c₂. Los datos solo identifican θ₁ + θ₂ = ρ. Con un tope en valor absoluto M para cada θ, ¿qué se puede decir del mercado objetivo?</p>
+      <h2>3 · Tasa de match frente a alcance efectivo</h2>
+      <p>Dos proveedores dummy reciben 100.000 clientes. Ajusta la tasa de match y la concordancia demográfica observada de cada uno, y la concordancia por azar b. La precisión implícita es π = (a − b) / (1 − b).</p>
       <div class="controls">
-        <label for="v-r">ρ: <b id="v-rv">1,2</b>
-          <input type="range" id="v-r" min="-2" max="3" step="0.1" value="1.2"></label>
-        <label for="v-m">Tope M: <b id="v-mv">1,0</b>
-          <input type="range" id="v-m" min="0.2" max="3" step="0.1" value="1"></label>
-        <label for="v-t">Mercado objetivo
-          <select id="v-t"><option value="10" selected>(1, 0)</option><option value="22">(2, 2)</option><option value="21">(2, 1)</option></select></label>
-      </div>
-      <div class="trace" id="v-trace" aria-live="polite"></div>
-      <div class="outcome" id="v-out"></div>
-      <p class="takeaway"><b>Idea:</b> el mismo par de experimentos identifica el efecto en (2,2), que está en la dirección observada, y deja un rango en (1,0); el tope lo cierra o vuelve infactible el problema. Es el ejemplo de juguete de la sección 2.3 del paper con números inventados, no su resultado de microcrédito.</p>
-    </div>
-
-    <div class="ex">
-      <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>4 · Cuando el pCTR de entrenamiento no es el de producción</h2>
-      <p>Seis anuncios dummy con CTR y CVR verdaderos. La torre auxiliar aprende un pCTR distorsionado y el pCVR compensa esa distorsión. En producción, el pCVR se multiplica por el pCTR de servicio (aquí, el verdadero). La destilación acerca el pCTR auxiliar al de servicio.</p>
-      <div class="controls">
-        <label for="k-d">Distorsión del pCTR auxiliar: <b id="k-dv">0,6</b>
-          <input type="range" id="k-d" min="0" max="1" step="0.1" value="0.6"></label>
-        <label for="k-a">α (peso de la etiqueta): <b id="k-av">1,0</b>
-          <input type="range" id="k-a" min="0" max="1" step="0.1" value="1"></label>
+        <label for="m-m1">Tasa X: <b id="m-m1v">85</b> %
+          <input type="range" id="m-m1" min="10" max="100" step="5" value="85"></label>
+        <label for="m-a1">Concordancia X: <b id="m-a1v">22</b> %
+          <input type="range" id="m-a1" min="5" max="100" step="1" value="22"></label>
+        <label for="m-m2">Tasa Y: <b id="m-m2v">40</b> %
+          <input type="range" id="m-m2" min="10" max="100" step="5" value="40"></label>
+        <label for="m-a2">Concordancia Y: <b id="m-a2v">80</b> %
+          <input type="range" id="m-a2" min="5" max="100" step="1" value="80"></label>
+        <label for="m-b">Azar b: <b id="m-bv">10</b> %
+          <input type="range" id="m-b" min="5" max="25" step="1" value="10"></label>
       </div>
       <div class="tbl"><table>
-        <thead><tr><th>Anuncio</th><th class="num">pCTCVR real</th><th class="num">pCTCVR servido</th><th class="num">Puesto real</th><th class="num">Puesto servido</th></tr></thead>
-        <tbody id="k-body"></tbody>
+        <thead><tr><th>Proveedor</th><th class="num">Activados</th><th class="num">Precisión π</th><th class="num">Clientes correctos</th><th class="num">Otras personas</th></tr></thead>
+        <tbody id="m-body"></tbody>
       </table></div>
-      <div class="outcome" id="k-out"></div>
-      <p class="takeaway"><b>Idea:</b> si el pCVR aprendió a compensar un pCTR distinto del que se usa en producción, el orden servido se desordena; bajar α alinea las torres. El paper mide la mejora en Ali-CCP con diez semillas; estos seis anuncios son inventados.</p>
+      <div class="outcome" id="m-out"></div>
+      <p class="takeaway"><b>Idea:</b> el alcance efectivo es tasa × precisión; una tasa alta con baja concordancia puede llegar a menos clientes reales. El paper reporta 21,8 % y 23,6 % de concordancia en dos proveedores reales; estos proveedores son inventados.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>4 · Auto-entrenamiento que se estanca y exploración por escasez</h2>
+      <p>Una "estrategia" dummy de una dimensión (por ejemplo, la agresividad de la puja) con retorno máximo en 0,80. El histórico solo llega a 0,30. La señal de retorno se apaga al alejarse del histórico; la escasez empuja hacia afuera con peso w_S, y un piso de retorno rechaza pasos que empeoran.</p>
+      <div class="controls">
+        <label for="b-w">Peso de escasez w_S: <b id="b-wv">1,0</b>
+          <input type="range" id="b-w" min="0" max="3" step="0.1" value="1"></label>
+        <label for="b-f"><input type="checkbox" id="b-f" checked> Piso de retorno</label>
+      </div>
+      <div class="trace" id="b-trace" aria-live="polite"></div>
+      <div class="outcome" id="b-out"></div>
+      <p class="takeaway"><b>Idea:</b> sin un empujón explícito, el auto-entrenamiento se queda cerca del borde de los datos; con demasiado empujón y sin piso, se pasa del óptimo. El paper lo mide en AuctionNet con difusión; este paisaje de una dimensión es inventado.</p>
     </div>
   </div>
 </section>
@@ -419,23 +427,23 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
   show();
 
   const Q=[
-    {t:"conceptos",q:"¿Qué es el efecto diluido (diluted treatment effect) en experimentación online?",o:["El efecto en quienes no vieron el cambio","El lift medido en los usuarios disparados, reescalado a toda la población según su peso en la métrica","La reducción del efecto con el tiempo","El efecto del control"],a:1,e:"Viene del contexto previo de la pieza 1 (Deng y Hu, 2015). El factor de cobertura del paper cumple el mismo papel y además reconstruye la línea base sin tratamiento."},
-    {t:"conceptos",q:"¿Qué es la interferencia (spillover) en un experimento?",o:["Que el control vea el anuncio por error","Que el tratamiento de una persona cambie el resultado de otra","Que el efecto varíe por segmento","Que el experimento dure poco"],a:1,e:"Contexto previo de la pieza 2: en hogares, referidos o redes, tratar a uno afecta a otros. Viola SUTVA."},
-    {t:"total",q:"¿Cómo se relacionan el lift del experimento (L_A) y el impacto en el total (L_S)?",o:["L_S = L_A","L_S = L_A × C, con C el peso de la población afectada en la métrica total sin tratamiento","L_S = L_A / alcance","No hay relación"],a:1,e:"[medido] Ejemplo de los autores: un lift de 2 % en una población con el 10 % de la métrica es 0,2 % en el total."},
-    {t:"total",q:"En 139 experimentos significativos de Roblox, ¿cuál fue la correlación de rangos entre lift e impacto en el total?",o:["0,95","0,70","0,20","−0,50"],a:2,e:"[medido] Spearman de 0,20. Solo 5 de los 10 lifts más grandes estaban entre los 10 mayores impactos."},
-    {t:"total",q:"Para una métrica de razón a nivel de variante (fallas totales por hora total), ¿qué recomiendan los autores?",o:["Multiplicar el lift por el factor del denominador","Aplicar a numerador y denominador su propio factor y comparar las razones","Ignorar el denominador","Usar la media de razones por usuario"],a:1,e:"[medido] Con un solo factor, el error mediano es 3,5 % del impacto (29 % o más en uno de cada diez) con el del denominador."},
-    {t:"politica",q:"¿Qué problema principal estudia el paper de focalización con interferencia?",o:["Maximizar el CTR","La política menos intensiva en tratamiento que alcanza una meta poblacional","Elegir el mejor modelo de uplift","Medir el efecto de largo plazo"],a:1,e:"Es el problema de 'meta de resultado'; también resuelven el dual con presupuesto."},
-    {t:"politica",q:"En la simulación con 2.000 grupos, ¿qué le pasó a la política que ignora la interferencia (NI-IPW)?",o:["Fue la mejor","Trató menos pero cumplió la meta solo en 14,2 % de las réplicas","Trató a todos","Cumplió siempre"],a:1,e:"[medido] Su resultado medio fue 0,729, bajo la meta de 0,75. Evalúa el contagio a la tasa del experimento, no a la de la política."},
-    {t:"politica",q:"¿Por qué el paper usa políticas estocásticas (probabilidades) y no reglas determinísticas?",o:["Porque son más fáciles de explicar","Porque con interferencia pueden ser estrictamente mejores y permiten que más configuraciones observadas contribuyan al IPW","Porque lo exige la ley","Porque no hay covariables"],a:1,e:"[autores] Con reglas determinísticas, las coincidencias exactas entre lo observado y lo prescrito en un hogar son raras."},
-    {t:"validez",q:"En el caso de microcrédito, ¿por qué el efecto en Bosnia no se identifica de forma puntual?",o:["Porque falta el grupo control","Porque seis sitios dan solo cinco comparaciones para nueve términos de sitio","Porque los datos son privados","Porque no hay covariables"],a:1,e:"[medido] Quedan cuatro combinaciones sin identificar por brazo, aunque cada efecto fuente se conociera con exactitud."},
-    {t:"validez",q:"¿Qué restricción cerró el rango de Bosnia hasta [37,1; 127,3]?",o:["El signo de la tasa","La jerarquía de efectos (interacciones no mayores que cada efecto directo)","Quitar un sitio","El tope de magnitud solo"],a:1,e:"[medido] Redujo el ancho 97,9 %. Con la versión 'por padres', solo 4,3 %, y el signo quedó abierto."},
-    {t:"cvr",q:"¿Qué desalineación corrige el paper de conversión de Reddit?",o:["Entre clics y conversiones retrasadas","Entre el pCTR auxiliar de ESMM y el pCTR de producción por el que se multiplica el pCVR","Entre dos países","Entre AUC y PR-AUC"],a:1,e:"[autores] ESMM despliega solo la torre de pCVR; si el pCTR de servicio difiere del auxiliar, el producto servido no es el optimizado."},
-    {t:"cvr",q:"Aplicación: submuestreas los buenos de un scorecard y quieres probabilidades en escala real. ¿Qué idea del paper usarías?",o:["Destilar un LLM","La corrección de Bayes τ(p) = p / (p + β(1 − p)) y su inversa","Aumentar el número de semillas","Usar PR-AUC en vez de AUC"],a:1,e:"El paper la usa para el maestro tras retener una fracción β de no clics; es la misma recalibración que aplicarías en Lending Club."}
+    {t:"conceptos",q:"¿Qué significa que un puntaje esté calibrado?",o:["Que ordena bien a los casos (AUC alto)","Que entre los casos con puntaje p, la proporción de positivos es cercana a p","Que su media es 0,5","Que no cambia en el tiempo"],a:1,e:"Contexto previo de la pieza 1: E[Y | S] = S. Ordenar bien no garantiza magnitudes correctas para pujas o umbrales."},
+    {t:"conceptos",q:"En un estimador de contracción (shrinkage), ¿qué se intercambia?",o:["Precisión por exhaustividad","Algo de sesgo a cambio de menos varianza, buscando menor MSE","Tamaño de muestra por duración","Nada: siempre es insesgado"],a:1,e:"Contexto previo de la pieza 2: MSE = sesgo² + varianza. Tomar prestado de un experimento parecido baja la varianza pero agrega su sesgo."},
+    {t:"embudo",q:"En producción, ¿cuánto subió el ECE entre la salida del modelo y la frontera previa a la subasta?",o:["Casi nada","De 156–185 pb a 784–809 pb, sin cambiar el modelo","Bajó a la mitad","De 784 a 156 pb"],a:1,e:"[medido] Una degradación de cuatro a cinco veces que se produjo en el sistema de servicio, no en el modelo."},
+    {t:"embudo",q:"¿Qué término explicó casi todo el sesgo de los sobrevivientes?",o:["El error heredado E","El cambio de composición C","El desplazamiento residual W dentro de los tramos","El ruido de muestreo"],a:2,e:"[medido] W fue −7,5 y −7,0 pp frente a una brecha de −7,3 y −7,8 pp; E y C fueron casi cero. Solo una corrección ajustada sobre los sobrevivientes lo elimina."},
+    {t:"embudo",q:"¿Cuándo un puntaje calibrado sigue calibrado después de un filtro?",o:["Siempre","Cuando el filtro no usa información sobre el resultado más allá del puntaje, por ejemplo un umbral sobre S","Solo si el filtro es aleatorio","Nunca"],a:1,e:"[autores] La condición es Cov(R, A | S) = 0: selección solo por S, misma información con S = E[Y | X], o sin información extra sobre Y."},
+    {t:"prestado",q:"Con sesgos y varianzas conocidos (oráculo), ¿qué pasa al tomar prestado de un experimento sesgado?",o:["Siempre empeora","El MSE baja de forma estricta para cualquier sesgo finito","Solo ayuda si el sesgo es cero","Depende del signo"],a:1,e:"[medido] Teoremas 1 y 2: el peso óptimo w* = V_A·Q⁻¹·1 siempre mejora a no tomar prestado. El problema práctico es que no se conocen los sesgos."},
+    {t:"prestado",q:"¿Qué estimador recomiendan cuando el sesgo medio del archivo es grande?",o:["Plug-in general","Plug-in agrupado","Peso fijo con compuerta de prueba de hipótesis (FH)","Promediar todo"],a:2,e:"[medido] Con e grande, los plug-in quedan muy por encima del benchmark; FH detecta la discrepancia y vuelve casi a Ā."},
+    {t:"prestado",q:"¿Por qué más dispersión del sesgo no siempre ayuda al plug-in general?",o:["Porque aumenta el tamaño de muestra","Porque permite cancelar sesgos, pero los pesos se ajustan a la media piloto ruidosa y sobreajustan","Porque cambia el signo del efecto","Porque reduce la varianza del lado A"],a:1,e:"[autores] La dispersión tiene un óptimo interior: ayuda a cancelar el sesgo medio, pero transmite el ruido de Ā piloto a la estimación final."},
+    {t:"identidad",q:"Si la concordancia observada es a = 23,6 % y la concordancia por azar b = 10 %, ¿qué precisión implica el modelo de mezcla?",o:["23,6 %","Alrededor de 15 %","90 %","10 %"],a:1,e:"[medido] π = (a − b) / (1 − b) = 0,136 / 0,9 ≈ 15,1 %, para los pares que el proveedor B marca como individuales."},
+    {t:"identidad",q:"¿Qué indica que un MAID quede enlazado a 7,86 registros en promedio?",o:["Una precisión alta","Que el enlace resuelve el dispositivo a un hogar más que a una persona","Que hay fraude","Que la tasa de match es baja"],a:1,e:"[autores] Es la firma de un enlace de hogar: la tasa puede verse bien aunque la persona correcta sea una minoría."},
+    {t:"puja",q:"¿Qué explica, según el paper, que el auto-entrenamiento de la auto-puja generativa se estanque?",o:["Falta de capacidad del modelo","El colapso de la razón señal-ruido de la guía de retorno en el borde de los datos","Un error de código","El presupuesto es muy alto"],a:1,e:"[autores] Un oráculo con la misma arquitectura sí llega al óptimo: es un cuello de botella de datos, no de capacidad. La escasez toma el relevo como señal de exploración."},
+    {t:"embudo",q:"Aplicación: tu LightGBM está calibrado en el conjunto de prueba, pero las reglas duras del agente filtran antes del corte. ¿Qué haces primero?",o:["Nada: ya está calibrado","Medir la calibración sobre los casos que pasan las reglas y descomponer el sesgo en E, C y W","Reentrenar con más árboles","Cambiar a regresión logística"],a:1,e:"Calibra donde se usa el puntaje: si W domina, ajusta un isotónico sobre los sobrevivientes y valídalo en una mitad retenida."}
   ];
-  const KEY="topicos-paid-media-2026-11-16";
+  const KEY="topicos-paid-media-2026-11-23";
   let ans={};
   try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){ans={}}
-  const names={conceptos:"Conceptos",total:"Impacto en el total",politica:"Meta e interferencia",validez:"Validez externa",cvr:"Conversión"};
+  const names={conceptos:"Conceptos",embudo:"Calibración en el embudo",prestado:"Experimentos pasados",identidad:"Identidad",puja:"Auto-puja"};
   const box=document.getElementById("quiz");
   function save(){try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}}
   let filt="all";
@@ -473,90 +481,82 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
   const line=(cls,txt)=>'<span class="'+cls+'">'+esc(txt)+'</span>';
   const pills=(el,arr)=>{el.innerHTML=arr.map(p=>'<span class="pill '+p[0]+'">'+esc(p[1])+'</span>').join("")};
   const fm=(x,d)=>x.toFixed(d).replace(".",",").replace("-","−");
+  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 
-  // Ejemplo 1: lift frente a impacto en el total
-  const EXP=[["A · Formulario corto",3.0,0.08],["B · Recordatorio por SMS",1.2,0.35],["C · Nuevo onboarding",0.6,0.85],["D · Banner de cashback",4.5,0.04],["E · Oferta de renovación",1.0,0.40]];
-  const sr=document.getElementById("s-r"),so=document.getElementById("s-o"),sb=document.getElementById("s-body"),sout=document.getElementById("s-out");
-  function sRender(){
-    EXP[4][2]=+sr.value/100;document.getElementById("s-rv").textContent=Math.round(EXP[4][2]*100);
-    const rows=EXP.map(e=>({n:e[0],l:e[1],c:e[2],t:e[1]*e[2]}));
-    const byL=rows.slice().sort((a,b)=>b.l-a.l),byT=rows.slice().sort((a,b)=>b.t-a.t);
-    const show=so.value==="lift"?byL:byT;
-    sb.innerHTML=show.map(r=>'<tr><td>'+esc(r.n)+'</td><td class="num">'+fm(r.l,1)+' %</td><td class="num">'+Math.round(r.c*100)+' %</td><td class="num">'+fm(r.t,2)+' %</td></tr>').join("");
-    pills(sout,[[byL[0].n===byT[0].n?"ok":"bad","Top por lift: "+byL[0].n.split(" · ")[0]+" · top por impacto: "+byT[0].n.split(" · ")[0]],["neu","Impacto total = lift × cobertura"]]);
-  }
-  sr.addEventListener("input",sRender);so.addEventListener("change",sRender);sRender();
-
-  // Ejemplo 2: política con meta e interferencia
-  const BASE=0.40,DA=0.30,DB=0.15,SHARE_A=0.6,META=0.60;
-  const ta=document.getElementById("t-a"),tb=document.getElementById("t-b"),ts=document.getElementById("t-s"),tt=document.getElementById("t-trace"),to=document.getElementById("t-out");
-  function outcome(pa,pb,s,peerRate){
-    // hogar de dos personas; cada una es A con prob SHARE_A; contagio al no tratado = s × prob de que la otra persona esté tratada
-    const pt=SHARE_A*pa+(1-SHARE_A)*pb;
-    const peer=peerRate===undefined?pt:peerRate;
-    const yA=pa*(BASE+DA)+(1-pa)*(BASE+s*peer);
-    const yB=pb*(BASE+DB)+(1-pb)*(BASE+s*peer);
-    return {y:SHARE_A*yA+(1-SHARE_A)*yB,c:pt};
-  }
-  function tRender(){
-    const pa=+ta.value,pb=+tb.value,s=+ts.value;
-    document.getElementById("t-av").textContent=fm(pa,2);document.getElementById("t-bv").textContent=fm(pb,2);document.getElementById("t-sv").textContent=fm(s,2);
-    const tr=outcome(pa,pb,s),ni=outcome(pa,pb,s,0.5);
-    let best=null;for(let a=0;a<=1.0001;a+=0.05)for(let b=0;b<=1.0001;b+=0.05){const r=outcome(a,b,s);if(r.y>=META-1e-9&&(!best||r.c<best.c-1e-9))best={a,b,c:r.c};}
-    let bestNI=null;for(let a=0;a<=1.0001;a+=0.05)for(let b=0;b<=1.0001;b+=0.05){const r=outcome(a,b,s,0.5);if(r.y>=META-1e-9&&(!bestNI||r.c<bestNI.c-1e-9))bestNI={a,b,c:r.c};}
-    tt.innerHTML=line("d","# meta: resultado medio ≥ 0,60")+"\n"+
-      line("k","prob. media de tratamiento   "+fm(tr.c,3))+"\n"+
-      line(tr.y>=META?"g":"e","resultado real               "+fm(tr.y,3))+"\n"+
-      line("w","resultado 'sin contagios'    "+fm(ni.y,3))+"\n"+
-      line("d","# mínimo que cumple (grilla 0,05)")+"\n"+
-      line("k","con contagios: "+(best?"A "+fm(best.a,2)+" · B "+fm(best.b,2)+" · prob "+fm(best.c,3):"no hay"))+"\n"+
-      line("k","ignorándolos:  "+(bestNI?"A "+fm(bestNI.a,2)+" · B "+fm(bestNI.b,2)+" · prob "+fm(bestNI.c,3):"no hay"));
-    const niTrue=bestNI?outcome(bestNI.a,bestNI.b,s).y:null;
-    pills(to,[[tr.y>=META?"ok":"bad",tr.y>=META?"Tu política cumple la meta":"Tu política no cumple"],bestNI?[niTrue>=META-1e-9?"ok":"bad","La elegida 'sin contagios' logra en verdad "+fm(niTrue,3)]:["neu","Sin política factible ignorando contagios"]]);
-  }
-  [ta,tb,ts].forEach(x=>x.addEventListener("input",tRender));tRender();
-
-  // Ejemplo 3: cotas por identificación parcial
-  const TAU0=1.0;
-  const vr=document.getElementById("v-r"),vm=document.getElementById("v-m"),vt=document.getElementById("v-t"),vtr=document.getElementById("v-trace"),vo=document.getElementById("v-out");
-  function vRender(){
-    const r=+vr.value,M=+vm.value,tg=vt.value;document.getElementById("v-rv").textContent=fm(r,1);document.getElementById("v-mv").textContent=fm(M,1);
-    const c1=+tg[0],c2=+tg[1];
-    // efecto = TAU0 + c1*t1 + c2*t2 con t1+t2=r, |t1|,|t2|<=M -> t1 en [max(-M,r-M), min(M,r+M)]
-    const lo1=Math.max(-M,r-M),hi1=Math.min(M,r+M);
-    const feas=lo1<=hi1+1e-12;
-    let lo=null,hi=null;
-    if(feas){const f=t1=>TAU0+c1*t1+c2*(r-t1);const a=f(lo1),b=f(hi1);lo=Math.min(a,b);hi=Math.max(a,b);}
-    const W=40,L=-4,H=6,pos=x=>Math.max(0,Math.min(W,Math.round((x-L)/(H-L)*W)));
-    let bar="";if(feas){const p1=pos(lo),p2=pos(hi);bar=" ".repeat(p1)+(p2>p1?"█".repeat(p2-p1):"│");}
-    vtr.innerHTML=line("d","# fuentes: (0,0) → "+fm(TAU0,1)+" · (1,1) → "+fm(TAU0+r,1))+"\n"+
-      line("k","objetivo ("+c1+","+c2+")")+"\n"+
-      (feas?line("g","rango: ["+fm(lo,2)+"; "+fm(hi,2)+"]")+"\n"+line("w",bar):line("e","infactible: ningún θ cumple el tope y los datos"))+"\n"+
-      line("d","escala de −4 a 6");
-    pills(vo,[feas?(hi-lo<1e-9?["ok","Identificado en un punto"]:["neu","Ancho del rango: "+fm(hi-lo,2)]):["bad","El tope contradice la evidencia"],feas&&lo>0?["ok","Signo positivo"]:["neu","Signo sin resolver o negativo"]]);
-  }
-  [vr,vm].forEach(x=>x.addEventListener("input",vRender));vt.addEventListener("change",vRender);vRender();
-
-  // Ejemplo 4: alineación pCTR auxiliar y de servicio
-  const ADS=[["Tarjeta oro",0.040,0.020],["Préstamo libre",0.020,0.060],["Cuenta digital",0.060,0.010],["Seguro",0.015,0.050],["Cashback",0.050,0.016],["Inversión",0.030,0.030]];
-  const DIST=[0.4,2.2,0.5,2.5,0.6,1.0];
-  const kd=document.getElementById("k-d"),ka=document.getElementById("k-a"),kb=document.getElementById("k-body"),ko=document.getElementById("k-out");
-  const ranks=v=>{const o=v.map((x,i)=>i).sort((a,b)=>v[b]-v[a]);const r=[];o.forEach((i,k)=>r[i]=k+1);return r};
-  function kRender(){
-    const d=+kd.value,a=+ka.value;document.getElementById("k-dv").textContent=fm(d,1);document.getElementById("k-av").textContent=fm(a,1);
-    const real=ADS.map(x=>x[1]*x[2]);
-    const served=ADS.map((x,i)=>{
-      const qLabel=x[1]*Math.pow(DIST[i],d);
-      const q=a*qLabel+(1-a)*x[1];
-      const v=Math.min(1,(x[1]*x[2])/q);
-      return x[1]*v;
+  // Ejemplo 1: calibración que se rompe al filtrar
+  const fs=document.getElementById("f-s"),fd=document.getElementById("f-d"),ff=document.getElementById("f-far"),fb=document.getElementById("f-body"),fo=document.getElementById("f-out");
+  function fRender(){
+    const s=+fs.value,d=+fd.value,far=ff.checked;
+    document.getElementById("f-sv").textContent=fm(s,2);document.getElementById("f-dv").textContent=fm(d,2);
+    const keepHi=(1+s)/2,keepLo=(1-s)/2;
+    let ece=0;
+    const rows=[0.1,0.3,0.5,0.7,0.9].map(S=>{
+      const hi=clamp(S+d,0,1),lo=clamp(S-d,0,1);
+      const inRate=(hi+lo)/2;
+      const surv=(keepHi*hi+keepLo*lo)/(keepHi+keepLo);
+      const served=far?surv:S;
+      ece+=Math.abs(surv-served)/5;
+      return '<tr><td>'+fm(S,1)+'</td><td class="num">'+fm(inRate*100,1)+' %</td><td class="num">'+fm(surv*100,1)+' %</td><td class="num">'+fm(served*100,1)+' %</td></tr>';
     });
-    const rr=ranks(real),rs=ranks(served);
-    kb.innerHTML=ADS.map((x,i)=>'<tr><td>'+esc(x[0])+'</td><td class="num">'+fm(real[i]*1000,2)+' ‰</td><td class="num">'+fm(served[i]*1000,2)+' ‰</td><td class="num">'+rr[i]+'</td><td class="num">'+rs[i]+'</td></tr>').join("");
-    const same=rr.filter((x,i)=>x===rs[i]).length;
-    pills(ko,[[same===ADS.length?"ok":"bad","Puestos que coinciden: "+same+" de "+ADS.length],[rr.indexOf(1)===rs.indexOf(1)?"ok":"bad","Primer puesto "+(rr.indexOf(1)===rs.indexOf(1)?"correcto":"equivocado")]]);
+    fb.innerHTML=rows.join("");
+    const bp=Math.round(ece*10000);
+    pills(fo,[[bp<50?"ok":"bad","ECE en sobrevivientes: "+bp+" pb"],["neu",far?"FAR ajustado sobre sobrevivientes":"Puntaje sin recalibrar"]]);
   }
-  [kd,ka].forEach(x=>x.addEventListener("input",kRender));kRender();
+  [fs,fd].forEach(x=>x.addEventListener("input",fRender));ff.addEventListener("change",fRender);fRender();
+
+  // Ejemplo 2: tomar prestado de un experimento pasado
+  const pa=document.getElementById("p-a"),pb=document.getElementById("p-b"),pe=document.getElementById("p-e"),pt=document.getElementById("p-trace"),po=document.getElementById("p-out");
+  function pRender(){
+    const VA=+pa.value,VB=+pb.value,e=+pe.value;
+    document.getElementById("p-av").textContent=fm(VA,2);document.getElementById("p-bv").textContent=fm(VB,2);document.getElementById("p-ev").textContent=fm(e,1);
+    const mse=w=>(1-w)*(1-w)*VA+w*w*(VB+e*e);
+    const wPool=VA/(VA+VB),wOr=VA/(VA+VB+e*e);
+    const mPool=mse(wPool),mOr=mse(wOr);
+    const z=e/Math.sqrt(VA+VB),gate=Math.abs(z)<1.645;
+    const mGate=gate?mPool:VA;
+    pt.innerHTML=line("d","# MSE de cada regla (menor es mejor)")+"\n"+
+      line("k","no tomar prestado        "+fm(VA,3))+"\n"+
+      line(mPool<=VA?"g":"e","unir por precisión  w="+fm(wPool,2)+"  "+fm(mPool,3))+"\n"+
+      line("g","oráculo             w="+fm(wOr,2)+"  "+fm(mOr,3))+"\n"+
+      line("w","compuerta (z≈"+fm(z,2)+"): "+(gate?"une":"no une")+"   "+fm(mGate,3));
+    pills(po,[[mPool<=VA?"ok":"bad",mPool<=VA?"Unir ayuda":"Unir ignorando el sesgo empeora"],["ok","Oráculo mejora "+fm((1-mOr/VA)*100,0)+" %"]]);
+  }
+  [pa,pb,pe].forEach(x=>x.addEventListener("input",pRender));pRender();
+
+  // Ejemplo 3: tasa de match frente a alcance efectivo
+  const mm1=document.getElementById("m-m1"),ma1=document.getElementById("m-a1"),mm2=document.getElementById("m-m2"),ma2=document.getElementById("m-a2"),mb=document.getElementById("m-b"),mbody=document.getElementById("m-body"),mo=document.getElementById("m-out");
+  const N=100000,fmtN=x=>Math.round(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g,".");
+  function mRender(){
+    const m1=+mm1.value/100,a1=+ma1.value/100,m2=+mm2.value/100,a2=+ma2.value/100,b=+mb.value/100;
+    document.getElementById("m-m1v").textContent=Math.round(m1*100);document.getElementById("m-a1v").textContent=Math.round(a1*100);
+    document.getElementById("m-m2v").textContent=Math.round(m2*100);document.getElementById("m-a2v").textContent=Math.round(a2*100);
+    document.getElementById("m-bv").textContent=Math.round(b*100);
+    const pi=a=>clamp((a-b)/(1-b),0,1);
+    const V=[["X",m1,pi(a1)],["Y",m2,pi(a2)]].map(v=>({n:v[0],act:N*v[1],p:v[2],ok:N*v[1]*v[2],oth:N*v[1]*(1-v[2])}));
+    mbody.innerHTML=V.map(v=>'<tr><td>'+v.n+'</td><td class="num">'+fmtN(v.act)+'</td><td class="num">'+fm(v.p*100,1)+' %</td><td class="num">'+fmtN(v.ok)+'</td><td class="num">'+fmtN(v.oth)+'</td></tr>').join("");
+    const byRate=V[0].act>=V[1].act?"X":"Y",byReach=V[0].ok>=V[1].ok?"X":"Y";
+    pills(mo,[["neu","Gana por tasa: "+byRate],[byRate===byReach?"ok":"bad","Gana por clientes correctos: "+byReach]]);
+  }
+  [mm1,ma1,mm2,ma2,mb].forEach(x=>x.addEventListener("input",mRender));mRender();
+
+  // Ejemplo 4: auto-entrenamiento frente a exploración por escasez
+  const bw=document.getElementById("b-w"),bf=document.getElementById("b-f"),bt=document.getElementById("b-trace"),bo=document.getElementById("b-out");
+  const R=x=>100*Math.exp(-Math.pow((x-0.8)/0.3,2));
+  function bRender(){
+    const w=+bw.value,floor=bf.checked;document.getElementById("b-wv").textContent=fm(w,1);
+    let fv=0.3,fi=0.3;
+    let out=line("d","# iter   auto-entrenamiento        con escasez")+"\n";
+    for(let k=1;k<=5;k++){
+      fv=fv+0.15*Math.exp(-(fv-0.3)/0.08);
+      let cand=Math.min(1.2,fi+0.15*Math.exp(-(fi-0.3)/0.08)+0.06*w);
+      if(!floor||R(cand)>=R(fi))fi=cand;
+      out+=line("k","  "+k+"     x="+fm(fv,2)+"  R="+fm(R(fv),1).padStart(5," ")+"      x="+fm(fi,2)+"  R="+fm(R(fi),1).padStart(5," "))+"\n";
+    }
+    out+=line("d","# óptimo en x=0,80, R=100");
+    bt.innerHTML=out;
+    pills(bo,[[R(fv)>=90?"ok":"bad","Auto-entrenamiento: R="+fm(R(fv),1)],[R(fi)>=90?"ok":"bad","Con escasez: R="+fm(R(fi),1)]]);
+  }
+  bw.addEventListener("input",bRender);bf.addEventListener("change",bRender);bRender();
 })();
 </script>
 
