@@ -131,7 +131,7 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
 
 <header class="top">
   <div class="wrap">
-    <div class="brand">Tópicos AI Engineering<small>edición 20 nov 2026</small></div>
+    <div class="brand">Tópicos AI Engineering<small>edición 27 nov 2026</small></div>
     <nav class="tabs" aria-label="Secciones">
       <a href="#informe" data-view="informe">Informe</a>
       <a href="#quices" data-view="quices">Quices</a>
@@ -144,9 +144,9 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
 
 <!-- ============ INFORME ============ -->
 <section id="v-informe" data-panel="informe">
-  <h1>Cuatro lecturas: la métrica agregada esconde la decisión</h1>
-  <p class="lede">Lo más útil publicado entre el 13 y el 20 de noviembre de 2026 sobre workflows agénticos, herramientas MCP y post-training de modelos open-weight. En las cuatro, un promedio contra el baseline equivocado, o medido en un solo punto, oculta justo lo que importa. Preparado para Sergio Mora.</p>
-  <div class="meta"><span>Fuente: listados de arXiv (cs.CL, cs.AI, cs.LG, cs.SE, cs.MA), 2.663 entradas</span><span>~800 títulos filtrados · 36 abstracts leídos</span><span>5 textos completos</span><span>Blogs de laboratorios: sin novedades primarias en la ventana</span></div>
+  <h1>Cuatro lecturas: lo que parece éxito sin evidencia que lo respalde</h1>
+  <p class="lede">Lo más útil publicado entre el 20 y el 27 de noviembre de 2026 sobre fiabilidad de agentes con herramientas, evaluación con jueces, costo de harnesses y post-training de modelos open-weight. En las cuatro, el puntaje agregado deja ver un éxito que la evidencia no respalda del todo. Preparado para Sergio Mora.</p>
+  <div class="meta"><span>Fuente: listados de arXiv (cs.CL, cs.AI, cs.LG, cs.SE, cs.MA), 2.824 entradas</span><span>~415 títulos filtrados · 32 abstracts leídos</span><span>5 textos completos</span><span>Blogs de laboratorios: sin novedades primarias en la ventana</span></div>
   <div class="legend">Cómo leer la evidencia:
     <span class="tag t-med">MEDIDO</span> resultado reportado en el paper
     <span class="tag t-aut">AUTORES</span> interpretación de los autores
@@ -157,225 +157,228 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
     <!-- PIEZA 1 -->
     <article class="piece">
       <div class="piece-head"><span class="rank">1</span>
-        <h2><a href="https://arxiv.org/abs/2611.17610" target="_blank" rel="noopener">More Agents, More Samples, or More Thinking? Untangling Coordination, Ensembling, and Test-Time Compute in Multi-Agent LLMs</a></h2>
-        <div class="byline">Seyed Mahmoud Sajjadi Mohammadabadi · University of Nevada, Reno · v1 13 nov 2026 (anunciado el 16 nov)</div>
+        <h2><a href="https://arxiv.org/abs/2611.28341" target="_blank" rel="noopener">When Tools Fail, Agents Fabricate: Silent Failure and Verification-First Oversight in Tool-Using LLM Agents</a></h2>
+        <div class="byline">Gün Kaynar, Boshen Yan, Carl Kingsford · Carnegie Mellon University · v1 20 nov 2026 (anunciado el 24 nov)</div>
       </div>
-      <div class="chips"><span class="chip topic">Workflows agénticos</span><span class="chip">Meta-análisis · herramienta citada</span></div>
-      <details class="more ctx"><summary>Contexto previo: qué compra realmente un sistema multiagente</summary><div class="body">
-        <p><b>1. Qué es:</b> un sistema multiagente (<i>multi-agent system</i>, MAS) pone a varios modelos a conversar, debatir o repartirse subtareas. La pregunta de fondo es si la <b>coordinación</b> (<i>coordination</i>) agrega algo, o si la ganancia viene solo de gastar más cómputo.</p>
-        <p><b>2. De qué se compone:</b> N agentes que conversan T rondas usan aproximadamente N·T veces los tokens de una pasada. El gasto tiene varias dimensiones: muestras, tokens de razonamiento, tokens totales con historial, costo, latencia y andamiaje.</p>
-        <p><b>3. Cómo se ha trabajado:</b> el debate multiagente (Du et al.), AutoGen y MetaGPT se comparan casi siempre contra una respuesta voraz (<i>greedy</i>). La autoconsistencia (<i>self-consistency</i>, Wang et al., 2023) mostró que votar entre varias muestras mejora sin comunicación entre modelos.</p>
-        <p><b>4. Dónde está la dificultad:</b> contra una sola pasada, la mejora del MAS mezcla coordinar con muestrear más. Separarlos exige un baseline con las mismas muestras o el mismo presupuesto, y pocos estudios lo usan.</p>
-        <p><b>5. Ejemplo intuitivo (números ilustrativos):</b> una pasada acierta el 67 %, cinco agentes que debaten el 71 % y cinco muestras votadas el 75 %. Contra la primera, el debate gana 4 puntos; contra la segunda, pierde 4.</p>
-        <p><b>6. Conexión:</b> es tu comité en LangGraph, ahora contra un baseline más exigente: un agente único que vota varias veces.</p>
+      <div class="chips"><span class="chip topic">Workflows agénticos</span><span class="chip topic">Evaluación de agentes</span><span class="chip">Código y trazas citados</span></div>
+      <details class="more ctx"><summary>Contexto previo: qué pasa cuando una herramienta falla a mitad de la tarea</summary><div class="body">
+        <p><b>1. Qué es:</b> un agente con herramientas (<i>tool-using agent</i>) alterna pensamiento, llamada y observación (ReAct). La <b>recuperación ante fallos</b> (<i>error recovery</i>) es lo que hace cuando una llamada falla: reintentar, cambiar de herramienta, replantear el plan o admitir que no puede responder.</p>
+        <p><b>2. De qué se compone:</b> el tipo de fallo (tiempo agotado, permiso denegado, no encontrado, salida mal formada, resultado parcial), su <b>persistencia</b> (transitorio o persistente) y el desenlace: respuesta correcta, <b>fallo honesto</b> (<i>honest failure</i>) o <b>fabricación</b> (<i>fabrication</i>), una respuesta segura pero falsa.</p>
+        <p><b>3. Cómo se ha trabajado:</b> WebArena, AppWorld, tau-bench o SWE-bench miden si la tarea se completa, sin controlar qué fallo ocurre. Reflexion y Self-Refine suponen que el modelo mejora releyendo su trabajo; Huang et al. (2024) mostraron que, sin señal externa, la auto-corrección a menudo empeora. La ingeniería del caos inyecta fallos a propósito.</p>
+        <p><b>4. Dónde está la dificultad:</b> un 401 queda escrito en el contexto, pero un <b>resultado parcial</b> (la mitad de las filas) parece un éxito. Faltaba un banco de pruebas con fallos reales y verdad conocida.</p>
+        <p><b>5. Ejemplo intuitivo (números ilustrativos):</b> una consulta debía devolver 100 cuotas en mora y devuelve 50 sin avisar. El agente reporta "saldo en mora: 32 millones" cuando el real es 65. No hubo error en pantalla y el número se ve verosímil.</p>
+        <p><b>6. Conexión:</b> tu servidor MCP devuelve PD, LGD y pricing a un comité. Si una herramienta devuelve algo incompleto, ¿el comité lo nota o firma igual?</p>
       </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Meta-análisis de 9 estudios y 516 configuraciones multiagente, ordenadas por una "escalera de baselines": A, una pasada; B, mismas muestras; C, mismo presupuesto; D, Pareto. Separa el efecto de coordinar del de escalar cómputo y propone el protocolo PACE con una lista de chequeo.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Costo y calidad: si coordinar no supera a votar, el comité paga tokens sin retorno.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> Contra baselines igualados en muestras o presupuesto (474 contrastes, 8 estudios), el MAS promedia −0,042 de exactitud y queda igual o por debajo en el 74 % de los casos; en log-odds, −0,195 (IC 95 % −0,320 a −0,070). Contra una sola pasada, la diferencia es casi nula.</dd></div>
-        <div><dt>Limitaciones</dt><dd><span class="tag t-aut">AUTORES</span> 9 estudios, 5 elegidos sin protocolo, uno aporta 180 configuraciones, sin preregistro, I² de 93 %. <span class="tag t-inf">INFERENCIA</span> Un solo autor, extracción secundaria desde tablas, fuentes mayormente preprints.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Laptop: en 30 casos de tu eval, compara el comité con un agente único que responde 3 veces y vota (mismo modelo y herramientas). Éxito: el comité se justifica si supera al voto por ≥ 3 pp con tokens iguales o menores. GPU local (~5–6 GB orientativo, modelo de ~4B a 4 bits): corre los tres brazos con un modelo open-weight en Ollama o llama.cpp para no gastar API; casos leídos desde la laptop, JSON de resultados de vuelta a la laptop o al repo, y al final borrar la caché del modelo y los logs crudos.</dd></div>
+        <div><dt>Qué cambia</dt><dd>RetryRealistic: sistema de archivos real con permisos <code>chmod</code>, SQLite, servidor HTTP local determinista y shell restringida; 8 herramientas, 9 tipos de fallo con persistencia controlada y 30 tareas con verdad conocida. Propone un Monitor que verifica con código, antes que con un LLM, si las cifras de la respuesta aparecen en las salidas de las herramientas.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Fiabilidad: una fabricación segura es peor que un fallo honesto, porque nadie la detecta aguas abajo.</dd></div>
+        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> En 2.100 corridas con fallos, la recuperación correcta va del 19 % al 68 % según el modelo y entre el 6 % y el 26 % terminan en fabricación. El resultado parcial es el fallo que más fabrica (38,3 %). El Monitor sube lo correcto del 45,6 % al 56,3 % y baja la fabricación del 17,3 % al 10,8 %.</dd></div>
+        <div><dt>Limitaciones</dt><dd><span class="tag t-aut">AUTORES</span> Shell restringida, HTTP simulado, Monitor y juez propietarios. <span class="tag t-inf">INFERENCIA</span> 30 tareas hechas por los autores; el Monitor casi no ayuda con datos truncados.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Laptop: en 20 casos de tu eval, haz que una herramienta MCP devuelva la mitad de las filas o campos y mide la fabricación con y sin una verificación en código de que cada cifra de la respuesta aparezca en las salidas. Éxito: la verificación baja la fabricación al menos a la mitad sin rechazar más del 5 % de las respuestas correctas. GPU local (~5–6 GB orientativo, modelo de ~4B a 4 bits): agente open-weight en Ollama o llama.cpp para no gastar API; casos y servidor MCP en la laptop, CSV de desenlaces de vuelta a la laptop o al repo, y al final borrar la caché del modelo y las trazas crudas.</dd></div>
       </dl>
-      <div class="res">Herramienta citada: <code>github.com/mahmoudsajjadi/pace</code> (403 desde mi entorno; no verificada). Zenodo prometido "al publicar".</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>Completa la ablación del comité de la semana pasada con el baseline que este paper pide.</p><ul>
-        <li><strong>Lo que ya sabes que te sirve:</strong> REML, intervalos robustos por clúster y "deja uno fuera" son econometría que ya manejas. La escalera de baselines es comparar tu LightGBM contra una logística bien ajustada y no contra un modelo trivial.</li>
-        <li><strong>Lo nuevo para ti:</strong> la autoconsistencia como baseline de agentes y el vector de recursos (muestras, tokens, costo, latencia) declarado en cada comparación. Unas 2 horas de lectura, secciones 3 y 4.</li>
-        <li><strong>Dónde lo aplicas:</strong> en tu trabajo, antes de proponer debate o comité para crédito o fraude, muestra el voto con el mismo presupuesto. En <code>credit-risk-agent-lab</code>, como segundo baseline de la ablación del comité; en <code>growth-marketing-agent</code>, como regla de diseño antes de construir el agente.</li>
-        <li><strong>Primer paso (≤ 2 h):</strong> agrega al script de evals un modo "agente único × 3 con voto" y una tabla con éxito, tokens y latencia de los tres brazos.</li>
+      <div class="res">Banco de pruebas, inyector y trazas citados en <code>github.com/Kingsford-Group/RetryRealistic</code> (403 desde mi entorno; no verificado).</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Adoptar ya</span></h4><p>La verificación en código y la etiqueta de fabricación son baratas, corren sin API y cubren un error que tu tasa de éxito no muestra <span class="tag t-inf">INFERENCIA</span>.</p><ul>
+        <li><strong>Lo que ya sabes que te sirve:</strong> tus reglas duras y el auditor ya son una capa de verificación, y el registro de costos te da trazas. Que un dato incompleto pase el filtro de plausibilidad lo conoces de los controles de calidad en originación.</li>
+        <li><strong>Lo nuevo para ti:</strong> inyectar fallos por tipo y persistencia, y separar "fallo honesto" de "fabricación" en tu eval. Un envoltorio sobre tus herramientas MCP; de uno a dos días.</li>
+        <li><strong>Dónde lo aplicas:</strong> en tu trabajo, en asistentes que resumen cartera, cosechas o alertas a partir de SQL. En <code>credit-risk-agent-lab</code>, el chequeo S1 (cada cifra debe aparecer en alguna salida) cabe como regla dura antes de la firma humana; en <code>growth-marketing-agent</code>, sobre las consultas de DuckDB.</li>
+        <li><strong>Primer paso (≤ 2 h):</strong> un decorador que, con probabilidad 0,5, devuelva la mitad de las filas de una herramienta; corre 20 casos y cuenta las respuestas que citan un número que no aparece completo en las salidas.</li>
       </ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-        <p><b>1. Problema y motivación.</b> Las evaluaciones multiagente comparan casi siempre contra una pasada voraz, lo que mezcla coordinación con muestras y cómputo. ¿Agrega algo la comunicación una vez igualado el gasto?</p>
-        <p><b>2. Conceptos clave.</b> <i>Vector de recursos</i> con seis dimensiones (razonamiento, tokens totales, costo, latencia, muestras y sistema), cada una marcada como controlada, aproximada, medida u omitida. <i>Escalera de baselines</i> A–D. <i>Identidad contable</i>: diferencia MAS menos pasada = efecto de coordinar + efecto de escalar cómputo (identidad, no identificación causal). <i>Brecha de muestreo</i>: pasada voraz menos muestreada. Tres rutas teóricas para que coordinar rinda: evidencia repartida, verificador externo asimétrico y errores poco correlacionados entre modelos distintos.</p>
-        <p><b>3. Datos.</b> Nueve estudios de 2024–2026 (Tran &amp; Kiela, Kim et al., Jwalapuram et al., Choi et al., Wunderlich et al., Zhang et al. y otros), 516 configuraciones; 358 contrastes A, 360 B y 114 C. Benchmarks como GSM8K, MMLU, MATH, AIME, GPQA, SWE-bench y Terminal-Bench. No hay lista completa de modelos.</p>
-        <p><b>4. Método.</b> 5 estudios iniciales sin protocolo más 4 de 7 candidatos con cuatro criterios escritos; extracción verificada (336/336 celdas en un estudio, auditoría de 40 contrastes sin discrepancias); diferencia de exactitud y log-odds con corrección de Haldane–Anscombe; REML de tres niveles con intervalos CR2; sensibilidad a la correlación entre ítems, deja-uno-fuera y covarianza por bloques.</p>
+        <p><b>1. Problema y motivación.</b> Los agentes fallan en producción por permisos, bloqueos o respuestas truncadas. Importa <i>cómo</i> fallan: un fallo ruidoso se corrige aguas abajo; una fabricación silenciosa, no. Faltaba un banco realista con verdad conocida.</p>
+        <p><b>2. Conceptos clave.</b> <i>Persistencia</i>: los transitorios (tiempo agotado, red, base bloqueada) se arreglan al reintentar con 50 % de probabilidad; los persistentes no. <i>Ingesta silenciosa</i> (<i>silent ingestion</i>): aceptar un dato defectuoso en el primer contacto sin reintentar ni marcarlo. <i>Monitor de verificación primero</i>: S1 (cada cifra aparece en alguna salida), S2 (pedir que reformule), S3 (recalcular sumas, promedios y conteos) y S4 (un LLM revisa solo la desviación de la pregunta). Cada veto es correctivo: el agente puede corregir una vez.</p>
+        <p><b>3. Datos.</b> 30 tareas (10 fáciles, 12 medias, 8 difíciles; 2–7 llamadas mínimas) con ruta alternativa y verdad verificable. Agentes ReAct: Llama-3.1-8B, Llama-3.1-70B, DeepSeek-V4 y Claude Haiku 4.5 (temperatura 0,2, 20 pasos). 3 semillas: 615 corridas por modelo y brazo, 2.100 con fallo. Monitor: Claude Sonnet 4.6. Juez: Claude Opus 5.5.</p>
+        <p><b>4. Método.</b> Cada tarea define un <code>fault_target</code> y el fallo se dispara en la primera llamada que coincide. Brazos: línea base, Monitor completo, Monitor solo de código, sin razonamiento, con instrucción de honestidad y dos dirigidos. La respuesta final se califica contra la verdad en tres desenlaces: dos jueces coincidían en el 67 % con una taxonomía de comportamiento y en el 94 % con los tres desenlaces.</p>
         <p><b>5. Resultados</b> <span class="tag t-med">MEDIDO</span></p>
         <div class="tbl"><table>
-          <thead><tr><th>Baseline</th><th class="num">Contrastes</th><th class="num">Diferencia media</th><th class="num">MAS delante</th></tr></thead>
+          <thead><tr><th>Modelo (% de corridas con fallo)</th><th class="num">Correcto</th><th class="num">Fabricado</th><th class="num">Fallo honesto</th></tr></thead>
           <tbody>
-            <tr><td>A (una pasada)</td><td class="num">358</td><td class="num">−0,032</td><td class="num">37 %</td></tr>
-            <tr><td>B (mismas muestras)</td><td class="num">360</td><td class="num">−0,051</td><td class="num">24 %</td></tr>
-            <tr><td>C (mismo presupuesto)</td><td class="num">114</td><td class="num">−0,012</td><td class="num">32 %</td></tr>
-            <tr><td>B/C combinados</td><td class="num">474</td><td class="num">−0,042</td><td class="num">26 %</td></tr>
+            <tr><td>Llama-3.1-8B</td><td class="num">18,9</td><td class="num">25,9</td><td class="num">55,2</td></tr>
+            <tr><td>Llama-3.1-70B</td><td class="num">33,0</td><td class="num">18,7</td><td class="num">48,4</td></tr>
+            <tr><td>DeepSeek-V4</td><td class="num">67,6</td><td class="num">5,5</td><td class="num">26,9</td></tr>
+            <tr><td>Claude Haiku 4.5</td><td class="num">62,9</td><td class="num">19,0</td><td class="num">18,1</td></tr>
+            <tr><td>Total</td><td class="num">45,6</td><td class="num">17,3</td><td class="num">37,1</td></tr>
           </tbody>
         </table></div>
-        <p>REML B/C: β = −0,195 en log-odds (IC −0,320 a −0,070; p = 0,0076). Deja-uno-fuera: de −0,233 a −0,145, siempre negativo; solo un supuesto adversarial de bloque por estudio cruza el cero. 8 de 9 estudios son no positivos; la excepción es Wunderlich (+0,020 frente a autoconsistencia en MMLU-Pro con Llama-3.1-70B). En Choi et al.: pasada 0,670, voto de 5 muestras 0,747, debate de 5 agentes 0,715. Con 100 tokens de razonamiento el MAS gana +0,077; desde 1.000 tokens pierde 0,023–0,035. En un estudio, el MAS costó una mediana de 8,1 veces una cadena de razonamiento simple. No hay un umbral universal de exactitud base.</p>
-        <p><b>6. Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Pocos estudios; categoría y estudio parcialmente confundidos; selección inicial sin protocolo; sin preregistro; brazos primarios elegidos antes de agrupar; algunas muestras de n = 20; filas del baseline que son máximos entre variantes (sesgo en contra del MAS). <span class="tag t-inf">INFERENCIA</span> A y B comparten los mismos brazos multiagente; la conclusión sobre presupuesto igual descansa en 2 estudios.</p>
-        <p><b>7. Aporte.</b> Frente a "More Agents Is All You Need" y a los estudios sueltos de debate, une resultados con distintas igualaciones en un solo marco y compara los mismos MAS contra baselines voraces y muestreados.</p>
-        <p><b>8. Cómo aplicarlo.</b> Declara las seis dimensiones de recursos y usa la votación con igual número de muestras como baseline mínimo.</p>
-        <p><b>9. Glosario:</b> autoconsistencia; baseline igualado; brecha de muestreo; REML; I². <b>Para recordar:</b> antes de pagar por que los agentes conversen, comprueba que votar no te da lo mismo más barato.</p>
+        <p>Éxito parcial: 38,3 % de fabricación; permiso denegado: 78,1 % de fallo honesto. El tipo de fallo explica 1,6 veces más varianza de la fabricación que el modelo. Con 3 o más reintentos se fabrica el 7,0 %, frente al 20,7 % con 0–1. Con datos parciales, el 91 % de las corridas repitió la llamada como mucho una vez. Variando solo el contenido: parcial 35,2 % de fabricación, negación 16,0 %. Monitor completo 56,3 % correcto y 10,8 % fabricado; solo código 54,7 % y 13,4 %; con éxito parcial solo baja del 38,3 % al 32,1 %. Sin razonamiento, +8,3 pp de fabricación. Instrucción de honestidad: del 17,3 % al 13,7 %, sin efecto con datos parciales. Con permiso para reparar, DeepSeek pasa del 9,7 % al 81,9 % correcto.</p>
+        <p><b>6. Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Shell restringida y HTTP simulado; S3 solo cubre agregados escalares y vetó algunas respuestas correctas; Monitor y juez propietarios; pocas corridas repiten la llamada con datos parciales (55 de 609). <span class="tag t-inf">INFERENCIA</span> 30 tareas de los autores, sin intervalos en las tablas principales, y la mejora es menor justo donde el problema es mayor.</p>
+        <p><b>7. Aporte.</b> Frente a MAS-FIRE y ReliabilityBench, califica contra la verdad, aísla el contenido del fallo como causa y propone una corrección verificable en código en vez de auto-reflexión.</p>
+        <p><b>8. Cómo aplicarlo.</b> Mide la fabricación como desenlace propio, prueba resultados parciales además de errores explícitos y verifica con código las cifras de la respuesta.</p>
+        <p><b>9. Glosario:</b> ingesta silenciosa; fallo honesto; persistencia; grounding; veto correctivo. <b>Para recordar:</b> el fallo peligroso no es el que grita, sino el que devuelve la mitad de las filas sin avisar.</p>
       </div></details>
     </article>
 
     <!-- PIEZA 2 -->
     <article class="piece">
       <div class="piece-head"><span class="rank">2</span>
-        <h2><a href="https://arxiv.org/abs/2611.25191" target="_blank" rel="noopener">Blind Spots Travel, Knowledge Stays Home: What RL Inherits from an LLM Judge</a></h2>
-        <div class="byline">Liang Yue, Eric A. Vance · University of Colorado Boulder · v1 18 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.30190" target="_blank" rel="noopener">Same Executions, Different Gaps: Judgment Rules in Web-Agent Evaluation</a></h2>
+        <div class="byline">Zelong Wang, Weiyue Li, Fei Xue, Junru Zhu · UC San Diego, Harvard e independientes · v1 23 nov 2026 (anunciado el 24 nov)</div>
       </div>
-      <div class="chips"><span class="chip topic">Post-training open-weight</span><span class="chip topic">Evaluación con juez</span><span class="chip">Código citado</span></div>
-      <details class="more ctx"><summary>Contexto previo: un juez LLM como recompensa y el arte de abstenerse</summary><div class="body">
-        <p><b>1. Qué es:</b> en RL para modelos de lenguaje, la recompensa dice qué reforzar. Sin clave de respuestas (<i>answer key</i>), se usa un <b>juez LLM como recompensa</b>, con la esperanza de que su conocimiento pase al modelo.</p>
-        <p><b>2. De qué se compone:</b> estudiante, juez, umbral de aceptación y regla de pago. Aquí acertar paga 1, fallar 0 y "no sé" 0,5: conviene responder solo donde se acierta más de la mitad de las veces (<b>abstención</b>, <i>abstention</i>).</p>
-        <p><b>3. Cómo se ha trabajado:</b> RLVR con claves exactas; jueces o modelos de recompensa para lo demás. La literatura de <i>reward hacking</i> (Gao et al., 2023, entre otros) muestra que el modelo explota los errores de la recompensa. La autoconsistencia da otra señal: si las muestras coinciden, la respuesta suele ser correcta.</p>
-        <p><b>4. Dónde está la dificultad:</b> no se sabía qué errores del juez se generalizan a preguntas nuevas: ¿un pago equivocado puntual o una regla más amplia? La exactitud y la abstención agregadas pueden no mostrarlo.</p>
-        <p><b>5. Ejemplo intuitivo (números ilustrativos):</b> un juez duda de las capitales de países que ya no existen y rechaza casi todas. El estudiante no aprende que son falsas: aprende que <b>en esa clase de pregunta conviene decir "no sé"</b>. La abstención sube un par de puntos y una categoría entera desaparece.</p>
-        <p><b>6. Conexión:</b> es una variable objetivo contaminada, como una mala definición de default, aplicada a un juez que entrena en vez de evaluar.</p>
+      <div class="chips"><span class="chip topic">Evaluación de agentes</span><span class="chip topic">Evaluación con juez</span><span class="chip">Datos públicos · sin repo citado</span></div>
+      <details class="more ctx"><summary>Contexto previo: estimar una diferencia entre agentes con un juez imperfecto</summary><div class="body">
+        <p><b>1. Qué es:</b> decir que B es mejor que A es estimar la <b>diferencia de tasas de éxito</b> (<i>success-rate gap</i>). Sin verificador automático, un <b>juez LLM</b> etiqueta cada ejecución guardada.</p>
+        <p><b>2. De qué se compone:</b> la regla del juez (qué pregunta responde), la evidencia que recibe, la referencia (etiquetas humanas o recompensa del benchmark) y el estimador. Diferencia = tasa(B) − tasa(A); su error es el error de B menos el de A.</p>
+        <p><b>3. Cómo se ha trabajado:</b> se reportan los puntajes del juez y, a veces, se corrige cada uno por sensibilidad y especificidad. La <b>inferencia potenciada por predicciones</b> (<i>prediction-powered inference</i>, PPI; Angelopoulos et al., 2023) combina muchas predicciones baratas con pocas etiquetas reales, como una variable de control en muestreo.</p>
+        <p><b>4. Dónde está la dificultad:</b> si el juez subestima a ambos por igual, los errores se cancelan en la diferencia, y corregir cada puntaje por separado puede empeorarla. Además, el juez puede responder "¿probablemente lo logró?" o "¿la evidencia lo demuestra?".</p>
+        <p><b>5. Ejemplo intuitivo (números ilustrativos):</b> con "probablemente", A 20 % y B 28 %: B gana por 8. Con "demostrado", A 15 % y B 16 %: B sigue primero, pero gana por 1. Mismo ranking, otra decisión de inversión.</p>
+        <p><b>6. Conexión:</b> tus evals con juez comparan versiones del comité; el paper pide declarar qué es "éxito" y estimar la diferencia con pocas etiquetas pareadas.</p>
       </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>814 corridas de RL (GRPO con LoRA) enseñan a Qwen2.5-7B-Instruct y Llama-3.1-8B-Instruct a responder o abstenerse en TriviaQA, PopQA y NQ-open, con graders desde la clave hasta cinco jueces abiertos de 8–13B y Claude Sonnet. Separa lo que el juez sabe de respuestas sueltas de lo que cree sobre <b>clases</b> de preguntas.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Fiabilidad: un punto ciego del juez se vuelve un rechazo sistemático que la exactitud y la abstención agregadas no muestran.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> El conocimiento del grader suma ~1 respuesta corregida por cada 100 preguntas frente a muestrear 32 respuestas y abstenerse donde no coinciden. Cuando el juez Qwen rechaza 11 de 12 capitales de estados desaparecidos, Llama rechaza el 98 % de esas capitales en preguntas nuevas, aunque las sabe (al bloquear el "no sé" recupera ~95 %). Un jurado de 5 jueces no lo corrige.</dd></div>
-        <div><dt>Limitaciones</dt><dd><span class="tag t-aut">AUTORES</span> Solo preguntas cortas, estudiantes de 7–8B con LoRA, 2–6 corridas por celda, sonda de capitales hecha a mano. <span class="tag t-inf">INFERENCIA</span> La sonda se diseñó tras ver el efecto, y el efecto varía mucho entre corridas (10–68 %).</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Laptop: con 200 casos de tu eval que sabes correctos, cuenta los rechazos de tu juez por categoría (subgrado, región, tipo de solicitud). Éxito: ninguna categoría con más del doble de la tasa media de rechazo.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Sobre 300 ejecuciones fijas de AgentRewardBench (Qwen2.5-VL-72B frente a Claude 3.7 Sonnet), cambia solo la pregunta del juez: <i>predicción</i> frente a <i>certificación</i> (¿lo respalda el registro?). Agrega evidencia controlada y estima la diferencia con 50 pares etiquetados y una regresión al estilo PPI.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Fiabilidad de las decisiones: la magnitud de una mejora guía en qué se invierte, y aquí cambia sin que cambie el ranking.</dd></div>
+        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> Con el juez Astra y la vista final, la ventaja de Claude baja de 8,33 a 1,33 pp (reducción de 7,00; IC 95 % de 3,67 a 10,50); las cinco combinaciones de juez y vista la reducen. Con los mismos 50 pares, la regresión baja el error cuadrático medio entre 16,9 % y 36,9 % frente al muestreo pareado directo en diez escenarios.</dd></div>
+        <div><dt>Limitaciones</dt><dd><span class="tag t-aut">AUTORES</span> Ejecuciones fijas publicadas; las intervenciones de evidencia son locales. <span class="tag t-inf">INFERENCIA</span> Un solo par principal de agentes y sin código enlazado.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Laptop: con las salidas de tu juez para dos versiones del agente sobre todos tus casos, etiqueta a mano 50 casos en ambas y compara la diferencia bruta del juez, la pareada directa y la de regresión. Éxito: el intervalo bootstrap de la regresión es al menos un 15 % más estrecho que el directo. No requiere GPU ni API, así que no propongo variante con GPU.</dd></div>
       </dl>
-      <div class="res">Código, respuestas, puntajes del juez y sonda citados en <code>github.com/liyu2195/blind-spots-travel</code> (403 desde mi entorno; no verificado). Sin checkpoints.</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Adoptar ya (auditoría)</span></h4><p>Auditar los rechazos del juez por categoría es barato y cubre un error que el promedio no muestra; la parte de RL es solo lectura.</p><ul>
-        <li><strong>Lo que ya sabes que te sirve:</strong> sesgo de etiqueta y validación por segmento; un KS global bueno puede esconder un subgrado mal calibrado. Pagar 0,5 por "no sé" es un corte por utilidad esperada, como tu aprobación en el lab.</li>
-        <li><strong>Lo nuevo para ti:</strong> RL y post-training están en lo que todavía no has trabajado (GRPO, LoRA, KL); entrenarlo exige semanas. Lo útil no requiere entrenar: la auditoría por categoría y el voto del propio modelo como señal de confianza.</li>
-        <li><strong>Dónde lo aplicas:</strong> en tu trabajo, si un juez decide qué casos escalar o qué respuestas aceptar. En <code>credit-risk-agent-lab</code>, en las evals con juez y en el pendiente de equidad por región o vivienda: un juez que rechaza más en una región es un punto ciego que viaja <span class="tag t-inf">INFERENCIA</span>.</li>
-        <li><strong>Primer paso (≤ 2 h):</strong> exporta los veredictos de tu juez, únelos con tus etiquetas y un segmento, y calcula en pandas la tasa de rechazo de casos correctos por segmento.</li>
+      <div class="res">El paper describe un suplemento con prompts y un estimador ejecutable (Suplemento S.6), sin repositorio citado. Datos de base públicos: AgentRewardBench.</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Adoptar ya</span></h4><p>Es estadística que dominas, cuesta 50 pares de etiquetas y cambia cómo comunicas cualquier mejora de tu agente <span class="tag t-inf">INFERENCIA</span>.</p><ul>
+        <li><strong>Lo que ya sabes que te sirve:</strong> muestreo, variables de control, bootstrap pareado y la diferencia entre la exactitud de cada estimación y la de una diferencia, como al comparar el Gini de dos scorecards sobre la misma muestra out-of-time.</li>
+        <li><strong>Lo nuevo para ti:</strong> PPI aplicada a evaluar agentes y la distinción entre predecir el desenlace y certificarlo con evidencia. Unas 2 horas de lectura (secciones 4 y 6).</li>
+        <li><strong>Dónde lo aplicas:</strong> en tu trabajo, reporta las dos tasas, la regla del juez y un intervalo para la diferencia. En <code>credit-risk-agent-lab</code>, en la comparación pendiente entre comité y agente único; en <code>growth-marketing-agent</code>, la incrementalidad usa la misma lógica.</li>
+        <li><strong>Primer paso (≤ 2 h):</strong> escribe en pandas <code>gap_ppi(y_labeled, j_labeled, j_full)</code>, que ajuste λ con una regresión de las diferencias etiquetadas sobre las del juez, y pruébala con bootstrap en tus evals actuales.</li>
       </ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-        <p><b>1. Problema y motivación.</b> Los jueces reemplazan a la clave cuando no existe y se asume que su conocimiento pasa al modelo. ¿Qué pasa realmente a preguntas nunca vistas?</p>
-        <p><b>2. Conceptos clave.</b> <i>Juez como recompensa</i>: probabilidad de "Sí, es correcta" contra un umbral. <i>Cortes</i>: por defecto (0,5), al 50 % y 35 % de aceptación, e igualado a la clave. <i>Regla del voto</i>: el modelo sin entrenar muestrea 32 respuestas y se abstiene, en la misma proporción que el entrenado, donde menos coinciden. <i>"El conocimiento se queda en casa"</i> y <i>"los puntos ciegos viajan"</i>.</p>
-        <p><b>3. Datos.</b> 1.500 preguntas por dataset (750 de entrenamiento y ~750 de evaluación) más 2.569 nuevas de PopQA. Jueces: Qwen3.5-9B, Mistral-Nemo-12B, Gemma-4-12B, OLMo-2-13B y Granite-3.3-8B; Claude Sonnet como juez fuerte y auditor (93,1 % de acuerdo con anotadores humanos); un jurado de 5. Una GPU L4 por corrida, ~3 h; unas 2.160 horas-GPU.</p>
-        <p><b>4. Método.</b> GRPO con LoRA (rango 16), 120 pasos, 32 preguntas por paso, 8 muestras, KL 0,2. Mide pagos a respuestas erróneas en entrenamiento y en preguntas nuevas; compara cada grader con la regla del voto pregunta por pregunta; bloquea el "no sé"; usa una sonda de 270 capitales de estados desaparecidos y 65 actuales; y planta a mano el veredicto sobre 12 capitales (0, 4, 8 o 12 rechazadas).</p>
-        <p><b>5. Resultados</b> <span class="tag t-med">MEDIDO</span> Un juez paga las respuestas erróneas de su estudiante 34 puntos más que otros jueces en entrenamiento y solo 3 más en preguntas nuevas (~9 % se transfiere). Frente a la regla del voto: clave −0,8, Sonnet +0,3, juez con referencia +1,0 (los dos últimos con intervalos que incluyen cero).</p>
+        <p><b>1. Problema y motivación.</b> Las mejoras de agentes web se reportan como diferencias calificadas por jueces LLM; saber quién gana no dice cuánta confianza merece la ventaja. El paper estudia la comparación misma: definición de éxito, evidencia y estimación de la diferencia.</p>
+        <p><b>2. Conceptos clave.</b> <i>Predicción</i>: el juez elige el desenlace más probable. <i>Certificación</i>: solo aprueba si el registro respalda la finalización (un cero mezcla fracaso y falta de confirmación). <i>Tres estados</i>: éxito respaldado, fracaso respaldado y no resuelto. <i>Referencia humana</i> frente a <i>funcional</i> (recompensas del benchmark). <i>Efecto de la regla</i>: ventaja con predicción menos ventaja con certificación.</p>
+        <p><b>3. Datos.</b> 300 tareas compartidas (AssistantBench, WebArena, VisualWebArena y WorkArena) más GPT-4o (300) y Llama 3.3-70B (206). Jueces: Astra, Sonnet 4.5 y Kimi K2.5. Vista final y ampliada; dos llamadas por ejecución, regla y vista. Datos de base públicos.</p>
+        <p><b>4. Método.</b> (a) Fijar ejecuciones y variar la regla; bootstrap por pares de tareas dentro de cada benchmark. (b) Agregar evidencia archivada con controles de re-presentación. (c) Con n = 50 pares etiquetados: Δ̂ = Ȳₙ + λ·(J̄_N − J̄ₙ). Con λ = 0 es el muestreo directo, con λ = 1 la corrección de peso igual, y la propuesta ajusta λ con una regresión en los mismos 50 pares. El sesgo sistemático del juez se cancela; lo que aporta es la correlación entre tareas.</p>
+        <p><b>5. Resultados</b> <span class="tag t-med">MEDIDO</span></p>
         <div class="tbl"><table>
-          <thead><tr><th>Grader (Llama; recompensa real en preguntas nuevas)</th><th class="num">PopQA</th><th class="num">TriviaQA</th><th class="num">NQ</th></tr></thead>
+          <thead><tr><th>Juez y vista</th><th class="num">Ventaja con predicción (pp)</th><th class="num">Ventaja con certificación (pp)</th><th class="num">Reducción (IC 95 %)</th></tr></thead>
           <tbody>
-            <tr><td>Sin entrenar</td><td class="num">80,7</td><td class="num">78,8</td><td class="num">61,1</td></tr>
-            <tr><td>Clave de respuestas</td><td class="num">83,7</td><td class="num">81,0</td><td class="num">59,8</td></tr>
-            <tr><td>Sonnet</td><td class="num">84,2</td><td class="num">80,5</td><td class="num">65,2</td></tr>
-            <tr><td>Voto propio</td><td class="num">82,9</td><td class="num">80,5</td><td class="num">60,9</td></tr>
-            <tr><td>Juez Qwen, corte al 35 %</td><td class="num">69,0</td><td class="num">70,1</td><td class="num">63,8</td></tr>
+            <tr><td>Astra, final</td><td class="num">8,33</td><td class="num">1,33</td><td class="num">7,00 (3,67 a 10,50)</td></tr>
+            <tr><td>Astra, ampliada</td><td class="num">7,00</td><td class="num">3,33</td><td class="num">3,67 (0,50 a 7,00)</td></tr>
+            <tr><td>Sonnet 4.5, final</td><td class="num">6,00</td><td class="num">4,83</td><td class="num">1,17 (−2,33 a 4,83)</td></tr>
+            <tr><td>Sonnet 4.5, ampliada</td><td class="num">7,17</td><td class="num">3,83</td><td class="num">3,33 (0,17 a 6,67)</td></tr>
+            <tr><td>Kimi K2.5, final</td><td class="num">9,50</td><td class="num">7,50</td><td class="num">2,00 (−1,17 a 5,33)</td></tr>
           </tbody>
         </table></div>
-        <p>Con el corte al 35 %, los estudiantes Llama rechazan el 89–98 % de las capitales desaparecidas que conocen y el 1–6 % de las actuales. Al plantar 0, 4, 8 o 12 rechazos, Llama rechaza el 31, 85, 91 y 97 %; con el corte igualado a la clave, del 5 % al 90 % con solo 6–8 % de abstención total. Contra rechazos aleatorios con igual abstención, las respuestas conocidas rechazadas son casi iguales (25,5 frente a 26,6 por cada 100): las métricas usuales no lo muestran. En 43 de 44 pares de jueces, el estudiante rechaza más lo que solo su juez rechaza. La clave también tiene puntos ciegos: en NQ-open rechaza el 37–39 % de respuestas correctas y 4 de 6 corridas de Qwen colapsan. El voto propio queda a 0,2 puntos de la clave (IC −1,1 a +0,7) sin colapsos. Un juez que paga respuestas largas las propaga en 8 de 8 corridas.</p>
-        <p><b>6. Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Preguntas cerradas y cortas; 7–8B con LoRA; la KL es necesaria (sin ella cambian 22–94 % de las respuestas); generación abierta sin probar; categorías perdidas de PopQA; sonda a mano; Sonnet auditor y grader; 10 de 95 afirmaciones de su registro fallan. <span class="tag t-inf">INFERENCIA</span> Sonda diseñada tras ver el efecto; jueces abiertos todos chicos; pequeña inconsistencia (94 % en el abstract y 95 % en el apéndice).</p>
-        <p><b>7. Aporte.</b> Frente a la literatura de <i>reward hacking</i> y de sesgos de jueces y jurados, separa errores ligados a una respuesta (no viajan) de los ligados a una forma o clase (viajan), y nombra una fuente nueva de sobre-rechazo.</p>
-        <p><b>8. Cómo aplicarlo.</b> Antes de entrenar, puntúa respuestas correctas conocidas y cuenta rechazos por clase; después, desagrega los rechazos por clase; para enseñar abstención, prueba el voto propio con un corte validado con ~100 etiquetas.</p>
-        <p><b>9. Glosario:</b> abstención; GRPO; LoRA; punto ciego; regla del voto. <b>Para recordar:</b> el modelo no hereda lo que su juez sabe, sino lo que su juez duda; audítalo por categoría.</p>
+        <p>Con tres estados, la ventaja pasa de 8,17 a 1,33 pp (reducción de 6,83; IC de 3,33 a 10,50). Claude tiene menos fracasos respaldados (62,5 % frente a 74,3 %) y más no resueltos (23,2 % frente a 12,7 %). Las relaciones necesarias se ubicaron en 52 de 59 ejecuciones; la evidencia reveló una diferencia oculta en una tarea de cuadrícula y eliminó una ventaja aparente en una compra. La referencia humana implica 10,67 pp de ventaja y la funcional 0,67. Calibrar cada puntaje acercó ambos pero empeoró la diferencia. La regresión identifica al líder humano en el 48–62 % de las muestras, frente al 41 % del muestreo directo, con cobertura de 94,2–94,7 %.</p>
+        <p><b>6. Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Ejecuciones fijas; efectos locales de la evidencia; nuevos jueces o tareas pueden cambiar los resultados; el peso igual gana en dos escenarios; cobertura algo bajo el nominal. <span class="tag t-inf">INFERENCIA</span> Un solo par principal; dos de cinco reducciones con intervalos que incluyen el cero; sin repositorio.</p>
+        <p><b>7. Aporte.</b> Frente a AgentRewardBench, WebJudge y "Gaming the Judge", fija todo el registro y varía solo la regla, midiendo el efecto sobre la diferencia; frente a la corrección binaria, muestra que corregir cada puntaje no basta y aplica PPI++ a la diferencia pareada.</p>
+        <p><b>8. Cómo aplicarlo.</b> Declara la regla, guarda la evidencia, reporta las dos tasas y la diferencia, y estímala con etiquetas pareadas más el juez.</p>
+        <p><b>9. Glosario:</b> certificación; predicción; muestreo pareado; PPI; cancelación de errores. <b>Para recordar:</b> que el ganador no cambie no significa que la ventaja sea la misma; estima la diferencia, no los dos puntajes.</p>
       </div></details>
     </article>
 
     <!-- PIEZA 3 -->
     <article class="piece">
       <div class="piece-head"><span class="rank">3</span>
-        <h2><a href="https://arxiv.org/abs/2611.19123" target="_blank" rel="noopener">Beyond Plain MCP: Do Decision Models and Code Mode Make Tool Use Cheaper and Faster?</a></h2>
-        <div class="byline">Abhishek Rai · investigador independiente · v1 14 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.33098" target="_blank" rel="noopener">Delegent: A Multi-Agent Harness That Reduces Cost without Sacrificing Performance</a></h2>
+        <div class="byline">Lingwei Gu, Jimmy Lin · University of Waterloo · v1 24 nov 2026 (anunciado el 25 nov)</div>
       </div>
-      <div class="chips"><span class="chip topic">Workflows agénticos</span><span class="chip">Preregistrado · enrutador en HF</span></div>
-      <details class="more ctx"><summary>Contexto previo: cuánto cuesta exponer herramientas por MCP</summary><div class="body">
-        <p><b>1. Qué es:</b> el <i>Model Context Protocol</i> (MCP) estandariza cómo un agente descubre y llama herramientas. En modo plano, el agente ve todos los esquemas en cada turno y cada resultado vuelve completo.</p>
-        <p><b>2. De qué se compone:</b> catálogo (esquemas de entrada y, opcionalmente, de salida), formato de llamada (JSON o código), lo que regresa al contexto y, a veces, un <b>enrutador</b> (<i>router</i>). Costo por tarea ≈ (tokens de esquemas + tokens de resultados) × turnos.</p>
-        <p><b>3. Cómo se ha trabajado:</b> el <b>code mode</b> (Cloudflare; Anthropic, "Code execution with MCP") hace que el agente escriba un script contra <i>stubs</i> y devuelva solo el resultado final. La recuperación de herramientas, como RAG-MCP, expone un subconjunto.</p>
-        <p><b>4. Dónde está la dificultad:</b> no se sabía si combinarlos suma ni qué detalle produce el efecto. Además, quien escribe código necesita saber <b>qué devuelve</b> cada herramienta; si no, adivina claves y tipos.</p>
-        <p><b>5. Ejemplo intuitivo (números ilustrativos):</b> 40 herramientas × 300 tokens de esquema = 12 mil tokens por turno antes de empezar. Un script que encadena tres llamadas y devuelve una línea paga solo los stubs buscados y esa línea.</p>
-        <p><b>6. Conexión:</b> tu servidor MCP expone scoring, LGD y pricing; el paper mide qué cambia al exponerlas como código y al declarar su salida.</p>
+      <div class="chips"><span class="chip topic">Workflows agénticos</span><span class="chip">Sin entrenamiento · código citado</span></div>
+      <details class="more ctx"><summary>Contexto previo: por qué un agente cuesta tanto y cómo se combinan modelos caros y baratos</summary><div class="body">
+        <p><b>1. Qué es:</b> un <i>harness</i> llama al modelo, ejecuta herramientas y devuelve resultados en ciclo; en cada paso el modelo <b>relee todo el contexto</b>. Un modelo pequeño (<i>small language model</i>, SLM) cuesta mucho menos, y nada extra en una GPU propia.</p>
+        <p><b>2. De qué se compone:</b> costo por tarea ≈ suma sobre pasos de (tokens de contexto × precio de entrada + tokens generados × precio de salida). La caché de prompts (<i>prompt caching</i>) abarata lo repetido, sin eliminarlo. Más latencia y calidad.</p>
+        <p><b>3. Cómo se ha trabajado:</b> <b>cascadas</b> (FrugalGPT) dejan responder primero al barato; <b>routers</b> (RouteLLM) eligen un modelo por consulta. En ambos, un modelo resuelve toda la tarea. El patrón orquestador–trabajador suele usar el mismo modelo caro en todos los roles.</p>
+        <p><b>4. Dónde está la dificultad:</b> un modelo de 2B no resuelve solo una tarea larga, pero mucho del trabajo del caro es "trabajo pesado" (<i>legwork</i>): buscar, leer, correr pruebas. No estaba medido cuánto se puede delegar sin perder tareas.</p>
+        <p><b>5. Ejemplo intuitivo (números ilustrativos):</b> 100 pasos releyendo 50 mil tokens = 5 millones de tokens. Si 60 pasos los hace un modelo local que devuelve un informe de 500 tokens, el caro da 40 pasos con un contexto más corto.</p>
+        <p><b>6. Conexión:</b> tus especialistas en paralelo leen datos y el comité decide; los especialistas son candidatos naturales para tu GPU de 8 GB.</p>
       </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Estudio preregistrado con split sellado: 12 servidores simulados, 42 herramientas y hasta 1.958 distractoras; tres agentes open-weight (Qwen3.8-27B, Gemma-4-26B-A4B y Nemotron-3-Nano-30B-A3B); cinco brazos: MCP plano, enrutador + JSON, code mode, enrutador + code y enrutador oráculo.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Costo y latencia (code mode recorta 70–90 % de los tokens) y fiabilidad: un detalle del stub decide el éxito.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> Code mode frente a MCP plano: +13,4 pp de éxito en Qwen y +19,3 pp en Nemotron. Declarar la forma de la salida en los stubs sube el éxito +22,7 pp en Gemma y +39,5 pp en Nemotron, más que agregar el enrutador. La hipótesis central (enrutador + code supera a code solo) no se confirma.</dd></div>
-        <div><dt>Limitaciones</dt><dd><span class="tag t-aut">AUTORES</span> Mundo sintético con herramientas instantáneas, 21 familias de tareas, poco poder (119–238 instancias frente a ~300 necesarias). <span class="tag t-inf">INFERENCIA</span> Un solo autor que evalúa su propio enrutador; los modelos de 26–30B no caben en 8 GB.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Laptop: declara un <code>outputSchema</code> (o un ejemplo de retorno) en cada herramienta de tu servidor MCP y corre 30 casos con y sin él. Éxito: ≥ 5 pp más de éxito o ≥ 20 % menos tokens. GPU local (~5–6 GB orientativo, modelo de ~4B a 4 bits): las pistas ayudan más a agentes débiles, así que un modelo local pequeño en Ollama es buen banco de prueba; servidor y casos en la laptop, métricas de vuelta a la laptop o al repo, y al final borrar la caché del modelo y las trazas.</dd></div>
+        <div><dt>Qué cambia</dt><dd>El modelo de frontera dirige siempre y escribe la respuesta final; un SLM local hace subtareas fáciles en subagentes con contexto propio y solo vuelve el informe. Construido sobre Claude Code sin modificarlo, con un relé que enruta por rol; sin entrenar ningún modelo y con una instrucción corta sobre qué delegar.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Costo, con una advertencia de latencia.</dd></div>
+        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> Con GPT-6.1-Sol y Qwen3.8-27B-FP8, el costo de frontera en DeepSWE baja de 2,11 a 0,70 USD por tarea con las mismas 29 de 50 resueltas; en 694 preguntas de búsqueda queda en el 41 % con las mismas 663 correctas. Un SLM de 2B deja DeepSWE en el 34 %. La instrucción explica unas tres quintas partes del ahorro.</dd></div>
+        <div><dt>Limitaciones</dt><dd><span class="tag t-aut">AUTORES</span> Solo código y búsqueda; latencia mediana de 38 frente a 25 min en DeepSWE; Claude Code podría favorecer a Claude. <span class="tag t-inf">INFERENCIA</span> Muestras de 50 a 204 tareas, una corrida por celda, sin intervalos.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Laptop: en tu agente de LangGraph, envía los especialistas que solo leen y resumen a un modelo local y deja el comité en el modelo actual; 30 casos por brazo. Éxito: mismas decisiones correctas (±1 caso) con al menos 30 % menos tokens del modelo principal. GPU local (~3–6 GB orientativo, 2–4B a 4 bits): SLM servido con Ollama, llama.cpp o vLLM con un endpoint para la laptop; casos desde la laptop, informes y CSV de tokens, latencia y decisión de vuelta, y al final borrar la caché del modelo y los logs crudos.</dd></div>
       </dl>
-      <div class="res">Repo citado con el preregistro: <code>github.com/abhishek085/mcp-decision-layer</code> (403; no verificado). <a href="https://huggingface.co/abhishek085/spark-s1-mcp-router-4b-r1" target="_blank" rel="noopener">Enrutador en HF</a> (Apache-2.0; respondió 200).</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>Declarar la forma de salida es barato y fue el efecto más grande del paper, aunque su evidencia viene de un mundo sintético.</p><ul>
-        <li><strong>Lo que ya sabes que te sirve:</strong> ya expones herramientas por MCP y registras el costo por solicitud, así que puedes medir tokens antes y después. El preregistro, Holm y el bootstrap pareado te resultan naturales desde la validación de modelos.</li>
-        <li><strong>Lo nuevo para ti:</strong> code mode (stubs en Python más sandbox) y el contrato de salida por herramienta. Lo primero es un cambio de días; lo segundo, de una tarde.</li>
-        <li><strong>Dónde lo aplicas:</strong> en tu trabajo, en agentes internos con muchas herramientas o consultas SQL. En el servidor MCP de <code>credit-risk-agent-lab</code> (PD, LGD, monto óptimo, pricing) y en <code>growth-marketing-agent</code> cuando expongas las consultas de DuckDB.</li>
-        <li><strong>Primer paso (≤ 2 h):</strong> escribe para cada herramienta las claves y tipos que devuelve, súmalos al <code>outputSchema</code> o a la descripción, corre tu suite y compara éxito y tokens con la corrida anterior.</li>
+      <div class="res">Código citado en <code>github.com/castorini/delegent</code> (403 desde mi entorno; no verificado).</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Probar en el lab</span></h4><p>El ahorro es grande y no requiere entrenar, pero la evidencia es de código y búsqueda, no de decisiones de crédito, y la latencia sube <span class="tag t-inf">INFERENCIA</span>.</p><ul>
+        <li><strong>Lo que ya sabes que te sirve:</strong> ya tienes especialistas, comité y registro de costos por solicitud, así que tienes baseline y métrica. "El ahorro crece con el trabajo pesado" es asignación de costos por actividad, que manejas desde FP&amp;A.</li>
+        <li><strong>Lo nuevo para ti:</strong> servir un modelo local con endpoint compatible y enrutar por rol, más la caché de prompts como parte del costo. Uno o dos días en LangGraph: cada nodo puede tener su cliente.</li>
+        <li><strong>Dónde lo aplicas:</strong> en tu trabajo, en asistentes que leen muchas tablas antes de decidir. En <code>credit-risk-agent-lab</code>, mover especialistas a un SLM local y comparar en tu registro, útil con presupuesto de API pequeño; en <code>growth-marketing-agent</code>, para consultas exploratorias en DuckDB.</li>
+        <li><strong>Primer paso (≤ 2 h):</strong> saca de tu registro qué fracción de tokens consume cada nodo; si los especialistas pesan más de la mitad, cambia el cliente de uno a un modelo local y repite 10 casos.</li>
       </ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-        <p><b>1. Problema y motivación.</b> Un agente con cientos de herramientas MCP paga dos veces: por los esquemas y por los resultados. El autor preregistró que un enrutador delante de code mode supera a cada uno por separado.</p>
-        <p><b>2. Conceptos clave.</b> <i>MCP plano</i> (A). <i>Code mode</i> (C): <code>search()</code> devuelve stubs y <code>execute()</code> corre un script en un sandbox (máximo 3 ejecuciones, solo vuelve la última línea). <i>Enrutador</i> (B y D): un modelo de 4B del propio autor, ajustado con LoRA, elige un subconjunto. <i>Pistas de forma de retorno</i>: claves y tipos escritos a mano. <i>Fallback acotado</i>: respaldo con tope de intentos.</p>
-        <p><b>3. Datos.</b> 12 servidores simulados y 42 herramientas con estado reiniciable; tareas por plantillas (119 de desarrollo, 119 de prueba sellada y 119 de extensión, de 21 familias); distractores de un catálogo público no nombrado; temperatura 0 sin razonamiento; un NVIDIA GB10 de 121 GB; 1.785 corridas confirmatorias. Utilidad U = éxito − 0,01 × miles de tokens − 0,002 × segundos.</p>
-        <p><b>4. Método.</b> Desarrollo exploratorio, protocolo congelado con una etiqueta de git, corrida confirmatoria, bootstrap pareado (10.000) con Holm sobre 12 comparaciones, y extensiones (ablación de pistas, réplica, bootstrap por familias).</p>
+        <p><b>1. Problema y motivación.</b> Los agentes de frontera releen todo el contexto en cada paso y hacen cada subtarea con el mismo modelo. Tesis: un SLM en hardware propio puede hacer lo fácil, bajando mucho el costo sin perder tareas ni entrenar.</p>
+        <p><b>2. Conceptos clave.</b> <i>Costo de frontera</i> (con caché incluida). <i>Enrutamiento por rol</i>: ciclo principal al modelo de frontera; subagentes y modelo auxiliar al SLM. <i>Informe</i>: lo único que vuelve; en búsqueda trae respuesta, evidencia citada y confianza, y el harness verifica que cada cita aparezca literal. <i>Instrucción de economía</i>: el plan más barato es el de menos pasos propios.</p>
+        <p><b>3. Datos.</b> Código: SWE-bench Verified (50), SWE-bench Pro (75) y DeepSWE v1.1 (50). Búsqueda: BrowseComp-Plus sobre su corpus (200) y cuatro conjuntos de CMASS sobre ClimbMix (400 mil millones de tokens, solo BM25): BrowseComp-Plus (80), TRQA (68), HotpotQA (204) y DSQA (71, dos modos). Modelos: GPT-6.1-Sol, Claude Opus 5.5 en ablaciones, Qwen3.8-27B-FP8 y MiniCPM5-2B con vLLM.</p>
+        <p><b>4. Método.</b> Mismo harness con y sin la delegación y la instrucción. Código: parche que pasa pruebas ocultas. Búsqueda: juez contra la respuesta de referencia. Para Qwen también se suma su precio de API (0,039 USD por millón de entrada y 1,25 por millón de salida).</p>
         <p><b>5. Resultados</b> <span class="tag t-med">MEDIDO</span></p>
         <div class="tbl"><table>
-          <thead><tr><th>Agente</th><th class="num">Éxito plano</th><th class="num">Éxito code</th><th class="num">Enrutador + code</th><th class="num">Tokens plano</th><th class="num">Tokens code</th></tr></thead>
+          <thead><tr><th>Conjunto</th><th class="num">Resueltas solo frontera</th><th class="num">Resueltas con Qwen 27B</th><th class="num">Costo relativo con Qwen</th><th class="num">Costo relativo con 2B</th></tr></thead>
           <tbody>
-            <tr><td>Qwen</td><td class="num">0,857</td><td class="num">0,992</td><td class="num">0,983</td><td class="num">26.602</td><td class="num">4.362</td></tr>
-            <tr><td>Gemma</td><td class="num">0,866</td><td class="num">0,891</td><td class="num">0,933</td><td class="num">16.779</td><td class="num">5.112</td></tr>
-            <tr><td>Nemotron</td><td class="num">0,361</td><td class="num">0,555</td><td class="num">0,672</td><td class="num">74.608</td><td class="num">7.553</td></tr>
+            <tr><td>SWE-bench Verified (50)</td><td class="num">46</td><td class="num">46</td><td class="num">44 %</td><td class="num">53 % (47 resueltas)</td></tr>
+            <tr><td>SWE-bench Pro (75)</td><td class="num">63</td><td class="num">63</td><td class="num">37 %</td><td class="num">44 % (62 resueltas)</td></tr>
+            <tr><td>DeepSWE (50)</td><td class="num">29</td><td class="num">29</td><td class="num">33 %</td><td class="num">34 % (30 resueltas)</td></tr>
+            <tr><td>Búsqueda, total (694)</td><td class="num">663</td><td class="num">663</td><td class="num">41 %</td><td class="num">no probado</td></tr>
           </tbody>
         </table></div>
-        <p>Enrutador + code frente a code: ΔU −0,025, +0,077 y +0,095 (Holm p = 0,43): no confirmado. Sin pistas de forma, el éxito en code cae a 0,664 (Gemma) y 0,160 (Nemotron), frente a 0,891 y 0,555 con pistas, que además ahorran 1.600–6.100 tokens por tarea. El enrutador agrega ~1,5 s y solo compensa si cuesta menos de 0,4–0,7 s. Con 2.000 herramientas, el MCP plano desborda el contexto y code mode sube solo de 4.112 a 11.942 tokens. Un fallback sin tope llegó a 370 mil tokens y 223 s; acotarlo lo bajó a 34 mil y 16 s. Piloto de inyección de prompts: éxito del ataque 0,148 (plano), 0,093 (code) y 0,000 (enrutador + code).</p>
-        <p><b>6. Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Herramientas simuladas e instantáneas; split de prueba con las mismas familias; poco poder; una corrida por celda; el análisis por familias, agregado después, quita 2 de 6 resultados significativos; pistas a mano ajustadas en desarrollo; agentes con distinta arquitectura y cuantización; sandbox que no es contenedor. <span class="tag t-inf">INFERENCIA</span> Un solo autor que evalúa su propio enrutador; la escala a 2.000 herramientas es descriptiva (10 tareas, solo Qwen).</p>
-        <p><b>7. Aporte.</b> Frente a los posts de Cloudflare y Anthropic y a los estudios de código frente a JSON, aísla la forma de retorno, combina enrutador y code mode, y mide latencia y fallback de punta a punta.</p>
-        <p><b>8. Cómo aplicarlo.</b> Contrato de salida por herramienta, code mode con fallback acotado por defecto y latencia completa, no solo <i>recall</i>.</p>
-        <p><b>9. Glosario:</b> stub; code mode; enrutador; outputSchema; fallback acotado. <b>Para recordar:</b> antes de agregar un enrutador, dile al modelo qué devuelve cada herramienta.</p>
+        <p>Pagando el SLM a precio de API, el total queda en 38 % (DeepSWE) y 57 % (Verified). En ClimbMix el costo baja a entre un cuarto y un tercio; en BrowseComp-Plus sobre su corpus, solo al 63 %. Con menos de 25 llamadas el costo baja a ~60 % y en el 11 % sube; con más de 200 baja a ~25 % y nunca sube. El 80 % del ahorro viene de mover los subagentes, que ya eran el 53 % del costo pero usaban el modelo caro. Sin la instrucción, el 2B resuelve 22 en vez de 29; con ella, 30. Con Opus 5.5 el costo baja solo al 69 % porque planifica antes (18 turnos frente a 84 de Sol), y resuelve 38 de 50 frente a 34 solo.</p>
+        <p><b>6. Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Depende de Claude Code; el SLM no es gratis; solo código y búsqueda; Opus solo en DeepSWE y el 2B solo en código; latencia casi doble en tareas cortas; solo afirman que no se pierde desempeño. <span class="tag t-inf">INFERENCIA</span> Una corrida por celda y sin intervalos; el juez de búsqueda es el mismo modelo de frontera; el 27B FP8 necesita una GPU de estación de trabajo, mucho más que tus 8 GB.</p>
+        <p><b>7. Aporte.</b> Frente a FrugalGPT, RouteLLM y Minions, el modelo caro nunca suelta la tarea ni la respuesta final; mide tareas largas y descompone de dónde sale el ahorro.</p>
+        <p><b>8. Cómo aplicarlo.</b> Mide qué parte del costo es trabajo pesado, delégala con informes verificables y explícale al modelo principal la economía del plan.</p>
+        <p><b>9. Glosario:</b> harness; SLM; subagente; caché de prompts; trabajo pesado. <b>Para recordar:</b> deja que el modelo caro dirija y que el barato haga el trabajo pesado.</p>
       </div></details>
     </article>
 
     <!-- PIEZA 4 -->
     <article class="piece">
       <div class="piece-head"><span class="rank">4</span>
-        <h2><a href="https://arxiv.org/abs/2611.26172" target="_blank" rel="noopener">Budget Internalization: Fixed-Budget RLVR Trades Test-Time Scaling for In-Budget Accuracy</a></h2>
-        <div class="byline">Zavidnyi, Kovrigin, Puchkova, Gelvan, Titov · JetBrains Research · v1 19 nov 2026</div>
+        <h2><a href="https://arxiv.org/abs/2611.31427" target="_blank" rel="noopener">Learning What vs. Learning How: Decomposing Task and Interface Competence in Agentic Training</a></h2>
+        <div class="byline">Chaeeun Lee, Hossein A. Rahmani y 7 coautores · Edinburgh, UCL, Oxford, AstraZeneca y Miniml.AI · v1 23 nov 2026 (anunciado el 25 nov)</div>
       </div>
-      <div class="chips"><span class="chip topic">Post-training open-weight</span><span class="chip">Checkpoints en HF</span></div>
-      <details class="more ctx"><summary>Contexto previo: el tope de tokens en el entrenamiento por refuerzo</summary><div class="body">
-        <p>Para RLVR y GRPO, ver el contexto de la pieza 3 de la edición del 13 nov. Aquí agrego lo que falta.</p>
-        <p><b>1. Qué es:</b> el <b>escalado en tiempo de prueba</b> (<i>test-time scaling</i>) es acertar más al generar más tokens. El <b>tope de rollout</b> (<i>rollout cap</i>) es el máximo de tokens por respuesta al entrenar; una respuesta que lo alcanza sin terminar recibe 0.</p>
-        <p><b>2. De qué se compone:</b> presupuesto de entrenamiento, presupuesto de evaluación (puede ser mayor), tasa de truncamiento y curva de exactitud contra presupuesto.</p>
-        <p><b>3. Cómo se ha trabajado:</b> se entrena con topes fijos para ahorrar cómputo. El <i>budget forcing</i> (s1, Muennighoff et al., 2025) corta o alarga el razonamiento en la inferencia; métodos como L1 enseñan a controlar la longitud.</p>
-        <p><b>4. Dónde está la dificultad:</b> si se evalúa solo cerca del tope, no se ve qué pasa con más presupuesto; un modelo puede ganar en un punto de la curva y perder en otro.</p>
-        <p><b>5. Ejemplo intuitivo (números ilustrativos):</b> base: 40 % con 4 mil tokens y 78 % con 64 mil. Entrenado con tope de 4 mil: 75 % con 4 mil y 50 % con 64 mil, porque ya no usa los tokens extra.</p>
-        <p><b>6. Conexión:</b> es validación por tramo aplicada a la longitud.</p>
+      <div class="chips"><span class="chip topic">Post-training open-weight</span><span class="chip">Dataset en HF</span></div>
+      <details class="more ctx"><summary>Contexto previo: destilación, harness y qué aprende un modelo cuando lo afinas para ser agente</summary><div class="body">
+        <p>Para GRPO, ver el contexto de la pieza 3 de la edición del 13 nov. Aquí agrego lo que falta.</p>
+        <p><b>1. Qué es:</b> la <b>destilación</b> (<i>distillation</i>) entrena un estudiante pequeño con trayectorias exitosas de un maestro, mediante ajuste fino supervisado (<i>supervised fine-tuning</i>, SFT). En agentes, cada trayectoria se genera dentro de un <b>harness</b>: prompt de sistema, formato de acción (llamada nativa, JSON, XML o Python), ciclo de retroalimentación y límites.</p>
+        <p><b>2. De qué se compone:</b> la <b>competencia de tarea</b> (saber qué hacer) y la <b>competencia de interfaz</b> (saber expresarlo en ese formato). La pérdida del SFT cubre toda la trayectoria, así que enseña ambas a la vez.</p>
+        <p><b>3. Cómo se ha trabajado:</b> se recolectan trazas con un harness, se afina con ellas y a veces se aplica RL con GRPO; se suele evaluar en el mismo harness.</p>
+        <p><b>4. Dónde está la dificultad:</b> si falla en otro harness, no se sabe si falta conocimiento o manejo de la interfaz. Afinar con un formato puede romper los demás, como un modelo sobreajustado a un canal de originación.</p>
+        <p><b>5. Ejemplo intuitivo (números ilustrativos):</b> afinado con JSON, acierta 55 % en JSON y 0 % en XML. No olvidó la tarea: escribe JSON donde se esperaba XML. Diez ejemplos que solo practiquen XML recuperan casi todo.</p>
+        <p><b>6. Conexión:</b> si afinas un modelo pequeño para tus herramientas MCP, este paper dice qué datos necesitas y por qué un buen resultado en tu harness puede no viajar.</p>
       </div></details>
       <dl class="facts">
-        <div><dt>Qué cambia</dt><dd>Muestra que el tope fijo de RLVR se vuelve una <b>regla aprendida</b> (<i>budget internalization</i>): tras entrenar, el modelo casi no usa tokens más allá del tope, gana cerca de él y queda por debajo del base con presupuestos grandes. Qwen3.5-4B, Gemma4-E2B y Nemotron-3-Nano-4B; GRPO en DeepScaleR y Reasoning Gym; AIME, GPQA-Diamond y LiveCodeBench.</dd></div>
-        <div><dt>Por qué importa</dt><dd>Calidad y costo: un checkpoint que "mejora" en el tope puede ser peor si en producción le das más tokens.</dd></div>
-        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> Qwen con tope de 8 mil: +42,4 pp en AIME con 8 mil y −24,6 pp con 64 mil. Las 18 corridas de 3 semillas reproducen el cruce. A 64 mil, el base usa en promedio 27 mil tokens y el entrenado 6 mil. Ninguna intervención probada (datos, KL, máscara de truncados, Dr.GRPO, RFT) conserva ambas cosas.</dd></div>
-        <div><dt>Limitaciones</dt><dd><span class="tag t-aut">AUTORES</span> Modelos de 4–5B activos, sobre todo matemáticas, una semilla fuera del experimento principal, solo GRPO. <span class="tag t-inf">INFERENCIA</span> Solo 60 problemas de AIME; no reporta cómputo.</dd></div>
-        <div><dt>Experimento sugerido</dt><dd>Laptop: en los logs de tu agente, compara los tokens de salida de cada nodo con su <code>max_tokens</code>. Éxito: ningún nodo con más del 5 % de respuestas truncadas. GPU local (~6–8 GB a 4 bits, orientativo y no confirmado): Gemma4-E2B base frente a un checkpoint con tope de 1 mil de la colección, en 20 problemas de AIME con 1, 4 y 16 mil tokens; problemas desde la laptop, solo un CSV de exactitud, longitud y truncamiento de vuelta a la laptop o al repo, y al final borrar la caché de modelos, las salidas crudas y los archivos convertidos. No hace falta conservar checkpoints.</dd></div>
+        <div><dt>Qué cambia</dt><dd>Separa experimentalmente las dos competencias. Destila de Qwen3-32B a Qwen3-4B (y a Gemma-3-4B-it) en MedAgentBench, Reasoning Gym, AppWorld y BFCL V3, con tres harnesses de entrenamiento y uno reservado. Introduce el <b>ensayo de harness</b> (<i>harness rehearsal</i>): trazas donde la instrucción ya trae la solución y el modelo solo practica la interfaz.</dd></div>
+        <div><dt>Por qué importa</dt><dd>Calidad y costo del post-training: aprender la interfaz es mucho más barato que reentrenar la tarea.</dd></div>
+        <div><dt>Evidencia</dt><dd><span class="tag t-med">MEDIDO</span> En BFCL multi-turno con Qwen3-4B (objetivo: llamadas nativas; base 44,6 %), la supervisión desde otros harnesses sola da 8,5 % y el ensayo solo 32,5 %, pero juntos 58,8 %. Afinar solo en llamadas nativas lleva JSON de 33,5 % a 0,1 %. GRPO en un solo harness no produce esa interferencia.</dd></div>
+        <div><dt>Limitaciones</dt><dd><span class="tag t-aut">AUTORES</span> Un harness reservado por benchmark; sobre todo Qwen3-4B. <span class="tag t-inf">INFERENCIA</span> La mayoría de las condiciones son una sola corrida, y requiere GPUs que no tienes.</dd></div>
+        <div><dt>Experimento sugerido</dt><dd>Laptop: sin entrenar, evalúa un modelo pequeño open-weight en 30 casos de tus herramientas con dos formatos de acción (llamada nativa y JSON en texto). Éxito: clasificar si los fallos son de formato (llamada mal formada) o de tarea (herramienta o argumento equivocados). GPU local (~6–8 GB orientativo para QLoRA de 1,5–4B; no confirmado): solo si dominan los fallos de formato, preparar 50–100 trazas de ensayo y proponer un QLoRA corto; datos desde la laptop, de vuelta solo el adaptador LoRA (decenas de MB) y métricas, y al final borrar checkpoints intermedios, caché del modelo base y datasets tokenizados. No lo ejecuto: queda como propuesta.</dd></div>
       </dl>
-      <div class="res"><a href="https://huggingface.co/collections/JetBrains-Research/budget-internalization" target="_blank" rel="noopener">Checkpoints y ablaciones en HF</a> (respondió 200) · <a href="https://huggingface.co/datasets/nvidia/Nemotron-RL-ReasoningGym-v1" target="_blank" rel="noopener">Nemotron-RL-ReasoningGym-v1</a> (200). Sin repo de código propio citado.</div>
-      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Solo leer</span></h4><p>El método no está en tu stack, pero reportar exactitud y longitud a varios presupuestos sí lo puedes adoptar ya.</p><ul>
-        <li><strong>Lo que ya sabes que te sirve:</strong> validación por tramos y reversión de rankings: un modelo que gana in-time y pierde out-of-time. Aquí la dimensión es el presupuesto de tokens.</li>
-        <li><strong>Lo nuevo para ti:</strong> RLVR, GRPO y el budget forcing están en lo que todavía no has trabajado; entrenar exige semanas. Leer curvas de exactitud contra presupuesto y medir truncamiento es inmediato.</li>
-        <li><strong>Dónde lo aplicas:</strong> en tu trabajo, al elegir un modelo de razonamiento open-weight, evalúalo con el presupuesto de producción. En <code>credit-risk-agent-lab</code>, revisa los <code>max_tokens</code> de especialistas y comité; en tu ruta de IA, como ejemplo de evaluación por presupuesto.</li>
-        <li><strong>Primer paso (≤ 2 h):</strong> saca de tus logs de costo la distribución de tokens de salida por nodo, marca las respuestas que llegaron al tope y repite 10 casos truncados con el doble de <code>max_tokens</code>.</li>
+      <div class="res"><a href="https://huggingface.co/datasets/chaeeunlee/harness-competence" target="_blank" rel="noopener">Dataset en HF</a> (respondió 200) · código citado en <code>github.com/chaeeunlee-io/harness-competence</code> (403; no verificado). Usa Harbor y SkyRL.</div>
+      <section class="aplica" aria-label="Cómo lo aplicas tú"><h4>Cómo lo aplicas tú <span class="ver">Solo leer</span></h4><p>El método requiere GPUs y experiencia que todavía no tienes; el diagnóstico de formato frente a tarea sí lo puedes hacer ya <span class="tag t-inf">INFERENCIA</span>.</p><ul>
+        <li><strong>Lo que ya sabes que te sirve:</strong> la interferencia entre harnesses es validación fuera de dominio; el diseño 2×2 (tarea × interfaz) es un factorial con interacción que lees como econometrista.</li>
+        <li><strong>Lo nuevo para ti:</strong> fine-tuning y post-training están en lo que todavía no has trabajado (SFT por destilación, LoRA, GRPO). El paper se entiende en una tarde; una versión mínima con QLoRA en tu GPU exige varias semanas de aprendizaje.</li>
+        <li><strong>Dónde lo aplicas:</strong> en tu trabajo, evalúa cualquier modelo open-weight en el formato de acción de producción. En <code>credit-risk-agent-lab</code>, como diagnóstico de si un modelo local falla por formato o por tarea en tu servidor MCP; en tu ruta de IA y Data Science, como primer ejemplo de post-training.</li>
+        <li><strong>Primer paso (≤ 2 h):</strong> clasifica los fallos de herramientas de tus trazas en "llamada mal formada" y "herramienta o argumento incorrecto"; si dominan los primeros, el problema es de interfaz.</li>
       </ul></section>
       <details class="more"><summary>Resumen ampliado en español</summary><div class="body">
-        <p><b>1. Problema y motivación.</b> RLVR entrena con un tope fijo de tokens y luego se evalúa cerca de él. Los autores muestran que el tope cambia el comportamiento del modelo, no solo el costo.</p>
-        <p><b>2. Conceptos clave.</b> <i>Internalización del presupuesto</i>: por encima del tope, el base sigue usando más tokens y mejorando, mientras el entrenado se satura. <i>Exactitud dentro del presupuesto</i>. <i>avg@k</i>: exactitud promedio en k muestras. <i>Truncamiento</i>. <i>Budget forcing</i>: cerrar una respuesta truncada con el fin de razonamiento y una ventana corta de respuesta.</p>
-        <p><b>3. Datos.</b> DeepScaleR y Nemotron-RL-ReasoningGym-v1 (15 mil problemas de 104 entornos); ablaciones con GSM8K y Nemotron-RL-Math-v2. AIME 2024–2025 (60 problemas), GPQA-Diamond y LiveCodeBench v6, con presupuestos de 512 a 64 mil tokens. 3 semillas en el experimento principal (18 corridas); 1 en el resto. Sin reporte de hardware.</p>
-        <p><b>4. Método.</b> GRPO en NeMo RL (grupos de 8, 32 prompts por paso, hasta 300 pasos, β = 0). Topes de 4 y 8 mil (Qwen) y 1 y 2 mil (Gemma, Nemotron). Exactitud, longitud y truncamiento a muchos presupuestos frente al base; transferencia; budget forcing; "Wait" para forzar a pensar más; presupuesto en el prompt; ablaciones de un factor.</p>
-        <p><b>5. Resultados</b> <span class="tag t-med">MEDIDO</span></p>
+        <p><b>1. Problema y motivación.</b> Un modelo puede saber resolver una tarea sin saber expresarla en un harness dado. ¿El fallo es de conocimiento o de interfaz, y cómo interactúan al entrenar?</p>
+        <p><b>2. Conceptos clave.</b> <i>Competencia de tarea</i> y <i>de interfaz</i>. <i>Especialista</i> (destilado con un harness) y <i>3H</i> (con los tres). <i>Transferencia</i> e <i>interferencia</i> frente al base. <i>Ensayo de harness</i>: instrucciones generadas por programa que dicen qué operaciones hacer y qué entregar, enseñando la interfaz casi sin conocimiento de la tarea. <i>Supervisión cruzada</i>: demostraciones desde otros harnesses.</p>
+        <p><b>3. Datos.</b> MedAgentBench (80/20 estratificado), Reasoning Gym (96 generadores; semillas 0–1 para entrenar, 2 para evaluar), AppWorld (splits oficiales) y BFCL V3 de uno y varios turnos. Harnesses: Terminus-2, mini-swe-agent, Goose, Aider y formatos fc, json, xml, pycall, code y parity. Maestro Qwen3-32B, estudiante Qwen3-4B, réplica en Gemma-3-4B-it. Dataset publicado en HF.</p>
+        <p><b>4. Método.</b> (Q1) Base en todos los harnesses. (Q2) Especialistas y 3H con SFT sobre toda la trayectoria. (Q3) 2×2: supervisión cruzada × ensayo en el objetivo. (Q4) GRPO sin normalizar por desviación ni KL, en tareas que el modelo a veces resuelve. Éxito promedio en 4 intentos con bootstrap por tarea al 95 %.</p>
+        <p><b>5. Resultados</b> <span class="tag t-med">MEDIDO</span> Los harnesses más débiles resuelven tareas que el mejor no (17 % de las resueltas en MedAgentBench, 11 % en BFCL multi-turno, 5 % en Reasoning Gym).</p>
         <div class="tbl"><table>
-          <thead><tr><th>Checkpoint</th><th class="num">En el tope</th><th class="num">Presupuesto mayor</th></tr></thead>
+          <thead><tr><th>BFCL multi-turno, Qwen3-4B (éxito %)</th><th class="num">fc (objetivo)</th><th class="num">json</th><th class="num">pycall</th></tr></thead>
           <tbody>
-            <tr><td>Qwen, tope 4 mil</td><td class="num">+34,8 pp</td><td class="num">−30,2 pp (64 mil)</td></tr>
-            <tr><td>Qwen, tope 8 mil</td><td class="num">+42,4 pp</td><td class="num">−24,6 pp (64 mil)</td></tr>
-            <tr><td>Gemma, tope 1 mil</td><td class="num">+10,9 pp</td><td class="num">−24,8 pp (16 mil)</td></tr>
-            <tr><td>Gemma, tope 2 mil</td><td class="num">+14,8 pp</td><td class="num">−20,6 pp (16 mil)</td></tr>
-            <tr><td>Nemotron, tope 1 mil</td><td class="num">+23,3 pp</td><td class="num">−25,4 pp (16 mil)</td></tr>
-            <tr><td>Nemotron, tope 2 mil</td><td class="num">+12,6 pp</td><td class="num">−13,1 pp (16 mil)</td></tr>
+            <tr><td>Base</td><td class="num">44,6</td><td class="num">33,5</td><td class="num">28,2</td></tr>
+            <tr><td>Solo supervisión cruzada</td><td class="num">8,5</td><td class="num">47,4</td><td class="num">52,5</td></tr>
+            <tr><td>Solo ensayo en fc</td><td class="num">32,5</td><td class="num">0,0</td><td class="num">0,1</td></tr>
+            <tr><td>Cruzada + ensayo</td><td class="num">58,8</td><td class="num">50,8</td><td class="num">50,9</td></tr>
+            <tr><td>Especialista fc</td><td class="num">55,2</td><td class="num">0,4</td><td class="num">19,5</td></tr>
+            <tr><td>3H</td><td class="num">59,0</td><td class="num">49,5</td><td class="num">49,1</td></tr>
           </tbody>
         </table></div>
-        <p>AIME a 64 mil: Qwen base 78,3 %, tope 4 mil 48,2 % y tope 8 mil 53,7 %, con longitudes medias de 27,3, 5,0 y 6,2 mil tokens. Con Reasoning Gym se repite (Qwen +31,1 pp a 4 mil y −25,0 a 64 mil). En GPQA y LiveCodeBench el daño es menor (Qwen tope 8 mil: −2,2 y −1,0 pp a 64 mil) con salidas mucho más cortas (LiveCodeBench de 38,3 a 8,3 mil tokens). Budget forcing sobre Qwen base a 4 mil: +56,2 pp en GPQA. Forzar al entrenado a seguir pensando no recupera nada en AIME a 64 mil. Ablaciones (Qwen, tope 8 mil): KL 0,01 reduce la pérdida a −8,6 pp, pero la ganancia baja a +23,2; forzar respuesta en el entrenamiento borra efecto y ganancia; RFT con trazas cortas da +4,3 pp a 64 mil y −1,4 a 8 mil. Un presupuesto en el prompt no controla bien la longitud.</p>
-        <p><b>6. Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> 4–5B activos, sobre todo matemáticas, una semilla fuera del experimento principal, solo GRPO; mediciones de comportamiento. <span class="tag t-inf">INFERENCIA</span> Muestras chicas (60 problemas, ±10 pp en ablaciones), ablaciones solo en Qwen, "base" son modelos ya entrenados con RL, y los rangos del resumen no coinciden del todo con las medias por semilla.</p>
-        <p><b>7. Aporte.</b> Frente a L1 y otros métodos que acortan el razonamiento a propósito, muestra que el RLVR estándar lo hace como efecto secundario, que se transfiere fuera del dominio y qué partes de la señal lo causan.</p>
-        <p><b>8. Cómo aplicarlo.</b> Reporta exactitud y longitud a varios presupuestos, vigila el truncamiento y aprovecha el efecto donde el base piensa de más.</p>
-        <p><b>9. Glosario:</b> rollout; tope de rollout; test-time scaling; truncamiento; RFT. <b>Para recordar:</b> el tope con que entrenas se vuelve el techo con que razona.</p>
+        <p>MedAgentBench con Terminus-2 como objetivo: base 3,7 %, ensayo 9,5 %, cruzada 2,0 % y juntos 34,4 %; Reasoning Gym: 20,0 %, 19,8 % y 37,0 % juntos. 3H supera al peor especialista en el harness reservado en todos los escenarios, pero al base solo en MedAgentBench y AppWorld; en cuatro de seis, el peor especialista cae a menos de la mitad del base. GRPO desde 3H en un solo harness no degrada los demás; en MedAgentBench, 3H más GRPO multi-harness llega a 85,7 % en fc y 78,0 % en el reservado xml.</p>
+        <p><b>6. Robustez y limitaciones.</b> <span class="tag t-aut">AUTORES</span> Un harness reservado por benchmark; foco en Qwen3-4B con réplica parcial; tareas que no dependen de herramientas o memoria propias de cada harness. <span class="tag t-inf">INFERENCIA</span> La mayoría de las condiciones son una corrida (las principales se repiten en 4); el ensayo necesita la solución correcta; no reporta el cómputo total.</p>
+        <p><b>7. Aporte.</b> Frente a la destilación de agentes en un solo harness y la optimización del harness, separa con un factorial lo que el modelo sabe de lo que sabe expresar, y muestra que la interfaz se aprende barato y aparte.</p>
+        <p><b>8. Cómo aplicarlo.</b> Evalúa en el harness de producción, mezcla harnesses al destilar y, si falla la interfaz, agrega ensayos baratos en vez de más datos de la tarea.</p>
+        <p><b>9. Glosario:</b> destilación; harness; ensayo de harness; interferencia; GRPO. <b>Para recordar:</b> un modelo puede saber la tarea y no saber decirla en tu formato; enséñale el formato aparte.</p>
       </div></details>
     </article>
   </div>
 
   <div class="prio">
-    <div><b>Prioridad de lectura</b>La #2, lo que el modelo hereda de su juez. Tiene la evidencia más sólida de la semana (814 corridas con controles plantados) y cambia cómo usas tu juez LLM incluso sin entrenar; conecta con tu pendiente de equidad por región.</div>
-    <div><b>Prioridad de experimentación</b>La #3, contrato de salida en tu servidor MCP. Corre en la laptop sobre lo que ya tienes, cuesta una tarde y fue el efecto más grande del paper (hasta +39,5 pp). Sin API, usa un modelo local pequeño en la GPU para ambos brazos.</div>
+    <div><b>Prioridad de lectura</b>La #2, la regla del juez cambia la ventaja. Es la pieza más cercana a tu formación (muestreo pareado, variables de control, PPI) y cambia cómo reportas cualquier mejora de tu agente: dos tasas, una regla declarada y un intervalo para la diferencia, con solo 50 pares etiquetados.</div>
+    <div><b>Prioridad de experimentación</b>La #1, fallos parciales en tu servidor MCP. Corre en la laptop sobre lo que ya tienes, sin API si usas un modelo local, y mide un riesgo concreto: una cifra verosímil construida sobre datos truncados. La verificación en código cabe como regla dura antes de la firma humana.</div>
   </div>
 
-  <p class="note">En seguimiento, sin seleccionar: On Evaluating User Simulators for Interactive Agents (2611.24892; texto completo leído), donde las suites previas detectan solo 5–6 de 10 fallos plantados y premian al simulador que aprueba trabajo roto (quedó fuera porque no publica código ni datos y los autores diseñaron tanto las perturbaciones como la suite). Solo abstracts: Beyond Leaderboard Ranks (2611.21515), con 27 de 35 pasos de la frontera precio-exactitud no distinguibles; Idempotency Is Not Recovery (2611.23353), con un registro de acciones contra efectos duplicados; Reversibility Classes (2611.22075), con cinco niveles de reversibilidad para 536 herramientas MCP; y Harness Leverage Across Model Size (2611.21407), con harnesses locales de 0,75B a 4,7B. Las piezas de ediciones anteriores no se repiten.</p>
+  <p class="note">En seguimiento, sin seleccionar: Which Loopholes Get Found? (2611.29651; abstract y HTML revisados), donde la "exposición" (propensión del modelo × falsos positivos del juez) predijo el primer atajo explotado en las 12 corridas de GRPO con explotación; quedó fuera porque continúa el tema del juez como recompensa del 20 nov. Solo abstracts: Recursive Collective Intelligence (2611.32606), una escalera de presupuesto igual para grupos de agentes; SecondChance (2611.31586), donde el mejor modelo completa solo el 16 % de las recuperaciones sin ayuda; What Makes Good Data for Training Coding Agents? (2611.30207), con un 74 % de tareas nunca resueltas que tienen pruebas que rechazan arreglos correctos; y Separating Automation Gains from Agent Contributions in AI-Assisted Model Validation (2611.27094), un protocolo para validar scorecards con agentes que aún no evalúa ningún LLM. Las piezas de ediciones anteriores no se repiten.</p>
 
   <div class="routine"><b>Ediciones anteriores:</b>
     <ul>
-      <li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/ai-engineering/2026-11-20.md" target="_blank" rel="noopener">2026-11-20</a> (esta edición, en Markdown)</li>
+      <li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/ai-engineering/2026-11-27.md" target="_blank" rel="noopener">2026-11-27</a> (esta edición, en Markdown)</li>
+      <li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/ai-engineering/2026-11-20.md" target="_blank" rel="noopener">2026-11-20</a> (multiagente frente a voto, lo que RL hereda de su juez, MCP y code mode, tope de tokens en RLVR)</li>
       <li><a href="https://github.com/neiderolaya26/learning/blob/topicos/topicos/ai-engineering/2026-11-13.md" target="_blank" rel="noopener">2026-11-13</a> (evaluadores en tau2-bench, arquitecturas a costo controlado, recompensas densas en GRPO, preferencias humanas frente a sintéticas)</li>
       <li>6 nov 2026: publicada solo en el artefacto, sin <code>.md</code> en el repo (Silent Instrument Errors, ParetoSaddler, cuantización en agentes de código y Team-GRPO).</li>
       <li>30 oct 2026: publicada solo en el artefacto, sin <code>.md</code> en el repo.</li>
@@ -387,7 +390,7 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
 <!-- ============ QUICES ============ -->
 <section id="v-quices" data-panel="quices" hidden>
   <h1>Quices</h1>
-  <p class="lede">Doce preguntas nuevas sobre las piezas del 20 nov y sus conceptos. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
+  <p class="lede">Doce preguntas nuevas sobre las piezas del 27 nov y sus conceptos. Cada respuesta trae su explicación. El progreso se guarda solo en este navegador.</p>
   <div class="qbar">
     <span class="score" id="score">0 / 12 correctas · 0 respondidas</span>
     <div class="meter" aria-hidden="true"><i id="meter"></i></div>
@@ -396,10 +399,10 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
   <div class="filter" role="group" aria-label="Filtrar por tema">
     <button class="btn" type="button" data-f="all" aria-pressed="true">Todas</button>
     <button class="btn" type="button" data-f="conceptos" aria-pressed="false">Conceptos</button>
-    <button class="btn" type="button" data-f="mas" aria-pressed="false">Multiagente</button>
-    <button class="btn" type="button" data-f="juez" aria-pressed="false">Juez como recompensa</button>
-    <button class="btn" type="button" data-f="mcp" aria-pressed="false">MCP y code mode</button>
-    <button class="btn" type="button" data-f="tope" aria-pressed="false">Tope de tokens</button>
+    <button class="btn" type="button" data-f="fallos" aria-pressed="false">Fallos de herramientas</button>
+    <button class="btn" type="button" data-f="brecha" aria-pressed="false">Regla del juez</button>
+    <button class="btn" type="button" data-f="delega" aria-pressed="false">Delegar a un SLM</button>
+    <button class="btn" type="button" data-f="interfaz" aria-pressed="false">Tarea frente a interfaz</button>
   </div>
   <div class="stack" id="quiz"></div>
 </section>
@@ -407,81 +410,93 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
 <!-- ============ EJEMPLOS ============ -->
 <section id="v-ejemplos" data-panel="ejemplos" hidden>
   <h1>Ejemplos dummy</h1>
-  <p class="lede">Cuatro simulaciones de juguete, una por pieza de la edición del 20 nov. Los datos, nombres y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
+  <p class="lede">Cuatro simulaciones de juguete, una por pieza de la edición del 27 nov. Los datos, nombres y números de esta pestaña son inventados y <b>no son resultados de los papers</b>.</p>
   <div class="stack">
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>1 · ¿Contra qué baseline gana el comité?</h2>
-      <p>Un comité dummy de N agentes acierta un poco más que una pasada. Cambia N y la correlación entre errores, y compara contra una pasada y contra votar N muestras sin conversar.</p>
+      <h2>1 · La herramienta devuelve la mitad de las filas</h2>
+      <p>Una herramienta dummy <code>get_arrears</code> devuelve las cuotas en mora de una cartera. Elige el fallo y si hay verificación en código antes de responder.</p>
       <div class="controls">
-        <label for="m-n">Agentes o muestras N: <b id="m-nv">5</b>
-          <input type="range" id="m-n" min="1" max="9" step="2" value="5"></label>
-        <label for="m-r">Correlación de errores: <b id="m-rv">0,30</b>
-          <input type="range" id="m-r" min="0" max="0.9" step="0.05" value="0.3"></label>
+        <label for="f-t">Fallo
+          <select id="f-t">
+            <option value="none">Sin fallo</option>
+            <option value="partial" selected>Resultado parcial (50 % de filas)</option>
+            <option value="denied">Permiso denegado</option>
+          </select></label>
+        <label for="f-m">Verificación
+          <select id="f-m">
+            <option value="0" selected>Sin verificación</option>
+            <option value="1">Recalcular y contar filas en código</option>
+          </select></label>
+      </div>
+      <div class="trace" id="f-trace" aria-live="polite"></div>
+      <div class="outcome" id="f-out"></div>
+      <p class="takeaway"><b>Idea:</b> el error visible lleva a un fallo honesto; el resultado parcial pasa el filtro y produce una cifra verosímil. Una verificación que compare lo recibido con lo esperado (aquí, un conteo de filas) lo detecta. El paper mide 38,3 % de fabricación con resultados parciales y un Monitor que ayuda poco en ese caso; la cartera, las cifras y el chequeo de conteo de este juguete son inventados.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>2 · Mismo ranking, otra ventaja</h2>
+      <p>Dos agentes dummy, A y B, evaluados por un juez. Cambia la regla del juez y cuántos casos de B quedan "no resueltos" por falta de evidencia en el registro.</p>
+      <div class="controls">
+        <label for="g-r">Regla del juez
+          <select id="g-r">
+            <option value="pred" selected>Predicción: ¿probablemente lo logró?</option>
+            <option value="cert">Certificación: ¿el registro lo respalda?</option>
+          </select></label>
+        <label for="g-u">Éxitos de B sin evidencia guardada: <b id="g-uv">8</b>
+          <input type="range" id="g-u" min="0" max="12" step="1" value="8"></label>
       </div>
       <div class="tbl"><table>
-        <thead><tr><th>Brazo</th><th class="num">Exactitud de juguete</th><th class="num">Tokens relativos</th></tr></thead>
-        <tbody id="m-body"></tbody>
+        <thead><tr><th>Agente</th><th class="num">Tasa de juguete</th></tr></thead>
+        <tbody id="g-body"></tbody>
       </table></div>
-      <div class="outcome" id="m-out"></div>
-      <p class="takeaway"><b>Idea:</b> contra una sola pasada casi cualquier comité "gana"; contra el voto con las mismas muestras puede perder, y además cuesta más por el historial que se repite. El paper reporta −0,042 de exactitud media contra baselines igualados; las fórmulas y cifras de este juguete son inventadas.</p>
+      <div class="outcome" id="g-out"></div>
+      <p class="takeaway"><b>Idea:</b> si la regla castiga más al agente que deja menos evidencia, la ventaja se encoge aunque el ganador no cambie. El paper mide de 8,33 a 1,33 pp con el juez Astra; los 100 casos y las tasas de este juguete son inventados.</p>
     </div>
 
     <div class="ex">
       <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>2 · El punto ciego que viaja</h2>
-      <p>Un juez dummy rechaza una fracción de las respuestas correctas de una categoría ("capitales antiguas") durante el entrenamiento. Mira qué abstención aprende el estudiante en preguntas nuevas de esa categoría y cómo cambia el promedio global.</p>
+      <h2>3 · ¿Quién hace el trabajo pesado?</h2>
+      <p>Un agente dummy da N pasos; una parte son lectura y búsqueda. Elige qué fracción delegar a un modelo local y si el modelo principal recibe la instrucción de economía.</p>
       <div class="controls">
-        <label for="j-r">Rechazos del juez en la categoría (de 12): <b id="j-rv">11</b>
-          <input type="range" id="j-r" min="0" max="12" step="1" value="11"></label>
-        <label for="j-mode">Grader
-          <select id="j-mode">
-            <option value="judge" selected>Juez con punto ciego</option>
-            <option value="vote">Voto propio del modelo</option>
+        <label for="d-n">Pasos del agente solo: <b id="d-nv">80</b>
+          <input type="range" id="d-n" min="10" max="200" step="10" value="80"></label>
+        <label for="d-f">Fracción delegada: <b id="d-fv">60 %</b>
+          <input type="range" id="d-f" min="0" max="0.9" step="0.1" value="0.6"></label>
+        <label for="d-i">Instrucción
+          <select id="d-i">
+            <option value="1" selected>Con instrucción</option>
+            <option value="0">Sin instrucción</option>
           </select></label>
-      </div>
-      <div class="trace" id="j-trace" aria-live="polite"></div>
-      <div class="outcome" id="j-out"></div>
-      <p class="takeaway"><b>Idea:</b> el estudiante no aprende que esas respuestas son falsas, sino que en esa clase conviene decir "no sé"; el promedio global apenas se mueve. El paper reporta un rechazo del 98 % con 11 de 12 rechazos plantados en Llama; la curva y los totales de este juguete son inventados.</p>
-    </div>
-
-    <div class="ex">
-      <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>3 · Stub sin forma frente a stub con forma</h2>
-      <p>Un agente dummy escribe código contra la herramienta <code>get_score</code>. Elige si el stub declara qué devuelve y qué tan fuerte es el modelo.</p>
-      <div class="controls">
-        <label for="s-h">Stub
-          <select id="s-h">
-            <option value="0">Sin forma de retorno</option>
-            <option value="1" selected>Con forma de retorno</option>
-          </select></label>
-        <label for="s-m">Modelo
-          <select id="s-m">
-            <option value="weak" selected>Débil</option>
-            <option value="strong">Fuerte</option>
-          </select></label>
-      </div>
-      <div class="trace" id="s-trace" aria-live="polite"></div>
-      <div class="outcome" id="s-out"></div>
-      <p class="takeaway"><b>Idea:</b> sin contrato de salida, el modelo débil adivina claves y falla; con él, acierta y gasta menos reintentos. El paper mide +39,5 pp en el agente más débil; la herramienta, las claves y las tasas de este juguete son inventadas.</p>
-    </div>
-
-    <div class="ex">
-      <span class="dummy-flag">DATOS INVENTADOS</span>
-      <h2>4 · El tope que se vuelve techo</h2>
-      <p>Curvas dummy de exactitud contra presupuesto para un modelo base y uno entrenado con un tope fijo. Mueve el tope de entrenamiento y el presupuesto de evaluación.</p>
-      <div class="controls">
-        <label for="t-c">Tope de entrenamiento (miles de tokens): <b id="t-cv">4</b>
-          <input type="range" id="t-c" min="1" max="16" step="1" value="4"></label>
-        <label for="t-e">Presupuesto de evaluación (miles): <b id="t-ev">32</b>
-          <input type="range" id="t-e" min="1" max="64" step="1" value="32"></label>
       </div>
       <div class="tbl"><table>
-        <thead><tr><th>Modelo</th><th class="num">Exactitud de juguete</th><th class="num">Tokens usados (miles)</th></tr></thead>
-        <tbody id="t-body"></tbody>
+        <thead><tr><th>Brazo</th><th class="num">Costo de juguete (USD)</th><th class="num">Tareas resueltas de 50</th></tr></thead>
+        <tbody id="d-body"></tbody>
       </table></div>
-      <div class="outcome" id="t-out"></div>
-      <p class="takeaway"><b>Idea:</b> el entrenado gana cerca del tope y pierde con presupuestos grandes porque ya no usa los tokens extra; evaluar en un solo punto esconde el cruce. El paper mide, por ejemplo, +42,4 pp a 8 mil y −24,6 pp a 64 mil en Qwen; las curvas de este juguete son inventadas.</p>
+      <div class="outcome" id="d-out"></div>
+      <p class="takeaway"><b>Idea:</b> como el contexto crece con cada paso, quitarle pasos al modelo caro ahorra más que proporcionalmente en tareas largas; sin instrucción, el modelo débil puede perder tareas. El paper mide un 33 % del costo en DeepSWE sin perder tareas; los precios, la fórmula y las tareas de este juguete son inventados.</p>
+    </div>
+
+    <div class="ex">
+      <span class="dummy-flag">DATOS INVENTADOS</span>
+      <h2>4 · Sabe la tarea, falla el formato</h2>
+      <p>Un estudiante dummy se evalúa en el formato JSON. Elige con qué se entrenó y mira cuánto sabe de la tarea, cuánto domina el formato y el éxito resultante.</p>
+      <div class="controls">
+        <label for="h-c">Supervisión de tarea desde otros formatos
+          <select id="h-c">
+            <option value="0">No</option>
+            <option value="1" selected>Sí</option>
+          </select></label>
+        <label for="h-r">Ensayo en JSON (solución dada)
+          <select id="h-r">
+            <option value="0" selected>No</option>
+            <option value="1">Sí</option>
+          </select></label>
+      </div>
+      <div class="trace" id="h-trace" aria-live="polite"></div>
+      <div class="outcome" id="h-out"></div>
+      <p class="takeaway"><b>Idea:</b> el éxito se parece más a un producto que a una suma: saber la tarea no sirve si la interfaz está rota, y practicar la interfaz no enseña la tarea. El paper mide 8,5 %, 32,5 % y 58,8 % en BFCL multi-turno; las competencias y la fórmula de este juguete son inventadas.</p>
     </div>
   </div>
 </section>
@@ -503,23 +518,23 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
 
   // ---------- Quices ----------
   const Q=[
-    {t:"conceptos",q:"Cinco agentes debaten y aciertan más que una sola respuesta voraz. ¿Qué falta para atribuir la mejora a la coordinación?",o:["Nada, la mejora ya es de la coordinación","Compararlos contra 5 muestras votadas sin comunicación (mismo número de muestras)","Usar un modelo más grande","Medir solo la latencia"],a:1,e:"Contexto previo de la pieza 1: contra una sola pasada, la mejora mezcla coordinar con muestrear más. El baseline igualado en muestras (autoconsistencia) separa los dos efectos."},
-    {t:"conceptos",q:"En el paper del juez, acertar paga 1, fallar 0 y decir \"no sé\" 0,5. ¿Cuándo le conviene responder al modelo?",o:["Siempre","Cuando su probabilidad de acertar supera 1/2","Solo si el juez es humano","Nunca"],a:1,e:"Si p es la probabilidad de acertar, responder vale p y abstenerse 0,5. Es una política de abstención por utilidad esperada, como un corte de aprobación."},
-    {t:"conceptos",q:"¿Qué es el tope de rollout en RLVR?",o:["El número de pasos de entrenamiento","El máximo de tokens por respuesta durante el entrenamiento; si se alcanza sin terminar, la recompensa es 0","La tasa de aprendizaje","El tamaño del grupo en GRPO"],a:1,e:"Contexto previo de la pieza 4. El paper muestra que ese tope se vuelve una regla aprendida: el modelo deja de usar tokens más allá de él."},
-    {t:"mas",q:"Contra baselines igualados en muestras o presupuesto, ¿qué diferencia media de exactitud reporta el meta-análisis para los sistemas multiagente?",o:["+0,042","−0,042","0,000","+0,195"],a:1,e:"−0,042 en 474 contrastes de 8 estudios; el MAS queda igual o por debajo en el 74 % de los casos. En log-odds, −0,195 con intervalo bajo cero."},
-    {t:"mas",q:"En el estudio de Choi et al. que recoge el meta-análisis, ¿cómo quedó el debate de 5 agentes?",o:["Ganó a la pasada y al voto","Ganó a la pasada (0,715 frente a 0,670) pero perdió contra votar 5 muestras (0,747)","Perdió contra ambos","Empató con ambos"],a:1,e:"Es el ejemplo más claro de cómo cambia la conclusión según el baseline."},
-    {t:"juez",q:"Cuando el juez Qwen rechaza 11 de 12 capitales correctas de estados desaparecidos, ¿qué hace Llama con capitales nuevas de esa clase?",o:["Las responde mejor","Rechaza el 98 % aunque las sabe: al bloquear el \"no sé\" recupera la correcta en ~95 %","Inventa capitales","No cambia nada"],a:1,e:"El punto ciego viaja como regla de rechazo por clase de pregunta, no como conocimiento falso."},
-    {t:"juez",q:"¿Cuánto suma el conocimiento del grader frente a la regla de muestrear 32 respuestas y abstenerse donde no coinciden?",o:["Unos 20 puntos","Alrededor de 1 respuesta corregida por cada 100 preguntas","Nada medible en ningún caso","Duplica la exactitud"],a:1,e:"Lo que el juez sabe de respuestas sueltas \"se queda en casa\": se memoriza para esa pregunta y casi no se transfiere."},
-    {t:"juez",q:"¿Corrige un jurado de 5 jueces el punto ciego?",o:["Sí, siempre","No: la mayoría rechaza 10–11 de las 12 y elimina el 85–95 % de la categoría","Solo con Sonnet","El paper no lo prueba"],a:1,e:"Los jueces comparten dudas (76–88 % de los rechazos de uno los comparten al menos 2 de los otros 3), así que votar no las elimina."},
-    {t:"mcp",q:"¿Qué variable tuvo el efecto más grande en code mode según el paper de MCP?",o:["Agregar un enrutador delante","Declarar en el stub la forma de lo que devuelve cada herramienta","Usar JSON en vez de código","Subir la temperatura"],a:1,e:"Las pistas de forma subieron el éxito +22,7 pp en Gemma y +39,5 pp en Nemotron; el enrutador sumó bastante menos y su hipótesis no se confirmó."},
-    {t:"mcp",q:"¿Por qué la hipótesis \"enrutador + code supera a code solo\" quedó como no confirmada y no como refutada?",o:["Porque el enrutador falló siempre","Porque con 119–238 instancias el estudio no tenía el poder que el propio protocolo pedía (~300)","Porque no se preregistró","Porque Qwen no terminó"],a:1,e:"Holm p = 0,43 en los tres agentes y poco poder: \"no confirmado\" significa no concluyente."},
-    {t:"tope",q:"Qwen entrenado con tope de 8 mil tokens, ¿cómo se compara con su base en AIME?",o:["Gana en todos los presupuestos","Gana +42,4 pp a 8 mil y pierde −24,6 pp a 64 mil","Pierde en todos","Empata"],a:1,e:"El cruce se reprodujo en las 18 corridas. A 64 mil, el base usa unos 27 mil tokens y el entrenado unos 6 mil."},
-    {t:"tope",q:"Aplicación: ¿qué revisas primero en los logs de tu agente después de leer la pieza 4?",o:["El AUC del scorecard","La fracción de respuestas que llegan al max_tokens de cada nodo","El número de herramientas MCP","El idioma del prompt"],a:1,e:"La exposición al truncamiento es lo que el paper vincula con la internalización. En inferencia, una respuesta cortada puede cambiar una decisión sin que el promedio lo muestre."}
+    {t:"conceptos",q:"Una herramienta devuelve la mitad de las filas sin error. ¿Qué desenlace es el más peligroso para un agente que decide?",o:["Fallo honesto: decir que el dato no está disponible","Fabricación: reportar con seguridad una cifra calculada sobre datos incompletos","Reintentar la llamada","Cambiar de herramienta"],a:1,e:"Contexto previo de la pieza 1: el fallo honesto se corrige aguas abajo; la fabricación parece un éxito y nadie la detecta."},
+    {t:"conceptos",q:"¿Por qué corregir por separado el puntaje de cada agente puede empeorar la estimación de su diferencia?",o:["Porque la corrección siempre agrega sesgo","Porque si ambos errores eran parecidos se cancelaban en la diferencia, y corregirlos rompe esa cancelación","Porque la diferencia no tiene error","Porque los jueces no tienen sesgo"],a:1,e:"El error de la diferencia es el error de B menos el de A. El paper muestra un caso en que ambos puntajes se acercan a la verdad y la ventaja estimada empeora."},
+    {t:"conceptos",q:"¿Qué distingue la competencia de tarea de la competencia de interfaz?",o:["Son lo mismo","La primera es saber qué hacer; la segunda, saber expresarlo en el formato de acción del harness","La primera es de RL y la segunda de SFT","La segunda solo importa en modelos grandes"],a:1,e:"Contexto previo de la pieza 4: el SFT sobre la trayectoria completa enseña ambas a la vez, y por eso un fallo en otro harness no dice cuál falta."},
+    {t:"fallos",q:"Según RetryRealistic, ¿qué tipo de fallo produce más fabricación?",o:["Permiso denegado","Resultado parcial (datos truncados pero verosímiles)","Base de datos bloqueada","Tiempo agotado"],a:1,e:"Éxito parcial: 38,3 % de fabricación. El permiso denegado, en cambio, lleva a un 78,1 % de fallo honesto, porque no se puede confundir con datos reales."},
+    {t:"fallos",q:"¿Qué es la ingesta silenciosa?",o:["Reintentar muchas veces hasta fabricar","Aceptar un dato defectuoso como válido en el primer contacto, sin reintentar ni marcarlo","Borrar las salidas de herramientas","Comprimir el contexto"],a:1,e:"La fabricación se concentra en corridas con 0–1 reintentos (20,7 %), no en las que reintentan 3 o más veces (7,0 %)."},
+    {t:"fallos",q:"¿Por qué el Monitor verifica las cifras con código antes que con un LLM?",o:["Porque el código es más barato pero menos exacto","Porque una versión que preguntaba a un LLM \"¿es fabricado?\" vetaba respuestas correctas casi tanto como las incorrectas","Porque los LLM no leen tablas","Porque así lo exige MCP"],a:1,e:"Con veto LLM, 39 de 118 vetos rechazaban respuestas correctas frente a 46 incorrectas. Las salidas son estructuradas, así que buscar la cifra en ellas es un chequeo mecánico."},
+    {t:"brecha",q:"Con el juez Astra y la vista final, ¿qué pasó con la ventaja de Claude al pasar de predicción a certificación?",o:["Se duplicó","Bajó de 8,33 a 1,33 pp sin cambiar el ranking","Se invirtió el ranking","No cambió"],a:1,e:"Reducción de 7,00 pp (IC 95 % de 3,67 a 10,50). Claude sigue primero, pero la mejora que alguien le atribuiría es otra."},
+    {t:"brecha",q:"En el estimador Δ̂ = Ȳₙ + λ·(J̄_N − J̄ₙ), ¿qué hace la propuesta del paper con λ?",o:["Lo fija en 0","Lo fija en 1","Lo ajusta con una regresión sobre los mismos 50 pares etiquetados","Lo elige el juez"],a:2,e:"λ = 0 es el muestreo pareado directo y λ = 1 la corrección de peso igual. Ajustar λ redujo el error cuadrático medio entre 16,9 % y 36,9 % frente al directo."},
+    {t:"delega",q:"En Delegent, ¿quién escribe la respuesta final?",o:["El SLM, si está seguro","Un router entrenado","Siempre el modelo de frontera; el SLM solo hace subtareas y devuelve informes","Un juez externo"],a:2,e:"A diferencia de cascadas y routers, el modelo caro nunca suelta la tarea: no acepta ninguna salida del SLM sin leerla."},
+    {t:"delega",q:"Sin la instrucción de economía, ¿qué pasó con el SLM de 2B en DeepSWE?",o:["Resolvió más tareas","Resolvió 22 de 50 en vez de 29; con la instrucción, 30","No cambió nada","No se pudo correr"],a:1,e:"La instrucción explica unas tres quintas partes del ahorro y evita que el modelo débil pierda tareas."},
+    {t:"interfaz",q:"En BFCL multi-turno con Qwen3-4B, ¿cómo rinden la supervisión cruzada y el ensayo de harness?",o:["Cada uno por separado ya llega a 58,8 %","Solos dan 8,5 % y 32,5 %; juntos, 58,8 %","El ensayo empeora siempre","Ninguno supera al base en ningún caso"],a:1,e:"Es una interacción: el conocimiento de la tarea aprendido en otros formatos solo se expresa cuando el modelo domina la interfaz objetivo."},
+    {t:"interfaz",q:"Aplicación: un modelo local falla con tus herramientas MCP. ¿Qué revisas primero según la pieza 4?",o:["El AUC del scorecard","Si los fallos son llamadas mal formadas (interfaz) o herramienta y argumentos equivocados (tarea)","El tamaño del contexto","La temperatura"],a:1,e:"Si dominan los fallos de formato, el problema es de interfaz y se ataca con ejemplos baratos del formato, no con más datos de la tarea."}
   ];
-  const KEY="topicos-ai-quiz-2026-11-20";
+  const KEY="topicos-ai-quiz-2026-11-27";
   let ans={};
   try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){ans={}}
-  const names={conceptos:"Conceptos",mas:"Multiagente",juez:"Juez como recompensa",mcp:"MCP y code mode",tope:"Tope de tokens"};
+  const names={conceptos:"Conceptos",fallos:"Fallos de herramientas",brecha:"Regla del juez",delega:"Delegar a un SLM",interfaz:"Tarea frente a interfaz"};
   const box=document.getElementById("quiz");
   function save(){try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}}
   function render(){
@@ -558,66 +573,78 @@ input[type=range]{accent-color:var(--accent);max-width:100%}
   const pills=(el,arr)=>{el.innerHTML=arr.map(p=>'<span class="pill '+p[0]+'">'+esc(p[1])+'</span>').join("")};
   const nf=(x,d)=>x.toFixed(d).replace(".",",");
 
-  // ---------- Ejemplo 1: comité frente a voto ----------
-  const mn=document.getElementById("m-n"),mr=document.getElementById("m-r"),mb=document.getElementById("m-body"),mo=document.getElementById("m-out");
-  function mRender(){
-    const N=+mn.value,r=+mr.value;document.getElementById("m-nv").textContent=N;document.getElementById("m-rv").textContent=nf(r,2);
-    const p1=0.62;                                  // pasada voraz de juguete
-    const keff=N/(1+(N-1)*r);                       // muestras efectivas con errores correlacionados
-    const vote=p1+0.16*(1-Math.exp(-(keff-1)/2.5)); // voto de juguete que se satura
-    const debate=p1+0.11*(1-Math.exp(-(keff-1)/2.5))-0.01*(N>1?1:0); // debate de juguete con conformidad
-    const rows=[["Una pasada",p1,1],["Voto de "+N+" muestras",N>1?vote:p1,N],["Comité de "+N+" agentes (2 rondas)",N>1?debate:p1,N>1?N*2*1.4:1]];
-    mb.innerHTML=rows.map(x=>'<tr><td><b>'+esc(x[0])+'</b></td><td class="num">'+nf(x[1]*100,1)+' %</td><td class="num">'+nf(x[2],1)+'×</td></tr>').join("");
-    const vsA=debate-p1,vsB=debate-vote;
-    pills(mo,[[N>1&&vsA>0?"ok":"neu","Comité frente a pasada: "+(vsA>=0?"+":"")+nf(vsA*100,1)+" pp"],[N>1&&vsB<0?"bad":"neu","Comité frente a voto: "+(vsB>=0?"+":"")+nf(vsB*100,1)+" pp"]]);
+  // ---------- Ejemplo 1: resultado parcial ----------
+  const ft=document.getElementById("f-t"),fm=document.getElementById("f-m"),ftr=document.getElementById("f-trace"),fo=document.getElementById("f-out");
+  function fRender(){
+    const t=ft.value,check=fm.value==="1";
+    const total=65.0,rows=100;
+    let out="",status,cls;
+    if(t==="none"){
+      out=line("k","get_arrears() → 100 filas · expected_rows=100")+"\n"+line("g","Respuesta: saldo en mora = "+nf(total,1)+" millones");
+      status="Correcto";cls="ok";
+    }else if(t==="denied"){
+      out=line("e","get_arrears() → PermissionError: acceso denegado")+"\n"+line("w","Respuesta: no pude obtener el saldo en mora; el dato no está disponible.");
+      status="Fallo honesto";cls="neu";
+    }else{
+      out=line("k","get_arrears() → 50 filas · expected_rows=100  (sin error)")+"\n";
+      if(check){
+        out+=line("d","# verificación en código: filas recibidas 50 frente a 100 esperadas")+"\n"+line("w","Veto correctivo: los datos están incompletos; reintenta o informa que faltan.")+"\n"+line("g","Respuesta: la consulta devolvió solo 50 de 100 filas; no reporto un saldo hasta completar.");
+        status="Fallo honesto (detectado)";cls="ok";
+      }else{
+        out+=line("e","Respuesta: saldo en mora = "+nf(total*32/65,1)+" millones  (real: "+nf(total,1)+")");
+        status="Fabricación";cls="bad";
+      }
+    }
+    ftr.innerHTML=line("d","# juguete: cartera dummy con "+rows+" cuotas en mora")+"\n"+out;
+    pills(fo,[[cls,"Desenlace: "+status],["neu",t==="partial"?"Ningún error visible en la traza":"El fallo es visible o no hay fallo"]]);
   }
-  mn.addEventListener("input",mRender);mr.addEventListener("input",mRender);mRender();
+  ft.addEventListener("change",fRender);fm.addEventListener("change",fRender);fRender();
 
-  // ---------- Ejemplo 2: el punto ciego que viaja ----------
-  const jr=document.getElementById("j-r"),jm=document.getElementById("j-mode"),jt=document.getElementById("j-trace"),jo=document.getElementById("j-out");
-  function jRender(){
-    const k=+jr.value;document.getElementById("j-rv").textContent=k;
-    const judge=jm.value==="judge";
-    // tasa de rechazo de juguete en la categoría, con forma de S según los rechazos plantados
-    const refuse=judge?0.05+0.9/(1+Math.exp(-(k-3.5)/1.2)):0.08;
-    const catShare=0.03;                             // la categoría pesa 3 % de las preguntas de juguete
-    const baseAbst=0.20;                             // abstención de juguete fuera de la categoría
-    const globalAbst=baseAbst*(1-catShare)+refuse*catShare;
-    jt.innerHTML=line("d","# juguete: "+(judge?"juez que rechazó "+k+" de 12 respuestas correctas de la categoría":"el modelo paga solo donde sus propias muestras coinciden"))+"\n"+
-      line(refuse>0.5?"e":"g","Categoría 'capitales antiguas': rechaza "+nf(refuse*100,0)+" % de las que sabe")+"\n"+
-      line("k","Abstención global: "+nf(globalAbst*100,1)+" %   (sin punto ciego: "+nf((baseAbst*(1-catShare)+0.05*catShare)*100,1)+" %)");
-    pills(jo,[[refuse>0.5?"bad":"ok","Categoría perdida: "+(refuse>0.5?"sí":"no")],["neu","El promedio global casi no cambia"]]);
+  // ---------- Ejemplo 2: mismo ranking, otra ventaja ----------
+  const gr=document.getElementById("g-r"),gu=document.getElementById("g-u"),gb=document.getElementById("g-body"),go=document.getElementById("g-out");
+  function gRender(){
+    const u=+gu.value;document.getElementById("g-uv").textContent=u;
+    const cert=gr.value==="cert";
+    const aPred=20,bPred=28,aNoEv=5;             // de 100 casos de juguete
+    const a=cert?aPred-aNoEv:aPred, b=cert?bPred-u:bPred;
+    gb.innerHTML='<tr><td><b>Agente A</b></td><td class="num">'+a+' %</td></tr><tr><td><b>Agente B</b></td><td class="num">'+b+' %</td></tr>';
+    const gap=b-a;
+    pills(go,[[gap>0?"ok":(gap<0?"bad":"neu"),"Ventaja de B: "+(gap>=0?"+":"")+gap+" pp"],["neu",gap>0?"B sigue primero":(gap<0?"Se invierte el ranking":"Empate")]]);
   }
-  jr.addEventListener("input",jRender);jm.addEventListener("change",jRender);jRender();
+  gr.addEventListener("change",gRender);gu.addEventListener("input",gRender);gRender();
 
-  // ---------- Ejemplo 3: stub con y sin forma ----------
-  const sh=document.getElementById("s-h"),sm=document.getElementById("s-m"),st=document.getElementById("s-trace"),so=document.getElementById("s-out");
-  function sRender(){
-    const hint=sh.value==="1",strong=sm.value==="strong";
-    const stub=hint?"def get_score(client_id: str) -> {\"pd\": float, \"grade\": str}":"def get_score(client_id: str) -> dict | list";
-    const guess=hint?"r[\"pd\"]":(strong?"r[\"pd\"]":"r[\"score\"][0]");
-    const ok=hint||strong;
-    const rate=hint?(strong?0.97:0.86):(strong?0.93:0.30);
-    st.innerHTML=line("d","# juguete: stub que ve el agente")+"\n"+line("k",stub)+"\n"+
-      line("d","# script que escribe")+"\n"+line("k","r = get_score(\"C-104\"); print("+guess+")")+"\n"+
-      line(ok?"g":"e",ok?"→ 0.083":"→ KeyError: 'score'  (reintento, más tokens)");
-    pills(so,[[rate>0.8?"ok":"bad","Éxito de juguete: "+nf(rate*100,0)+" %"],["neu",hint?"Contrato de salida declarado":"El modelo adivina las claves"]]);
+  // ---------- Ejemplo 3: delegar el trabajo pesado ----------
+  const dn=document.getElementById("d-n"),df=document.getElementById("d-f"),di=document.getElementById("d-i"),db=document.getElementById("d-body"),dout=document.getElementById("d-out");
+  function dRender(){
+    const N=+dn.value,f=+df.value,ins=di.value==="1";
+    document.getElementById("d-nv").textContent=N;document.getElementById("d-fv").textContent=Math.round(f*100)+" %";
+    const ctx0=8,grow=0.6,price=0.0004;            // miles de tokens iniciales, crecimiento por paso, USD por mil (juguete)
+    const cost=n=>{let c=0;for(let k=0;k<n;k++)c+=(ctx0+grow*k)*price;return c;};
+    const alone=cost(N);
+    const keep=Math.max(3,Math.round(N*(1-f)));
+    const reports=Math.round(N*f/8);               // informes que vuelven al modelo caro
+    const del=cost(keep+reports)*(ins?1:1.15);
+    const solved0=29, solved=ins?solved0:(f>0.5?solved0-Math.round((f-0.5)*15):solved0);
+    db.innerHTML='<tr><td><b>Solo modelo caro</b></td><td class="num">'+nf(alone,2)+'</td><td class="num">'+solved0+'</td></tr>'+
+      '<tr><td><b>Con delegación</b></td><td class="num">'+nf(del,2)+'</td><td class="num">'+solved+'</td></tr>';
+    pills(dout,[[del<alone?"ok":"bad","Costo relativo: "+nf(del/alone*100,0)+" %"],[solved<solved0?"bad":"ok",solved<solved0?"Pierde "+(solved0-solved)+" tareas":"No pierde tareas"]]);
   }
-  sh.addEventListener("change",sRender);sm.addEventListener("change",sRender);sRender();
+  dn.addEventListener("input",dRender);df.addEventListener("input",dRender);di.addEventListener("change",dRender);dRender();
 
-  // ---------- Ejemplo 4: el tope que se vuelve techo ----------
-  const tc=document.getElementById("t-c"),te=document.getElementById("t-e"),tb=document.getElementById("t-body"),to=document.getElementById("t-out");
-  function tRender(){
-    const C=+tc.value,E=+te.value;document.getElementById("t-cv").textContent=C;document.getElementById("t-ev").textContent=E;
-    const need=24;                                         // tokens que el base querría usar (miles, juguete)
-    const baseUse=Math.min(E,need),baseAcc=0.80*(1-Math.exp(-baseUse/9));
-    const trUse=Math.min(E,C*1.2),trAcc=Math.min(0.95,0.80*(1-Math.exp(-trUse/(9*0.35)))*(0.55+0.45*Math.min(1,C/need))+0.02);
-    tb.innerHTML='<tr><td><b>Base</b></td><td class="num">'+nf(baseAcc*100,1)+' %</td><td class="num">'+nf(baseUse,1)+'</td></tr>'+
-      '<tr><td><b>Entrenado con tope '+C+' mil</b></td><td class="num">'+nf(trAcc*100,1)+' %</td><td class="num">'+nf(trUse,1)+'</td></tr>';
-    const d=trAcc-baseAcc;
-    pills(to,[[d>0?"ok":"bad","Entrenado frente a base: "+(d>=0?"+":"")+nf(d*100,1)+" pp"],["neu",E<=C*1.2?"Evalúas cerca del tope":"Evalúas lejos del tope"]]);
+  // ---------- Ejemplo 4: tarea frente a interfaz ----------
+  const hc=document.getElementById("h-c"),hr=document.getElementById("h-r"),htr=document.getElementById("h-trace"),ho=document.getElementById("h-out");
+  function hRender(){
+    const cross=hc.value==="1",reh=hr.value==="1";
+    const task=cross?0.80:0.55;                       // competencia de tarea de juguete
+    const iface=reh?0.85:(cross?0.15:0.70);           // la supervisión cruzada sola rompe el formato JSON
+    const succ=task*iface;
+    htr.innerHTML=line("d","# juguete: evaluación en formato JSON")+"\n"+
+      line("k","Competencia de tarea:    "+nf(task*100,0)+" %")+"\n"+
+      line(iface<0.4?"e":"k","Competencia de interfaz: "+nf(iface*100,0)+" %"+(iface<0.4?"  (escribe otro formato donde se esperaba JSON)":""))+"\n"+
+      line(succ>0.5?"g":"w","Éxito ≈ tarea × interfaz = "+nf(succ*100,0)+" %");
+    pills(ho,[[succ>0.5?"ok":"bad","Éxito de juguete: "+nf(succ*100,0)+" %"],["neu",cross&&reh?"Ambas supervisiones":(cross?"Solo tarea":(reh?"Solo interfaz":"Base"))]]);
   }
-  tc.addEventListener("input",tRender);te.addEventListener("input",tRender);tRender();
+  hc.addEventListener("change",hRender);hr.addEventListener("change",hRender);hRender();
 
 })();
 </script>
